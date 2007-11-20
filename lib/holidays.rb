@@ -1,24 +1,16 @@
-
-# === References
-# ==== Calculations
-# * http://michaelthompson.org/technikos/holidays.php
-# ==== World
-# * http://en.wikipedia.org/wiki/List_of_holidays_by_country
-# ==== US
-# * http://www.opm.gov/Operating_Status_Schedules/fedhol/index.asp
-# * http://www.smart.net/~mmontes/ushols.html
 module Holidays
-  # Exception class for dealing with unknown regions.
-  class UnkownRegionError < StandardError; end
+  # Exception thrown when an unknown region is encountered.
+  class UnkownRegionError < ArgumentError; end
 
-  VERSION = '1.0.0'
+  VERSION = '0.9.0'
 
-  HOLIDAY_REGIONS = {:ca => 'Canada', :us => 'United States'}
+  REGIONS = [:ca, :us, :au, :gr, :fr]
+  HOLIDAYS_TYPES = [:bank, :statutory, :religious, :informal]
   WEEKS = {:first => 1, :second => 2, :third => 3, :fourth => 4, :fifth => 5, :last => -1}
   MONTH_LENGTHS = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 
-  # :wday: Day of the week (0 is Sunday, 6 is Saturday)
+  # :wday  Day of the week (0 is Sunday, 6 is Saturday)
   HOLIDAYS_BY_MONTH = {
    1  => [{:mday => 1,  :name => 'New Year\'s Day', :regions => [:us, :ca, :au]},
           {:mday => 1,  :name => 'Australia Day', :regions => [:au]},
@@ -50,7 +42,21 @@ module Holidays
           {:mday => 26, :name => 'Boxing Day', :regions => [:ca,:gr,:au]}]
   }
 
-  # Get all holidays on a certain date
+  # Get all holidays on a given date.
+  #
+  # [<tt>date</tt>]    A Date object.
+  # [<tt>regions</tt>] A symbol (e.g. <tt>:ca</tt>) or an array of symbols 
+  #                    (e.g. <tt>[:ca, :ca_bc, :us]</tt>).
+  #
+  # Returns an array of hashes or nil.
+  #
+  # Each holiday is returned as a hash with the following fields:
+  # [<tt>:year</tt>]    Integer.
+  # [<tt>:month</tt>]   Integer.
+  # [<tt>:day</tt>]     Integer.
+  # [<tt>:name</tt>]    String.
+  # [<tt>:regions</tt>] An array of region symbols.
+  # [<tt>:types</tt>]   An array of holiday-type symbols.
   def self.by_day(date, regions = [:ca, :us])
     #raise(UnkownRegionError, "No holiday information is available for region '#{region}'") unless known_region?(region)
 
@@ -83,6 +89,10 @@ module Holidays
     holidays
   end
 
+  # Get all holidays occuring between two dates, inclusively.
+  #
+  # Returns an array of hashes or nil.  See Holidays#by_day for the output 
+  # format.
   #--
   # TODO: do not take full months
   def self.between(start_date, end_date, regions = [:ca,:us])
@@ -107,8 +117,6 @@ module Holidays
         end
       end
     end
-
-
     #puts dates.inspect
     holidays
   end
@@ -139,22 +147,15 @@ module Holidays
   end
 
 
-  #def self.calculate_mday(yr, mo, wday, int)
-  #  earliest = 1 + 7 * (int - 1)
-
-  #  wd = Date.civil(yr, mo, earliest).wday
-  #  if wday == earliest
-  #    off = 0
-  #  else
-  #    if wday < wd
-  #      off = wday + (7 - wd)
-  #    else
-  #      off = (wday + (7 - wd)) - 7
-  #    end
-  #  end
-
-  #  earliest + off
- # end
+private
+  # Check regions against list of supported regions and return an array of 
+  # symbols.
+  def self.check_regions(regions) # :nodoc:
+    regions = [regions] unless regions.kind_of?(Array)
+    regions = regions.collect { |r| r.to_sym }
+    raise UnkownRegionError unless regions.all? { |r| r == :any or REGIONS.include?(r) }
+    regions
+  end
 
 end
 
@@ -162,29 +163,41 @@ end
 class Date
   include Holidays
 
-  # Check if the current date is a holiday.
+  # Check if the current date is a holiday in a given region.
   #
   #   Date.civil('2008-01-01').is_holiday?(:ca)
   #   => true
-  def is_holiday?(regions = [:ca, :us])
+  def is_holiday?(regions = :any)
     holidays = Holidays.by_day(self, regions)
     holidays.empty?
   end
 
-  # Calculate the day of the month based on week and day of the week.
+  # Calculate day of the month based on the week number and the day of the 
+  # week.
   #
-  # First Monday of Jan, 2008
+  # ==== Parameters
+  # [<tt>year</tt>] Integer.
+  # [<tt>month</tt>] Integer from 1-12.
+  # [<tt>week</tt>] One of <tt>:first</tt>, <tt>:second</tt>, <tt>:third</tt>,
+  #                 <tt>:fourth</tt> or <tt>:fifth</tt>.
+  # [<tt>wday</tt>] Day of the week as an integer from 0 (Sunday) to 6
+  #                 (Saturday) or as a symbol (e.g. <tt>:monday</tt>).
+  #
+  # Returns an integer.
+  #
+  # ===== Examples
+  # First Monday of January, 2008:
   #   calculate_mday(2008, 1, :first, :monday)
   #
-  # Third Thursday of Dec, 2008
+  # Third Thursday of December, 2008:
   #   calculate_mday(2008, 12, :third, 4)
   #
-  # Last Monday of Jan, 2008
+  # Last Monday of January, 2008:
   #   calculate_mday(2008, 1, :last, 1)
   #--
   # see http://www.irt.org/articles/js050/index.htm
   def self.calculate_mday(year, month, week, wday)
-    raise ArgumentError, "Week paramater must be one of Holidays::WEEKS." unless WEEKS.include?(week)
+    raise ArgumentError, "Week parameter must be one of Holidays::WEEKS." unless WEEKS.include?(week)
 
     week = WEEKS[week]
 

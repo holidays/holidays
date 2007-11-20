@@ -1,48 +1,58 @@
-holidays
-    by FIX (your name)
-    FIX (url)
-
-== DESCRIPTION:
+= Ruby Holidays Gem
   
-FIX (describe your package)
+A set of classes to deal with public/statutory holidays in Ruby.
 
-== FEATURES/PROBLEMS:
+Extends Ruby's built-in Date class and supports custom holiday definition lists.
+
+=== Examples
+
+==== Using the Holidays class
+
+  # Get all holidays on April 25, 2008 in Australia
+  date = Date.civil(2008,4,25)
+  Holidays.by_day(date, :au)
+  => [{:name => 'ANZAC Day',...}]
+
+
+  # Get all holidays in July, 2008 in Canada and the US
+  from = Date.civil(2008,7,1)
+  to   = Date.civil(2008,7,31)
+  Holidays.between(from, to, [:ca,:us])
+  => [{:name => 'Canada Day',...}
+      {:name => 'Idenpendence Day',...}]
+
+
+==== Extending Ruby's Date class
+  require 'date'
+  require 'holidays'
+
+  # Lookup Canada Day in the :ca region
+  Date.civil(2008,7,1).is_holiday?(:ca)
+  => true
   
-* FIX (list of features or problems)
+  # Lookup Canada Day in the :fr region
+  Date.civil(2008,7,1).is_holiday?(:fr)
+  => false
 
-== SYNOPSIS:
+=== Installation
 
-  FIX (code sample of usage)
+To install the gem from RubyForge:
 
-== REQUIREMENTS:
+  gem install holidays
 
-* FIX (list of requirements)
+Or, download the source <tt>.tgz</tt> file from http://rubyforge.org/holidays/ and 
+extract it somewhere in your include path.
 
-== INSTALL:
+=== Custom holiday definitions
 
-* FIX (sudo gem install, anything else)
 
-== LICENSE:
 
-(The MIT License)
+=== Credits and code
 
-Copyright (c) 2007 FIX
+* Project page: http://code.dunae.ca/holidays
+* Source: http://code.dunae.ca/svn/holidays
+* Docs: http://code.dunae.ca/holidays/doc
 
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
+By Alex Dunae (dunae.ca, e-mail 'code' at the same domain), 2007.
 
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Made on Vancouver Island.
