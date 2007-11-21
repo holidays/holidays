@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/test_helper'
-require 'date'
-# Test cases for reading and generating CSS shorthand properties
-class HolidayTests < Test::Unit::TestCase
+
+class HolidaysTests < Test::Unit::TestCase
 
   def setup
     @date = Date.civil(2008,1,1)
@@ -16,21 +15,7 @@ class HolidayTests < Test::Unit::TestCase
     holidays.each do |h|
       #puts h.inspect
     end
-    
   end
-
-  def test_easter_dates
-    assert_equal '1800-04-13', Holidays.easter(1800).to_s
-    assert_equal '1899-04-02', Holidays.easter(1899).to_s
-    assert_equal '1900-04-15', Holidays.easter(1900).to_s
-    assert_equal '1999-04-04', Holidays.easter(1999).to_s
-    assert_equal '2000-04-23', Holidays.easter(2000).to_s
-    assert_equal '2025-04-20', Holidays.easter(2025).to_s
-    assert_equal '2035-03-25', Holidays.easter(2035).to_s
-    assert_equal '2067-04-03', Holidays.easter(2067).to_s
-    assert_equal '2099-04-12', Holidays.easter(2099).to_s
-  end
-
 
   def test_calculating_mdays
     # US Memorial day
@@ -58,8 +43,35 @@ class HolidayTests < Test::Unit::TestCase
     # Misc
     assert_equal 21, Date.calculate_mday(2008, 1, :third, 1)
     assert_equal 1, Date.calculate_mday(2007, 1, :first, 1)
-    assert_equal 2, Date.calculate_mday(2007, 3, :first, 5)    
+    assert_equal 2, Date.calculate_mday(2007, 3, :first, 5)
+  end
 
+  def test_requires_valid_week
+    assert_raises ArgumentError do
+      Date.calculate_mday(2008, 1, :none, 1)
+    end
+
+    assert_raises ArgumentError do
+      Date.calculate_mday(2008, 1, nil, 1)
+    end
+
+    assert_raises ArgumentError do
+      Date.calculate_mday(2008, 1, 0, 1)
+    end
+  end
+
+  def test_requires_valid_regions
+    assert_raises Holidays::UnkownRegionError do
+      Holidays.by_day(Date.civil(2008,1,1), :xx)
+    end
+
+    assert_raises Holidays::UnkownRegionError do
+      Holidays.by_day(Date.civil(2008,1,1), [:ca,:xx])
+    end
+
+    assert_raises Holidays::UnkownRegionError do
+      Holidays.between(Date.civil(2008,1,1), Date.civil(2008,12,31), [:ca,:xx])
+    end
   end
 
   def test_region_params

@@ -4,6 +4,7 @@ require 'rake/rdoctask'
 require 'rake/gempackagetask'
 require 'fileutils'
 require 'lib/holidays'
+require 'csv'
 
 desc 'Run the unit tests.'
 Rake::TestTask.new do |t|
@@ -12,6 +13,7 @@ Rake::TestTask.new do |t|
   t.test_files = FileList['test/test*.rb'].exclude('test_helper.rb')
   t.verbose = false
 end
+
 
 desc 'Generate documentation.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
@@ -22,7 +24,7 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('REFERENCES')
   rdoc.rdoc_files.include('LICENSE')
   rdoc.rdoc_files.include('lib/*.rb')
-  #rdoc.rdoc_files.include('lib/holidays/*.rb')
+  rdoc.rdoc_files.include('lib/holidays/*.rb')
 end
 
 

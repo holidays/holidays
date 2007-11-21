@@ -1,17 +1,28 @@
+$:.unshift File.dirname(__FILE__)
+require 'holidays/easter'
+
 module Holidays
   # Exception thrown when an unknown region is encountered.
   class UnkownRegionError < ArgumentError; end
 
+  self.extend Easter
+
   VERSION = '0.9.0'
 
-  REGIONS = [:ca, :us, :au, :gr, :fr]
+  REGIONS = [:ca, :us, :au, :gr, :fr, :christian]
   HOLIDAYS_TYPES = [:bank, :statutory, :religious, :informal]
   WEEKS = {:first => 1, :second => 2, :third => 3, :fourth => 4, :fifth => 5, :last => -1}
   MONTH_LENGTHS = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 
   # :wday  Day of the week (0 is Sunday, 6 is Saturday)
+  # :function Can return an integer representing mday or a Date object.
+  #
+  # The month <tt>0</tt> is used to store events that require lambda calculations
+  # and may occur in more than one month.
   HOLIDAYS_BY_MONTH = {
+   0  => [{:function => lambda { |year| easter(year) }, :name => 'Easter Sunday', :regions => [:christian, :ca, :us]},
+          {:function => lambda { |year| easter(year)-2 }, :name => 'Good Friday', :regions => [:christian, :ca, :us]}],
    1  => [{:mday => 1,  :name => 'New Year\'s Day', :regions => [:us, :ca, :au]},
           {:mday => 1,  :name => 'Australia Day', :regions => [:au]},
           {:mday => 6,  :name => 'Epiphany', :regions => [:christian]},
@@ -24,12 +35,11 @@ module Holidays
           {:wday => 6,  :week => :third, :name => 'Armed Forces Day', :regions => [:us]},
           {:wday => 1,  :week => :last, :name => 'Memorial Day', :regions => [:us]}],
    6  => [{:mday => 14, :name => 'Flag Day', :regions => [:us]},
-          {:wday => 1, :week => :second, :name => 'Queen\'s Birthday', :regions => [:au]}
-          ],
+          {:wday => 1, :week => :second, :name => 'Queen\'s Birthday', :regions => [:au]}],
    7  => [{:mday => 1,  :name => 'Canada Day', :regions => [:ca]},
           {:mday => 4,  :name => 'Independence Day', :regions => [:us]},
           {:mday => 14,  :name => 'Ascension Day', :regions => [:fr]}],
-   8 =>  [{:mday => 15,  :name => 'Assumption of Mary', :regions => [:fr, :gr, :christian]}],
+   8  => [{:mday => 15,  :name => 'Assumption of Mary', :regions => [:fr, :gr, :christian]}],
    9  => [{:wday => 1,  :week => :first,:name => 'Labor Day', :regions => [:us]},
           {:wday => 1,  :week => :first,:name => 'Labour Day', :regions => [:ca]}],
    10 => [{:wday => 1,  :week => :second, :name => 'Columbus Day', :regions => [:us]},
@@ -58,11 +68,9 @@ module Holidays
   # [<tt>:regions</tt>] An array of region symbols.
   # [<tt>:types</tt>]   An array of holiday-type symbols.
   def self.by_day(date, regions = [:ca, :us])
-    #raise(UnkownRegionError, "No holiday information is available for region '#{region}'") unless known_region?(region)
+    regions = validate_regions(regions)
 
-    regions = [regions] unless regions.kind_of?(Array)
-
-    hbm = HOLIDAYS_BY_MONTH[date.mon]
+    hbm = HOLIDAYS_BY_MONTH.values_at(0,date.mon).flatten
      
     holidays = []
 
@@ -83,9 +91,16 @@ module Holidays
         if Date.calculate_mday(year, month, h[:week], h[:wday]) == mday
           holidays << h
         end
+      elsif h[:function]
+        result = h[:function].call(year)
+        if result.kind_of?(Date) and result.mon == month and result.mday == mday
+          holidays << h
+        elsif result == mday
+          holidays << h
+        end
+      
       end
     end
-
     holidays
   end
 
@@ -96,7 +111,7 @@ module Holidays
   #--
   # TODO: do not take full months
   def self.between(start_date, end_date, regions = [:ca,:us])
-    regions = [regions] unless regions.kind_of?(Array)
+    regions = validate_regions(regions)
     holidays = []
 
     dates = {}
@@ -112,48 +127,26 @@ module Holidays
         hbm.each do |h|
           next unless h[:regions].any?{ |reg| regions.include?(reg) }
           
-          day = h[:mday] || Date.calculate_mday(year, month, h[:week], h[:wday])
-          holidays << {:month => month, :day => day, :year => year, :name => h[:name], :regions => h[:regions]}
+          unless h[:function]
+            day = h[:mday] || Date.calculate_mday(year, month, h[:week], h[:wday])
+            holidays << {:month => month, :day => day, :year => year, :name => h[:name], :regions => h[:regions]}
+          end
         end
       end
     end
-    #puts dates.inspect
+
     holidays
   end
-
-  # Get the date of Easter in a given year.
-  #
-  # +year+ must be a valid Gregorian year.
-  #--
-  # from http://snippets.dzone.com/posts/show/765
-  # TODO: check year to ensure Gregorian
-  def self.easter(year)
-    y = year
-    a = y % 19
-    b = y / 100
-    c = y % 100
-    d = b / 4
-    e = b % 4
-    f = (b + 8) / 25
-    g = (b - f + 1) / 3
-    h = (19 * a + b - d - g + 15) % 30
-    i = c / 4
-    k = c % 4
-    l = (32 + 2 * e + 2 * i - h - k) % 7
-    m = (a + 11 * h + 22 * l) / 451
-    month = (h + l - 7 * m + 114) / 31
-    day = ((h + l - 7 * m + 114) % 31) + 1
-    Date.civil(year, month, day)
-  end
-
 
 private
   # Check regions against list of supported regions and return an array of 
   # symbols.
-  def self.check_regions(regions) # :nodoc:
+  def self.validate_regions(regions) # :nodoc:
     regions = [regions] unless regions.kind_of?(Array)
     regions = regions.collect { |r| r.to_sym }
+
     raise UnkownRegionError unless regions.all? { |r| r == :any or REGIONS.include?(r) }
+
     regions
   end
 
@@ -169,7 +162,7 @@ class Date
   #   => true
   def is_holiday?(regions = :any)
     holidays = Holidays.by_day(self, regions)
-    holidays.empty?
+    !holidays.empty?
   end
 
   # Calculate day of the month based on the week number and the day of the 
@@ -197,7 +190,7 @@ class Date
   #--
   # see http://www.irt.org/articles/js050/index.htm
   def self.calculate_mday(year, month, week, wday)
-    raise ArgumentError, "Week parameter must be one of Holidays::WEEKS." unless WEEKS.include?(week)
+    raise ArgumentError, "Week parameter must be one of Holidays::WEEKS (provided #{week})." unless WEEKS.include?(week)
 
     week = WEEKS[week]
 
