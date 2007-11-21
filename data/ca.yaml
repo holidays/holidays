@@ -1,0 +1,44 @@
+# Canadian holiday definitions for the Ruby Holiday gem.
+# Updated 2008-11-21.
+--- 
+months:
+  0: 
+  - name: Good Friday
+    regions: [ca]
+    function: lambda { |year| easter(year)-2 }
+  - name: Easter Sunday
+    regions: [ca]
+    function: lambda { |year| easter(year) }
+  1: 
+  - name: New Year's Day
+    regions: [ca]
+    mday: 1
+  7: 
+  - name: Canada Day
+    regions: [ca]
+    mday: 1
+  9: 
+  - name: Labour Day
+    week: 1
+    regions: [ca]
+    wday: 1
+  11: 
+  - name: Rememberance Day
+    regions: [ca]
+    mday: 11
+  12: 
+  - name: Christmas Day
+    regions: [ca]
+    mday: 25
+  - name: Boxing Day
+    regions: [ca]
+    mday: 26
+methods:
+  easter: |
+    def easter(year)
+      Date.civil(2008,1,1)
+    end
+  tester: |
+    def tester(year)
+      Date.civil(2005,1,1)
+    end

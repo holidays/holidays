@@ -1,0 +1,56 @@
+# Mexican holiday definitions for the Ruby Holiday gem.
+# Updated 2008-11-21.
+--- 
+0: 
+- name: Good Thursday
+  regions: [mx]
+  function: lambda { |year| easter(year)-3 }
+- name: Good Friday
+  regions: [mx]
+  function: lambda { |year| easter(year)-2 }
+- name: Easter Sunday
+  regions: [mx]
+  function: lambda { |year| easter(year) }
+1: 
+- name: New Year's Day
+  regions: [mx]
+  mday: 1
+- name: New Year's Day
+  regions: [mx]
+  mday: 2
+2: 
+- name: D\xC3\xADa de la Constituci\xC3\xB3n
+  week: 1
+  regions: [mx]
+  wday: 1
+3: 
+- name: Natalicio de Benito Ju\xC3\xA1rez
+  week: 3
+  regions: [mx]
+  wday: 1
+5: 
+- name: D\xC3\xADa del Trabajo
+  regions: [mx]
+  mday: 1
+- name: La Batalla de Puebla
+  regions: [mx]
+  mday: 5
+9: 
+- name: D\xC3\xADa de Independencia
+  regions: [mx]
+  mday: 16
+11: 
+- name: Dia de Muertos
+  regions: [mx]
+  mday: 2
+- name: D\xC3\xADa de la Revoluci\xC3\xB3n
+  week: 3
+  regions: [mx]
+  wday: 1
+12: 
+- name: Our Lady of Guadalupe's day
+  regions: [mx]
+  mday: 12
+- name: Christmas Day
+  regions: [mx]
+  mday: 25

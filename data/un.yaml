@@ -1,0 +1,188 @@
+# United Nationas holiday definitions for the Ruby Holiday gem.
+# Updated 2008-11-21.
+--- 
+2: 
+- name: International Mother Language Day
+  regions: [un]
+  mday: 2
+3: 
+- name: United Nations Day for Women's Rights and International Peace
+  regions: [un]
+  mday: 8
+- name: International Day for the Elimination of Racial Discrimination
+  regions: [un]
+  mday: 21
+- name: Beginning of the Week of Solidarity with the Peoples Struggling against Racism and Racial Discrimination
+  regions: [un]
+  mday: 21
+- name: World Day for Water
+  regions: [un]
+  mday: 22
+- name: World Meteorological Day
+  regions: [un]
+  mday: 23
+4: 
+- name: World Health Day
+  regions: [un]
+  mday: 7
+- name: World Book and Copyright Day
+  regions: [un]
+  mday: 23
+5: 
+- name: World Press Freedom Day
+  regions: [un]
+  mday: 3
+- name: International Day of Families
+  regions: [un]
+  mday: 15
+- name: World Telecommunication Day
+  regions: [un]
+  mday: 17
+- name: World Day for Cultural Diversity for Dialogue and Development
+  regions: [un]
+  mday: 21
+- name: International Day for Biological Diversity
+  regions: [un]
+  mday: 22
+- name: Beginning of the Week of Solidarity with the Peoples of Non-Self-Governing Territories
+  regions: [un]
+  mday: 25
+- name: International Day of United Nations Peacekeepers
+  regions: [un]
+  mday: 29
+- name: World No-Tobacco Day
+  regions: [un]
+  mday: 31
+6: 
+- name: International Day of Innocent Children Victims of Aggression
+  regions: [un]
+  mday: 4
+- name: World Environment Day
+  regions: [un]
+  mday: 5
+- name: World Day to Combat Desertification and Drought
+  regions: [un]
+  mday: 17
+- name: World Refugee Day
+  regions: [un]
+  mday: 20
+- name: United Nations Public Service Day
+  regions: [un]
+  mday: 23
+- name: International Day against Drug Abuse and Illicit Trafficking
+  regions: [un]
+  mday: 26
+- name: International Day in Support of Victims of Torture
+  regions: [un]
+  mday: 26
+7: 
+- name: International Day of Cooperatives
+  week: 1
+  regions: [un]
+  wday: 6
+- name: World Population Day
+  regions: [un]
+  mday: 11
+8: 
+- name: International Day of the World's Indigenous People
+  regions: [un]
+  mday: 9
+- name: International Youth Day
+  regions: [un]
+  mday: 12
+- name: International Day for the Remembrance of the Slave Trade and Its Abolition
+  regions: [un]
+  mday: 23
+9: 
+- name: International Literacy Day
+  regions: [un]
+  mday: 8
+- name: International Day for the Preservation of the Ozone Layer
+  regions: [un]
+  mday: 16
+- name: International Day of Peace
+  regions: [un]
+  mday: 21
+- name: International Day of Older Persons
+  regions: [un]
+  mday: 1
+10: 
+- name: World Space Week
+  regions: [un]
+  mday: 4
+- name: World Teachers' Day
+  regions: [un]
+  mday: 5
+- name: World Habitat Day
+  week: 1
+  regions: [un]
+  wday: 1
+- name: International Day for Natural Disaster Reduction
+  week: 2
+  regions: [un]
+  wday: 3
+- name: World Post Day
+  regions: [un]
+  mday: 9
+- name: World Mental Health Day
+  regions: [un]
+  mday: 10
+- name: World Food Day
+  regions: [un]
+  mday: 16
+- name: International Day for the Eradication of Poverty
+  regions: [un]
+  mday: 17
+- name: United Nations Day
+  regions: [un]
+  mday: 24
+- name: World Development Information Day
+  regions: [un]
+  mday: 24
+- name: Disarmament Week
+  regions: [un]
+  mday: 24
+11: 
+- name: International Day for Preventing the Exploitation of the Environment in War and Armed Conflict
+  regions: [un]
+  mday: 6
+- name: International Day for Tolerance
+  regions: [un]
+  mday: 16
+- name: Africa Industrialization Day
+  regions: [un]
+  mday: 20
+- name: Universal Children's Day
+  regions: [un]
+  mday: 20
+- name: World Television Day
+  regions: [un]
+  mday: 21
+- name: International Day for the Elimination of Violence against Women
+  regions: [un]
+  mday: 25
+- name: International Day of Solidarity with the Palestinian People
+  regions: [un]
+  mday: 29
+12: 
+- name: World AIDS Day
+  regions: [un]
+  mday: 1
+- name: International Day for the Abolition of Slavery
+  regions: [un]
+  mday: 2
+- name: International Day of Disabled Persons
+  regions: [un]
+  mday: 3
+- name: International Volunteer Day for Economic and Social Development
+  regions: [un]
+  mday: 5
+- name: International Civil Aviation Day
+  regions: [un]
+  mday: 7
+- name: Human Rights Day
+  regions: [un]
+  mday: 10
+- name: International Migrants Day
+  regions: [un]
+  mday: 18

@@ -1,0 +1,17 @@
+# Christian holiday definitions for the Ruby Holiday gem.
+# Updated 2008-11-21.
+--- 
+0: 
+- name: Easter Sunday
+  regions: [christian]
+  function: lambda { |year| easter(year) }
+- name: Palm Sunday
+  regions: [christian]
+  function: lambda { |year| easter(year)-7 }
+- name: Good Friday
+  regions: [christian]
+  function: lambda { |year| easter(year)-2 }
+12: 
+- name: Christmas Day
+  regions: [christian]
+  mday: 25

@@ -9,10 +9,11 @@ module Holidays
 
   VERSION = '0.9.0'
 
-  REGIONS = [:ca, :us, :au, :gr, :fr, :christian]
-  HOLIDAYS_TYPES = [:bank, :statutory, :religious, :informal]
   WEEKS = {:first => 1, :second => 2, :third => 3, :fourth => 4, :fifth => 5, :last => -1}
   MONTH_LENGTHS = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+  DEFINED_REGIONS = [:ca, :us, :au, :gr, :fr, :christian]
+  HOLIDAYS_TYPES = [:bank, :statutory, :religious, :informal]
 
 
   # :wday  Day of the week (0 is Sunday, 6 is Saturday)
@@ -51,6 +52,8 @@ module Holidays
    12 => [{:mday => 25, :name => 'Christmas Day', :regions => [:us,:ca,:christian,:au]},
           {:mday => 26, :name => 'Boxing Day', :regions => [:ca,:gr,:au]}]
   }
+
+
 
   # Get all holidays on a given date.
   #
@@ -145,7 +148,7 @@ private
     regions = [regions] unless regions.kind_of?(Array)
     regions = regions.collect { |r| r.to_sym }
 
-    raise UnkownRegionError unless regions.all? { |r| r == :any or REGIONS.include?(r) }
+    raise UnkownRegionError unless regions.all? { |r| r == :any or DEFINED_REGIONS.include?(r) }
 
     regions
   end

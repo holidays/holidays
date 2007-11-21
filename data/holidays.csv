@@ -1,9 +1,0 @@
-month, region, mday, wday, week, name
-1, us, 1, , , 'New Year\'s Day'
-1, ca, 1, , , 'New Year\'s Day'
-1, au, 1, , , 'New Year\'s Day'
-1, christian, 6, , , 'Epiphany'
-1, us, , 1, 3, 'Martin Luther King, Jr. Day'
-3, us, , 1, 3, 'George Washington\'s Birthday'
-3, gr, 25, , , 'Independence Day'
-4, au, 25, , , 'ANZAC Day'

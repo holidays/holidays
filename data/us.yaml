@@ -1,0 +1,47 @@
+# United States holiday definitions for the Ruby Holiday gem.
+# Updated 2008-11-21.
+--- 
+1: 
+- name: New Year's Day
+  regions: [us]
+  mday: 1
+- name: Martin Luther King, Jr. Day
+  week: 3
+  regions: [us]
+  wday: 1
+3: 
+- name: George Washington's Birthday
+  week: 3
+  regions: [us]
+  wday: 1
+5: 
+- name: Memorial Day
+  week: -1
+  regions: [us]
+  wday: 1
+6: 
+- name: Flag Day
+  regions: [us]
+  mday: 14
+7: 
+- name: Independence Day
+  regions: [us]
+  mday: 4
+9: 
+- name: Labor Day
+  week: 1
+  regions: [us]
+  wday: 1
+11: 
+- name: Veterans Day
+  regions: [us]
+  mday: 11
+- name: Thanksgiving Day
+  week: 4
+  regions: [us]
+  wday: 4
+12: 
+- name: Christmas Day
+  regions: [us]
+  mday: 25
+  wday: 
