@@ -1,0 +1,7 @@
+month,regions,function,mday,wday,week,name
+1,ca,,1,,,"New Year's Day"
+7,ca,,1,,,"Canada Day"
+9,ca,,,1,1,"Labour Day"
+11,ca,,11,,,"Rememberance Day"
+12,ca,,25,,,"Christmas Day"
+12,ca,,26,,,"Boxing Day"

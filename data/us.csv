@@ -1,4 +1,11 @@
-month,region,mday,wday,week,name
-1,us,1,,,"New Year's Day"
-1,us,,1,3,"Martin Luther King, Jr. Day"
-3,us,,1,3,"George Washington's Birthday"
+month,regions,function,mday,wday,week,name
+1,us,,1,,,"New Year's Day"
+1,us,,,1,3,"Martin Luther King, Jr. Day"
+3,us,,,1,3,"George Washington's Birthday"
+5,us,,,1,-1,"Memorial Day"
+6,us,,14,,,"Flag Day"
+7,us,,4,,,"Independence Day"
+9,us,,,1,1,"Labor Day"
+11,us,,11,,,"Veterans Day"
+11,us,,,4,4,"Thanksgiving Day"
+12,us,,25,,,"Christmas Day"

@@ -1,0 +1,5 @@
+month,regions,function,mday,wday,week,name
+0,christian,"lambda { |year| easter(year) }",,,,"Easter Sunday"
+0,christian,"lambda { |year| easter(year)-7 }",,,,"Palm Sunday"
+0,christian,"lambda { |year| easter(year)-2 }",,,,"Good Friday"
+12,christian,,25,,,"Christmas Day"
