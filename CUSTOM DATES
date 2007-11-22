@@ -1,0 +1,104 @@
+= Custom dates with the Ruby Holidays Gem
+  
+It's easy to add your own custom holiday definitions to the Holidays gem. In a nutshell:
+1. Build a definition file
+2. Run a <tt>rake</tt> to make a custom module
+3. <tt>require</tt> your new module
+
+
+== Building the YAML file
+
+Definition files have two main parts: *months* and *methods*. Before you start, you may want to look some of the existing files at http://code.dunae.ca/svn/holidays/trunk/data.
+
+=== Months
+
+Holidays are grouped by month from 1 through 12.  Each entry within a month can have several fields.
+
+[<tt>name</tt>]     The name of the holiday.
+[<tt>regions</tt>]  One or more region codes.
+
+===== Dates defined by a fixed date (e.g. January 1st) 
+
+[<tt>wday</tt>]  Integer representing day of the month (1 through 31).
+
+For example, the following holiday is on the first of the month and available in the <tt>ca</tt>, <tt>us</tt> and <tt>au</tt> regions.
+
+    - name: New Year's Day
+      regions: [ca,us,au]
+      mday: 1
+
+
+===== Dates defined by a week number (e.g. first Monday of a month)
+
+[<tt>wday</tt>]  Integer representing day of the week (0 = Sunday through 6 = Saturday).
+[<tt>week</tt>]  Integer representing week number (1 = first week, 3 = third week, -1 = last week),
+
+
+For example, the following holiday is on the first Monday of the month and available in the <tt>ca</tt> region.
+
+    - name: Labour Day
+      regions: [ca]
+      week: 1
+      wday: 1
+
+
+
+
+=== Calculating dates with methods
+
+In addition to defining holidays by day or week, you can create custom methods to calculate a date.
+
+For example, Canada celebrates Victoria Day, which falls on the Monday on or before May 24.  So, under the <tt>methods</tt> section we could create a custom method that returns a Date object.
+
+  methods:
+    ca_victoria_day: |
+      def self.ca_victoria_day(year)
+        date = Date.civil(year,5,24)
+        if date.wday > 1
+          date -= (date.wday - 1)
+        elsif date.wday == 0
+          date -= 6
+        end
+        date
+      end
+
+This would be represented in the <tt>months</tt> section as:
+
+    5:
+    - name: Victoria Day
+      regions: [ca]
+      function: lambda { |year| ca_victoria_day(year) }
+
+
+Functions called in this manner must return either a Date object or an integer representing the day of the month.
+
+
+
+== Building the definition module
+
+Once you have your YAML definition file you need to generate a Ruby module using <tt>rake</tt>.
+
+To build the module for school holidays
+
+  rake generate Custom custom.yaml
+
+
+Your module can include definitions from multiple YAML files.
+
+  rake generate Custom ca.yaml us.yaml mx.yaml custom.yaml
+
+
+Your custom module is ready to use.
+
+  require 'holidays'
+  require 'path/to/custom'
+  
+  Holidays.by_day(date, :your_region)
+
+
+
+=== Sharing
+
+If you've built a definition file that others might enjoy, why not share it?
+
+Send any definition files to 'code' at  'dunae.ca'.

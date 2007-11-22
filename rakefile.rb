@@ -21,6 +21,7 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.title    = 'Ruby Holidays Gem'
   rdoc.options << '--all' << '--inline-source' << '--line-numbers'
   rdoc.rdoc_files.include('README')
+  rdoc.rdoc_files.include('CUSTOM DATES')
   rdoc.rdoc_files.include('REFERENCES')
   rdoc.rdoc_files.include('LICENSE')
   rdoc.rdoc_files.include('lib/*.rb')
@@ -41,7 +42,7 @@ spec = Gem::Specification.new do |s|
   s.files = FileList["{lib}/**/*"].to_a
   s.test_files = Dir.glob('test/test_*.rb') 
   s.has_rdoc = true
-  s.extra_rdoc_files = ['README', 'REFERENCES', 'LICENSE']
+  s.extra_rdoc_files = ['README', 'CUSTOM DATES', 'REFERENCES', 'LICENSE']
   s.rdoc_options << '--all' << '--inline-source' << '--line-numbers'
 end
 

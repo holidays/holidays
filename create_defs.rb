@@ -100,14 +100,22 @@ module Holidays
 end
 
 Holidays.class_eval do
-  new_regions = []
+  existing_regions = []
   if const_defined?(:DEFINED_REGIONS) 
-    new_regions = const_get(:DEFINED_REGIONS)
+    existing_regions = const_get(:DEFINED_REGIONS)
     remove_const(:DEFINED_REGIONS)
   end
-  const_set(:DEFINED_REGIONS, new_regions | Holidays::#{module_name}::DEFINED_REGIONS)
+  const_set(:DEFINED_REGIONS, existing_regions | Holidays::#{module_name}::DEFINED_REGIONS)
 
-  include Holidays::MixinModule
+  existing_defs = {}
+  if const_defined?(:HOLIDAYS_BY_MONTH) 
+    existing_defs = const_get(:HOLIDAYS_BY_MONTH)
+    remove_const(:HOLIDAYS_BY_MONTH)
+  end
+  #const_set(:HOLIDAYS_BY_MONTH, existing_defs.merge(Holidays::#{module_name}::HOLIDAYS_BY_MONTH))
+  const_set(:HOLIDAYS_BY_MONTH, Holidays::#{module_name}::HOLIDAYS_BY_MONTH)
+
+  include Holidays::#{module_name}
 end
 EOC
 

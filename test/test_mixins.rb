@@ -1,15 +1,11 @@
 require File.dirname(__FILE__) + '/test_helper'
-require 'fixtures/mixin_module'
+require 'fixtures/ca'
 
-class MixinTests < Test::Unit::TestCase
-  def test_tester
-    #Holidays.append_features(Holidays::MixinModule)
-    puts Holidays.constants
-    puts Holidays::DEFINED_REGIONS.join(',')
-    assert Holidays.method_defined?(:test_lambda)
-  end
-
-  def test_adding_region_constants
-  
+class CATests < Test::Unit::TestCase
+  def test_ca_victoria_day
+    [Date.civil(2004,5,24), Date.civil(2005,5,23), Date.civil(2006,5,22),
+     Date.civil(2007,5,21), Date.civil(2008,5,19)].each do |date|
+      assert_equal 'Victoria Day', Holidays.by_day(date, :ca)[0][:name]
+    end
   end
 end

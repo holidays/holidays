@@ -12,7 +12,7 @@ module Holidays
   WEEKS = {:first => 1, :second => 2, :third => 3, :fourth => 4, :fifth => 5, :last => -1}
   MONTH_LENGTHS = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-  DEFINED_REGIONS = [:ca, :us, :au, :gr, :fr, :christian]
+  DEFINED_REGIONS = [:us, :au]
   HOLIDAYS_TYPES = [:bank, :statutory, :religious, :informal]
 
 
@@ -22,35 +22,8 @@ module Holidays
   # The month <tt>0</tt> is used to store events that require lambda calculations
   # and may occur in more than one month.
   HOLIDAYS_BY_MONTH = {
-   0  => [{:function => lambda { |year| easter(year) }, :name => 'Easter Sunday', :regions => [:christian, :ca, :us]},
-          {:function => lambda { |year| easter(year)-2 }, :name => 'Good Friday', :regions => [:christian, :ca, :us]}],
-   1  => [{:mday => 1,  :name => 'New Year\'s Day', :regions => [:us, :ca, :au]},
-          {:mday => 1,  :name => 'Australia Day', :regions => [:au]},
-          {:mday => 6,  :name => 'Epiphany', :regions => [:christian]},
-          {:wday => 1,  :week => :third, :name => 'Martin Luther King, Jr. Day', :regions => [:us]}],
-   3  => [{:wday => 1,  :week => :third, :name => 'George Washington\'s Birthday', :regions => [:us]},
-          {:mday => 25,  :name => 'Independence Day', :regions => [:gr]}],
-   4 =>  [{:mday => 25,  :name => 'ANZAC Day', :regions => [:au]}],
-   5  => [{:mday => 1,  :name => 'Labour Day', :regions => [:fr,:gr]},
-          {:mday => 8,  :name => 'Victoria 1945', :regions => [:fr]},
-          {:wday => 6,  :week => :third, :name => 'Armed Forces Day', :regions => [:us]},
-          {:wday => 1,  :week => :last, :name => 'Memorial Day', :regions => [:us]}],
-   6  => [{:mday => 14, :name => 'Flag Day', :regions => [:us]},
-          {:wday => 1, :week => :second, :name => 'Queen\'s Birthday', :regions => [:au]}],
-   7  => [{:mday => 1,  :name => 'Canada Day', :regions => [:ca]},
-          {:mday => 4,  :name => 'Independence Day', :regions => [:us]},
-          {:mday => 14,  :name => 'Ascension Day', :regions => [:fr]}],
-   8  => [{:mday => 15,  :name => 'Assumption of Mary', :regions => [:fr, :gr, :christian]}],
-   9  => [{:wday => 1,  :week => :first,:name => 'Labor Day', :regions => [:us]},
-          {:wday => 1,  :week => :first,:name => 'Labour Day', :regions => [:ca]}],
-   10 => [{:wday => 1,  :week => :second, :name => 'Columbus Day', :regions => [:us]},
-          {:mday => 28,  :name => 'National Day', :regions => [:gr]}],
-   11 => [{:wday => 4,  :week => :fourth, :name => 'Thanksgiving Day', :regions => [:us]},
-          {:mday => 11, :name => 'Rememberance Day', :regions => [:ca,:au]},
-          {:mday => 11, :name => 'Armistice 1918', :regions => [:fr]},
-          {:mday => 1, :name => 'Touissant', :regions => [:fr]}],
-   12 => [{:mday => 25, :name => 'Christmas Day', :regions => [:us,:ca,:christian,:au]},
-          {:mday => 26, :name => 'Boxing Day', :regions => [:ca,:gr,:au]}]
+   1  => [{:mday => 1,  :name => 'New Year\'s Day', :regions => [:ca, :au]},
+          {:mday => 1,  :name => 'Australia Day', :regions => [:au]}]
   }
 
 
@@ -130,7 +103,16 @@ module Holidays
         hbm.each do |h|
           next unless h[:regions].any?{ |reg| regions.include?(reg) }
           
-          unless h[:function]
+          if h[:function]
+            result = h[:function].call(year)
+            if result.kind_of?(Date) and result.mon == month
+              holidays << h.merge({:day => result.mday})
+            else  #if result == mday
+              holidays << h
+            end
+
+
+          else
             day = h[:mday] || Date.calculate_mday(year, month, h[:week], h[:wday])
             holidays << {:month => month, :day => day, :year => year, :name => h[:name], :regions => h[:regions]}
           end

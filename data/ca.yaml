@@ -6,20 +6,93 @@ months:
   - name: Good Friday
     regions: [ca]
     function: lambda { |year| easter(year)-2 }
-  - name: Easter Sunday
-    regions: [ca]
-    function: lambda { |year| easter(year) }
+  - name: Easter Monday
+    regions: [ca_qc]
+    function: lambda { |year| easter(year)+1 }
   1: 
   - name: New Year's Day
     regions: [ca]
     mday: 1
+  - name: New Year's
+    regions: [ca_qc]
+    mday: 2
+  2: 
+  - name: Family Day
+    regions: [ca_ab, ca_on, ca_sk]
+    wday: 1
+    week: 3
+  - name: Louis Riel Day
+    regions: [ca_mb]
+    wday: 1
+    week: 3
+  3: 
+  - name: St. Patrick's Day
+    regions: [ca_nf]
+    mday: 17
+  3: 
+  - name: St. George's Day
+    regions: [ca_nf]
+    mday: 23
+  5: 
+  - name: Victoria Day
+    regions: [ca]
+    function: lambda { |year| ca_victoria_day(year) }
+  - name: National Patriotes Day
+    regions: [ca_qc]
+    function: lambda { |year| ca_victoria_day(year) }
+  6: 
+  - name: Discovery Day
+    regions: [ca_nf]
+    mday: 24
+  - name: Fête Nationale
+    regions: [ca_qc]
+    mday: 24
+  - name: National Aboriginal Day
+    regions: [ca_nt]
+    mday: 21
   7: 
   - name: Canada Day
     regions: [ca]
     mday: 1
+  - name: Orangemen's Day
+    regions: [ca]
+    mday: 12
+  - name: Nunavut Day
+    regions: [ca_nu]
+    mday: 9
+  8: 
+  - name: BC Day
+    week: 1
+    regions: [ca_bc]
+    wday: 1
+  - name: Saskatchewan  Day
+    week: 1
+    regions: [ca_sk]
+    wday: 1
+  - name: Heritage Day
+    week: 1
+    regions: [ca_ab]
+    wday: 1
+  - name: Natal Day
+    week: 1
+    regions: [ca_ns]
+    wday: 1
+  - name: Civic Holiday
+    week: 1
+    regions: [ca_on]
+    wday: 1
+  - name: Discovery Day
+    week: 3
+    regions: [ca_yk]
+    wday: 1
   9: 
   - name: Labour Day
     week: 1
+    regions: [ca]
+    wday: 1
+  10: 
+  - name: Thanksgiving
+    week: 2
     regions: [ca]
     wday: 1
   11: 
@@ -35,10 +108,17 @@ months:
     mday: 26
 methods:
   easter: |
-    def easter(year)
+    def self.easter(year)
       Date.civil(2008,1,1)
     end
-  tester: |
-    def tester(year)
-      Date.civil(2005,1,1)
+  ca_victoria_day: |
+    # Monday on or before May 24
+    def self.ca_victoria_day(year)
+      date = Date.civil(year,5,24)
+      if date.wday > 1
+        date -= (date.wday - 1)
+      elsif date.wday == 0
+        date -= 6
+      end
+      date
     end
