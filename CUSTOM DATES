@@ -2,11 +2,11 @@
   
 It's easy to add your own custom holiday definitions to the Holidays gem. In a nutshell:
 1. Build a definition file
-2. Run a <tt>rake</tt> to make a custom module
-3. <tt>require</tt> your new module
+2. Run the <tt>rake</tt> task to make a custom module
+3. <tt>require</tt> your new module and enjoy!
 
 
-== Building the YAML file
+== 1. Building the YAML file
 
 Definition files have two main parts: *months* and *methods*. Before you start, you may want to look some of the existing files at http://code.dunae.ca/svn/holidays/trunk/data.
 
@@ -21,8 +21,9 @@ Holidays are grouped by month from 1 through 12.  Each entry within a month can 
 
 [<tt>wday</tt>]  Integer representing day of the month (1 through 31).
 
-For example, the following holiday is on the first of the month and available in the <tt>ca</tt>, <tt>us</tt> and <tt>au</tt> regions.
+For example, the following holiday is on the first of January and available in the <tt>ca</tt>, <tt>us</tt> and <tt>au</tt> regions.
 
+    1:
     - name: New Year's Day
       regions: [ca,us,au]
       mday: 1
@@ -34,8 +35,9 @@ For example, the following holiday is on the first of the month and available in
 [<tt>week</tt>]  Integer representing week number (1 = first week, 3 = third week, -1 = last week),
 
 
-For example, the following holiday is on the first Monday of the month and available in the <tt>ca</tt> region.
+For example, the following holiday is on the first Monday of September and available in the <tt>ca</tt> region.
 
+    9:
     - name: Labour Day
       regions: [ca]
       week: 1
@@ -74,19 +76,21 @@ Functions called in this manner must return either a Date object or an integer r
 
 
 
-== Building the definition module
+== 2. Building the definition module
 
 Once you have your YAML definition file you need to generate a Ruby module using <tt>rake</tt>.
 
 To build the module for school holidays
 
-  rake generate Custom custom.yaml
+  rake generate MyCustomDates custom.yaml
 
 
 Your module can include definitions from multiple YAML files.
 
-  rake generate Custom ca.yaml us.yaml mx.yaml custom.yaml
+  rake generate MyCustomDates ca.yaml us.yaml mx.yaml custom.yaml
 
+
+== 3. Using your custom definitions
 
 Your custom module is ready to use.
 

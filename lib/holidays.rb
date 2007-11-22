@@ -2,7 +2,7 @@ $:.unshift File.dirname(__FILE__)
 require 'holidays/easter'
 
 module Holidays
-  # Exception thrown when an unknown region is encountered.
+  # Exception thrown when an unknown region is requested.
   class UnkownRegionError < ArgumentError; end
 
   self.extend Easter
@@ -43,7 +43,7 @@ module Holidays
   # [<tt>:name</tt>]    String.
   # [<tt>:regions</tt>] An array of region symbols.
   # [<tt>:types</tt>]   An array of holiday-type symbols.
-  def self.by_day(date, regions = [:ca, :us])
+  def self.by_day(date, regions = :any)
     regions = validate_regions(regions)
 
     hbm = HOLIDAYS_BY_MONTH.values_at(0,date.mon).flatten
@@ -86,7 +86,7 @@ module Holidays
   # format.
   #--
   # TODO: do not take full months
-  def self.between(start_date, end_date, regions = [:ca,:us])
+  def self.between(start_date, end_date, regions = :any)
     regions = validate_regions(regions)
     holidays = []
 
@@ -141,13 +141,23 @@ end
 class Date
   include Holidays
 
-  # Check if the current date is a holiday in a given region.
+  # Get holidays on the current date.
   #
-  #   Date.civil('2008-01-01').is_holiday?(:ca)
-  #   => true
-  def is_holiday?(regions = :any)
+  # Returns an array.
+  #
+  #   Date.civil('2008-01-01').holidays(:ca)
+  #   => [{:name => 'Canada Day',...}]
+  def holidays(regions = :any)
     holidays = Holidays.by_day(self, regions)
     !holidays.empty?
+  end
+
+  # Check if the current date is a holiday.
+  #
+  #   Date.civil('2008-01-01').holiday?(:ca)
+  #   => true
+  def holiday?(regions = :any)
+    !self.holidays(regions).empty?
   end
 
   # Calculate day of the month based on the week number and the day of the 
