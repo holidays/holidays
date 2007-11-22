@@ -1,9 +1,9 @@
 require 'yaml'
 
-module_name = 'CA'
+module_name = 'NorthAmerica'
 
 # Load the data files
-files = ['data/ca.yaml', 'data/common_methods.yaml']
+files = ['data/ca.yaml', 'data/mx.yaml', 'data/us.yaml', 'data/common_methods.yaml', 'data/north_america_informal.yaml']
 regions = []
 rules_by_month = {}
 custom_methods = {}
@@ -28,13 +28,13 @@ files.each do |file|
         exists = false
         rules_by_month[month].each do |ex|
           if ex['name'] == rule['name'] and ex['wday'] == rule['wday'] and  ex['mday'] == rule['mday'] and ex['week'] == rule['week']
-#            ex['regions'] << rule['regions'].flatten
+            ex['regions'] << rule['regions'].flatten
             exists = true
           end
         end
-        #unless exists
+        unless exists
           rules_by_month[month] << rule
-        #end
+        end
 
       end # /defs.each
     end

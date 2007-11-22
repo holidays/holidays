@@ -14,6 +14,11 @@ Rake::TestTask.new do |t|
   t.verbose = false
 end
 
+task :build_defs do
+  puts ARGV
+  puts ARGV[1]
+end
+
 
 desc 'Generate documentation.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
