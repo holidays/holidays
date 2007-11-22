@@ -1,7 +1,10 @@
 require File.dirname(__FILE__) + '/test_helper'
 
-class HolidaysTests < Test::Unit::TestCase
-  def test_easter_dates
+class CommonMethodsTests < Test::Unit::TestCase
+
+  def test_inclusion
+    assert Holidays.include?(Holidays::CA)
+    flunk
     assert_equal '1800-04-13', Holidays.easter(1800).to_s
     assert_equal '1899-04-02', Holidays.easter(1899).to_s
     assert_equal '1900-04-15', Holidays.easter(1900).to_s
@@ -14,16 +17,14 @@ class HolidaysTests < Test::Unit::TestCase
   end
 
   def test_easter_lambda
-    [Date.civil(1800,4,13), Date.civil(1899,4,2), Date.civil(1900,4,15),
-     Date.civil(2008,3,23), Date.civil(2035,3,25)].each do |date|
-      assert_equal 'Easter Sunday', Holidays.by_day(date, :christian)[0][:name]
-    end
-  end
-
-  def test_good_friday_lambda
     [Date.civil(1800,4,11), Date.civil(1899,3,31), Date.civil(1900,4,13),
      Date.civil(2008,3,21), Date.civil(2035,3,23)].each do |date|
-      assert_equal 'Good Friday', Holidays.by_day(date, :christian)[0][:name]
+      assert_equal 'Good Friday', Holidays.on(date, :ca)[0][:name]
+    end
+
+    [Date.civil(1800,4,14), Date.civil(1899,4,3), Date.civil(1900,4,16),
+     Date.civil(2008,3,24), Date.civil(2035,3,26)].each do |date|
+      assert_equal 'Easter Monday', Holidays.on(date, :ca_qc)[0][:name]
     end
   end
 end

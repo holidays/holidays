@@ -1,13 +1,12 @@
 = Ruby Holidays Gem
   
-A set of classes to deal with public/statutory holidays in Ruby.
+A set of classes to deal with holidays in Ruby.
 
 Extends Ruby's built-in Date class and supports custom holiday definition lists.
 
 === Examples
 
 ==== Using the Holidays class
-
   # Get all holidays on April 25, 2008 in Australia
   date = Date.civil(2008,4,25)
   Holidays.by_day(date, :au)
@@ -23,9 +22,6 @@ Extends Ruby's built-in Date class and supports custom holiday definition lists.
 
 
 ==== Extending Ruby's Date class
-  require 'date'
-  require 'holidays'
-
   # Lookup Canada Day in the :ca region
   Date.civil(2008,7,1).is_holiday?(:ca)
   => true

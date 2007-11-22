@@ -55,7 +55,7 @@ months:
     regions: [ca]
     mday: 1
   - name: Orangemen's Day
-    regions: [ca]
+    regions: [ca_nf]
     mday: 12
   - name: Nunavut Day
     regions: [ca_nu]
@@ -65,7 +65,7 @@ months:
     week: 1
     regions: [ca_bc]
     wday: 1
-  - name: Saskatchewan  Day
+  - name: Saskatchewan Day
     week: 1
     regions: [ca_sk]
     wday: 1
@@ -107,10 +107,6 @@ months:
     regions: [ca]
     mday: 26
 methods:
-  easter: |
-    def self.easter(year)
-      Date.civil(2008,1,1)
-    end
   ca_victoria_day: |
     # Monday on or before May 24
     def self.ca_victoria_day(year)

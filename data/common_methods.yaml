@@ -1,5 +1,8 @@
-module Holidays
-  module Easter
+# Common method definitions for the Ruby Holiday gem.
+# Updated 2008-11-21.
+--- 
+methods:
+  easter: |
     # Get the date of Easter in a given year.
     #
     # +year+ must be a valid Gregorian year.
@@ -8,7 +11,7 @@ module Holidays
     #--
     # from http://snippets.dzone.com/posts/show/765
     # TODO: check year to ensure Gregorian
-    def easter(year)
+    def self.easter(year)
       y = year
       a = y % 19
       b = y / 100
@@ -26,5 +29,4 @@ module Holidays
       day = ((h + l - 7 * m + 114) % 31) + 1
       Date.civil(year, month, day)
     end
-  end
-end
+

@@ -1,38 +1,33 @@
 $:.unshift File.dirname(__FILE__)
-require 'holidays/easter'
 
 module Holidays
   # Exception thrown when an unknown region is requested.
   class UnkownRegionError < ArgumentError; end
 
-  self.extend Easter
-
   VERSION = '0.9.0'
 
   WEEKS = {:first => 1, :second => 2, :third => 3, :fourth => 4, :fifth => 5, :last => -1}
-  MONTH_LENGTHS = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+  MONTH_LENGTHS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-  DEFINED_REGIONS = [:us, :au]
-  HOLIDAYS_TYPES = [:bank, :statutory, :religious, :informal]
-
-
-  # :wday  Day of the week (0 is Sunday, 6 is Saturday)
-  # :function Can return an integer representing mday or a Date object.
-  #
-  # The month <tt>0</tt> is used to store events that require lambda calculations
-  # and may occur in more than one month.
-  HOLIDAYS_BY_MONTH = {
-   1  => [{:mday => 1,  :name => 'New Year\'s Day', :regions => [:ca, :au]},
-          {:mday => 1,  :name => 'Australia Day', :regions => [:au]}]
-  }
-
-
+  #--
+  #HOLIDAYS_TYPES = [:bank, :statutory, :religious, :informal]
+  #++
 
   # Get all holidays on a given date.
   #
   # [<tt>date</tt>]    A Date object.
   # [<tt>regions</tt>] A symbol (e.g. <tt>:ca</tt>) or an array of symbols 
   #                    (e.g. <tt>[:ca, :ca_bc, :us]</tt>).
+  #
+  # Returns an array of hashes or nil. See Holidays#between for the output 
+  # format.
+  #
+  # Also available via Date#holidays.
+  def self.on(date, regions = :any)
+    self.between(date, date, regions)
+  end
+
+  # Get all holidays occuring between two dates, inclusively.
   #
   # Returns an array of hashes or nil.
   #
@@ -42,57 +37,16 @@ module Holidays
   # [<tt>:day</tt>]     Integer.
   # [<tt>:name</tt>]    String.
   # [<tt>:regions</tt>] An array of region symbols.
-  # [<tt>:types</tt>]   An array of holiday-type symbols.
-  def self.by_day(date, regions = :any)
-    regions = validate_regions(regions)
-
-    hbm = HOLIDAYS_BY_MONTH.values_at(0,date.mon).flatten
-     
-    holidays = []
-
-    year = date.year
-    month = date.month
-    mday = date.mday
-    wday = date.wday
-
-    hbm.each do |h|
-      # start with the region check
-      next unless h[:regions].any?{ |reg| regions.include?(reg) }
-      
-      if h[:mday] and h[:mday] == mday
-        # fixed day of the month
-        holidays << h
-      elsif h[:wday] == wday
-        # by week calculation
-        if Date.calculate_mday(year, month, h[:week], h[:wday]) == mday
-          holidays << h
-        end
-      elsif h[:function]
-        result = h[:function].call(year)
-        if result.kind_of?(Date) and result.mon == month and result.mday == mday
-          holidays << h
-        elsif result == mday
-          holidays << h
-        end
-      
-      end
-    end
-    holidays
-  end
-
-  # Get all holidays occuring between two dates, inclusively.
-  #
-  # Returns an array of hashes or nil.  See Holidays#by_day for the output 
-  # format.
   #--
-  # TODO: do not take full months
+  # [<tt>:types</tt>]   An array of holiday-type symbols.
   def self.between(start_date, end_date, regions = :any)
     regions = validate_regions(regions)
     holidays = []
 
     dates = {}
     (start_date..end_date).each do |date|
-      dates[date.year] = Array.new unless dates[date.year]      
+      # Always include month '0' for variable-month holidays
+      dates[date.year] = [0] unless dates[date.year]      
       # TODO: test this, maybe should push then flatten
       dates[date.year] << date.month unless dates[date.year].include?(date.month)
     end
@@ -101,21 +55,24 @@ module Holidays
       months.each do |month|
         next unless hbm = HOLIDAYS_BY_MONTH[month]
         hbm.each do |h|
-          next unless h[:regions].any?{ |reg| regions.include?(reg) }
+          next unless in_region?(regions, h[:regions])
           
           if h[:function]
             result = h[:function].call(year)
-            if result.kind_of?(Date) and result.mon == month
-              holidays << h.merge({:day => result.mday})
-            else  #if result == mday
-              holidays << h
+            if result.kind_of?(Date)
+              month = result.month
+              mday = result.mday
+            else
+              day = result
             end
-
-
           else
-            day = h[:mday] || Date.calculate_mday(year, month, h[:week], h[:wday])
-            holidays << {:month => month, :day => day, :year => year, :name => h[:name], :regions => h[:regions]}
+            mday = h[:mday] || Date.calculate_mday(year, month, h[:week], h[:wday])
           end
+
+          if Date.new(year, month, mday).between?(start_date, end_date)
+            holidays << {:month => month, :day => mday, :year => year, :name => h[:name], :regions => h[:regions]}
+          end
+
         end
       end
     end
@@ -135,6 +92,24 @@ private
     regions
   end
 
+  # Check sub regions.
+  #
+  # When request :any, all holidays should be returned.
+  # When requesting :ca_bc, holidays in :ca or :ca_bc should be returned.
+  # When requesting :ca, only holidays in :ca should be returned.
+  def self.in_region?(requested, available) # :nodoc:
+    return true if requested.include?(:any)
+    
+    # When an underscore is encountered, derive the parent regions
+    # symbol and include both in the requested array.
+    requested = requested.collect do |r|
+      r.to_s =~ /_/ ? [r, r.to_s.gsub(/_[\w]*$/, '').to_sym] : r
+    end
+
+    requested = requested.flatten.uniq
+
+    available.any? { |r| requested.include?(r) }
+  end
 end
 
 
@@ -143,21 +118,27 @@ class Date
 
   # Get holidays on the current date.
   #
-  # Returns an array.
+  # Returns an array of hashes or nil. See Holidays#between for the output 
+  # format.
   #
   #   Date.civil('2008-01-01').holidays(:ca)
   #   => [{:name => 'Canada Day',...}]
+  #
+  # Also available via Holidays#on.
   def holidays(regions = :any)
-    holidays = Holidays.by_day(self, regions)
-    !holidays.empty?
+    Holidays.on(self, regions)
   end
 
   # Check if the current date is a holiday.
   #
+  # Returns an array of hashes or nil. See Holidays#between for the output 
+  # format.
+  #
   #   Date.civil('2008-01-01').holiday?(:ca)
   #   => true
   def holiday?(regions = :any)
-    !self.holidays(regions).empty?
+    holidays = self.holidays(regions)
+    holidays && !holidays.empty?
   end
 
   # Calculate day of the month based on the week number and the day of the 
@@ -185,9 +166,9 @@ class Date
   #--
   # see http://www.irt.org/articles/js050/index.htm
   def self.calculate_mday(year, month, week, wday)
-    raise ArgumentError, "Week parameter must be one of Holidays::WEEKS (provided #{week})." unless WEEKS.include?(week)
+    raise ArgumentError, "Week parameter must be one of Holidays::WEEKS (provided #{week})." unless WEEKS.include?(week) or WEEKS.has_value?(week)
 
-    week = WEEKS[week]
+    week = WEEKS[week] if week.kind_of?(Symbol)
 
     # :first, :second, :third, :fourth or :fifth
     if week > 0
@@ -195,10 +176,9 @@ class Date
     end
     
     days = MONTH_LENGTHS[month-1]
-    if month == 1 and Date.civil(year,1,1).leap?
-      days = 29
-    end
 
+    days = 29 if month == 1 and Date.civil(year,1,1).leap?
+      
     return days - ((Date.civil(year, month, days).wday - wday + 7) % 7)
   end
 
