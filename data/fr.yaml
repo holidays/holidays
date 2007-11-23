@@ -44,8 +44,8 @@ months:
   - name: Armistice 1918
     regions: [fr]
     mday: 11
-  12: 
-  - name: Noël
+  12:
+  - name: Nöel
     regions: [fr]
     mday: 25
 

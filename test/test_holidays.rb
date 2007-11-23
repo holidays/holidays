@@ -50,22 +50,22 @@ class HolidaysTests < Test::Unit::TestCase
   end
   
   def test_any_region
-    # Should return Victoria Day
+    # Should return Victoria Day and Father's Day
     holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca)
-    assert_equal 1, holidays.length
-
-    # Should return Victoria Day and National Patriotes Day
-    holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :any)
     assert_equal 2, holidays.length
+
+    # Should return Victoria Day, Father's Day and National Patriotes Day
+    holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :any)
+    assert_equal 3, holidays.length
   end
   
   def test_sub_regions
-    # Should return Victoria Day
+    # Should return Victoria Day and Father's Day
     holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca)
-    assert_equal 1, holidays.length
-
-    # Should return Victoria Day and National Patriotes Day
-    holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca_qc)
     assert_equal 2, holidays.length
+
+    # Should return Victoria Day, Father's Day and National Patriotes Day
+    holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca_qc)
+    assert_equal 3, holidays.length
   end
 end

@@ -6,6 +6,9 @@ module Holidays
 
   VERSION = '0.9.0'
 
+  @@regions = []
+  @@holidays_by_month = {}
+
   WEEKS = {:first => 1, :second => 2, :third => 3, :fourth => 4, :fifth => 5, :last => -1}
   MONTH_LENGTHS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
@@ -53,7 +56,7 @@ module Holidays
 
     dates.each do |year, months|
       months.each do |month|
-        next unless hbm = HOLIDAYS_BY_MONTH[month]
+        next unless hbm = @@holidays_by_month[month]
         hbm.each do |h|
           next unless in_region?(regions, h[:regions])
           
@@ -80,6 +83,22 @@ module Holidays
     holidays
   end
 
+  # Merge a new set of definitions into the Holidays module.
+  #
+  # This method is automatically called when including holiday definition
+  # files.
+  def self.merge_defs(regions, holidays)
+    @@regions = @@regions | regions
+    @@regions.uniq!
+    
+    holidays.each do |month, holiday_defs|
+      @@holidays_by_month[month] = [] unless @@holidays_by_month[month]
+      holiday_defs.each do |holiday_def|
+        @@holidays_by_month[month] << holiday_def
+      end
+    end
+  end
+
 private
   # Check regions against list of supported regions and return an array of 
   # symbols.
@@ -87,7 +106,7 @@ private
     regions = [regions] unless regions.kind_of?(Array)
     regions = regions.collect { |r| r.to_sym }
 
-    raise UnkownRegionError unless regions.all? { |r| r == :any or DEFINED_REGIONS.include?(r) }
+    raise UnkownRegionError unless regions.all? { |r| r == :any or @@regions.include?(r) }
 
     regions
   end

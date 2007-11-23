@@ -3,7 +3,6 @@ require File.dirname(__FILE__) + '/test_helper'
 class CommonMethodsTests < Test::Unit::TestCase
 
   def test_inclusion
-    assert Holidays.include?(Holidays::CA)
     flunk
     assert_equal '1800-04-13', Holidays.easter(1800).to_s
     assert_equal '1899-04-02', Holidays.easter(1899).to_s

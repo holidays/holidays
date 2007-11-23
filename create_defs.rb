@@ -1,9 +1,14 @@
 require 'yaml'
 
-module_name = 'NorthAmerica'
+#module_name = 'NorthAmerica'
+#files = ['data/ca.yaml', 'data/mx.yaml', 'data/us.yaml', 'data/common_methods.yaml', 'data/north_america_informal.yaml']
 
-# Load the data files
-files = ['data/ca.yaml', 'data/mx.yaml', 'data/us.yaml', 'data/common_methods.yaml', 'data/north_america_informal.yaml']
+#module_name = 'Europe'
+#files = ['data/dk.yaml', 'data/es.yaml', 'data/fr.yaml', 'data/gb.yaml', 'data/ie.yaml', 'data/is.yaml', 'data/common_methods.yaml']
+
+module_name = 'CA'
+files = ['data/ca.yaml', 'data/common_methods.yaml', 'data/north_america_informal.yaml']
+
 regions = []
 rules_by_month = {}
 custom_methods = {}
@@ -106,24 +111,7 @@ module Holidays
   end
 end
 
-Holidays.class_eval do
-  existing_regions = []
-  if const_defined?(:DEFINED_REGIONS) 
-    existing_regions = const_get(:DEFINED_REGIONS)
-    remove_const(:DEFINED_REGIONS)
-  end
-  const_set(:DEFINED_REGIONS, existing_regions | Holidays::#{module_name}::DEFINED_REGIONS)
-
-  existing_defs = {}
-  if const_defined?(:HOLIDAYS_BY_MONTH) 
-    existing_defs = const_get(:HOLIDAYS_BY_MONTH)
-    remove_const(:HOLIDAYS_BY_MONTH)
-  end
-  #const_set(:HOLIDAYS_BY_MONTH, existing_defs.merge(Holidays::#{module_name}::HOLIDAYS_BY_MONTH))
-  const_set(:HOLIDAYS_BY_MONTH, Holidays::#{module_name}::HOLIDAYS_BY_MONTH)
-
-  include Holidays::#{module_name}
-end
+Holidays.merge_defs(Holidays::#{module_name}::DEFINED_REGIONS, Holidays::#{module_name}::HOLIDAYS_BY_MONTH)
 EOC
 
 File.open("test_file.rb","w") do |file|

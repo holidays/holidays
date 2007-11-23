@@ -1,29 +1,35 @@
-# Islandic holiday definitions for the Ruby Holiday gem.
+# Icelandic holiday definitions for the Ruby Holiday gem.
 #
-# Updated: 2008-11-22.
+# Updated: 2008-11-23.
 # Sources:
+# - http://www.simnet.is/gardarj/folk/days.htm#days
 # - http://www.iceland.is/history-and-culture/Traditions/IcelandicHolidays/
 # - http://en.wikipedia.org/wiki/Public_holidays_in_Iceland
 --- 
 months:
   0: 
-  - name: Fastelavn
+  - name: Bolludagur
     regions: [is]
-    function: lambda { |year| easter(year)-49 }
-    type: informal
-  - name: Palmesøndag
+    function: lambda { |year| easter(year)-48 }
+  - name: Sprengidagur
+    regions: [is]
+    function: lambda { |year| easter(year)-47 }
+  - name: Öskudagur
+    regions: [is]
+    function: lambda { |year| easter(year)-46 }
+  - name: Pálmasunnudagur
     regions: [is]
     function: lambda { |year| easter(year)-7 }
-  - name: Skærtorsdag
+  - name: Skírdagur
     regions: [is]
     function: lambda { |year| easter(year)-3 }
-  - name: Langfredag
+  - name: Föstudaginn langi
     regions: [is]
     function: lambda { |year| easter(year)-2 }
-  - name: Påskedag
+  - name: Páskadagur
     regions: [is]
     function: lambda { |year| easter(year) }
-  - name: 2. påskedag
+  - name: Annar í páskum
     regions: [is]
     function: lambda { |year| easter(year)+1 }
   - name: Store Bededag
@@ -64,4 +70,45 @@ months:
   - name: Mæðradagurinn
     regions: [is]
     mday: 13
-  
+  5:
+  - name: Sjómannadagurinn
+    regions: [is]
+    mday: 3
+    type: informal
+  - name: Lýðveldisdagurinn
+    regions: [is]
+    mday: 17
+  8:
+  - name: Frídagur verslunarmanna
+    regions: [is]
+    week: 1
+    wday: 1
+  11:
+  - name: Dagur íslenskrar tungu
+    regions: [is]
+    mday: 16
+  12:
+  - name: Jól
+    regions: [is]
+    mday: 24
+  - name: Jól
+    regions: [is]
+    mday: 25
+  - name: Jól
+    regions: [is]
+    mday: 26
+  - name: Gamlárskvöld
+    regions: [is]
+    mday: 31
+methods:
+  is_sumardagurinn_fyrsti: |
+    # Iceland: first day of summer (Thursday after 18 April)
+    def self.is_sumardagurinn_fyrsti(year)
+      date = Date.civil(year,4,18)
+      if date.wday < 4
+        date += (4 - date.wday)
+      else date
+        date += (11 - date.wday)
+      end
+      date
+    end
