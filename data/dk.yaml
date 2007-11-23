@@ -1,0 +1,100 @@
+# Danish holiday definitions for the Ruby Holiday gem.
+#
+# Updated: 2008-11-22.
+# Sources:
+# - http://en.wikipedia.org/wiki/Holidays_in_Denmark
+# - http://www.amblondon.um.dk/en/menu/AboutDenmark/PublicHolidaysInDK/PublicHolidaysinDenmark-until2010.htm
+# - http://borger.dk/forside/kirke-og-tro/folkekirken/officielle-helligdage
+--- 
+months:
+  0: 
+  - name: Fastelavn
+    regions: [dk]
+    function: lambda { |year| easter(year)-49 }
+    type: informal
+  - name: Palmesøndag
+    regions: [dk]
+    function: lambda { |year| easter(year)-7 }
+  - name: Skærtorsdag
+    regions: [dk]
+    function: lambda { |year| easter(year)-3 }
+  - name: Langfredag
+    regions: [dk]
+    function: lambda { |year| easter(year)-2 }
+  - name: Påskedag
+    regions: [dk]
+    function: lambda { |year| easter(year) }
+  - name: 2. påskedag
+    regions: [dk]
+    function: lambda { |year| easter(year)+1 }
+  - name: Store Bededag
+    regions: [dk]
+    function: lambda { |year| easter(year)+26 }
+  - name: Kristi Himmelfartsdag
+    regions: [dk]
+    function: lambda { |year| easter(year)+40 }
+  - name: Kristi Himmelfartsdag
+    regions: [dk]
+    function: lambda { |year| easter(year)+40 }
+  - name: 2. Pinsedag
+    regions: [dk]
+    function: lambda { |year| easter(year)+49 }
+  - name: Pinsedag
+    regions: [dk]
+    function: lambda { |year| easter(year)+50 }
+  1: 
+  - name: Nytårsdag
+    regions: [dk]
+    mday: 1
+  4: 
+  - name: 1. april
+    regions: [dk]
+    mday: 1
+    type: informal
+  - name: Danmarks besættelse
+    regions: [dk]
+    mday: 9
+    type: informal
+  - name: Dronningens fødselsdag
+    regions: [dk]
+    mday: 16
+    type: informal
+  5:
+  - name: Arbejdernes kampdag
+    regions: [dk]
+    mday: 1
+  - name: Danmarks befrielse
+    regions: [dk]
+    mday: 5
+    type: informal
+  6:
+  - name: Grundlovsdag
+    regions: [dk]
+    mday: 5
+  - name: Valdemarsdag og Genforeningsdag
+    regions: [dk]
+    mday: 15
+    type: informal
+  - name: Sankt Hans aften
+    regions: [dk]
+    mday: 23
+    type: informal
+  11: 
+  - name: Mortensaften
+    regions: [dk]
+    mday: 10
+    type: informal
+  12: 
+  - name: Sankt Lucia
+    regions: [dk]
+    mday: 13
+    type: informal
+  - name: Juleaftensdag
+    regions: [dk]
+    mday: 24
+  - name: 1. juledag
+    regions: [dk]
+    mday: 25
+  - name: 2. juledag
+    regions: [dk_]
+    mday: 26

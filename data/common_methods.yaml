@@ -29,4 +29,3 @@ methods:
       day = ((h + l - 7 * m + 114) % 31) + 1
       Date.civil(year, month, day)
     end
-

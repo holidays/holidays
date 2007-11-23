@@ -1,0 +1,67 @@
+# Islandic holiday definitions for the Ruby Holiday gem.
+#
+# Updated: 2008-11-22.
+# Sources:
+# - http://www.iceland.is/history-and-culture/Traditions/IcelandicHolidays/
+# - http://en.wikipedia.org/wiki/Public_holidays_in_Iceland
+--- 
+months:
+  0: 
+  - name: Fastelavn
+    regions: [is]
+    function: lambda { |year| easter(year)-49 }
+    type: informal
+  - name: Palmesøndag
+    regions: [is]
+    function: lambda { |year| easter(year)-7 }
+  - name: Skærtorsdag
+    regions: [is]
+    function: lambda { |year| easter(year)-3 }
+  - name: Langfredag
+    regions: [is]
+    function: lambda { |year| easter(year)-2 }
+  - name: Påskedag
+    regions: [is]
+    function: lambda { |year| easter(year) }
+  - name: 2. påskedag
+    regions: [is]
+    function: lambda { |year| easter(year)+1 }
+  - name: Store Bededag
+    regions: [is]
+    function: lambda { |year| easter(year)+26 }
+  - name: Kristi Himmelfartsdag
+    regions: [is]
+    function: lambda { |year| easter(year)+40 }
+  - name: Kristi Himmelfartsdag
+    regions: [is]
+    function: lambda { |year| easter(year)+40 }
+  - name: 2. Pinsedag
+    regions: [is]
+    function: lambda { |year| easter(year)+49 }
+  - name: Pinsedag
+    regions: [is]
+    function: lambda { |year| easter(year)+50 }
+  1: 
+  - name: Nýársdagur
+    regions: [is]
+    mday: 1
+  - name: Þrettándinn
+    regions: [is]
+    mday: 6
+  - name: Bóndadagur
+    regions: [is]
+    mday: 19
+    type: informal
+  2:
+  - name: Konudagur
+    regions: [is]
+    mday: 18
+    type: informal  
+  5:
+  - name: Verkalýðsdagurinn
+    regions: [is]
+    mday: 1
+  - name: Mæðradagurinn
+    regions: [is]
+    mday: 13
+  

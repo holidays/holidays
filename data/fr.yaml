@@ -1,0 +1,51 @@
+# French holiday definitions for the Ruby Holiday gem.
+#
+# Updated: 2008-11-22.
+# Sources:
+# - http://en.wikipedia.org/wiki/Holidays_in_France
+--- 
+months:
+  0: 
+  - name: Pâques
+    regions: [fr]
+    function: lambda { |year| easter(year) }
+  - name: Ascension
+    regions: [fr]
+    function: lambda { |year| easter(year)+40 }
+  - name: Pentecôte
+    regions: [fr]
+    function: lambda { |year| easter(year)+49 }
+  - name: Lundi de Pentecôte
+    regions: [fr]
+    function: lambda { |year| easter(year)+50 }
+  1: 
+  - name: Jour de l'an
+    regions: [fr]
+    mday: 1
+  5: 
+  - name: Fête du travail
+    regions: [fr]
+    mday: 1
+  - name: Victoire 1945
+    regions: [fr]
+    mday: 8
+  7:
+  - name: Fête nationale
+    regions: [fr]
+    mday: 14
+  8: 
+  - name: Assomption
+    regions: [fr]
+    mday: 15
+  11: 
+  - name: Toussaint
+    regions: [fr]
+    mday: 1
+  - name: Armistice 1918
+    regions: [fr]
+    mday: 11
+  12: 
+  - name: Noël
+    regions: [fr]
+    mday: 25
+
