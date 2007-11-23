@@ -25,7 +25,7 @@ For example, the following holiday is on the first of January and available in t
 
     1:
     - name: New Year's Day
-      regions: [ca,us,au]
+      regions: [ca, us, au]
       mday: 1
 
 
