@@ -1,0 +1,72 @@
+# Great Britain/United Kingdom holiday definitions for the Ruby Holiday gem.
+#
+# Including England, Wales, Scotland, N. Ireland, the Isle of Man, Guernsey
+# and Jersey.
+#
+# Updated: 2008-11-22.
+# Source:  http://en.wikipedia.org/wiki/List_of_holidays_by_country#United_Kingdom_and_Crown_dependencies
+#
+# Notes: 
+# - Jersey, Guernsey and the Isle of Man are encode with both their ISO 3166-1 and ISO 3-3166-2 codes.
+--- 
+months:
+  0: 
+  - name: Good Friday
+    regions: [gb]
+    function: lambda { |year| easter(year)-2 }
+  - name: Easter Sunday
+    regions: [gb]
+    function: lambda { |year| easter(year) }
+  - name: Easter Monday
+    regions: [gb_eng, gb_wls, gb_eaw, gb_nir]
+    function: lambda { |year| easter(year)+1 }
+  1: 
+  - name: New Year's Day
+    regions: [gb]
+    mday: 1
+  - name: New Year's
+    regions: [gb_sct]
+    mday: 2
+  3: 
+  - name: St. Piran's Day
+    regions: [gb_con]
+    mday: 5
+  - name: St. Patrick's Day
+    regions: [gb_nir]
+    mday: 17
+  5: 
+  - name: May Day
+    regions: [gb]
+    week: 1
+    wday: 1
+  - name: Liberation Day
+    regions: [je, gb_jsy, gg, gb_gsy]
+    mday: 9
+  - name: Bank Holiday
+    regions: [gb]
+    week: -1
+    wday: 1
+  7: 
+  - name: Tynwald Day
+    regions: [im, gb_iom]
+    mday: 5
+  - name: Battle of the Boyne
+    regions: [gb_nir]
+    mday: 12
+  8: 
+  - name: Bank Holiday
+    regions: [gb_sct]
+    week: 1
+    wday: 1
+  - name: Bank Holiday
+    regions: [gb_eng, gb_wls, gb_eaw]
+    week: -1
+    wday: 1
+  12: 
+  - name: Christmas Day
+    regions: [gb]
+    mday: 25
+  - name: Boxing Day
+    regions: [gb]
+    mday: 26
+
