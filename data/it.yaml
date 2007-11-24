@@ -6,10 +6,10 @@
 --- 
 months:
   0: 
-  - name: Pasquatemp
+  - name: Pasqua
     regions: [it]
     function: lambda { |year| easter(year) }
-  - name: Luned dell'Angelo
+  - name: Lunedì dell'Angelo
     regions: [it]
     function: lambda { |year| easter(year)+1 }
   1: 
