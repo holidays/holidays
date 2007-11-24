@@ -9,7 +9,7 @@ months:
   - name: Pasqua
     regions: [it]
     function: lambda { |year| easter(year) }
-  - name: Lunedì dell'Angelo
+  - name: LunedÃ¬ dell'Angelo
     regions: [it]
     function: lambda { |year| easter(year)+1 }
   1: 
