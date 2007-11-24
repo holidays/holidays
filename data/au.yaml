@@ -6,16 +6,16 @@ months:
   0: 
   - name: Good Friday
     regions: [au]
-    function: lambda { |year| easter(year)-2 }
+    function: lambda { |year| Holidays.easter(year)-2 }
   - name: Easter Saturday
     regions: [au]
-    function: lambda { |year| easter(year)-1 }
+    function: lambda { |year| Holidays.easter(year)-1 }
   - name: Easter Monday
     regions: [au]
-    function: lambda { |year| easter(year)+1 }
+    function: lambda { |year| Holidays.easter(year)+1 }
   - name: Easter Monday
     regions: [au_tas]
-    function: lambda { |year| easter(year)+2 }
+    function: lambda { |year| Holidays.easter(year)+2 }
   1: 
   - name: New Year's Day
     regions: [au]

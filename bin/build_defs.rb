@@ -36,6 +36,7 @@ def parse_holiday_defs(module_name, files)
         end # /defs.each
       end
     end
+
     if def_file['methods']
       puts "   - importing methods..."
       def_file['methods'].each do |name, code|
@@ -89,11 +90,11 @@ module Holidays
   #
   # Definitions loaded: #{files.join(', ')}
   #
-  # To use the definitions in the file, load them right after you load the 
+  # To use the definitions in this file, load them right after you load the 
   # Holiday gem:
   #
   #   require 'holidays'
-  #   require 'path/to/#{module_name.downcase}'
+  #   require 'holidays/#{module_name.downcase}'
   #
   # More definitions are available at http://code.dunae.ca/holidays.
   module #{module_name} # :nodoc:
@@ -102,13 +103,13 @@ module Holidays
     HOLIDAYS_BY_MONTH = {
 #{month_strs.join(",\n")}
     }
+  end
 
 #{method_str}
-  end
 end
 
 Holidays.merge_defs(Holidays::#{module_name}::DEFINED_REGIONS, Holidays::#{module_name}::HOLIDAYS_BY_MONTH)
-  EOC
+EOC
 
 
 end

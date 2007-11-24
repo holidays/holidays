@@ -9,10 +9,10 @@ months:
   0: 
   - name: Good Friday
     regions: [za]
-    function: lambda { |year| easter(year)-2 }
+    function: lambda { |year| Holidays.easter(year)-2 }
   - name: Family Day
     regions: [za]
-    function: lambda { |year| easter(year)+1 }
+    function: lambda { |year| Holidays.easter(year)+1 }
   1: 
   - name: New Year's Day
     regions: [za]

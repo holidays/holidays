@@ -1,7 +1,38 @@
 $:.unshift File.dirname(__FILE__)
 
 require 'digest/md5'
-
+# == Ruby Holidays module
+#
+# === Using regions
+# Holidays can be defined as belonging to one or more regions and sub regions.
+# The Holidays#on, Holidays#between, Date#holidays and Date#holiday? methods
+# each allow you to specify a specific region.
+#
+# ==== Regions
+# To select all holidays during May in the CA region (Canada), you might call:
+#   Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca)
+#
+# Which would return Victoria Day, a national holiday in Canada.
+#   => [{:name => 'Victoria Day',...}...]
+#
+# ==== Sub regions
+# In the Canadian Province of Québec, there's another holiday in May.
+#   Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca_pq)
+#
+# This query would return all holidays in both the parent region (<tt>:ca</tt>) and the 
+# sub region (<tt>:ca_pq</tt>).
+#   => [{:name => 'Victoria Day',...}, {:name => 'Journée nationale des Patriotes',...}...]
+#
+# ==== Wildcard sub regions
+# To avoid having to return enter a long list of regions, you can append an underscore
+# to the end of the region symbol.  This selects an entire region, including its sub-regions.
+#   Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca_)
+#   => [{:name => 'Victoria Day',...}, {:name => 'Journée nationale des Patriotes',...}...]
+#
+# ==== All regions
+# Finally, you can select holidays that occur in any region using <tt>:any</tt>.
+#
+#
 module Holidays
   # Exception thrown when an unknown region is requested.
   class UnkownRegionError < ArgumentError; end
@@ -38,9 +69,7 @@ module Holidays
   # Returns an array of hashes or nil.
   #
   # Each holiday is returned as a hash with the following fields:
-  # [<tt>:year</tt>]    Integer.
-  # [<tt>:month</tt>]   Integer.
-  # [<tt>:day</tt>]     Integer.
+  # [<tt>:date</tt>]    Ruby Date object.
   # [<tt>:name</tt>]    String.
   # [<tt>:regions</tt>] An array of region symbols.
   #--
@@ -64,7 +93,6 @@ module Holidays
           next unless in_region?(regions, h[:regions])
           
           if h[:function]
-            #result = h[:function].call(year)
             result = call_proc(h[:function], year)
             if result.kind_of?(Date)
               month = result.month
@@ -76,8 +104,9 @@ module Holidays
             mday = h[:mday] || Date.calculate_mday(year, month, h[:week], h[:wday])
           end
 
-          if Date.new(year, month, mday).between?(start_date, end_date)
-            holidays << {:month => month, :day => mday, :year => year, :name => h[:name], :regions => h[:regions]}
+          date = Date.new(year, month, mday)
+          if date.between?(start_date, end_date)
+            holidays << {:date => date, :name => h[:name], :regions => h[:regions]}
           end
 
         end
@@ -91,7 +120,7 @@ module Holidays
   #
   # This method is automatically called when including holiday definition
   # files.
-  def self.merge_defs(regions, holidays)
+  def self.merge_defs(regions, holidays) # :nodoc:
     @@regions = @@regions | regions
     @@regions.uniq!
     
@@ -103,12 +132,55 @@ module Holidays
     end
   end
 
+  # Get the date of Easter Sunday in a given year.  From Easter Sunday, it is
+  # possible to calculate many traditional holidays in Western countries.
+  #
+  # +year+ must be a valid Gregorian year.
+  #
+  # Returns a Date object.
+  #--
+  # from http://snippets.dzone.com/posts/show/765
+  # TODO: check year to ensure Gregorian
+  def self.easter(year)
+    y = year
+    a = y % 19
+    b = y / 100
+    c = y % 100
+    d = b / 4
+    e = b % 4
+    f = (b + 8) / 25
+    g = (b - f + 1) / 3
+    h = (19 * a + b - d - g + 15) % 30
+    i = c / 4
+    k = c % 4
+    l = (32 + 2 * e + 2 * i - h - k) % 7
+    m = (a + 11 * h + 22 * l) / 451
+    month = (h + l - 7 * m + 114) / 31
+    day = ((h + l - 7 * m + 114) % 31) + 1
+    Date.civil(year, month, day)
+  end
+
+
+
 private
   # Check regions against list of supported regions and return an array of 
   # symbols.
+  #
+  # If a wildcard region is found (e.g. <tt>:ca_</tt>) it is expanded into all
+  # of its available sub regions.
   def self.validate_regions(regions) # :nodoc:
     regions = [regions] unless regions.kind_of?(Array)
     regions = regions.collect { |r| r.to_sym }
+
+    # Found sub region wild-card
+    regions.delete_if do |reg|
+      if reg.to_s =~ /_$/
+        regions << @@regions.select { |dr| dr.to_s =~ Regexp.new("^#{reg}") }
+        true
+      end
+    end
+
+    regions.flatten!
 
     raise UnkownRegionError unless regions.all? { |r| r == :any or @@regions.include?(r) }
 
@@ -119,7 +191,7 @@ private
   #
   # When request :any, all holidays should be returned.
   # When requesting :ca_bc, holidays in :ca or :ca_bc should be returned.
-  # When requesting :ca, only holidays in :ca should be returned.
+  # When requesting :ca, holidays in :ca but not its subregions should be returned.
   def self.in_region?(requested, available) # :nodoc:
     return true if requested.include?(:any)
     
@@ -131,10 +203,8 @@ private
 
     requested = requested.flatten.uniq
 
-    available.any? { |r| requested.include?(r) }
+    available.any? { |avail| requested.include?(avail) }
   end
-
-
 
   # Call a proc function defined in a holiday definition file.
   #
@@ -164,8 +234,6 @@ private
     @@proc_cache[proc_key] = function.call(year) unless @@proc_cache[proc_key]
     @@proc_cache[proc_key]
   end
-
-
 end
 
 
@@ -240,7 +308,4 @@ class Date
       
     return days - ((Date.civil(year, month, days).wday - wday + 7) % 7)
   end
-
-
-
 end

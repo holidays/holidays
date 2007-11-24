@@ -10,38 +10,38 @@ months:
   0: 
   - name: Fastelavn
     regions: [dk]
-    function: lambda { |year| easter(year)-49 }
+    function: lambda { |year| Holidays.easter(year)-49 }
     type: informal
   - name: Palmesøndag
     regions: [dk]
-    function: lambda { |year| easter(year)-7 }
+    function: lambda { |year| Holidays.easter(year)-7 }
   - name: Skærtorsdag
     regions: [dk]
-    function: lambda { |year| easter(year)-3 }
+    function: lambda { |year| Holidays.easter(year)-3 }
   - name: Langfredag
     regions: [dk]
-    function: lambda { |year| easter(year)-2 }
+    function: lambda { |year| Holidays.easter(year)-2 }
   - name: Påskedag
     regions: [dk]
-    function: lambda { |year| easter(year) }
+    function: lambda { |year| Holidays.easter(year) }
   - name: 2. påskedag
     regions: [dk]
-    function: lambda { |year| easter(year)+1 }
+    function: lambda { |year| Holidays.easter(year)+1 }
   - name: Store Bededag
     regions: [dk]
-    function: lambda { |year| easter(year)+26 }
+    function: lambda { |year| Holidays.easter(year)+26 }
   - name: Kristi Himmelfartsdag
     regions: [dk]
-    function: lambda { |year| easter(year)+40 }
+    function: lambda { |year| Holidays.easter(year)+40 }
   - name: Kristi Himmelfartsdag
     regions: [dk]
-    function: lambda { |year| easter(year)+40 }
+    function: lambda { |year| Holidays.easter(year)+40 }
   - name: 2. Pinsedag
     regions: [dk]
-    function: lambda { |year| easter(year)+49 }
+    function: lambda { |year| Holidays.easter(year)+49 }
   - name: Pinsedag
     regions: [dk]
-    function: lambda { |year| easter(year)+50 }
+    function: lambda { |year| Holidays.easter(year)+50 }
   1: 
   - name: Nytårsdag
     regions: [dk]
@@ -96,5 +96,5 @@ months:
     regions: [dk]
     mday: 25
   - name: 2. juledag
-    regions: [dk_]
+    regions: [dk]
     mday: 26

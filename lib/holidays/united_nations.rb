@@ -3,11 +3,11 @@ module Holidays
   #
   # Definitions loaded: data/united_nations.yaml
   #
-  # To use the definitions in the file, load them right after you load the 
+  # To use the definitions in this file, load them right after you load the 
   # Holiday gem:
   #
   #   require 'holidays'
-  #   require 'path/to/united_nations'
+  #   require 'holidays/united_nations'
   #
   # More definitions are available at http://code.dunae.ca/holidays.
   module UNITED_NATIONS # :nodoc:
@@ -16,9 +16,9 @@ module Holidays
     HOLIDAYS_BY_MONTH = {
 
     }
-
-
   end
+
+
 end
 
 Holidays.merge_defs(Holidays::UNITED_NATIONS::DEFINED_REGIONS, Holidays::UNITED_NATIONS::HOLIDAYS_BY_MONTH)

@@ -8,24 +8,24 @@ months:
   0: 
   - name: Karfreitag
     regions: [de]
-    function: lambda { |year| easter(year)-2 }
+    function: lambda { |year| Holidays.easter(year)-2 }
   - name: Ostermontag
     regions: [de]
-    function: lambda { |year| easter(year)+1 }
+    function: lambda { |year| Holidays.easter(year)+1 }
   - name: Christi Himmelfahrt
     regions: [de]
-    function: lambda { |year| easter(year)+39 }
+    function: lambda { |year| Holidays.easter(year)+39 }
   - name: Pfingstmontag
     regions: [de]
-    function: lambda { |year| easter(year)+50 }
+    function: lambda { |year| Holidays.easter(year)+50 }
   - name: Fronleichnam
     regions: [de_bw, de_by, de_he, de_nw, de_rp, de_sl, de_sn, de_th]
-    function: lambda { |year| easter(year)+60 }
+    function: lambda { |year| Holidays.easter(year)+60 }
   1: 
   - name: Neujahrstag
     regions: [de]
     mday: 1
-  - name: Heilige Drei KÃ¶nige
+  - name: Heilige Drei Könige
     regions: [de_bw, de_by]
     mday: 6
   5: 
@@ -36,7 +36,7 @@ months:
     regions: [de]
     mday: 8
   8: 
-  - name: MariÃ¤ Himmelfahrt
+  - name: Mariä Himmelfahrt
     regions: [de_by]
     mday: 15
   10: 

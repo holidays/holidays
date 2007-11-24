@@ -5,10 +5,10 @@ months:
   0: 
   - name: Good Friday
     regions: [ca]
-    function: lambda { |year| easter(year)-2 }
+    function: lambda { |year| Holidays.easter(year)-2 }
   - name: Easter Monday
     regions: [ca_qc]
-    function: lambda { |year| easter(year)+1 }
+    function: lambda { |year| Holidays.easter(year)+1 }
   1: 
   - name: New Year's Day
     regions: [ca]
@@ -36,10 +36,10 @@ months:
   5: 
   - name: Victoria Day
     regions: [ca]
-    function: lambda { |year| ca_victoria_day(year) }
+    function: lambda { |year| Holidays.ca_victoria_day(year) }
   - name: National Patriotes Day
     regions: [ca_qc]
-    function: lambda { |year| ca_victoria_day(year) }
+    function: lambda { |year| Holidays.ca_victoria_day(year) }
   6: 
   - name: Discovery Day
     regions: [ca_nf]

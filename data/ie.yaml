@@ -7,7 +7,7 @@ months:
   0: 
   - name: Easter Monday
     regions: [ie]
-    function: lambda { |year| easter(year)+1 }
+    function: lambda { |year| Holidays.easter(year)+1 }
   1: 
   - name: New Year's Day
     regions: [ie]

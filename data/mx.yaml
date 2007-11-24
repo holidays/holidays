@@ -5,13 +5,13 @@ months:
   0: 
   - name: Good Thursday
     regions: [mx]
-    function: lambda { |year| easter(year)-3 }
+    function: lambda { |year| Holidays.easter(year)-3 }
   - name: Good Friday
     regions: [mx]
-    function: lambda { |year| easter(year)-2 }
+    function: lambda { |year| Holidays.easter(year)-2 }
   - name: Easter Sunday
     regions: [mx]
-    function: lambda { |year| easter(year) }
+    function: lambda { |year| Holidays.easter(year) }
   1: 
   - name: New Year's Day
     regions: [mx]

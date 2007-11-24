@@ -13,7 +13,7 @@ months:
     regions: [us]
     wday: 1
   - name: Inauguration Day
-    function: lambda { |year| us_inauguration_day(year) }
+    function: lambda { |year| Holidays.us_inauguration_day(year) }
     regions: [us]
   3: 
   - name: Presidents' Day

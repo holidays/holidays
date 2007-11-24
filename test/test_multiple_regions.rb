@@ -8,12 +8,6 @@ class MultipleRegionsTests < Test::Unit::TestCase
     @date = Date.civil(2008,1,1)
   end
 
-  def test_defining_regions
-    #assert Holidays::DEFINED_REGIONS.include?(:gb)
-    #assert Holidays::DEFINED_REGIONS.include?(:ie)
-    #assert Holidays::DEFINED_REGIONS.include?(:gb_con)
-  end
-
   def test_defining_holidays
     h = Holidays.on(Date.civil(2008,12,26), :ie)
     assert_equal 'St. Stephen\'s Day', h[0][:name]

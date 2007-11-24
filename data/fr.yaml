@@ -8,16 +8,16 @@ months:
   0: 
   - name: Pâques
     regions: [fr]
-    function: lambda { |year| easter(year) }
+    function: lambda { |year| Holidays.easter(year) }
   - name: Ascension
     regions: [fr]
-    function: lambda { |year| easter(year)+40 }
+    function: lambda { |year| Holidays.easter(year)+40 }
   - name: Pentecôte
     regions: [fr]
-    function: lambda { |year| easter(year)+49 }
+    function: lambda { |year| Holidays.easter(year)+49 }
   - name: Lundi de Pentecôte
     regions: [fr]
-    function: lambda { |year| easter(year)+50 }
+    function: lambda { |year| Holidays.easter(year)+50 }
   1: 
   - name: Jour de l'an
     regions: [fr]

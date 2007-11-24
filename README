@@ -23,11 +23,11 @@ Extends Ruby's built-in Date class and supports custom holiday definition lists.
 
 ==== Extending Ruby's Date class
   # Lookup Canada Day in the :ca region
-  Date.civil(2008,7,1).is_holiday?(:ca)
+  Date.civil(2008,7,1).holiday?(:ca)
   => true
   
   # Lookup Canada Day in the :fr region
-  Date.civil(2008,7,1).is_holiday?(:fr)
+  Date.civil(2008,7,1).holiday?(:fr)
   => false
 
 === Installation
@@ -38,10 +38,6 @@ To install the gem from RubyForge:
 
 Or, download the source <tt>.tgz</tt> file from http://rubyforge.org/holidays/ and 
 extract it somewhere in your include path.
-
-=== Custom holiday definitions
-
-
 
 === Credits and code
 
