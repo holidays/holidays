@@ -1,4 +1,4 @@
-# Italian holiday definitions for the Ruby Holiday gem.
+﻿# Italian holiday definitions for the Ruby Holiday gem.
 #
 # Updated: 2008-11-23.
 # Sources:
@@ -6,10 +6,10 @@
 --- 
 months:
   0: 
-  - name: Pasqua
+  - name: Pasquatemp
     regions: [it]
     function: lambda { |year| easter(year) }
-  - name: LunedÃ¬ dell'Angelo
+  - name: Luned dell'Angelo
     regions: [it]
     function: lambda { |year| easter(year)+1 }
   1: 
