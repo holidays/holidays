@@ -12,7 +12,7 @@ module Holidays
   # More definitions are available at http://code.dunae.ca/holidays.
   module GB # :nodoc:
     DEFINED_REGIONS = [:gb, :je, :gb_jsy, :gg, :gb_gsy, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :gb_sct, :im, :gb_iom, :gb_con]
-    
+
     HOLIDAYS_BY_MONTH = {
       5 => [{:wday => 1, :week => 1, :name => "May Day", :regions => [:gb]},
             {:mday => 9, :name => "Liberation Day", :regions => [:je, :gb_jsy, :gg, :gb_gsy]},

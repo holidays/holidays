@@ -12,7 +12,7 @@ module Holidays
   # More definitions are available at http://code.dunae.ca/holidays.
   module ZA # :nodoc:
     DEFINED_REGIONS = [:za]
-    
+
     HOLIDAYS_BY_MONTH = {
       5 => [{:mday => 1, :name => "Workers' Day", :regions => [:za]}],
       0 => [{:function => lambda { |year| easter(year)-2 }, :name => "Good Friday", :regions => [:za]},
@@ -60,21 +60,4 @@ end
   end
 end
 
-Holidays.class_eval do
-  existing_regions = []
-  if const_defined?(:DEFINED_REGIONS) 
-    existing_regions = const_get(:DEFINED_REGIONS)
-    remove_const(:DEFINED_REGIONS)
-  end
-  const_set(:DEFINED_REGIONS, existing_regions | Holidays::ZA::DEFINED_REGIONS)
-
-  existing_defs = {}
-  if const_defined?(:HOLIDAYS_BY_MONTH) 
-    existing_defs = const_get(:HOLIDAYS_BY_MONTH)
-    remove_const(:HOLIDAYS_BY_MONTH)
-  end
-  #const_set(:HOLIDAYS_BY_MONTH, existing_defs.merge(Holidays::ZA::HOLIDAYS_BY_MONTH))
-  const_set(:HOLIDAYS_BY_MONTH, Holidays::ZA::HOLIDAYS_BY_MONTH)
-
-  include Holidays::ZA
-end
+Holidays.merge_defs(Holidays::ZA::DEFINED_REGIONS, Holidays::ZA::HOLIDAYS_BY_MONTH)

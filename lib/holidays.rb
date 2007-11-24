@@ -1,5 +1,7 @@
 $:.unshift File.dirname(__FILE__)
 
+require 'digest/md5'
+
 module Holidays
   # Exception thrown when an unknown region is requested.
   class UnkownRegionError < ArgumentError; end
@@ -8,6 +10,7 @@ module Holidays
 
   @@regions = []
   @@holidays_by_month = {}
+  @@proc_cache = {}
 
   WEEKS = {:first => 1, :second => 2, :third => 3, :fourth => 4, :fifth => 5, :last => -1}
   MONTH_LENGTHS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -61,7 +64,8 @@ module Holidays
           next unless in_region?(regions, h[:regions])
           
           if h[:function]
-            result = h[:function].call(year)
+            #result = h[:function].call(year)
+            result = call_proc(h[:function], year)
             if result.kind_of?(Date)
               month = result.month
               mday = result.mday
@@ -129,6 +133,39 @@ private
 
     available.any? { |r| requested.include?(r) }
   end
+
+
+
+  # Call a proc function defined in a holiday definition file.
+  #
+  # Procs are cached.
+  #
+  # ==== Benchmarks
+  #
+  # Lookup Easter Sunday, with caching, by number of iterations:
+  # 
+  #       user     system      total        real
+  # 0001  0.000000   0.000000   0.000000 (  0.000000)
+  # 0010  0.000000   0.000000   0.000000 (  0.000000)
+  # 0100  0.078000   0.000000   0.078000 (  0.078000)
+  # 1000  0.641000   0.000000   0.641000 (  0.641000)
+  # 5000  3.172000   0.015000   3.187000 (  3.219000)
+  # 
+  # Lookup Easter Sunday, without caching, by number of iterations:
+  # 
+  #       user     system      total        real
+  # 0001  0.000000   0.000000   0.000000 (  0.000000)
+  # 0010  0.016000   0.000000   0.016000 (  0.016000)
+  # 0100  0.125000   0.000000   0.125000 (  0.125000)
+  # 1000  1.234000   0.000000   1.234000 (  1.234000)
+  # 5000  6.094000   0.031000   6.125000 (  6.141000)
+  def self.call_proc(function, year) # :nodoc:
+    proc_key = Digest::MD5.hexdigest("#{function.to_s}_#{year.to_s}")
+    @@proc_cache[proc_key] = function.call(year) unless @@proc_cache[proc_key]
+    @@proc_cache[proc_key]
+  end
+
+
 end
 
 
@@ -164,24 +201,27 @@ class Date
   # week.
   #
   # ==== Parameters
-  # [<tt>year</tt>] Integer.
+  # [<tt>year</tt>]  Integer.
   # [<tt>month</tt>] Integer from 1-12.
-  # [<tt>week</tt>] One of <tt>:first</tt>, <tt>:second</tt>, <tt>:third</tt>,
-  #                 <tt>:fourth</tt> or <tt>:fifth</tt>.
-  # [<tt>wday</tt>] Day of the week as an integer from 0 (Sunday) to 6
-  #                 (Saturday) or as a symbol (e.g. <tt>:monday</tt>).
+  # [<tt>week</tt>]  One of <tt>:first</tt>, <tt>:second</tt>, <tt>:third</tt>,
+  #                  <tt>:fourth</tt> or <tt>:fifth</tt>.
+  # [<tt>wday</tt>]  Day of the week as an integer from 0 (Sunday) to 6
+  #                  (Saturday) or as a symbol (e.g. <tt>:monday</tt>).
   #
   # Returns an integer.
   #
   # ===== Examples
   # First Monday of January, 2008:
   #   calculate_mday(2008, 1, :first, :monday)
+  #   => 7
   #
   # Third Thursday of December, 2008:
   #   calculate_mday(2008, 12, :third, 4)
+  #   => 18
   #
   # Last Monday of January, 2008:
   #   calculate_mday(2008, 1, :last, 1)
+  #   => 28
   #--
   # see http://www.irt.org/articles/js050/index.htm
   def self.calculate_mday(year, month, week, wday)

@@ -1,0 +1,51 @@
+# Dutch holiday definitions for the Ruby Holiday gem.
+#
+# Updated: 2008-11-23.
+# Sources:
+# - http://en.wikipedia.org/wiki/Public_holidays_in_the_Netherlands
+--- 
+months:
+  0: 
+  - name: Goede Vrijdag
+    regions: [nl]
+    function: lambda { |year| easter(year)-2 }
+  - name: Pasen
+    regions: [nl]
+    function: lambda { |year| easter(year) }
+  - name: Pasen
+    regions: [nl]
+    function: lambda { |year| easter(year)+1 }
+  - name: Hemelvaartsdag
+    regions: [nl]
+    function: lambda { |year| easter(year)+40 }
+  - name: Pinksteren
+    regions: [nl]
+    function: lambda { |year| easter(year)+49 }
+  - name: Pinksteren
+    regions: [nl]
+    function: lambda { |year| easter(year)+50 }
+  1: 
+  - name: Nieuwjaar
+    regions: [nl]
+    mday: 1
+  4:
+  - name: Koninginnedag
+    regions: [nl]
+    mday: 30
+  5: 
+  - name: Dodenherdenking
+    regions: [nl]
+    mday: 4
+  - name: Bevrijdingsdag
+    regions: [nl]
+    mday: 5
+  12:
+  - name: Sinterklaas
+    regions: [nl]
+    mday: 5
+  - name: Kerstmis
+    regions: [nl]
+    mday: 25
+  - name: Kerstmis
+    regions: [nl]
+    mday: 26

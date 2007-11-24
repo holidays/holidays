@@ -1,0 +1,51 @@
+# Italian holiday definitions for the Ruby Holiday gem.
+#
+# Updated: 2008-11-23.
+# Sources:
+# - http://en.wikipedia.org/wiki/Holidays_in_Italy
+--- 
+months:
+  0: 
+  - name: Pasqua
+    regions: [it]
+    function: lambda { |year| easter(year) }
+  - name: Lunedì dell'Angelo
+    regions: [it]
+    function: lambda { |year| easter(year)+1 }
+  1: 
+  - name: Capodanno
+    regions: [it]
+    mday: 1
+  - name: Epifania
+    regions: [it]
+    mday: 6
+  4:
+  - name: Festa della Liberazione
+    regions: [it]
+    mday: 25
+  5: 
+  - name: Festa dei Lavoratori
+    regions: [it]
+    mday: 1
+  6:
+  - name: Festa della Repubblica
+    regions: [it]
+    mday: 2
+  8: 
+  - name: Assunzione
+    regions: [it]
+    mday: 15
+  11: 
+  - name: Ognissanti
+    regions: [it]
+    mday: 1
+  12:
+  - name: Immacolata Concezione
+    regions: [it]
+    mday: 8
+  - name: Natale
+    regions: [it]
+    mday: 25
+  - name: Santo Stefano
+    regions: [it]
+    mday: 26

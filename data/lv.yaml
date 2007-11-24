@@ -1,0 +1,49 @@
+# Latvian holiday definitions for the Ruby Holiday gem.
+#
+# Updated: 2008-11-23.
+# Sources:
+# - http://en.wikipedia.org/wiki/Holidays_in_Latvia
+--- 
+months:
+  0: 
+  - name: Liela Piektdiena
+    regions: [lv]
+    function: lambda { |year| easter(year)-2 }
+  - name: Lieldienas
+    regions: [lv]
+    function: lambda { |year| easter(year) }
+  - name: 2. Lieldienas
+    regions: [lv]
+    function: lambda { |year| easter(year)+1 }
+  1: 
+  - name: Jaunais Gads
+    regions: [lv]
+    mday: 1
+  5: 
+  - name: Darba svetki
+    regions: [lv]
+    mday: 1
+  - name: Neatkaribas deklaracijas pasludinašanas diena
+    regions: [lv]
+    mday: 4
+  6:
+  - name: Ligo Diena
+    regions: [lv]
+    mday: 23
+  - name: Jani
+    regions: [lv]
+    mday: 24
+  11: 
+  - name: Latvijas Republikas proklamešanas diena
+    regions: [lv]
+    mday: 18
+  12:
+  - name:  Ziemassvetki
+    regions: [lv]
+    mday: 25
+  - name: 2. Ziemassvetki
+    regions: [lv]
+    mday: 25
+  - name: Vecgada vakars
+    regions: [lv]
+    mday: 31

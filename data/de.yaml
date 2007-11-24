@@ -1,0 +1,59 @@
+# German holiday definitions for the Ruby Holiday gem.
+#
+# Updated: 2008-11-23.
+# Sources:
+# - http://en.wikipedia.org/wiki/Holidays_in_Germany
+--- 
+months:
+  0: 
+  - name: Karfreitag
+    regions: [de]
+    function: lambda { |year| easter(year)-2 }
+  - name: Ostermontag
+    regions: [de]
+    function: lambda { |year| easter(year)+1 }
+  - name: Christi Himmelfahrt
+    regions: [de]
+    function: lambda { |year| easter(year)+39 }
+  - name: Pfingstmontag
+    regions: [de]
+    function: lambda { |year| easter(year)+50 }
+  - name: Fronleichnam
+    regions: [de_bw, de_by, de_he, de_nw, de_rp, de_sl, de_sn, de_th]
+    function: lambda { |year| easter(year)+60 }
+  1: 
+  - name: Neujahrstag
+    regions: [de]
+    mday: 1
+  - name: Heilige Drei Könige
+    regions: [de_bw, de_by]
+    mday: 6
+  5: 
+  - name: Tag der Arbeit
+    regions: [de]
+    mday: 1
+  - name: Victoire 1945
+    regions: [de]
+    mday: 8
+  8: 
+  - name: Mariä Himmelfahrt
+    regions: [de_by]
+    mday: 15
+  10: 
+  - name: Tag der Deutschen Einheit
+    regions: [de]
+    mday: 3
+  - name: Reformationstag
+    regions: [de_bb, de_mv, de_sn, de_st, de_th]
+    mday: 31
+  11: 
+  - name: Allerheiligen
+    regions: [de_bw, de_by, de_nw, de_rp, de_sl]
+    mday: 1
+  12:
+  - name: 1. Weihnachtstag
+    regions: [de]
+    mday: 25
+  - name: 2. Weihnachtstag
+    regions: [de]
+    mday: 25

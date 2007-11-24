@@ -12,7 +12,7 @@ module Holidays
   # More definitions are available at http://code.dunae.ca/holidays.
   module IE # :nodoc:
     DEFINED_REGIONS = [:ie]
-    
+
     HOLIDAYS_BY_MONTH = {
       5 => [{:wday => 1, :week => 1, :name => "May Day", :regions => [:ie]}],
       0 => [{:function => lambda { |year| easter(year)+1 }, :name => "Easter Monday", :regions => [:ie]}],

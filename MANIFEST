@@ -1,0 +1,22 @@
+==== Regional definitions
+The following definition files are included in the default
+installation:
+
+* holidays/au
+* holidays/ca
+* holidays/de
+* holidays/dk
+* holidays/es
+* holidays/europe
+* holidays/fr
+* holidays/gb
+* holidays/ie
+* holidays/is
+* holidays/it
+* holidays/lv
+* holidays/mx
+* holidays/nl
+* holidays/north_america
+* holidays/united_nations
+* holidays/us
+* holidays/za

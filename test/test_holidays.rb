@@ -25,8 +25,6 @@ class HolidaysTests < Test::Unit::TestCase
     assert_equal 0, holidays.length
   end
 
-  
-
   def test_requires_valid_regions
     assert_raises Holidays::UnkownRegionError do
       Holidays.on(Date.civil(2008,1,1), :xx)

@@ -12,7 +12,7 @@ module Holidays
   # More definitions are available at http://code.dunae.ca/holidays.
   module CA # :nodoc:
     DEFINED_REGIONS = [:ca, :ca_qc, :us, :ca_nf, :ca_nt, :ca_nu, :ca_ab, :ca_on, :ca_sk, :ca_mb, :ca_bc, :ca_ns, :ca_yk]
-    
+
     HOLIDAYS_BY_MONTH = {
       5 => [{:function => lambda { |year| ca_victoria_day(year) }, :name => "Victoria Day", :regions => [:ca]},
             {:function => lambda { |year| ca_victoria_day(year) }, :name => "National Patriotes Day", :regions => [:ca_qc]},
@@ -21,7 +21,7 @@ module Holidays
             {:function => lambda { |year| easter(year)+1 }, :name => "Easter Monday", :regions => [:ca_qc]}],
       11 => [{:mday => 11, :name => "Rememberance Day", :regions => [:ca]}],
       6 => [{:mday => 24, :name => "Discovery Day", :regions => [:ca_nf]},
-            {:mday => 24, :name => "FÃªte Nationale", :regions => [:ca_qc]},
+            {:mday => 24, :name => "Fête Nationale", :regions => [:ca_qc]},
             {:mday => 21, :name => "National Aboriginal Day", :regions => [:ca_nt]}],
       1 => [{:mday => 1, :name => "New Year's Day", :regions => [:ca]},
             {:mday => 2, :name => "New Year's", :regions => [:ca_qc]}],
