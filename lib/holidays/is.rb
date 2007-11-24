@@ -14,7 +14,7 @@ module Holidays
     DEFINED_REGIONS = [:is]
 
     HOLIDAYS_BY_MONTH = {
-      5 => [{:mday => 3, :name => "Sjómannadagurinn", :regions => [:is]},
+      5 => [{:mday => 3, :type => :informal, :name => "Sjómannadagurinn", :regions => [:is]},
             {:mday => 17, :name => "Lýðveldisdagurinn", :regions => [:is]}],
       0 => [{:function => lambda { |year| easter(year)-48 }, :name => "Bolludagur", :regions => [:is]},
             {:function => lambda { |year| easter(year)-47 }, :name => "Sprengidagur", :regions => [:is]},
@@ -31,12 +31,12 @@ module Holidays
       11 => [{:mday => 16, :name => "Dagur íslenskrar tungu", :regions => [:is]}],
       1 => [{:mday => 1, :name => "Nýársdagur", :regions => [:is]},
             {:mday => 6, :name => "Þrettándinn", :regions => [:is]},
-            {:mday => 19, :name => "Bóndadagur", :regions => [:is]}],
+            {:mday => 19, :type => :informal, :name => "Bóndadagur", :regions => [:is]}],
       12 => [{:mday => 24, :name => "Jól", :regions => [:is]},
             {:mday => 25, :name => "Jól", :regions => [:is]},
             {:mday => 26, :name => "Jól", :regions => [:is]},
             {:mday => 31, :name => "Gamlárskvöld", :regions => [:is]}],
-      2 => [{:mday => 18, :name => "Konudagur", :regions => [:is]}],
+      2 => [{:mday => 18, :type => :informal, :name => "Konudagur", :regions => [:is]}],
       8 => [{:wday => 1, :week => 1, :name => "Frídagur verslunarmanna", :regions => [:is]}]
     }
 

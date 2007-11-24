@@ -25,7 +25,7 @@ months:
   - name: Neujahrstag
     regions: [de]
     mday: 1
-  - name: Heilige Drei Könige
+  - name: Heilige Drei KÃ¶nige
     regions: [de_bw, de_by]
     mday: 6
   5: 
@@ -36,7 +36,7 @@ months:
     regions: [de]
     mday: 8
   8: 
-  - name: Mariä Himmelfahrt
+  - name: MariÃ¤ Himmelfahrt
     regions: [de_by]
     mday: 15
   10: 

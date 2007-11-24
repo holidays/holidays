@@ -16,7 +16,7 @@ module Holidays
     HOLIDAYS_BY_MONTH = {
       5 => [{:function => lambda { |year| ca_victoria_day(year) }, :name => "Victoria Day", :regions => [:ca]},
             {:function => lambda { |year| ca_victoria_day(year) }, :name => "National Patriotes Day", :regions => [:ca_qc]},
-            {:wday => 0, :week => 3, :name => "Father's Day", :regions => [:us, :ca]}],
+            {:wday => 0, :week => 3, :type => :informal, :name => "Father's Day", :regions => [:us, :ca]}],
       0 => [{:function => lambda { |year| easter(year)-2 }, :name => "Good Friday", :regions => [:ca, :us]},
             {:function => lambda { |year| easter(year)+1 }, :name => "Easter Monday", :regions => [:ca_qc]}],
       11 => [{:mday => 11, :name => "Rememberance Day", :regions => [:ca]}],
@@ -32,8 +32,8 @@ module Holidays
             {:mday => 9, :name => "Nunavut Day", :regions => [:ca_nu]}],
       2 => [{:wday => 1, :week => 3, :name => "Family Day", :regions => [:ca_ab, :ca_on, :ca_sk]},
             {:wday => 1, :week => 3, :name => "Louis Riel Day", :regions => [:ca_mb]},
-            {:mday => 2, :name => "Groundhog Day", :regions => [:us, :ca]},
-            {:mday => 14, :name => "Valentine's Day", :regions => [:us, :ca]}],
+            {:mday => 2, :type => :informal, :name => "Groundhog Day", :regions => [:us, :ca]},
+            {:mday => 14, :type => :informal, :name => "Valentine's Day", :regions => [:us, :ca]}],
       8 => [{:wday => 1, :week => 1, :name => "BC Day", :regions => [:ca_bc]},
             {:wday => 1, :week => 1, :name => "Saskatchewan Day", :regions => [:ca_sk]},
             {:wday => 1, :week => 1, :name => "Heritage Day", :regions => [:ca_ab]},
@@ -41,12 +41,12 @@ module Holidays
             {:wday => 1, :week => 1, :name => "Civic Holiday", :regions => [:ca_on]},
             {:wday => 1, :week => 3, :name => "Discovery Day", :regions => [:ca_yk]}],
       3 => [{:mday => 23, :name => "St. George's Day", :regions => [:ca_nf]},
-            {:mday => 17, :name => "St. Patrick's Day", :regions => [:us, :ca]}],
+            {:mday => 17, :type => :informal, :name => "St. Patrick's Day", :regions => [:us, :ca]}],
       9 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:ca]}],
-      4 => [{:mday => 1, :name => "April Fool's Day", :regions => [:us, :ca]},
-            {:mday => 22, :name => "Earth Day", :regions => [:us, :ca]}],
+      4 => [{:mday => 1, :type => :informal, :name => "April Fool's Day", :regions => [:us, :ca]},
+            {:mday => 22, :type => :informal, :name => "Earth Day", :regions => [:us, :ca]}],
       10 => [{:wday => 1, :week => 2, :name => "Thanksgiving", :regions => [:ca]},
-            {:mday => 31, :name => "Halloween", :regions => [:us, :ca]}]
+            {:mday => 31, :type => :informal, :name => "Halloween", :regions => [:us, :ca]}]
     }
 
 # Get the date of Easter in a given year.

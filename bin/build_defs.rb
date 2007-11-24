@@ -24,7 +24,7 @@ def parse_holiday_defs(module_name, files)
 
           exists = false
           rules_by_month[month].each do |ex|
-            if ex['name'] == rule['name'] and ex['wday'] == rule['wday'] and  ex['mday'] == rule['mday'] and ex['week'] == rule['week']
+            if ex['name'] == rule['name'] and ex['wday'] == rule['wday'] and  ex['mday'] == rule['mday'] and ex['week'] == rule['week'] and ex['function'] == rule['function']
               ex['regions'] << rule['regions'].flatten
               exists = true
             end
@@ -58,6 +58,10 @@ def parse_holiday_defs(module_name, files)
         str << ":function => #{rule['function']}, "
       else
         str << ":wday => #{rule['wday']}, :week => #{rule['week']}, "
+      end
+
+      if rule['type']
+        str << ":type => :#{rule['type']}, "
       end
 
       # shouldn't allow the same region twice
