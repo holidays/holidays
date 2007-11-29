@@ -11,7 +11,7 @@ module Holidays
   #
   # More definitions are available at http://code.dunae.ca/holidays.
   module EUROPE # :nodoc:
-    DEFINED_REGIONS = [:dk, :is, :de, :fr, :de_bw, :de_by, :de_nw, :de_rp, :de_sl, :de_he, :de_sn, :de_th, :de_bb, :de_mv, :de_st, :es, :es_m, :es_cn, :es_cm, :es_pv, :es_ct, :es_na, :es_v, :es_vc, :es_mu, :es_lo, :es_ib, :es_ga, :es_an, :es_ce, :es_o, :es_ex, :es_ar, :es_cl, :gb, :ie, :je, :gb_jsy, :gg, :gb_gsy, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :gb_sct, :im, :gb_iom, :gb_con, :it, :nl, :pt, :se]
+    DEFINED_REGIONS = [:dk, :is, :de, :fr, :de_bw, :de_by, :de_nw, :de_rp, :de_sl, :de_sn, :de_he, :de_th, :de_bb, :de_mv, :de_st, :es, :es_m, :es_cn, :es_cm, :es_pv, :es_ct, :es_na, :es_v, :es_vc, :es_mu, :es_lo, :es_ib, :es_ga, :es_an, :es_ce, :es_o, :es_ex, :es_ar, :es_cl, :gb, :ie, :je, :gb_jsy, :gg, :gb_gsy, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :gb_sct, :im, :gb_iom, :gb_con, :it, :nl, :pt, :se]
 
     HOLIDAYS_BY_MONTH = {
       5 => [{:mday => 1, :name => "Arbejdernes kampdag", :regions => [:dk]},
@@ -44,6 +44,7 @@ module Holidays
             {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "2. Pinsedag", :regions => [:dk, :is]},
             {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pinsedag", :regions => [:dk, :is]},
             {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Karfreitag", :regions => [:de]},
+            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :type => :informal, :name => "Ostern", :regions => [:de]},
             {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Ostermontag", :regions => [:de]},
             {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Christi Himmelfahrt", :regions => [:de]},
             {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pfingstmontag", :regions => [:de]},
@@ -52,7 +53,8 @@ module Holidays
             {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Viernes Santo", :regions => [:es]},
             {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Lunes de Pascua", :regions => [:es_pv, :es_ct, :es_na, :es_v, :es_vc]},
             {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Pâques", :regions => [:fr]},
-            {:function => lambda { |year| Holidays.easter(year)+40 }, :function_id => "easter(year)+40", :name => "Ascension", :regions => [:fr]},
+            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Lundi de Pâques", :regions => [:fr]},
+            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Ascension", :regions => [:fr]},
             {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "Pentecôte", :regions => [:fr]},
             {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Lundi de Pentecôte", :regions => [:fr]},
             {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Good Friday", :regions => [:gb]},
@@ -86,6 +88,7 @@ module Holidays
             {:function => lambda { |year| Holidays.se_alla_helgons_dag(year) }, :function_id => "se_alla_helgons_dag(year)", :name => "Alla helgons dag", :regions => [:se]}],
       11 => [{:mday => 10, :type => :informal, :name => "Mortensaften", :regions => [:dk]},
             {:mday => 1, :name => "Allerheiligen", :regions => [:de_bw, :de_by, :de_nw, :de_rp, :de_sl]},
+            {:function => lambda { |year| Holidays.de_buss_und_bettag(year) }, :function_id => "de_buss_und_bettag(year)", :name => "Buß- und Bettag", :regions => [:de_by, :de_sn]},
             {:mday => 1, :name => "Todos los Santos", :regions => [:es]},
             {:mday => 1, :name => "Toussaint", :regions => [:fr]},
             {:mday => 11, :name => "Armistice 1918", :regions => [:fr]},
@@ -125,7 +128,7 @@ module Holidays
             {:mday => 25, :name => "1. juledag", :regions => [:dk]},
             {:mday => 26, :name => "2. juledag", :regions => [:dk]},
             {:mday => 25, :name => "1. Weihnachtstag", :regions => [:de]},
-            {:mday => 25, :name => "2. Weihnachtstag", :regions => [:de]},
+            {:mday => 26, :name => "2. Weihnachtstag", :regions => [:de]},
             {:mday => 6, :name => "Día de la Constitución", :regions => [:es]},
             {:mday => 8, :name => "Inmaculada Concepción", :regions => [:es]},
             {:mday => 25, :name => "Navidad del Señor", :regions => [:es]},
@@ -155,7 +158,7 @@ module Holidays
             {:mday => 12, :name => "Battle of the Boyne", :regions => [:gb_nir]}],
       2 => [{:mday => 28, :name => "Día de Andalucía", :regions => [:es_an]},
             {:mday => 18, :type => :informal, :name => "Konudagur", :regions => [:is]}],
-      8 => [{:mday => 15, :name => "Mariä Himmelfahrt", :regions => [:de_by]},
+      8 => [{:mday => 15, :name => "Mariä Himmelfahrt", :regions => [:de_by, :de_sl]},
             {:mday => 15, :name => "Asunción", :regions => [:es]},
             {:mday => 15, :name => "Assomption", :regions => [:fr]},
             {:wday => 1, :week => 1, :name => "Bank Holiday", :regions => [:gb_sct, :ie]},
@@ -187,6 +190,17 @@ module Holidays
             {:mday => 5, :name => "Implantação da República", :regions => [:pt]}]
     }
   end
+
+# Germany: Wednesday before November 23
+def self.de_buss_und_bettag(year)
+  date = Date.civil(year,11,23)
+  if date.wday > 3
+    date -= (date.wday - 3)
+  else
+    date -= (date.wday + 4)
+  end
+  date
+end
 
 # Iceland: first day of summer (Thursday after 18 April)
 def self.is_sumardagurinn_fyrsti(year)

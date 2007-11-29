@@ -1,8 +1,12 @@
 # Spanish holiday definitions for the Ruby Holiday gem.
 #
-# Updated: 2008-11-22.
+# Including the Balearic Islands and the Canary Islands.
+#
+# Updated: 2008-11-29.
+#
 # Sources:
 # - http://en.wikipedia.org/wiki/Public_holidays_in_Spain
+# - http://www.timeanddate.com/calendar/index.html?country=16
 # 
 # Notes:
 # - Valencia is encoded as both es_v and es_vc

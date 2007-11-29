@@ -1,14 +1,20 @@
 # German holiday definitions for the Ruby Holiday gem.
 #
-# Updated: 2008-11-23.
+# Updated: 2008-11-29.
 # Sources:
 # - http://en.wikipedia.org/wiki/Holidays_in_Germany
+# - http://www.timeanddate.com/calendar/index.html?country=8
+# - http://www.germany.info/relaunch/welcome/travel/holidays.html
 --- 
 months:
   0: 
   - name: Karfreitag
     regions: [de]
     function: easter(year)-2
+  - name: Ostern
+    regions: [de]
+    function: easter(year)
+    type: informal
   - name: Ostermontag
     regions: [de]
     function: easter(year)+1
@@ -37,7 +43,7 @@ months:
     mday: 8
   8: 
   - name: Mariä Himmelfahrt
-    regions: [de_by]
+    regions: [de_by, de_sl]
     mday: 15
   10: 
   - name: Tag der Deutschen Einheit
@@ -50,10 +56,25 @@ months:
   - name: Allerheiligen
     regions: [de_bw, de_by, de_nw, de_rp, de_sl]
     mday: 1
+  - name: Buß- und Bettag
+    regions: [de_by, de_sn]
+    function: de_buss_und_bettag(year)
   12:
   - name: 1. Weihnachtstag
     regions: [de]
     mday: 25
   - name: 2. Weihnachtstag
     regions: [de]
-    mday: 25
+    mday: 26
+methods:
+  de_buss_und_bettag: |
+    # Germany: Wednesday before November 23
+    def self.de_buss_und_bettag(year)
+      date = Date.civil(year,11,23)
+      if date.wday > 3
+        date -= (date.wday - 3)
+      else
+        date -= (date.wday + 4)
+      end
+      date
+    end

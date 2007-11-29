@@ -123,7 +123,10 @@ spec = Gem::Specification.new do |s|
     A collection of Ruby methods to deal with statutory and other holidays.  You deserve a holiday!
   EOF
   s.summary = 'A collection of Ruby methods to deal with statutory and other holidays.  You deserve a holiday!'
-  s.files = FileList["{lib}/**/*"].to_a
+  s.files = FileList["{lib}/**/*", "{data}/**/*", "bin/*"].to_a
+  s.bindir = 'bin'
+  s.executables = ["build_holiday_defs"]
+  s.default_executable = %q{build_holiday_defs}
   s.test_files = Dir.glob('test/test_*.rb') 
   s.has_rdoc = true
   s.extra_rdoc_files = ['README', 'lib/holidays/MANIFEST', 'CUSTOM DATES', 'REFERENCES', 'LICENSE']

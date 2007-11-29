@@ -1,17 +1,21 @@
 # French holiday definitions for the Ruby Holiday gem.
 #
-# Updated: 2008-11-22.
+# Updated: 2008-11-2*.
 # Sources:
 # - http://en.wikipedia.org/wiki/Holidays_in_France
+# - http://riviera.angloinfo.com/information/1/pub_hols.asp
 --- 
 months:
   0: 
   - name: Pâques
     regions: [fr]
     function: easter(year)
+  - name: Lundi de Pâques
+    regions: [fr]
+    function: easter(year)+1
   - name: Ascension
     regions: [fr]
-    function: easter(year)+40
+    function: easter(year)+39
   - name: Pentecôte
     regions: [fr]
     function: easter(year)+49
