@@ -1,0 +1,79 @@
+# Swedish holiday definitions for the Ruby Holiday gem.
+#
+# Updated: 2008-11-28.
+# Sources:
+# - http://en.wikipedia.org/wiki/Holidays_in_Sweden
+# - http://www.worldtravelguide.net/country/269/public_holidays/Europe/Sweden.html
+--- 
+months:
+  0: 
+  - name: Långfredagen
+    regions: [se]
+    function: easter(year)-2
+  - name: Påskdagen
+    regions: [se]
+    function: easter(year)
+  - name: Annandag påsk
+    regions: [se]
+    function: easter(year)+1
+  - name: Kristi himmelsfärdsdag # Ascension Day
+    regions: [se]
+    function: easter(year)+39
+  - name: Pingstdagen # Whitsunday
+    regions: [se]
+    function: easter(year)+49
+  - name: Alla helgons dag # All Saint's Day
+    regions: [se]
+    function: se_alla_helgons_dag(year)
+  1: 
+  - name: Nyårsdagen
+    regions: [se]
+    mday: 1
+  - name: Trettondedag jul
+    regions: [se]
+    mday: 6
+  5:
+  - name: Första maj
+    regions: [se]
+    mday: 1
+  6:
+  - name: Nationaldagen
+    regions: [se]
+    mday: 6
+  - name: Midsommardagen
+    regions: [se]
+    function: se_midsommardagen(year)
+  12: 
+  - name: Juldagen
+    regions: [se]
+    mday: 25
+  - name: Annandag jul
+    regions: [se]
+    mday: 26
+methods:
+  se_midsommardagen:
+    # The Saturday during the period 20–26 June. (2007: June 23)
+  se_alla_helgons_dag:
+    # The Saturday during the period October 31–November 6. (2007: November 3)
+
+
+
+  def test_se
+    {Date.civil(2008,1,1) => 'Nyårsdagen', 
+     Date.civil(2008,1,6) => 'Trettondedag jul',
+     Date.civil(2008,3,23) => 'Långfredagen', 
+     Date.civil(2008,3,21) => 'Påskdagen', 
+     Date.civil(2008,3,24) => 'Annandag påsk',
+     Date.civil(2008,5,1) => 'Första maj',
+     Date.civil(2008,5,1) => 'Kristi himmelsfärdsdag',
+     Date.civil(2008,5,11) => 'Pingstdagen',
+     Date.civil(2008,6,6) => 'Nationaldagen',
+     Date.civil(2007,6,23) => 'Midsommardagen',
+     Date.civil(2008,6,21) => 'Midsommardagen',
+     Date.civil(2007,11,3) => 'Alla helgons dag',
+     Date.civil(2008,11,1) => 'Alla helgons dag',
+     Date.civil(2008,12,25) => 'Juldagen',
+     Date.civil(2008,12,25) => 'Annandag jul'}.each do |date, name|
+      assert_equal name, Holidays.on(date, :se)[0][:name]
+    end
+  end
