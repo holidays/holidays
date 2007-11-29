@@ -30,13 +30,9 @@ def parse_holiday_defs(module_name, files)
 
           exists = false
           rules_by_month[month].each do |ex|
-            if ex['name'] == rule['name'] and ex['wday'] == rule['wday'] and ex['mday'] == rule['mday'] and ex['week'] == rule['week'] and ex['function'] == rule['function']
+            if ex['name'] == rule['name'] and ex['wday'] == rule['wday'] and ex['mday'] == rule['mday'] and ex['week'] == rule['week'] and ex['type'] == rule['type'] and ex['function'] == rule['function'] and ex['observed'] == rule['observed']
               ex['regions'] << rule['regions'].flatten
               exists = true
-            else
-              if rule['function_id']
-                "Rejecting #{rule['function_id']}"
-              end
             end
           end
           unless exists
@@ -70,6 +66,10 @@ def parse_holiday_defs(module_name, files)
         str << ":function_id => \"#{rule['function'].to_s}\", "
       else
         str << ":wday => #{rule['wday']}, :week => #{rule['week']}, "
+      end
+
+      if rule['observed']
+        str << ":observed => lambda { |date| Holidays.#{rule['observed']}(date) }, "
       end
 
       if rule['type']

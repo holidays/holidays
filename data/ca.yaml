@@ -55,6 +55,7 @@ months:
   - name: Canada Day
     regions: [ca]
     mday: 1
+    observed: to_monday_if_sunday
   - name: Orangemen's Day
     regions: [ca_nf]
     mday: 12

@@ -13,6 +13,7 @@ months:
   - name: New Year's Day
     regions: [us]
     mday: 1
+    observed: to_weekday_if_weekend
   - name: Martin Luther King, Jr. Day
     week: 3
     regions: [us]
@@ -34,6 +35,7 @@ months:
   - name: Independence Day
     regions: [us]
     mday: 4
+    observed: to_weekday_if_weekend
   9: 
   - name: Labor Day
     week: 1
@@ -48,6 +50,7 @@ months:
   - name: Veterans Day
     regions: [us]
     mday: 11
+    observed: to_weekday_if_weekend
   - name: Thanksgiving
     week: 4
     regions: [us]
@@ -56,6 +59,7 @@ months:
   - name: Christmas Day
     regions: [us]
     mday: 25
+    observed: to_weekday_if_weekend
 methods:
   us_inauguration_day: |
     # January 20, every fourth year, following Presidential election

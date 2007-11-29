@@ -13,7 +13,7 @@ class RegionTests < Test::Unit::TestCase
      Date.civil(2009,10,3) => 'Tag der Deutschen Einheit',
      Date.civil(2009,12,25) => '1. Weihnachtstag',
      Date.civil(2009,12,26) => '2. Weihnachtstag'}.each do |date, name|
-      assert_equal name, Holidays.on(date, :de)[0][:name]
+      assert_equal name, Holidays.on(date, :de, :informal)[0][:name]
     end
     
     [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn, :de_th, :de_].each do |r|
@@ -51,7 +51,7 @@ class RegionTests < Test::Unit::TestCase
      Date.civil(2009,12,6) => 'Día de la Constitución',
      Date.civil(2009,12,8) => 'Inmaculada Concepción',
      Date.civil(2009,12,25) => 'Navidad del Señor'}.each do |date, name|
-      assert_equal name, Holidays.on(date, :es)[0][:name]
+      assert_equal name, Holidays.on(date, :es, :informal)[0][:name]
     end
     
     [:es_pv, :es_ct, :es_na, :es_v, :es_vc, :es_].each do |r|
@@ -103,7 +103,7 @@ class RegionTests < Test::Unit::TestCase
      Date.civil(2007,11,1) => 'Toussaint',
      Date.civil(2007,11,11) => 'Armistice 1918',
      Date.civil(2007,12,25) => 'Nöel'}.each do |date, name|
-      assert_equal name, Holidays.on(date, :fr)[0][:name]
+      assert_equal name, Holidays.on(date, :fr, :informal)[0][:name]
     end
   end
 
@@ -120,10 +120,10 @@ class RegionTests < Test::Unit::TestCase
      Date.civil(2008,11,5) => 'Guy Fawkes Day',
      Date.civil(2008,12,25) => 'Christmas Day',
      Date.civil(2008,12,26) => 'Boxing Day'}.each do |date, name|
-      assert_equal name, Holidays.on(date, :gb)[0][:name]
+      assert_equal name, Holidays.on(date, :gb, :informal)[0][:name]
     end
 
-    assert_equal 'St. Patrick\'s Day', Date.civil(2008,3,17).holidays(:gb_nir)[0][:name]
+    assert_equal 'St. Patrick\'s Day', Date.civil(2008,3,17).holidays(:gb_nir, :informal)[0][:name]
 
     [:gb_wls, :gb_eng, :gb_nir, :gb_eaw, :gb_].each do |r|
       assert_equal 'Easter Monday', Date.civil(2008,3,24).holidays(r)[0][:name]
@@ -141,7 +141,7 @@ class RegionTests < Test::Unit::TestCase
      Date.civil(2008,8,4) => 'Bank Holiday',
      Date.civil(2008,12,25) => 'Christmas Day',
      Date.civil(2008,12,26) => 'St. Stephen\'s Day'}.each do |date, name|
-      assert_equal name, Holidays.on(date, :ie)[0][:name]
+      assert_equal name, Holidays.on(date, :ie, :informal)[0][:name]
     end
   end
 
@@ -159,7 +159,7 @@ class RegionTests < Test::Unit::TestCase
      Date.civil(2007,12,8) => 'Immacolata Concezione',
      Date.civil(2007,12,25) => 'Natale',
      Date.civil(2007,12,26) => 'Santo Stefano'}.each do |date, name|
-      assert_equal name, Holidays.on(date, :it)[0][:name]
+      assert_equal name, Holidays.on(date, :it, :informal)[0][:name]
     end
   end
 
@@ -175,7 +175,7 @@ class RegionTests < Test::Unit::TestCase
      Date.civil(2008,5,12) => 'Pinksteren', # Pentecost, Easter+50
      Date.civil(2008,12,25) => 'Kerstmis',
      Date.civil(2008,12,26) => 'Kerstmis'}.each do |date, name|
-      assert_equal name, Holidays.on(date, :nl)[0][:name]
+      assert_equal name, Holidays.on(date, :nl, :informal)[0][:name]
     end
   end
 
@@ -199,7 +199,7 @@ class RegionTests < Test::Unit::TestCase
      Date.civil(2008,12,1) => 'Restauração da Independência',
      Date.civil(2008,12,8) => 'Imaculada Conceição',
      Date.civil(2008,12,25) => 'Natal'}.each do |date, name|
-      assert_equal name, Holidays.on(date, :pt)[0][:name]
+      assert_equal name, Holidays.on(date, :pt, :informal)[0][:name]
     end
   end
 
@@ -223,7 +223,7 @@ class RegionTests < Test::Unit::TestCase
      Date.civil(2008,11,1) => 'Alla helgons dag',
      Date.civil(2008,12,25) => 'Juldagen',
      Date.civil(2008,12,26) => 'Annandag jul'}.each do |date, name|
-      assert_equal name, Holidays.on(date, :se)[0][:name]
+      assert_equal name, Holidays.on(date, :se, :informal)[0][:name]
     end
   end
 

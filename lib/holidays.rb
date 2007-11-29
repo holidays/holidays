@@ -4,18 +4,41 @@ require 'digest/md5'
 
 # === Ruby Holidays module
 #
-# ==== Using regions
+# ==== Region options
 # Holidays can be defined as belonging to one or more regions and sub regions.
 # The Holidays#on, Holidays#between, Date#holidays and Date#holiday? methods
 # each allow you to specify a specific region.
 #
 # There are several different ways that you can specify a region:
 #
-# ca::       By region. Return holidays in the CA region (Canada).
-# ca_::      By region and sub regions. Return holidays in the CA region and all sub regions.
+# [<tt>:region</tt>]
+#   By region. For example, return holidays in the Canada with <tt>:ca</tt>.
+# [<tt>:region_</tt>]
+#   By region and sub regions. For example, return holidays in Germany
+#   and all its sub regions with <tt>:de_</tt>.
+# [<tt>:region_sub</tt>]
+#   By sub region. Return national holidays in Spain plus holidays in Spain's 
+#   Valencia region with <tt>:es_v</tt>.
+# [<tt>:any</tt>]
+#   Any region.  Return holidays from any loaded region.
 #
-# ca_bc::    By sub region.     Return holidays in the CA region and CA_BC sub region.
-# any::    Any region.  Return holidays from any region.
+# ==== Other options
+# [<tt>:observed</tt>]    Return holidays on the day they are observed (e.g. on a Monday if they fall on a Sunday).
+# [<tt>:informal</tt>]    Include informal holidays (e.g. Valentine's Day)
+#
+# ==== Examples
+# Return all holidays in the <tt>:ca</tt> and <tt>:us</tt> regions on the day that they are
+# observed.
+#
+#   Holidays.between(from, to, :ca, :us, :observed)
+#
+# Return all holidays in <tt>:ca</tt> and any <tt>:ca</tt> sub-region.
+#
+#   Holidays.between(from, to, :ca_)
+#
+# Return all holidays in <tt>:ca_bc</tt> sub-region (which includes the <tt>:ca</tt>), including informal holidays.
+#
+#   Holidays.between(from, to, :ca_bc, :informal)
 module Holidays
   # Exception thrown when an unknown region is requested.
   class UnkownRegionError < ArgumentError; end
@@ -29,22 +52,17 @@ module Holidays
   WEEKS = {:first => 1, :second => 2, :third => 3, :fourth => 4, :fifth => 5, :last => -1}
   MONTH_LENGTHS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-  #--
-  #HOLIDAYS_TYPES = [:bank, :statutory, :religious, :informal]
-  #++
-
   # Get all holidays on a given date.
   #
-  # [<tt>date</tt>]    A Date object.
-  # [<tt>regions</tt>] A symbol (e.g. <tt>:ca</tt>) or an array of symbols 
-  #                    (e.g. <tt>[:ca, :ca_bc, :us]</tt>).
+  # [<tt>date</tt>]     A Date object.
+  # [<tt>:options</tt>] One or more region symbols, <tt>:informal</tt> and/or <tt>:observed</tt>.
   #
   # Returns an array of hashes or nil. See Holidays#between for the output 
   # format.
   #
   # Also available via Date#holidays.
-  def self.on(date, regions = :any)
-    self.between(date, date, regions)
+  def self.on(date, *options)
+    self.between(date, date, options)
   end
 
   # Get all holidays occuring between two dates, inclusively.
@@ -54,11 +72,9 @@ module Holidays
   # Each holiday is returned as a hash with the following fields:
   # [<tt>:date</tt>]    Ruby Date object.
   # [<tt>:name</tt>]    String.
-  # [<tt>:regions</tt>] An array of region symbols.
-  #--
-  # [<tt>:types</tt>]   An array of holiday-type symbols.
-  def self.between(start_date, end_date, regions = :any)
-    regions = validate_regions(regions)
+  # [<tt>:options</tt>] One or more region symbols, <tt>:informal</tt> and/or <tt>:observed</tt>.
+  def self.between(start_date, end_date, *options)
+    regions, observed, informal = parse_options(options)
     holidays = []
 
     dates = {}
@@ -74,6 +90,7 @@ module Holidays
         next unless hbm = @@holidays_by_month[month]
         hbm.each do |h|
           next unless in_region?(regions, h[:regions])
+          next if h[:type] == :informal and not informal
           
           if h[:function]
             result = call_proc(h[:function], year)
@@ -90,6 +107,12 @@ module Holidays
           begin
             date = Date.new(year, month, mday)
           rescue; next; end
+
+          # If the :observed option is set, calculate the date when the holiday
+          # is observed.
+          if observed and h[:observed]
+            date = call_proc(h[:observed], date)
+          end
 
           if date.between?(start_date, end_date)
             holidays << {:date => date, :name => h[:name], :regions => h[:regions]}
@@ -117,7 +140,7 @@ module Holidays
           exists = false
           @@holidays_by_month[month].each do |ex|
             
-            if ex[:name] == holiday_def[:name] and ex[:wday] == holiday_def[:wday] and ex[:mday] == holiday_def[:mday] and ex[:week] == holiday_def[:week] and ex[:function_id] == holiday_def[:function_id]
+            if ex[:name] == holiday_def[:name] and ex[:wday] == holiday_def[:wday] and ex[:mday] == holiday_def[:mday] and ex[:week] == holiday_def[:week] and ex[:function_id] == holiday_def[:function_id] and ex[:type] == holiday_def[:type]
             
               # append regions
               ex[:regions] << holiday_def[:regions]
@@ -126,10 +149,8 @@ module Holidays
               ex[:regions].flatten!
               ex[:regions].uniq!
               exists = true
-            end            
+            end
           end
-          
-          
           
           unless exists            
             @@holidays_by_month[month] << holiday_def 
@@ -170,16 +191,42 @@ module Holidays
     Date.civil(year, month, day)
   end
 
+  # Move date to Monday if it occurs on a Sunday.
+  # Used as a callback function.
+  def self.to_monday_if_sunday(date)
+    date += 1 if date.wday == 0
+    date
+  end
+
+  # Move date to Monday if it occurs on a Sunday or to Friday if it occurs on a
+  # Saturday.
+  # Used as a callback function.
+  def self.to_weekday_if_weekend(date)
+    date += 1 if date.wday == 0
+    date -= 1 if date.wday == 6
+    date
+  end
 
 
 private
+  # Returns [(arr)regions, (bool)observed, (bool)informal]
+  def self.parse_options(*options) # :nodoc:
+    options.flatten!
+    observed = options.delete(:observed) ? true : false
+    informal = options.delete(:informal) ? true : false
+    regions = parse_regions(options)
+    return regions, observed, informal
+  end
+
   # Check regions against list of supported regions and return an array of 
   # symbols.
   #
   # If a wildcard region is found (e.g. <tt>:ca_</tt>) it is expanded into all
   # of its available sub regions.
-  def self.validate_regions(regions) # :nodoc:
+  def self.parse_regions(regions) # :nodoc:
     regions = [regions] unless regions.kind_of?(Array)
+    return [:any] if regions.empty?
+
     regions = regions.collect { |r| r.to_sym }
 
     # Found sub region wild-card
@@ -267,26 +314,26 @@ class Date
 
   # Get holidays on the current date.
   #
-  # Returns an array of hashes or nil. See Holidays#between for the output 
-  # format.
+  # Returns an array of hashes or nil. See Holidays#between for options
+  # and the output format.
   #
   #   Date.civil('2008-01-01').holidays(:ca)
   #   => [{:name => 'Canada Day',...}]
   #
   # Also available via Holidays#on.
-  def holidays(regions = :any)
-    Holidays.on(self, regions)
+  def holidays(*options)
+    Holidays.on(self, options)
   end
 
   # Check if the current date is a holiday.
   #
-  # Returns an array of hashes or nil. See Holidays#between for the output 
-  # format.
+  # Returns an array of hashes or nil. See Holidays#between for options
+  # and the output format.
   #
   #   Date.civil('2008-01-01').holiday?(:ca)
   #   => true
-  def holiday?(regions = :any)
-    holidays = self.holidays(regions)
+  def holiday?(*options)
+    holidays = self.holidays(options)
     holidays && !holidays.empty?
   end
 

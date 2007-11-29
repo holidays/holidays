@@ -15,7 +15,7 @@ class North_AmericaTests < Test::Unit::TestCase
      Date.civil(2008,11,11) => 'Rememberance Day',
      Date.civil(2008,12,25) => 'Christmas Day',
      Date.civil(2008,12,26) => 'Boxing Day'}.each do |date, name|
-      assert_equal name, Holidays.on(date, :ca)[0][:name]
+      assert_equal name, Holidays.on(date, :ca, :informal)[0][:name]
     end
 
     # Victoria Day
@@ -39,7 +39,7 @@ class North_AmericaTests < Test::Unit::TestCase
      Date.civil(2007,11,2) => 'Los Fieles Difuntos',
      Date.civil(2007,11,19) => 'Día de la Revolución',
      Date.civil(2007,12,25) => 'Navidad'}.each do |date, name|
-      assert_equal name, Holidays.on(date, :mx)[0][:name]
+      assert_equal name, Holidays.on(date, :mx, :informal)[0][:name]
     end    
 
   

@@ -52,31 +52,43 @@ class HolidaysTests < Test::Unit::TestCase
     assert_equal 1, holidays.length
   end
   
-  def test_any_region
-    # Should return Victoria Day and Father's Day.
-    holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca)
-    assert_equal 2, holidays.length
+  def test_observed_dates
+    # Should fall on Tuesday the 1st
+    assert_equal 1, Holidays.on(Date.civil(2008,7,1), :ca, :observed).length
 
-    # Should return Victoria Day, Father's Day and National Patriotes Day.
+    # Should fall on Monday the 2nd
+    assert_equal 1, Holidays.on(Date.civil(2007,7,2), :ca, :observed).length
+  end
+
+  def test_any_region
+    # Should return Victoria Day.
+    holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca)
+    assert_equal 1, holidays.length
+
+    # Should return Victoria Day and National Patriotes Day.
     #
-    # Should be 3 in the CA region but other regional files are loaded during the
+    # Should be 2 in the CA region but other regional files are loaded during the
     # unit tests add to the :any count.
     holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), [:any])
+    assert holidays.length >= 2
+
+    # Test blank region
+    holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31))
     assert holidays.length >= 3
   end
   
   def test_sub_regions
-    # Should return Victoria Day and Father's Day.
+    # Should return Victoria Day.
     holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca)
-    assert_equal 2, holidays.length
+    assert_equal 1, holidays.length
 
-    # Should return Victoria Day, Father's Day and National Patriotes Day.
+    # Should return Victoria Da and National Patriotes Day.
     holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca_qc)
-    assert 3, holidays.length
+    assert 2, holidays.length
 
-    # Should return Victoria Day, Father's Day and National Patriotes Day.
+    # Should return Victoria Day and National Patriotes Day.
     holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca_)
-    assert_equal 3, holidays.length
+    assert_equal 2, holidays.length
   end
 
   def test_easter_sunday
@@ -99,7 +111,7 @@ class HolidaysTests < Test::Unit::TestCase
 
     [Date.civil(1800,4,14), Date.civil(1899,4,3), Date.civil(1900,4,16),
      Date.civil(2008,3,24), Date.civil(2035,3,26)].each do |date|
-      assert_equal 'Easter Monday', Holidays.on(date, :ca_qc)[0][:name]
+      assert_equal 'Easter Monday', Holidays.on(date, :ca_qc, :informal)[0][:name]
     end
   end
 end
