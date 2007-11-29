@@ -1,38 +1,21 @@
 $:.unshift File.dirname(__FILE__)
 
 require 'digest/md5'
-# == Ruby Holidays module
+
+# === Ruby Holidays module
 #
-# === Using regions
+# ==== Using regions
 # Holidays can be defined as belonging to one or more regions and sub regions.
 # The Holidays#on, Holidays#between, Date#holidays and Date#holiday? methods
 # each allow you to specify a specific region.
 #
-# ==== Regions
-# To select all holidays during May in the CA region (Canada), you might call:
-#   Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca)
+# There are several different ways that you can specify a region:
 #
-# Which would return Victoria Day, a national holiday in Canada.
-#   => [{:name => 'Victoria Day',...}...]
+# ca::       By region. Return holidays in the CA region (Canada).
+# ca_::      By region and sub regions. Return holidays in the CA region and all sub regions.
 #
-# ==== Sub regions
-# In the Canadian Province of Québec, there's another holiday in May.
-#   Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca_pq)
-#
-# This query would return all holidays in both the parent region (<tt>:ca</tt>) and the 
-# sub region (<tt>:ca_pq</tt>).
-#   => [{:name => 'Victoria Day',...}, {:name => 'Journée nationale des Patriotes',...}...]
-#
-# ==== Wildcard sub regions
-# To avoid having to return enter a long list of regions, you can append an underscore
-# to the end of the region symbol.  This selects an entire region, including its sub-regions.
-#   Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca_)
-#   => [{:name => 'Victoria Day',...}, {:name => 'Journée nationale des Patriotes',...}...]
-#
-# ==== All regions
-# Finally, you can select holidays that occur in any region using <tt>:any</tt>.
-#
-#
+# ca_bc::    By sub region.     Return holidays in the CA region and CA_BC sub region.
+# any::    Any region.  Return holidays from any region.
 module Holidays
   # Exception thrown when an unknown region is requested.
   class UnkownRegionError < ArgumentError; end
@@ -104,7 +87,10 @@ module Holidays
             mday = h[:mday] || Date.calculate_mday(year, month, h[:week], h[:wday])
           end
 
-          date = Date.new(year, month, mday)
+          begin
+            date = Date.new(year, month, mday)
+          rescue; next; end
+
           if date.between?(start_date, end_date)
             holidays << {:date => date, :name => h[:name], :regions => h[:regions]}
           end
@@ -127,7 +113,31 @@ module Holidays
     holidays.each do |month, holiday_defs|
       @@holidays_by_month[month] = [] unless @@holidays_by_month[month]
       holiday_defs.each do |holiday_def|
-        @@holidays_by_month[month] << holiday_def
+
+          exists = false
+          @@holidays_by_month[month].each do |ex|
+            
+            if ex[:name] == holiday_def[:name] and ex[:wday] == holiday_def[:wday] and ex[:mday] == holiday_def[:mday] and ex[:week] == holiday_def[:week] and ex[:function_id] == holiday_def[:function_id]
+            
+              # append regions
+              ex[:regions] << holiday_def[:regions]
+              
+              # Should do this once we're done
+              ex[:regions].flatten!
+              ex[:regions].uniq!
+              exists = true
+            end            
+          end
+          
+          
+          
+          unless exists            
+            @@holidays_by_month[month] << holiday_def 
+            if holiday_def[:function]
+              #puts "New func #{holiday_def[:function].methods.join(', ')}"
+#              puts "New func #{holiday_def[:function]  }"
+             end
+         end
       end
     end
   end
@@ -236,7 +246,22 @@ private
   end
 end
 
-
+# === Extending Ruby's Date class with the Holidays gem
+# The Holidays gem automatically extends Ruby's Date class and gives you access
+# to three new methods: holiday?, #holidays and #calculate_mday.
+#
+# ==== Examples
+# Lookup Canada Day in the <tt>:ca</tt> region
+#   Date.civil(2008,7,1).holiday?(:ca)
+#   => true
+#
+# Lookup Canada Day in the <tt>:fr</tt> region
+#   Date.civil(2008,7,1).holiday?(:fr)
+#   => false
+#
+# Lookup holidays in North America in January 1.
+#   Date.civil(2008,1,1).holidays([:ca, :mx, :us])
+#   => [{:name => 'New Year\'s Day'...}]
 class Date
   include Holidays
 

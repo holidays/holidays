@@ -8,13 +8,13 @@ months:
   0: 
   - name: Liela Piektdiena
     regions: [lv]
-    function: lambda { |year| Holidays.easter(year)-2 }
+    function: easter(year)-2
   - name: Lieldienas
     regions: [lv]
-    function: lambda { |year| Holidays.easter(year) }
+    function: easter(year)
   - name: 2. Lieldienas
     regions: [lv]
-    function: lambda { |year| Holidays.easter(year)+1 }
+    function: easter(year)+1
   1: 
   - name: Jaunais Gads
     regions: [lv]

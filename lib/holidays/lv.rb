@@ -16,9 +16,9 @@ module Holidays
     HOLIDAYS_BY_MONTH = {
       5 => [{:mday => 1, :name => "Darba svetki", :regions => [:lv]},
             {:mday => 4, :name => "Neatkaribas deklaracijas pasludinašanas diena", :regions => [:lv]}],
-      0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :name => "Liela Piektdiena", :regions => [:lv]},
-            {:function => lambda { |year| Holidays.easter(year) }, :name => "Lieldienas", :regions => [:lv]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :name => "2. Lieldienas", :regions => [:lv]}],
+      0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Liela Piektdiena", :regions => [:lv]},
+            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Lieldienas", :regions => [:lv]},
+            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "2. Lieldienas", :regions => [:lv]}],
       11 => [{:mday => 18, :name => "Latvijas Republikas proklamešanas diena", :regions => [:lv]}],
       6 => [{:mday => 23, :name => "Ligo Diena", :regions => [:lv]},
             {:mday => 24, :name => "Jani", :regions => [:lv]}],

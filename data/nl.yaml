@@ -9,22 +9,22 @@ months:
   0: 
   - name: Goede Vrijdag
     regions: [nl]
-    function: lambda { |year| Holidays.easter(year)-2 }
+    function: easter(year)-2
   - name: Pasen
     regions: [nl]
-    function: lambda { |year| Holidays.easter(year) }
+    function: easter(year)
   - name: Pasen
     regions: [nl]
-    function: lambda { |year| Holidays.easter(year)+1 }
+    function: easter(year)+1
   - name: Hemelvaartsdag
     regions: [nl]
-    function: lambda { |year| Holidays.easter(year)+39 }
+    function: easter(year)+39
   - name: Pinksteren
     regions: [nl]
-    function: lambda { |year| Holidays.easter(year)+49 }
+    function: easter(year)+49
   - name: Pinksteren
     regions: [nl]
-    function: lambda { |year| Holidays.easter(year)+50 }
+    function: easter(year)+50
   1: 
   - name: Nieuwjaar
     regions: [nl]

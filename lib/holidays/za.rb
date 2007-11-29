@@ -15,8 +15,8 @@ module Holidays
 
     HOLIDAYS_BY_MONTH = {
       5 => [{:mday => 1, :name => "Workers' Day", :regions => [:za]}],
-      0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :name => "Good Friday", :regions => [:za]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :name => "Family Day", :regions => [:za]}],
+      0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Good Friday", :regions => [:za]},
+            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Family Day", :regions => [:za]}],
       6 => [{:mday => 16, :name => "Youth Day", :regions => [:za]}],
       1 => [{:mday => 1, :name => "New Year's Day", :regions => [:za]}],
       12 => [{:mday => 16, :name => "Day of Reconciliation", :regions => [:za]},

@@ -2,11 +2,6 @@
 # Updated 2008-11-22.
 --- 
 months:
-  0: 
-  - name: Good Friday
-    regions: [us]
-    function: lambda { |year| Holidays.easter(year)-2 }
-    type: informal
   2: 
   - name: Groundhog Day
     regions: [us, ca]

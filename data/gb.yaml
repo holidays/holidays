@@ -13,13 +13,13 @@ months:
   0: 
   - name: Good Friday
     regions: [gb]
-    function: lambda { |year| Holidays.easter(year)-2 }
+    function: easter(year)-2
   - name: Easter Sunday
     regions: [gb]
-    function: lambda { |year| Holidays.easter(year) }
+    function: easter(year)
   - name: Easter Monday
     regions: [gb_eng, gb_wls, gb_eaw, gb_nir]
-    function: lambda { |year| Holidays.easter(year)+1 }
+    function: easter(year)+1
   1: 
   - name: New Year's Day
     regions: [gb]

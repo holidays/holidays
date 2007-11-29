@@ -4,13 +4,13 @@
 0: 
 - name: Easter Sunday
   regions: [christian]
-  function: lambda { |year| Holidays.easter(year) }
+  function: easter(year) }
 - name: Palm Sunday
   regions: [christian]
-  function: lambda { |year| Holidays.easter(year)-7 }
+  function: easter(year)-7 }
 - name: Good Friday
   regions: [christian]
-  function: lambda { |year| Holidays.easter(year)-2 }
+  function: easter(year)-2 }
 12: 
 - name: Christmas Day
   regions: [christian]

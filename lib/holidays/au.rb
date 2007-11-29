@@ -15,10 +15,10 @@ module Holidays
 
     HOLIDAYS_BY_MONTH = {
       5 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:au_qld, :au_nt]}],
-      0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :name => "Good Friday", :regions => [:au]},
-            {:function => lambda { |year| Holidays.easter(year)-1 }, :name => "Easter Saturday", :regions => [:au]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :name => "Easter Monday", :regions => [:au]},
-            {:function => lambda { |year| Holidays.easter(year)+2 }, :name => "Easter Monday", :regions => [:au_tas]}],
+      0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Good Friday", :regions => [:au]},
+            {:function => lambda { |year| Holidays.easter(year)-1 }, :function_id => "easter(year)-1", :name => "Easter Saturday", :regions => [:au]},
+            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Easter Monday", :regions => [:au]},
+            {:function => lambda { |year| Holidays.easter(year)+2 }, :function_id => "easter(year)+2", :name => "Easter Monday", :regions => [:au_tas]}],
       6 => [{:wday => 1, :week => 2, :name => "Queen's Birthday", :regions => [:au]},
             {:mday => 6, :type => :informal, :name => "Queensland Day", :regions => [:au_qld]}],
       1 => [{:mday => 1, :name => "New Year's Day", :regions => [:au]},

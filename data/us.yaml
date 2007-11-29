@@ -1,9 +1,14 @@
 # United States holiday definitions for the Ruby Holiday gem.
 #
-# Updated: 2008-11-22.
+# Updated: 2008-11-24.
 # Source:  http://en.wikipedia.org/wiki/Public_holidays_of_the_United_States
 --- 
 months:
+  0: 
+  - name: Good Friday
+    regions: [us]
+    function: easter(year)-2
+    type: informal
   1: 
   - name: New Year's Day
     regions: [us]
@@ -13,9 +18,9 @@ months:
     regions: [us]
     wday: 1
   - name: Inauguration Day
-    function: lambda { |year| Holidays.us_inauguration_day(year) }
-    regions: [us]
-  3: 
+    function: us_inauguration_day(year)
+    regions: [us_dc]
+  2: 
   - name: Presidents' Day
     week: 3
     regions: [us]
@@ -43,7 +48,7 @@ months:
   - name: Veterans Day
     regions: [us]
     mday: 11
-  - name: Thanksgiving Day
+  - name: Thanksgiving
     week: 4
     regions: [us]
     wday: 4

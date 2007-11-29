@@ -11,23 +11,23 @@ module Holidays
   #
   # More definitions are available at http://code.dunae.ca/holidays.
   module US # :nodoc:
-    DEFINED_REGIONS = [:us, :ca]
+    DEFINED_REGIONS = [:us, :us_dc, :ca]
 
     HOLIDAYS_BY_MONTH = {
       5 => [{:wday => 1, :week => -1, :name => "Memorial Day", :regions => [:us]},
             {:wday => 0, :week => 3, :type => :informal, :name => "Father's Day", :regions => [:us, :ca]}],
-      0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :type => :informal, :name => "Good Friday", :regions => [:us]}],
+      0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :type => :informal, :name => "Good Friday", :regions => [:us]}],
       11 => [{:mday => 11, :name => "Veterans Day", :regions => [:us]},
-            {:wday => 4, :week => 4, :name => "Thanksgiving Day", :regions => [:us]}],
+            {:wday => 4, :week => 4, :name => "Thanksgiving", :regions => [:us]}],
       1 => [{:mday => 1, :name => "New Year's Day", :regions => [:us]},
             {:wday => 1, :week => 3, :name => "Martin Luther King, Jr. Day", :regions => [:us]},
-            {:function => lambda { |year| Holidays.us_inauguration_day(year) }, :name => "Inauguration Day", :regions => [:us]}],
+            {:function => lambda { |year| Holidays.us_inauguration_day(year) }, :function_id => "us_inauguration_day(year)", :name => "Inauguration Day", :regions => [:us_dc]}],
       12 => [{:mday => 25, :name => "Christmas Day", :regions => [:us]}],
       7 => [{:mday => 4, :name => "Independence Day", :regions => [:us]}],
-      2 => [{:mday => 2, :type => :informal, :name => "Groundhog Day", :regions => [:us, :ca]},
+      2 => [{:wday => 1, :week => 3, :name => "Presidents' Day", :regions => [:us]},
+            {:mday => 2, :type => :informal, :name => "Groundhog Day", :regions => [:us, :ca]},
             {:mday => 14, :type => :informal, :name => "Valentine's Day", :regions => [:us, :ca]}],
-      3 => [{:wday => 1, :week => 3, :name => "Presidents' Day", :regions => [:us]},
-            {:mday => 17, :type => :informal, :name => "St. Patrick's Day", :regions => [:us, :ca]}],
+      3 => [{:mday => 17, :type => :informal, :name => "St. Patrick's Day", :regions => [:us, :ca]}],
       9 => [{:wday => 1, :week => 1, :name => "Labor Day", :regions => [:us]}],
       4 => [{:mday => 1, :type => :informal, :name => "April Fool's Day", :regions => [:us, :ca]},
             {:mday => 22, :type => :informal, :name => "Earth Day", :regions => [:us, :ca]}],

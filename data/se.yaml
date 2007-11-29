@@ -4,6 +4,8 @@
 # Sources:
 # - http://en.wikipedia.org/wiki/Holidays_in_Sweden
 # - http://www.worldtravelguide.net/country/269/public_holidays/Europe/Sweden.html
+# - http://hem.passagen.se/farila/midsum.htm
+# - http://www.timeanddate.com/calendar/?country=21
 --- 
 months:
   0: 
@@ -51,29 +53,17 @@ months:
     regions: [se]
     mday: 26
 methods:
-  se_midsommardagen:
-    # The Saturday during the period 20–26 June. (2007: June 23)
-  se_alla_helgons_dag:
-    # The Saturday during the period October 31–November 6. (2007: November 3)
-
-
-
-  def test_se
-    {Date.civil(2008,1,1) => 'Nyårsdagen', 
-     Date.civil(2008,1,6) => 'Trettondedag jul',
-     Date.civil(2008,3,23) => 'Långfredagen', 
-     Date.civil(2008,3,21) => 'Påskdagen', 
-     Date.civil(2008,3,24) => 'Annandag påsk',
-     Date.civil(2008,5,1) => 'Första maj',
-     Date.civil(2008,5,1) => 'Kristi himmelsfärdsdag',
-     Date.civil(2008,5,11) => 'Pingstdagen',
-     Date.civil(2008,6,6) => 'Nationaldagen',
-     Date.civil(2007,6,23) => 'Midsommardagen',
-     Date.civil(2008,6,21) => 'Midsommardagen',
-     Date.civil(2007,11,3) => 'Alla helgons dag',
-     Date.civil(2008,11,1) => 'Alla helgons dag',
-     Date.civil(2008,12,25) => 'Juldagen',
-     Date.civil(2008,12,25) => 'Annandag jul'}.each do |date, name|
-      assert_equal name, Holidays.on(date, :se)[0][:name]
+  se_midsommardagen: |
+    # The Saturday between June 20–26. (2007: June 23)
+    def self.se_midsommardagen(year)
+      date = Date.civil(year,6,20)
+      date += (6 - date.wday)
+      date
     end
-  end
+  se_alla_helgons_dag: |
+    # The Saturday between Oct 31 and Nov 6.(2007: November 3)
+    def self.se_alla_helgons_dag(year)
+      date = Date.civil(year,10,31)
+      date += (6 - date.wday)
+      date
+    end

@@ -11,14 +11,14 @@ module Holidays
   #
   # More definitions are available at http://code.dunae.ca/holidays.
   module CA # :nodoc:
-    DEFINED_REGIONS = [:ca, :ca_qc, :us, :ca_nf, :ca_nt, :ca_nu, :ca_ab, :ca_on, :ca_sk, :ca_mb, :ca_bc, :ca_ns, :ca_yk]
+    DEFINED_REGIONS = [:ca, :ca_qc, :ca_nf, :ca_nt, :ca_nu, :ca_ab, :ca_on, :ca_sk, :ca_mb, :ca_bc, :ca_ns, :ca_yk, :us]
 
     HOLIDAYS_BY_MONTH = {
-      5 => [{:function => lambda { |year| Holidays.ca_victoria_day(year) }, :name => "Victoria Day", :regions => [:ca]},
-            {:function => lambda { |year| Holidays.ca_victoria_day(year) }, :name => "National Patriotes Day", :regions => [:ca_qc]},
+      5 => [{:function => lambda { |year| Holidays.ca_victoria_day(year) }, :function_id => "ca_victoria_day(year)", :name => "Victoria Day", :regions => [:ca]},
+            {:function => lambda { |year| Holidays.ca_victoria_day(year) }, :function_id => "ca_victoria_day(year)", :name => "National Patriotes Day", :regions => [:ca_qc]},
             {:wday => 0, :week => 3, :type => :informal, :name => "Father's Day", :regions => [:us, :ca]}],
-      0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :name => "Good Friday", :regions => [:ca, :us]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :name => "Easter Monday", :regions => [:ca_qc]}],
+      0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Good Friday", :regions => [:ca]},
+            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :type => :informal, :name => "Easter Monday", :regions => [:ca]}],
       11 => [{:mday => 11, :name => "Rememberance Day", :regions => [:ca]}],
       6 => [{:mday => 24, :name => "Discovery Day", :regions => [:ca_nf]},
             {:mday => 24, :name => "Fête Nationale", :regions => [:ca_qc]},

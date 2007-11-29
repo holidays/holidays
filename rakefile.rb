@@ -20,6 +20,8 @@ def_list = {
             :lv => ['data/lv.yaml'],
             :mx => ['data/mx.yaml', 'data/north_america_informal.yaml'],
             :nl => ['data/nl.yaml'],
+            :pt => ['data/pt.yaml'],
+            :se => ['data/se.yaml'],
             :us => ['data/us.yaml', 'data/north_america_informal.yaml'],
             :united_nations => ['data/united_nations.yaml'],
             :za => ['data/za.yaml']
@@ -29,7 +31,7 @@ def_list[:north_america] = def_list[:ca] | def_list[:mx] | def_list[:us]
 
 def_list[:scandinavia] = def_list[:dk] | def_list[:is]
 
-def_list[:europe] = def_list[:dk] | def_list[:de] | def_list[:es] | def_list[:fr] | def_list[:gb] | def_list[:ie] | def_list[:is] | def_list[:it] |def_list[:nl] |def_list[:lv]
+def_list[:europe] = def_list[:dk] | def_list[:de] | def_list[:es] | def_list[:fr] | def_list[:gb] | def_list[:ie] | def_list[:is] | def_list[:it] | def_list[:nl] | def_list[:lv] | def_list[:pt] | def_list[:se]
 
 
 desc 'Run the unit tests.'
@@ -51,6 +53,22 @@ namespace 'definitions' do
       end
       puts "Done.\n\n"
     end
+  end
+end
+
+namespace 'definitions' do
+  task :nl do
+    region = :nl
+    files = def_list[region]
+    #def_list.each do |region, files|
+      puts "Building #{region.to_s.upcase} definition module:"
+      files.uniq!
+      parsed = parse_holiday_defs(region.to_s.upcase, files)
+      File.open("lib/holidays/#{region.to_s}.rb","w") do |file|
+        file.puts parsed
+      end
+      puts "Done.\n\n"
+    #end
   end
 end
 

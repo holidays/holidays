@@ -1,5 +1,11 @@
 require 'yaml'
 
+# Functions are stored in generated files as both Procs (:function) and 
+# Strings (:function_id). The String version makes comparisons of Procs much 
+# easier.
+#
+# TODO:
+# - better comparison of existing rules
 def parse_holiday_defs(module_name, files)
   regions = []
   rules_by_month = {}
@@ -24,9 +30,13 @@ def parse_holiday_defs(module_name, files)
 
           exists = false
           rules_by_month[month].each do |ex|
-            if ex['name'] == rule['name'] and ex['wday'] == rule['wday'] and  ex['mday'] == rule['mday'] and ex['week'] == rule['week'] and ex['function'] == rule['function']
+            if ex['name'] == rule['name'] and ex['wday'] == rule['wday'] and ex['mday'] == rule['mday'] and ex['week'] == rule['week'] and ex['function'] == rule['function']
               ex['regions'] << rule['regions'].flatten
               exists = true
+            else
+              if rule['function_id']
+                "Rejecting #{rule['function_id']}"
+              end
             end
           end
           unless exists
@@ -56,7 +66,8 @@ def parse_holiday_defs(module_name, files)
       if rule['mday']
         str << ":mday => #{rule['mday']}, "
       elsif rule['function']
-        str << ":function => #{rule['function']}, "
+        str << ":function => lambda { |year| Holidays.#{rule['function']} }, "
+        str << ":function_id => \"#{rule['function'].to_s}\", "
       else
         str << ":wday => #{rule['wday']}, :week => #{rule['week']}, "
       end
@@ -113,3 +124,5 @@ EOC
 
 
 end
+
+

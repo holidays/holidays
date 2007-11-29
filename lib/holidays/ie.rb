@@ -15,7 +15,7 @@ module Holidays
 
     HOLIDAYS_BY_MONTH = {
       5 => [{:wday => 1, :week => 1, :name => "May Day", :regions => [:ie]}],
-      0 => [{:function => lambda { |year| Holidays.easter(year)+1 }, :name => "Easter Monday", :regions => [:ie]}],
+      0 => [{:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Easter Monday", :regions => [:ie]}],
       6 => [{:wday => 1, :week => 1, :name => "Labour Day/May Day", :regions => [:ie]}],
       1 => [{:mday => 1, :name => "New Year's Day", :regions => [:ie]}],
       12 => [{:mday => 25, :name => "Christmas Day", :regions => [:ie]},

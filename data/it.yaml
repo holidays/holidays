@@ -8,10 +8,10 @@ months:
   0: 
   - name: Pasqua
     regions: [it]
-    function: lambda { |year| Holidays.easter(year) }
+    function: easter(year)
   - name: Lunedì dell'Angelo
     regions: [it]
-    function: lambda { |year| Holidays.easter(year)+1 }
+    function: easter(year)+1
   1: 
   - name: Capodanno
     regions: [it]

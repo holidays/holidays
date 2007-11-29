@@ -1,5 +1,11 @@
 require File.dirname(__FILE__) + '/test_helper'
 
+require 'holidays/ca'
+
+# Re-include CA defs via holidays/north_america to ensure that individual
+# defs aren't duplicated.
+require 'holidays/north_america'
+
 class HolidaysTests < Test::Unit::TestCase
   def setup
     @date = Date.civil(2008,1,1)

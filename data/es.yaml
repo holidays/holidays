@@ -11,13 +11,13 @@ months:
   0: 
   - name: Jueves Santo
     regions: [es_pv, es_ct, es_na, es_v, es_vc]
-    function: lambda { |year| Holidays.easter(year)-3 }
+    function: easter(year)-3
   - name: Viernes Santo
     regions: [es]
-    function: lambda { |year| Holidays.easter(year)-2 }
+    function: easter(year)-2
   - name: Lunes de Pascua
     regions: [es_pv, es_ct, es_na, es_v, es_vc]
-    function: lambda { |year| Holidays.easter(year)+1 }
+    function: easter(year)+1
   1: 
   - name: Año Nuevo
     regions: [es]

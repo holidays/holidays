@@ -10,43 +10,43 @@ months:
   0: 
   - name: Bolludagur
     regions: [is]
-    function: lambda { |year| Holidays.easter(year)-48 }
+    function: easter(year)-48
   - name: Sprengidagur
     regions: [is]
-    function: lambda { |year| Holidays.easter(year)-47 }
+    function: easter(year)-47
   - name: Öskudagur
     regions: [is]
-    function: lambda { |year| Holidays.easter(year)-46 }
+    function: easter(year)-46
   - name: Pálmasunnudagur
     regions: [is]
-    function: lambda { |year| Holidays.easter(year)-7 }
+    function: easter(year)-7
   - name: Skírdagur
     regions: [is]
-    function: lambda { |year| Holidays.easter(year)-3 }
+    function: easter(year)-3
   - name: Föstudaginn langi
     regions: [is]
-    function: lambda { |year| Holidays.easter(year)-2 }
+    function: easter(year)-2
   - name: Páskadagur
     regions: [is]
-    function: lambda { |year| Holidays.easter(year) }
+    function: easter(year)
   - name: Annar í páskum
     regions: [is]
-    function: lambda { |year| Holidays.easter(year)+1 }
+    function: easter(year)+1
   - name: Store Bededag
     regions: [is]
-    function: lambda { |year| Holidays.easter(year)+26 }
+    function: easter(year)+26
   - name: Kristi Himmelfartsdag
     regions: [is]
-    function: lambda { |year| Holidays.easter(year)+40 }
+    function: easter(year)+40
   - name: Kristi Himmelfartsdag
     regions: [is]
-    function: lambda { |year| Holidays.easter(year)+40 }
+    function: easter(year)+40
   - name: 2. Pinsedag
     regions: [is]
-    function: lambda { |year| Holidays.easter(year)+49 }
+    function: easter(year)+49
   - name: Pinsedag
     regions: [is]
-    function: lambda { |year| Holidays.easter(year)+50 }
+    function: easter(year)+50
   1: 
   - name: Nýársdagur
     regions: [is]
