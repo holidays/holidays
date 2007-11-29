@@ -17,13 +17,13 @@ class North_AmericaTests < Test::Unit::TestCase
      Date.civil(2008,12,26) => 'Boxing Day'}.each do |date, name|
       assert_equal name, Holidays.on(date, :ca)[0][:name]
     end
-  end
 
-  def test_ca_victoria_day
+    # Victoria Day
     [Date.civil(2004,5,24), Date.civil(2005,5,23), Date.civil(2006,5,22),
      Date.civil(2007,5,21), Date.civil(2008,5,19)].each do |date|
       assert_equal 'Victoria Day', Holidays.on(date, :ca)[0][:name]
     end
+
   end
 
   # from 

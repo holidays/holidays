@@ -1,7 +1,9 @@
 # Ireland holiday definitions for the Ruby Holiday gem.
 #
-# Updated: 2008-11-22.
-# Source:  http://en.wikipedia.org/wiki/Public_holidays_in_the_Republic_of_Ireland
+# Updated: 2008-11-28.
+# Sources:
+# - http://en.wikipedia.org/wiki/Public_holidays_in_the_Republic_of_Ireland
+# - http://www.citizensinformation.ie/categories/employment/employment-rights-and-conditions/leave-and-holidays/public-holidays-in-ireland
 --- 
 months:
   0: 
@@ -22,17 +24,17 @@ months:
     week: 1
     wday: 1
   6:
-  - name: Labour Day/May Day
+  - name: Bank Holiday
     regions: [ie]
     week: 1
     wday: 1
   8: 
-  - name: August Holiday
+  - name: Bank Holiday
     regions: [ie]
     week: 1
     wday: 1
   10: 
-  - name: October Holiday
+  - name: Bank Holiday
     regions: [ie]
     week: -1
     wday: 1

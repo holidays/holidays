@@ -3,11 +3,13 @@
 # Including England, Wales, Scotland, N. Ireland, the Isle of Man, Guernsey
 # and Jersey.
 #
-# Updated: 2008-11-22.
-# Source:  http://en.wikipedia.org/wiki/List_of_holidays_by_country#United_Kingdom_and_Crown_dependencies
+# Updated: 2008-11-28.
+# Sources: 
+# - http://en.wikipedia.org/wiki/List_of_holidays_by_country#United_Kingdom_and_Crown_dependencies
 #
 # Notes: 
 # - Jersey, Guernsey and the Isle of Man are encode with both their ISO 3166-1 and ISO 3-3166-2 codes.
+# - England and Wales together should be encoded as [gb_eng, gb_wls, gb_eaw...]
 --- 
 months:
   0: 
@@ -59,9 +61,14 @@ months:
     week: 1
     wday: 1
   - name: Bank Holiday
-    regions: [gb_eng, gb_wls, gb_eaw]
+    regions: [gb_eng, gb_wls, gb_eaw, gb_nir]
     week: -1
     wday: 1
+  11: 
+  - name: Guy Fawkes Day
+    regions: [gb]
+    mday: 5
+    type: informal
   12: 
   - name: Christmas Day
     regions: [gb]

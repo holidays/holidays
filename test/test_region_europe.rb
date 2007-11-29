@@ -18,6 +18,61 @@ class RegionTests < Test::Unit::TestCase
     end
   end
 
+  def test_gb
+#    Holidays.between(Date.civil(2008,1,1),Date.civil(2008,12,1),:gb_).each do |h|
+#      puts "#{h[:name]} on #{h[:date]}"
+#    end
+    {Date.civil(2008,1,1) => 'New Year\'s Day', 
+     Date.civil(2008,3,21) => 'Good Friday',
+     Date.civil(2008,3,23) => 'Easter Sunday',
+     Date.civil(2008,5,5) => 'May Day',
+     Date.civil(2008,5,26) => 'Bank Holiday',
+     Date.civil(2008,11,5) => 'Guy Fawkes Day',
+     Date.civil(2008,12,25) => 'Christmas Day',
+     Date.civil(2008,12,26) => 'Boxing Day'}.each do |date, name|
+      assert_equal name, Holidays.on(date, :gb)[0][:name]
+    end
+
+    assert_equal 'St. Patrick\'s Day', Date.civil(2008,3,17).holidays(:gb_nir)[0][:name]
+
+    [:gb_wls, :gb_eng, :gb_nir, :gb_eaw, :gb_].each do |r|
+      assert_equal 'Easter Monday', Date.civil(2008,3,24).holidays(r)[0][:name]
+      assert_equal 'Bank Holiday', Date.civil(2008,8,25).holidays(r)[0][:name]
+    end
+  end
+
+
+  def test_ie
+    {Date.civil(2008,1,1) => 'New Year\'s Day', 
+     Date.civil(2008,3,17) => 'St. Patrick\'s Day',
+     Date.civil(2008,3,24) => 'Easter Monday',
+     Date.civil(2008,5,5) => 'May Day',
+     Date.civil(2008,6,2) => 'Bank Holiday',
+     Date.civil(2008,8,4) => 'Bank Holiday',
+     Date.civil(2008,12,25) => 'Christmas Day',
+     Date.civil(2008,12,26) => 'St. Stephen\'s Day'}.each do |date, name|
+      assert_equal name, Holidays.on(date, :ie)[0][:name]
+    end
+  end
+
+
+  def test_it
+    {Date.civil(2007,1,1) => 'Capodanno', 
+     Date.civil(2007,1,6) => 'Epifania',
+     Date.civil(2007,4,8) => 'Pasqua',
+     Date.civil(2007,4,9) => 'Lunedì dell\'Angelo',
+     Date.civil(2007,4,25) => 'Festa della Liberazione',
+     Date.civil(2007,5,1) => 'Festa dei Lavoratori',
+     Date.civil(2007,6,2) => 'Festa della Repubblica',
+     Date.civil(2007,8,15) => 'Assunzione',
+     Date.civil(2007,11,1) => 'Ognissanti',
+     Date.civil(2007,12,8) => 'Immacolata Concezione',
+     Date.civil(2007,12,25) => 'Natale',
+     Date.civil(2007,12,26) => 'Santo Stefano'}.each do |date, name|
+      assert_equal name, Holidays.on(date, :it)[0][:name]
+    end
+  end
+
   def test_pt
     {Date.civil(2008,1,1) => 'Ano Novo', 
      Date.civil(2005,2,8) => 'Carnaval',
@@ -41,25 +96,6 @@ class RegionTests < Test::Unit::TestCase
       assert_equal name, Holidays.on(date, :pt)[0][:name]
     end
   end
-
-
-  def test_it
-    {Date.civil(2007,1,1) => 'Capodanno', 
-     Date.civil(2007,1,6) => 'Epifania',
-     Date.civil(2007,4,8) => 'Pasqua',
-     Date.civil(2007,4,9) => 'Lunedì dell\'Angelo',
-     Date.civil(2007,4,25) => 'Festa della Liberazione',
-     Date.civil(2007,5,1) => 'Festa dei Lavoratori',
-     Date.civil(2007,6,2) => 'Festa della Repubblica',
-     Date.civil(2007,8,15) => 'Assunzione',
-     Date.civil(2007,11,1) => 'Ognissanti',
-     Date.civil(2007,12,8) => 'Immacolata Concezione',
-     Date.civil(2007,12,25) => 'Natale',
-     Date.civil(2007,12,26) => 'Santo Stefano'}.each do |date, name|
-      assert_equal name, Holidays.on(date, :it)[0][:name]
-    end
-  end
-
 
   def test_se
     {Date.civil(2008,1,1) => 'Nyårsdagen', 

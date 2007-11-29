@@ -17,7 +17,6 @@ def_list = {
             :ie => ['data/ie.yaml'],
             :is => ['data/is.yaml'],
             :it => ['data/it.yaml'],
-            :lv => ['data/lv.yaml'],
             :mx => ['data/mx.yaml', 'data/north_america_informal.yaml'],
             :nl => ['data/nl.yaml'],
             :pt => ['data/pt.yaml'],
@@ -27,11 +26,23 @@ def_list = {
             :za => ['data/za.yaml']
            }
 
-def_list[:north_america] = def_list[:ca] | def_list[:mx] | def_list[:us]
+def_list[:north_america] = []
+[:ca, :mx, :us].each do |r|
+  def_list[:north_america] += def_list[r]
+end
+def_list[:north_america].uniq!
 
-def_list[:scandinavia] = def_list[:dk] | def_list[:is]
+def_list[:scandinavia] = []
+[:dk, :is, :se].each do |r|
+  def_list[:scandinavia] += def_list[r]
+end
+def_list[:scandinavia].uniq!
 
-def_list[:europe] = def_list[:dk] | def_list[:de] | def_list[:es] | def_list[:fr] | def_list[:gb] | def_list[:ie] | def_list[:is] | def_list[:it] | def_list[:nl] | def_list[:lv] | def_list[:pt] | def_list[:se]
+def_list[:europe] = []
+[:dk, :de, :es, :fr, :gb, :ie, :is, :it, :nl, :pt, :se].each do |r|
+  def_list[:europe] += def_list[r]
+end
+def_list[:europe].uniq!
 
 
 desc 'Run the unit tests.'
