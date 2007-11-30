@@ -39,6 +39,27 @@ class EuropeTests < Test::Unit::TestCase
     assert_equal 'Buß- und Bettag', Date.civil(2009,11,18).holidays(:de_sn)[0][:name]
   end
 
+  def test_dk
+    {Date.civil(2007,1,1) => 'Nytårsdag', 
+     Date.civil(2007,2,18) => 'Fastelavn', 
+     Date.civil(2007,4,9) => 'Danmarks besættelse',
+     Date.civil(2007,4,16) => 'Dronningens fødselsdag',
+     Date.civil(2007,4,5) => 'Skærtorsdag',
+     Date.civil(2007,4,6) => 'Langfredag',
+     Date.civil(2007,4,8) => 'Påskedag',
+     Date.civil(2007,4,9) => '2. påskedag',
+     Date.civil(2007,5,1) => 'Arbejdernes kampdag',
+     Date.civil(2007,5,4) => 'Store Bededag',
+     Date.civil(2007,5,17) => 'Kristi Himmelfartsdag',
+     Date.civil(2007,5,27) => 'Pinsedag',
+     Date.civil(2007,5,28) => '2. Pinsedag',
+     Date.civil(2007,6,5) => 'Grundlovsdag',
+     Date.civil(2007,12,24) => 'Juleaftensdag',
+     Date.civil(2007,12,25) => '1. juledag',
+     Date.civil(2007,12,26) => '2. juledag'}.each do |date, name|
+      assert_equal name, Holidays.on(date, :dk, :informal)[0][:name]
+    end
+  end
 
   def test_es
     {Date.civil(2009,1,1) => 'Año Nuevo', 
@@ -169,6 +190,30 @@ class EuropeTests < Test::Unit::TestCase
      Date.civil(2007,12,25) => 'Natale',
      Date.civil(2007,12,26) => 'Santo Stefano'}.each do |date, name|
       assert_equal name, Holidays.on(date, :it, :informal)[0][:name]
+    end
+  end
+  def test_is
+    {Date.civil(2007,1,1) => 'Nýársdagur', 
+     Date.civil(2007,1,6) => 'Þrettándinn',
+     Date.civil(2007,1,19) => 'Bóndadagur',
+     Date.civil(2007,2,18) => 'Konudagur',
+     Date.civil(2007,4,5) => 'Skírdagur',
+     Date.civil(2007,4,6) => 'Föstudaginn langi',
+     Date.civil(2007,4,8) => 'Páskadagur',
+     Date.civil(2007,4,9) => 'Annar í páskum',
+     Date.civil(2007,4,19) => 'Sumardagurinn fyrsti',
+     Date.civil(2007,5,1) => 'Verkalýðsdagurinn',
+     Date.civil(2007,5,17) => 'Uppstigningardagur',
+     Date.civil(2007,5,27) => 'Hvítasunnudagur',
+     Date.civil(2007,5,28) => 'Annar í hvítasunnu',
+     Date.civil(2007,6,3) => 'Sjómannadagurinn',
+     Date.civil(2007,6,17) => 'Lýðveldisdagurinn',
+     Date.civil(2007,8,6) => 'Frídagur verslunarmanna',
+     Date.civil(2007,12,24) => 'Jól',
+     Date.civil(2007,12,25) => 'Jól',
+     Date.civil(2007,12,26) => 'Jól',
+     Date.civil(2007,12,31) => 'Gamlárskvöld'}.each do |date, name|
+      assert_equal name, Holidays.on(date, :is, :informal)[0][:name]
     end
   end
 

@@ -1,10 +1,11 @@
 # Icelandic holiday definitions for the Ruby Holiday gem.
 #
-# Updated: 2008-11-23.
+# Updated: 2008-11-29.
 # Sources:
 # - http://www.simnet.is/gardarj/folk/days.htm#days
 # - http://www.iceland.is/history-and-culture/Traditions/IcelandicHolidays/
 # - http://en.wikipedia.org/wiki/Public_holidays_in_Iceland
+# - http://www.qppstudio.net/publicholidays2007/iceland.htm
 --- 
 months:
   0: 
@@ -32,19 +33,13 @@ months:
   - name: Annar í páskum
     regions: [is]
     function: easter(year)+1
-  - name: Store Bededag
+  - name: Uppstigningardagur
     regions: [is]
-    function: easter(year)+26
-  - name: Kristi Himmelfartsdag
-    regions: [is]
-    function: easter(year)+40
-  - name: Kristi Himmelfartsdag
-    regions: [is]
-    function: easter(year)+40
-  - name: 2. Pinsedag
+    function: easter(year)+39
+  - name: Hvítasunnudagur
     regions: [is]
     function: easter(year)+49
-  - name: Pinsedag
+  - name: Annar í hvítasunnu
     regions: [is]
     function: easter(year)+50
   1: 
@@ -63,6 +58,10 @@ months:
     regions: [is]
     mday: 18
     type: informal  
+  4:
+  - name: Sumardagurinn fyrsti
+    regions: [is]
+    function: is_sumardagurinn_fyrsti(year)
   5:
   - name: Verkalýðsdagurinn
     regions: [is]
@@ -70,7 +69,7 @@ months:
   - name: Mæðradagurinn
     regions: [is]
     mday: 13
-  5:
+  6:
   - name: Sjómannadagurinn
     regions: [is]
     mday: 3

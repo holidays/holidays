@@ -11,7 +11,7 @@ module Holidays
   #
   # More definitions are available at http://code.dunae.ca/holidays.
   module EUROPE # :nodoc:
-    DEFINED_REGIONS = [:dk, :is, :de, :fr, :de_bw, :de_by, :de_nw, :de_rp, :de_sl, :de_sn, :de_he, :de_th, :de_bb, :de_mv, :de_st, :es, :es_m, :es_cn, :es_cm, :es_pv, :es_ct, :es_na, :es_v, :es_vc, :es_mu, :es_lo, :es_ib, :es_ga, :es_an, :es_ce, :es_o, :es_ex, :es_ar, :es_cl, :gb, :ie, :je, :gb_jsy, :gg, :gb_gsy, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :gb_sct, :im, :gb_iom, :gb_con, :it, :nl, :pt, :se]
+    DEFINED_REGIONS = [:dk, :de, :fr, :de_bw, :de_by, :de_nw, :de_rp, :de_sl, :de_sn, :de_he, :de_th, :de_bb, :de_mv, :de_st, :es, :es_m, :es_cn, :es_cm, :es_pv, :es_ct, :es_na, :es_v, :es_vc, :es_mu, :es_lo, :es_ib, :es_ga, :es_an, :es_ce, :es_o, :es_ex, :es_ar, :es_cl, :gb, :ie, :je, :gb_jsy, :gg, :gb_gsy, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :gb_sct, :im, :gb_iom, :gb_con, :is, :it, :nl, :pt, :se]
 
     HOLIDAYS_BY_MONTH = {
       5 => [{:mday => 1, :name => "Arbejdernes kampdag", :regions => [:dk]},
@@ -26,8 +26,8 @@ module Holidays
             {:wday => 1, :week => 1, :name => "May Day", :regions => [:gb, :ie]},
             {:mday => 9, :name => "Liberation Day", :regions => [:je, :gb_jsy, :gg, :gb_gsy]},
             {:wday => 1, :week => -1, :name => "Bank Holiday", :regions => [:gb]},
-            {:mday => 3, :type => :informal, :name => "Sjómannadagurinn", :regions => [:is]},
-            {:mday => 17, :name => "Lýðveldisdagurinn", :regions => [:is]},
+            {:mday => 1, :name => "Verkalýðsdagurinn", :regions => [:is]},
+            {:mday => 13, :name => "Mæðradagurinn", :regions => [:is]},
             {:mday => 1, :name => "Festa dei Lavoratori", :regions => [:it]},
             {:mday => 4, :name => "Dodenherdenking", :regions => [:nl]},
             {:mday => 5, :name => "Bevrijdingsdag", :regions => [:nl]},
@@ -39,7 +39,7 @@ module Holidays
             {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Langfredag", :regions => [:dk]},
             {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Påskedag", :regions => [:dk]},
             {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "2. påskedag", :regions => [:dk]},
-            {:function => lambda { |year| Holidays.easter(year)+26 }, :function_id => "easter(year)+26", :name => "Store Bededag", :regions => [:dk, :is]},
+            {:function => lambda { |year| Holidays.easter(year)+26 }, :function_id => "easter(year)+26", :name => "Store Bededag", :regions => [:dk]},
             {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Kristi Himmelfartsdag", :regions => [:dk]},
             {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "Pinsedag", :regions => [:dk]},
             {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "2. Pinsedag", :regions => [:dk]},
@@ -68,9 +68,9 @@ module Holidays
             {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Föstudaginn langi", :regions => [:is]},
             {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Páskadagur", :regions => [:is]},
             {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Annar í páskum", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year)+40 }, :function_id => "easter(year)+40", :name => "Kristi Himmelfartsdag", :regions => [:is, :is]},
-            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "2. Pinsedag", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pinsedag", :regions => [:is]},
+            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Uppstigningardagur", :regions => [:is]},
+            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "Hvítasunnudagur", :regions => [:is]},
+            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Annar í hvítasunnu", :regions => [:is]},
             {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Pasqua", :regions => [:it]},
             {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Lunedì dell'Angelo", :regions => [:it]},
             {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Goede Vrijdag", :regions => [:nl]},
@@ -105,6 +105,8 @@ module Holidays
             {:mday => 9, :name => "Día de la Región de Murcia", :regions => [:es_mu]},
             {:mday => 9, :name => "Día de La Rioja", :regions => [:es_lo]},
             {:wday => 1, :week => 1, :name => "Bank Holiday", :regions => [:ie]},
+            {:mday => 3, :type => :informal, :name => "Sjómannadagurinn", :regions => [:is]},
+            {:mday => 17, :name => "Lýðveldisdagurinn", :regions => [:is]},
             {:mday => 2, :name => "Festa della Repubblica", :regions => [:it]},
             {:mday => 10, :name => "Dia de Portugal", :regions => [:pt]},
             {:mday => 6, :name => "Nationaldagen", :regions => [:se]},
@@ -183,6 +185,7 @@ module Holidays
             {:mday => 16, :type => :informal, :name => "Dronningens fødselsdag", :regions => [:dk]},
             {:mday => 23, :name => "San Jorge", :regions => [:es_ar, :es_cl]},
             {:mday => 23, :name => "Día de Aragón", :regions => [:es_ar]},
+            {:function => lambda { |year| Holidays.is_sumardagurinn_fyrsti(year) }, :function_id => "is_sumardagurinn_fyrsti(year)", :name => "Sumardagurinn fyrsti", :regions => [:is]},
             {:mday => 25, :name => "Festa della Liberazione", :regions => [:it]},
             {:mday => 30, :name => "Koninginnedag", :regions => [:nl]},
             {:mday => 25, :name => "Dia da Liberdade", :regions => [:pt]}],
