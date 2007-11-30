@@ -70,9 +70,17 @@ module Holidays
   # Returns an array of hashes or nil.
   #
   # Each holiday is returned as a hash with the following fields:
-  # [<tt>:date</tt>]    Ruby Date object.
-  # [<tt>:name</tt>]    String.
-  # [<tt>:options</tt>] One or more region symbols, <tt>:informal</tt> and/or <tt>:observed</tt>.
+  # [<tt>start_date</tt>]  Ruby Date object.
+  # [<tt>end_date</tt>]    Ruby Date object.
+  # [<tt>options</tt>]     One or more region symbols, <tt>:informal</tt> and/or <tt>:observed</tt>.
+  #
+  # ==== Example
+  #   from = Date.civil(2008,7,1)
+  #   to   = Date.civil(2008,7,31)
+  #
+  #   Holidays.between(from, to, :ca, :us)
+  #   => [{:name => 'Canada Day', :regions => [:ca]...}
+  #       {:name => 'Independence Day'', :regions => [:us], ...}]
   def self.between(start_date, end_date, *options)
     regions, observed, informal = parse_options(options)
     holidays = []
@@ -104,7 +112,6 @@ module Holidays
           else
             mday = h[:mday] || Date.calculate_mday(year, month, h[:week], h[:wday])
           end
-
 
           begin
             date = Date.new(year, month, mday)
@@ -142,6 +149,7 @@ module Holidays
 
           exists = false
           @@holidays_by_month[month].each do |ex|
+            # TODO: gross.
             if ex[:name] == holiday_def[:name] and ex[:wday] == holiday_def[:wday] and ex[:mday] == holiday_def[:mday] and ex[:week] == holiday_def[:week] and ex[:function_id] == holiday_def[:function_id] and ex[:type] == holiday_def[:type] and ex[:observed_id] == holiday_def[:observed_id]
               # append regions
               ex[:regions] << holiday_def[:regions]
@@ -153,26 +161,14 @@ module Holidays
             end
           end
           
-          unless exists            
-            @@holidays_by_month[month] << holiday_def 
-            if holiday_def[:function]
-              #puts "New func #{holiday_def[:function].methods.join(', ')}"
-#              puts "New func #{holiday_def[:function]  }"
-             end
-         end
+          @@holidays_by_month[month] << holiday_def  unless exists            
       end
     end
   end
 
   # Get the date of Easter Sunday in a given year.  From Easter Sunday, it is
   # possible to calculate many traditional holidays in Western countries.
-  #
-  # +year+ must be a valid Gregorian year.
-  #
   # Returns a Date object.
-  #--
-  # from http://snippets.dzone.com/posts/show/765
-  # TODO: check year to ensure Gregorian
   def self.easter(year)
     y = year
     a = y % 19
@@ -222,7 +218,6 @@ module Holidays
     date -= 1 if date.wday == 6
     date
   end
-
 
 private
   # Returns [(arr)regions, (bool)observed, (bool)informal]
@@ -322,8 +317,8 @@ end
 #   Date.civil(2008,7,1).holiday?(:fr)
 #   => false
 #
-# Lookup holidays in North America in January 1.
-#   Date.civil(2008,1,1).holidays([:ca, :mx, :us])
+# Lookup holidays on North America in January 1.
+#   Date.civil(2008,1,1).holidays(:ca, :mx, :us, :informal, :observed)
 #   => [{:name => 'New Year\'s Day'...}]
 class Date
   include Holidays
@@ -333,8 +328,8 @@ class Date
   # Returns an array of hashes or nil. See Holidays#between for options
   # and the output format.
   #
-  #   Date.civil('2008-01-01').holidays(:ca)
-  #   => [{:name => 'Canada Day',...}]
+  #   Date.civil('2008-01-01').holidays(:ca_)
+  #   => [{:name => 'New Year\'s Day',...}]
   #
   # Also available via Holidays#on.
   def holidays(*options)
@@ -343,8 +338,7 @@ class Date
 
   # Check if the current date is a holiday.
   #
-  # Returns an array of hashes or nil. See Holidays#between for options
-  # and the output format.
+  # Returns true or false.
   #
   #   Date.civil('2008-01-01').holiday?(:ca)
   #   => true
@@ -368,15 +362,15 @@ class Date
   #
   # ===== Examples
   # First Monday of January, 2008:
-  #   calculate_mday(2008, 1, :first, :monday)
+  #   Date.calculate_mday(2008, 1, :first, :monday)
   #   => 7
   #
   # Third Thursday of December, 2008:
-  #   calculate_mday(2008, 12, :third, 4)
+  #   Date.calculate_mday(2008, 12, :third, 4)
   #   => 18
   #
   # Last Monday of January, 2008:
-  #   calculate_mday(2008, 1, :last, 1)
+  #   Date.calculate_mday(2008, 1, :last, 1)
   #   => 28
   #--
   # see http://www.irt.org/articles/js050/index.htm

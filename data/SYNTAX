@@ -79,6 +79,13 @@ Several built-in methods are available for holidays that are observed on varying
       mday: 1
       observed: to_monday_if_weekend(date)
 
+Methods included in the Holidays module are:
+
+* Holidays#to_monday_if_sunday
+* Holidays#to_monday_if_weekend
+* Holidays#to_weekday_if_boxing_weekend
+* Holidays#to_weekday_if_weekend
+
 Observed-date functions take a Date object as a parameter and must return either a Date object or an integer representing the day of the month.
 
 
