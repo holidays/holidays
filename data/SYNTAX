@@ -1,12 +1,4 @@
-= Custom dates with the Ruby Holidays Gem
-  
-It's easy to add your own custom holiday definitions to the Holidays gem. In a nutshell:
-1. Build a definition file
-2. Run the <tt>rake</tt> task to make a custom module
-3. <tt>require</tt> your new module and enjoy!
-
-
-== 1. Building the YAML file
+== Holiday Gem Definition Syntax
 
 Definition files have two main parts: *months* and *methods*. Before you start, you may want to look some of the existing files at http://code.dunae.ca/svn/holidays/trunk/data.
 
@@ -28,7 +20,6 @@ For example, the following holiday is on the first of January and available in t
       regions: [ca, us, au]
       mday: 1
 
-
 ===== Dates defined by a week number (e.g. first Monday of a month)
 
 [<tt>wday</tt>]  Integer representing day of the week (0 = Sunday through 6 = Saturday).
@@ -42,9 +33,6 @@ For example, the following holiday is on the first Monday of September and avail
       regions: [ca]
       week: 1
       wday: 1
-
-
-
 
 === Calculating dates with methods
 
@@ -69,40 +57,29 @@ This would be represented in the <tt>months</tt> section as:
     5:
     - name: Victoria Day
       regions: [ca]
-      function: lambda { |year| ca_victoria_day(year) }
+      function: ca_victoria_day(year)
+
+If a holiday can occur in different months (e.g. Easter) it can go in the '0' month.
+
+    0:
+    - name: Easter Monday
+      regions: [ca]
+      function: easter(year)+1
+
+Calculated-date functions take the year (integer) as a parameter and must return either a Date object or an integer representing the day of the month.
 
 
-Functions called in this manner must return either a Date object or an integer representing the day of the month.
+=== Calculating observed dates
 
+Several built-in methods are available for holidays that are observed on varying dates.  For example, for a holiday that is observed on Monday if it falls on a weekend you could write:
 
+    7:
+    - name: Canada Day
+      regions: [ca]
+      mday: 1
+      observed: to_monday_if_weekend(date)
 
-== 2. Building the definition module
-
-Once you have your YAML definition file you need to generate a Ruby module using <tt>rake</tt>.
-
-To build the module for school holidays
-
-  rake generate MyCustomDates custom.yaml
-
-
-Your module can include definitions from multiple YAML files.
-
-  rake generate MyCustomDates ca.yaml us.yaml mx.yaml custom.yaml
-
-
-== 3. Using your custom definitions
-
-Your custom module is ready to use.
-
-  require 'holidays'
-  require 'path/to/custom'
-  
-  Holidays.by_day(date, :your_region)
+Observed-date functions take a Date object as a parameter and must return either a Date object or an integer representing the day of the month.
 
 
 
-=== Sharing
-
-If you've built a definition file that others might enjoy, why not share it?
-
-Send any definition files to 'code' at  'dunae.ca'.

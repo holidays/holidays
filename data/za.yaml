@@ -1,6 +1,6 @@
 # South African holiday definitions for the Ruby Holiday gem.
 #
-# Updated: 2008-11-22.
+# Updated: 2008-11-29.
 # Sources:
 # - http://en.wikipedia.org/wiki/Public_holidays_in_South_Africa
 # - http://www.info.gov.za/aboutsa/holidays.htm
@@ -17,38 +17,48 @@ months:
   - name: New Year's Day
     regions: [za]
     mday: 1
+    observed: to_monday_if_sunday
   3: 
   - name: Human Rights Day
     regions: [za]
     mday: 21
+    observed: to_monday_if_sunday
   4: 
   - name: Freedom Day
     regions: [za]
     mday: 27
+    observed: to_monday_if_sunday
   5: 
-  - name: Workers' Day
+  - name: Workers Day
     regions: [za]
     mday: 1
+    observed: to_monday_if_sunday
   6:
   - name: Youth Day
     regions: [za]
     mday: 16
+    observed: to_monday_if_sunday
   8: 
   - name: National Women's Day
     regions: [za]
     mday: 9
+    observed: to_monday_if_sunday
   9: 
   - name: Heritage Day
     regions: [za]
     mday: 24
+    observed: to_monday_if_sunday
   12: 
   - name: Day of Reconciliation
     regions: [za]
     mday: 16
+    observed: to_monday_if_sunday
   - name: Christmas Day
     regions: [za]
     mday: 25
+    observed: to_monday_if_sunday
   - name: Day of Goodwill
     regions: [za]
     mday: 26
+    observed: to_weekday_if_boxing_weekend
 

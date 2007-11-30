@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/test_helper'
 require 'holidays/europe'
 
-class RegionTests < Test::Unit::TestCase
+class EuropeTests < Test::Unit::TestCase
   def test_de
     {Date.civil(2009,1,1) => 'Neujahrstag', 
      Date.civil(2009,4,10) => 'Karfreitag',

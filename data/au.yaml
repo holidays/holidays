@@ -1,6 +1,10 @@
 # Australian holiday definitions for the Ruby Holiday gem.
-# Updated: 2008-11-21.
-# Source:  http://en.wikipedia.org/wiki/Australian_public_holidays
+# Updated: 2008-11-29.
+# Sources:  
+# - http://en.wikipedia.org/wiki/Australian_public_holidays
+# - http://www.docep.wa.gov.au/lr/LabourRelations/Content/Wages%20and%20Conditions/Public%20Holidays/Public_Holidays.html
+# - http://www.wst.tas.gov.au/employment_info/public_holidays
+# TODO: missing some regional holidays
 --- 
 months:
   0: 
@@ -28,8 +32,12 @@ months:
     regions: [au_wa]
     week: 1
     wday: 1
+  - name: Eight Hours Day
+    regions: [au_tas]
+    week: 2
+    wday: 1
   - name: Labour Day
-    regions: [au_vic, au_tas]
+    regions: [au_vic]
     week: 2
     wday: 1
   4: 
@@ -38,12 +46,20 @@ months:
     mday: 25
   5: 
   - name: Labour Day
-    regions: [au_qld, au_nt]
+    regions: [au_qld]
+    week: 1
+    wday: 1
+  - name: May Day
+    regions: [au_nt]
     week: 1
     wday: 1
   6: 
+  - name: Foundation Day
+    regions: [au_wa]
+    week: 1
+    wday: 1
   - name: Queen's Birthday
-    regions: [au]
+    regions: [au_act, au_nsw, au_sa, au_tas, au_nt, au_qld, au_vic]
     week: 2
     wday: 1
   - name: Queensland Day
@@ -62,15 +78,3 @@ months:
   - name: Boxing Day
     regions: [au]
     mday: 26
-methods:
-  ca_victoria_day: |
-    # Monday on or before May 24
-    def self.ca_victoria_day(year)
-      date = Date.civil(year,5,24)
-      if date.wday > 1
-        date -= (date.wday - 1)
-      elsif date.wday == 0
-        date -= 6
-      end
-      date
-    end

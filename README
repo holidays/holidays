@@ -16,9 +16,9 @@ Extends Ruby's built-in Date class and supports custom holiday definition lists.
   # Get all holidays in July, 2008 in Canada and the US
   from = Date.civil(2008,7,1)
   to   = Date.civil(2008,7,31)
-  Holidays.between(from, to, [:ca,:us])
+  Holidays.between(from, to, :ca,:us)
   => [{:name => 'Canada Day',...}
-      {:name => 'Idenpendence Day',...}]
+      {:name => 'Independence Day',...}]
 
 
 ==== Extending Ruby's Date class

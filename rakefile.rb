@@ -98,7 +98,6 @@ EOH
   end
 end
 
-
 desc 'Generate documentation.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'doc'
@@ -106,8 +105,8 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.options << '--all' << '--inline-source' << '--line-numbers'
   rdoc.options << '--charset' << 'utf-8'
   rdoc.rdoc_files.include('README')
+  rdoc.rdoc_files.include('data/SYNTAX')
   rdoc.rdoc_files.include('lib/holidays/MANIFEST')
-  rdoc.rdoc_files.include('CUSTOM DATES')
   rdoc.rdoc_files.include('REFERENCES')
   rdoc.rdoc_files.include('LICENSE')
   rdoc.rdoc_files.include('lib/*.rb')

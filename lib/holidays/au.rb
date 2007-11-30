@@ -11,37 +11,29 @@ module Holidays
   #
   # More definitions are available at http://code.dunae.ca/holidays.
   module AU # :nodoc:
-    DEFINED_REGIONS = [:au_qld, :au_nt, :au, :au_tas, :au_wa, :au_vic, :au_act, :au_nsw, :au_sa]
+    DEFINED_REGIONS = [:au_qld, :au_nt, :au, :au_tas, :au_wa, :au_act, :au_nsw, :au_sa, :au_vic]
 
     HOLIDAYS_BY_MONTH = {
-      5 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:au_qld, :au_nt]}],
+      5 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:au_qld]},
+            {:wday => 1, :week => 1, :name => "May Day", :regions => [:au_nt]}],
       0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Good Friday", :regions => [:au]},
             {:function => lambda { |year| Holidays.easter(year)-1 }, :function_id => "easter(year)-1", :name => "Easter Saturday", :regions => [:au]},
             {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Easter Monday", :regions => [:au]},
             {:function => lambda { |year| Holidays.easter(year)+2 }, :function_id => "easter(year)+2", :name => "Easter Monday", :regions => [:au_tas]}],
-      6 => [{:wday => 1, :week => 2, :name => "Queen's Birthday", :regions => [:au]},
+      6 => [{:wday => 1, :week => 1, :name => "Foundation Day", :regions => [:au_wa]},
+            {:wday => 1, :week => 2, :name => "Queen's Birthday", :regions => [:au_act, :au_nsw, :au_sa, :au_tas, :au_nt, :au_qld, :au_vic]},
             {:mday => 6, :type => :informal, :name => "Queensland Day", :regions => [:au_qld]}],
       1 => [{:mday => 1, :name => "New Year's Day", :regions => [:au]},
             {:mday => 26, :name => "Australia Day", :regions => [:au]}],
       12 => [{:mday => 25, :name => "Christmas Day", :regions => [:au]},
             {:mday => 26, :name => "Boxing Day", :regions => [:au]}],
       3 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:au_wa]},
-            {:wday => 1, :week => 2, :name => "Labour Day", :regions => [:au_vic, :au_tas]}],
+            {:wday => 1, :week => 2, :name => "Eight Hours Day", :regions => [:au_tas]},
+            {:wday => 1, :week => 2, :name => "Labour Day", :regions => [:au_vic]}],
       4 => [{:mday => 25, :name => "ANZAC Day", :regions => [:au]}],
       10 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:au_act, :au_nsw, :au_sa]}]
     }
   end
-
-# Monday on or before May 24
-def self.ca_victoria_day(year)
-  date = Date.civil(year,5,24)
-  if date.wday > 1
-    date -= (date.wday - 1)
-  elsif date.wday == 0
-    date -= 6
-  end
-  date
-end
 
 
 end
