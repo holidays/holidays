@@ -15,14 +15,14 @@ class HolidaysTests < Test::Unit::TestCase
     h = Holidays.on(Date.civil(2008,9,1), :ca)
     assert_equal 'Labour Day', h[0][:name]
 
-    holidays = Holidays.on(Date.civil(2008,7,1), :ca)
-    assert_equal 1, holidays.length
-
     holidays = Holidays.on(Date.civil(2008,7,4), :ca)
     assert_equal 0, holidays.length
   end
 
   def test_between
+    holidays = Holidays.between(Date.civil(2008,7,1), Date.civil(2008,7,1), :ca)
+    assert_equal 1, holidays.length
+
     holidays = Holidays.between(Date.civil(2008,7,1), Date.civil(2008,7,31), :ca)
     assert_equal 1, holidays.length
     
@@ -54,7 +54,7 @@ class HolidaysTests < Test::Unit::TestCase
   
   def test_observed_dates
     # Should fall on Tuesday the 1st
-    assert_equal 1, Holidays.on(Date.civil(2008,7,1), :ca, :observed).length
+   assert_equal 1, Holidays.on(Date.civil(2008,7,1), :ca, :observed).length
 
     # Should fall on Monday the 2nd
     assert_equal 1, Holidays.on(Date.civil(2007,7,2), :ca, :observed).length

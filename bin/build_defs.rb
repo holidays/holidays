@@ -70,6 +70,7 @@ def parse_holiday_defs(module_name, files)
 
       if rule['observed']
         str << ":observed => lambda { |date| Holidays.#{rule['observed']}(date) }, "
+        str << ":observed_id => \"#{rule['observed'].to_s}\", "
       end
 
       if rule['type']

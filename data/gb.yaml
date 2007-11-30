@@ -73,7 +73,8 @@ months:
   - name: Christmas Day
     regions: [gb]
     mday: 25
+    observed: to_monday_if_weekend
   - name: Boxing Day
     regions: [gb]
     mday: 26
-
+    observed: to_weekday_if_boxing_weekend

@@ -109,9 +109,10 @@ class RegionTests < Test::Unit::TestCase
 
 
   def test_gb
-#    Holidays.between(Date.civil(2008,1,1),Date.civil(2008,12,1),:gb_).each do |h|
+#    Holidays.between(Date.civil(2010,12,1),Date.civil(2008,12,31),:gb_).each do |h|
 #      puts "#{h[:name]} on #{h[:date]}"
 #    end
+
     {Date.civil(2008,1,1) => 'New Year\'s Day', 
      Date.civil(2008,3,21) => 'Good Friday',
      Date.civil(2008,3,23) => 'Easter Sunday',
@@ -124,6 +125,14 @@ class RegionTests < Test::Unit::TestCase
     end
 
     assert_equal 'St. Patrick\'s Day', Date.civil(2008,3,17).holidays(:gb_nir, :informal)[0][:name]
+
+    assert_equal 'Christmas Day', Date.civil(2008,12,25).holidays(:gb_, :observed)[0][:name]
+    assert_equal 'Christmas Day', Date.civil(2009,12,25).holidays(:gb_, :observed)[0][:name]
+    assert_equal 'Christmas Day', Date.civil(2010,12,27).holidays(:gb_, :observed)[0][:name]
+
+    assert_equal 'Boxing Day', Date.civil(2008,12,26).holidays(:gb_, :observed)[0][:name]
+    assert_equal 'Boxing Day', Date.civil(2009,12,28).holidays(:gb_, :observed)[0][:name]
+    assert_equal 'Boxing Day', Date.civil(2010,12,28).holidays(:gb_, :observed)[0][:name]
 
     [:gb_wls, :gb_eng, :gb_nir, :gb_eaw, :gb_].each do |r|
       assert_equal 'Easter Monday', Date.civil(2008,3,24).holidays(r)[0][:name]

@@ -90,6 +90,7 @@ module Holidays
         next unless hbm = @@holidays_by_month[month]
         hbm.each do |h|
           next unless in_region?(regions, h[:regions])
+          
           next if h[:type] == :informal and not informal
           
           if h[:function]
@@ -104,6 +105,7 @@ module Holidays
             mday = h[:mday] || Date.calculate_mday(year, month, h[:week], h[:wday])
           end
 
+
           begin
             date = Date.new(year, month, mday)
           rescue; next; end
@@ -114,6 +116,7 @@ module Holidays
             date = call_proc(h[:observed], date)
           end
 
+          
           if date.between?(start_date, end_date)
             holidays << {:date => date, :name => h[:name], :regions => h[:regions]}
           end
@@ -139,9 +142,7 @@ module Holidays
 
           exists = false
           @@holidays_by_month[month].each do |ex|
-            
-            if ex[:name] == holiday_def[:name] and ex[:wday] == holiday_def[:wday] and ex[:mday] == holiday_def[:mday] and ex[:week] == holiday_def[:week] and ex[:function_id] == holiday_def[:function_id] and ex[:type] == holiday_def[:type]
-            
+            if ex[:name] == holiday_def[:name] and ex[:wday] == holiday_def[:wday] and ex[:mday] == holiday_def[:mday] and ex[:week] == holiday_def[:week] and ex[:function_id] == holiday_def[:function_id] and ex[:type] == holiday_def[:type] and ex[:observed_id] == holiday_def[:observed_id]
               # append regions
               ex[:regions] << holiday_def[:regions]
               
@@ -195,6 +196,21 @@ module Holidays
   # Used as a callback function.
   def self.to_monday_if_sunday(date)
     date += 1 if date.wday == 0
+    date
+  end
+
+  # Move date to Monday if it occurs on a Saturday on Sunday.
+  # Used as a callback function.
+  def self.to_monday_if_weekend(date)
+    date += 1 if date.wday == 0
+    date += 2 if date.wday == 6
+    date
+  end
+
+  # Move Boxing Day if it falls on a weekend, leaving room for Christmas.
+  # Used as a callback function.
+  def self.to_weekday_if_boxing_weekend(date)
+    date += 2 if date.wday == 6 or date.wday == 0
     date
   end
 

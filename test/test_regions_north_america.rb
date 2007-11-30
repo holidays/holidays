@@ -23,7 +23,6 @@ class North_AmericaTests < Test::Unit::TestCase
      Date.civil(2007,5,21), Date.civil(2008,5,19)].each do |date|
       assert_equal 'Victoria Day', Holidays.on(date, :ca)[0][:name]
     end
-
   end
 
   # from 
@@ -41,8 +40,6 @@ class North_AmericaTests < Test::Unit::TestCase
      Date.civil(2007,12,25) => 'Navidad'}.each do |date, name|
       assert_equal name, Holidays.on(date, :mx, :informal)[0][:name]
     end    
-
-  
   end
 
   def test_us
@@ -59,7 +56,5 @@ class North_AmericaTests < Test::Unit::TestCase
       assert_equal name, Holidays.on(date, :us)[0][:name]
     end
   end
-
-
 end
 
