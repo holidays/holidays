@@ -84,6 +84,9 @@ namespace 'definitions' do
 end
 
 
+task :doc => [:manifest, :rdoc]
+
+desc 'Build the definition manifest.'
 task :manifest do
   File.open("lib/holidays/MANIFEST","w") do |file|
     file.puts <<-EOH
@@ -104,6 +107,7 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.title    = 'Ruby Holidays Gem'
   rdoc.options << '--all' << '--inline-source' << '--line-numbers'
   rdoc.options << '--charset' << 'utf-8'
+  rdoc.template = 'extras/rdoc_template.rb'
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('data/SYNTAX')
   rdoc.rdoc_files.include('lib/holidays/MANIFEST')
