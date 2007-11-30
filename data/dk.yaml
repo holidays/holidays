@@ -32,14 +32,11 @@ months:
     function: easter(year)+26
   - name: Kristi Himmelfartsdag
     regions: [dk]
-    function: easter(year)+40
-  - name: Kristi Himmelfartsdag
-    regions: [dk]
-    function: easter(year)+40
-  - name: 2. Pinsedag
+    function: easter(year)+39
+  - name: Pinsedag
     regions: [dk]
     function: easter(year)+49
-  - name: Pinsedag
+  - name: 2. Pinsedag
     regions: [dk]
     function: easter(year)+50
   1: 
