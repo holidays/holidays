@@ -2,9 +2,7 @@ $:.unshift File.dirname(__FILE__)
 
 require 'digest/md5'
 
-# === Ruby Holidays module
-#
-# ==== Region options
+# == Region options
 # Holidays can be defined as belonging to one or more regions and sub regions.
 # The Holidays#on, Holidays#between, Date#holidays and Date#holiday? methods
 # each allow you to specify a specific region.
@@ -22,11 +20,11 @@ require 'digest/md5'
 # [<tt>:any</tt>]
 #   Any region.  Return holidays from any loaded region.
 #
-# ==== Other options
+# == Other options
 # [<tt>:observed</tt>]    Return holidays on the day they are observed (e.g. on a Monday if they fall on a Sunday).
 # [<tt>:informal</tt>]    Include informal holidays (e.g. Valentine's Day)
 #
-# ==== Examples
+# == Examples
 # Return all holidays in the <tt>:ca</tt> and <tt>:us</tt> regions on the day that they are
 # observed.
 #
