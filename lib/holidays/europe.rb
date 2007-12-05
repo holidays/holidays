@@ -209,6 +209,7 @@ def self.de_buss_und_bettag(year)
   date
 end
 
+
 # Iceland: first day of summer (Thursday after 18 April)
 def self.is_sumardagurinn_fyrsti(year)
   date = Date.civil(year,4,18)
@@ -219,6 +220,7 @@ def self.is_sumardagurinn_fyrsti(year)
   end
   date
 end
+
 
 # Sweden: All Saint's Day (Saturday between Oct 31 and Nov 6)
 def self.se_alla_helgons_dag(year)

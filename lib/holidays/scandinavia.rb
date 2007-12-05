@@ -91,6 +91,7 @@ def self.is_sumardagurinn_fyrsti(year)
   date
 end
 
+
 # Sweden: All Saint's Day (Saturday between Oct 31 and Nov 6)
 def self.se_alla_helgons_dag(year)
   date = Date.civil(year,10,31)

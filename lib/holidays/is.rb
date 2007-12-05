@@ -55,6 +55,7 @@ def self.is_sumardagurinn_fyrsti(year)
 end
 
 
+
 end
 
 Holidays.merge_defs(Holidays::IS::DEFINED_REGIONS, Holidays::IS::HOLIDAYS_BY_MONTH)

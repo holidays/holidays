@@ -46,6 +46,7 @@ def self.de_buss_und_bettag(year)
 end
 
 
+
 end
 
 Holidays.merge_defs(Holidays::DE::DEFINED_REGIONS, Holidays::DE::HOLIDAYS_BY_MONTH)

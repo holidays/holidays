@@ -94,10 +94,12 @@ def self.ca_victoria_day(year)
   date
 end
 
+
 # January 20, every fourth year, following Presidential election
 def self.us_inauguration_day(year)
   year % 4 == 1 ? 20 : nil
 end
+
 
 
 end

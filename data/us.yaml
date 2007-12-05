@@ -66,3 +66,16 @@ methods:
     def self.us_inauguration_day(year)
       year % 4 == 1 ? 20 : nil
     end
+tests: |
+    {Date.civil(2008,1,1) => 'New Year\'s Day', 
+     Date.civil(2008,1,21) => 'Martin Luther King, Jr. Day',
+     Date.civil(2008,2,18) => 'Presidents\' Day',
+     Date.civil(2008,5,26) => 'Memorial Day',
+     Date.civil(2008,7,4) => 'Independence Day',
+     Date.civil(2008,9,1) => 'Labor Day',
+     Date.civil(2008,10,13) => 'Columbus Day',
+     Date.civil(2008,11,11) => 'Veterans Day',
+     Date.civil(2008,11,27) => 'Thanksgiving',
+     Date.civil(2008,12,25) => 'Christmas Day'}.each do |date, name|
+      assert_equal name, Holidays.on(date, :us)[0][:name]
+    end

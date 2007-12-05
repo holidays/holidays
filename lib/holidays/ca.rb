@@ -62,6 +62,7 @@ def self.ca_victoria_day(year)
 end
 
 
+
 end
 
 Holidays.merge_defs(Holidays::CA::DEFINED_REGIONS, Holidays::CA::HOLIDAYS_BY_MONTH)

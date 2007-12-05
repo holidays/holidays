@@ -42,6 +42,7 @@ def self.us_inauguration_day(year)
 end
 
 
+
 end
 
 Holidays.merge_defs(Holidays::US::DEFINED_REGIONS, Holidays::US::HOLIDAYS_BY_MONTH)

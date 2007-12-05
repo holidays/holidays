@@ -58,9 +58,14 @@ namespace 'definitions' do
     def_list.each do |region, files|
       puts "Building #{region.to_s.upcase} definition module:"
       files.uniq!
-      parsed = parse_holiday_defs(region.to_s.upcase, files)
+      module_src, test_src = parse_holiday_defs(region.to_s.upcase, files)
       File.open("lib/holidays/#{region.to_s}.rb","w") do |file|
-        file.puts parsed
+        file.puts module_src
+      end
+      unless test_src.empty?
+        File.open("test/test_defs_#{region.to_s}.rb","w") do |file|
+          file.puts test_src
+        end
       end
       puts "Done.\n\n"
     end
@@ -74,10 +79,16 @@ namespace 'definitions' do
     #def_list.each do |region, files|
       puts "Building #{region.to_s.upcase} definition module:"
       files.uniq!
-      parsed = parse_holiday_defs(region.to_s.upcase, files)
+      module_src, test_src = parse_holiday_defs(region.to_s.upcase, files)
       File.open("lib/holidays/#{region.to_s}.rb","w") do |file|
-        file.puts parsed
+        file.puts module_src
       end
+      unless test_src.empty?
+        File.open("test/test_defs_#{region.to_s}.rb","w") do |file|
+          file.puts test_src
+        end
+      end
+
       puts "Done.\n\n"
     #end
   end

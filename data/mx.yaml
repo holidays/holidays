@@ -1,5 +1,8 @@
 # Mexican holiday definitions for the Ruby Holiday gem.
-# Updated 2008-11-24.
+# Updated 2008-12-05.
+# Sources:
+# - http://www.britishembassy.gov.uk/servlet/Front?pagename=OpenMarket/Xcelerate/ShowPage&c=Page&cid=1125561634963
+# - http://www.usembassy-mexico.gov/eng/holidays.html
 --- 
 months:
   1: 
@@ -89,3 +92,15 @@ months:
   - name: Los Santos Inocentes
     regions: [mx]
     mday: 28
+tests: |
+    {Date.civil(2007,1,1) => 'Año nuevo', 
+     Date.civil(2007,2,5) => 'Día de la Constitución', 
+     Date.civil(2007,5,1) => 'Día del Trabajo',
+     Date.civil(2007,5,5) => 'Cinco de Mayo',
+     Date.civil(2007,9,16) => 'Día de la Independencia',
+     Date.civil(2007,11,1) => 'Todos los Santos',
+     Date.civil(2007,11,2) => 'Los Fieles Difuntos',
+     Date.civil(2007,11,19) => 'Día de la Revolución',
+     Date.civil(2007,12,25) => 'Navidad'}.each do |date, name|
+      assert_equal name, Holidays.on(date, :mx, :informal)[0][:name]
+    end  
