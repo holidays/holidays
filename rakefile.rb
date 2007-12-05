@@ -4,7 +4,7 @@ require 'rake/rdoctask'
 require 'rake/gempackagetask'
 require 'fileutils'
 require 'lib/holidays'
-require 'bin/build_defs'
+require 'data/build_defs'
 
 def_list = {
             :au => ['data/au.yaml'],
@@ -54,6 +54,7 @@ Rake::TestTask.new do |t|
 end
 
 namespace 'definitions' do
+  desc 'Build holiday definition files'
   task :build_all do
     def_list.each do |region, files|
       puts "Building #{region.to_s.upcase} definition module:"
@@ -69,28 +70,6 @@ namespace 'definitions' do
       end
       puts "Done.\n\n"
     end
-  end
-end
-
-namespace 'definitions' do
-  task :nl do
-    region = :nl
-    files = def_list[region]
-    #def_list.each do |region, files|
-      puts "Building #{region.to_s.upcase} definition module:"
-      files.uniq!
-      module_src, test_src = parse_holiday_defs(region.to_s.upcase, files)
-      File.open("lib/holidays/#{region.to_s}.rb","w") do |file|
-        file.puts module_src
-      end
-      unless test_src.empty?
-        File.open("test/test_defs_#{region.to_s}.rb","w") do |file|
-          file.puts test_src
-        end
-      end
-
-      puts "Done.\n\n"
-    #end
   end
 end
 
@@ -119,7 +98,7 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.options << '--all' << '--inline-source' << '--line-numbers'
   rdoc.options << '--charset' << 'utf-8'
   rdoc.template = 'extras/rdoc_template.rb'
-  rdoc.rdoc_files.include('README')
+  #rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('data/SYNTAX')
   rdoc.rdoc_files.include('lib/holidays/MANIFEST')
   rdoc.rdoc_files.include('REFERENCES')
