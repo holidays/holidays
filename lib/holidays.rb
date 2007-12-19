@@ -49,6 +49,7 @@ module Holidays
 
   WEEKS = {:first => 1, :second => 2, :third => 3, :fourth => 4, :fifth => 5, :last => -1}
   MONTH_LENGTHS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+  DAY_SYMBOLS = Date::DAYNAMES.collect { |n| n.downcase.intern }
 
   # Get all holidays on a given date.
   #
@@ -94,25 +95,32 @@ module Holidays
     dates.each do |year, months|
       months.each do |month|
         next unless hbm = @@holidays_by_month[month]
+
         hbm.each do |h|
           next unless in_region?(regions, h[:regions])
           
+          # Skip informal holidays unless they have been requested
           next if h[:type] == :informal and not informal
           
           if h[:function]
+            # Holiday definition requires a calculation
             result = call_proc(h[:function], year)
+            
+            # Procs may return either Date or an integer representing mday
             if result.kind_of?(Date)
               month = result.month
               mday = result.mday
             else
-              day = result
+              mday = result
             end
           else
+            # Calculate the mday
             mday = h[:mday] || Date.calculate_mday(year, month, h[:week], h[:wday])
           end
 
+          # Silently skip bad mdays
           begin
-            date = Date.new(year, month, mday)
+            date = Date.civil(year, month, mday)
           rescue; next; end
 
           # If the :observed option is set, calculate the date when the holiday
@@ -121,7 +129,6 @@ module Holidays
             date = call_proc(h[:observed], date)
           end
 
-          
           if date.between?(start_date, end_date)
             holidays << {:date => date, :name => h[:name], :regions => h[:regions]}
           end
@@ -352,7 +359,7 @@ class Date
   # [<tt>year</tt>]  Integer.
   # [<tt>month</tt>] Integer from 1-12.
   # [<tt>week</tt>]  One of <tt>:first</tt>, <tt>:second</tt>, <tt>:third</tt>,
-  #                  <tt>:fourth</tt> or <tt>:fifth</tt>.
+  #                  <tt>:fourth</tt>, <tt>:fifth</tt> or <tt>:last</tt>.
   # [<tt>wday</tt>]  Day of the week as an integer from 0 (Sunday) to 6
   #                  (Saturday) or as a symbol (e.g. <tt>:monday</tt>).
   #
@@ -364,7 +371,7 @@ class Date
   #   => 7
   #
   # Third Thursday of December, 2008:
-  #   Date.calculate_mday(2008, 12, :third, 4)
+  #   Date.calculate_mday(2008, 12, :third, :thursday)
   #   => 18
   #
   # Last Monday of January, 2008:
@@ -375,7 +382,12 @@ class Date
   def self.calculate_mday(year, month, week, wday)
     raise ArgumentError, "Week parameter must be one of Holidays::WEEKS (provided #{week})." unless WEEKS.include?(week) or WEEKS.has_value?(week)
 
+    unless wday.kind_of?(Numeric) and wday.between?(0,6) or DAY_SYMBOLS.index(wday)
+      raise ArgumentError, "Wday parameter must be an integer between 0 and 6 or one of Date::DAY_SYMBOLS."
+    end
+
     week = WEEKS[week] if week.kind_of?(Symbol)
+    wday = DAY_SYMBOLS.index(wday) if wday.kind_of?(Symbol)
 
     # :first, :second, :third, :fourth or :fifth
     if week > 0

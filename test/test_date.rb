@@ -21,7 +21,7 @@ class DateTests < Test::Unit::TestCase
     
     # Labour day
     assert_equal 3, Date.calculate_mday(2007, 9, :first, 1)
-    assert_equal 1, Date.calculate_mday(2008, 9, :first, 1)
+    assert_equal 1, Date.calculate_mday(2008, 9, :first, :monday)
     assert_equal 7, Date.calculate_mday(2009, 9, :first, 1)
     assert_equal 5, Date.calculate_mday(2011, 9, :first, 1)
     assert_equal 5, Date.calculate_mday(2050, 9, :first, 1)
@@ -29,14 +29,14 @@ class DateTests < Test::Unit::TestCase
     
     # Canadian thanksgiving
     assert_equal 8, Date.calculate_mday(2007, 10, :second, 1)
-    assert_equal 13, Date.calculate_mday(2008, 10, :second, 1)
+    assert_equal 13, Date.calculate_mday(2008, 10, :second, :monday)
     assert_equal 12, Date.calculate_mday(2009, 10, :second, 1)
     assert_equal 11, Date.calculate_mday(2010, 10, :second, 1)
 
     # Misc
     assert_equal 21, Date.calculate_mday(2008, 1, :third, 1)
     assert_equal 1, Date.calculate_mday(2007, 1, :first, 1)
-    assert_equal 2, Date.calculate_mday(2007, 3, :first, 5)
+    assert_equal 2, Date.calculate_mday(2007, 3, :first, :friday)
   end
 
   def test_mday_allows_integers_or_symbols
@@ -64,6 +64,20 @@ class DateTests < Test::Unit::TestCase
 
     assert_raises ArgumentError do
       Date.calculate_mday(2008, 1, 0, 1)
+    end
+  end
+
+  def test_mday_requires_valid_day
+    assert_raises ArgumentError do
+      Date.calculate_mday(2008, 1, 1, :october)
+    end
+
+    assert_raises ArgumentError do
+      Date.calculate_mday(2008, 1, 1, nil)
+    end
+
+    assert_raises ArgumentError do
+      Date.calculate_mday(2008, 1, 1, 7)
     end
   end
 
