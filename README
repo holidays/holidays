@@ -21,13 +21,13 @@ For more information, see the notes at the top of the Holidays module.
 Get all holidays on April 25, 2008 in Australia.
   date = Date.civil(2008,4,25)
 
-  Holidays.by_day(date, :au)
+  Holidays.on(date, :au)
   => [{:name => 'ANZAC Day',...}]
 
 Get holidays that are observed on July 2, 2007 in British Columbia, Canada.
   date = Date.civil(2007,7,2)
 
-  Holidays.by_day(date, :ca_bc, :observed)
+  Holidays.on(date, :ca_bc, :observed)
   => [{:name => 'Canada Day',...}]
 
 Get all holidays in July, 2008 in Canada and the US.
