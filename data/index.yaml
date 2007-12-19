@@ -1,0 +1,21 @@
+# Definition build list
+--- 
+defs:
+  AU: ['au.yaml']
+  CA: ['ca.yaml', 'north_america_informal.yaml']
+  DK: ['dk.yaml']
+  DE: ['de.yaml']
+  ES: ['es.yaml']
+  FR: ['fr.yaml']
+  GB: ['gb.yaml']
+  IE: ['ie.yaml']
+  IS: ['is.yaml']
+  IT: ['it.yaml']
+  MX: ['mx.yaml', 'north_america_informal.yaml']
+  NL: ['nl.yaml']
+  PT: ['se.yaml']
+  US: ['au.yaml', 'north_america_informal.yaml']
+  United_Nations: ['united_nations.yaml']
+  ZA: ['za.yaml']
+  North_America: ['ca.yaml', 'mx.yaml', 'us.yaml', 'north_america_informal.yaml']
+  Europe: ['dk.yaml', 'de.yaml', 'es.yaml', 'fr.yaml', 'gb.yaml', 'ie.yaml', 'is.yaml', 'it.yaml', 'nl.yaml', 'pt.yaml']

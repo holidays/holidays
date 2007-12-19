@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays/united_nations'
   #
   # More definitions are available at http://code.dunae.ca/holidays.
-  module UNITED_NATIONS # :nodoc:
+  module United_Nations # :nodoc:
     DEFINED_REGIONS = [:]
 
     HOLIDAYS_BY_MONTH = {
@@ -21,4 +21,4 @@ module Holidays
 
 end
 
-Holidays.merge_defs(Holidays::UNITED_NATIONS::DEFINED_REGIONS, Holidays::UNITED_NATIONS::HOLIDAYS_BY_MONTH)
+Holidays.merge_defs(Holidays::United_Nations::DEFINED_REGIONS, Holidays::United_Nations::HOLIDAYS_BY_MONTH)
