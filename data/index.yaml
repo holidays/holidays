@@ -14,7 +14,7 @@ defs:
   MX: ['mx.yaml', 'north_america_informal.yaml']
   NL: ['nl.yaml']
   PT: ['se.yaml']
-  US: ['au.yaml', 'north_america_informal.yaml']
+  US: ['us.yaml', 'north_america_informal.yaml']
   United_Nations: ['united_nations.yaml']
   ZA: ['za.yaml']
   North_America: ['ca.yaml', 'mx.yaml', 'us.yaml', 'north_america_informal.yaml']
