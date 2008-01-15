@@ -39,6 +39,7 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('data/SYNTAX')
   rdoc.rdoc_files.include('lib/holidays/MANIFEST')
   rdoc.rdoc_files.include('REFERENCES')
+  rdoc.rdoc_files.include('CHANGELOG')
   rdoc.rdoc_files.include('LICENSE')
   rdoc.rdoc_files.include('lib/*.rb')
 end
@@ -56,7 +57,7 @@ spec = Gem::Specification.new do |s|
   s.files = FileList["{lib}/**/*", "{data}/**/*"].to_a
   s.test_files = FileList['test/defs/test*.rb'].exclude('test_helper.rb')
   s.has_rdoc = true
-  s.extra_rdoc_files = ['README', 'data/SYNTAX', 'lib/holidays/MANIFEST', 'REFERENCES', 'LICENSE']
+  s.extra_rdoc_files = ['README', 'data/SYNTAX', 'lib/holidays/MANIFEST', 'REFERENCES', 'CHANGELOG', 'LICENSE']
   s.rdoc_options << '--all' << '--inline-source' << '--line-numbers' << '--charset' << 'utf-8'
 end
 

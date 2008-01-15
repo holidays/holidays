@@ -1,0 +1,7 @@
+= Ruby Holidays Gem CHANGELOG
+  
+== 0.9.1
+* au.yaml was being included incorrectly in US holiday definitions. Thanks to Glenn Vanderburg (http://vanderburg.org/) for the fix.
+
+== 0.9.0
+* Initial release.
