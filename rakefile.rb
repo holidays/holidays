@@ -46,7 +46,7 @@ end
 
 spec = Gem::Specification.new do |s| 
   s.name = 'holidays'
-  s.version = '0.9.0'
+  s.version = '0.9.1'
   s.author = 'Alex Dunae'
   s.homepage = 'http://code.dunae.ca/holidays'
   s.platform = Gem::Platform::RUBY
