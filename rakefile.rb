@@ -85,11 +85,11 @@ namespace :defs do
       files.uniq!
 
       module_src, test_src = parse_holiday_defs(region, files)
-      File.open("lib/holidays/#{region.to_s}.rb","w") do |file|
+      File.open("lib/holidays/#{region.downcase.to_s}.rb","w") do |file|
         file.puts module_src
       end
       unless test_src.empty?
-        File.open("test/defs/test_defs_#{region.to_s}.rb","w") do |file|
+        File.open("test/defs/test_defs_#{region.downcase.to_s}.rb","w") do |file|
           file.puts test_src
         end
       end

@@ -13,6 +13,7 @@ defs:
   IT: ['it.yaml']
   MX: ['mx.yaml', 'north_america_informal.yaml']
   NL: ['nl.yaml']
+  NYSE: ['nyse.yaml']
   PT: ['se.yaml']
   US: ['us.yaml', 'north_america_informal.yaml']
   United_Nations: ['united_nations.yaml']

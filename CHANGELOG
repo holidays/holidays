@@ -1,5 +1,9 @@
 = Ruby Holidays Gem CHANGELOG
   
+== 0.9.3
+* Added New York Stock Exchange holidays (thank you Alan Larkin).
+* Fixed rakefile to force lower case definition file names.
+
 == 0.9.2
 * Included rakefile in Gem (thank you James Herdman).
 
