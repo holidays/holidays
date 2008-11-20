@@ -2,6 +2,7 @@
   
 == 0.9.3
 * Added New York Stock Exchange holidays (thank you Alan Larkin).
+* Added UPS holidays (thank you Tim Anglade).
 * Fixed rakefile to force lower case definition file names.
 
 == 0.9.2

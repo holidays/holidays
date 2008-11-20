@@ -17,6 +17,7 @@ defs:
   PT: ['se.yaml']
   US: ['us.yaml', 'north_america_informal.yaml']
   United_Nations: ['united_nations.yaml']
+  UPS: ['ups.yaml']
   ZA: ['za.yaml']
   North_America: ['ca.yaml', 'mx.yaml', 'us.yaml', 'north_america_informal.yaml']
   Europe: ['dk.yaml', 'de.yaml', 'es.yaml', 'fr.yaml', 'gb.yaml', 'ie.yaml', 'is.yaml', 'it.yaml', 'nl.yaml', 'pt.yaml']
