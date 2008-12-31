@@ -44,6 +44,9 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('lib/*.rb')
 end
 
+
+
+
 spec = Gem::Specification.new do |s| 
   s.name = 'holidays'
   s.version = '0.9.4'
@@ -58,8 +61,14 @@ spec = Gem::Specification.new do |s|
   s.test_files = FileList['test/defs/test*.rb'].exclude('test_helper.rb')
   s.has_rdoc = true
   s.extra_rdoc_files = ['README.rdoc', 'data/SYNTAX', 'lib/holidays/MANIFEST', 'REFERENCES', 'CHANGELOG', 'LICENSE']
-  s.rdoc_options << '--all' << '--inline-source' << '--line-numbers' << '--charset' << 'utf-8'
+  
 end
+
+
+
+
+
+
 
 desc 'Build the gem.'
 Rake::GemPackageTask.new(spec) do |pkg| 
@@ -70,6 +79,34 @@ end
 desc 'Definition file tasks'
 namespace :defs do
   DATA_PATH = 'data'
+
+  desc 'Create the gem spec'
+  task :create_gemspec do
+    File.open("holidays.gemspec","w") do |file|
+      file.puts <<-EOH
+# Auto-generated gemspec
+Gem::Specification.new do |s|
+  s.name     = "holidays"
+  s.version  = "0.9.4"
+  s.date     = "2008-12-29"
+  s.summary  = " A collection of Ruby methods to deal with statutory and other holidays.  You deserve a holiday!"
+  s.email    = "code@dunae.ca"
+  s.homepage = "http://code.dunae.ca/holidays"
+  s.description = " A collection of Ruby methods to deal with statutory and other holidays.  You deserve a holiday!"
+  s.has_rdoc = true
+  s.author  = "Alex Dunae"
+  s.extra_rdoc_files = ['README.rdoc', 'data/SYNTAX', 'lib/holidays/MANIFEST', 'REFERENCES', 'CHANGELOG', 'LICENSE']
+  s.rdoc_options << '--all' << '--inline-source' << '--line-numbers' << '--charset' << 'utf-8'
+EOH
+  
+      file.puts "  s.test_files = ['" +  Dir.glob("{test}/**/*").join("','") + "']"
+      file.puts "  s.files = ['" +  Dir.glob("{data,lib,test}/**/*").join("','") + "']"
+      file.puts 'end'
+    end
+  end
+
+
+
   
   desc 'Build holiday definition files'
   task :build_all do
