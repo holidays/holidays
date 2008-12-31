@@ -9,7 +9,7 @@ Extends Ruby's built-in Date class and supports custom holiday definition lists.
 To install the gem from GitHub:
  
     gem sources -a http://gems.github.com
-    gem install holidays
+    gem install alexdunae-holidays
  
 Or, download the source <tt>.tgz</tt> file from http://rubyforge.org/holidays and
 extract it somewhere in your include path.
