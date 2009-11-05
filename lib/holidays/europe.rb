@@ -11,18 +11,18 @@ module Holidays
   #
   # More definitions are available at http://code.dunae.ca/holidays.
   module Europe # :nodoc:
-    DEFINED_REGIONS = [:dk, :de, :fr, :de_bw, :de_by, :de_nw, :de_rp, :de_sl, :de_sn, :de_he, :de_th, :de_bb, :de_mv, :de_st, :es, :es_m, :es_cn, :es_cm, :es_pv, :es_ct, :es_na, :es_v, :es_vc, :es_mu, :es_lo, :es_ib, :es_ga, :es_an, :es_ce, :es_o, :es_ex, :es_ar, :es_cl, :gb, :ie, :je, :gb_jsy, :gg, :gb_gsy, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :gb_sct, :im, :gb_iom, :gb_con, :is, :it, :nl, :pt]
+    DEFINED_REGIONS = [:dk, :de, :de_bw, :de_by, :de_nw, :de_rp, :de_sl, :de_sn, :de_he, :de_st, :de_bb, :de_mv, :de_th, :es, :es_m, :es_cn, :es_cm, :es_pv, :es_ct, :es_na, :es_v, :es_vc, :es_mu, :es_lo, :es_ib, :es_ga, :es_an, :es_ce, :es_o, :es_ex, :es_ar, :es_cl, :fr, :gb, :ie, :je, :gb_jsy, :gg, :gb_gsy, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :gb_sct, :im, :gb_iom, :gb_con, :is, :it, :nl, :pt]
 
     HOLIDAYS_BY_MONTH = {
       5 => [{:mday => 1, :name => "Arbejdernes kampdag", :regions => [:dk]},
             {:mday => 5, :type => :informal, :name => "Danmarks befrielse", :regions => [:dk]},
             {:mday => 1, :name => "Tag der Arbeit", :regions => [:de]},
-            {:mday => 8, :name => "Victoire 1945", :regions => [:de, :fr]},
             {:mday => 1, :name => "Día del Trabajador", :regions => [:es]},
             {:mday => 2, :name => "Fiesta de la Comunidad", :regions => [:es_m]},
             {:mday => 30, :name => "Día de las Canarias", :regions => [:es_cn]},
             {:mday => 31, :name => "Día de la Región Castilla-La Mancha", :regions => [:es_cm]},
             {:mday => 1, :name => "Fête du travail", :regions => [:fr]},
+            {:mday => 8, :name => "Victoire 1945", :regions => [:fr]},
             {:wday => 1, :week => 1, :name => "May Day", :regions => [:gb, :ie]},
             {:mday => 9, :name => "Liberation Day", :regions => [:je, :gb_jsy, :gg, :gb_gsy]},
             {:wday => 1, :week => -1, :name => "Bank Holiday", :regions => [:gb]},
@@ -43,11 +43,10 @@ module Holidays
             {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "Pinsedag", :regions => [:dk]},
             {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "2. Pinsedag", :regions => [:dk]},
             {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Karfreitag", :regions => [:de]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :type => :informal, :name => "Ostern", :regions => [:de]},
             {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Ostermontag", :regions => [:de]},
             {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Christi Himmelfahrt", :regions => [:de]},
             {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pfingstmontag", :regions => [:de]},
-            {:function => lambda { |year| Holidays.easter(year)+60 }, :function_id => "easter(year)+60", :name => "Fronleichnam", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn, :de_th]},
+            {:function => lambda { |year| Holidays.easter(year)+60 }, :function_id => "easter(year)+60", :name => "Fronleichnam", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl]},
             {:function => lambda { |year| Holidays.easter(year)-3 }, :function_id => "easter(year)-3", :name => "Jueves Santo", :regions => [:es_pv, :es_ct, :es_na, :es_v, :es_vc]},
             {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Viernes Santo", :regions => [:es]},
             {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Lunes de Pascua", :regions => [:es_pv, :es_ct, :es_na, :es_v, :es_vc]},
@@ -84,7 +83,7 @@ module Holidays
             {:function => lambda { |year| Holidays.easter(year)+60 }, :function_id => "easter(year)+60", :name => "Corpo de Deus", :regions => [:pt]}],
       11 => [{:mday => 10, :type => :informal, :name => "Mortensaften", :regions => [:dk]},
             {:mday => 1, :name => "Allerheiligen", :regions => [:de_bw, :de_by, :de_nw, :de_rp, :de_sl]},
-            {:function => lambda { |year| Holidays.de_buss_und_bettag(year) }, :function_id => "de_buss_und_bettag(year)", :name => "Buß- und Bettag", :regions => [:de_by, :de_sn]},
+            {:function => lambda { |year| Holidays.de_buss_und_bettag(year) }, :function_id => "de_buss_und_bettag(year)", :name => "Buß- und Bettag", :regions => [:de_sn]},
             {:mday => 1, :name => "Todos los Santos", :regions => [:es]},
             {:mday => 1, :name => "Toussaint", :regions => [:fr]},
             {:mday => 11, :name => "Armistice 1918", :regions => [:fr]},
@@ -104,7 +103,7 @@ module Holidays
             {:mday => 10, :name => "Dia de Portugal", :regions => [:pt]}],
       1 => [{:mday => 1, :name => "Nytårsdag", :regions => [:dk]},
             {:mday => 1, :name => "Neujahrstag", :regions => [:de]},
-            {:mday => 6, :name => "Heilige Drei Könige", :regions => [:de_bw, :de_by]},
+            {:mday => 6, :name => "Heilige Drei Könige", :regions => [:de_bw, :de_by, :de_st]},
             {:mday => 1, :name => "Año Nuevo", :regions => [:es]},
             {:mday => 6, :name => "Día de Reyes", :regions => [:es]},
             {:mday => 1, :name => "Jour de l'an", :regions => [:fr]},
@@ -185,18 +184,6 @@ module Holidays
     }
   end
 
-# Germany: Wednesday before November 23
-def self.de_buss_und_bettag(year)
-  date = Date.civil(year,11,23)
-  if date.wday > 3
-    date -= (date.wday - 3)
-  else
-    date -= (date.wday + 4)
-  end
-  date
-end
-
-
 # Iceland: first day of summer (Thursday after 18 April)
 def self.is_sumardagurinn_fyrsti(year)
   date = Date.civil(year,4,18)
@@ -204,6 +191,18 @@ def self.is_sumardagurinn_fyrsti(year)
     date += (4 - date.wday)
   else date
     date += (11 - date.wday)
+  end
+  date
+end
+
+
+# Germany: Wednesday before November 23
+def self.de_buss_und_bettag(year)
+  date = Date.civil(year,11,23)
+  if date.wday > 3
+    date -= (date.wday - 3)
+  else
+    date -= (date.wday + 4)
   end
   date
 end

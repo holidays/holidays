@@ -1,6 +1,6 @@
 # German holiday definitions for the Ruby Holiday gem.
 #
-# Updated: 2008-11-29.
+# Updated: 2009-11-05.
 # Sources:
 # - http://en.wikipedia.org/wiki/Holidays_in_Germany
 # - http://www.timeanddate.com/calendar/index.html?country=8
@@ -11,10 +11,6 @@ months:
   - name: Karfreitag
     regions: [de]
     function: easter(year)-2
-  - name: Ostern
-    regions: [de]
-    function: easter(year)
-    type: informal
   - name: Ostermontag
     regions: [de]
     function: easter(year)+1
@@ -25,22 +21,19 @@ months:
     regions: [de]
     function: easter(year)+50
   - name: Fronleichnam
-    regions: [de_bw, de_by, de_he, de_nw, de_rp, de_sl, de_sn, de_th]
+    regions: [de_bw, de_by, de_he, de_nw, de_rp, de_sl]
     function: easter(year)+60
   1: 
   - name: Neujahrstag
     regions: [de]
     mday: 1
   - name: Heilige Drei Könige
-    regions: [de_bw, de_by]
+    regions: [de_bw, de_by, de_st]
     mday: 6
   5: 
   - name: Tag der Arbeit
     regions: [de]
     mday: 1
-  - name: Victoire 1945
-    regions: [de]
-    mday: 8
   8: 
   - name: Mariä Himmelfahrt
     regions: [de_by, de_sl]
@@ -57,7 +50,7 @@ months:
     regions: [de_bw, de_by, de_nw, de_rp, de_sl]
     mday: 1
   - name: Buß- und Bettag
-    regions: [de_by, de_sn]
+    regions: [de_sn]
     function: de_buss_und_bettag(year)
   12:
   - name: 1. Weihnachtstag
@@ -81,7 +74,6 @@ methods:
 tests: |
     {Date.civil(2009,1,1) => 'Neujahrstag', 
      Date.civil(2009,4,10) => 'Karfreitag',
-     Date.civil(2009,4,12) => 'Ostern',
      Date.civil(2009,4,13) => 'Ostermontag',
      Date.civil(2009,5,1) => 'Tag der Arbeit',
      Date.civil(2009,5,21) => 'Christi Himmelfahrt',
@@ -92,7 +84,11 @@ tests: |
       assert_equal name, Holidays.on(date, :de, :informal)[0][:name]
     end
     
-    [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn, :de_th, :de_].each do |r|
+    [:de_bw, :de_by, :de_st, :de_].each do |r|
+      assert_equal 'Heilige Drei Könige', Date.civil(2009,1,6).holidays(r)[0][:name]
+    end
+
+    [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_].each do |r|
       assert_equal 'Fronleichnam', Date.civil(2009,6,11).holidays(r)[0][:name]
     end
     

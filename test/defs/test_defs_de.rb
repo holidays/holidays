@@ -9,7 +9,6 @@ class DeDefinitionTests < Test::Unit::TestCase  # :nodoc:
   def test_de
 {Date.civil(2009,1,1) => 'Neujahrstag', 
  Date.civil(2009,4,10) => 'Karfreitag',
- Date.civil(2009,4,12) => 'Ostern',
  Date.civil(2009,4,13) => 'Ostermontag',
  Date.civil(2009,5,1) => 'Tag der Arbeit',
  Date.civil(2009,5,21) => 'Christi Himmelfahrt',
@@ -20,7 +19,11 @@ class DeDefinitionTests < Test::Unit::TestCase  # :nodoc:
   assert_equal name, Holidays.on(date, :de, :informal)[0][:name]
 end
 
-[:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn, :de_th, :de_].each do |r|
+[:de_bw, :de_by, :de_st, :de_].each do |r|
+  assert_equal 'Heilige Drei Könige', Date.civil(2009,1,6).holidays(r)[0][:name]
+end
+
+[:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_].each do |r|
   assert_equal 'Fronleichnam', Date.civil(2009,6,11).holidays(r)[0][:name]
 end
 
