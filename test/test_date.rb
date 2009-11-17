@@ -37,6 +37,8 @@ class DateTests < Test::Unit::TestCase
     assert_equal 21, Date.calculate_mday(2008, 1, :third, 1)
     assert_equal 1, Date.calculate_mday(2007, 1, :first, 1)
     assert_equal 2, Date.calculate_mday(2007, 3, :first, :friday)
+    assert_equal 30, Date.calculate_mday(2012, 1, :last, 1)
+    assert_equal 29, Date.calculate_mday(2016, 2, :last, 1)
   end
 
   def test_mday_allows_integers_or_symbols

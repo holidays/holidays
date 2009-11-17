@@ -397,7 +397,7 @@ class Date
     
     days = MONTH_LENGTHS[month-1]
 
-    days = 29 if month == 1 and Date.civil(year,1,1).leap?
+    days = 29 if month == 2 and Date.civil(year,1,1).leap?
       
     return days - ((Date.civil(year, month, days).wday - wday + 7) % 7)
   end
