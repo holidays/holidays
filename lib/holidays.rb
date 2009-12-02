@@ -392,13 +392,13 @@ class Date
 
     # :first, :second, :third, :fourth or :fifth
     if week > 0
-      return ((week - 1) * 7) + 1 + ((7 + wday - Date.civil(year, month,(week-1)*7 + 1).wday) % 7)
+      return ((week - 1) * 7) + 1 + ((wday - Date.civil(year, month,(week-1)*7 + 1).wday) % 7)
     end
     
     days = MONTH_LENGTHS[month-1]
 
     days = 29 if month == 2 and Date.leap?(year)
       
-    return days - ((Date.civil(year, month, days).wday - wday + 7) % 7)
+    return days - ((Date.civil(year, month, days).wday - wday) % 7)
   end
 end
