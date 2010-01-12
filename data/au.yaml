@@ -66,6 +66,11 @@ months:
     regions: [au_qld]
     mday: 6
     type: informal
+  8:
+  - name: Ekka
+    regions: [au_qld_brisbane]
+    week: -3
+    wday: 3
   10: 
   - name: Labour Day
     regions: [au_act, au_nsw, au_sa]
