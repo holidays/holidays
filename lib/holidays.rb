@@ -48,7 +48,7 @@ module Holidays
   @@holidays_by_month = {}
   @@proc_cache = {}
 
-  WEEKS = {:first => 1, :second => 2, :third => 3, :fourth => 4, :fifth => 5, :last => -1}
+  WEEKS = {:first => 1, :second => 2, :third => 3, :fourth => 4, :fifth => 5, :last => -1, :second_last => -2, :third_last => -3}
   MONTH_LENGTHS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
   DAY_SYMBOLS = Date::DAYNAMES.collect { |n| n.downcase.intern }
 
@@ -399,6 +399,6 @@ class Date
 
     days = 29 if month == 2 and Date.leap?(year)
       
-    return days - ((Date.civil(year, month, days).wday - wday + 7) % 7)
+    return days - ((Date.civil(year, month, days).wday - wday + 7) % 7) - (7 * (week.abs - 1))
   end
 end
