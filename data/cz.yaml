@@ -1,0 +1,68 @@
+# Czech holiday definitions for the Ruby Holiday gem.
+#
+# Updated: 2010-01-20.
+# Sources:
+# - http://cs.wikipedia.org/wiki/%C4%8Cesk%C3%BD_st%C3%A1tn%C3%AD_sv%C3%A1tek
+# - http://www.mpsv.cz/cs/74
+--- 
+months:
+  0: 
+  - name: Velikonoční pondělí
+    regions: [cz]
+    function: easter(year)+1
+  1:
+  - name: Den obnovy samostatného českého státu
+    regions: [cz]
+    mday: 1
+  5:
+  - name: Svátek práce
+    regions: [cz]
+    mday: 1
+  - name: Den vítězství
+    regions: [cz]
+    mday: 8
+  7:
+  - name: Den slovanských věrozvěstů Cyrila a Metoděje
+    regions: [cz]
+    mday: 5
+  - name: Den upálení mistra Jana Husa
+    regions: [cz]
+    mday: 6
+  9:
+  - name: Den české státnosti
+    regions: [cz]
+    mday: 28
+  10:
+  - name: Den vzniku samostatného československého státu
+    regions: [cz]
+    mday: 28
+  11:
+  - name: Den boje za svobodu a demokracii
+    regions: [cz]
+    mday: 17
+  12:
+  - name: Štědrý den
+    regions: [cz]
+    mday: 24
+  - name: 1. svátek vánoční
+    regions: [cz]
+    mday: 25
+  - name: 2. svátek vánoční
+    regions: [cz]
+    mday: 26
+tests: |
+    {Date.civil(2010,1,1) => 'Den obnovy samostatného českého státu',
+     Date.civil(2010,4,5) => 'Velikonoční pondělí',
+     Date.civil(2010,5,1) => 'Svátek práce',
+     Date.civil(2010,5,8) => 'Den vítězství',
+     Date.civil(2010,7,5) => 'Den slovanských věrozvěstů Cyrila a Metoděje',
+     Date.civil(2010,7,6) => 'Den upálení mistra Jana Husa',
+     Date.civil(2010,9,28) => 'Den české státnosti',
+     Date.civil(2010,10,28) => 'Den vzniku samostatného československého státu',
+     Date.civil(2010,11,17) => 'Den boje za svobodu a demokracii',
+     Date.civil(2010,12,24) => 'Štědrý den',
+     Date.civil(2010,12,25) => '1. svátek vánoční',
+     Date.civil(2010,12,26) => '2. svátek vánoční'}.each do |date, name|
+      assert_equal name, Holidays.on(date, :cz, :informal)[0][:name]
+    end
+

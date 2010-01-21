@@ -3,6 +3,7 @@
 defs:
   AU: ['au.yaml']
   CA: ['ca.yaml', 'north_america_informal.yaml']
+  CZ: ['cz.yaml']
   DK: ['dk.yaml']
   DE: ['de.yaml']
   ES: ['es.yaml']
@@ -20,4 +21,4 @@ defs:
   UPS: ['ups.yaml']
   ZA: ['za.yaml']
   North_America: ['ca.yaml', 'mx.yaml', 'us.yaml', 'north_america_informal.yaml']
-  Europe: ['dk.yaml', 'de.yaml', 'es.yaml', 'fr.yaml', 'gb.yaml', 'ie.yaml', 'is.yaml', 'it.yaml', 'nl.yaml', 'pt.yaml']
+  Europe: ['cz.yaml', 'dk.yaml', 'de.yaml', 'es.yaml', 'fr.yaml', 'gb.yaml', 'ie.yaml', 'is.yaml', 'it.yaml', 'nl.yaml', 'pt.yaml']
