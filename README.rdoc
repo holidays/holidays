@@ -72,6 +72,6 @@ Lookup Canada Day in different regions.
 * Source: http://github.com/alexdunae/holidays
 * Docs: http://code.dunae.ca/holidays/doc
  
-By Alex Dunae (dunae.ca, e-mail 'code' at the same domain), 2007-08.
+By Alex Dunae (dunae.ca, e-mail 'code' at the same domain), 2007-10.
  
 Made on Vancouver Island.

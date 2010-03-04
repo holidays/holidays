@@ -1,5 +1,8 @@
 = Ruby Holidays Gem CHANGELOG
   
+== 1.0.0
+* Added Czech holidays (thanks to boblin -- http://github.com/boblin)
+
 == 0.9.3
 * Added New York Stock Exchange holidays (thank you Alan Larkin).
 * Added UPS holidays (thank you Tim Anglade).
