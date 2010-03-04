@@ -11,7 +11,7 @@ module Holidays
   #
   # More definitions are available at http://code.dunae.ca/holidays.
   module AU # :nodoc:
-    DEFINED_REGIONS = [:au_qld, :au_nt, :au, :au_tas, :au_wa, :au_act, :au_nsw, :au_sa, :au_vic]
+    DEFINED_REGIONS = [:au_qld, :au_nt, :au, :au_tas, :au_wa, :au_act, :au_nsw, :au_sa, :au_vic, :au_qld_brisbane]
 
     HOLIDAYS_BY_MONTH = {
       5 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:au_qld]},
@@ -27,6 +27,7 @@ module Holidays
             {:mday => 26, :name => "Australia Day", :regions => [:au]}],
       12 => [{:mday => 25, :name => "Christmas Day", :regions => [:au]},
             {:mday => 26, :name => "Boxing Day", :regions => [:au]}],
+      8 => [{:wday => 3, :week => -3, :name => "Ekka", :regions => [:au_qld_brisbane]}],
       3 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:au_wa]},
             {:wday => 1, :week => 2, :name => "Eight Hours Day", :regions => [:au_tas]},
             {:wday => 1, :week => 2, :name => "Labour Day", :regions => [:au_vic]}],

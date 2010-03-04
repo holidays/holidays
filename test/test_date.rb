@@ -39,6 +39,18 @@ class DateTests < Test::Unit::TestCase
     assert_equal 2, Date.calculate_mday(2007, 3, :first, :friday)
     assert_equal 30, Date.calculate_mday(2012, 1, :last, 1)
     assert_equal 29, Date.calculate_mday(2016, 2, :last, 1)
+    
+    # From end of month
+    assert_equal 26, Date.calculate_mday(2009, 8, -1, :wednesday)
+    assert_equal 19, Date.calculate_mday(2009, 8, -2, :wednesday)
+    assert_equal 12, Date.calculate_mday(2009, 8, -3, :wednesday)
+    
+    assert_equal 13, Date.calculate_mday(2008, 8, -3, :wednesday)
+    assert_equal 12, Date.calculate_mday(2009, 8, -3, :wednesday)
+    assert_equal 11, Date.calculate_mday(2010, 8, -3, :wednesday)
+    assert_equal 17, Date.calculate_mday(2011, 8, -3, :wednesday)
+    assert_equal 15, Date.calculate_mday(2012, 8, -3, :wednesday)
+    assert_equal 14, Date.calculate_mday(2013, 8, -3, :wednesday)
   end
 
   def test_mday_allows_integers_or_symbols
