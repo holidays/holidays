@@ -12,14 +12,14 @@ task :test => ["test:lib", "test:defs"]
 
 namespace :test do
   desc 'Run the unit tests.'
-  Rake::TestTask.new(:lib) do |t|
+  Rake::TestTask.new(:defs) do |t|
     t.libs << 'lib'
     t.test_files = FileList['test/defs/test*.rb'].exclude('test_helper.rb')
     t.verbose = false
   end
 
   desc 'Run the definition tests.'
-  Rake::TestTask.new(:defs) do |t|
+  Rake::TestTask.new(:lib) do |t|
     t.libs << 'lib'
     t.test_files = FileList['test/test*.rb'].exclude('test_helper.rb')
     t.verbose = false
