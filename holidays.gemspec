@@ -1,8 +1,8 @@
 # Auto-generated gemspec
 Gem::Specification.new do |s|
   s.name     = "holidays"
-  s.version  = "0.9.4"
-  s.date     = "2008-12-29"
+  s.version  = "1.0.0"
+  s.date     = "2010-03-04"
   s.summary  = "A collection of Ruby methods to deal with statutory and other holidays.  You deserve a holiday!"
   s.email    = "code@dunae.ca"
   s.homepage = "http://code.dunae.ca/holidays"
@@ -11,6 +11,6 @@ Gem::Specification.new do |s|
   s.author  = "Alex Dunae"
   s.extra_rdoc_files = ['README.rdoc', 'data/SYNTAX', 'lib/holidays/MANIFEST', 'REFERENCES', 'CHANGELOG', 'LICENSE']
   s.rdoc_options << '--all' << '--inline-source' << '--line-numbers' << '--charset' << 'utf-8'
-  s.test_files = ['test/defs','test/defs/test_defs_fr.rb','test/defs/test_defs_nyse.rb','test/defs/test_defs_europe.rb','test/defs/test_defs_north_america.rb','test/defs/test_defs_nl.rb','test/defs/test_defs_ups.rb','test/defs/test_defs_pt.rb','test/defs/test_defs_gb.rb','test/defs/test_defs_se.rb','test/defs/test_defs_ca.rb','test/defs/test_defs_ie.rb','test/defs/test_defs_cz.rb','test/defs/test_defs_de.rb','test/defs/test_defs_scandinavia.rb','test/defs/test_defs_mx.rb','test/defs/test_defs_us.rb','test/defs/test_defs_es.rb','test/defs/test_defs_za.rb','test/defs/test_defs_is.rb','test/defs/test_defs_dk.rb','test/defs/test_defs_it.rb','test/defs/test_defs_au.rb','test/test_date.rb','test/test_helper.rb','test/test_multiple_regions.rb','test/test_holidays.rb']
-  s.files = ['data/za.yaml','data/se.yaml','data/nyse.yaml','data/cz.yaml','data/mx.yaml','data/north_america_informal.yaml','data/gb.yaml','data/united_nations.yaml','data/dk.yaml','data/us.yaml','data/it.yaml','data/es.yaml','data/SYNTAX','data/au.yaml','data/ca.yaml','data/fr.yaml','data/index.yaml','data/pt.yaml','data/build_defs.rb','data/ups.yaml','data/nl.yaml','data/ie.yaml','data/is.yaml','data/de.yaml','lib/holidays','lib/holidays/pt.rb','lib/holidays/se.rb','lib/holidays/au.rb','lib/holidays/za.rb','lib/holidays/mx.rb','lib/holidays/is.rb','lib/holidays/europe.rb','lib/holidays/ca.rb','lib/holidays/ie.rb','lib/holidays/scandinavia.rb','lib/holidays/de.rb','lib/holidays/nyse.rb','lib/holidays/fr.rb','lib/holidays/gb.rb','lib/holidays/us.rb','lib/holidays/it.rb','lib/holidays/cz.rb','lib/holidays/es.rb','lib/holidays/nl.rb','lib/holidays/MANIFEST','lib/holidays/united_nations.rb','lib/holidays/dk.rb','lib/holidays/ups.rb','lib/holidays/north_america.rb','lib/holidays.rb','test/defs','test/defs/test_defs_fr.rb','test/defs/test_defs_nyse.rb','test/defs/test_defs_europe.rb','test/defs/test_defs_north_america.rb','test/defs/test_defs_nl.rb','test/defs/test_defs_ups.rb','test/defs/test_defs_pt.rb','test/defs/test_defs_gb.rb','test/defs/test_defs_se.rb','test/defs/test_defs_ca.rb','test/defs/test_defs_ie.rb','test/defs/test_defs_cz.rb','test/defs/test_defs_de.rb','test/defs/test_defs_scandinavia.rb','test/defs/test_defs_mx.rb','test/defs/test_defs_us.rb','test/defs/test_defs_es.rb','test/defs/test_defs_za.rb','test/defs/test_defs_is.rb','test/defs/test_defs_dk.rb','test/defs/test_defs_it.rb','test/defs/test_defs_au.rb','test/test_date.rb','test/test_helper.rb','test/test_multiple_regions.rb','test/test_holidays.rb']
+  s.test_files = Dir.glob("{test}/**/*")
+  s.files = Dir.glob("{data,lib,test}/**/*")
 end
