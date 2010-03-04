@@ -1,8 +1,11 @@
 = Ruby Holidays Gem CHANGELOG
   
 == 1.0.0
-* Added Czech holidays (thanks to boblin -- http://github.com/boblin)
-* Added Norwegian holidays (thanks to Peter Skeide)
+* Support calculating mday from negative weeks other than -1 (thanks http://github.com/bjeanes)
+* Use class method to check leap years and fixed bug in Date.calculate_mday 
+ (thanks http://github.com/dgrambow)
+* Added Czech (thanks http://github.com/boblin), Brazilian (http://github.com/fabiokr), Norwegian (thanks to Peter Skeide) and Australia/Brisbane (http://github.com/bjeanes) definitions
+* Cleaned up rake and gemspec
 
 == 0.9.3
 * Added New York Stock Exchange holidays (thank you Alan Larkin).
