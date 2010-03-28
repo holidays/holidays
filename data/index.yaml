@@ -16,6 +16,7 @@ defs:
   NL: ['nl.yaml']
   "NO": ['no.yaml']
   NYSE: ['nyse.yaml']
+  NZ: ['nz.yaml']
   PT: ['pt.yaml']
   US: ['us.yaml', 'north_america_informal.yaml']
   United_Nations: ['united_nations.yaml']
