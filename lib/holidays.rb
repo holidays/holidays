@@ -41,7 +41,7 @@ require 'date'
 #   Holidays.between(from, to, :ca_bc, :informal)
 module Holidays
   # Exception thrown when an unknown region is requested.
-  class UnkownRegionError < ArgumentError; end
+  class UnknownRegionError < ArgumentError; end
 
   VERSION = '0.9.2'
 
@@ -257,7 +257,7 @@ private
 
     regions.flatten!
 
-    raise UnkownRegionError unless regions.all? { |r| r == :any or @@regions.include?(r) }
+    raise UnknownRegionError unless regions.all? { |r| r == :any or @@regions.include?(r) }
 
     regions
   end

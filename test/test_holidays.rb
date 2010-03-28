@@ -31,15 +31,15 @@ class HolidaysTests < Test::Unit::TestCase
   end
 
   def test_requires_valid_regions
-    assert_raises Holidays::UnkownRegionError do
+    assert_raises Holidays::UnknownRegionError do
       Holidays.on(Date.civil(2008,1,1), :xx)
     end
 
-    assert_raises Holidays::UnkownRegionError do
+    assert_raises Holidays::UnknownRegionError do
       Holidays.on(Date.civil(2008,1,1), [:ca,:xx])
     end
 
-    assert_raises Holidays::UnkownRegionError do
+    assert_raises Holidays::UnknownRegionError do
       Holidays.between(Date.civil(2008,1,1), Date.civil(2008,12,31), [:ca,:xx])
     end
   end
