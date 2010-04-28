@@ -12,7 +12,7 @@ module Holidays
   #
   # More definitions are available at http://code.dunae.ca/holidays.
   module NZ # :nodoc:
-    DEFINED_REGIONS = [:nz_ca, :nz_ch, :nz, :nz_wl, :nz_sl, :nz_we, :nz_ak, :nz_nl, :au, :nz_ot, :nz_sc, :nz_hb, :nz_mb]
+    DEFINED_REGIONS = [:nz_ca, :nz_ch, :nz, :nz_wl, :nz_sl, :nz_we, :nz_ak, :nz_nl, :nz_ot, :nz_sc, :nz_hb, :nz_mb]
 
     HOLIDAYS_BY_MONTH = {
       0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Good Friday", :regions => [:nz]},
@@ -31,11 +31,11 @@ module Holidays
             {:mday => 25, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "Christmas Day", :regions => [:nz]},
             {:mday => 26, :observed => lambda { |date| Holidays.to_weekday_if_boxing_weekend(date) }, :observed_id => "to_weekday_if_boxing_weekend", :name => "Boxing Day", :regions => [:nz]}],
       2 => [{:mday => 1, :observed => lambda { |date| Holidays.closest_monday(date) }, :observed_id => "closest_monday", :name => "Nelson Anniversary Day", :regions => [:nz_ak]},
-            {:mday => 6, :name => "Waitangi Day", :regions => [:au]}],
+            {:mday => 6, :name => "Waitangi Day", :regions => [:nz]}],
       3 => [{:mday => 23, :observed => lambda { |date| Holidays.closest_monday(date) }, :observed_id => "closest_monday", :name => "Otago Anniversary Day", :regions => [:nz_ot]},
             {:wday => 1, :week => 2, :name => "Taranaki Anniversary Day", :regions => [:nz_ak]}],
       9 => [{:wday => 1, :week => 4, :name => "Dominion Day", :regions => [:nz_sc]}],
-      4 => [{:mday => 25, :name => "ANZAC Day", :regions => [:au]}],
+      4 => [{:mday => 25, :name => "ANZAC Day", :regions => [:nz]}],
       10 => [{:wday => 1, :week => 1, :observed => lambda { |date| Holidays.previous_friday(date) }, :observed_id => "previous_friday", :name => "Hawke's bay Anniversary Day", :regions => [:nz_hb]},
             {:wday => 1, :week => 4, :name => "Labour Day", :regions => [:nz]},
             {:wday => 1, :week => 4, :observed => lambda { |date| Holidays.next_week(date) }, :observed_id => "next_week", :name => "Marlborough Anniversary Day", :regions => [:nz_mb]}]

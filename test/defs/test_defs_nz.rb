@@ -9,7 +9,7 @@ class NzDefinitionTests < Test::Unit::TestCase  # :nodoc:
   def test_nz
 {Date.civil(2007,1,1) => 'New Year\'s Day',
  Date.civil(2007,1,2) => 'Day after New Year\'s Day',
- Date.civil(2007,2,6) => 'Waitangi',
+ Date.civil(2007,2,6) => 'Waitangi Day',
  Date.civil(2007,4,6) => 'Good Friday',
  Date.civil(2007,4,9) => 'Easter Monday',
  Date.civil(2007,4,25) => 'ANZAC Day',
