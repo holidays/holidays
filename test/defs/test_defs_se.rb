@@ -26,7 +26,7 @@ class SeDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2008,11,1) => 'Alla helgons dag',
  Date.civil(2008,12,25) => 'Juldagen',
  Date.civil(2008,12,26) => 'Annandag jul'}.each do |date, name|
-  assert_equal name, Holidays.on(date, :se, :informal)[0][:name]
+  assert_equal name, (Holidays.on(date, :se, :informal)[0] || {})[:name]
 end
   end
 end
