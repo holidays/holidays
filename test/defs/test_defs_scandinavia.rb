@@ -24,7 +24,7 @@ class ScandinaviaDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2007,12,24) => 'Juleaftensdag',
  Date.civil(2007,12,25) => '1. juledag',
  Date.civil(2007,12,26) => '2. juledag'}.each do |date, name|
-  assert_equal name, Holidays.on(date, :dk, :informal)[0][:name]
+  assert_equal name, (Holidays.on(date, :dk, :informal)[0] || {})[:name]
 end
 
 {Date.civil(2007,1,1) => 'Nýársdagur', 
@@ -47,7 +47,7 @@ end
  Date.civil(2007,12,25) => 'Jól',
  Date.civil(2007,12,26) => 'Jól',
  Date.civil(2007,12,31) => 'Gamlárskvöld'}.each do |date, name|
-  assert_equal name, Holidays.on(date, :is, :informal)[0][:name]
+  assert_equal name, (Holidays.on(date, :is, :informal)[0] || {})[:name]
 end
 
 {Date.civil(2008,1,1) => 'Nyårsdagen', 
@@ -69,7 +69,7 @@ end
  Date.civil(2008,11,1) => 'Alla helgons dag',
  Date.civil(2008,12,25) => 'Juldagen',
  Date.civil(2008,12,26) => 'Annandag jul'}.each do |date, name|
-  assert_equal name, Holidays.on(date, :se, :informal)[0][:name]
+  assert_equal name, (Holidays.on(date, :se, :informal)[0] || {})[:name]
 end
   end
 end
