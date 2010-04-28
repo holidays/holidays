@@ -102,5 +102,5 @@ tests: |
      Date.civil(2007,11,2) => 'Los Fieles Difuntos',
      Date.civil(2007,11,19) => 'Día de la Revolución',
      Date.civil(2007,12,25) => 'Navidad'}.each do |date, name|
-      assert_equal name, Holidays.on(date, :mx, :informal)[0][:name]
+      assert_equal name, (Holidays.on(date, :mx, :informal)[0] || {})[:name]
     end  

@@ -81,5 +81,5 @@ tests: |
      Date.civil(2008,12,1) => 'Restauração da Independência',
      Date.civil(2008,12,8) => 'Imaculada Conceição',
      Date.civil(2008,12,25) => 'Natal'}.each do |date, name|
-      assert_equal name, Holidays.on(date, :pt, :informal)[0][:name]
+      assert_equal name, (Holidays.on(date, :pt, :informal)[0] || {})[:name]
     end

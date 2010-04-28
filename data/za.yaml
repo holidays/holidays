@@ -74,5 +74,5 @@ tests: |
      Date.civil(2007,12,16) => 'Day of Reconciliation',
      Date.civil(2007,12,25) => 'Christmas Day',
      Date.civil(2007,12,26) => 'Day of Goodwill'}.each do |date, name|
-      assert_equal name, Holidays.on(date, :za, :informal)[0][:name]
+      assert_equal name, (Holidays.on(date, :za, :informal)[0] || {})[:name]
     end

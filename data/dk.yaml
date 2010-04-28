@@ -113,5 +113,5 @@ tests: |
      Date.civil(2007,12,24) => 'Juleaftensdag',
      Date.civil(2007,12,25) => '1. juledag',
      Date.civil(2007,12,26) => '2. juledag'}.each do |date, name|
-      assert_equal name, Holidays.on(date, :dk, :informal)[0][:name]
+      assert_equal name, (Holidays.on(date, :dk, :informal)[0] || {})[:name]
     end

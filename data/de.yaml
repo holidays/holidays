@@ -81,7 +81,7 @@ tests: |
      Date.civil(2009,10,3) => 'Tag der Deutschen Einheit',
      Date.civil(2009,12,25) => '1. Weihnachtstag',
      Date.civil(2009,12,26) => '2. Weihnachtstag'}.each do |date, name|
-      assert_equal name, Holidays.on(date, :de, :informal)[0][:name]
+      assert_equal name, (Holidays.on(date, :de, :informal)[0] || {})[:name]
     end
     
     [:de_bw, :de_by, :de_st, :de_].each do |r|

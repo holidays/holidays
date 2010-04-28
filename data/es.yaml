@@ -123,7 +123,7 @@ tests: |
      Date.civil(2009,12,6) => 'Día de la Constitución',
      Date.civil(2009,12,8) => 'Inmaculada Concepción',
      Date.civil(2009,12,25) => 'Navidad del Señor'}.each do |date, name|
-      assert_equal name, Holidays.on(date, :es, :informal)[0][:name]
+      assert_equal name, (Holidays.on(date, :es, :informal)[0] || {})[:name]
     end
     
     [:es_pv, :es_ct, :es_na, :es_v, :es_vc, :es_].each do |r|

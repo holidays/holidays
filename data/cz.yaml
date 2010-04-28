@@ -63,6 +63,6 @@ tests: |
      Date.civil(2010,12,24) => 'Štědrý den',
      Date.civil(2010,12,25) => '1. svátek vánoční',
      Date.civil(2010,12,26) => '2. svátek vánoční'}.each do |date, name|
-      assert_equal name, Holidays.on(date, :cz, :informal)[0][:name]
+      assert_equal name, (Holidays.on(date, :cz, :informal)[0] || {})[:name]
     end
 
