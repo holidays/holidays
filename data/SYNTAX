@@ -101,7 +101,7 @@ All definition files should have tests included.  In the YAML file, tests are ju
      Date.civil(2008,9,1) => 'Labour Day',
      Date.civil(2008,12,25) => 'Christmas Day',
      Date.civil(2008,12,26) => 'Boxing Day'}.each do |date, name|
-      assert_equal name, Holidays.on(date, :ca, :informal)[0][:name]
+      assert_equal name, (Holidays.on(date, :ca, :informal)[0] || {})[:name]
     end
 
     # Victoria Day

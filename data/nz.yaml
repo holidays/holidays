@@ -115,7 +115,7 @@ tests: |
      Date.civil(2007,4,25) => 'ANZAC Day',
      Date.civil(2007,12,25) => 'Christmas Day',
      Date.civil(2007,12,26) => 'Boxing Day'}.each do |date, name|
-      assert_equal name, Holidays.on(date, :nz, :informal)[0][:name]
+      assert_equal name, (Holidays.on(date, :nz, :informal)[0] || {})[:name]
     end
 methods:
   closest_monday: |
