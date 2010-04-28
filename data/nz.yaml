@@ -44,7 +44,7 @@ months:
     mday: 1
     observed: closest_monday
   - name: Waitangi Day
-    regions: [au]
+    regions: [nz]
     mday: 6
   3:
   - name: Otago Anniversary Day
@@ -57,7 +57,7 @@ months:
     wday: 1
   4:
   - name: ANZAC Day
-    regions: [au]
+    regions: [nz]
     mday: 25
   6:
   - name: Queen's Birthday
@@ -109,7 +109,7 @@ months:
 tests: |
     {Date.civil(2007,1,1) => 'New Year\'s Day',
      Date.civil(2007,1,2) => 'Day after New Year\'s Day',
-     Date.civil(2007,2,6) => 'Waitangi',
+     Date.civil(2007,2,6) => 'Waitangi Day',
      Date.civil(2007,4,6) => 'Good Friday',
      Date.civil(2007,4,9) => 'Easter Monday',
      Date.civil(2007,4,25) => 'ANZAC Day',
