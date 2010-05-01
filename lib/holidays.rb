@@ -141,7 +141,7 @@ module Holidays
       end
     end
 
-    holidays
+    holidays.sort{|a, b| a[:date] <=> b[:date] }
   end
 
   # Merge a new set of definitions into the Holidays module.
