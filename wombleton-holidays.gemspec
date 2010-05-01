@@ -105,7 +105,8 @@ Gem::Specification.new do |s|
      "test/test_date.rb",
      "test/test_helper.rb",
      "test/test_holidays.rb",
-     "test/test_multiple_regions.rb"
+     "test/test_multiple_regions.rb",
+     "wombleton-holidays.gemspec"
   ]
   s.homepage = %q{http://github.com/wombleton/holidays}
   s.rdoc_options = ["--charset=UTF-8"]
