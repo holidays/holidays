@@ -114,4 +114,15 @@ class HolidaysTests < Test::Unit::TestCase
       assert_equal 'Easter Monday', Holidays.on(date, :ca_qc, :informal)[0][:name]
     end
   end
+
+  def test_sorting
+    (1..10).each{|year|
+      (1..12).each{|month|
+        holidays = Holidays.between(Date.civil(year, month, 1), Date.civil(year, month, 28), :gb_)
+        holidays.each_with_index{|holiday, index|
+          assert holiday[:date] >= holidays[index - 1][:date] if index > 0
+        }
+      }
+    }
+  end
 end
