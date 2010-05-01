@@ -87,3 +87,17 @@ The following definition files are included in this installation:
     end
   end
 end
+
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gemspec|
+    gemspec.name = "wombleton-holidays"
+    gemspec.summary = "A collection of Ruby methods to deal with statutory and other holidays.  You deserve a holiday!"
+    gemspec.description = "A collection of Ruby methods to deal with statutory and other holidays.  You deserve a holiday!"
+    gemspec.email = "wombleton@gmail.com"
+    gemspec.homepage = "http://github.com/wombleton/holidays"
+    gemspec.authors = ["Alex Dunae", "Rowan Crawford"]
+  end
+rescue LoadError
+  puts "Jeweler not available. Install it with: gem install jeweler"
+end

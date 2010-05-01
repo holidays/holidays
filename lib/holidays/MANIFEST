@@ -1,27 +1,28 @@
 ==== Regional definitions
 The following definition files are included in this installation:
 
+* holidays/nyse
+* holidays/no
+* holidays/es
+* holidays/ie
+* holidays/united_nations
 * holidays/au
+* holidays/mx
+* holidays/za
+* holidays/scandinavia
 * holidays/ca
-* holidays/cz
+* holidays/us
+* holidays/nl
+* holidays/it
 * holidays/de
 * holidays/dk
-* holidays/es
+* holidays/cz
+* holidays/nz
+* holidays/ups
+* holidays/pt
 * holidays/europe
+* holidays/se
+* holidays/north_america
 * holidays/fr
 * holidays/gb
-* holidays/ie
 * holidays/is
-* holidays/it
-* holidays/mx
-* holidays/nl
-* holidays/north_america
-* holidays/nyse
-* holidays/nz
-* holidays/pt
-* holidays/scandinavia
-* holidays/se
-* holidays/united_nations
-* holidays/ups
-* holidays/us
-* holidays/za
