@@ -261,7 +261,7 @@ private
 
     require "holidays/north_america" if regions.include?(:us) # special case for north_america/US cross-linking
 
-    raise UnknownRegionError unless regions.all? { |r| r == :any or @@regions.include?(r) or begin require "holidays/#{r.to_s}"; rescue LoadError; false; end }
+    raise UnknownRegionError unless regions.all? { |r| r == :any or @@regions.include?(r) or begin require "holidays/#{r.to_s.split('_').first}"; rescue LoadError; false; end }
     regions
   end
 
