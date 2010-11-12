@@ -1,11 +1,12 @@
+$:.unshift File.expand_path('../lib', __FILE__)
 require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
 require 'rake/gempackagetask'
 require 'yaml'
 require 'fileutils'
-require 'lib/holidays'
-require 'data/build_defs'
+require 'holidays'
+require File.expand_path('data/build_defs')
 
 desc 'Run all tests'
 task :test => ["test:lib", "test:defs"]

@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/test_helper'
+require File.expand_path(File.dirname(__FILE__)) + '/test_helper'
 
 require 'holidays/ca'
 
@@ -84,7 +84,7 @@ class HolidaysTests < Test::Unit::TestCase
 
     # Should return Victoria Da and National Patriotes Day.
     holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca_qc)
-    assert 2, holidays.length
+    assert_equal 2, holidays.length
 
     # Should return Victoria Day and National Patriotes Day.
     holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca_)
