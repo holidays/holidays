@@ -6,7 +6,7 @@ class DateTests < Test::Unit::TestCase
   end
 
   def test_extending_date_class
-    assert @date.respond_to?('holiday?')
+    assert @date.respond_to?('holidays')
     assert @date.respond_to?('holiday?')
   end
 

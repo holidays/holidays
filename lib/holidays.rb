@@ -393,7 +393,7 @@ class Date
 
     # :first, :second, :third, :fourth or :fifth
     if week > 0
-      return ((week - 1) * 7) + 1 + ((7 + wday - Date.civil(year, month,(week-1)*7 + 1).wday) % 7)
+      return ((week - 1) * 7) + 1 + ((wday - Date.civil(year, month,(week-1)*7 + 1).wday) % 7)
     end
     
     days = MONTH_LENGTHS[month-1]
