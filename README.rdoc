@@ -6,13 +6,9 @@ Extends Ruby's built-in Date class and supports custom holiday definition lists.
  
 === Installation
  
-To install the gem from GitHub:
+To install the gem from RubyGems:
  
-    gem sources -a http://gems.github.com
-    gem install alexdunae-holidays
- 
-Or, download the source <tt>.tgz</tt> file from http://rubyforge.org/holidays and
-extract it somewhere in your include path.
+  gem install holidays
  
 === Examples
  
