@@ -107,7 +107,8 @@ class DateTests < Test::Unit::TestCase
   end
 
   def test_datetime_holiday?
-    assert DateTime.now.to_date.holiday?('test')
+    # in situations with activesupport
+    assert DateTime.now.to_date.holiday?('test') if DateTime.now.respond_to?(:to_date)
     assert DateTime.now.holiday?('test')
   end
 

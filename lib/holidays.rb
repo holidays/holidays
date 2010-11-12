@@ -86,10 +86,20 @@ module Holidays
     # remove the timezone
     start_date = start_date.new_offset(0) if start_date.respond_to?(:new_offset)
     end_date = end_date.new_offset(0) if end_date.respond_to?(:new_offset)
-    
-    start_date = start_date.to_date if start_date.respond_to?(:to_date)
-    end_date = end_date.to_date if end_date.respond_to?(:to_date)
-    
+
+    # get simple dates
+    if start_date.respond_to?(:to_date)
+      start_date = start_date.to_date 
+    else
+      start_date = Date.civil(start_date.year, start_date.mon, start_date.mday)
+    end 
+
+    if end_date.respond_to?(:to_date)
+      end_date = end_date.to_date
+    else
+      end_date = Date.civil(end_date.year, end_date.mon, end_date.mday)
+    end 
+
     regions, observed, informal = parse_options(options)
     holidays = []
 
