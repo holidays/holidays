@@ -83,8 +83,13 @@ module Holidays
   #   => [{:name => 'Canada Day', :regions => [:ca]...}
   #       {:name => 'Independence Day'', :regions => [:us], ...}]
   def self.between(start_date, end_date, *options)
+    # remove the timezone
+    start_date = start_date.new_offset(0) if start_date.respond_to?(:new_offset)
+    end_date = end_date.new_offset(0) if end_date.respond_to?(:new_offset)
+    
     start_date = start_date.to_date if start_date.respond_to?(:to_date)
     end_date = end_date.to_date if end_date.respond_to?(:to_date)
+    
     regions, observed, informal = parse_options(options)
     holidays = []
 

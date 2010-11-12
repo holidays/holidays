@@ -10,6 +10,12 @@ class DateTests < Test::Unit::TestCase
     assert @date.respond_to?('holiday?')
   end
 
+  def test_extending_datetime_class
+    dt = DateTime.civil(2008,1,1)
+    assert dt.respond_to?('holidays')
+    assert dt.respond_to?('holiday?')
+  end
+
   def test_calculating_mdays
     # US Memorial day
     assert_equal 29, Date.calculate_mday(2006, 5, :last, 1)
@@ -95,7 +101,22 @@ class DateTests < Test::Unit::TestCase
     end
   end
 
-  def test_holiday?
+  def test_date_holiday?
     assert Date.civil(2008,1,1).holiday?('ca')
+    assert Date.today.holiday?('test')
+  end
+
+  def test_datetime_holiday?
+    assert DateTime.now.to_date.holiday?('test')
+    assert DateTime.now.holiday?('test')
+  end
+
+  # ensure that dates are compared in the same timezone
+  def test_datetime_offset_holiday?
+    dt = DateTime.now.new_offset(Rational(23,24))
+    assert dt.holiday?('test'), dt.inspect
+
+    dt = DateTime.now.new_offset(Rational(-23,24))
+    assert dt.holiday?('test'), dt.inspect
   end
 end
