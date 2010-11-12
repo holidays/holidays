@@ -39,6 +39,8 @@ end
   assert_equal 'Allerheiligen', Date.civil(2009,11,1).holidays(r)[0][:name]
 end
 
+assert !Date.civil(2010,5,8).holiday?(:de), '2010-05-08 is not a holiday in Germany'
+
 # Repentance Day
 assert_equal 'Buß- und Bettag', Date.civil(2004,11,17).holidays(:de_sn)[0][:name]
 assert_equal 'Buß- und Bettag', Date.civil(2005,11,16).holidays(:de_sn)[0][:name]
