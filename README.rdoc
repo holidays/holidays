@@ -68,10 +68,10 @@ Lookup Canada Day in different regions.
  
 === Credits and code
  
-* Project page: http://code.dunae.ca/holidays
-* Source: http://github.com/alexdunae/holidays
-* Docs: http://code.dunae.ca/holidays/doc
+* Source: https://github.com/alexdunae/holidays
+* Docs: http://rdoc.info/github/alexdunae/holidays/master/frames
+* Contributors: https://github.com/alexdunae/holidays/contributors
  
-By Alex Dunae (dunae.ca, e-mail 'code' at the same domain), 2007-10.
+Started by Alex Dunae (dunae.ca, e-mail 'code' at the same domain), 2007-10.
  
 Made on Vancouver Island.
