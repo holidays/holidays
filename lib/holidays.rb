@@ -252,6 +252,8 @@ private
     # Found sub region wild-card
     regions.delete_if do |reg|
       if reg.to_s =~ /_$/
+        prefix = reg.to_s.split('_').first
+        raise UnknownRegionError unless @@regions.include?(prefix.to_sym) or begin require "holidays/#{prefix}"; rescue LoadError; false; end
         regions << @@regions.select { |dr| dr.to_s =~ Regexp.new("^#{reg}") }
         true
       end
@@ -261,7 +263,7 @@ private
 
     require "holidays/north_america" if regions.include?(:us) # special case for north_america/US cross-linking
 
-    raise UnknownRegionError unless regions.all? { |r| r == :any or @@regions.include?(r) or begin require "holidays/#{r.to_s.split('_').first}"; rescue LoadError; false; end }
+    raise UnknownRegionError unless regions.all? { |r| r == :any or @@regions.include?(r) or begin require "holidays/#{r.to_s}"; rescue LoadError; false; end }
     regions
   end
 

@@ -5,7 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{wombleton-holidays}
+<<<<<<< HEAD
   s.version = "0.9.7"
+=======
+  s.version = "0.9.9"
+>>>>>>> wombleton/master
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alex Dunae", "Rowan Crawford"]
@@ -105,7 +109,12 @@ Gem::Specification.new do |s|
      "test/test_date.rb",
      "test/test_helper.rb",
      "test/test_holidays.rb",
+<<<<<<< HEAD
      "test/test_multiple_regions.rb"
+=======
+     "test/test_multiple_regions.rb",
+     "wombleton-holidays.gemspec"
+>>>>>>> wombleton/master
   ]
   s.homepage = %q{http://github.com/wombleton/holidays}
   s.rdoc_options = ["--charset=UTF-8"]
