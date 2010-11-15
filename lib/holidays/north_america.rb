@@ -65,7 +65,7 @@ module Holidays
             {:mday => 12, :type => :informal, :name => "Día de la Raza", :regions => [:mx]},
             {:wday => 1, :week => 2, :name => "Columbus Day", :regions => [:us]},
             {:mday => 31, :type => :informal, :name => "Halloween", :regions => [:us, :ca]}],
-      11 => [{:mday => 11, :name => "Rememberance Day", :regions => [:ca]},
+      11 => [{:mday => 11, :name => "Remembrance Day", :regions => [:ca]},
             {:mday => 1, :type => :informal, :name => "Todos los Santos", :regions => [:mx]},
             {:mday => 2, :type => :informal, :name => "Los Fieles Difuntos", :regions => [:mx]},
             {:wday => 1, :week => 3, :name => "Día de la Revolución", :regions => [:mx]},
