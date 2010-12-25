@@ -26,3 +26,4 @@ defs:
   North_America: ['ca.yaml', 'mx.yaml', 'us.yaml', 'north_america_informal.yaml']
   Scandinavia: ['dk.yaml', 'is.yaml', 'no.yaml', 'se.yaml']
   Europe: ['cz.yaml', 'dk.yaml', 'de.yaml', 'es.yaml', 'fr.yaml', 'gb.yaml', 'ie.yaml', 'is.yaml', 'it.yaml', 'nl.yaml', 'no.yaml', 'pt.yaml']
+  JP: ['jp.yaml']
