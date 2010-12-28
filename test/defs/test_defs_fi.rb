@@ -24,6 +24,7 @@ class FiDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2007,11,3) => 'Pyhäinpäivä',
  Date.civil(2008,11,1) => 'Pyhäinpäivä',
  Date.civil(2008,12,6) => 'Itsenäisyyspäivä',
+ Date.civil(2008,12,24) => 'Jouluaatto',
  Date.civil(2008,12,25) => 'Joulupäivä',
  Date.civil(2008,12,26) => 'Tapaninpäivä'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :fi, :informal)[0] || {})[:name]

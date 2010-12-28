@@ -26,6 +26,7 @@ module Holidays
       1 => [{:mday => 1, :name => "Uudenvuodenpäivä", :regions => [:fi]},
             {:mday => 6, :name => "Loppiainen", :regions => [:fi]}],
       12 => [{:mday => 6, :name => "Itsenäisyyspäivä", :regions => [:fi]},
+            {:mday => 24, :name => "Jouluaatto", :regions => [:fi]},
             {:mday => 25, :name => "Joulupäivä", :regions => [:fi]},
             {:mday => 26, :name => "Tapaninpäivä", :regions => [:fi]}]
     }

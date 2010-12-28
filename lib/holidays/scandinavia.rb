@@ -92,6 +92,7 @@ module Holidays
             {:mday => 25, :name => "Juldagen", :regions => [:se]},
             {:mday => 26, :name => "Annandag jul", :regions => [:se]},
             {:mday => 6, :name => "Itsenäisyyspäivä", :regions => [:fi]},
+            {:mday => 24, :name => "Jouluaatto", :regions => [:fi]},
             {:mday => 25, :name => "Joulupäivä", :regions => [:fi]},
             {:mday => 26, :name => "Tapaninpäivä", :regions => [:fi]}],
       2 => [{:mday => 18, :type => :informal, :name => "Konudagur", :regions => [:is]}],
