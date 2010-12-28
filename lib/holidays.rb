@@ -43,7 +43,7 @@ module Holidays
   # Exception thrown when an unknown region is requested.
   class UnknownRegionError < ArgumentError; end
 
-  VERSION = '1.0.0'
+  VERSION = '1.0.1'
 
   @@regions = []
   @@holidays_by_month = {}
@@ -111,6 +111,22 @@ module Holidays
       dates[date.year] << date.month unless dates[date.year].include?(date.month)
     end
 
+    # add the previous month if the first date falls on the first day of the month
+    if start_date.day == 1
+      previous_day = end_date-1
+      # Always include month '0' for variable-month holidays
+      dates[previous_day.year] ||= [0]
+      dates[previous_day.year] << previous_day.month unless dates[previous_day.year].include?(previous_day.month)
+    end
+    
+    # add the following month if the last date falls on the last day of the month
+    if end_date.last_day_of_the_month?
+      next_day = end_date+1
+      # Always include month '0' for variable-month holidays
+      dates[next_day.year] ||= [0]
+      dates[next_day.year] << next_day.month unless dates[next_day.year].include?(next_day.month)
+    end
+    
     dates.each do |year, months|
       months.each do |month|
         next unless hbm = @@holidays_by_month[month]
@@ -355,7 +371,7 @@ class Date
   # Returns an array of hashes or nil. See Holidays#between for options
   # and the output format.
   #
-  #   Date.civil('2008-01-01').holidays(:ca_)
+  #   Date.civil(2008,01,01).holidays(:ca_)
   #   => [{:name => 'New Year\'s Day',...}]
   #
   # Also available via Holidays#on.
@@ -367,7 +383,7 @@ class Date
   #
   # Returns true or false.
   #
-  #   Date.civil('2008-01-01').holiday?(:ca)
+  #   Date.civil(2008,01,01).holiday?(:ca)
   #   => true
   def holiday?(*options)
     holidays = self.holidays(options)
@@ -421,5 +437,18 @@ class Date
     days = 29 if month == 2 and Date.leap?(year)
       
     return days - ((Date.civil(year, month, days).wday - wday + 7) % 7) - (7 * (week.abs - 1))
+  end
+  
+  # Check if the current date is the last day of the month.
+  #
+  # Returns true or false.
+  #
+  #   Date.civil(2008,01,01).last_day_of_the_month?
+  #   => false
+  #   Date.civil(2008,01,31).last_day_of_the_month?
+  #   => true
+  def last_day_of_the_month?
+    next_day = self+1
+    next_day.month == self.month ? false : true
   end
 end
