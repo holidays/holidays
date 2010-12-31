@@ -1,7 +1,7 @@
 # Japanese holiday definitions for Ruby Holiday gem.
 # Reference: http://www.h3.dion.ne.jp/~sakatsu/holiday_topic.htm
 #
-# This difinition can calculate current Japanese holidays,
+# This definition can calculate current Japanese holidays,
 # don't compat with past changes of Japan Holiday Act.
 #
 # CHANGES:
@@ -195,7 +195,7 @@ tests: |
     assert_equal '秋分の日', Holidays.on(date, :jp)[0][:name]
   end
 
-  # citizons holiday
+  # citizens holiday
   [Date.civil(2032,9,21), Date.civil(2049,9,21), Date.civil(2009,9,22),
    Date.civil(2015,9,22), Date.civil(2026,9,22)].each do |date|
     assert_equal '国民の休日', Holidays.on(date, :jp)[0][:name]
