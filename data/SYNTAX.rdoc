@@ -11,7 +11,7 @@ Holidays are grouped by month from 1 through 12.  Each entry within a month can 
 
 ===== Dates defined by a fixed date (e.g. January 1st) 
 
-[<tt>wday</tt>]  Integer representing day of the month (1 through 31).
+[<tt>mday</tt>]  Integer representing day of the month (1 through 31).
 
 For example, the following holiday is on the first of January and available in the <tt>ca</tt>, <tt>us</tt> and <tt>au</tt> regions.
 
