@@ -12,31 +12,9 @@ module Holidays
   #
   # More definitions are available at http://code.dunae.ca/holidays.
   module Europe # :nodoc:
-    DEFINED_REGIONS = [:cz, :dk, :no, :de, :de_bw, :de_by, :de_nw, :de_rp, :de_sl, :de_sn, :de_he, :de_st, :de_bb, :de_mv, :de_th, :es, :es_m, :es_cn, :es_cm, :es_pv, :es_ct, :es_na, :es_v, :es_vc, :es_mu, :es_lo, :es_ib, :es_ga, :es_an, :es_ce, :es_o, :es_ex, :es_ar, :es_cl, :fr, :gb, :ie, :je, :gb_jsy, :gg, :gb_gsy, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :gb_sct, :im, :gb_iom, :gb_con, :is, :it, :nl, :pt]
+    DEFINED_REGIONS = [:cz, :dk, :no, :de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_st, :de_bb, :de_mv, :de_sn, :de_th, :es_pv, :es_ct, :es_na, :es_v, :es_vc, :es, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex, :fr, :gb, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :ie, :gb_sct, :gb_con, :je, :gb_jsy, :gg, :gb_gsy, :im, :gb_iom, :is, :it, :nl, :pt]
 
     HOLIDAYS_BY_MONTH = {
-      5 => [{:mday => 1, :name => "Svátek práce", :regions => [:cz]},
-            {:mday => 8, :name => "Den vítězství", :regions => [:cz]},
-            {:mday => 1, :name => "Arbejdernes kampdag", :regions => [:dk]},
-            {:mday => 5, :type => :informal, :name => "Danmarks befrielse", :regions => [:dk]},
-            {:mday => 1, :name => "Tag der Arbeit", :regions => [:de]},
-            {:mday => 1, :name => "Día del Trabajador", :regions => [:es]},
-            {:mday => 2, :name => "Fiesta de la Comunidad", :regions => [:es_m]},
-            {:mday => 30, :name => "Día de las Canarias", :regions => [:es_cn]},
-            {:mday => 31, :name => "Día de la Región Castilla-La Mancha", :regions => [:es_cm]},
-            {:mday => 1, :name => "Fête du travail", :regions => [:fr]},
-            {:mday => 8, :name => "Victoire 1945", :regions => [:fr]},
-            {:wday => 1, :week => 1, :name => "May Day", :regions => [:gb, :ie]},
-            {:mday => 9, :name => "Liberation Day", :regions => [:je, :gb_jsy, :gg, :gb_gsy]},
-            {:wday => 1, :week => -1, :name => "Bank Holiday", :regions => [:gb]},
-            {:mday => 1, :name => "Verkalýðsdagurinn", :regions => [:is]},
-            {:mday => 13, :name => "Mæðradagurinn", :regions => [:is]},
-            {:mday => 1, :name => "Festa dei Lavoratori", :regions => [:it]},
-            {:mday => 4, :name => "Dodenherdenking", :regions => [:nl]},
-            {:mday => 5, :name => "Bevrijdingsdag", :regions => [:nl]},
-            {:mday => 1, :name => "1. mai", :regions => [:no]},
-            {:mday => 17, :name => "17. mai", :regions => [:no]},
-            {:mday => 1, :name => "Dia do Trabalhador", :regions => [:pt]}],
       0 => [{:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Velikonoční pondělí", :regions => [:cz]},
             {:function => lambda { |year| Holidays.easter(year)-49 }, :function_id => "easter(year)-49", :type => :informal, :name => "Fastelavn", :regions => [:dk, :no]},
             {:function => lambda { |year| Holidays.easter(year)-7 }, :function_id => "easter(year)-7", :name => "Palmesøndag", :regions => [:dk, :no]},
@@ -91,27 +69,6 @@ module Holidays
             {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Sexta-feira Santa", :regions => [:pt]},
             {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Páscoa", :regions => [:pt]},
             {:function => lambda { |year| Holidays.easter(year)+60 }, :function_id => "easter(year)+60", :name => "Corpo de Deus", :regions => [:pt]}],
-      11 => [{:mday => 17, :name => "Den boje za svobodu a demokracii", :regions => [:cz]},
-            {:mday => 10, :type => :informal, :name => "Mortensaften", :regions => [:dk]},
-            {:mday => 1, :name => "Allerheiligen", :regions => [:de_bw, :de_by, :de_nw, :de_rp, :de_sl]},
-            {:function => lambda { |year| Holidays.de_buss_und_bettag(year) }, :function_id => "de_buss_und_bettag(year)", :name => "Buß- und Bettag", :regions => [:de_sn]},
-            {:mday => 1, :name => "Todos los Santos", :regions => [:es]},
-            {:mday => 1, :name => "Toussaint", :regions => [:fr]},
-            {:mday => 11, :name => "Armistice 1918", :regions => [:fr]},
-            {:mday => 5, :type => :informal, :name => "Guy Fawkes Day", :regions => [:gb]},
-            {:mday => 16, :name => "Dagur íslenskrar tungu", :regions => [:is]},
-            {:mday => 1, :name => "Ognissanti", :regions => [:it]},
-            {:mday => 1, :name => "Todos os Santos", :regions => [:pt]}],
-      6 => [{:mday => 5, :name => "Grundlovsdag", :regions => [:dk]},
-            {:mday => 15, :type => :informal, :name => "Valdemarsdag og Genforeningsdag", :regions => [:dk]},
-            {:mday => 23, :type => :informal, :name => "Sankt Hans aften", :regions => [:dk]},
-            {:mday => 9, :name => "Día de la Región de Murcia", :regions => [:es_mu]},
-            {:mday => 9, :name => "Día de La Rioja", :regions => [:es_lo]},
-            {:wday => 1, :week => 1, :name => "Bank Holiday", :regions => [:ie]},
-            {:mday => 3, :type => :informal, :name => "Sjómannadagurinn", :regions => [:is]},
-            {:mday => 17, :name => "Lýðveldisdagurinn", :regions => [:is]},
-            {:mday => 2, :name => "Festa della Repubblica", :regions => [:it]},
-            {:mday => 10, :name => "Dia de Portugal", :regions => [:pt]}],
       1 => [{:mday => 1, :name => "Den obnovy samostatného českého státu", :regions => [:cz]},
             {:mday => 1, :name => "Nytårsdag", :regions => [:dk]},
             {:mday => 1, :name => "Neujahrstag", :regions => [:de]},
@@ -129,6 +86,57 @@ module Holidays
             {:mday => 1, :name => "Nieuwjaar", :regions => [:nl]},
             {:mday => 1, :name => "Nyttårsdag", :regions => [:no]},
             {:mday => 1, :name => "Ano Novo", :regions => [:pt]}],
+      5 => [{:mday => 1, :name => "Svátek práce", :regions => [:cz]},
+            {:mday => 8, :name => "Den vítězství", :regions => [:cz]},
+            {:mday => 1, :name => "Arbejdernes kampdag", :regions => [:dk]},
+            {:mday => 5, :type => :informal, :name => "Danmarks befrielse", :regions => [:dk]},
+            {:mday => 1, :name => "Tag der Arbeit", :regions => [:de]},
+            {:mday => 1, :name => "Día del Trabajador", :regions => [:es]},
+            {:mday => 2, :name => "Fiesta de la Comunidad", :regions => [:es_m]},
+            {:mday => 30, :name => "Día de las Canarias", :regions => [:es_cn]},
+            {:mday => 31, :name => "Día de la Región Castilla-La Mancha", :regions => [:es_cm]},
+            {:mday => 1, :name => "Fête du travail", :regions => [:fr]},
+            {:mday => 8, :name => "Victoire 1945", :regions => [:fr]},
+            {:wday => 1, :week => 1, :name => "May Day", :regions => [:gb, :ie]},
+            {:mday => 9, :name => "Liberation Day", :regions => [:je, :gb_jsy, :gg, :gb_gsy]},
+            {:wday => 1, :week => -1, :name => "Bank Holiday", :regions => [:gb]},
+            {:mday => 1, :name => "Verkalýðsdagurinn", :regions => [:is]},
+            {:mday => 13, :name => "Mæðradagurinn", :regions => [:is]},
+            {:mday => 1, :name => "Festa dei Lavoratori", :regions => [:it]},
+            {:mday => 4, :name => "Dodenherdenking", :regions => [:nl]},
+            {:mday => 5, :name => "Bevrijdingsdag", :regions => [:nl]},
+            {:mday => 1, :name => "1. mai", :regions => [:no]},
+            {:mday => 17, :name => "17. mai", :regions => [:no]},
+            {:mday => 1, :name => "Dia do Trabalhador", :regions => [:pt]}],
+      7 => [{:mday => 5, :name => "Den slovanských věrozvěstů Cyrila a Metoděje", :regions => [:cz]},
+            {:mday => 6, :name => "Den upálení mistra Jana Husa", :regions => [:cz]},
+            {:mday => 23, :name => "Santiago Apostol", :regions => [:es_ga]},
+            {:mday => 14, :name => "Fête nationale", :regions => [:fr]},
+            {:mday => 5, :name => "Tynwald Day", :regions => [:im, :gb_iom]},
+            {:mday => 12, :name => "Battle of the Boyne", :regions => [:gb_nir]}],
+      9 => [{:mday => 28, :name => "Den české státnosti", :regions => [:cz]},
+            {:mday => 2, :name => "Día de Ceuta", :regions => [:es_ce]},
+            {:mday => 8, :name => "Día de Asturias", :regions => [:es_o]},
+            {:mday => 8, :name => "Día de Extremadura", :regions => [:es_ex]},
+            {:mday => 11, :name => "Fiesta Nacional de Cataluña", :regions => [:es_ct]}],
+      10 => [{:mday => 28, :name => "Den vzniku samostatného československého státu", :regions => [:cz]},
+            {:mday => 3, :name => "Tag der Deutschen Einheit", :regions => [:de]},
+            {:mday => 31, :name => "Reformationstag", :regions => [:de_bb, :de_mv, :de_sn, :de_st, :de_th]},
+            {:mday => 9, :name => "Día de Valencia", :regions => [:es_vc, :es_v]},
+            {:mday => 12, :name => "Día de la Hispanidad", :regions => [:es]},
+            {:wday => 1, :week => -1, :name => "Bank Holiday", :regions => [:ie]},
+            {:mday => 5, :name => "Implantação da República", :regions => [:pt]}],
+      11 => [{:mday => 17, :name => "Den boje za svobodu a demokracii", :regions => [:cz]},
+            {:mday => 10, :type => :informal, :name => "Mortensaften", :regions => [:dk]},
+            {:mday => 1, :name => "Allerheiligen", :regions => [:de_bw, :de_by, :de_nw, :de_rp, :de_sl]},
+            {:function => lambda { |year| Holidays.de_buss_und_bettag(year) }, :function_id => "de_buss_und_bettag(year)", :name => "Buß- und Bettag", :regions => [:de_sn]},
+            {:mday => 1, :name => "Todos los Santos", :regions => [:es]},
+            {:mday => 1, :name => "Toussaint", :regions => [:fr]},
+            {:mday => 11, :name => "Armistice 1918", :regions => [:fr]},
+            {:mday => 5, :type => :informal, :name => "Guy Fawkes Day", :regions => [:gb]},
+            {:mday => 16, :name => "Dagur íslenskrar tungu", :regions => [:is]},
+            {:mday => 1, :name => "Ognissanti", :regions => [:it]},
+            {:mday => 1, :name => "Todos os Santos", :regions => [:pt]}],
       12 => [{:mday => 24, :name => "Štědrý den", :regions => [:cz]},
             {:mday => 25, :name => "1. svátek vánoční", :regions => [:cz]},
             {:mday => 26, :name => "2. svátek vánoční", :regions => [:cz]},
@@ -162,31 +170,6 @@ module Holidays
             {:mday => 1, :name => "Restauração da Independência", :regions => [:pt]},
             {:mday => 8, :name => "Imaculada Conceição", :regions => [:pt]},
             {:mday => 25, :name => "Natal", :regions => [:pt]}],
-      7 => [{:mday => 5, :name => "Den slovanských věrozvěstů Cyrila a Metoděje", :regions => [:cz]},
-            {:mday => 6, :name => "Den upálení mistra Jana Husa", :regions => [:cz]},
-            {:mday => 23, :name => "Santiago Apostol", :regions => [:es_ga]},
-            {:mday => 14, :name => "Fête nationale", :regions => [:fr]},
-            {:mday => 5, :name => "Tynwald Day", :regions => [:im, :gb_iom]},
-            {:mday => 12, :name => "Battle of the Boyne", :regions => [:gb_nir]}],
-      2 => [{:mday => 28, :name => "Día de Andalucía", :regions => [:es_an]},
-            {:mday => 18, :type => :informal, :name => "Konudagur", :regions => [:is]}],
-      8 => [{:mday => 15, :name => "Mariä Himmelfahrt", :regions => [:de_by, :de_sl]},
-            {:mday => 15, :name => "Asunción", :regions => [:es]},
-            {:mday => 15, :name => "Assomption", :regions => [:fr]},
-            {:wday => 1, :week => 1, :name => "Bank Holiday", :regions => [:gb_sct, :ie]},
-            {:wday => 1, :week => -1, :name => "Bank Holiday", :regions => [:gb_eng, :gb_wls, :gb_eaw, :gb_nir]},
-            {:wday => 1, :week => 1, :name => "Frídagur verslunarmanna", :regions => [:is]},
-            {:mday => 15, :name => "Assunzione", :regions => [:it]},
-            {:mday => 15, :name => "Assunção de Nossa Senhora", :regions => [:pt]}],
-      3 => [{:mday => 1, :name => "Día de las Islas Baleares", :regions => [:es_ib]},
-            {:mday => 19, :name => "San José", :regions => [:es_v, :es_vc, :es_cm, :es_mu, :es_m]},
-            {:mday => 5, :name => "St. Piran's Day", :regions => [:gb_con]},
-            {:mday => 17, :name => "St. Patrick's Day", :regions => [:gb_nir, :ie]}],
-      9 => [{:mday => 28, :name => "Den české státnosti", :regions => [:cz]},
-            {:mday => 2, :name => "Día de Ceuta", :regions => [:es_ce]},
-            {:mday => 8, :name => "Día de Asturias", :regions => [:es_o]},
-            {:mday => 8, :name => "Día de Extremadura", :regions => [:es_ex]},
-            {:mday => 11, :name => "Fiesta Nacional de Cataluña", :regions => [:es_ct]}],
       4 => [{:mday => 1, :type => :informal, :name => "1. april", :regions => [:dk]},
             {:mday => 9, :type => :informal, :name => "Danmarks besættelse", :regions => [:dk]},
             {:mday => 16, :type => :informal, :name => "Dronningens fødselsdag", :regions => [:dk]},
@@ -196,27 +179,32 @@ module Holidays
             {:mday => 25, :name => "Festa della Liberazione", :regions => [:it]},
             {:mday => 30, :name => "Koninginnedag", :regions => [:nl]},
             {:mday => 25, :name => "Dia da Liberdade", :regions => [:pt]}],
-      10 => [{:mday => 28, :name => "Den vzniku samostatného československého státu", :regions => [:cz]},
-            {:mday => 3, :name => "Tag der Deutschen Einheit", :regions => [:de]},
-            {:mday => 31, :name => "Reformationstag", :regions => [:de_bb, :de_mv, :de_sn, :de_st, :de_th]},
-            {:mday => 9, :name => "Día de Valencia", :regions => [:es_vc, :es_v]},
-            {:mday => 12, :name => "Día de la Hispanidad", :regions => [:es]},
-            {:wday => 1, :week => -1, :name => "Bank Holiday", :regions => [:ie]},
-            {:mday => 5, :name => "Implantação da República", :regions => [:pt]}]
+      6 => [{:mday => 5, :name => "Grundlovsdag", :regions => [:dk]},
+            {:mday => 15, :type => :informal, :name => "Valdemarsdag og Genforeningsdag", :regions => [:dk]},
+            {:mday => 23, :type => :informal, :name => "Sankt Hans aften", :regions => [:dk]},
+            {:mday => 9, :name => "Día de la Región de Murcia", :regions => [:es_mu]},
+            {:mday => 9, :name => "Día de La Rioja", :regions => [:es_lo]},
+            {:wday => 1, :week => 1, :name => "Bank Holiday", :regions => [:ie]},
+            {:mday => 3, :type => :informal, :name => "Sjómannadagurinn", :regions => [:is]},
+            {:mday => 17, :name => "Lýðveldisdagurinn", :regions => [:is]},
+            {:mday => 2, :name => "Festa della Repubblica", :regions => [:it]},
+            {:mday => 10, :name => "Dia de Portugal", :regions => [:pt]}],
+      8 => [{:mday => 15, :name => "Mariä Himmelfahrt", :regions => [:de_by, :de_sl]},
+            {:mday => 15, :name => "Asunción", :regions => [:es]},
+            {:mday => 15, :name => "Assomption", :regions => [:fr]},
+            {:wday => 1, :week => 1, :name => "Bank Holiday", :regions => [:gb_sct, :ie]},
+            {:wday => 1, :week => -1, :name => "Bank Holiday", :regions => [:gb_eng, :gb_wls, :gb_eaw, :gb_nir]},
+            {:wday => 1, :week => 1, :name => "Frídagur verslunarmanna", :regions => [:is]},
+            {:mday => 15, :name => "Assunzione", :regions => [:it]},
+            {:mday => 15, :name => "Assunção de Nossa Senhora", :regions => [:pt]}],
+      2 => [{:mday => 28, :name => "Día de Andalucía", :regions => [:es_an]},
+            {:mday => 18, :type => :informal, :name => "Konudagur", :regions => [:is]}],
+      3 => [{:mday => 1, :name => "Día de las Islas Baleares", :regions => [:es_ib]},
+            {:mday => 19, :name => "San José", :regions => [:es_v, :es_vc, :es_cm, :es_mu, :es_m]},
+            {:mday => 5, :name => "St. Piran's Day", :regions => [:gb_con]},
+            {:mday => 17, :name => "St. Patrick's Day", :regions => [:gb_nir, :ie]}]
     }
   end
-
-# Iceland: first day of summer (Thursday after 18 April)
-def self.is_sumardagurinn_fyrsti(year)
-  date = Date.civil(year,4,18)
-  if date.wday < 4
-    date += (4 - date.wday)
-  else date
-    date += (11 - date.wday)
-  end
-  date
-end
-
 
 # Germany: Wednesday before November 23
 def self.de_buss_und_bettag(year)
@@ -225,6 +213,18 @@ def self.de_buss_und_bettag(year)
     date -= (date.wday - 3)
   else
     date -= (date.wday + 4)
+  end
+  date
+end
+
+
+# Iceland: first day of summer (Thursday after 18 April)
+def self.is_sumardagurinn_fyrsti(year)
+  date = Date.civil(year,4,18)
+  if date.wday < 4
+    date += (4 - date.wday)
+  else date
+    date += (11 - date.wday)
   end
   date
 end

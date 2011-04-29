@@ -15,15 +15,15 @@ module Holidays
     DEFINED_REGIONS = [:nyse]
 
     HOLIDAYS_BY_MONTH = {
-      5 => [{:wday => 1, :week => -1, :name => "Memorial Day", :regions => [:nyse]}],
       0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Good Friday", :regions => [:nyse]}],
-      11 => [{:wday => 4, :week => 4, :name => "Thanksgiving", :regions => [:nyse]}],
       1 => [{:mday => 1, :name => "New Year's Day", :regions => [:nyse]},
             {:wday => 1, :week => 3, :name => "Martin Luther King, Jr. Day", :regions => [:nyse]}],
-      12 => [{:mday => 25, :observed => lambda { |date| Holidays.to_weekday_if_weekend(date) }, :observed_id => "to_weekday_if_weekend", :name => "Christmas Day", :regions => [:nyse]}],
-      7 => [{:mday => 4, :observed => lambda { |date| Holidays.to_weekday_if_weekend(date) }, :observed_id => "to_weekday_if_weekend", :name => "Independence Day", :regions => [:nyse]}],
       2 => [{:wday => 1, :week => 3, :name => "Presidents' Day", :regions => [:nyse]}],
-      9 => [{:wday => 1, :week => 1, :name => "Labor Day", :regions => [:nyse]}]
+      5 => [{:wday => 1, :week => -1, :name => "Memorial Day", :regions => [:nyse]}],
+      7 => [{:mday => 4, :observed => lambda { |date| Holidays.to_weekday_if_weekend(date) }, :observed_id => "to_weekday_if_weekend", :name => "Independence Day", :regions => [:nyse]}],
+      9 => [{:wday => 1, :week => 1, :name => "Labor Day", :regions => [:nyse]}],
+      11 => [{:wday => 4, :week => 4, :name => "Thanksgiving", :regions => [:nyse]}],
+      12 => [{:mday => 25, :observed => lambda { |date| Holidays.to_weekday_if_weekend(date) }, :observed_id => "to_weekday_if_weekend", :name => "Christmas Day", :regions => [:nyse]}]
     }
   end
 

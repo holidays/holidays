@@ -15,8 +15,6 @@ module Holidays
     DEFINED_REGIONS = [:dk]
 
     HOLIDAYS_BY_MONTH = {
-      5 => [{:mday => 1, :name => "Arbejdernes kampdag", :regions => [:dk]},
-            {:mday => 5, :type => :informal, :name => "Danmarks befrielse", :regions => [:dk]}],
       0 => [{:function => lambda { |year| Holidays.easter(year)-49 }, :function_id => "easter(year)-49", :type => :informal, :name => "Fastelavn", :regions => [:dk]},
             {:function => lambda { |year| Holidays.easter(year)-7 }, :function_id => "easter(year)-7", :name => "Palmesøndag", :regions => [:dk]},
             {:function => lambda { |year| Holidays.easter(year)-3 }, :function_id => "easter(year)-3", :name => "Skærtorsdag", :regions => [:dk]},
@@ -27,18 +25,20 @@ module Holidays
             {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Kristi Himmelfartsdag", :regions => [:dk]},
             {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "Pinsedag", :regions => [:dk]},
             {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "2. Pinsedag", :regions => [:dk]}],
-      11 => [{:mday => 10, :type => :informal, :name => "Mortensaften", :regions => [:dk]}],
+      1 => [{:mday => 1, :name => "Nytårsdag", :regions => [:dk]}],
+      4 => [{:mday => 1, :type => :informal, :name => "1. april", :regions => [:dk]},
+            {:mday => 9, :type => :informal, :name => "Danmarks besættelse", :regions => [:dk]},
+            {:mday => 16, :type => :informal, :name => "Dronningens fødselsdag", :regions => [:dk]}],
+      5 => [{:mday => 1, :name => "Arbejdernes kampdag", :regions => [:dk]},
+            {:mday => 5, :type => :informal, :name => "Danmarks befrielse", :regions => [:dk]}],
       6 => [{:mday => 5, :name => "Grundlovsdag", :regions => [:dk]},
             {:mday => 15, :type => :informal, :name => "Valdemarsdag og Genforeningsdag", :regions => [:dk]},
             {:mday => 23, :type => :informal, :name => "Sankt Hans aften", :regions => [:dk]}],
-      1 => [{:mday => 1, :name => "Nytårsdag", :regions => [:dk]}],
+      11 => [{:mday => 10, :type => :informal, :name => "Mortensaften", :regions => [:dk]}],
       12 => [{:mday => 13, :type => :informal, :name => "Sankt Lucia", :regions => [:dk]},
             {:mday => 24, :name => "Juleaftensdag", :regions => [:dk]},
             {:mday => 25, :name => "1. juledag", :regions => [:dk]},
-            {:mday => 26, :name => "2. juledag", :regions => [:dk]}],
-      4 => [{:mday => 1, :type => :informal, :name => "1. april", :regions => [:dk]},
-            {:mday => 9, :type => :informal, :name => "Danmarks besættelse", :regions => [:dk]},
-            {:mday => 16, :type => :informal, :name => "Dronningens fødselsdag", :regions => [:dk]}]
+            {:mday => 26, :name => "2. juledag", :regions => [:dk]}]
     }
   end
 

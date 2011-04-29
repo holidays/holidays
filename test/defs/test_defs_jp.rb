@@ -40,7 +40,7 @@ end
   assert_equal '秋分の日', Holidays.on(date, :jp)[0][:name]
 end
 
-# citizons holiday
+# citizens holiday
 [Date.civil(2032,9,21), Date.civil(2049,9,21), Date.civil(2009,9,22),
  Date.civil(2015,9,22), Date.civil(2026,9,22)].each do |date|
   assert_equal '国民の休日', Holidays.on(date, :jp)[0][:name]
