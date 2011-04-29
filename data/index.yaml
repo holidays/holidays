@@ -2,6 +2,7 @@
 --- 
 defs:
   AU: ['au.yaml']
+  BR: ['br.yaml']
   CA: ['ca.yaml', 'north_america_informal.yaml']
   CZ: ['cz.yaml']
   DK: ['dk.yaml']
