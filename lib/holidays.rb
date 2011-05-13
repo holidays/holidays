@@ -236,8 +236,7 @@ module Holidays
         offset = (year - 1700).divmod(100)[0] + ((year - year.divmod(100)[1]).divmod(400)[1] == 0 ? 0 : 1) - (year - year.divmod(100)[1] - 1700).divmod(400)[0] + 10
     end
     # add offset to the julian day 
-    g_date_array = Date.jd_to_civil(j_date.jd + offset)
-    return Date.civil(g_date_array[0], g_date_array[1], g_date_array[2])
+    return Date.jd(j_date.jd + offset)
   end
 
   # Move date to Monday if it occurs on a Sunday.
