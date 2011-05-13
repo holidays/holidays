@@ -1,4 +1,7 @@
 = Ruby Holidays Gem CHANGELOG
+
+== 1.0.2
+* Add `orthodox_easter` method and Greek holiday definitions (thanks https://github.com/ddimitriadis)
   
 == 1.0.0
 * Support calculating mday from negative weeks other than -1 (thanks http://github.com/bjeanes)
