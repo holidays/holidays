@@ -211,6 +211,34 @@ module Holidays
     day = ((h + l - 7 * m + 114) % 31) + 1
     Date.civil(year, month, day)
   end
+  
+  # A method to calculate the orthodox easter date, returns date in the Gregorian (western) calendar
+  # Safe until appr. 4100 AD, when one leap day will be removed.
+  # Returns a Date object.
+  def self.orthodox_easter(year)
+    y = year
+    g = y % 19
+    i = (19 * g + 15) % 30
+    j = (year + year/4 + i) % 7
+    j_month = 3 + (i - j + 40) / 44
+    j_day = i - j + 28 - 31 * (j_month / 4)
+    j_date = Date.civil(year, j_month, j_day)
+    case
+      # up until 1582, julian and gregorian easter dates were identical
+      when year <= 1582
+        offset = 0
+      # between the years 1583 and 1699 10 days are added to the julian day count
+      when (year >= 1583 and year <= 1699)
+        offset = 10
+      # after 1700, 1 day is added for each century, except if the century year is exactly divisible by 400 (in which case no days are added). 
+      # Safe until 4100 AD, when one leap day will be removed.
+      when year >= 1700 
+        offset = (year - 1700).divmod(100)[0] + ((year - year.divmod(100)[1]).divmod(400)[1] == 0 ? 0 : 1) - (year - year.divmod(100)[1] - 1700).divmod(400)[0] + 10
+    end
+    # add offset to the julian day 
+    g_date_array = Date.jd_to_civil(j_date.jd + offset)
+    return Date.civil(g_date_array[0], g_date_array[1], g_date_array[2])
+  end
 
   # Move date to Monday if it occurs on a Sunday.
   # Used as a callback function.

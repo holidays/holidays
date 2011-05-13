@@ -102,6 +102,14 @@ class HolidaysTests < Test::Unit::TestCase
     assert_equal '2067-04-03', Holidays.easter(2067).to_s
     assert_equal '2099-04-12', Holidays.easter(2099).to_s
   end
+  
+  def test_orthodox_easter
+    assert_equal '2000-04-30', Holidays.orthodox_easter(2000).to_s
+    assert_equal '2008-04-27', Holidays.orthodox_easter(2008).to_s
+    assert_equal '2009-04-19', Holidays.orthodox_easter(2009).to_s
+    assert_equal '2011-04-24', Holidays.orthodox_easter(2011).to_s
+    assert_equal '2020-04-19', Holidays.orthodox_easter(2020).to_s
+  end
 
   def test_easter_lambda
     [Date.civil(1800,4,11), Date.civil(1899,3,31), Date.civil(1900,4,13),
