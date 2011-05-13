@@ -1,0 +1,107 @@
+# Greek holiday definitions for the Ruby Holiday gem.
+#
+# Created: 2011-05-11.
+# Sources:
+    # http://www.assa.org.au/edm.html
+    # http://fotios.org/node/1104
+    # http://www.faqs.org/faqs/calendars/faq/
+    # http://5dspace-time.org/Calendar/Algorithm.html - for offsets
+    # http://el.wikipedia.org/wiki/Επίσημες_αργίες_στην_Ελλάδα - for holidays
+    # http://www.eortologio.gr/arthra/pasxa.php - for holidays
+--- 
+months:
+  0: 
+  - name: Μεγάλη Παρασκευή
+    regions: [el]
+    function: orthodox_easter(year)-2
+  - name: Μεγάλο Σάββατο
+    regions: [el]
+    function: orthodox_easter(year)-1
+  - name: Κυριακή του Πάσχα
+    regions: [el]
+    function: orthodox_easter(year)
+  - name: Δευτέρα του Πάσχα
+    regions: [el]
+    function: orthodox_easter(year)+1
+  - name: Καθαρά Δευτέρα
+    regions: [el]
+    function: orthodox_easter(year)-48
+  - name: Αγίου Πνεύματος
+    regions: [el]
+    function: orthodox_easter(year)+50
+  1: 
+  - name: Πρωτοχρονιά
+    regions: [el]
+    mday: 1
+  - name: Θεοφάνεια
+    regions: [el]
+    mday: 6
+  3:
+  - name: Επέτειος της Επανάστασης του 1821
+    regions: [el]
+    mday: 25
+  5:
+  - name: Πρωτομαγιά
+    regions: [el]
+    mday: 1
+  8: 
+  - name: Κοίμηση της Θεοτόκου
+    regions: [el]
+    mday: 15
+  10:
+  - name: Επέτειος του Όχι
+    regions: [el]
+    mday: 28      
+  12: 
+  - name: Χριστούγεννα
+    regions: [el]
+    mday: 25
+  - name: Δεύτερη ημέρα των Χριστουγέννων
+    regions: [el]
+    mday: 26
+methods:
+  orthodox_easter: |
+    # A method to calculate the orthodox easter date, returns date in the Gregorian (western) calendar
+    # Safe until appr. 4100 AD, when one leap day will be removed
+    def self.orthodox_easter(year)
+      y = year
+      g = y % 19
+      i = (19 * g + 15) % 30
+      j = (year + year/4 + i) % 7
+      j_month = 3 + (i - j + 40) / 44
+      j_day = i - j + 28 - 31 * (j_month / 4)
+      j_date = Date.civil(year, j_month, j_day)
+      case
+        # up until 1582, julian and gregorian easter dates were identical
+        when year <= 1582
+          offset = 0
+        # between the years 1583 and 1699 10 days are added to the julian day count
+        when (year >= 1583 and year <= 1699)
+          offset = 10
+        # after 1700, 1 day is added for each century, except if the century year is exactly divisible by 400 (in which case no days are added). 
+        # Safe until 4100 AD, when one leap day will be removed.
+        when year >= 1700 
+          offset = (year - 1700).divmod(100)[0] + ((year - year.divmod(100)[1]).divmod(400)[1] == 0 ? 0 : 1) - (year - year.divmod(100)[1] - 1700).divmod(400)[0] + 10
+      end
+      # add offset to the julian day 
+      g_date_array = Date.jd_to_civil(j_date.jd + offset)
+      return Date.civil(g_date_array[0], g_date_array[1], g_date_array[2])
+    end
+tests: |
+    {Date.civil(2011,1,1) => 'Πρωτοχρονιά', 
+     Date.civil(2011,1,6) => 'Θεοφάνεια',
+     Date.civil(2011,4,22) => 'Μεγάλη Παρασκευή', 
+     Date.civil(1970,4,25) => 'Μεγάλο Σάββατο', 
+     Date.civil(1985,4,14) => 'Κυριακή του Πάσχα', 
+     Date.civil(2011,4,24) => 'Κυριακή του Πάσχα', 
+     Date.civil(2027,5,2) => 'Κυριακή του Πάσχα', 
+     Date.civil(2046,4,30) => 'Δευτέρα του Πάσχα',
+     Date.civil(2011,5,1) => 'Πρωτομαγιά',
+     Date.civil(2011,6,13) => 'Αγίου Πνεύματος',
+     Date.civil(2012,6,4) => 'Αγίου Πνεύματος',
+     Date.civil(2011,3,7) => 'Καθαρά Δευτέρα',
+     Date.civil(2012,2,27) => 'Καθαρά Δευτέρα',
+     Date.civil(2011,12,25) => 'Χριστούγεννα',
+     Date.civil(2011,12,26) => 'Δεύτερη ημέρα των Χριστουγέννων'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :el, :informal)[0] || {})[:name]
+    end
