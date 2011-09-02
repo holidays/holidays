@@ -1,5 +1,8 @@
 = Ruby Holidays Gem CHANGELOG
 
+== 1.0.3
+* Add Austrian holiday definitions (thanks to Vogel Siegfried)
+
 == 1.0.2
 * Add `orthodox_easter` method and Greek holiday definitions (thanks https://github.com/ddimitriadis)
   

@@ -43,7 +43,7 @@ module Holidays
   # Exception thrown when an unknown region is requested.
   class UnknownRegionError < ArgumentError; end
 
-  VERSION = '1.0.2'
+  VERSION = '1.0.3'
 
   @@regions = []
   @@holidays_by_month = {}
