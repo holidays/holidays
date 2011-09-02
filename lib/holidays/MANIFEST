@@ -1,12 +1,14 @@
 ==== Regional definitions
 The following definition files are included in this installation:
 
+* holidays/at
 * holidays/au
 * holidays/br
 * holidays/ca
 * holidays/cz
 * holidays/de
 * holidays/dk
+* holidays/el
 * holidays/es
 * holidays/europe
 * holidays/fi

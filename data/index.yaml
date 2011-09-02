@@ -1,6 +1,7 @@
 # Definition build list
 --- 
 defs:
+  AT: ['at.yaml']
   AU: ['au.yaml']
   BR: ['br.yaml']
   CA: ['ca.yaml', 'north_america_informal.yaml']
@@ -28,5 +29,5 @@ defs:
   ZA: ['za.yaml']
   North_America: ['ca.yaml', 'mx.yaml', 'us.yaml', 'north_america_informal.yaml']
   Scandinavia: ['dk.yaml', 'is.yaml', 'no.yaml', 'se.yaml', 'fi.yaml']
-  Europe: ['cz.yaml', 'dk.yaml', 'de.yaml', 'el.yaml', 'es.yaml', 'fr.yaml', 'gb.yaml', 'ie.yaml', 'is.yaml', 'it.yaml', 'nl.yaml', 'no.yaml', 'pt.yaml']
+  Europe: ['at.yaml', 'cz.yaml', 'dk.yaml', 'de.yaml', 'el.yaml', 'es.yaml', 'fr.yaml', 'gb.yaml', 'ie.yaml', 'is.yaml', 'it.yaml', 'nl.yaml', 'no.yaml', 'pt.yaml']
   JP: ['jp.yaml']
