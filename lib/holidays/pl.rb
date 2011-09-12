@@ -58,13 +58,13 @@ module Holidays
     }
   end
 
-# January 6 is holiday since 2011
+# Poland: January 6 is holiday since 2011
 def self.pl_trzech_kroli(year)
   year >= 2011 ? 6 : nil
 end
 
 
-# January 6 wasn't holiday before 2011
+# Poland: January 6 wasn't holiday before 2011
 def self.pl_trzech_kroli_informal(year)
   year < 2011 ? 6 : nil
 end
