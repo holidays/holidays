@@ -100,7 +100,7 @@ begin
     gemspec.homepage = "https://github.com/alexdunae/holidays"
     gemspec.version = Holidays::VERSION
     gemspec.authors = ["Alex Dunae", "Rowan Crawford"]
-    gemspec.add_development_dependency('rdoc', '>= 2.4.2')
+    gemspec.add_development_dependency 'rdoc', '>= 2.4.2'
   end
 rescue LoadError
   puts "Jeweler not available. Install it with: gem install jeweler"

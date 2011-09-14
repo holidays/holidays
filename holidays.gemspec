@@ -136,16 +136,13 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<holidays>, [">= 0"])
-      s.add_development_dependency(%q<rake>, [">= 2.4.2"])
       s.add_development_dependency(%q<rdoc>, [">= 2.4.2"])
     else
       s.add_dependency(%q<holidays>, [">= 0"])
-      s.add_dependency(%q<rake>, [">= 2.4.2"])
       s.add_dependency(%q<rdoc>, [">= 2.4.2"])
     end
   else
     s.add_dependency(%q<holidays>, [">= 0"])
-    s.add_dependency(%q<rake>, [">= 2.4.2"])
     s.add_dependency(%q<rdoc>, [">= 2.4.2"])
   end
 end
