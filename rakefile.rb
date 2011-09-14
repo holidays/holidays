@@ -1,12 +1,14 @@
 $:.unshift File.expand_path('../lib', __FILE__)
 require 'rake'
 require 'rake/testtask'
-require 'rake/rdoctask'
-require 'rake/gempackagetask'
+require 'rdoc/task'
+require 'rubygems/package_task'
 require 'yaml'
 require 'fileutils'
 require 'holidays'
 require File.expand_path('data/build_defs')
+
+task :default => :test
 
 desc 'Run all tests'
 task :test => ["test:lib", "test:defs"]
@@ -30,7 +32,7 @@ end
 task :doc => ["defs:manifest", :rdoc]
 
 desc 'Generate documentation.'
-Rake::RDocTask.new(:rdoc) do |rdoc|
+RDoc::Task.new do |rdoc|
   rdoc.rdoc_dir = 'doc'
   rdoc.title    = 'Ruby Holidays Gem'
   rdoc.options << '--all' << '--inline-source' << '--line-numbers'
