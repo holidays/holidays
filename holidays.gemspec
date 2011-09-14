@@ -4,19 +4,20 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{holidays}
+  s.name = "holidays"
   s.version = "1.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alex Dunae", "Rowan Crawford"]
-  s.date = %q{2011-09-02}
-  s.description = %q{A collection of Ruby methods to deal with statutory and other holidays.  You deserve a holiday!}
-  s.email = %q{code@dunae.ca}
+  s.date = "2011-09-14"
+  s.description = "A collection of Ruby methods to deal with statutory and other holidays.  You deserve a holiday!"
+  s.email = "code@dunae.ca"
   s.extra_rdoc_files = [
     "LICENSE",
     "README.rdoc"
   ]
   s.files = [
+    ".travis.yml",
     "CHANGELOG",
     "LICENSE",
     "README.rdoc",
@@ -46,6 +47,7 @@ Gem::Specification.new do |s|
     "data/north_america_informal.yaml",
     "data/nyse.yaml",
     "data/nz.yaml",
+    "data/pl.yaml",
     "data/pt.yaml",
     "data/se.yaml",
     "data/united_nations.yaml",
@@ -78,6 +80,7 @@ Gem::Specification.new do |s|
     "lib/holidays/north_america.rb",
     "lib/holidays/nyse.rb",
     "lib/holidays/nz.rb",
+    "lib/holidays/pl.rb",
     "lib/holidays/pt.rb",
     "lib/holidays/scandinavia.rb",
     "lib/holidays/se.rb",
@@ -109,30 +112,37 @@ Gem::Specification.new do |s|
     "test/defs/test_defs_north_america.rb",
     "test/defs/test_defs_nyse.rb",
     "test/defs/test_defs_nz.rb",
+    "test/defs/test_defs_pl.rb",
     "test/defs/test_defs_pt.rb",
     "test/defs/test_defs_scandinavia.rb",
     "test/defs/test_defs_se.rb",
     "test/defs/test_defs_ups.rb",
     "test/defs/test_defs_us.rb",
     "test/defs/test_defs_za.rb",
+    "test/test_all_regions.rb",
     "test/test_date.rb",
     "test/test_helper.rb",
     "test/test_holidays.rb",
     "test/test_multiple_regions.rb"
   ]
-  s.homepage = %q{https://github.com/alexdunae/holidays}
+  s.homepage = "https://github.com/alexdunae/holidays"
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.6}
-  s.summary = %q{A collection of Ruby methods to deal with statutory and other holidays.  You deserve a holiday!}
+  s.rubygems_version = "1.8.10"
+  s.summary = "A collection of Ruby methods to deal with statutory and other holidays.  You deserve a holiday!"
 
   if s.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
-    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<holidays>, [">= 0"])
+      s.add_development_dependency(%q<rake>, [">= 2.4.2"])
     else
+      s.add_dependency(%q<holidays>, [">= 0"])
+      s.add_dependency(%q<rake>, [">= 2.4.2"])
     end
   else
+    s.add_dependency(%q<holidays>, [">= 0"])
+    s.add_dependency(%q<rake>, [">= 2.4.2"])
   end
 end
 
