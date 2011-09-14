@@ -15,19 +15,19 @@ module Holidays
     DEFINED_REGIONS = [:at]
 
     HOLIDAYS_BY_MONTH = {
-      5 => [{:mday => 1, :name => "Staatsfeiertag", :regions => [:at]}],
       0 => [{:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Ostermontag", :regions => [:at]},
             {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Christi Himmelfahrt", :regions => [:at]},
             {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pfingstmontag", :regions => [:at]},
             {:function => lambda { |year| Holidays.easter(year)+60 }, :function_id => "easter(year)+60", :name => "Fronleichnam", :regions => [:at]}],
-      11 => [{:mday => 1, :name => "Allerheiligen", :regions => [:at]}],
       1 => [{:mday => 1, :name => "Neujahrstag", :regions => [:at]},
             {:mday => 6, :name => "Heilige Drei K√∂nige", :regions => [:at]}],
+      5 => [{:mday => 1, :name => "Staatsfeiertag", :regions => [:at]}],
+      8 => [{:mday => 15, :name => "Mari√§ Himmelfahrt", :regions => [:at]}],
+      10 => [{:mday => 26, :name => "Nationalfeiertag", :regions => [:at]}],
+      11 => [{:mday => 1, :name => "Allerheiligen", :regions => [:at]}],
       12 => [{:mday => 8, :name => "Mari√§ Empf√§ngnis", :regions => [:at]},
             {:mday => 25, :name => "1. Weihnachtstag", :regions => [:at]},
-            {:mday => 26, :name => "2. Weihnachtstag", :regions => [:at]}],
-      8 => [{:mday => 15, :name => "Mari√§ Himmelfahrt", :regions => [:at]}],
-      10 => [{:mday => 26, :name => "Nationalfeiertag", :regions => [:at]}]
+            {:mday => 26, :name => "2. Weihnachtstag", :regions => [:at]}]
     }
   end
 

@@ -15,18 +15,18 @@ module Holidays
     DEFINED_REGIONS = [:it]
 
     HOLIDAYS_BY_MONTH = {
-      5 => [{:mday => 1, :name => "Festa dei Lavoratori", :regions => [:it]}],
       0 => [{:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Pasqua", :regions => [:it]},
             {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Lunedì dell'Angelo", :regions => [:it]}],
-      11 => [{:mday => 1, :name => "Ognissanti", :regions => [:it]}],
-      6 => [{:mday => 2, :name => "Festa della Repubblica", :regions => [:it]}],
       1 => [{:mday => 1, :name => "Capodanno", :regions => [:it]},
             {:mday => 6, :name => "Epifania", :regions => [:it]}],
+      4 => [{:mday => 25, :name => "Festa della Liberazione", :regions => [:it]}],
+      5 => [{:mday => 1, :name => "Festa dei Lavoratori", :regions => [:it]}],
+      6 => [{:mday => 2, :name => "Festa della Repubblica", :regions => [:it]}],
+      8 => [{:mday => 15, :name => "Assunzione", :regions => [:it]}],
+      11 => [{:mday => 1, :name => "Ognissanti", :regions => [:it]}],
       12 => [{:mday => 8, :name => "Immacolata Concezione", :regions => [:it]},
             {:mday => 25, :name => "Natale", :regions => [:it]},
-            {:mday => 26, :name => "Santo Stefano", :regions => [:it]}],
-      8 => [{:mday => 15, :name => "Assunzione", :regions => [:it]}],
-      4 => [{:mday => 25, :name => "Festa della Liberazione", :regions => [:it]}]
+            {:mday => 26, :name => "Santo Stefano", :regions => [:it]}]
     }
   end
 
