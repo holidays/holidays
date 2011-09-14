@@ -22,6 +22,9 @@ require 'date'
 # [<tt>:any</tt>]
 #   Any region.  Return holidays from any loaded region.
 #
+#
+# You can load all the available holiday definition sets by running
+#   Holidays.load_all
 # == Other options
 # [<tt>:observed</tt>]    Return holidays on the day they are observed (e.g. on a Monday if they fall on a Sunday).
 # [<tt>:informal</tt>]    Include informal holidays (e.g. Valentine's Day)
@@ -52,6 +55,7 @@ module Holidays
   WEEKS = {:first => 1, :second => 2, :third => 3, :fourth => 4, :fifth => 5, :last => -1, :second_last => -2, :third_last => -3}
   MONTH_LENGTHS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
   DAY_SYMBOLS = Date::DAYNAMES.collect { |n| n.downcase.intern }
+  DEFINITION_PATH = File.expand_path(File.dirname(__FILE__) + '/holidays/')
 
   # Get all holidays on a given date.
   #
@@ -269,6 +273,19 @@ module Holidays
     date -= 1 if date.wday == 6
     date
   end
+  
+  # Returns an array of symbols all the available holiday definitions.
+  #
+  # Optional `full_path` param is used internally for loading all the definitions.
+  def self.available(full_path = false)
+    paths = Dir.glob(DEFINITION_PATH + '/*.rb')
+    full_path ? paths : paths.collect { |path| path.match(/([a-z_-]+)\.rb/i)[1].to_sym }
+  end
+  
+  # Load all available holiday definitions
+  def self.load_all
+    self.available(true).each { |path| require path }
+  end
 
 private
   # Returns [(arr)regions, (bool)observed, (bool)informal]
@@ -302,7 +319,7 @@ private
     end
 
     regions.flatten!
-
+    
     require "holidays/north_america" if regions.include?(:us) # special case for north_america/US cross-linking
 
     raise UnknownRegionError unless regions.all? { |r| r == :any or @@regions.include?(r) or begin require "holidays/#{r.to_s}"; rescue LoadError; false; end }
