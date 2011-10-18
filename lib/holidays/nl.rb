@@ -18,19 +18,19 @@ module Holidays
 
     def self.holidays_by_month
       {
-              5 => [{:mday => 4, :name => "Dodenherdenking", :regions => [:nl]},
-            {:mday => 5, :name => "Bevrijdingsdag", :regions => [:nl]}],
-      0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Goede Vrijdag", :regions => [:nl]},
+              0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Goede Vrijdag", :regions => [:nl]},
             {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Pasen", :regions => [:nl]},
             {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Pasen", :regions => [:nl]},
             {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Hemelvaartsdag", :regions => [:nl]},
             {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "Pinksteren", :regions => [:nl]},
             {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pinksteren", :regions => [:nl]}],
       1 => [{:mday => 1, :name => "Nieuwjaar", :regions => [:nl]}],
+      4 => [{:mday => 30, :name => "Koninginnedag", :regions => [:nl]}],
+      5 => [{:mday => 4, :name => "Dodenherdenking", :regions => [:nl]},
+            {:mday => 5, :name => "Bevrijdingsdag", :regions => [:nl]}],
       12 => [{:mday => 5, :type => :informal, :name => "Sinterklaas", :regions => [:nl]},
             {:mday => 25, :name => "Kerstmis", :regions => [:nl]},
-            {:mday => 26, :name => "Kerstmis", :regions => [:nl]}],
-      4 => [{:mday => 30, :name => "Koninginnedag", :regions => [:nl]}]
+            {:mday => 26, :name => "Kerstmis", :regions => [:nl]}]
       }
     end
   end

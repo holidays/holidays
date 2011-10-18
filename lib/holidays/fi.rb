@@ -18,16 +18,16 @@ module Holidays
 
     def self.holidays_by_month
       {
-              5 => [{:mday => 1, :name => "Vappu", :regions => [:fi]}],
-      0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Pitkäperjantai", :regions => [:fi]},
+              0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Pitkäperjantai", :regions => [:fi]},
             {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Pääsiäispäivä", :regions => [:fi]},
             {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "2. Pääsiäispäivä", :regions => [:fi]},
             {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Helatorstai", :regions => [:fi]},
             {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "Helluntaipäivä", :regions => [:fi]},
             {:function => lambda { |year| Holidays.fi_pyhainpaiva(year) }, :function_id => "fi_pyhainpaiva(year)", :name => "Pyhäinpäivä", :regions => [:fi]}],
-      6 => [{:function => lambda { |year| Holidays.fi_juhannuspaiva(year) }, :function_id => "fi_juhannuspaiva(year)", :name => "Juhannuspäivä", :regions => [:fi]}],
       1 => [{:mday => 1, :name => "Uudenvuodenpäivä", :regions => [:fi]},
             {:mday => 6, :name => "Loppiainen", :regions => [:fi]}],
+      5 => [{:mday => 1, :name => "Vappu", :regions => [:fi]}],
+      6 => [{:function => lambda { |year| Holidays.fi_juhannuspaiva(year) }, :function_id => "fi_juhannuspaiva(year)", :name => "Juhannuspäivä", :regions => [:fi]}],
       12 => [{:mday => 6, :name => "Itsenäisyyspäivä", :regions => [:fi]},
             {:mday => 24, :name => "Jouluaatto", :regions => [:fi]},
             {:mday => 25, :name => "Joulupäivä", :regions => [:fi]},
@@ -36,17 +36,17 @@ module Holidays
     end
   end
 
-# Finland: All Saint's Day (Saturday between Oct 31 and Nov 6)
-def self.fi_pyhainpaiva(year)
-  date = Date.civil(year,10,31)
+# Finland: Mid-summer (Saturday between June 20–26)
+def self.fi_juhannuspaiva(year)
+  date = Date.civil(year,6,20)
   date += (6 - date.wday)
   date
 end
 
 
-# Finland: Mid-summer (Saturday between June 20–26)
-def self.fi_juhannuspaiva(year)
-  date = Date.civil(year,6,20)
+# Finland: All Saint's Day (Saturday between Oct 31 and Nov 6)
+def self.fi_pyhainpaiva(year)
+  date = Date.civil(year,10,31)
   date += (6 - date.wday)
   date
 end
