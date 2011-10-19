@@ -99,7 +99,7 @@ begin
     gemspec.email = "code@dunae.ca"
     gemspec.homepage = "https://github.com/alexdunae/holidays"
     gemspec.version = Holidays::VERSION
-    gemspec.authors = ["Alex Dunae", "Rowan Crawford"]
+    gemspec.authors = ["Alex Dunae"]
     gemspec.add_development_dependency 'rdoc', '>= 2.4.2'
   end
 rescue LoadError

@@ -1,5 +1,8 @@
 = Ruby Holidays Gem CHANGELOG
 
+== 1.0.4
+* Add Liechtenstein holiday defs (mercy vielmal Bernhard Furtmueller)
+
 == 1.0.3
 * Add Austrian holiday definitions (thanks to Vogel Siegfried)
 
