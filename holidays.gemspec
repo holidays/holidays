@@ -149,8 +149,14 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rake>, [">= 0"])
       s.add_development_dependency(%q<rdoc>, [">= 2.4.2"])
       s.add_development_dependency(%q<rdoc>, [">= 2.4.2"])
+      s.add_development_dependency(%q<rake>, [">= 0"])
+      s.add_development_dependency(%q<rdoc>, [">= 2.4.2"])
+      s.add_development_dependency(%q<rdoc>, [">= 2.4.2"])
     else
       s.add_dependency(%q<holidays>, [">= 0"])
+      s.add_dependency(%q<rdoc>, [">= 2.4.2"])
+      s.add_dependency(%q<rake>, [">= 0"])
+      s.add_dependency(%q<rdoc>, [">= 2.4.2"])
       s.add_dependency(%q<rdoc>, [">= 2.4.2"])
       s.add_dependency(%q<rake>, [">= 0"])
       s.add_dependency(%q<rdoc>, [">= 2.4.2"])
@@ -164,6 +170,9 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<holidays>, [">= 0"])
+    s.add_dependency(%q<rdoc>, [">= 2.4.2"])
+    s.add_dependency(%q<rake>, [">= 0"])
+    s.add_dependency(%q<rdoc>, [">= 2.4.2"])
     s.add_dependency(%q<rdoc>, [">= 2.4.2"])
     s.add_dependency(%q<rake>, [">= 0"])
     s.add_dependency(%q<rdoc>, [">= 2.4.2"])
