@@ -43,14 +43,14 @@ class HolidaysTests < Test::Unit::TestCase
     
     ## Weeks with holidays:
     # New Year's 2012 (on Sunday, observed Monday). Test from a Wednesday.
-    assert_equal (false, Holidays.full_week?(Date.civil(2012,1,4), :us))
+    assert_equal(false, Holidays.full_week?(Date.civil(2012,1,4), :us))
     # Ignore observed holidays with :no_observed
     assert Holidays.full_week?(Date.civil(2012,1,4), :us, :no_observed)
     # Labor Day 2012 should be Sept 3
-    assert_equal (false, Holidays.full_week?(Date.civil(2012,9,5), :us))
+    assert_equal(false, Holidays.full_week?(Date.civil(2012,9,5), :us))
     # Should be 10 non-full weeks in the year (in the US)
-    christmas_week = Date.civil(2012,12,25).cweek
-    holidays_in_2012 = christmas_week.times.count { |week| Holidays.full_week?(Date.commercial(2012,week+1), :us) == false }
+    weeks_in_2012 = Date.commercial(2013, -1).cweek
+    holidays_in_2012 = weeks_in_2012.times.count { |week| Holidays.full_week?(Date.commercial(2012,week+1), :us) == false }
     assert_equal 10, holidays_in_2012
   end
   
