@@ -73,12 +73,10 @@ module Holidays
   # Does the given work-week have any holidays?
   #
   # [<tt>date</tt>]   A Date object.
-  # [<tt>:options</tt>] One or more region symbols, and/or <tt>:informal</tt>. 
-  # Automatically includes <tt>:observed</tt>. If you don't want this, pass <tt>:no_observed</tt>
-  #
-  # Returns true if any holidays fall on Monday - Friday of the given week.
+  # [<tt>:options</tt>] One or more region symbols, and/or <tt>:informal</tt>. Automatically includes <tt>:observed</tt>. If you don't want this, pass <tt>:no_observed</tt>
   #
   # The given Date can be any day of the week.
+  # Returns true if any holidays fall on Monday - Friday of the given week.
   def self.full_week?(date, *options)
     days_to_monday = date.wday - 1
     days_to_friday = 5 - date.wday
