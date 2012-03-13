@@ -1,0 +1,61 @@
+# Hungarian holiday definitions for the Ruby Holiday gem.
+#
+# Updated: 2012-03-01 by spap
+--- 
+months:
+  0: 
+  - name: Húsvét hétfő
+    regions: [hu]
+    function: easter(year)+1
+  - name: Pünkösd hétfő
+    regions: [hu]
+    function: easter(year)+50
+  1:
+  - name: Újév
+    regions: [hu]
+    mday: 1
+  3:
+  - name: 1848/49-es forradalom és szabadságharc ünnepe
+    regions: [hu]
+    mday: 15
+  5:
+  - name: A munka ünnepe
+    regions: [hu]
+    mday: 1
+  8:
+  - name: Az államalapítás ünnepe
+    regions: [hu]
+    mday: 20
+  10:
+  - name: 1956-os forradalom és szabadságharc ünnepe
+    regions: [hu]
+    mday: 23
+  11:
+  - name: Mindenszentek
+    regions: [hu]
+    mday: 1
+  12:
+  - name: Karácsony
+    regions: [hu]
+    mday: 25
+  - name: Karácsony
+    regions: [hu]
+    mday: 26
+tests: |
+    {Date.civil(2012,1,1) => 'Újév', 
+     Date.civil(2011,1,1) => 'Újév', 
+     Date.civil(2012,3,15) => '1848/49-es forradalom és szabadságharc ünnepe',
+     Date.civil(2011,4,25) => 'Húsvét hétfő',
+     Date.civil(2012,4,9) => 'Húsvét hétfő',
+     Date.civil(2012,5,1) => 'A munka ünnepe',
+     Date.civil(2011,6,13) => 'Pünkösd hétfő',
+     Date.civil(2012,5,28) => 'Pünkösd hétfő',
+     Date.civil(2012,8,20) => 'Az államalapítás ünnepe',
+     Date.civil(2012,10,23) => '1956-os forradalom és szabadságharc ünnepe',
+     Date.civil(2012,11,1) => 'Mindenszentek',
+     Date.civil(2012,12,25) => 'Karácsony',
+     Date.civil(2012,12,26) => 'Karácsony',}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :hu, :informal)[0] || {})[:name]
+    end
+
+    assert !Date.civil(2012,3,14).holiday?(:hu), '2012-03-14 is not a holiday in Hungary'
