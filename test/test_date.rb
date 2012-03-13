@@ -112,12 +112,4 @@ class DateTests < Test::Unit::TestCase
     assert DateTime.now.holiday?('test')
   end
 
-  # ensure that dates are compared in the same timezone
-  def test_datetime_offset_holiday?
-    dt = DateTime.now.new_offset(Rational(23,24))
-    assert dt.holiday?('test'), dt.inspect
-
-    dt = DateTime.now.new_offset(Rational(-23,24))
-    assert dt.holiday?('test'), dt.inspect
-  end
 end

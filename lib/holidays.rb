@@ -88,8 +88,8 @@ module Holidays
   #       {:name => 'Independence Day'', :regions => [:us], ...}]
   def self.between(start_date, end_date, *options)
     # remove the timezone
-    start_date = start_date.new_offset(0) if start_date.respond_to?(:new_offset)
-    end_date = end_date.new_offset(0) if end_date.respond_to?(:new_offset)
+    start_date = start_date.new_offset(0) + start_date.offset if start_date.respond_to?(:new_offset)
+    end_date = end_date.new_offset(0) + end_date.offset if end_date.respond_to?(:new_offset)
 
     # get simple dates
     if start_date.respond_to?(:to_date)
