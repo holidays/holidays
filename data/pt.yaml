@@ -1,7 +1,8 @@
 # Portugese holiday definitions for the Ruby Holiday gem.
 #
-# Updated: 2008-11-28.
+# Updated: 2012-02-07.
 # Sources:
+# - http://thomasallen.home.sapo.pt/travel/hols.htm
 # - http://en.wikipedia.org/wiki/Holidays_in_Portugal
 # - http://www.kidlink.org/KIDPROJ/MCC/mcc0006.html
 # - http://www.worldtravelguide.net/country/227/public_holidays/Europe/Portugal.html
@@ -20,9 +21,6 @@ months:
   - name: Páscoa
     regions: [pt]
     function: easter(year)
-  - name: Corpo de Deus
-    regions: [pt]
-    function: easter(year)+60
   1: 
   - name: Ano Novo
     regions: [pt]
@@ -39,22 +37,11 @@ months:
   - name: Dia de Portugal
     regions: [pt]
     mday: 10
-  8: 
-  - name: Assunção de Nossa Senhora
-    regions: [pt]
-    mday: 15
-  10: 
-  - name: Implantação da República
-    regions: [pt]
-    mday: 5
   11: 
   - name: Todos os Santos
     regions: [pt]
     mday: 1
   12: 
-  - name: Restauração da Independência
-    regions: [pt]
-    mday: 1 
   - name: Imaculada Conceição
     regions: [pt]
     mday: 8
@@ -71,14 +58,8 @@ tests: |
      Date.civil(2008,3,23) => 'Páscoa',
      Date.civil(2008,4,25) => 'Dia da Liberdade',
      Date.civil(2008,5,1) => 'Dia do Trabalhador',
-     Date.civil(2005,5,26) => 'Corpo de Deus',
-     Date.civil(2007,6,7) => 'Corpo de Deus',
-     Date.civil(2008,5,22) => 'Corpo de Deus',
      Date.civil(2008,6,10) => 'Dia de Portugal',
-     Date.civil(2008,8,15) => 'Assunção de Nossa Senhora',
-     Date.civil(2008,10,5) => 'Implantação da República',
      Date.civil(2008,11,1) => 'Todos os Santos',
-     Date.civil(2008,12,1) => 'Restauração da Independência',
      Date.civil(2008,12,8) => 'Imaculada Conceição',
      Date.civil(2008,12,25) => 'Natal'}.each do |date, name|
       assert_equal name, (Holidays.on(date, :pt, :informal)[0] || {})[:name]
