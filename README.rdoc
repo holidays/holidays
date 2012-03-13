@@ -16,7 +16,8 @@ Time zones are ignored.  This library assumes that all dates are within the same
  
 === Examples
  
-For more information, see the notes at the top of the Holidays module.
+For more information, see the notes at the top of the Holidays module.  A super minimal web interface is here:
+http://empty-mist-5349.herokuapp.com/
  
 ==== Using the Holidays class
 Get all holidays on April 25, 2008 in Australia.
