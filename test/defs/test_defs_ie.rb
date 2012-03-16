@@ -11,11 +11,26 @@ class IeDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2008,3,17) => 'St. Patrick\'s Day',
  Date.civil(2008,3,24) => 'Easter Monday',
  Date.civil(2008,5,5) => 'May Day',
- Date.civil(2008,6,2) => 'Bank Holiday',
- Date.civil(2008,8,4) => 'Bank Holiday',
+ Date.civil(2008,6,2) => 'June Bank Holiday',
+ Date.civil(2008,8,4) => 'August Bank Holiday',
+ Date.civil(2008,10,27) => 'October Bank Holiday',
  Date.civil(2008,12,25) => 'Christmas Day',
  Date.civil(2008,12,26) => 'St. Stephen\'s Day'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :ie, :informal)[0] || {})[:name]
+  assert_equal name, (Holidays.on(date, :ie)[0] || {})[:name]
 end
+{Date.civil(2012,1,2) => 'New Year\'s Day', 
+ Date.civil(2012,3,19) => 'St. Patrick\'s Day',
+ Date.civil(2012,4,9) => 'Easter Monday',
+ Date.civil(2012,5,7) => 'May Day',
+ Date.civil(2012,6,4) => 'June Bank Holiday',
+ Date.civil(2012,8,6) => 'August Bank Holiday',
+ Date.civil(2012,10,29) => 'October Bank Holiday',
+ Date.civil(2011,12,26) => 'Christmas Day',
+ Date.civil(2011,12,27) => 'St. Stephen\'s Day',
+ Date.civil(2012,12,25) => 'Christmas Day',
+ Date.civil(2012,12,26) => 'St. Stephen\'s Day'}.each do |date, name|
+  assert_equal name, (Holidays.on(date, :ie, :observed)[0] || {})[:name]
+end
+
   end
 end
