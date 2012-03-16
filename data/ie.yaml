@@ -1,9 +1,10 @@
 # Ireland holiday definitions for the Ruby Holiday gem.
 #
-# Updated: 2008-11-28.
+# Updated: 2012-03-16.
 # Sources:
 # - http://en.wikipedia.org/wiki/Public_holidays_in_the_Republic_of_Ireland
 # - http://www.citizensinformation.ie/categories/employment/employment-rights-and-conditions/leave-and-holidays/public-holidays-in-ireland
+# While there is mention that Jan 2 2012 was not officially a bank holiday, in reality very few businesses will not observe that date as a bank holiday
 --- 
 months:
   0: 
@@ -14,27 +15,29 @@ months:
   - name: New Year's Day
     regions: [ie]
     mday: 1
+    observed: to_monday_if_weekend
   3: 
   - name: St. Patrick's Day
     regions: [ie]
     mday: 17
+    observed: to_monday_if_weekend
   5: 
   - name: May Day
     regions: [ie]
     week: 1
     wday: 1
   6:
-  - name: Bank Holiday
+  - name: June Bank Holiday
     regions: [ie]
     week: 1
     wday: 1
   8: 
-  - name: Bank Holiday
+  - name: August Bank Holiday
     regions: [ie]
     week: 1
     wday: 1
   10: 
-  - name: Bank Holiday
+  - name: October Bank Holiday
     regions: [ie]
     week: -1
     wday: 1
@@ -42,17 +45,42 @@ months:
   - name: Christmas Day
     regions: [ie]
     mday: 25
+    observed: to_monday_if_weekend
   - name: St. Stephen's Day
     regions: [ie]
     mday: 26
+    observed: ie_st_stephens_day
+methods:
+  ie_st_stephens_day: |
+    # Ireland - Stephens Day is always the day after christmas day
+    def self.ie_st_stephens_day(date)
+      date += 2 if date.wday == 6
+      date += 2 if date.wday == 0
+      date += 1 if date.wday == 1
+      date
+    end
 tests: |
     {Date.civil(2008,1,1) => 'New Year\'s Day', 
      Date.civil(2008,3,17) => 'St. Patrick\'s Day',
      Date.civil(2008,3,24) => 'Easter Monday',
      Date.civil(2008,5,5) => 'May Day',
-     Date.civil(2008,6,2) => 'Bank Holiday',
-     Date.civil(2008,8,4) => 'Bank Holiday',
+     Date.civil(2008,6,2) => 'June Bank Holiday',
+     Date.civil(2008,8,4) => 'August Bank Holiday',
+     Date.civil(2008,10,27) => 'October Bank Holiday',
      Date.civil(2008,12,25) => 'Christmas Day',
      Date.civil(2008,12,26) => 'St. Stephen\'s Day'}.each do |date, name|
-      assert_equal name, (Holidays.on(date, :ie, :informal)[0] || {})[:name]
+      assert_equal name, (Holidays.on(date, :ie)[0] || {})[:name]
+    end
+    {Date.civil(2012,1,2) => 'New Year\'s Day', 
+     Date.civil(2012,3,19) => 'St. Patrick\'s Day',
+     Date.civil(2012,4,9) => 'Easter Monday',
+     Date.civil(2012,5,7) => 'May Day',
+     Date.civil(2012,6,4) => 'June Bank Holiday',
+     Date.civil(2012,8,6) => 'August Bank Holiday',
+     Date.civil(2012,10,29) => 'October Bank Holiday',
+     Date.civil(2011,12,26) => 'Christmas Day',
+     Date.civil(2011,12,27) => 'St. Stephen\'s Day',
+     Date.civil(2012,12,25) => 'Christmas Day',
+     Date.civil(2012,12,26) => 'St. Stephen\'s Day'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :ie, :observed)[0] || {})[:name]
     end
