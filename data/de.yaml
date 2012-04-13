@@ -12,7 +12,7 @@ months:
     regions: [de]
     function: easter(year)-2
   - name: Ostersonntag
-    regions: [de]
+    regions: [de_bw]
     function: easter(year)
   - name: Ostermontag
     regions: [de]
@@ -21,7 +21,7 @@ months:
     regions: [de]
     function: easter(year)+39
   - name: Pfingstsonntag
-    regions: [de]
+    regions: [de_bw]
     function: easter(year)+49
   - name: Pfingstmontag
     regions: [de]
