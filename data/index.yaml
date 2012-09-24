@@ -36,3 +36,4 @@ defs:
   Europe: ['at.yaml', 'ch.yaml', 'cz.yaml', 'dk.yaml', 'de.yaml', 'el.yaml', 'es.yaml', 'fr.yaml', 'gb.yaml', 'hu.yaml', 'ie.yaml', 'is.yaml', 'it.yaml', 'li.yaml', 'nl.yaml', 'no.yaml', 'pl.yaml', 'pt.yaml']
   Europe: ['at.yaml', 'ch.yaml', 'cz.yaml', 'dk.yaml', 'de.yaml', 'el.yaml', 'es.yaml', 'fr.yaml', 'gb.yaml', 'hu.yaml', 'ie.yaml', 'is.yaml', 'it.yaml', 'li.yaml', 'nl.yaml', 'no.yaml', 'pl.yaml', 'pt.yaml']
   JP: ['jp.yaml']
+  VE: ['ve.yaml']
