@@ -21,6 +21,7 @@ defs:
   IT: ['it.yaml']
   LI: ['li.yaml']
   MX: ['mx.yaml', 'north_america_informal.yaml']
+  NERC: ['nerc.yaml']
   NL: ['nl.yaml']
   "NO": ['no.yaml']
   NYSE: ['nyse.yaml']
