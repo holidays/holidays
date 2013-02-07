@@ -7,7 +7,8 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class NercDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_nerc
-{Date.civil(2013,1,1) => 'New Year\'s Day', 
+{Date.civil(2013,1,1) => 'New Year\'s Day',
+ Date.civil(2017,1,2) => 'New Year\'s Day',
  Date.civil(2013,5,27) => 'Memorial Day',
  Date.civil(2013,7,4) => 'Independence Day',
  Date.civil(2013,9,2) => 'Labor Day',
@@ -15,5 +16,6 @@ class NercDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2013,12,25) => 'Christmas Day'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :nyse)[0] || {})[:name]
 end
+
   end
 end
