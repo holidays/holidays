@@ -10,6 +10,7 @@ months:
   - name: New Year's Day
     regions: [nerc]
     mday: 1
+    observed: to_weekday_if_weekend
   5:
   - name: Memorial Day
     week: -1
@@ -37,7 +38,8 @@ months:
     observed: to_weekday_if_weekend
 methods:
 tests: |
-    {Date.civil(2013,1,1) => 'New Year\'s Day', 
+    {Date.civil(2013,1,1) => 'New Year\'s Day',
+     Date.civil(2017,1,2) => 'New Year\'s Day',
      Date.civil(2013,5,27) => 'Memorial Day',
      Date.civil(2013,7,4) => 'Independence Day',
      Date.civil(2013,9,2) => 'Labor Day',
