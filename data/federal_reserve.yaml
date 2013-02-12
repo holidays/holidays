@@ -1,0 +1,151 @@
+# Federal reserve holidays definition for the Ruby Holiday gem.
+#
+# Updated: 2012-08-17
+# 
+# Sources:
+#  - 
+---
+months:
+  0: 
+  - name: Good Friday
+    function: easter(year)-2
+    regions: [federal_reserve]
+  1:
+  - name: New Year's Day
+    regions: [federal_reserve]
+    mday: 1 
+    observed: to_monday_if_sunday
+  - name: Birthday of Martin Luther King, Jr
+    week: 3
+    wday: 1
+    regions: [federal_reserve]
+  - name: Inauguration Day
+    function: us_inauguration_day(year)
+    regions: [federal_reserve]
+  2:
+  - name: Washington's Birthday
+    week: 3
+    wday: 1
+    regions: [federal_reserve]
+  5: 
+  - name: Memorial Day
+    week: -1
+    wday: 1
+    regions: [federal_reserve]
+  7: 
+  - name: Independence Day
+    regions: [federal_reserve]
+    mday: 4
+    observed: to_monday_if_sunday
+  9: 
+  - name: Labor Day
+    week: 1
+    regions: [federal_reserve]
+    wday: 1
+  10: 
+  - name: Columbus Day
+    week: 2
+    regions: [federal_reserve]
+    wday: 1
+  11: 
+  - name: Veterans Day
+    regions: [federal_reserve]
+    mday: 11
+    observed: to_monday_if_sunday
+  - name: Thanksgiving Day
+    week: 4
+    wday: 4
+    regions: [federal_reserve]
+  12: 
+  - name: Christmas Eve
+    regions: [federal_reserve]
+    mday: 24
+    observed: to_monday_if_sunday
+  - name: Christmas Day
+    regions: [federal_reserve]
+    mday: 25
+    observed: to_monday_if_sunday
+  - name: New Year's Eve
+    regions: [federal_reserve]
+    mday: 31
+methods:
+  us_inauguration_day: |
+    # January 20, every fourth year, following Presidential election
+    def self.us_inauguration_day(year)
+      year % 4 == 1 ? 20 : nil
+    end
+  
+        
+tests: |
+  {Date.civil(2012,1,2) => "New Year's Day",
+   Date.civil(2012,1,16) => "Birthday of Martin Luther King, Jr",
+   Date.civil(2012,2,20) => "Washington's Birthday",
+   Date.civil(2012,4,6) => "Good Friday",
+   Date.civil(2012,5,28) => "Memorial Day",
+   Date.civil(2012,7,4) => "Independence Day",
+   Date.civil(2012,9,3) => "Labor Day",
+   Date.civil(2012,10,8) => "Columbus Day",
+   Date.civil(2012,11,12) => "Veterans Day",
+   Date.civil(2012,11,22) => "Thanksgiving Day",
+   Date.civil(2012,12,24) => "Christmas Eve",
+   Date.civil(2012,12,25) => "Christmas Day",
+   Date.civil(2012,12,31) => "New Year's Eve",
+
+   Date.civil(2013,1,1) => "New Year's Day",
+   Date.civil(2013,1,21) => "Birthday of Martin Luther King, Jr",
+   Date.civil(2013,2,18) => "Washington's Birthday",
+   Date.civil(2013,3,29) => "Good Friday",
+   Date.civil(2013,5,27) => "Memorial Day",
+   Date.civil(2013,7,4) => "Independence Day",
+   Date.civil(2013,9,2) => "Labor Day",
+   Date.civil(2013,10,14) => "Columbus Day",
+   Date.civil(2013,11,11) => "Veterans Day",
+   Date.civil(2013,11,28) => "Thanksgiving Day",
+   Date.civil(2013,12,24) => "Christmas Eve",
+   Date.civil(2013,12,25) => "Christmas Day",
+   Date.civil(2013,12,31) => "New Year's Eve",
+   
+   Date.civil(2014,1,1) => "New Year's Day",
+   Date.civil(2014,1,20) => "Birthday of Martin Luther King, Jr",
+   Date.civil(2014,2,17) => "Washington's Birthday",
+   Date.civil(2014,4,18) => "Good Friday",
+   Date.civil(2014,5,26) => "Memorial Day",
+   Date.civil(2014,7,4) => "Independence Day",
+   Date.civil(2014,9,1) => "Labor Day",
+   Date.civil(2014,10,13) => "Columbus Day",
+   Date.civil(2014,11,11) => "Veterans Day",
+   Date.civil(2014,11,27) => "Thanksgiving Day",
+   Date.civil(2014,12,24) => "Christmas Eve",
+   Date.civil(2014,12,25) => "Christmas Day",
+   Date.civil(2014,12,31) => "New Year's Eve",
+
+   Date.civil(2015,1,1) => "New Year's Day",
+   Date.civil(2015,1,19) => "Birthday of Martin Luther King, Jr",
+   Date.civil(2015,2,16) => "Washington's Birthday",
+   Date.civil(2015,4,3) => "Good Friday",
+   Date.civil(2015,5,25) => "Memorial Day",
+   Date.civil(2015,7,4) => "Independence Day",
+   Date.civil(2015,9,7) => "Labor Day",
+   Date.civil(2015,10,12) => "Columbus Day",
+   Date.civil(2015,11,11) => "Veterans Day",
+   Date.civil(2015,11,26) => "Thanksgiving Day",
+   Date.civil(2015,12,24) => "Christmas Eve",
+   Date.civil(2015,12,25) => "Christmas Day",
+   Date.civil(2015,12,31) => "New Year's Eve",
+
+   Date.civil(2016,1,1) => "New Year's Day",
+   Date.civil(2016,1,18) => "Birthday of Martin Luther King, Jr",
+   Date.civil(2016,2,15) => "Washington's Birthday",
+   Date.civil(2016,3,25) => "Good Friday",
+   Date.civil(2016,5,30) => "Memorial Day",
+   Date.civil(2016,7,4) => "Independence Day",
+   Date.civil(2016,9,5) => "Labor Day",
+   Date.civil(2016,10,10) => "Columbus Day",
+   Date.civil(2016,11,11) => "Veterans Day",
+   Date.civil(2016,11,24) => "Thanksgiving Day",
+   Date.civil(2016,12,24) => "Christmas Eve",
+   Date.civil(2016,12,26) => "Christmas Day",
+   Date.civil(2016,12,31) => "New Year's Eve",
+   }.each do |date, name|
+     assert_equal name, (Holidays.on(date, :federal_reserve, :observed)[0] || {})[:name]
+   end
