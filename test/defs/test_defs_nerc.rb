@@ -11,10 +11,12 @@ class NercDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2017,1,2) => 'New Year\'s Day',
  Date.civil(2013,5,27) => 'Memorial Day',
  Date.civil(2013,7,4) => 'Independence Day',
+ Date.civil(2010,7,5) => 'Independence Day',
  Date.civil(2013,9,2) => 'Labor Day',
  Date.civil(2013,11,28) => 'Thanksgiving',
- Date.civil(2013,12,25) => 'Christmas Day'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :nyse)[0] || {})[:name]
+ Date.civil(2013,12,25) => 'Christmas Day',
+ Date.civil(2011,12,26) => 'Christmas Day'}.each do |date, name|
+  assert_equal name, (Holidays.on(date, :nerc, :observed)[0] || {})[:name]
 end
 
   end
