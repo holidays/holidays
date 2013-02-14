@@ -40,7 +40,11 @@ module Holidays
 # Finland: Mid-summer eve (Friday between June 19–25)
 def self.fi_juhannusaatto(year)
   date = Date.civil(year,6,19)
-  date += (5 - date.wday)
+  if date.wday > 5 #if 19.6 is saturday
+    date += 6
+  else 
+    date += (5 - date.wday)
+  end
   date
 end
 
