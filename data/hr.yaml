@@ -1,0 +1,77 @@
+# Croatian holiday definitions for the Ruby Holiday gem.
+#
+# Updated: 2012-08-29.
+# Sources:
+#  http://en.wikipedia.org/wiki/Public_holidays_in_Croatia
+--- 
+months:
+  0:
+  - name: Uskrs
+    regions: [hr]
+    function: easter(year)
+  - name: Uskrsni ponedjeljak
+    regions: [hr]
+    function: easter(year)+1
+  - name: Tijelovo
+    regions: [hr]
+    function: easter(year)+60
+  1:
+  - name: Nova godina
+    regions: [hr]
+    mday: 1
+  - name: Sveta tri kralja
+    regions: [hr]
+    mday: 6
+  5:
+  - name: Međunarodni praznik rada
+    regions: [hr]
+    mday: 1
+  6:
+  - name: Dan antifašističke borbe
+    regions: [hr]
+    mday: 22
+  - name: Dan državnosti
+    regions: [hr]
+    mday: 25
+  8:
+  - name: Dan pobjede i domovinske zahvalnosti i dan hrvatskih branitelja
+    regions: [hr]
+    mday: 5
+  - name: Velika Gospa
+    regions: [hr]
+    mday: 15
+  10:
+  - name: Dan neovisnosti
+    regions: [hr]
+    mday: 8
+  11:
+  - name: Dan svih svetih
+    regions: [hr]
+    mday: 1
+  12:
+  - name: Božić
+    regions: [hr]
+    mday: 25
+  - name: Sveti Stjepan
+    regions: [hr]
+    mday: 26
+tests: |
+  {Date.civil(2012,1,1) => 'Nova godina', 
+   Date.civil(2012,1,6) => 'Sveta tri kralja', 
+   Date.civil(2012,5,1) => 'Međunarodni praznik rada',
+   Date.civil(2012,6,22) => 'Dan antifašističke borbe',
+   Date.civil(2012,6,25) => 'Dan državnosti',
+   Date.civil(2012,8,5) => 'Dan pobjede i domovinske zahvalnosti i dan hrvatskih branitelja',
+   Date.civil(2012,8,15) => 'Velika Gospa',
+   Date.civil(2012,10,8) => 'Dan neovisnosti',
+   Date.civil(2012,11,1) => 'Dan svih svetih',
+   Date.civil(2012,12,25) => 'Božić',
+   Date.civil(2012,12,26) => 'Sveti Stjepan'}.each do |date, name|
+    assert_equal name, (Holidays.on(date, :hr, :informal)[0] || {})[:name]
+  end
+  
+  # Tijelovo
+  [Date.civil(2008,5,22), Date.civil(2009,6,11), Date.civil(2010,6,3),
+   Date.civil(2012,6,7), Date.civil(2013,5,30), Date.civil(2014,6,19)].each do |date|
+    assert_equal 'Tijelovo', Holidays.on(date, :hr)[0][:name]
+  end
