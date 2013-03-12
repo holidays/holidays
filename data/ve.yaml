@@ -1,0 +1,70 @@
+# Venezuela holiday definitions for the Ruby Holiday gem.
+#
+# Just including nonworking days nationally
+#
+# Updated: 2012-09-14.
+# Source:  http://venciclopedia.com/index.php?title=D%C3%ADas_feriados_de_Venezuela
+---
+months:
+  0:
+  - name: Lunes Carnaval
+    regions: [ve]
+    function: easter(year)-48
+  - name: Martes Carnaval
+    regions: [ve]
+    function: easter(year)-47
+  - name: Jueves Santo
+    regions: [ve]
+    function: easter(year)-3
+  - name: Viernes Santo
+    regions: [ve]
+    function: easter(year)-2
+  1:
+  - name: Año Nuevo
+    regions: [ve]
+    mday: 1
+  4:
+  - name: Declaración Independencia
+    regions: [ve]
+    mday: 19
+  5:
+  - name: Día del Trabajador
+    regions: [ve]
+    mday: 1
+  6:
+  - name: Aniversario Batalla de Carabobo
+    regions: [ve]
+    mday: 24
+  7:
+  - name: Día de la Independencia
+    regions: [ve]
+    mday: 5
+  - name: Natalicio de Simón Bolívar
+    regions: [ve]
+    mday: 24
+  10:
+  - name: Día de la Resistencia Indígena
+    regions: [ve]
+    mday: 12
+  12:
+  - name: Día de Navidad
+    regions: [ve]
+    mday: 25
+
+tests: |
+    {
+    Date.civil(2013, 1, 1) => "Año Nuevo",
+    Date.civil(2013, 2, 11) => "Lunes Carnaval",
+    Date.civil(2013, 2, 12) => "Martes Carnaval",
+    Date.civil(2013, 3, 28) => "Jueves Santo",
+    Date.civil(2013, 3, 29) => "Viernes Santo",
+    Date.civil(2013, 4, 19) => "Declaración Independencia",
+    Date.civil(2013, 5, 1) => "Día del Trabajador",
+    Date.civil(2013, 6, 24) => "Aniversario Batalla de Carabobo",
+    Date.civil(2013, 7, 5) => "Día de la Independencia",
+    Date.civil(2013, 7, 24) => "Natalicio de Simón Bolívar",
+    Date.civil(2013, 10, 12) => "Día de la Resistencia Indígena",
+    Date.civil(2013, 12, 25) => "Día de Navidad"
+    }.each do |date, name|
+      assert_equal name, (Holidays.on(date, :ve)[0] || {})[:name]
+    end
