@@ -9,10 +9,15 @@ Extends Ruby's built-in Date class and supports custom holiday definition lists.
 To install the gem from RubyGems:
  
   gem install holidays
+  
+=== Time zones
+
+Time zones are ignored.  This library assumes that all dates are within the same time zone.
  
 === Examples
  
-For more information, see the notes at the top of the Holidays module.
+For more information, see the notes at the top of the Holidays module.  A super minimal web interface is here:
+http://empty-mist-5349.herokuapp.com/
  
 ==== Using the Holidays class
 Get all holidays on April 25, 2008 in Australia.
@@ -67,7 +72,10 @@ Lookup Canada Day in different regions.
 * Source: https://github.com/alexdunae/holidays
 * Docs: http://rdoc.info/github/alexdunae/holidays/master/frames
 * Contributors: https://github.com/alexdunae/holidays/contributors
+* Build status: http://travis-ci.org/#!/alexdunae/holidays
  
-Started by Alex Dunae (dunae.ca, e-mail 'code' at the same domain), 2007-11.
+Started by Alex Dunae (dunae.ca, e-mail 'code' at the same domain), 2007-12.
+
+On Twitter: @MrMrBug.
  
 Made on Vancouver Island.

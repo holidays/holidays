@@ -46,7 +46,7 @@ module Holidays
   # Exception thrown when an unknown region is requested.
   class UnknownRegionError < ArgumentError; end
 
-  VERSION = '1.0.4'
+  VERSION = '1.0.5'
 
   @@regions = []
   @@holidays_by_month = {}
@@ -70,6 +70,23 @@ module Holidays
     self.between(date, date, options)
   end
 
+  # Does the given work-week have any holidays?
+  #
+  # [<tt>date</tt>]   A Date object.
+  # [<tt>:options</tt>] One or more region symbols, and/or <tt>:informal</tt>. Automatically includes <tt>:observed</tt>. If you don't want this, pass <tt>:no_observed</tt>
+  #
+  # The given Date can be any day of the week.
+  # Returns true if any holidays fall on Monday - Friday of the given week.
+  def self.full_week?(date, *options)
+    days_to_monday = date.wday - 1
+    days_to_friday = 5 - date.wday
+    start_date = date - days_to_monday
+    end_date = date + days_to_friday
+    options += [:observed] unless options.include?(:no_observed)
+    options.delete(:no_observed)
+    self.between(start_date, end_date, options).empty?
+  end
+  
   # Get all holidays occuring between two dates, inclusively.
   #
   # Returns an array of hashes or nil.
@@ -88,8 +105,8 @@ module Holidays
   #       {:name => 'Independence Day'', :regions => [:us], ...}]
   def self.between(start_date, end_date, *options)
     # remove the timezone
-    start_date = start_date.new_offset(0) if start_date.respond_to?(:new_offset)
-    end_date = end_date.new_offset(0) if end_date.respond_to?(:new_offset)
+    start_date = start_date.new_offset(0) + start_date.offset if start_date.respond_to?(:new_offset)
+    end_date = end_date.new_offset(0) + end_date.offset if end_date.respond_to?(:new_offset)
 
     # get simple dates
     if start_date.respond_to?(:to_date)

@@ -24,7 +24,7 @@ months:
   - name: Neujahrstag
     regions: [at]
     mday: 1
-  - name: Heilige Drei K√∂nige
+  - name: Heilige Drei Könige
     regions: [at]
     mday: 6
   5: 
@@ -32,7 +32,7 @@ months:
     regions: [at]
     mday: 1
   8: 
-  - name: Mari√§ Himmelfahrt
+  - name: Mariä Himmelfahrt
     regions: [at]
     mday: 15
   10: 
@@ -44,7 +44,7 @@ months:
     regions: [at]
     mday: 1
   12:
-  - name: Mari√§ Empf√§ngnis
+  - name: Mariä Empfägnis
     regions: [at]
     mday: 8
   - name: 1. Weihnachtstag

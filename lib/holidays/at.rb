@@ -23,12 +23,12 @@ module Holidays
             {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pfingstmontag", :regions => [:at]},
             {:function => lambda { |year| Holidays.easter(year)+60 }, :function_id => "easter(year)+60", :name => "Fronleichnam", :regions => [:at]}],
       1 => [{:mday => 1, :name => "Neujahrstag", :regions => [:at]},
-            {:mday => 6, :name => "Heilige Drei K√∂nige", :regions => [:at]}],
+            {:mday => 6, :name => "Heilige Drei Könige", :regions => [:at]}],
       5 => [{:mday => 1, :name => "Staatsfeiertag", :regions => [:at]}],
-      8 => [{:mday => 15, :name => "Mari√§ Himmelfahrt", :regions => [:at]}],
+      8 => [{:mday => 15, :name => "Mariä Himmelfahrt", :regions => [:at]}],
       10 => [{:mday => 26, :name => "Nationalfeiertag", :regions => [:at]}],
       11 => [{:mday => 1, :name => "Allerheiligen", :regions => [:at]}],
-      12 => [{:mday => 8, :name => "Mari√§ Empf√§ngnis", :regions => [:at]},
+      12 => [{:mday => 8, :name => "Mariä Empfägnis", :regions => [:at]},
             {:mday => 25, :name => "1. Weihnachtstag", :regions => [:at]},
             {:mday => 26, :name => "2. Weihnachtstag", :regions => [:at]}]
       }
