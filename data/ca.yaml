@@ -1,8 +1,8 @@
 # Canadian holiday definitions for the Ruby Holiday gem.
 # Updated 2008-11-21.
---- 
+---
 months:
-  0: 
+  0:
   - name: Good Friday
     regions: [ca]
     function: easter(year)-2
@@ -10,14 +10,14 @@ months:
     regions: [ca]
     function: easter(year)+1
     type: informal
-  1: 
+  1:
   - name: New Year's Day
     regions: [ca]
     mday: 1
   - name: New Year's
     regions: [ca_qc]
     mday: 2
-  2: 
+  2:
   - name: Family Day
     regions: [ca_ab, ca_on, ca_sk]
     wday: 1
@@ -26,22 +26,26 @@ months:
     regions: [ca_mb]
     wday: 1
     week: 3
-  3: 
+  - name: BC Family Day
+    regions: [ca_bc]
+    wday: 1
+    week: 2
+  3:
   - name: St. Patrick's Day
     regions: [ca_nf]
     mday: 17
-  3: 
+  3:
   - name: St. George's Day
     regions: [ca_nf]
     mday: 23
-  5: 
+  5:
   - name: Victoria Day
     regions: [ca]
     function: ca_victoria_day(year)
   - name: National Patriotes Day
     regions: [ca_qc]
     function: ca_victoria_day(year)
-  6: 
+  6:
   - name: Discovery Day
     regions: [ca_nf]
     mday: 24
@@ -51,7 +55,7 @@ months:
   - name: National Aboriginal Day
     regions: [ca_nt]
     mday: 21
-  7: 
+  7:
   - name: Canada Day
     regions: [ca]
     mday: 1
@@ -62,7 +66,7 @@ months:
   - name: Nunavut Day
     regions: [ca_nu]
     mday: 9
-  8: 
+  8:
   - name: BC Day
     week: 1
     regions: [ca_bc]
@@ -87,21 +91,21 @@ months:
     week: 3
     regions: [ca_yk]
     wday: 1
-  9: 
+  9:
   - name: Labour Day
     week: 1
     regions: [ca]
     wday: 1
-  10: 
+  10:
   - name: Thanksgiving
     week: 2
     regions: [ca]
     wday: 1
-  11: 
+  11:
   - name: Remembrance Day
     regions: [ca]
     mday: 11
-  12: 
+  12:
   - name: Christmas Day
     regions: [ca]
     mday: 25
@@ -121,8 +125,8 @@ methods:
       date
     end
 tests: |
-    {Date.civil(2008,1,1) => 'New Year\'s Day', 
-     Date.civil(2008,3,21) => 'Good Friday', 
+    {Date.civil(2008,1,1) => 'New Year\'s Day',
+     Date.civil(2008,3,21) => 'Good Friday',
      Date.civil(2008,3,24) => 'Easter Monday',
      Date.civil(2008,5,19) => 'Victoria Day',
      Date.civil(2008,7,1) => 'Canada Day',
@@ -132,6 +136,11 @@ tests: |
      Date.civil(2008,12,25) => 'Christmas Day',
      Date.civil(2008,12,26) => 'Boxing Day'}.each do |date, name|
       assert_equal name, (Holidays.on(date, :ca, :informal)[0] || {})[:name]
+    end
+
+    # Family Day in BC
+    [ Date.civil(2013,2,11), Date.civil(2014,2,10) ].each do |date|
+      assert_equal 'BC Family Day', Holidays.on(date, :ca_bc)[0][:name]
     end
 
     # Victoria Day
