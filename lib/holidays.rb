@@ -52,6 +52,13 @@ module Holidays
   @@holidays_by_month = {}
   @@proc_cache = {}
 
+  @@cache = {}
+  @@cache_range = {}
+  class << self
+    def cache_range; @@cache_range; end
+    def cache; @@cache; end
+  end
+
   WEEKS = {:first => 1, :second => 2, :third => 3, :fourth => 4, :fifth => 5, :last => -1, :second_last => -2, :third_last => -3}
   MONTH_LENGTHS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
   DAY_SYMBOLS = Date::DAYNAMES.collect { |n| n.downcase.intern }
@@ -121,6 +128,14 @@ module Holidays
       end_date = Date.civil(end_date.year, end_date.mon, end_date.mday)
     end 
 
+    if range = @@cache_range[options]
+      if range.begin < start_date && range.end > end_date
+        return @@cache[options].select do |holiday|
+          holiday[:date] >= start_date && holiday[:date] <= end_date
+        end
+      end
+    end
+
     regions, observed, informal = parse_options(options)
     holidays = []
 
@@ -178,6 +193,12 @@ module Holidays
     end
 
     holidays.sort{|a, b| a[:date] <=> b[:date] }
+  end
+
+  # Allows a developer to explicitly calculate and cache holidays within a given period
+  def self.cache_between(start_date, end_date, *options)
+    @@cache[options]       = between(start_date, end_date, *options)
+    @@cache_range[options] = start_date..end_date
   end
 
   # Merge a new set of definitions into the Holidays module.
