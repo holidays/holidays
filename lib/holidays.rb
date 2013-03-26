@@ -116,17 +116,7 @@ module Holidays
     end_date = end_date.new_offset(0) + end_date.offset if end_date.respond_to?(:new_offset)
 
     # get simple dates
-    if start_date.respond_to?(:to_date)
-      start_date = start_date.to_date 
-    else
-      start_date = Date.civil(start_date.year, start_date.mon, start_date.mday)
-    end 
-
-    if end_date.respond_to?(:to_date)
-      end_date = end_date.to_date
-    else
-      end_date = Date.civil(end_date.year, end_date.mon, end_date.mday)
-    end 
+    start_date, end_date = get_date(start_date), get_date(end_date)
 
     if range = @@cache_range[options]
       if range.begin < start_date && range.end > end_date
@@ -197,6 +187,7 @@ module Holidays
 
   # Allows a developer to explicitly calculate and cache holidays within a given period
   def self.cache_between(start_date, end_date, *options)
+    start_date, end_date = get_date(start_date), get_date(end_date)
     @@cache[options]       = between(start_date, end_date, *options)
     @@cache_range[options] = start_date..end_date
   end
@@ -333,6 +324,14 @@ private
     informal = options.delete(:informal) ? true : false
     regions = parse_regions(options)
     return regions, observed, informal
+  end
+
+  def self.get_date(date)
+    if date.respond_to?(:to_date)
+      date.to_date
+    else
+      Date.civil(date.year, date.mon, date.mday)
+    end
   end
 
   # Check regions against list of supported regions and return an array of 
