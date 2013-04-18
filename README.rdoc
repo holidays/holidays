@@ -75,7 +75,7 @@ After you're satisfied with the YAML file, run rake defs:build_all and rake defs
 
 It is also very appreciated if documentation is attached to the pull request, a simple wikipedia post referencing the change would suffice.
 
-Tests can be run using rake tests, use rake -T to see all available tasks.
+Tests can be run using rake test, use rake -T to see all available tasks.
 === Credits and code
  
 * Source: https://github.com/alexdunae/holidays
