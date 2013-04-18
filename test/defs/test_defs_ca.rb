@@ -7,8 +7,8 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class CaDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_ca
-{Date.civil(2008,1,1) => 'New Year\'s Day', 
- Date.civil(2008,3,21) => 'Good Friday', 
+{Date.civil(2008,1,1) => 'New Year\'s Day',
+ Date.civil(2008,3,21) => 'Good Friday',
  Date.civil(2008,3,24) => 'Easter Monday',
  Date.civil(2008,5,19) => 'Victoria Day',
  Date.civil(2008,7,1) => 'Canada Day',
@@ -18,6 +18,11 @@ class CaDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2008,12,25) => 'Christmas Day',
  Date.civil(2008,12,26) => 'Boxing Day'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :ca, :informal)[0] || {})[:name]
+end
+
+# Family Day in BC
+[ Date.civil(2013,2,11), Date.civil(2014,2,10) ].each do |date|
+  assert_equal 'BC Family Day', Holidays.on(date, :ca_bc)[0][:name]
 end
 
 # Victoria Day
