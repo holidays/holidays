@@ -67,6 +67,11 @@ Lookup Canada Day in different regions.
   d.holiday?(:fr) # France
   => false
  
+=== How to contribute
+This library is built into ruby code by parsing the yaml files. So to make changes to any of the definitions, only edit the yaml files.
+Tests are also added at the end of the yaml files. Please add tests when you make a change to the definitions!!! Also, some regions could definitely use a little more coverage (especially for the holidays that occur according to a pattern).
+Then run rake defs:build_all and rake defs:manifest, which will generate the ruby files as well as the tests.
+
 === Credits and code
  
 * Source: https://github.com/alexdunae/holidays
@@ -75,7 +80,8 @@ Lookup Canada Day in different regions.
 * Build status: http://travis-ci.org/#!/alexdunae/holidays
  
 Started by Alex Dunae (dunae.ca, e-mail 'code' at the same domain), 2007-12.
+Maintained by Hana Wang (https://github.com/hahahana), 2013
 
 On Twitter: @MrMrBug.
  
-Made on Vancouver Island.
+Made on Vancouver Island. Maintained in the way more beautiful Houston, TX.
