@@ -73,6 +73,8 @@ Tests are also added at the end of the YAML files. Please add tests, it makes th
 
 After you're satisfied with the YAML file, run rake defs:build_all and rake defs:manifest, which will generate the ruby files that make up the actual code as well as the tests.
 
+It is also very appreciated if documentation is attached to the pull request, a simple wikipedia post referencing the change would suffice.
+
 Tests can be run using rake tests, use rake -T to see all available tasks.
 === Credits and code
  
