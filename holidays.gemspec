@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alex Dunae"]
-  s.date = "2012-03-13"
+  s.date = "2013-04-18"
   s.description = "A collection of Ruby methods to deal with statutory and other holidays.  You deserve a holiday!"
   s.email = "code@dunae.ca"
   s.extra_rdoc_files = [
@@ -29,14 +29,17 @@ Gem::Specification.new do |s|
     "data/br.yaml",
     "data/build_defs.rb",
     "data/ca.yaml",
+    "data/ch.yaml",
     "data/cz.yaml",
     "data/de.yaml",
     "data/dk.yaml",
     "data/el.yaml",
     "data/es.yaml",
+    "data/federal_reserve.yaml",
     "data/fi.yaml",
     "data/fr.yaml",
     "data/gb.yaml",
+    "data/hr.yaml",
     "data/hu.yaml",
     "data/ie.yaml",
     "data/index.yaml",
@@ -45,6 +48,7 @@ Gem::Specification.new do |s|
     "data/jp.yaml",
     "data/li.yaml",
     "data/mx.yaml",
+    "data/nerc.yaml",
     "data/nl.yaml",
     "data/no.yaml",
     "data/north_america_informal.yaml",
@@ -56,6 +60,7 @@ Gem::Specification.new do |s|
     "data/united_nations.yaml",
     "data/ups.yaml",
     "data/us.yaml",
+    "data/ve.yaml",
     "data/za.yaml",
     "holidays.gemspec",
     "lib/holidays.rb",
@@ -64,21 +69,26 @@ Gem::Specification.new do |s|
     "lib/holidays/au.rb",
     "lib/holidays/br.rb",
     "lib/holidays/ca.rb",
+    "lib/holidays/ch.rb",
     "lib/holidays/cz.rb",
     "lib/holidays/de.rb",
     "lib/holidays/dk.rb",
     "lib/holidays/el.rb",
     "lib/holidays/es.rb",
     "lib/holidays/europe.rb",
+    "lib/holidays/federal_reserve.rb",
     "lib/holidays/fi.rb",
     "lib/holidays/fr.rb",
     "lib/holidays/gb.rb",
+    "lib/holidays/hr.rb",
+    "lib/holidays/hu.rb",
     "lib/holidays/ie.rb",
     "lib/holidays/is.rb",
     "lib/holidays/it.rb",
     "lib/holidays/jp.rb",
     "lib/holidays/li.rb",
     "lib/holidays/mx.rb",
+    "lib/holidays/nerc.rb",
     "lib/holidays/nl.rb",
     "lib/holidays/no.rb",
     "lib/holidays/north_america.rb",
@@ -91,27 +101,33 @@ Gem::Specification.new do |s|
     "lib/holidays/united_nations.rb",
     "lib/holidays/ups.rb",
     "lib/holidays/us.rb",
+    "lib/holidays/ve.rb",
     "lib/holidays/za.rb",
     "rakefile.rb",
     "test/defs/test_defs_at.rb",
     "test/defs/test_defs_au.rb",
     "test/defs/test_defs_br.rb",
     "test/defs/test_defs_ca.rb",
+    "test/defs/test_defs_ch.rb",
     "test/defs/test_defs_cz.rb",
     "test/defs/test_defs_de.rb",
     "test/defs/test_defs_dk.rb",
     "test/defs/test_defs_el.rb",
     "test/defs/test_defs_es.rb",
     "test/defs/test_defs_europe.rb",
+    "test/defs/test_defs_federal_reserve.rb",
     "test/defs/test_defs_fi.rb",
     "test/defs/test_defs_fr.rb",
     "test/defs/test_defs_gb.rb",
+    "test/defs/test_defs_hr.rb",
+    "test/defs/test_defs_hu.rb",
     "test/defs/test_defs_ie.rb",
     "test/defs/test_defs_is.rb",
     "test/defs/test_defs_it.rb",
     "test/defs/test_defs_jp.rb",
     "test/defs/test_defs_li.rb",
     "test/defs/test_defs_mx.rb",
+    "test/defs/test_defs_nerc.rb",
     "test/defs/test_defs_nl.rb",
     "test/defs/test_defs_no.rb",
     "test/defs/test_defs_north_america.rb",
@@ -123,6 +139,7 @@ Gem::Specification.new do |s|
     "test/defs/test_defs_se.rb",
     "test/defs/test_defs_ups.rb",
     "test/defs/test_defs_us.rb",
+    "test/defs/test_defs_ve.rb",
     "test/defs/test_defs_za.rb",
     "test/test_all_regions.rb",
     "test/test_date.rb",
@@ -132,7 +149,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "https://github.com/alexdunae/holidays"
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.10"
+  s.rubygems_version = "1.8.23"
   s.summary = "A collection of Ruby methods to deal with statutory and other holidays.  You deserve a holiday!"
 
   if s.respond_to? :specification_version then
