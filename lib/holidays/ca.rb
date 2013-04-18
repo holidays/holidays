@@ -4,7 +4,7 @@ module Holidays
   #
   # Definitions loaded: data/ca.yaml, data/north_america_informal.yaml
   #
-  # To use the definitions in this file, load it right after you load the
+  # To use the definitions in this file, load it right after you load the 
   # Holiday gem:
   #
   #   require 'holidays'
@@ -13,7 +13,7 @@ module Holidays
   # All the definitions are available at https://github.com/alexdunae/holidays
   module CA # :nodoc:
     def self.defined_regions
-      [:ca, :ca_qc, :ca_ab, :ca_on, :ca_sk, :ca_mb, :ca_nf, :ca_nt, :ca_nu, :ca_bc, :ca_ns, :ca_yk, :us]
+      [:ca, :ca_qc, :ca_ab, :ca_on, :ca_sk, :ca_mb, :ca_bc, :ca_nf, :ca_nt, :ca_nu, :ca_ns, :ca_yk, :us]
     end
 
     def self.holidays_by_month
@@ -23,8 +23,8 @@ module Holidays
       1 => [{:mday => 1, :name => "New Year's Day", :regions => [:ca]},
             {:mday => 2, :name => "New Year's", :regions => [:ca_qc]}],
       2 => [{:wday => 1, :week => 3, :name => "Family Day", :regions => [:ca_ab, :ca_on, :ca_sk]},
-            {:wday => 1, :week => 2, :name => "BC Family Day", :regions => [:ca_bc]},
             {:wday => 1, :week => 3, :name => "Louis Riel Day", :regions => [:ca_mb]},
+            {:wday => 1, :week => 2, :name => "BC Family Day", :regions => [:ca_bc]},
             {:mday => 2, :type => :informal, :name => "Groundhog Day", :regions => [:us, :ca]},
             {:mday => 14, :type => :informal, :name => "Valentine's Day", :regions => [:us, :ca]}],
       3 => [{:mday => 23, :name => "St. George's Day", :regions => [:ca_nf]},
