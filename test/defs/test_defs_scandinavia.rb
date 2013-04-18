@@ -99,6 +99,7 @@ end
  Date.civil(2008,5,1) => 'Vappu',
  Date.civil(2008,5,1) => 'Helatorstai',
  Date.civil(2008,5,11) => 'Helluntaipäivä',
+ Date.civil(2009,6,19) => 'Juhannusaatto',
  Date.civil(2010,6,25) => 'Juhannusaatto',
  Date.civil(2011,6,24) => 'Juhannusaatto',
  Date.civil(2012,6,22) => 'Juhannusaatto',
