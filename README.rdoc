@@ -67,10 +67,13 @@ Lookup Canada Day in different regions.
   => false
  
 === How to contribute
-This library is built into ruby code by parsing the yaml files. So to make changes to any of the definitions, only edit the yaml files.
-Tests are also added at the end of the yaml files. Please add tests when you make a change to the definitions!!! Also, some regions could definitely use a little more coverage (especially for the holidays that occur according to a pattern).
-Then run rake defs:build_all and rake defs:manifest, which will generate the ruby files as well as the tests.
+To make changes to any of the definitions, edit the YAML files only. 
 
+Tests are also added at the end of the YAML files. Please add tests, it makes the pull requests go around.
+
+After you're satisfied with the YAML file, run rake defs:build_all and rake defs:manifest, which will generate the ruby files that make up the actual code as well as the tests.
+
+Tests can be run using rake tests, use rake -T to see all available tasks.
 === Credits and code
  
 * Source: https://github.com/alexdunae/holidays
