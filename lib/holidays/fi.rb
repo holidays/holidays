@@ -56,7 +56,6 @@ def self.fi_juhannuspaiva(year)
   date
 end
 
-
 # Finland: All Saint's Day (Saturday between Oct 31 and Nov 6)
 def self.fi_pyhainpaiva(year)
   date = Date.civil(year,10,31)
