@@ -298,6 +298,11 @@ module Holidays
     paths = Dir.glob(DEFINITION_PATH + '/*.rb')
     full_path ? paths : paths.collect { |path| path.match(/([a-z_-]+)\.rb/i)[1].to_sym }
   end
+
+  # Returns an array of symbols of all the available holiday regions.
+  def self.regions
+    @@regions
+  end
   
   # Load all available holiday definitions
   def self.load_all

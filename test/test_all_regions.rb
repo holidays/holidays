@@ -40,6 +40,16 @@ class MultipleRegionsTests < Test::Unit::TestCase
     assert holidays.any? { |h| h[:name] == 'Dia do Trabalho' } # :br
     assert holidays.any? { |h| h[:name] == 'Vappu' }           # :fi
   end
+
+  def test_getting_regions
+    Holidays.load_all
+    regions = Holidays.regions
+
+    assert regions.size > 30
+
+    assert regions.include? :nyse
+    assert regions.include? :united_nations
+  end
   
 private
   def def_count
