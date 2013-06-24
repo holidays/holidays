@@ -267,6 +267,21 @@ module Holidays
     date
   end
 
+  def self.to_monday_if_sunday_to_friday_if_saturday(date)
+    if date.wday == 0
+      date += 1 
+    elsif date.wday == 6
+      date -= 1
+    end
+    date
+  end
+
+  def self.to_monday_if_sunday_to_na_if_saturday(date)
+    date += 1 if date.wday == 0
+    date = nil if date.wday == 6
+    date
+  end
+
   # Move date to Monday if it occurs on a Saturday on Sunday.
   # Used as a callback function.
   def self.to_monday_if_weekend(date)

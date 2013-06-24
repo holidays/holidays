@@ -19,26 +19,25 @@ module Holidays
     def self.holidays_by_month
       {
               0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Good Friday", :regions => [:cme]}],
-      1 => [{:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "New Year's Day", :regions => [:cme]},
+      1 => [{:function => lambda { |year| Holidays.cme_new_year(year) }, :function_id => "cme_new_year(year)", :name => "New Year's Day", :regions => [:cme]},
             {:wday => 1, :week => 3, :name => "Birthday of Martin Luther King, Jr", :regions => [:cme]}],
       2 => [{:wday => 1, :week => 3, :name => "President's Day", :regions => [:cme]}],
       5 => [{:wday => 1, :week => -1, :name => "Memorial Day", :regions => [:cme]}],
-      7 => [{:mday => 4, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Independence Day", :regions => [:cme]}],
+      7 => [{:mday => 4, :observed => lambda { |date| Holidays.to_monday_if_sunday_to_friday_if_saturday(date) }, :observed_id => "to_monday_if_sunday_to_friday_if_saturday", :name => "Independence Day", :regions => [:cme]}],
       9 => [{:wday => 1, :week => 1, :name => "Labor Day", :regions => [:cme]}],
-      10 => [{:wday => 1, :week => 2, :name => "Columbus Day", :regions => [:cme]}],
-      11 => [{:mday => 11, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Veterans Day", :regions => [:cme]},
-            {:wday => 4, :week => 4, :name => "Thanksgiving Day", :regions => [:cme]}],
-      12 => [{:mday => 25, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Christmas Day", :regions => [:cme]}]
+      11 => [{:wday => 4, :week => 4, :name => "Thanksgiving Day", :regions => [:cme]}],
+      12 => [{:mday => 25, :observed => lambda { |date| Holidays.to_monday_if_sunday_to_friday_if_saturday(date) }, :observed_id => "to_monday_if_sunday_to_friday_if_saturday", :name => "Christmas Day", :regions => [:cme]}]
       }
     end
   end
 
-# January 20, every fourth year, following Presidential election
-def self.us_inauguration_day(year)
-  year % 4 == 1 ? 20 : nil
+# January 1st on M-F, January 2nd on January 1st falls on Sunday, NA if January 1st falls on Saturday
+def self.cme_new_year(year)
+  ny = Date.new(year, 1, 1)
+  ny += 1  if ny.wday == 0 
+  ny = nil if ny.wday == 6
+  ny
 end
-
-    
 
 
 

@@ -7,77 +7,62 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class CmeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_cme
-{Date.civil(2012,1,2) => "New Year's Day",
+{Date.civil(2009,1,1) => "New Year's Day",
+ Date.civil(2009,1,19) => "Birthday of Martin Luther King, Jr",
+ Date.civil(2009,2,16) => "President's Day",
+ Date.civil(2009,4,10) => "Good Friday",
+ Date.civil(2009,5,25) => "Memorial Day",
+ Date.civil(2009,7,3) => "Independence Day",
+ Date.civil(2009,9,7) => "Labor Day",
+ Date.civil(2009,11,26) => "Thanksgiving Day",
+ Date.civil(2009,12,25) => "Christmas Day",
+
+ Date.civil(2010,1,1) => "New Year's Day",
+ Date.civil(2010,1,18) => "Birthday of Martin Luther King, Jr",
+ Date.civil(2010,2,15) => "President's Day",
+ Date.civil(2010,4,2) => "Good Friday",
+ Date.civil(2010,5,31) => "Memorial Day",
+ Date.civil(2010,7,5) => "Independence Day",
+ Date.civil(2010,9,6) => "Labor Day",
+ Date.civil(2010,11,25) => "Thanksgiving Day",
+ Date.civil(2010,12,24) => "Christmas Day", 
+
+ Date.civil(2011,1,17) => "Birthday of Martin Luther King, Jr",
+ Date.civil(2011,2,21) => "President's Day",
+ Date.civil(2011,4,22) => "Good Friday",
+ Date.civil(2011,5,30) => "Memorial Day",
+ Date.civil(2011,7,4) => "Independence Day",
+ Date.civil(2011,9,5) => "Labor Day",
+ Date.civil(2011,11,24) => "Thanksgiving Day",
+ Date.civil(2011,12,26) => "Christmas Day",
+
+ Date.civil(2012,1,2) => "New Year's Day",
  Date.civil(2012,1,16) => "Birthday of Martin Luther King, Jr",
- Date.civil(2012,2,20) => "Washington's Birthday",
+ Date.civil(2012,2,20) => "President's Day",
  Date.civil(2012,4,6) => "Good Friday",
  Date.civil(2012,5,28) => "Memorial Day",
  Date.civil(2012,7,4) => "Independence Day",
  Date.civil(2012,9,3) => "Labor Day",
- Date.civil(2012,10,8) => "Columbus Day",
- Date.civil(2012,11,12) => "Veterans Day",
  Date.civil(2012,11,22) => "Thanksgiving Day",
- Date.civil(2012,12,24) => "Christmas Eve",
  Date.civil(2012,12,25) => "Christmas Day",
- Date.civil(2012,12,31) => "New Year's Eve",
 
  Date.civil(2013,1,1) => "New Year's Day",
  Date.civil(2013,1,21) => "Birthday of Martin Luther King, Jr",
- Date.civil(2013,2,18) => "Washington's Birthday",
+ Date.civil(2013,2,18) => "President's Day",
  Date.civil(2013,3,29) => "Good Friday",
  Date.civil(2013,5,27) => "Memorial Day",
  Date.civil(2013,7,4) => "Independence Day",
  Date.civil(2013,9,2) => "Labor Day",
- Date.civil(2013,10,14) => "Columbus Day",
- Date.civil(2013,11,11) => "Veterans Day",
  Date.civil(2013,11,28) => "Thanksgiving Day",
- Date.civil(2013,12,24) => "Christmas Eve",
- Date.civil(2013,12,25) => "Christmas Day",
- Date.civil(2013,12,31) => "New Year's Eve",
- 
- Date.civil(2014,1,1) => "New Year's Day",
- Date.civil(2014,1,20) => "Birthday of Martin Luther King, Jr",
- Date.civil(2014,2,17) => "Washington's Birthday",
- Date.civil(2014,4,18) => "Good Friday",
- Date.civil(2014,5,26) => "Memorial Day",
- Date.civil(2014,7,4) => "Independence Day",
- Date.civil(2014,9,1) => "Labor Day",
- Date.civil(2014,10,13) => "Columbus Day",
- Date.civil(2014,11,11) => "Veterans Day",
- Date.civil(2014,11,27) => "Thanksgiving Day",
- Date.civil(2014,12,24) => "Christmas Eve",
- Date.civil(2014,12,25) => "Christmas Day",
- Date.civil(2014,12,31) => "New Year's Eve",
+ Date.civil(2013,12,25) => "Christmas Day"
 
- Date.civil(2015,1,1) => "New Year's Day",
- Date.civil(2015,1,19) => "Birthday of Martin Luther King, Jr",
- Date.civil(2015,2,16) => "Washington's Birthday",
- Date.civil(2015,4,3) => "Good Friday",
- Date.civil(2015,5,25) => "Memorial Day",
- Date.civil(2015,7,4) => "Independence Day",
- Date.civil(2015,9,7) => "Labor Day",
- Date.civil(2015,10,12) => "Columbus Day",
- Date.civil(2015,11,11) => "Veterans Day",
- Date.civil(2015,11,26) => "Thanksgiving Day",
- Date.civil(2015,12,24) => "Christmas Eve",
- Date.civil(2015,12,25) => "Christmas Day",
- Date.civil(2015,12,31) => "New Year's Eve",
-
- Date.civil(2016,1,1) => "New Year's Day",
- Date.civil(2016,1,18) => "Birthday of Martin Luther King, Jr",
- Date.civil(2016,2,15) => "Washington's Birthday",
- Date.civil(2016,3,25) => "Good Friday",
- Date.civil(2016,5,30) => "Memorial Day",
- Date.civil(2016,7,4) => "Independence Day",
- Date.civil(2016,9,5) => "Labor Day",
- Date.civil(2016,10,10) => "Columbus Day",
- Date.civil(2016,11,11) => "Veterans Day",
- Date.civil(2016,11,24) => "Thanksgiving Day",
- Date.civil(2016,12,24) => "Christmas Eve",
- Date.civil(2016,12,26) => "Christmas Day",
- Date.civil(2016,12,31) => "New Year's Eve",
  }.each do |date, name|
-   assert_equal name, (Holidays.on(date, :federal_reserve, :observed)[0] || {})[:name]
+   assert_equal name, (Holidays.on(date, :cme, :observed)[0] || {})[:name]
+ end
+
+ # Known holidays that aren't registered as CME dates
+ [Date.civil(2011, 1, 1)].each do |date|
+   assert_equal [], Holidays.on(date, :cme, :observed)
  end
 
   end
