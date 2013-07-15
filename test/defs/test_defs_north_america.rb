@@ -9,6 +9,7 @@ class North_americaDefinitionTests < Test::Unit::TestCase  # :nodoc:
   def test_north_america
 {Date.civil(2008,1,1) => 'New Year\'s Day',
  Date.civil(2008,3,21) => 'Good Friday',
+ Date.civil(2013,3,31) => 'Easter Sunday',
  Date.civil(2008,3,24) => 'Easter Monday',
  Date.civil(2008,5,19) => 'Victoria Day',
  Date.civil(2008,7,1) => 'Canada Day',
