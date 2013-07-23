@@ -1,5 +1,5 @@
 # Definition build list
---- 
+---
 defs:
   AT: ['at.yaml']
   AU: ['au.yaml']
@@ -29,6 +29,7 @@ defs:
   NZ: ['nz.yaml']
   PL: ['pl.yaml']
   PT: ['pt.yaml']
+  RO: ['ro.yaml']
   SE: ['se.yaml']
   US: ['us.yaml', 'north_america_informal.yaml']
   United_Nations: ['united_nations.yaml']
@@ -36,6 +37,6 @@ defs:
   ZA: ['za.yaml']
   North_America: ['ca.yaml', 'mx.yaml', 'us.yaml', 'north_america_informal.yaml']
   Scandinavia: ['dk.yaml', 'is.yaml', 'no.yaml', 'se.yaml', 'fi.yaml']
-  Europe: ['at.yaml', 'ch.yaml', 'cz.yaml', 'dk.yaml', 'de.yaml', 'el.yaml', 'es.yaml', 'fr.yaml', 'gb.yaml', 'hr.yaml', 'hu.yaml', 'ie.yaml', 'is.yaml', 'it.yaml', 'li.yaml', 'nl.yaml', 'no.yaml', 'pl.yaml', 'pt.yaml']
+  Europe: ['at.yaml', 'ch.yaml', 'cz.yaml', 'dk.yaml', 'de.yaml', 'el.yaml', 'es.yaml', 'fr.yaml', 'gb.yaml', 'hr.yaml', 'hu.yaml', 'ie.yaml', 'is.yaml', 'it.yaml', 'li.yaml', 'nl.yaml', 'no.yaml', 'pl.yaml', 'pt.yaml', 'ro.yaml']
   JP: ['jp.yaml']
   VE: ['ve.yaml']
