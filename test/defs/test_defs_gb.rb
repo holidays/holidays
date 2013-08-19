@@ -27,6 +27,7 @@ assert_equal 'Christmas Day', Date.civil(2010,12,27).holidays(:gb_, :observed)[0
 assert_equal 'Boxing Day', Date.civil(2008,12,26).holidays(:gb_, :observed)[0][:name]
 assert_equal 'Boxing Day', Date.civil(2009,12,28).holidays(:gb_, :observed)[0][:name]
 assert_equal 'Boxing Day', Date.civil(2010,12,28).holidays(:gb_, :observed)[0][:name]
+assert_equal 'Boxing Day', Date.civil(2011,12,27).holidays(:gb_, :observed)[0][:name]
 
 [:gb_wls, :gb_eng, :gb_nir, :gb_eaw, :gb_].each do |r|
   assert_equal 'Easter Monday', Date.civil(2008,3,24).holidays(r)[0][:name]
