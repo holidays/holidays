@@ -13,7 +13,7 @@ module Holidays
   # All the definitions are available at https://github.com/alexdunae/holidays
   module North_America # :nodoc:
     def self.defined_regions
-      [:ca, :ca_qc, :ca_ab, :ca_on, :ca_sk, :ca_mb, :ca_nf, :ca_nt, :ca_nu, :ca_bc, :ca_ns, :ca_yk, :mx, :mx_pue, :us, :us_dc]
+      [:ca, :ca_qc, :ca_ab, :ca_on, :ca_sk, :ca_mb, :ca_bc, :ca_nf, :ca_nt, :ca_nu, :ca_ns, :ca_yk, :mx, :mx_pue, :us, :us_dc]
     end
 
     def self.holidays_by_month
@@ -30,6 +30,7 @@ module Holidays
             {:function => lambda { |year| Holidays.us_inauguration_day(year) }, :function_id => "us_inauguration_day(year)", :name => "Inauguration Day", :regions => [:us_dc]}],
       2 => [{:wday => 1, :week => 3, :name => "Family Day", :regions => [:ca_ab, :ca_on, :ca_sk]},
             {:wday => 1, :week => 3, :name => "Louis Riel Day", :regions => [:ca_mb]},
+            {:wday => 1, :week => 2, :name => "BC Family Day", :regions => [:ca_bc]},
             {:wday => 1, :week => 1, :name => "Día de la Constitución", :regions => [:mx]},
             {:wday => 1, :week => 3, :name => "Presidents' Day", :regions => [:us]},
             {:mday => 2, :type => :informal, :name => "Groundhog Day", :regions => [:us, :ca]},

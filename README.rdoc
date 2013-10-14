@@ -16,8 +16,7 @@ Time zones are ignored.  This library assumes that all dates are within the same
  
 === Examples
  
-For more information, see the notes at the top of the Holidays module.  A super minimal web interface is here:
-http://empty-mist-5349.herokuapp.com/
+For more information, see the notes at the top of the Holidays module.
  
 ==== Using the Holidays class
 Get all holidays on April 25, 2008 in Australia.
@@ -67,6 +66,16 @@ Lookup Canada Day in different regions.
   d.holiday?(:fr) # France
   => false
  
+=== How to contribute
+To make changes to any of the definitions, edit the YAML files only. 
+
+Tests are also added at the end of the YAML files. Please add tests, it makes the pull requests go around.
+
+After you're satisfied with the YAML file, edit the index.yaml file, run rake defs:build_all and rake defs:manifest, which will generate the ruby files that make up the actual code as well as the tests.
+
+It is also very appreciated if documentation is attached to the pull request, a simple wikipedia post referencing the change would suffice.
+
+Tests can be run using rake test, use rake -T to see all available tasks.
 === Credits and code
  
 * Source: https://github.com/alexdunae/holidays
@@ -75,7 +84,8 @@ Lookup Canada Day in different regions.
 * Build status: http://travis-ci.org/#!/alexdunae/holidays
  
 Started by Alex Dunae (dunae.ca, e-mail 'code' at the same domain), 2007-12.
+Maintained by Hana Wang (https://github.com/hahahana), 2013
 
 On Twitter: @MrMrBug.
  
-Made on Vancouver Island.
+Made on Vancouver Island. Maintained in the way more beautiful Houston, TX.

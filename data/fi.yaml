@@ -38,6 +38,9 @@ months:
     regions: [fi]
     mday: 1
   6:
+  - name: Juhannusaatto
+    regions: [fi]
+    function: fi_juhannusaatto(year)
   - name: Juhannuspäivä
     regions: [fi]
     function: fi_juhannuspaiva(year)
@@ -56,6 +59,17 @@ months:
     regions: [fi]
     mday: 26
 methods:
+  fi_juhannusaatto: |
+    # Finland: Mid-summer eve (Friday between June 19–25)
+    def self.fi_juhannusaatto(year)
+      date = Date.civil(year,6,19)
+      if date.wday > 5 #if 19.6 is saturday
+        date += 6
+      else 
+        date += (5 - date.wday)
+      end
+      date
+    end
   fi_juhannuspaiva: |
     # Finland: Mid-summer (Saturday between June 20–26)
     def self.fi_juhannuspaiva(year)
@@ -79,6 +93,11 @@ tests: |
      Date.civil(2008,5,1) => 'Vappu',
      Date.civil(2008,5,1) => 'Helatorstai',
      Date.civil(2008,5,11) => 'Helluntaipäivä',
+     Date.civil(2009,6,19) => 'Juhannusaatto',
+     Date.civil(2010,6,25) => 'Juhannusaatto',
+     Date.civil(2011,6,24) => 'Juhannusaatto',
+     Date.civil(2012,6,22) => 'Juhannusaatto',
+     Date.civil(2013,6,21) => 'Juhannusaatto',
      Date.civil(2005,6,25) => 'Juhannuspäivä',
      Date.civil(2006,6,24) => 'Juhannuspäivä',
      Date.civil(2007,6,23) => 'Juhannuspäivä',
