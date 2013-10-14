@@ -29,8 +29,18 @@ assert_equal 'Labour Day', Date.civil(2007,3,5).holidays(:au_wa)[0][:name]
 assert_equal 'Labour Day', Date.civil(2007,3,12).holidays(:au_vic)[0][:name]
 assert_equal 'Labour Day', Date.civil(2007,5,7).holidays(:au_qld)[0][:name]
 
+assert_equal 'Easter Sunday', Date.civil(2007,4,8).holidays(:au_nsw)[0][:name]
+
 assert_equal 'May Day', Date.civil(2007,5,7).holidays(:au_nt)[0][:name]
 
 assert_equal 'Eight Hours Day', Date.civil(2007,3,12).holidays(:au_tas)[0][:name]
+
+assert_equal 'Labour Day', Date.civil(2013,10,7).holidays(:au_qld)[0][:name]
+assert_equal 'Labour Day', Date.civil(2012,5,7).holidays(:au_qld)[0][:name]
+
+assert_equal "Queen's Birthday", Date.civil(2012,6,11).holidays(:au_qld)[0][:name]
+assert_equal "Queen's Birthday", Date.civil(2012,10,1).holidays(:au_qld)[0][:name]
+assert_equal "Queen's Birthday", Date.civil(2013,6,10).holidays(:au_qld)[0][:name]
+
   end
 end
