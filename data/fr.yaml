@@ -10,6 +10,7 @@ months:
   - name: Pâques
     regions: [fr]
     function: easter(year)
+    type: informal
   - name: Lundi de Pâques
     regions: [fr]
     function: easter(year)+1
@@ -19,6 +20,7 @@ months:
   - name: Pentecôte
     regions: [fr]
     function: easter(year)+49
+    type: informal
   - name: Lundi de Pentecôte
     regions: [fr]
     function: easter(year)+50
