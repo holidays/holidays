@@ -1,6 +1,7 @@
 # Definition build list
 --- 
 defs:
+  AR: ['ar.yaml']
   AT: ['at.yaml']
   AU: ['au.yaml']
   BR: ['br.yaml']
