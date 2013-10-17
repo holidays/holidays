@@ -19,7 +19,7 @@ class FrDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2007,8,15) => 'Assomption',
  Date.civil(2007,11,1) => 'Toussaint',
  Date.civil(2007,11,11) => 'Armistice 1918',
- Date.civil(2007,12,25) => 'Nöel'}.each do |date, name|
+ Date.civil(2007,12,25) => 'Noël'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :fr, :informal)[0] || {})[:name]
 end
   end

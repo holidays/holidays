@@ -30,7 +30,7 @@ module Holidays
       8 => [{:mday => 15, :name => "Assomption", :regions => [:fr]}],
       11 => [{:mday => 1, :name => "Toussaint", :regions => [:fr]},
             {:mday => 11, :name => "Armistice 1918", :regions => [:fr]}],
-      12 => [{:mday => 25, :name => "Nöel", :regions => [:fr]}]
+      12 => [{:mday => 25, :name => "Noël", :regions => [:fr]}]
       }
     end
   end

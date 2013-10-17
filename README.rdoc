@@ -71,7 +71,7 @@ To make changes to any of the definitions, edit the YAML files only.
 
 Tests are also added at the end of the YAML files. Please add tests, it makes the pull requests go around.
 
-After you're satisfied with the YAML file, edit the index.yaml file, run rake defs:build_all and rake defs:manifest, which will generate the ruby files that make up the actual code as well as the tests.
+After you're satisfied with the YAML file, edit the index.yaml file, using ruby > 1.9.2 run rake defs:build_all and rake defs:manifest, which will generate the ruby files that make up the actual code as well as the tests.
 
 It is also very appreciated if documentation is attached to the pull request, a simple wikipedia post referencing the change would suffice.
 
