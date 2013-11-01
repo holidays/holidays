@@ -5,7 +5,6 @@ require 'rdoc/task'
 require 'yaml'
 require 'fileutils'
 require 'holidays'
-require File.expand_path('data/build_defs')
 
 task :default => :test
 
@@ -62,7 +61,8 @@ namespace :defs do
       files = files.collect { |f| "#{DATA_PATH}/#{f}" }
       files.uniq!
 
-      module_src, test_src = parse_holiday_defs(region, files)
+      module_src, test_src = Holidays.parse_definition_files_and_return_source(region, files)
+
       File.open("lib/holidays/#{region.downcase.to_s}.rb","w") do |file|
         file.puts module_src
       end
