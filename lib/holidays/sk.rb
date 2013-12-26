@@ -19,12 +19,12 @@ module Holidays
     def self.holidays_by_month
       {
       0 => [{:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Veľkonočný pondelok", :regions => [:sk]},
-            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Veľký piatok", :regions => [:sk]}]
+            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Veľký piatok", :regions => [:sk]}],
       1 => [{:mday => 1, :name => "Nový rok", :regions => [:sk]}],
       5 => [{:mday => 1, :name => "Sviatok práce", :regions => [:sk]},
             {:mday => 8, :name => "Deň víťazstva", :regions => [:sk]}],
       7 => [{:mday => 5, :name => "Sviatok svätého Cyrila a svätého Metoda", :regions => [:sk]}],
-      8 => [{:mday => 29, :name => "Výročie Slovenského národného povstania", :regions => [:sk]}]
+      8 => [{:mday => 29, :name => "Výročie Slovenského národného povstania", :regions => [:sk]}],
       9 => [{:mday => 1, :name => "Deň Ústavy Slovenskej republiky", :regions => [:sk]},
             {:mday => 15, :name => "Sedembolestná Panna Mária", :regions => [:sk]}],
       11 => [{:mday => 1, :name => "Sviatok všetkých svätých", :regions => [:sk]},
