@@ -1,8 +1,9 @@
 # Definition build list
---- 
+---
 defs:
   AT: ['at.yaml']
   AU: ['au.yaml']
+  BE: ['be.yaml']
   BR: ['br.yaml']
   CA: ['ca.yaml', 'north_america_informal.yaml']
   CH: ['ch.yaml']
@@ -21,6 +22,7 @@ defs:
   IS: ['is.yaml']
   IT: ['it.yaml']
   LI: ['li.yaml']
+  MA: ['ma.yaml']
   MX: ['mx.yaml', 'north_america_informal.yaml']
   NERC: ['nerc.yaml']
   NL: ['nl.yaml']
@@ -36,7 +38,7 @@ defs:
   ZA: ['za.yaml']
   North_America: ['ca.yaml', 'mx.yaml', 'us.yaml', 'north_america_informal.yaml']
   Scandinavia: ['dk.yaml', 'is.yaml', 'no.yaml', 'se.yaml', 'fi.yaml']
-  Europe: ['at.yaml', 'ch.yaml', 'cz.yaml', 'dk.yaml', 'de.yaml', 'el.yaml', 'es.yaml', 'fr.yaml', 'gb.yaml', 'hr.yaml', 'hu.yaml', 'ie.yaml', 'is.yaml', 'it.yaml', 'li.yaml', 'nl.yaml', 'no.yaml', 'pl.yaml', 'pt.yaml', 'sk.yaml']
+  Europe: ['at.yaml', 'be.yaml', 'ch.yaml', 'cz.yaml', 'dk.yaml', 'de.yaml', 'el.yaml', 'es.yaml', 'fr.yaml', 'gb.yaml', 'hr.yaml', 'hu.yaml', 'ie.yaml', 'is.yaml', 'it.yaml', 'li.yaml', 'nl.yaml', 'no.yaml', 'pl.yaml', 'pt.yaml', 'sk.yaml']
   JP: ['jp.yaml']
   VE: ['ve.yaml']
   SK: ['sk.yaml']
