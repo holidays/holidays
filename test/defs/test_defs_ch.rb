@@ -34,5 +34,6 @@ end
 [Date.civil(2012,4,12), Date.civil(2013,4,4), Date.civil(2014,4,3)].each do |date|
   assert_equal 'Näfelser Fahrt', (Holidays.on(date, :ch_gl)[0] || {})[:name]
 end
+
   end
 end

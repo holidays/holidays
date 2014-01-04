@@ -64,6 +64,7 @@ end
   assert_equal 'Näfelser Fahrt', (Holidays.on(date, :ch_gl)[0] || {})[:name]
 end
 
+
 {Date.civil(2010,1,1) => 'Den obnovy samostatného českého státu',
  Date.civil(2010,4,5) => 'Velikonoční pondělí',
  Date.civil(2010,5,1) => 'Svátek práce',
