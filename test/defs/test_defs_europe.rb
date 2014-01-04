@@ -207,8 +207,7 @@ assert_equal 'Fiesta Nacional de Cataluña', Date.civil(2009,9,11).holidays(:es_
   assert_equal name, (Holidays.on(date, :fr, :informal)[0] || {})[:name]
 end
 
-{Date.civil(2008,1,1) => 'New Year\'s Day', 
- Date.civil(2008,3,21) => 'Good Friday',
+{Date.civil(2008,3,21) => 'Good Friday',
  Date.civil(2008,3,23) => 'Easter Sunday',
  Date.civil(2008,5,5) => 'May Day',
  Date.civil(2008,5,26) => 'Bank Holiday',
@@ -227,6 +226,10 @@ assert_equal 'Christmas Day', Date.civil(2010,12,27).holidays(:gb_, :observed)[0
 assert_equal 'Boxing Day', Date.civil(2008,12,26).holidays(:gb_, :observed)[0][:name]
 assert_equal 'Boxing Day', Date.civil(2009,12,28).holidays(:gb_, :observed)[0][:name]
 assert_equal 'Boxing Day', Date.civil(2010,12,28).holidays(:gb_, :observed)[0][:name]
+
+assert_equal 'New Year\'s Day', Date.civil(2010,1,1).holidays(:gb, :observed)[0][:name]
+assert_equal 'New Year\'s Day', Date.civil(2011,1,3).holidays(:gb, :observed)[0][:name]
+assert_equal 'New Year\'s Day', Date.civil(2012,1,2).holidays(:gb, :observed)[0][:name]
 
 [:gb_wls, :gb_eng, :gb_nir, :gb_eaw, :gb_].each do |r|
   assert_equal 'Easter Monday', Date.civil(2008,3,24).holidays(r)[0][:name]
