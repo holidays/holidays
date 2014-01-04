@@ -18,7 +18,7 @@ months:
   - name: Páscoa
     regions: [br]
     function: easter(year)
-  - name: Corpus Christ
+  - name: Corpus Christi
     regions: [br]
     function: easter(year)+60
   1: 
