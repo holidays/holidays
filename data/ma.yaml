@@ -1,0 +1,52 @@
+# Morocco holiday (incomplete)definitions for the Ruby Holiday gem.
+#
+# Updated: 2013-07-01.
+# Some dates in Islamic Calendar are missing.
+# Sources:
+# - http://en.wikipedia.org/wiki/Public_holidays_in_Morocco
+--- 
+months:
+  1: 
+  - name: Ras l' âm
+    regions: [ma]
+    mday: 1
+  - name: Takdim watikat al-istiqlal
+    regions: [ma]
+    mday: 11
+  5: 
+  - name: Eid Ash-Shughl
+    regions: [ma]
+    mday: 1
+  7:
+  - name: Eid Al-Ârch
+    regions: [ma]
+    mday: 30
+  8: 
+  - name: Zikra Oued Ed-Dahab
+    regions: [ma]
+    mday: 14
+  - name: Thawrat al malik wa shâab
+    regions: [ma]
+    mday: 20
+  - name: Eid Al Milad
+    regions: [ma]
+    mday: 21
+  11: 
+  - name: Eid Al Massira Al Khadra
+    regions: [ma]
+    mday: 6
+  - name: Eid Al Istiqulal
+    regions: [ma]
+    mday: 18
+tests: |
+    {Date.civil(2007,1,1) => 'Ras l\' âm', 
+     Date.civil(2007,1,11) => 'Takdim watikat al-istiqlal',
+     Date.civil(2007,5,1) => 'Eid Ash-Shughl',
+     Date.civil(2007,7,30) => 'Eid Al-Ârch',
+     Date.civil(2007,8,14) => 'Zikra Oued Ed-Dahab',
+     Date.civil(2007,8,20) => 'Thawrat al malik wa shâab',
+     Date.civil(2007,8,21) => 'Eid Al Milad',
+     Date.civil(2007,11,6) => 'Eid Al Massira Al Khadra',
+     Date.civil(2007,11,18) => 'Eid Al Istiqulal'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :ma, :informal)[0] || {})[:name]
+    end
