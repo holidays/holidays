@@ -46,8 +46,6 @@ module Holidays
   # Exception thrown when an unknown region is requested.
   class UnknownRegionError < ArgumentError; end
 
-  VERSION = '1.0.6'
-
   @@regions = []
   @@holidays_by_month = {}
   @@proc_cache = {}
