@@ -226,6 +226,7 @@ assert_equal 'Christmas Day', Date.civil(2010,12,27).holidays(:gb_, :observed)[0
 assert_equal 'Boxing Day', Date.civil(2008,12,26).holidays(:gb_, :observed)[0][:name]
 assert_equal 'Boxing Day', Date.civil(2009,12,28).holidays(:gb_, :observed)[0][:name]
 assert_equal 'Boxing Day', Date.civil(2010,12,28).holidays(:gb_, :observed)[0][:name]
+assert_equal 'Boxing Day', Date.civil(2011,12,27).holidays(:gb_, :observed)[0][:name]
 
 assert_equal 'New Year\'s Day', Date.civil(2010,1,1).holidays(:gb, :observed)[0][:name]
 assert_equal 'New Year\'s Day', Date.civil(2011,1,3).holidays(:gb, :observed)[0][:name]
