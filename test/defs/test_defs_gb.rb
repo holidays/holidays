@@ -36,5 +36,6 @@ assert_equal 'New Year\'s Day', Date.civil(2012,1,2).holidays(:gb, :observed)[0]
   assert_equal 'Easter Monday', Date.civil(2008,3,24).holidays(r)[0][:name]
   assert_equal 'Bank Holiday', Date.civil(2008,8,25).holidays(r)[0][:name]
 end
+
   end
 end
