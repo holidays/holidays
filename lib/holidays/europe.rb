@@ -30,7 +30,7 @@ module Holidays
             {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Karfreitag", :regions => [:ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_ne, :ch_ge, :ch_ju, :de, :li]},
             {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Auffahrt", :regions => [:ch, :li]},
             {:function => lambda { |year| Holidays.ch_vd_lundi_du_jeune_federal(year) }, :function_id => "ch_vd_lundi_du_jeune_federal(year)", :name => "Lundi du Jeûne fédéral", :regions => [:ch_vd]},
-            {:function => lambda { |year| Holidays.ch_ge_jeune_genevoi(year) }, :function_id => "ch_ge_jeune_genevoi(year)", :name => "Jeûne genevoi", :regions => [:ch_ge]},
+            {:function => lambda { |year| Holidays.ch_ge_jeune_genevois(year) }, :function_id => "ch_ge_jeune_genevois(year)", :name => "Jeûne genevois", :regions => [:ch_ge]},
             {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Velikonoční pondělí", :regions => [:cz]},
             {:function => lambda { |year| Holidays.easter(year)-49 }, :function_id => "easter(year)-49", :type => :informal, :name => "Fastelavn", :regions => [:dk, :no]},
             {:function => lambda { |year| Holidays.easter(year)-7 }, :function_id => "easter(year)-7", :name => "Palmesøndag", :regions => [:dk, :no]},
@@ -363,7 +363,7 @@ end
 
 
 # Thursday after the first Sunday of September
-def self.ch_ge_jeune_genevoi(year)
+def self.ch_ge_jeune_genevois(year)
   date = Date.civil(year,9,1)
   # Find the first Sunday of September
   until date.wday.eql? 0 do
