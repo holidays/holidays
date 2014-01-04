@@ -57,7 +57,7 @@ months:
     function: ch_ge_jeune_genevoi(year)
   1:
   - name: Neujahrstag
-    regions: [ch_zh, ch_be, ch_lu, ch_ur, ch_sz, ch_ow, ch_nw, ch_gl, ch_zg, ch_fr, ch_so, ch_bs, ch_bl, ch_sh, ch_ar, ch_ai, ch_sg, ch_gr, ch_ag, ch_tg, ch_vd, ch_vs, ch_ne, ch_ge, ch_ju]
+    regions: [ch_zh, ch_be, ch_lu, ch_ur, ch_sz, ch_ow, ch_nw, ch_gl, ch_zg, ch_fr, ch_so, ch_bs, ch_bl, ch_sh, ch_ar, ch_ai, ch_sg, ch_gr, ch_ag, ch_tg, ch_vd, ch_vs, ch_ne, ch_ge, ch_ju, ch_ti]
     mday: 1
   - name: Berchtoldstag
     regions: [ch_zh, ch_be, ch_lu, ch_ow, ch_nw, ch_gl, ch_zg, ch_fr, ch_so, ch_sh, ch_sg, ch_ag, ch_tg, ch_vd, ch_vs, ch_ne, ch_ju]
