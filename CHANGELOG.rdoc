@@ -1,5 +1,31 @@
 = Ruby Holidays Gem CHANGELOG
 
+== 1.0.6
+* Added `Holidays.regions` method (@sonnym)
+* Added Slovakian definitions (@mirelon)
+* Added Venezuelan definitions (@Chelo)
+* Updated Canadian definitions (@sdavies)
+* Updated Argentinian definitions (@popox)
+* Updated Australian definitions (@ghiculescu)
+* Updated Portuguese definitions (@MiPereira)
+* Added Swiss definitions (@samzurcher, @jg)
+* Added Romanian definitions (@mtarnovan)
+* Added Belgian definitions (@jak78)
+* Added Moroccan definitions (@jak78)
+* Fixes for New Year's and Boxing Day (@iterion, @andyw8)
+* Fixes for Father's Day, Mother's Day and Armed Forces Day (@eheikes)
+* Typos (@gregoriokusowski, @popox)
+* Added Croatian definitions (@lecterror)
+* Added US Federal Reserve holidays (@willbarrett)
+* Added NERC holidays (@adamstrickland)
+* Updated Irish holidays (@xlcrs)
+
+== 1.0.5
+* Added `full_week?` method (@dceddia)
+* Added Portuguese definitions (@pmor)
+* Added Hungarian definitions (@spap)
+* Typos (@DenisKnauf)
+
 == 1.0.4
 * Add Liechtenstein holiday defs (mercy vielmal Bernhard Furtmueller)
 
@@ -8,10 +34,10 @@
 
 == 1.0.2
 * Add `orthodox_easter` method and Greek holiday definitions (thanks https://github.com/ddimitriadis)
-  
+
 == 1.0.0
 * Support calculating mday from negative weeks other than -1 (thanks http://github.com/bjeanes)
-* Use class method to check leap years and fixed bug in Date.calculate_mday 
+* Use class method to check leap years and fixed bug in Date.calculate_mday
  (thanks http://github.com/dgrambow)
 * Added Czech (thanks http://github.com/boblin), Brazilian (http://github.com/fabiokr), Norwegian (thanks to Peter Skeide) and Australia/Brisbane (http://github.com/bjeanes) definitions
 * Cleaned up rake and gemspec

@@ -40,7 +40,7 @@ RDoc::Task.new do |rdoc|
   rdoc.rdoc_files.include('data/SYNTAX.rdoc')
   rdoc.rdoc_files.include('lib/holidays/MANIFEST')
   rdoc.rdoc_files.include('REFERENCES')
-  rdoc.rdoc_files.include('CHANGELOG')
+  rdoc.rdoc_files.include('CHANGELOG.rdoc')
   rdoc.rdoc_files.include('LICENSE')
   rdoc.rdoc_files.include('lib/*.rb')
 end
