@@ -19,6 +19,7 @@ module Holidays
     def self.holidays_by_month
       {
               0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Good Friday", :regions => [:ca]},
+            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Easter Sunday", :regions => [:ca]},
             {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :type => :informal, :name => "Easter Monday", :regions => [:ca]}],
       1 => [{:mday => 1, :name => "New Year's Day", :regions => [:ca]},
             {:mday => 2, :name => "New Year's", :regions => [:ca_qc]}],
@@ -31,10 +32,12 @@ module Holidays
             {:mday => 17, :type => :informal, :name => "St. Patrick's Day", :regions => [:us, :ca]}],
       5 => [{:function => lambda { |year| Holidays.ca_victoria_day(year) }, :function_id => "ca_victoria_day(year)", :name => "Victoria Day", :regions => [:ca]},
             {:function => lambda { |year| Holidays.ca_victoria_day(year) }, :function_id => "ca_victoria_day(year)", :name => "National Patriotes Day", :regions => [:ca_qc]},
-            {:wday => 0, :week => 3, :type => :informal, :name => "Father's Day", :regions => [:us, :ca]}],
+            {:wday => 0, :week => 2, :type => :informal, :name => "Mother's Day", :regions => [:us, :ca]},
+            {:wday => 6, :week => 3, :type => :informal, :name => "Armed Forces Day", :regions => [:us]}],
       6 => [{:mday => 24, :name => "Discovery Day", :regions => [:ca_nf]},
             {:mday => 24, :name => "Fête Nationale", :regions => [:ca_qc]},
-            {:mday => 21, :name => "National Aboriginal Day", :regions => [:ca_nt]}],
+            {:mday => 21, :name => "National Aboriginal Day", :regions => [:ca_nt]},
+            {:wday => 0, :week => 3, :type => :informal, :name => "Father's Day", :regions => [:us, :ca]}],
       7 => [{:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Canada Day", :regions => [:ca]},
             {:mday => 12, :name => "Orangemen's Day", :regions => [:ca_nf]},
             {:mday => 9, :name => "Nunavut Day", :regions => [:ca_nu]}],
