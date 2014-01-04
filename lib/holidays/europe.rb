@@ -221,7 +221,7 @@ module Holidays
             {:mday => 8, :name => "Inmaculada Concepción", :regions => [:es]},
             {:mday => 25, :name => "Navidad del Señor", :regions => [:es]},
             {:mday => 26, :name => "San Esteban", :regions => [:es_ib, :es_ct]},
-            {:mday => 25, :name => "Nöel", :regions => [:fr]},
+            {:mday => 25, :name => "Noël", :regions => [:fr]},
             {:mday => 25, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "Christmas Day", :regions => [:gb, :ie]},
             {:mday => 26, :observed => lambda { |date| Holidays.to_weekday_if_boxing_weekend(date) }, :observed_id => "to_weekday_if_boxing_weekend", :name => "Boxing Day", :regions => [:gb]},
             {:mday => 25, :name => "Božić", :regions => [:hr]},
