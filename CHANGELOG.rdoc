@@ -1,5 +1,8 @@
 = Ruby Holidays Gem CHANGELOG
 
+== 1.0.7.pre
+* Added European Central Bank TARGET definitions (Toby Bryans, NLX)
+
 == 1.0.6
 * Added `Holidays.regions` method (@sonnym)
 * Added Slovakian definitions (@mirelon)
