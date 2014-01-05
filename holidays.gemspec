@@ -16,7 +16,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.licenses      = ['MIT']
   gem.add_development_dependency 'bundler'
-  gem.add_development_dependency 'yaml'
   gem.add_development_dependency 'rake'
 end
 
