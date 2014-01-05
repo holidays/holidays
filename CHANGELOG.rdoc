@@ -2,6 +2,7 @@
 
 == 1.0.7.pre
 * Added European Central Bank TARGET definitions (Toby Bryans, NLX)
+* FR: Make Pâques and Pentecôte informal holidays (@wizcover)
 
 == 1.0.6
 * Added `Holidays.regions` method (@sonnym)
