@@ -351,13 +351,21 @@ private
     regions.flatten!
 
     require "holidays/north_america" if regions.include?(:us) # special case for north_america/US cross-linking
-
     regions.each do |r|
       unless r == :any or @@regions.include?(r)
         begin
           require "holidays/#{r.to_s}"
         rescue LoadError => e
-          raise UnknownRegionError, "Could not load holidays/#{r}"
+          # try loading the prefix instead e.g. :de_bb cannot be loaded, try :de
+          if match = /(\w+)_.+$/.match(r)
+            begin
+              require "holidays/#{match[1]}"
+            rescue LoadError => e
+              raise UnknownRegionError, "Could not load holidays/#{r} nor holidays/#{match[1]}"
+            end
+          else
+            raise UnknownRegionError, "Could not load holidays/#{r}"
+          end
         end
       end
     end
