@@ -20,7 +20,7 @@
 * Added Moroccan definitions (https://github.com/jak78)
 * Fixes for New Year's and Boxing Day (https://github.com/iterion, https://github.com/andyw8)
 * Fixes for Father's Day, Mother's Day and Armed Forces Day (https://github.com/eheikes)
-* Typos (https://github.com/gregoriokusowski, https://github.com/@opox)
+* Typos (https://github.com/gregoriokusowski, https://github.com/popox)
 * Added Croatian definitions (https://github.com/lecterror)
 * Added US Federal Reserve holidays (https://github.com/willbarrett)
 * Added NERC holidays (https://github.com/adamstrickland)
