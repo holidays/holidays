@@ -50,7 +50,7 @@ Get informal holidays in February.
     from = Date.civil(2008,2,1)
     to = Date.civil(2008,2,15)
 
-    Holidays.between(from, to)
+    Holidays.between(from, to, :informal)
     => [{:name => 'Valentine\'s Day',...}]
 
 ### Extending Ruby's Date class

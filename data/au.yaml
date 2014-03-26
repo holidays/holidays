@@ -27,9 +27,11 @@ months:
   - name: New Year's Day
     regions: [au]
     mday: 1
+    observed: to_monday_if_weekend
   - name: Australia Day
     regions: [au]
     mday: 26
+    observed: to_monday_if_weekend
   3: 
   - name: Labour Day
     regions: [au_wa]
@@ -47,6 +49,7 @@ months:
   - name: ANZAC Day
     regions: [au]
     mday: 25
+    observed: to_monday_if_weekend
   5: 
   - name: Labour Day
     regions: [au_qld]
@@ -81,16 +84,20 @@ months:
   - name: Labour Day
     regions: [au_qld]
     function: qld_labour_day_october(year)
+    observed: to_monday_if_weekend
   - name: Queen's Birthday
     regions: [au_qld]
     function: qld_queens_bday_october(year)
+    observed: to_monday_if_weekend
   12: 
   - name: Christmas Day
     regions: [au]
     mday: 25
+    observed: to_monday_if_weekend
   - name: Boxing Day
     regions: [au]
     mday: 26
+    observed: to_weekday_if_boxing_weekend
 methods:
   qld_queens_bday_october: |
     # http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
@@ -145,3 +152,6 @@ tests: |
     assert_equal "Queen's Birthday", Date.civil(2012,6,11).holidays(:au_qld)[0][:name]
     assert_equal "Queen's Birthday", Date.civil(2012,10,1).holidays(:au_qld)[0][:name]
     assert_equal "Queen's Birthday", Date.civil(2013,6,10).holidays(:au_qld)[0][:name]
+
+    assert_equal 'Australia Day', Date.civil(2014,1,26).holidays(:au_qld)[0][:name]
+    assert_equal 'Australia Day', Date.civil(2014,1,27).holidays(:au_qld, :observed)[0][:name]
