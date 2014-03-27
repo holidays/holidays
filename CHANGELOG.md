@@ -2,7 +2,7 @@
 
 ## 1.0.7.pre
 
-* Added European Central Bank TARGET definitions (Toby Bryans, NLX)
+* Added European Central Bank TARGET definitions (Toby Bryans, NASDAQ OMX NLX)
 * FR: Make Pâques and Pentecôte informal holidays (https://github.com/wizcover)
 
 ## 1.0.6
