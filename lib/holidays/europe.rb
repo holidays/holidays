@@ -310,7 +310,7 @@ module Holidays
             {:mday => 23, :name => "Día de Aragón", :regions => [:es_ar]},
             {:function => lambda { |year| Holidays.is_sumardagurinn_fyrsti(year) }, :function_id => "is_sumardagurinn_fyrsti(year)", :name => "Sumardagurinn fyrsti", :regions => [:is]},
             {:mday => 25, :name => "Festa della Liberazione", :regions => [:it]},
-            {:mday => 30, :name => "Koninginnedag", :regions => [:nl]},
+            {:mday => 27, :name => "Koningsdag", :regions => [:nl]},
             {:mday => 1, :type => :informal, :name => "Prima Aprilis", :regions => [:pl]},
             {:mday => 22, :type => :informal, :name => "Międzynarodowy Dzień Ziemi", :regions => [:pl]},
             {:mday => 25, :name => "Dia da Liberdade", :regions => [:pt]}],
