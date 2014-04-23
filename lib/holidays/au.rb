@@ -13,13 +13,13 @@ module Holidays
   # All the definitions are available at https://github.com/alexdunae/holidays
   module AU # :nodoc:
     def self.defined_regions
-      [:au, :au_nsw, :au_tas, :au_wa, :au_vic, :au_qld, :au_nt, :au_act, :au_sa, :au_qld_brisbane]
+      [:au, :au_nsw, :au_vic, :au_qld, :au_nt, :au_act, :au_sa, :au_qld_brisbane, :au_tas, :au_wa]
     end
 
     def self.holidays_by_month
       {
               0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Good Friday", :regions => [:au]},
-            {:function => lambda { |year| Holidays.easter(year)-1 }, :function_id => "easter(year)-1", :name => "Easter Saturday", :regions => [:au]},
+            {:function => lambda { |year| Holidays.easter(year)-1 }, :function_id => "easter(year)-1", :name => "Easter Saturday", :regions => [:au_nsw, :au_vic, :au_qld, :au_nt, :au_act, :au_sa, :au_qld_brisbane]},
             {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Easter Sunday", :regions => [:au_nsw]},
             {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Easter Monday", :regions => [:au]},
             {:function => lambda { |year| Holidays.easter(year)+2 }, :function_id => "easter(year)+2", :name => "Easter Monday", :regions => [:au_tas]}],
