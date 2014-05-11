@@ -6,6 +6,9 @@
 # Hari Raya Puasa and Hari Raya Haji (based on moon sightings, Islamic Calendar)
 # Deepavali (15th Day of September or October, based on the Hindu Calendar)
 
+# Source:
+# http://publicholidays.sg/
+
 months:
   0: 
   - name: Good Friday
