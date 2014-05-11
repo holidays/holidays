@@ -52,5 +52,5 @@ tests: |
      Date.civil(2014,5,1) => 'Labour Day',
      Date.civil(2014,8,9) => 'National Day',
      Date.civil(2014,12,25) => 'Christmas Day'}.each do |date, name|
-      assert_equal name, (Holidays.on(date, :us)[0] || {})[:name]
+      assert_equal name, (Holidays.on(date, :sg)[0] || {})[:name]
     end
