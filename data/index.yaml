@@ -46,3 +46,4 @@ defs:
   VE: ['ve.yaml']
   SK: ['sk.yaml']
   SI: ['si.yaml']
+  Graceway: ['graceway.yaml']
