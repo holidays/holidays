@@ -51,7 +51,7 @@ months:
     function: se_midsommardagen(year)
   - name: Midsommarafton
     regions: [se]
-    function: se_midsommardagen(year) - 1
+    function: se_midsommardagen(year)-1
     type: informal
   12:
   - name: Julafton

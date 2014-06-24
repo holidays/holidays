@@ -84,7 +84,7 @@ module Holidays
             {:mday => 17, :name => "Lýðveldisdagurinn", :regions => [:is]},
             {:mday => 6, :name => "Nationaldagen", :regions => [:se]},
             {:function => lambda { |year| Holidays.se_midsommardagen(year) }, :function_id => "se_midsommardagen(year)", :name => "Midsommardagen", :regions => [:se]},
-            {:function => lambda { |year| Holidays.se_midsommardagen(year) - 1 }, :function_id => "se_midsommardagen(year) - 1", :type => :informal, :name => "Midsommarafton", :regions => [:se]},
+            {:function => lambda { |year| Holidays.se_midsommardagen(year)-1 }, :function_id => "se_midsommardagen(year)-1", :type => :informal, :name => "Midsommarafton", :regions => [:se]},
             {:function => lambda { |year| Holidays.fi_juhannusaatto(year) }, :function_id => "fi_juhannusaatto(year)", :name => "Juhannusaatto", :regions => [:fi]},
             {:function => lambda { |year| Holidays.fi_juhannuspaiva(year) }, :function_id => "fi_juhannuspaiva(year)", :name => "Juhannuspäivä", :regions => [:fi]}],
       11 => [{:mday => 10, :type => :informal, :name => "Mortensaften", :regions => [:dk]},

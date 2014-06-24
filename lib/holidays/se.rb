@@ -30,7 +30,7 @@ module Holidays
       5 => [{:mday => 1, :name => "Första maj", :regions => [:se]}],
       6 => [{:mday => 6, :name => "Nationaldagen", :regions => [:se]},
             {:function => lambda { |year| Holidays.se_midsommardagen(year) }, :function_id => "se_midsommardagen(year)", :name => "Midsommardagen", :regions => [:se]},
-            {:function => lambda { |year| Holidays.se_midsommardagen(year) - 1 }, :function_id => "se_midsommardagen(year) - 1", :type => :informal, :name => "Midsommarafton", :regions => [:se]}],
+            {:function => lambda { |year| Holidays.se_midsommardagen(year)-1 }, :function_id => "se_midsommardagen(year)-1", :type => :informal, :name => "Midsommarafton", :regions => [:se]}],
       12 => [{:mday => 24, :type => :informal, :name => "Julafton", :regions => [:se]},
             {:mday => 25, :name => "Juldagen", :regions => [:se]},
             {:mday => 26, :name => "Annandag jul", :regions => [:se]},
