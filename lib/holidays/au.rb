@@ -13,13 +13,13 @@ module Holidays
   # All the definitions are available at https://github.com/alexdunae/holidays
   module AU # :nodoc:
     def self.defined_regions
-      [:au, :au_nsw, :au_vic, :au_qld, :au_nt, :au_act, :au_sa, :au_qld_brisbane, :au_tas, :au_wa]
+      [:au, :au_nsw, :au_vic, :au_qld, :au_nt, :au_act, :au_sa, :au_qld_brisbane, :au_qld_cairns, :au_tas, :au_wa]
     end
 
     def self.holidays_by_month
       {
               0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Good Friday", :regions => [:au]},
-            {:function => lambda { |year| Holidays.easter(year)-1 }, :function_id => "easter(year)-1", :name => "Easter Saturday", :regions => [:au_nsw, :au_vic, :au_qld, :au_nt, :au_act, :au_sa, :au_qld_brisbane]},
+            {:function => lambda { |year| Holidays.easter(year)-1 }, :function_id => "easter(year)-1", :name => "Easter Saturday", :regions => [:au_nsw, :au_vic, :au_qld, :au_nt, :au_act, :au_sa, :au_qld_brisbane, :au_qld_cairns]},
             {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Easter Sunday", :regions => [:au_nsw]},
             {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Easter Monday", :regions => [:au]},
             {:function => lambda { |year| Holidays.easter(year)+2 }, :function_id => "easter(year)+2", :name => "Easter Monday", :regions => [:au_tas]}],
@@ -34,10 +34,12 @@ module Holidays
       6 => [{:wday => 1, :week => 1, :name => "Foundation Day", :regions => [:au_wa]},
             {:wday => 1, :week => 2, :name => "Queen's Birthday", :regions => [:au_act, :au_nsw, :au_sa, :au_qld, :au_tas, :au_nt, :au_vic]},
             {:mday => 6, :type => :informal, :name => "Queensland Day", :regions => [:au_qld]}],
+      7 => [{:wday => 5, :week => 3, :name => "Cairns Show", :regions => [:au_qld_cairns]}],
       8 => [{:wday => 3, :week => -3, :name => "Ekka", :regions => [:au_qld_brisbane]}],
       10 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:au_act, :au_nsw, :au_sa]},
             {:function => lambda { |year| Holidays.qld_labour_day_october(year) }, :function_id => "qld_labour_day_october(year)", :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "Labour Day", :regions => [:au_qld]},
             {:function => lambda { |year| Holidays.qld_queens_bday_october(year) }, :function_id => "qld_queens_bday_october(year)", :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "Queen's Birthday", :regions => [:au_qld]}],
+      11 => [{:function => lambda { |year| Holidays.g20_day_2014_only(year) }, :function_id => "g20_day_2014_only(year)", :name => "G20 Day", :regions => [:au_qld_brisbane]}],
       12 => [{:mday => 25, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "Christmas Day", :regions => [:au]},
             {:mday => 26, :observed => lambda { |date| Holidays.to_weekday_if_boxing_weekend(date) }, :observed_id => "to_weekday_if_boxing_weekend", :name => "Boxing Day", :regions => [:au]}]
       }
@@ -62,6 +64,13 @@ end
 # changed from may to october after 2012
 def self.qld_labour_day_october(year)
   year <= 2012 ? nil : Date.calculate_mday(year, 10, 1, 1)
+end
+
+
+# http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
+# G20 day in brisbane, in 2014, on november 14
+def self.g20_day_2014_only(year)
+  year == 2014 ? 14 : nil
 end
 
 

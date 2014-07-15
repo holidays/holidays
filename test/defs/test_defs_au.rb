@@ -45,5 +45,12 @@ assert_equal "Queen's Birthday", Date.civil(2013,6,10).holidays(:au_qld)[0][:nam
 assert_equal 'Australia Day', Date.civil(2014,1,26).holidays(:au_qld)[0][:name]
 assert_equal 'Australia Day', Date.civil(2014,1,27).holidays(:au_qld, :observed)[0][:name]
 
+assert_equal 'Cairns Show', Date.civil(2014,7,18).holidays(:au_qld_cairns)[0][:name]
+assert_equal 'Cairns Show', Date.civil(2013,7,19).holidays(:au_qld_cairns)[0][:name]
+
+assert_equal 'G20 Day', Date.civil(2014,11,14).holidays(:au_qld_brisbane)[0][:name]
+assert_equal [], Date.civil(2014,11,14).holidays(:au_qld)
+assert_equal [], Date.civil(2015,11,14).holidays(:au_qld_brisbane)
+
   end
 end
