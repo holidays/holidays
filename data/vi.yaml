@@ -1,0 +1,29 @@
+# Vietnam holiday definitions for the Ruby Holiday gem.
+#
+# Updated: 2014-07-17.
+# Source: http://en.wikipedia.org/wiki/Public_holidays_in_Vietnam
+--- 
+months:
+  1: 
+  - name: New Year
+    regions: [vi]
+    mday: 1
+  4: 
+  - name: Liberation Day
+    regions: [vi]
+    mday: 30
+  5: 
+  - name: International Workers' Day
+    regions: [vi]
+    mday: 1
+  9: 
+  - name: National Day
+    regions: [vi]
+    mday: 2
+tests: |
+    {Date.civil(2014,1,1) => 'New Year', 
+     Date.civil(2014,4,30) => 'Liberation Day',
+     Date.civil(2014,5,1) => "International Workers' Day",
+     Date.civil(2014,9,2) => 'National Day'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :vi)[0] || {})[:name]
+    end
