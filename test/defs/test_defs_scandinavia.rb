@@ -27,6 +27,7 @@ class ScandinaviaDefinitionTests < Test::Unit::TestCase  # :nodoc:
   assert_equal name, (Holidays.on(date, :dk, :informal)[0] || {})[:name]
 end
 
+
 {Date.civil(2007,1,1) => 'Nýársdagur', 
  Date.civil(2007,1,6) => 'Þrettándinn',
  Date.civil(2007,1,19) => 'Bóndadagur',
