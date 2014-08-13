@@ -32,6 +32,12 @@ assert_equal 'New Year\'s Day', Date.civil(2010,1,1).holidays(:gb, :observed)[0]
 assert_equal 'New Year\'s Day', Date.civil(2011,1,3).holidays(:gb, :observed)[0][:name]
 assert_equal 'New Year\'s Day', Date.civil(2012,1,2).holidays(:gb, :observed)[0][:name]
 
+assert_equal '2nd January', Date.civil(2010,1,4).holidays(:gb_sct, :observed)[0][:name]
+assert_equal '2nd January', Date.civil(2011,1,4).holidays(:gb_sct, :observed)[0][:name]
+assert_equal '2nd January', Date.civil(2012,1,3).holidays(:gb_sct, :observed)[0][:name]
+assert_equal '2nd January', Date.civil(2013,1,2).holidays(:gb_sct, :observed)[0][:name]
+assert_equal '2nd January', Date.civil(2014,1,2).holidays(:gb_sct, :observed)[0][:name]
+
 [:gb_wls, :gb_eng, :gb_nir, :gb_eaw, :gb_].each do |r|
   assert_equal 'Easter Monday', Date.civil(2008,3,24).holidays(r)[0][:name]
   assert_equal 'Bank Holiday', Date.civil(2008,8,25).holidays(r)[0][:name]

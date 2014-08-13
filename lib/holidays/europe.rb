@@ -123,7 +123,7 @@ module Holidays
             {:mday => 6, :name => "Día de Reyes", :regions => [:es]},
             {:mday => 1, :name => "Jour de l'an", :regions => [:fr]},
             {:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "New Year's Day", :regions => [:gb, :ie]},
-            {:mday => 2, :name => "New Year's", :regions => [:gb_sct]},
+            {:mday => 2, :observed => lambda { |date| Holidays.to_weekday_if_boxing_weekend(date) }, :observed_id => "to_weekday_if_boxing_weekend", :name => "2nd January", :regions => [:gb_sct]},
             {:mday => 1, :name => "Nova godina", :regions => [:hr]},
             {:mday => 6, :name => "Sveta tri kralja", :regions => [:hr]},
             {:mday => 1, :name => "Újév", :regions => [:hu]},
