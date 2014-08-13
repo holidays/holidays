@@ -238,6 +238,7 @@ end
 end
 
 assert_equal 'St. Patrick\'s Day', Date.civil(2008,3,17).holidays(:gb_nir, :informal)[0][:name]
+assert_equal 'St. Andrew\'s Day', Date.civil(2008,11,30).holidays(:gb_sct, :informal)[0][:name]
 
 assert_equal 'Christmas Day', Date.civil(2008,12,25).holidays(:gb_, :observed)[0][:name]
 assert_equal 'Christmas Day', Date.civil(2009,12,25).holidays(:gb_, :observed)[0][:name]
