@@ -10,7 +10,6 @@ class SgDefinitionTests < Test::Unit::TestCase  # :nodoc:
 {Date.civil(2014,1,1) => 'New Year\'s Day', 
  Date.civil(2014,2,14) => 'Valentine\'s Day',
  Date.civil(2014,2,15) => 'Total Defence Day',
- Date.civil(2014,4,1) => 'April\'s Fool',
  Date.civil(2014,4,18) => 'Good Friday',
  Date.civil(2014,5,1) => 'Labour Day',
  Date.civil(2014,8,9) => 'National Day',

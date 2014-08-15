@@ -22,7 +22,6 @@ module Holidays
       1 => [{:mday => 1, :observed => lambda { |date| Holidays.to_weekday_if_weekend(date) }, :observed_id => "to_weekday_if_weekend", :name => "New Year's Day", :regions => [:sg]}],
       2 => [{:mday => 14, :type => :informal, :name => "Valentine's Day", :regions => [:sg]},
             {:mday => 15, :type => :informal, :name => "Total Defence Day", :regions => [:sg]}],
-      4 => [{:mday => 1, :type => :informal, :name => "April's Fool", :regions => [:sg]}],
       5 => [{:mday => 1, :name => "Labour Day", :regions => [:sg]}],
       8 => [{:mday => 9, :observed => lambda { |date| Holidays.to_weekday_if_weekend(date) }, :observed_id => "to_weekday_if_weekend", :name => "National Day", :regions => [:sg]}],
       12 => [{:mday => 25, :observed => lambda { |date| Holidays.to_weekday_if_weekend(date) }, :observed_id => "to_weekday_if_weekend", :name => "Christmas Day", :regions => [:sg]}]
