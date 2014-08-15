@@ -101,6 +101,7 @@ end
   assert_equal name, (Holidays.on(date, :dk, :informal)[0] || {})[:name]
 end
 
+
 {Date.civil(2009,1,1) => 'Neujahrstag', 
  Date.civil(2009,4,10) => 'Karfreitag',
  Date.civil(2009,4,13) => 'Ostermontag',
