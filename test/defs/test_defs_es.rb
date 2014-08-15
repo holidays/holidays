@@ -25,6 +25,8 @@ end
   assert_equal 'Lunes de Pascua', Date.civil(2009,4,13).holidays(r)[0][:name]
 end
 
+assert_equal 'Jueves Santo', Date.civil(2009,4,9).holidays(:es_an)[0][:name]
+
 [:es_v, :es_vc, :es_cm, :es_mu, :es_m, :es_].each do |r|
   assert_equal 'San José', Date.civil(2009,3,19).holidays(r)[0][:name]
 end

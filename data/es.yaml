@@ -13,7 +13,7 @@
 months:
   0:
   - name: Jueves Santo
-    regions: [es_pv, es_ct, es_na, es_v, es_vc]
+    regions: [es_pv, es_ct, es_na, es_v, es_vc, es_an]
     function: easter(year)-3
   - name: Viernes Santo
     regions: [es]
@@ -154,6 +154,8 @@ tests: |
       assert_equal 'Jueves Santo', Date.civil(2009,4,9).holidays(r)[0][:name]
       assert_equal 'Lunes de Pascua', Date.civil(2009,4,13).holidays(r)[0][:name]
     end
+
+    assert_equal 'Jueves Santo', Date.civil(2009,4,9).holidays(:es_an)[0][:name]
 
     [:es_v, :es_vc, :es_cm, :es_mu, :es_m, :es_].each do |r|
       assert_equal 'San José', Date.civil(2009,3,19).holidays(r)[0][:name]
