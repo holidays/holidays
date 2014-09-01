@@ -50,6 +50,13 @@ class MultipleRegionsTests < Test::Unit::TestCase
     assert regions.include? :nyse
     assert regions.include? :united_nations
   end
+
+  def test_load_subregion
+    Holidays.send(:remove_const, :DE) #unload de module so that is has to be loaded again
+    Holidays.class_variable_set :@@regions, [] # reset regions
+    holidays = Holidays.on(Date.civil(2014, 1, 1), :de_bb)
+    assert holidays.any? { |h| h[:name] == 'Neujahrstag' }
+  end
   
 private
   def def_count
