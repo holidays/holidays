@@ -68,6 +68,7 @@ months:
   - name: Grundlovsdag
     regions: [dk]
     mday: 5
+    type: informal
   - name: Valdemarsdag og Genforeningsdag
     regions: [dk]
     mday: 15
@@ -89,6 +90,7 @@ months:
   - name: Juleaftensdag
     regions: [dk]
     mday: 24
+    type: informal
   - name: 1. juledag
     regions: [dk]
     mday: 25

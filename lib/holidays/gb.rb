@@ -22,7 +22,7 @@ module Holidays
             {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Easter Sunday", :regions => [:gb]},
             {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Easter Monday", :regions => [:gb_eng, :gb_wls, :gb_eaw, :gb_nir]}],
       1 => [{:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "New Year's Day", :regions => [:gb]},
-            {:mday => 2, :name => "New Year's", :regions => [:gb_sct]}],
+            {:mday => 2, :observed => lambda { |date| Holidays.to_weekday_if_boxing_weekend(date) }, :observed_id => "to_weekday_if_boxing_weekend", :name => "2nd January", :regions => [:gb_sct]}],
       3 => [{:mday => 5, :name => "St. Piran's Day", :regions => [:gb_con]},
             {:mday => 17, :name => "St. Patrick's Day", :regions => [:gb_nir]}],
       5 => [{:wday => 1, :week => 1, :name => "May Day", :regions => [:gb]},
@@ -32,7 +32,8 @@ module Holidays
             {:mday => 12, :name => "Battle of the Boyne", :regions => [:gb_nir]}],
       8 => [{:wday => 1, :week => 1, :name => "Bank Holiday", :regions => [:gb_sct]},
             {:wday => 1, :week => -1, :name => "Bank Holiday", :regions => [:gb_eng, :gb_wls, :gb_eaw, :gb_nir]}],
-      11 => [{:mday => 5, :type => :informal, :name => "Guy Fawkes Day", :regions => [:gb]}],
+      11 => [{:mday => 5, :type => :informal, :name => "Guy Fawkes Day", :regions => [:gb]},
+            {:mday => 30, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :type => :informal, :name => "St. Andrew's Day", :regions => [:gb_sct]}],
       12 => [{:mday => 25, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "Christmas Day", :regions => [:gb]},
             {:mday => 26, :observed => lambda { |date| Holidays.to_weekday_if_boxing_weekend(date) }, :observed_id => "to_weekday_if_boxing_weekend", :name => "Boxing Day", :regions => [:gb]}]
       }

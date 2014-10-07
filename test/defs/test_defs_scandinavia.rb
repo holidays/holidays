@@ -27,6 +27,7 @@ class ScandinaviaDefinitionTests < Test::Unit::TestCase  # :nodoc:
   assert_equal name, (Holidays.on(date, :dk, :informal)[0] || {})[:name]
 end
 
+
 {Date.civil(2007,1,1) => 'Nýársdagur', 
  Date.civil(2007,1,6) => 'Þrettándinn',
  Date.civil(2007,1,19) => 'Bóndadagur',
@@ -71,7 +72,8 @@ end
 
 {Date.civil(2008,1,1) => 'Nyårsdagen', 
  Date.civil(2008,1,6) => 'Trettondedag jul',
- Date.civil(2008,3,21) => 'Långfredagen', 
+ Date.civil(2008,3,21) => 'Långfredagen',
+ Date.civil(2008,3,22) => 'Påskafton',
  Date.civil(2008,3,23) => 'Påskdagen', 
  Date.civil(2008,3,24) => 'Annandag påsk',
  Date.civil(2008,5,1) => 'Första maj',
@@ -80,14 +82,20 @@ end
  Date.civil(2008,6,6) => 'Nationaldagen',
  Date.civil(2005,6,25) => 'Midsommardagen',
  Date.civil(2006,6,24) => 'Midsommardagen',
+ Date.civil(2006,6,23) => 'Midsommarafton',
  Date.civil(2007,6,23) => 'Midsommardagen',
+ Date.civil(2007,6,22) => 'Midsommarafton',
  Date.civil(2008,6,21) => 'Midsommardagen',
+ Date.civil(2008,6,20) => 'Midsommarafton',
  Date.civil(2005,11,5) => 'Alla helgons dag',
  Date.civil(2006,11,4) => 'Alla helgons dag',
  Date.civil(2007,11,3) => 'Alla helgons dag',
  Date.civil(2008,11,1) => 'Alla helgons dag',
+ Date.civil(2008,12,24) => 'Julafton',
  Date.civil(2008,12,25) => 'Juldagen',
- Date.civil(2008,12,26) => 'Annandag jul'}.each do |date, name|
+ Date.civil(2008,12,26) => 'Annandag jul',
+ Date.civil(2008,12,31) => 'Nyårsafton'
+ }.each do |date, name|
   assert_equal name, (Holidays.on(date, :se, :informal)[0] || {})[:name]
 end
 
