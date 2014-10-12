@@ -1,9 +1,9 @@
- Lithuanian holiday definitions for the Ruby Holiday gem.
-
- Updated: 2014-10-02
- Sources:
- - http://en.wikipedia.org/wiki/Public_holidays_in_Lithuania
- - http://day.lt/sventes/nedarbo
+# Lithuanian holiday definitions for the Ruby Holiday gem.
+#
+# Updated: 2014-10-02
+# Sources:
+# - http://en.wikipedia.org/wiki/Public_holidays_in_Lithuania
+# - http://day.lt/sventes/nedarbo
 ---
 months:
   0:
