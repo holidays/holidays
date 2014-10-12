@@ -321,6 +321,19 @@ private
     return regions, observed, informal
   end
 
+  # Derive the containing region from a sub region wild-card or a sub region
+  # and load its definition. (Common code factored out from parse_regions)
+  def self.load_containing_region(sub_reg)
+    prefix = sub_reg.split('_').first
+    unless @@regions.include?(prefix.to_sym)
+      begin
+        require "holidays/#{prefix}"
+      rescue LoadError
+        raise UnknownRegionError, "Could not load holidays/#{prefix}"
+      end
+    end
+  end
+
   # Check regions against list of supported regions and return an array of
   # symbols.
   #
@@ -333,17 +346,10 @@ private
     regions = regions.collect { |r| r.to_sym }
 
     # Found sub region wild-card
-    regions.delete_if do |reg|
-      if reg.to_s =~ /_$/
-        prefix = reg.to_s.split('_').first
-        unless @@regions.include?(prefix.to_sym)
-          begin
-            require "holidays/#{prefix}"
-          rescue LoadError
-            raise UnknownRegionError, "Could not load holidays/#{prefix}"
-          end
-        end
-        regions << @@regions.select { |dr| dr.to_s =~ Regexp.new("^#{reg}") }
+    regions.delete_if do |r|
+      if r.to_s =~ /_$/
+        load_containing_region(r.to_s)
+        regions << @@regions.select { |dr| dr.to_s =~ Regexp.new("^#{r.to_s}") }
         true
       end
     end
@@ -357,7 +363,13 @@ private
         begin
           require "holidays/#{r.to_s}"
         rescue LoadError => e
-          raise UnknownRegionError, "Could not load holidays/#{r}"
+          # This could be a sub region that does not have any holiday
+          # definitions of its own; try to load the containing region instead.
+          if r.to_s =~ /_/
+            load_containing_region(r.to_s)
+          else
+            raise UnknownRegionError, "Could not load holidays/#{r.to_s}"
+          end
         end
       end
     end
