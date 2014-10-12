@@ -2,6 +2,7 @@
 
 ## 1.0.7.pre
 
+* Load parent region even when sub region is not explicitly defined (https://github.com/csage)
 * Full support for http://en.wikipedia.org/wiki/ISO_3166-2:DE (https://github.com/rojoko)
 * Added Lithuanian definitions (https://github.com/Brunas)
 * Added Chilean definitions (https://github.com/marcelo-soto)g
