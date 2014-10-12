@@ -8,6 +8,18 @@ class ClDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_cl
 {Date.civil(2014,1,1) => 'Año Nuevo',
+ Date.civil(2011,4,22) => 'Viernes Santo',
+ Date.civil(2011,4,23) => 'Sábado Santo',
+ Date.civil(2012,4,6) => 'Viernes Santo',
+ Date.civil(2012,4,7) => 'Sábado Santo',
+ Date.civil(2013,3,29) => 'Viernes Santo',
+ Date.civil(2013,3,30) => 'Sábado Santo',
+ Date.civil(2014,4,18) => 'Viernes Santo',
+ Date.civil(2014,4,19) => 'Sábado Santo',
+ Date.civil(2015,4,3) => 'Viernes Santo',
+ Date.civil(2015,4,4) => 'Sábado Santo',
+ Date.civil(2016,3,25) => 'Viernes Santo',
+ Date.civil(2016,3,26) => 'Sábado Santo',
  Date.civil(2014,5,1) => 'Día del Trabajo',
  Date.civil(2014,5,21) => "Día de las Glorias Navales",
  Date.civil(2014,6,29) => "San Pedro y San Pablo",
