@@ -2,6 +2,7 @@
 
 ## 1.0.7.pre
 
+* Added Chilean definitions (https://github.com/marcelo-soto)
 * Added European Central Bank TARGET definitions (Toby Bryans, NASDAQ OMX NLX)
 * FR: Make Pâques and Pentecôte informal holidays (https://github.com/wizcover)
 * NL: Update for the new King (https://github.com/johankok)
