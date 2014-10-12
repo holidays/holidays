@@ -2,6 +2,7 @@
 
 ## 1.0.7.pre
 
+* Full support for http://en.wikipedia.org/wiki/ISO_3166-2:DE (https://github.com/rojoko)
 * Added Lithuanian definitions (https://github.com/Brunas)
 * Added Chilean definitions (https://github.com/marcelo-soto)g
 * Added European Central Bank TARGET definitions (Toby Bryans, NASDAQ OMX NLX)
