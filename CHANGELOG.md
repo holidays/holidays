@@ -1,6 +1,6 @@
 # Ruby Holidays Gem CHANGELOG
 
-## 1.0.7.pre
+## 1.0.7
 
 * Load parent region even when sub region is not explicitly defined (https://github.com/csage)
 * Full support for http://en.wikipedia.org/wiki/ISO_3166-2:DE (https://github.com/rojoko)
