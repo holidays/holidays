@@ -110,7 +110,7 @@ months:
   - name: G20 Day
     regions: [au_qld_brisbane]
     function: g20_day_2014_only(year)
-  - name: Recreation Dady
+  - name: Recreation Day
     regions: [au_tas_north]
     mday: 3
   12: 
