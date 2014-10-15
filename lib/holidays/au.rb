@@ -13,7 +13,7 @@ module Holidays
   # All the definitions are available at https://github.com/alexdunae/holidays
   module AU # :nodoc:
     def self.defined_regions
-      [:au, :au_nsw, :au_vic, :au_qld, :au_nt, :au_act, :au_sa, :au_qld_brisbane, :au_qld_cairns, :au_tas, :au_wa]
+      [:au, :au_nsw, :au_vic, :au_qld, :au_nt, :au_act, :au_sa, :au_qld_brisbane, :au_qld_cairns, :au_tas, :au_wa, :au_tas_south, :au_tas_north]
     end
 
     def self.holidays_by_month
@@ -40,8 +40,10 @@ module Holidays
             {:wday => 1, :week => -1, :name => "Family & Community Day", :regions => [:au_act]}],
       10 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:au_act, :au_nsw, :au_sa]},
             {:function => lambda { |year| Holidays.qld_labour_day_october(year) }, :function_id => "qld_labour_day_october(year)", :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "Labour Day", :regions => [:au_qld]},
-            {:function => lambda { |year| Holidays.qld_queens_bday_october(year) }, :function_id => "qld_queens_bday_october(year)", :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "Queen's Birthday", :regions => [:au_qld]}],
-      11 => [{:function => lambda { |year| Holidays.g20_day_2014_only(year) }, :function_id => "g20_day_2014_only(year)", :name => "G20 Day", :regions => [:au_qld_brisbane]}],
+            {:function => lambda { |year| Holidays.qld_queens_bday_october(year) }, :function_id => "qld_queens_bday_october(year)", :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "Queen's Birthday", :regions => [:au_qld]},
+            {:function => lambda { |year| Holidays.hobart_show_day(year) }, :function_id => "hobart_show_day(year)", :name => "Royal Hobart Show", :regions => [:au_tas_south]}],
+      11 => [{:function => lambda { |year| Holidays.g20_day_2014_only(year) }, :function_id => "g20_day_2014_only(year)", :name => "G20 Day", :regions => [:au_qld_brisbane]},
+            {:mday => 3, :name => "Recreation Dady", :regions => [:au_tas_north]}],
       12 => [{:mday => 25, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "Christmas Day", :regions => [:au]},
             {:mday => 26, :observed => lambda { |date| Holidays.to_weekday_if_boxing_weekend(date) }, :observed_id => "to_weekday_if_boxing_weekend", :name => "Boxing Day", :regions => [:au]}]
       }
@@ -73,6 +75,14 @@ end
 # G20 day in brisbane, in 2014, on november 14
 def self.g20_day_2014_only(year)
   year == 2014 ? 14 : nil
+end
+
+
+# http://worksafe.tas.gov.au/__data/assets/pdf_file/0008/287036/Public_Holidays_2014.pdf
+# The Thursday before the fourth Saturday in October. 
+def self.hobart_show_day(year)
+  fourth_sat_in_oct = Date.civil(year, 10, Date.calculate_mday(year, 10, 4, :saturday))
+  fourth_sat_in_oct - 2 # the thursday before
 end
 
 

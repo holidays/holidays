@@ -103,10 +103,16 @@ months:
     regions: [au_qld]
     function: qld_queens_bday_october(year)
     observed: to_monday_if_weekend
+  - name: Royal Hobart Show
+    regions: [au_tas_south]
+    function: hobart_show_day(year)
   11:
   - name: G20 Day
     regions: [au_qld_brisbane]
     function: g20_day_2014_only(year)
+  - name: Recreation Dady
+    regions: [au_tas_north]
+    mday: 3
   12: 
   - name: Christmas Day
     regions: [au]
@@ -140,6 +146,13 @@ methods:
     # G20 day in brisbane, in 2014, on november 14
     def self.g20_day_2014_only(year)
       year == 2014 ? 14 : nil
+    end
+  hobart_show_day: |
+    # http://worksafe.tas.gov.au/__data/assets/pdf_file/0008/287036/Public_Holidays_2014.pdf
+    # The Thursday before the fourth Saturday in October. 
+    def self.hobart_show_day(year)
+      fourth_sat_in_oct = Date.civil(year, 10, Date.calculate_mday(year, 10, 4, :saturday))
+      fourth_sat_in_oct - 2 # the thursday before
     end
 tests: |
     {Date.civil(2007,1,1) => 'New Year\'s Day', 
@@ -190,6 +203,11 @@ tests: |
 
     assert_equal 'Cairns Show', Date.civil(2014,7,18).holidays(:au_qld_cairns)[0][:name]
     assert_equal 'Cairns Show', Date.civil(2013,7,19).holidays(:au_qld_cairns)[0][:name]
+
+    assert_equal 'Royal Hobart Show', Date.civil(2013, 10, 24).holidays(:au_tas_south)[0][:name]
+    assert_equal 'Royal Hobart Show', Date.civil(2014, 10, 23).holidays(:au_tas_south)[0][:name]
+    assert_equal 'Royal Hobart Show', Date.civil(2015, 10, 22).holidays(:au_tas_south)[0][:name]
+    assert_equal 'Royal Hobart Show', Date.civil(2016, 10, 20).holidays(:au_tas_south)[0][:name]
 
     assert_equal 'G20 Day', Date.civil(2014,11,14).holidays(:au_qld_brisbane)[0][:name]
     assert_equal [], Date.civil(2014,11,14).holidays(:au_qld)
