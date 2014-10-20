@@ -19,6 +19,7 @@ class UsDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2008,12,25) => 'Christmas Day'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :us)[0] || {})[:name]
 end
+assert_equal 'Cesar Chavez Day', (Holidays.on(Date.civil(2008, 3, 31), :us, :us_ca)[0] || {})[:name]
 
 
 {Date.civil(2013,2,2) => 'Groundhog Day',

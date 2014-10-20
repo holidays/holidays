@@ -13,7 +13,7 @@ module Holidays
   # All the definitions are available at https://github.com/alexdunae/holidays
   module NORTH_AMERICA # :nodoc:
     def self.defined_regions
-      [:ca, :ca_qc, :ca_ab, :ca_on, :ca_sk, :ca_mb, :ca_ns, :ca_pe, :ca_bc, :ca_nf, :ca_nt, :ca_nu, :ca_nb, :ca_yk, :mx, :mx_pue, :us, :us_dc]
+      [:ca, :ca_qc, :ca_ab, :ca_on, :ca_sk, :ca_mb, :ca_ns, :ca_pe, :ca_bc, :ca_nf, :ca_nt, :ca_nu, :ca_nb, :ca_yk, :mx, :mx_pue, :us, :us_ca, :us_dc]
     end
 
     def self.holidays_by_month
@@ -41,6 +41,7 @@ module Holidays
             {:mday => 14, :type => :informal, :name => "Valentine's Day", :regions => [:us, :ca]}],
       3 => [{:mday => 23, :name => "St. George's Day", :regions => [:ca_nf]},
             {:wday => 1, :week => 3, :name => "Natalicio de Benito Juárez", :regions => [:mx]},
+            {:mday => 31, :name => "Cesar Chavez Day", :regions => [:us_ca]},
             {:mday => 17, :type => :informal, :name => "St. Patrick's Day", :regions => [:us, :ca]}],
       5 => [{:function => lambda { |year| Holidays.ca_victoria_day(year) }, :function_id => "ca_victoria_day(year)", :name => "Victoria Day", :regions => [:ca]},
             {:function => lambda { |year| Holidays.ca_victoria_day(year) }, :function_id => "ca_victoria_day(year)", :name => "National Patriotes Day", :regions => [:ca_qc]},
