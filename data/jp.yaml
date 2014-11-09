@@ -1,11 +1,14 @@
 # Japanese holiday definitions for Ruby Holiday gem.
-# Reference: http://www.h3.dion.ne.jp/~sakatsu/holiday_topic.htm
+# Reference:
+#   - http://www.h3.dion.ne.jp/~sakatsu/holiday_topic.htm
+#   - http://www8.cao.go.jp/chosei/shukujitsu/gaiyou.html
 #
 # This definition can calculate current Japanese holidays,
 # don't compat with past changes of Japan Holiday Act.
 #
 # CHANGES:
 #  2010-12-25: Initial version by Tatsuki Sugiura <sugi@nemui.org>
+#  2014-11-09: Added substitute holiday by Yoshiyuki Hirano <yoshiyuki.hirano@henteco-labs.com>
 # 
 ---
 months:
@@ -17,6 +20,9 @@ months:
     regions: [jp]
     wday: 1
     week: 2
+  - name: 振替休日
+    regions: [jp]
+    function: jp_substitute_holiday(year, 1, 1)
   2:
   - name: 建国記念日
     regions: [jp]
@@ -176,6 +182,7 @@ tests: |
    Date.civil(2008,12,23) => '天皇誕生日',
    Date.civil(2010,3,22) => '振替休日',
    Date.civil(2008,11,24) => '振替休日',
+   Date.civil(2012,1,2) => '振替休日',
   }.each do |date, name|
      assert_equal name, (Holidays.on(date, :jp, :informal)[0] || {})[:name]
   end
