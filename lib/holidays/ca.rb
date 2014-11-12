@@ -13,7 +13,7 @@ module Holidays
   # All the definitions are available at https://github.com/alexdunae/holidays
   module CA # :nodoc:
     def self.defined_regions
-      [:ca, :ca_qc, :ca_ab, :ca_on, :ca_sk, :ca_mb, :ca_bc, :ca_nf, :ca_nt, :ca_nu, :ca_ns, :ca_yk, :us]
+      [:ca, :ca_qc, :ca_ab, :ca_on, :ca_sk, :ca_mb, :ca_ns, :ca_pe, :ca_bc, :ca_nf, :ca_nt, :ca_nu, :ca_nb, :ca_yk, :us]
     end
 
     def self.holidays_by_month
@@ -25,6 +25,8 @@ module Holidays
             {:mday => 2, :name => "New Year's", :regions => [:ca_qc]}],
       2 => [{:wday => 1, :week => 3, :name => "Family Day", :regions => [:ca_ab, :ca_on, :ca_sk]},
             {:wday => 1, :week => 3, :name => "Louis Riel Day", :regions => [:ca_mb]},
+            {:wday => 1, :week => 3, :name => "Nova Scotia Heritage Day", :regions => [:ca_ns]},
+            {:wday => 1, :week => 3, :name => "Islander Day", :regions => [:ca_pe]},
             {:wday => 1, :week => 2, :name => "BC Family Day", :regions => [:ca_bc]},
             {:mday => 2, :type => :informal, :name => "Groundhog Day", :regions => [:us, :ca]},
             {:mday => 14, :type => :informal, :name => "Valentine's Day", :regions => [:us, :ca]}],
@@ -45,7 +47,8 @@ module Holidays
             {:wday => 1, :week => 1, :name => "Saskatchewan Day", :regions => [:ca_sk]},
             {:wday => 1, :week => 1, :name => "Heritage Day", :regions => [:ca_ab]},
             {:wday => 1, :week => 1, :name => "Natal Day", :regions => [:ca_ns]},
-            {:wday => 1, :week => 1, :name => "Civic Holiday", :regions => [:ca_on]},
+            {:wday => 1, :week => 1, :name => "Civic Holiday", :regions => [:ca_on, :ca_nt, :ca_nu, :ca_pe]},
+            {:wday => 1, :week => 1, :name => "New Brunswick Day", :regions => [:ca_nb]},
             {:wday => 1, :week => 3, :name => "Discovery Day", :regions => [:ca_yk]}],
       9 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:ca]}],
       10 => [{:wday => 1, :week => 2, :name => "Thanksgiving", :regions => [:ca]},
