@@ -26,10 +26,35 @@ end
   assert_equal 'BC Family Day', Holidays.on(date, :ca_bc)[0][:name]
 end
 
+# Nova Scotia Heritage Day
+[ Date.civil(2015,2,16), Date.civil(2016,2,15) ].each do |date|
+  assert_equal 'Nova Scotia Heritage Day', Holidays.on(date, :ca_ns)[0][:name]
+end
+
+# Islander Day in PE
+[ Date.civil(2013,2,18), Date.civil(2014,2,17) ].each do |date|
+  assert_equal 'Islander Day', Holidays.on(date, :ca_pe)[0][:name]
+end
+
 # Victoria Day
 [Date.civil(2004,5,24), Date.civil(2005,5,23), Date.civil(2006,5,22),
  Date.civil(2007,5,21), Date.civil(2008,5,19)].each do |date|
   assert_equal 'Victoria Day', Holidays.on(date, :ca)[0][:name]
+end
+
+# First Monday in August
+[Date.civil(2013,8,5), Date.civil(2014,8,4), Date.civil(2015,8,3)].each do |date|
+  { :ca_bc => 'BC Day',
+    :ca_sk => 'Saskatchewan Day',
+    :ca_ab => 'Heritage Day',
+    :ca_ns => 'Natal Day',
+    :ca_on => 'Civic Holiday',
+    :ca_nt => 'Civic Holiday',
+    :ca_nu => 'Civic Holiday',
+    :ca_pe => 'Civic Holiday',
+    :ca_nb => 'New Brunswick Day' }.each do |region, name|
+    assert_equal name, Holidays.on(date, region)[0][:name]
+  end
 end
 
 
