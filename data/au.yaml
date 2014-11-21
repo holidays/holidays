@@ -110,9 +110,10 @@ months:
   - name: G20 Day
     regions: [au_qld_brisbane]
     function: g20_day_2014_only(year)
-  - name: Recreation Day
+  - name: Recreation Day # http://www.timeanddate.com/holidays/australia/recreation-day
     regions: [au_tas_north]
-    mday: 3
+    wday: 1
+    week: 1
   - name: Melbourne Cup Day
     regions: [au_vic]
     week: 1
@@ -212,6 +213,11 @@ tests: |
     assert_equal 'Royal Hobart Show', Date.civil(2014, 10, 23).holidays(:au_tas_south)[0][:name]
     assert_equal 'Royal Hobart Show', Date.civil(2015, 10, 22).holidays(:au_tas_south)[0][:name]
     assert_equal 'Royal Hobart Show', Date.civil(2016, 10, 20).holidays(:au_tas_south)[0][:name]
+
+    assert_equal 'Recreation Day', Date.civil(2013, 11, 4).holidays(:au_tas_north)[0][:name]
+    assert_equal 'Recreation Day', Date.civil(2014, 11, 3).holidays(:au_tas_north)[0][:name]
+    assert_equal 'Recreation Day', Date.civil(2015, 11, 2).holidays(:au_tas_north)[0][:name]
+    assert_equal 'Recreation Day', Date.civil(2016, 11, 7).holidays(:au_tas_north)[0][:name]
 
     assert_equal 'G20 Day', Date.civil(2014,11,14).holidays(:au_qld_brisbane)[0][:name]
     assert_equal [], Date.civil(2014,11,14).holidays(:au_qld)

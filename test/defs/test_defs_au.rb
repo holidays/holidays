@@ -61,6 +61,11 @@ assert_equal 'Royal Hobart Show', Date.civil(2014, 10, 23).holidays(:au_tas_sout
 assert_equal 'Royal Hobart Show', Date.civil(2015, 10, 22).holidays(:au_tas_south)[0][:name]
 assert_equal 'Royal Hobart Show', Date.civil(2016, 10, 20).holidays(:au_tas_south)[0][:name]
 
+assert_equal 'Recreation Day', Date.civil(2013, 11, 4).holidays(:au_tas_north)[0][:name]
+assert_equal 'Recreation Day', Date.civil(2014, 11, 3).holidays(:au_tas_north)[0][:name]
+assert_equal 'Recreation Day', Date.civil(2015, 11, 2).holidays(:au_tas_north)[0][:name]
+assert_equal 'Recreation Day', Date.civil(2016, 11, 7).holidays(:au_tas_north)[0][:name]
+
 assert_equal 'G20 Day', Date.civil(2014,11,14).holidays(:au_qld_brisbane)[0][:name]
 assert_equal [], Date.civil(2014,11,14).holidays(:au_qld)
 assert_equal [], Date.civil(2015,11,14).holidays(:au_qld_brisbane)

@@ -43,7 +43,7 @@ module Holidays
             {:function => lambda { |year| Holidays.qld_queens_bday_october(year) }, :function_id => "qld_queens_bday_october(year)", :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "Queen's Birthday", :regions => [:au_qld]},
             {:function => lambda { |year| Holidays.hobart_show_day(year) }, :function_id => "hobart_show_day(year)", :name => "Royal Hobart Show", :regions => [:au_tas_south]}],
       11 => [{:function => lambda { |year| Holidays.g20_day_2014_only(year) }, :function_id => "g20_day_2014_only(year)", :name => "G20 Day", :regions => [:au_qld_brisbane]},
-            {:mday => 3, :name => "Recreation Day", :regions => [:au_tas_north]},
+            {:wday => 1, :week => 1, :name => "Recreation Day", :regions => [:au_tas_north]},
             {:wday => 2, :week => 1, :name => "Melbourne Cup Day", :regions => [:au_vic]}],
       12 => [{:mday => 25, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "Christmas Day", :regions => [:au]},
             {:mday => 26, :observed => lambda { |date| Holidays.to_weekday_if_boxing_weekend(date) }, :observed_id => "to_weekday_if_boxing_weekend", :name => "Boxing Day", :regions => [:au]}]
