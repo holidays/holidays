@@ -7,11 +7,11 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class NlDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_nl
-{Date.civil(2008,1,1) => 'Nieuwjaar', 
- Date.civil(2008,3,21) => 'Goede Vrijdag', 
+{Date.civil(2008,1,1) => 'Nieuwjaar',
+ Date.civil(2008,3,21) => 'Goede Vrijdag',
  Date.civil(2008,3,23) => 'Pasen',
  Date.civil(2008,3,24) => 'Pasen',
- Date.civil(2008,4,30) => 'Koninginnedag',
+ Date.civil(2008,4,27) => 'Koningsdag',
  Date.civil(2008,5,1) => 'Hemelvaartsdag', # Ascension, Easter+39
  Date.civil(2008,5,5) => 'Bevrijdingsdag',
  Date.civil(2008,5,11) => 'Pinksteren', # Pentecost, Easter+49

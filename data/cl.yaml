@@ -1,0 +1,92 @@
+# Chilean holiday definitions for the Ruby Holiday gem.
+#
+# Updated: 2014-10-08
+#
+# Sources:
+# - http://www.feriados.cl
+#
+---
+months:
+  0:
+  - name: Viernes Santo
+    regions: [cl]
+    function: easter(year)-2
+  - name: Sábado Santo
+    regions: [cl]
+    function: easter(year)-1
+  1:
+  - name: Año Nuevo
+    regions: [cl]
+    mday: 1
+  5:
+  - name: Día del Trabajo
+    regions: [cl]
+    mday: 1
+  - name: Día de las Glorias Navales
+    regions: [cl]
+    mday: 21
+  6:
+  - name: San Pedro y San Pablo
+    regions: [cl]
+    mday: 29
+  7:
+  - name: Día de la Virgen del Carmen
+    regions: [cl]
+    mday: 16
+  8:
+  - name: Asunción de la Virgen
+    regions: [cl]
+    mday: 15
+  9:
+  - name: Independencia Nacional
+    regions: [cl]
+    mday: 18
+  - name: Día de las Glorias del Ejército
+    regions: [cl]
+    mday: 19
+  10:
+  - name: Encuentro de Dos Mundos
+    regions: [cl]
+    mday: 12
+  - name: Día de las Iglesias Evangélicas y Protestantes
+    regions: [cl]
+    mday: 31
+  11:
+  - name: Día de Todos los Santos
+    regions: [cl]
+    mday: 1
+  12:
+  - name: Inmaculada Concepción de María
+    regions: [cl]
+    mday: 8
+  - name: Navidad
+    regions: [cl]
+    mday: 25
+tests: |
+    {Date.civil(2014,1,1) => 'Año Nuevo',
+     Date.civil(2011,4,22) => 'Viernes Santo',
+     Date.civil(2011,4,23) => 'Sábado Santo',
+     Date.civil(2012,4,6) => 'Viernes Santo',
+     Date.civil(2012,4,7) => 'Sábado Santo',
+     Date.civil(2013,3,29) => 'Viernes Santo',
+     Date.civil(2013,3,30) => 'Sábado Santo',
+     Date.civil(2014,4,18) => 'Viernes Santo',
+     Date.civil(2014,4,19) => 'Sábado Santo',
+     Date.civil(2015,4,3) => 'Viernes Santo',
+     Date.civil(2015,4,4) => 'Sábado Santo',
+     Date.civil(2016,3,25) => 'Viernes Santo',
+     Date.civil(2016,3,26) => 'Sábado Santo',
+     Date.civil(2014,5,1) => 'Día del Trabajo',
+     Date.civil(2014,5,21) => "Día de las Glorias Navales",
+     Date.civil(2014,6,29) => "San Pedro y San Pablo",
+     Date.civil(2014,7,16) => "Día de la Virgen del Carmen",
+     Date.civil(2014,8,15) => "Asunción de la Virgen",
+     Date.civil(2014,9,18) => "Independencia Nacional",
+     Date.civil(2014,9,19) => "Día de las Glorias del Ejército",
+     Date.civil(2014,10,12) => "Encuentro de Dos Mundos",
+     Date.civil(2014,10,31) => "Día de las Iglesias Evangélicas y Protestantes",
+     Date.civil(2014,11,1) => "Día de Todos los Santos",
+     Date.civil(2014,12,8) => 'Inmaculada Concepción de María',
+     Date.civil(2014,12,25) => 'Navidad'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :cl, :informal)[0] || {})[:name]
+    end

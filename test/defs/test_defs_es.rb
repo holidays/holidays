@@ -7,8 +7,8 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class EsDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_es
-{Date.civil(2009,1,1) => 'Año Nuevo', 
- Date.civil(2009,1,6) => 'Día de Reyes', 
+{Date.civil(2009,1,1) => 'Año Nuevo',
+ Date.civil(2009,1,6) => 'Día de Reyes',
  Date.civil(2009,4,10) => 'Viernes Santo',
  Date.civil(2009,5,1) => 'Día del Trabajador',
  Date.civil(2009,8,15) => 'Asunción',
@@ -24,6 +24,8 @@ end
   assert_equal 'Jueves Santo', Date.civil(2009,4,9).holidays(r)[0][:name]
   assert_equal 'Lunes de Pascua', Date.civil(2009,4,13).holidays(r)[0][:name]
 end
+
+assert_equal 'Jueves Santo', Date.civil(2009,4,9).holidays(:es_an)[0][:name]
 
 [:es_v, :es_vc, :es_cm, :es_mu, :es_m, :es_].each do |r|
   assert_equal 'San José', Date.civil(2009,3,19).holidays(r)[0][:name]
@@ -41,6 +43,8 @@ end
   assert_equal 'San Esteban', Date.civil(2009,12,26).holidays(r)[0][:name]
 end
 
+assert_equal 'Año Nuevo', Date.civil(2012,1,1).holidays(:es)[0][:name]
+assert_equal 'Año Nuevo', Date.civil(2012,1,2).holidays(:es, :observed)[0][:name]
 assert_equal 'Día de Andalucía', Date.civil(2009,2,28).holidays(:es_an)[0][:name]
 assert_equal 'Día de las Islas Baleares', Date.civil(2009,3,1).holidays(:es_ib)[0][:name]
 assert_equal 'Fiesta de la Comunidad', Date.civil(2006,5,2).holidays(:es_m)[0][:name]
@@ -53,5 +57,6 @@ assert_equal 'Día de Ceuta', Date.civil(2009,9,2).holidays(:es_ce)[0][:name]
 assert_equal 'Día de Asturias', Date.civil(2009,9,8).holidays(:es_o)[0][:name]
 assert_equal 'Día de Extremadura', Date.civil(2009,9,8).holidays(:es_ex)[0][:name]
 assert_equal 'Fiesta Nacional de Cataluña', Date.civil(2009,9,11).holidays(:es_ct)[0][:name]
+
   end
 end

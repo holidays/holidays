@@ -1,0 +1,82 @@
+# Argentinian holiday definitions for the Ruby Holiday gem.
+#
+# Updated: 2013-10-17.
+#
+# Sources:
+# - http://en.wikipedia.org/wiki/Public_holidays_in_Argentina
+#
+---
+months:
+  0:
+  - name: Jueves Santo
+    regions: [ar]
+    function: easter(year)-3
+  - name: Viernes Santo
+    regions: [ar]
+    function: easter(year)-2
+  1:
+  - name: Año Nuevo
+    regions: [ar]
+    mday: 1
+  3:
+  - name: Día Nacional de la Memoria por la Verdad y la Justicia
+    regions: [ar]
+    mday: 24
+  4:
+  - name: Día del Veterano y de los Caídos en la Guerra de Malvinas
+    regions: [ar]
+    mday: 2
+  5:
+  - name: Día del Trabajador
+    regions: [ar]
+    mday: 1
+  - name: Día de la Revolución de Mayo
+    regions: [ar]
+    mday: 25
+  6:
+  - name: Día de la Bandera
+    regions: [ar]
+    mday: 20
+  7:
+  - name: Día de la Independencia
+    regions: [ar]
+    mday: 9
+  8:
+  - name: Paso a la Inmortalidad del General José de San Martín
+    regions: [ar]
+    week: 3
+    wday: 1
+  10:
+  - name: Día del Respeto a la Diversidad Cultural
+    regions: [ar]
+    week: 2
+    wday: 1
+  11:
+  - name: Día de la Soberanía nacional
+    regions: [ar]
+    week: 4
+    wday: 1
+  12:
+  - name: Inmaculada Concepción de María
+    regions: [ar]
+    mday: 8
+  - name: Navidad
+    regions: [ar]
+    mday: 25
+tests: |
+    {Date.civil(2013,1,1) => 'Año Nuevo',
+     Date.civil(2013,3,24) => 'Día Nacional de la Memoria por la Verdad y la Justicia',
+     Date.civil(2013,3,28) => 'Jueves Santo',
+     Date.civil(2013,3,29) => 'Viernes Santo',
+     Date.civil(2013,4,2) => 'Día del Veterano y de los Caídos en la Guerra de Malvinas',
+     Date.civil(2013,5,1) => 'Día del Trabajador',
+     Date.civil(2013,5,25) => 'Día de la Revolución de Mayo',
+     Date.civil(2013,6,20) => 'Día de la Bandera',
+     Date.civil(2013,7,9) => 'Día de la Independencia',
+     Date.civil(2013,8,19) => 'Paso a la Inmortalidad del General José de San Martín',
+     Date.civil(2013,10,14) => 'Día del Respeto a la Diversidad Cultural',
+     Date.civil(2013,11,25) => 'Día de la Soberanía nacional',
+     Date.civil(2013,12,8) => 'Inmaculada Concepción de María',
+     Date.civil(2013,12,25) => 'Navidad'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :ar, :informal)[0] || {})[:name]
+    end

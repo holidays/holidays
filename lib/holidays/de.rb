@@ -13,7 +13,7 @@ module Holidays
   # All the definitions are available at https://github.com/alexdunae/holidays
   module DE # :nodoc:
     def self.defined_regions
-      [:de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_st, :de_bb, :de_mv, :de_sn, :de_th]
+      [:de, :de_bw, :de_by, :de_be, :de_bb, :de_hb, :de_hh, :de_he, :de_mv, :de_ni, :de_nw, :de_rp, :de_sl, :de_sn, :de_st, :de_sh, :de_th]
     end
 
     def self.holidays_by_month

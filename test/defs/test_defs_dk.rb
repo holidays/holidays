@@ -26,5 +26,6 @@ class DkDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2007,12,26) => '2. juledag'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :dk, :informal)[0] || {})[:name]
 end
+
   end
 end
