@@ -53,6 +53,23 @@ Get informal holidays in February.
     Holidays.between(from, to, :informal)
     => [{:name => 'Valentine\'s Day',...}]
 
+### Loading Custom Definitions on the fly
+
+Load custom definitions file on the fly and use them immediately.
+
+Load custom 'Company Founding' holiday on June 1st:
+  Holidays.load_custom('/home/user/holiday_definitions/custom_holidays.yaml')
+
+  date = Date.civil(2013,6,1)
+
+  Holidays.on(date, :my_custom_region)
+    => [{:name => 'Company Founding',...}]
+
+Custom definition files must match the format of the existing definition YAML files location in the 'data' directory.
+
+Multiple files can also be passed:
+  Holidays.load_custom('/home/user/holidays/custom_holidays1.yaml', '/home/user/holidays/custom_holidays2.yaml')
+
 ### Extending Ruby's Date class
 
 Check which holidays occur in Iceland on January 1, 2008.

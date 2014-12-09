@@ -5,7 +5,6 @@ require 'rake/testtask'
 require 'yaml'
 require 'fileutils'
 require 'holidays'
-require File.expand_path('data/build_defs')
 
 Rake::TestTask.new(:test) do |t|
   t.libs << 'test'
@@ -29,7 +28,7 @@ namespace :generate do
       puts "Building #{region} definition module:"
       files = files.collect { |f| "#{DATA_PATH}/#{f}" }.uniq
 
-      module_src, test_src = parse_holiday_defs(region, files)
+      module_src, test_src = Holidays.parse_definition_files_and_return_source(region, files)
       File.open("lib/holidays/#{region.downcase.to_s}.rb","w") do |file|
         file.puts module_src
       end
