@@ -38,6 +38,9 @@ months:
   - name: Mariä Himmelfahrt
     regions: [de_by, de_sl]
     mday: 15
+  - name: Friedensfest
+    regions: [de_by_aux]
+    mday: 8
   10: 
   - name: Tag der Deutschen Einheit
     regions: [de]
