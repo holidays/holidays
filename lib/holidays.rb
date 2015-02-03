@@ -3,6 +3,7 @@ $:.unshift File.dirname(__FILE__)
 
 require 'digest/md5'
 require 'date'
+require 'hebcal/passover'
 
 # == Region options
 # Holidays can be defined as belonging to one or more regions and sub regions.
@@ -256,6 +257,13 @@ module Holidays
     end
     # add offset to the julian day
     return Date.jd(j_date.jd + offset)
+  end
+
+  # A method to calculate the date of the first day of Passover
+  def self.passover_start(year)
+    passover = HebCal::Passover::WhenIsPesach(year)
+    date = Date.civil(passover.to_date.year, passover.to_date.month, passover.to_date.day)
+    date -= 1
   end
 
   # Move date to Monday if it occurs on a Sunday.
