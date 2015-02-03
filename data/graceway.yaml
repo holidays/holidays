@@ -43,7 +43,7 @@ months:
     function: easter(year)-7
   - name: Passover
     regions: [graceway]
-    function: passover(year)
+    function: passover_start(year)
   - name: Good Friday
     regions: [graceway]
     function: easter(year)-2
