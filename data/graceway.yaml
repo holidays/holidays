@@ -17,7 +17,7 @@ months:
     regions: [graceway]
   2: 
   - name: Superbowl Sunday
-    week: 2
+    week: 1
     regions: [graceway]
     wday: 0
   - name: Valentine's Day
