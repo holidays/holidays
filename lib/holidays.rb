@@ -171,7 +171,7 @@ module Holidays
           if h[:date_end]
             date_end = "#{year}/#{h[:date_end]}"
             date_end = Date._parse(date_end)
-            date_end = Date.civil(date_end.year, date_end.mon, date_end.mday)
+            date_end = Date.civil(date_end[:year], date_end[:mon], date_end[:mday])
           elsif h[:length]
             date_end = date + h[:length]
           else
