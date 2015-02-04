@@ -10,7 +10,7 @@ months:
   - name: Lent
     regions: [graceway]
     function: easter(year)-46
-    length: 46
+    length: 43
   - name: Palm Sunday
     regions: [graceway]
     function: easter(year)-7
