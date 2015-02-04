@@ -24,7 +24,7 @@ months:
     function: easter(year)
   - name: Pentecost
     regions: [graceway]
-    function: easter(year)+50
+    function: easter(year)+49
   - name: Trinity Sunday
     regions: [graceway]
     function: easter(year)+57
