@@ -19,9 +19,9 @@ module Holidays
     def self.holidays_by_month
       {
               0 => [{:function => lambda { |year| Holidays.easter(year)-46 }, :function_id => "easter(year)-46", :name => "Ash Wednesday", :regions => [:graceway]},
-            {:function => lambda { |year| Holidays.easter(year)-46 }, :function_id => "easter(year)-46", :length => :46, :name => "Lent", :regions => [:graceway]},
+            {:function => lambda { |year| Holidays.easter(year)-46 }, :function_id => "easter(year)-46", :length => 46, :name => "Lent", :regions => [:graceway]},
             {:function => lambda { |year| Holidays.easter(year)-7 }, :function_id => "easter(year)-7", :name => "Palm Sunday", :regions => [:graceway]},
-            {:function => lambda { |year| Holidays.passover_start(year) }, :function_id => "passover_start(year)", :length => :8, :name => "Passover", :regions => [:graceway]},
+            {:function => lambda { |year| Holidays.passover_start(year) }, :function_id => "passover_start(year)", :length => 8, :name => "Passover", :regions => [:graceway]},
             {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Good Friday", :regions => [:graceway]},
             {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Easter Sunday", :regions => [:graceway]},
             {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "Pentecost", :regions => [:graceway]},
