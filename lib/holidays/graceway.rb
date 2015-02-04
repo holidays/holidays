@@ -33,15 +33,18 @@ module Holidays
       2 => [{:wday => 0, :week => 1, :name => "Superbowl Sunday", :regions => [:graceway]},
             {:mday => 14, :name => "Valentine's Day", :regions => [:graceway]}],
       3 => [{:wday => 0, :week => 2, :name => "Daylight Savings Begins", :regions => [:graceway]},
+            {:wday => 0, :week => 1, :hide_date => true, :name => "Spring Events", :regions => [:graceway]},
             {:mday => 17, :name => "St Patrick's Day", :regions => [:graceway]}],
       5 => [{:wday => 4, :week => 1, :name => "National Day of Prayer", :regions => [:graceway]},
             {:wday => 0, :week => 2, :name => "Mothers Day", :regions => [:graceway]},
             {:wday => 0, :week => 3, :hide_date => true, :name => "Graduation", :regions => [:graceway]},
             {:wday => 1, :week => -1, :name => "Memorial Day", :regions => [:graceway]}],
-      6 => [{:wday => 0, :week => 3, :name => "Fathers Day", :regions => [:graceway]}],
+      6 => [{:wday => 0, :week => 1, :hide_date => true, :name => "Summer Events", :regions => [:graceway]},
+            {:wday => 0, :week => 3, :name => "Fathers Day", :regions => [:graceway]}],
       7 => [{:mday => 4, :name => "Independence Day", :regions => [:graceway]},
             {:wday => 0, :week => 2, :hide_date => true, :name => "VBS", :regions => [:graceway]}],
-      8 => [{:wday => 0, :week => 2, :hide_date => true, :name => "Back to School", :regions => [:graceway]}],
+      8 => [{:wday => 0, :week => 2, :hide_date => true, :name => "Back to School", :regions => [:graceway]},
+            {:wday => 0, :week => 1, :hide_date => true, :name => "Fall Events", :regions => [:graceway]}],
       9 => [{:wday => 1, :week => 1, :name => "Labor Day", :regions => [:graceway]},
             {:wday => 3, :week => 4, :name => "See You at the Pole", :regions => [:graceway]}],
       10 => [{:wday => 0, :week => 2, :name => "Pastor Appreciation", :regions => [:graceway]},
@@ -51,7 +54,8 @@ module Holidays
             {:function => lambda { |year| Holidays.election_day(year) }, :function_id => "election_day(year)", :name => "Election Day", :regions => [:graceway]},
             {:mday => 11, :name => "Veterans Day", :regions => [:graceway]},
             {:wday => 4, :week => 4, :name => "Thanksgiving", :regions => [:graceway]}],
-      12 => [{:mday => 25, :name => "Christmas Day", :regions => [:graceway]}]
+      12 => [{:wday => 0, :week => 1, :hide_date => true, :name => "Winter Events", :regions => [:graceway]},
+            {:mday => 25, :name => "Christmas Day", :regions => [:graceway]}]
       }
     end
   end
