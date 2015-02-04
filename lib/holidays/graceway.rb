@@ -28,7 +28,7 @@ module Holidays
             {:wday => 0, :week => 2, :name => "Daylight Savings Begins", :regions => [:graceway]},
             {:mday => 17, :name => "St Patrick's Day", :regions => [:graceway]}],
       4 => [{:function => lambda { |year| Holidays.easter(year)-7 }, :function_id => "easter(year)-7", :name => "Palm Sunday", :regions => [:graceway]},
-            {:function => lambda { |year| Holidays.passover(year) }, :function_id => "passover(year)", :name => "Passover", :regions => [:graceway]},
+            {:function => lambda { |year| Holidays.passover_start(year) }, :function_id => "passover_start(year)", :name => "Passover", :regions => [:graceway]},
             {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Good Friday", :regions => [:graceway]},
             {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Easter Sunday", :regions => [:graceway]}],
       5 => [{:wday => 4, :week => 1, :name => "National Day of Prayer", :regions => [:graceway]},
