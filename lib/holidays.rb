@@ -169,7 +169,7 @@ module Holidays
           end
 
           if date.between?(start_date, end_date)
-            holidays << {:date => date, :name => h[:name], :hide_date => h[:hide_date], :regions => h[:regions]}
+            holidays << {:date => date, :name => h[:name], :hide_date => h[:hide_date], :regions => h[:regions], :length => h[:length]}
           end
 
         end

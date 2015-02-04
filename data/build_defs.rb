@@ -86,6 +86,10 @@ def parse_holiday_defs(module_name, files)
         str << ":hide_date => true, "
       end
 
+      if rule['length']
+        str << ":length => :#{rule['length']}, "
+      end
+
       # shouldn't allow the same region twice
       str << ":name => \"#{rule['name']}\", :regions => [:" + rule['regions'].uniq.join(', :') + "]}"
       rule_strings << str

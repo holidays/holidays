@@ -10,12 +10,14 @@ months:
   - name: Lent
     regions: [graceway]
     function: easter(year)-46
+    length: 46
   - name: Palm Sunday
     regions: [graceway]
     function: easter(year)-7
   - name: Passover
     regions: [graceway]
     function: passover_start(year)
+    length: 8
   - name: Good Friday
     regions: [graceway]
     function: easter(year)-2
