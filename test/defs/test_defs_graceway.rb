@@ -13,11 +13,16 @@ class GracewayDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2014,2,14)  => "Valentine\'s Day",
  Date.civil(2014,3,5)   => 'Ash Wednesday',
  Date.civil(2014,3,9)   => 'Daylight Savings Begins',
+ Date.civil(2016,3,25)  => 'Good Friday',
+ Date.civil(2015,3,29)  => 'Palm Sunday',
+ Date.civil(2016,4,22)  => 'Passover',
  Date.civil(2014,4,20)  => 'Easter Sunday',
  Date.civil(2014,5,1)   => 'National Day of Prayer',
  Date.civil(2014,5,11)  => 'Mothers Day',
+ Date.civil(2015,5,24)  => 'Pentecost',
  Date.civil(2014,5,26)  => 'Memorial Day',
- Date.civil(2014,6,15)  => 'Fathers Day',
+ Date.civil(2015,5,31)  => 'Trinity Sunday',
+ Date.civil(2015,6,21)  => 'Fathers Day',
  Date.civil(2014,7,4)   => 'Independence Day',
  Date.civil(2014,9,1)   => 'Labor Day',
  Date.civil(2014,9,24)  => 'See You at the Pole',
@@ -25,6 +30,7 @@ class GracewayDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2014,11,2)  => 'Daylight Savings Ends',
  Date.civil(2014,11,11) => 'Veterans Day',
  Date.civil(2014,11,27) => 'Thanksgiving',
+ Date.civil(2015,11,29) => 'Advent',
  Date.civil(2014,12,25) => 'Christmas Day'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :graceway)[0] || {})[:name]
 end
