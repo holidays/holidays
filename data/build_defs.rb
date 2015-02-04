@@ -87,7 +87,7 @@ def parse_holiday_defs(module_name, files)
       end
 
       if rule['length']
-        str << ":length => :#{rule['length']}, "
+        str << ":length => #{rule['length']}, "
       end
 
       # shouldn't allow the same region twice
