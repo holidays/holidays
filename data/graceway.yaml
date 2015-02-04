@@ -3,6 +3,31 @@
 # Updated: 2014-05-08
 --- 
 months:
+  0:
+  - name: Ash Wednesday
+    regions: [graceway]
+    function: easter(year)-46
+  - name: Lent
+    regions: [graceway]
+    function: easter(year)-46
+  - name: Palm Sunday
+    regions: [graceway]
+    function: easter(year)-7
+  - name: Passover
+    regions: [graceway]
+    function: passover_start(year)
+  - name: Good Friday
+    regions: [graceway]
+    function: easter(year)-2
+  - name: Easter Sunday
+    regions: [graceway]
+    function: easter(year)
+  - name: Pentecost
+    regions: [graceway]
+    function: easter(year)+50
+  - name: Trinity Sunday
+    regions: [graceway]
+    function: easter(year)+57
   1: 
   - name: New Years
     regions: [graceway]
@@ -23,33 +48,14 @@ months:
   - name: Valentine's Day
     mday: 14
     regions: [graceway]
-  3: 
-  - name: Ash Wednesday
-    regions: [graceway]
-    function: easter(year)-46
-  - name: Lent
-    regions: [graceway]
-    function: easter(year)-46
+  3:
   - name: Daylight Savings Begins
-    regions: [graceway]
     week: 2
     wday: 0
+    regions: [graceway]
   - name: St Patrick's Day
     regions: [graceway]
     mday: 17
-  4:
-  - name: Palm Sunday
-    regions: [graceway]
-    function: easter(year)-7
-  - name: Passover
-    regions: [graceway]
-    function: passover_start(year)
-  - name: Good Friday
-    regions: [graceway]
-    function: easter(year)-2
-  - name: Easter Sunday
-    regions: [graceway]
-    function: easter(year)
   5: 
   - name: National Day of Prayer
     regions: [graceway]
@@ -69,16 +75,10 @@ months:
     regions: [graceway]
     wday: 1
   6:
-  - name: Pentecost
-    regions: [graceway]
-    function: easter(year)+50
   - name: Fathers Day
     regions: [graceway]
     week: 3
     wday: 0
-  - name: Trinity Sunday
-    regions: [graceway]
-    function: easter(year)+57
   7: 
   - name: Independence Day
     regions: [graceway]
