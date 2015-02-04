@@ -168,8 +168,17 @@ module Holidays
             date = call_proc(h[:observed], date)
           end
 
+          if h[:date_end]
+            date_end = "#{year}/#{h[:date_end]}"
+            date_end = Date.civil.strftime(date_end)
+          elsif h[:length]
+            date_end = date + h[:length]
+          else
+            date_end = nil
+          end
+
           if date.between?(start_date, end_date)
-            holidays << {:date => date, :name => h[:name], :hide_date => h[:hide_date], :regions => h[:regions], :length => h[:length]}
+            holidays << {:date => date, :name => h[:name], :hide_date => h[:hide_date], :regions => h[:regions], :date_end => date_end}
           end
 
         end
