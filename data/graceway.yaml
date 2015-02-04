@@ -28,6 +28,9 @@ months:
   - name: Trinity Sunday
     regions: [graceway]
     function: easter(year)+57
+  - name: Advent
+    function: advent_sunday(year)
+    regions: [graceway]
   1: 
   - name: New Years
     regions: [graceway]
