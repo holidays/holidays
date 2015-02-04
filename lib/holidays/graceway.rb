@@ -65,7 +65,7 @@ end
 
 def self.election_day(year)
   d = Date.new(year, 11, 1)
-  if d.wday == 2 do
+  if d.wday == 2
     d = Date.calculate_mday(year, 11, :second, 2)
   else
     d = Date.calculate_mday(year, 11, :first, 2)
