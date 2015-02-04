@@ -24,8 +24,8 @@ module Holidays
             {:function => lambda { |year| Holidays.passover_start(year) }, :function_id => "passover_start(year)", :name => "Passover", :regions => [:graceway]},
             {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Good Friday", :regions => [:graceway]},
             {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Easter Sunday", :regions => [:graceway]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pentecost", :regions => [:graceway]},
-            {:function => lambda { |year| Holidays.easter(year)+57 }, :function_id => "easter(year)+57", :name => "Trinity Sunday", :regions => [:graceway]},
+            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "Pentecost", :regions => [:graceway]},
+            {:function => lambda { |year| Holidays.easter(year)+56 }, :function_id => "easter(year)+56", :name => "Trinity Sunday", :regions => [:graceway]},
             {:function => lambda { |year| Holidays.advent_sunday(year) }, :function_id => "advent_sunday(year)", :name => "Advent", :regions => [:graceway]}],
       1 => [{:mday => 1, :name => "New Years", :regions => [:graceway]},
             {:wday => 1, :week => 3, :name => "Martin Luther King Jr", :regions => [:graceway]},
@@ -48,7 +48,7 @@ module Holidays
             {:mday => 31, :name => "Halloween", :regions => [:graceway]},
             {:mday => 31, :name => "Reformation Day", :regions => [:graceway]}],
       11 => [{:wday => 0, :week => 1, :name => "Daylight Savings Ends", :regions => [:graceway]},
-            {:wday => 0, :week => 2, :hide_date => true, :name => "Election Day", :regions => [:graceway]},
+            {:function => lambda { |year| Holidays.election_day(year) }, :function_id => "election_day(year)", :name => "Election Day", :regions => [:graceway]},
             {:mday => 11, :name => "Veterans Day", :regions => [:graceway]},
             {:wday => 4, :week => 4, :name => "Thanksgiving", :regions => [:graceway]}],
       12 => [{:mday => 25, :name => "Christmas Day", :regions => [:graceway]}]
@@ -60,6 +60,16 @@ def self.advent_sunday(year)
   d = Date.new(year, 11, -1)
   d -= (d.wday - 4) % 7
   d + 3
+end
+
+
+def self.election_day(year)
+  d = Date.new(year, 11, 1)
+  if d.wday == 2 do
+    d = Date.calculate_mday(year, 11, :second, 2)
+  else
+    d = Date.calculate_mday(year, 11, :first, 2)
+  end
 end
 
 

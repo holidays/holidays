@@ -123,10 +123,8 @@ months:
     week: 1
     wday: 0
   - name: Election Day
+    function: election_day(year)
     regions: [graceway]
-    week: 2
-    wday: 0
-    hidedate: true
   - name: Veterans Day
     regions: [graceway]
     mday: 11
@@ -148,6 +146,15 @@ methods:
       d -= (d.wday - 4) % 7
       d + 3
     end
+  election_day: |
+      def self.election_day(year)
+        d = Date.new(year, 11, 1)
+        if d.wday == 2 do
+          d = Date.calculate_mday(year, 11, :second, 2)
+        else
+          d = Date.calculate_mday(year, 11, :first, 2)
+        end
+      end
 tests: |
     {Date.civil(2014,1,1)   => 'New Years', 
      Date.civil(2014,1,19)  => 'Sanctity of Life Week',
