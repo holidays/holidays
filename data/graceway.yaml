@@ -56,6 +56,11 @@ months:
     week: 2
     wday: 0
     regions: [graceway]
+  - name: Spring Events
+    regions: [graceway]
+    week: 1
+    wday: 0
+    hidedate: true
   - name: St Patrick's Day
     regions: [graceway]
     mday: 17
@@ -78,6 +83,11 @@ months:
     regions: [graceway]
     wday: 1
   6:
+  - name: Summer Events
+    regions: [graceway]
+    week: 1
+    wday: 0
+    hidedate: true
   - name: Fathers Day
     regions: [graceway]
     week: 3
@@ -95,6 +105,11 @@ months:
   - name: Back to School
     regions: [graceway]
     week: 2
+    wday: 0
+    hidedate: true
+  - name: Fall Events
+    regions: [graceway]
+    week: 1
     wday: 0
     hidedate: true
   9: 
@@ -133,9 +148,11 @@ months:
     regions: [graceway]
     wday: 4
   12: 
-#  - name: Advent
-#    regions: [graceway]
-#    function: advent_sunday(year)
+  - name: Winter Events
+    regions: [graceway]
+    week: 1
+    wday: 0
+    hidedate: true
   - name: Christmas Day
     regions: [graceway]
     mday: 25
