@@ -9,6 +9,10 @@ months:
     regions: [us]
     function: easter(year)-2
     type: informal
+  - name: Easter Sunday
+    regions: [us]
+    function: easter(year)
+    type: informal
   1: 
   - name: New Year's Day
     regions: [us]

@@ -30,9 +30,9 @@
 # all regions [ch_zh, ch_be, ch_lu, ch_ur, ch_sz, ch_ow, ch_nw, ch_gl, ch_zg, ch_fr, ch_so, ch_bs, ch_bl,
 # ch_sh, ch_ar, ch_ai, ch_sg, ch_gr, ch_ag, ch_tg, ch_ti, ch_vd, ch_vs, ch_ne, ch_ge, ch_ju]
 #
---- 
+---
 months:
-  0: 
+  0:
   - name: Karfreitag
     regions: [ch_zh, ch_be, ch_lu, ch_ur, ch_sz, ch_ow, ch_nw, ch_gl, ch_zg, ch_fr, ch_so, ch_bs, ch_bl, ch_sh, ch_ar, ch_ai, ch_sg, ch_gr, ch_ag, ch_tg, ch_ti, ch_vd, ch_ne, ch_ge, ch_ju]
     function: easter(year)-2
@@ -52,12 +52,12 @@ months:
   - name: Lundi du Jeûne fédéral
     regions: [ch_vd]
     function: ch_vd_lundi_du_jeune_federal(year)
-  - name: Jeûne genevoi
+  - name: Jeûne genevois
     regions: [ch_ge]
-    function: ch_ge_jeune_genevoi(year)
+    function: ch_ge_jeune_genevois(year)
   1:
   - name: Neujahrstag
-    regions: [ch_zh, ch_be, ch_lu, ch_ur, ch_sz, ch_ow, ch_nw, ch_gl, ch_zg, ch_fr, ch_so, ch_bs, ch_bl, ch_sh, ch_ar, ch_ai, ch_sg, ch_gr, ch_ag, ch_tg, ch_vd, ch_vs, ch_ne, ch_ge, ch_ju]
+    regions: [ch_zh, ch_be, ch_lu, ch_ur, ch_sz, ch_ow, ch_nw, ch_gl, ch_zg, ch_fr, ch_so, ch_bs, ch_bl, ch_sh, ch_ar, ch_ai, ch_sg, ch_gr, ch_ag, ch_tg, ch_vd, ch_vs, ch_ne, ch_ge, ch_ju, ch_ti]
     mday: 1
   - name: Berchtoldstag
     regions: [ch_zh, ch_be, ch_lu, ch_ow, ch_nw, ch_gl, ch_zg, ch_fr, ch_so, ch_sh, ch_sg, ch_ag, ch_tg, ch_vd, ch_vs, ch_ne, ch_ju]
@@ -133,9 +133,9 @@ methods:
       # and the Monday after the third Sunday
       date + 15
     end
-  ch_ge_jeune_genevoi: |
+  ch_ge_jeune_genevois: |
     # Thursday after the first Sunday of September
-    def self.ch_ge_jeune_genevoi(year)
+    def self.ch_ge_jeune_genevois(year)
       date = Date.civil(year,9,1)
       # Find the first Sunday of September
       until date.wday.eql? 0 do
@@ -179,7 +179,7 @@ tests: |
     end
 
     [Date.civil(2012,9,6), Date.civil(2013,9,5), Date.civil(2014,9,11)].each do |date|
-      assert_equal 'Jeûne genevoi', (Holidays.on(date, :ch_ge)[0] || {})[:name]
+      assert_equal 'Jeûne genevois', (Holidays.on(date, :ch_ge)[0] || {})[:name]
     end
 
     [Date.civil(2012,4,12), Date.civil(2013,4,4), Date.civil(2014,4,3)].each do |date|

@@ -19,6 +19,7 @@ module Holidays
     def self.holidays_by_month
       {
               0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Långfredagen", :regions => [:se]},
+            {:function => lambda { |year| Holidays.easter(year)-1 }, :function_id => "easter(year)-1", :type => :informal, :name => "Påskafton", :regions => [:se]},
             {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Påskdagen", :regions => [:se]},
             {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Annandag påsk", :regions => [:se]},
             {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Kristi himmelsfärdsdag", :regions => [:se]},
@@ -28,9 +29,12 @@ module Holidays
             {:mday => 6, :name => "Trettondedag jul", :regions => [:se]}],
       5 => [{:mday => 1, :name => "Första maj", :regions => [:se]}],
       6 => [{:mday => 6, :name => "Nationaldagen", :regions => [:se]},
-            {:function => lambda { |year| Holidays.se_midsommardagen(year) }, :function_id => "se_midsommardagen(year)", :name => "Midsommardagen", :regions => [:se]}],
-      12 => [{:mday => 25, :name => "Juldagen", :regions => [:se]},
-            {:mday => 26, :name => "Annandag jul", :regions => [:se]}]
+            {:function => lambda { |year| Holidays.se_midsommardagen(year) }, :function_id => "se_midsommardagen(year)", :name => "Midsommardagen", :regions => [:se]},
+            {:function => lambda { |year| Holidays.se_midsommardagen(year)-1 }, :function_id => "se_midsommardagen(year)-1", :type => :informal, :name => "Midsommarafton", :regions => [:se]}],
+      12 => [{:mday => 24, :type => :informal, :name => "Julafton", :regions => [:se]},
+            {:mday => 25, :name => "Juldagen", :regions => [:se]},
+            {:mday => 26, :name => "Annandag jul", :regions => [:se]},
+            {:mday => 31, :type => :informal, :name => "Nyårsafton", :regions => [:se]}]
       }
     end
   end

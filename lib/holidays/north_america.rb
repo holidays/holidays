@@ -13,14 +13,16 @@ module Holidays
   # All the definitions are available at https://github.com/alexdunae/holidays
   module North_America # :nodoc:
     def self.defined_regions
-      [:ca, :ca_qc, :ca_ab, :ca_on, :ca_sk, :ca_mb, :ca_nf, :ca_nt, :ca_nu, :ca_bc, :ca_ns, :ca_yk, :mx, :mx_pue, :us, :us_dc]
+      [:ca, :ca_qc, :ca_ab, :ca_on, :ca_sk, :ca_mb, :ca_ns, :ca_pe, :ca_bc, :ca_nf, :ca_nt, :ca_nu, :ca_nb, :ca_yk, :mx, :mx_pue, :us, :us_dc]
     end
 
     def self.holidays_by_month
       {
               0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Good Friday", :regions => [:ca]},
+            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Easter Sunday", :regions => [:ca]},
             {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :type => :informal, :name => "Easter Monday", :regions => [:ca]},
-            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :type => :informal, :name => "Good Friday", :regions => [:us]}],
+            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :type => :informal, :name => "Good Friday", :regions => [:us]},
+            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :type => :informal, :name => "Easter Sunday", :regions => [:us]}],
       1 => [{:mday => 1, :name => "New Year's Day", :regions => [:ca]},
             {:mday => 2, :name => "New Year's", :regions => [:ca_qc]},
             {:mday => 1, :name => "Año nuevo", :regions => [:mx]},
@@ -30,6 +32,9 @@ module Holidays
             {:function => lambda { |year| Holidays.us_inauguration_day(year) }, :function_id => "us_inauguration_day(year)", :name => "Inauguration Day", :regions => [:us_dc]}],
       2 => [{:wday => 1, :week => 3, :name => "Family Day", :regions => [:ca_ab, :ca_on, :ca_sk]},
             {:wday => 1, :week => 3, :name => "Louis Riel Day", :regions => [:ca_mb]},
+            {:wday => 1, :week => 3, :name => "Nova Scotia Heritage Day", :regions => [:ca_ns]},
+            {:wday => 1, :week => 3, :name => "Islander Day", :regions => [:ca_pe]},
+            {:wday => 1, :week => 2, :name => "BC Family Day", :regions => [:ca_bc]},
             {:wday => 1, :week => 1, :name => "Día de la Constitución", :regions => [:mx]},
             {:wday => 1, :week => 3, :name => "Presidents' Day", :regions => [:us]},
             {:mday => 2, :type => :informal, :name => "Groundhog Day", :regions => [:us, :ca]},
@@ -45,11 +50,13 @@ module Holidays
             {:mday => 10, :type => :informal, :name => "Día de la Madre", :regions => [:mx]},
             {:mday => 15, :type => :informal, :name => "Día del Maestro", :regions => [:mx]},
             {:wday => 1, :week => -1, :name => "Memorial Day", :regions => [:us]},
-            {:wday => 0, :week => 3, :type => :informal, :name => "Father's Day", :regions => [:us, :ca]}],
+            {:wday => 0, :week => 2, :type => :informal, :name => "Mother's Day", :regions => [:us, :ca]},
+            {:wday => 6, :week => 3, :type => :informal, :name => "Armed Forces Day", :regions => [:us]}],
       6 => [{:mday => 24, :name => "Discovery Day", :regions => [:ca_nf]},
             {:mday => 24, :name => "Fête Nationale", :regions => [:ca_qc]},
             {:mday => 21, :name => "National Aboriginal Day", :regions => [:ca_nt]},
-            {:wday => 0, :week => 3, :type => :informal, :name => "Día del Padre", :regions => [:mx]}],
+            {:wday => 0, :week => 3, :type => :informal, :name => "Día del Padre", :regions => [:mx]},
+            {:wday => 0, :week => 3, :type => :informal, :name => "Father's Day", :regions => [:us, :ca]}],
       7 => [{:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Canada Day", :regions => [:ca]},
             {:mday => 12, :name => "Orangemen's Day", :regions => [:ca_nf]},
             {:mday => 9, :name => "Nunavut Day", :regions => [:ca_nu]},
@@ -58,7 +65,8 @@ module Holidays
             {:wday => 1, :week => 1, :name => "Saskatchewan Day", :regions => [:ca_sk]},
             {:wday => 1, :week => 1, :name => "Heritage Day", :regions => [:ca_ab]},
             {:wday => 1, :week => 1, :name => "Natal Day", :regions => [:ca_ns]},
-            {:wday => 1, :week => 1, :name => "Civic Holiday", :regions => [:ca_on]},
+            {:wday => 1, :week => 1, :name => "Civic Holiday", :regions => [:ca_on, :ca_nt, :ca_nu, :ca_pe]},
+            {:wday => 1, :week => 1, :name => "New Brunswick Day", :regions => [:ca_nb]},
             {:wday => 1, :week => 3, :name => "Discovery Day", :regions => [:ca_yk]}],
       9 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:ca]},
             {:mday => 15, :name => "Grito de Dolores", :regions => [:mx]},

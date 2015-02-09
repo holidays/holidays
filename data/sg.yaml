@@ -1,0 +1,55 @@
+# Singapore holiday definitions for the Holidays gem!
+
+# Days not included in the definitions (yet):
+# Vesak Day (falls on the first full moon in May)
+# Lunar New Year (falls on the first day of the Lunar Calendar)
+# Hari Raya Puasa and Hari Raya Haji (based on moon sightings, Islamic Calendar)
+# Deepavali (15th Day of September or October, based on the Hindu Calendar)
+
+# Source:
+# http://publicholidays.sg/
+
+months:
+  0: 
+  - name: Good Friday
+    regions: [sg]
+    function: easter(year)-2
+  1: 
+  - name: New Year's Day
+    regions: [sg]
+    mday: 1
+    observed: to_weekday_if_weekend
+  2:
+  - name: Valentine's Day
+    regions: [sg]
+    mday: 14
+    type: informal
+  - name: Total Defence Day
+    regions: [sg]
+    mday: 15
+    type: informal
+  5:
+  - name: Labour Day
+    regions: [sg]
+    mday: 1
+  8:
+  - name: National Day
+    regions: [sg]
+    mday: 9
+    observed: to_weekday_if_weekend
+  12: 
+  - name: Christmas Day
+    regions: [sg]
+    mday: 25
+    observed: to_weekday_if_weekend
+
+tests: |
+    {Date.civil(2014,1,1) => 'New Year\'s Day', 
+     Date.civil(2014,2,14) => 'Valentine\'s Day',
+     Date.civil(2014,2,15) => 'Total Defence Day',
+     Date.civil(2014,4,18) => 'Good Friday',
+     Date.civil(2014,5,1) => 'Labour Day',
+     Date.civil(2014,8,9) => 'National Day',
+     Date.civil(2014,12,25) => 'Christmas Day'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :sg, :informal)[0] || {})[:name]
+    end

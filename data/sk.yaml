@@ -1,0 +1,74 @@
+# Slovak holiday definitions for the Ruby Holiday gem.
+#
+# Updated: 2013-12-26.
+# Sources:
+# - http://sk.wikipedia.org/wiki/Slovensk%C3%A9_%C5%A1t%C3%A1tne_sviatky
+--- 
+months:
+  0: 
+  - name: Veľkonočný pondelok
+    regions: [sk]
+    function: easter(year)+1
+  - name: Veľký piatok
+    regions: [sk]
+    function: easter(year)-2
+  1:
+  - name: Nový rok
+    regions: [sk]
+    mday: 1
+  5:
+  - name: Sviatok práce
+    regions: [sk]
+    mday: 1
+  - name: Deň víťazstva
+    regions: [sk]
+    mday: 8
+  7:
+  - name: Sviatok svätého Cyrila a svätého Metoda
+    regions: [sk]
+    mday: 5
+  8:
+  - name: Výročie Slovenského národného povstania
+    regions: [sk]
+    mday: 29
+  9:
+  - name: Deň Ústavy Slovenskej republiky
+    regions: [sk]
+    mday: 1
+  - name: Sedembolestná Panna Mária
+    regions: [sk]
+    mday: 15
+  11:
+  - name: Sviatok všetkých svätých
+    regions: [sk]
+    mday: 1
+  - name: Deň boja za slobodu a demokraciu
+    regions: [sk]
+    mday: 17
+  12:
+  - name: Štedrý deň
+    regions: [sk]
+    mday: 24
+  - name: 1. sviatok vianočný
+    regions: [sk]
+    mday: 25
+  - name: 2. sviatek vianočný
+    regions: [sk]
+    mday: 26
+tests: |
+    {Date.civil(2013,1,1) => 'Nový rok',
+     Date.civil(2013,3,29) => 'Veľký piatok',
+     Date.civil(2013,4,1) => 'Veľkonočný pondelok',
+     Date.civil(2013,5,1) => 'Sviatok práce',
+     Date.civil(2013,5,8) => 'Deň víťazstva',
+     Date.civil(2013,7,5) => 'Sviatok svätého Cyrila a svätého Metoda',
+     Date.civil(2013,8,29) => 'Výročie Slovenského národného povstania',
+     Date.civil(2013,9,1) => 'Deň Ústavy Slovenskej republiky',
+     Date.civil(2013,9,15) => 'Sedembolestná Panna Mária',
+     Date.civil(2013,11,1) => 'Sviatok všetkých svätých',
+     Date.civil(2013,11,17) => 'Deň boja za slobodu a demokraciu',
+     Date.civil(2013,12,24) => 'Štedrý deň',
+     Date.civil(2013,12,25) => '1. sviatok vianočný',
+     Date.civil(2013,12,26) => '2. sviatek vianočný'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :sk, :informal)[0] || {})[:name]
+    end

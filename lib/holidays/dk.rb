@@ -34,12 +34,12 @@ module Holidays
             {:mday => 16, :type => :informal, :name => "Dronningens fødselsdag", :regions => [:dk]}],
       5 => [{:mday => 1, :name => "Arbejdernes kampdag", :regions => [:dk]},
             {:mday => 5, :type => :informal, :name => "Danmarks befrielse", :regions => [:dk]}],
-      6 => [{:mday => 5, :name => "Grundlovsdag", :regions => [:dk]},
+      6 => [{:mday => 5, :type => :informal, :name => "Grundlovsdag", :regions => [:dk]},
             {:mday => 15, :type => :informal, :name => "Valdemarsdag og Genforeningsdag", :regions => [:dk]},
             {:mday => 23, :type => :informal, :name => "Sankt Hans aften", :regions => [:dk]}],
       11 => [{:mday => 10, :type => :informal, :name => "Mortensaften", :regions => [:dk]}],
       12 => [{:mday => 13, :type => :informal, :name => "Sankt Lucia", :regions => [:dk]},
-            {:mday => 24, :name => "Juleaftensdag", :regions => [:dk]},
+            {:mday => 24, :type => :informal, :name => "Juleaftensdag", :regions => [:dk]},
             {:mday => 25, :name => "1. juledag", :regions => [:dk]},
             {:mday => 26, :name => "2. juledag", :regions => [:dk]}]
       }

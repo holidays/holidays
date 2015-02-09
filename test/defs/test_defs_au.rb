@@ -29,8 +29,48 @@ assert_equal 'Labour Day', Date.civil(2007,3,5).holidays(:au_wa)[0][:name]
 assert_equal 'Labour Day', Date.civil(2007,3,12).holidays(:au_vic)[0][:name]
 assert_equal 'Labour Day', Date.civil(2007,5,7).holidays(:au_qld)[0][:name]
 
+assert_equal 'Easter Sunday', Date.civil(2007,4,8).holidays(:au_nsw)[0][:name]
+
 assert_equal 'May Day', Date.civil(2007,5,7).holidays(:au_nt)[0][:name]
 
 assert_equal 'Eight Hours Day', Date.civil(2007,3,12).holidays(:au_tas)[0][:name]
+
+assert_equal 'Labour Day', Date.civil(2013,10,7).holidays(:au_qld)[0][:name]
+assert_equal 'Labour Day', Date.civil(2012,5,7).holidays(:au_qld)[0][:name]
+
+assert_equal "Queen's Birthday", Date.civil(2012,6,11).holidays(:au_qld)[0][:name]
+assert_equal "Queen's Birthday", Date.civil(2012,10,1).holidays(:au_qld)[0][:name]
+assert_equal "Queen's Birthday", Date.civil(2013,6,10).holidays(:au_qld)[0][:name]
+
+assert_equal "Queen's Birthday", Date.civil(2014, 9, 29).holidays(:au_wa)[0][:name]
+assert_equal "Queen's Birthday", Date.civil(2015, 9, 28).holidays(:au_wa)[0][:name]
+assert_equal "Queen's Birthday", Date.civil(2016, 9, 26).holidays(:au_wa)[0][:name]
+
+assert_equal "Family & Community Day", Date.civil(2014, 9, 29).holidays(:au_act)[0][:name]
+assert_equal "Family & Community Day", Date.civil(2015, 9, 28).holidays(:au_act)[0][:name]
+assert_equal "Family & Community Day", Date.civil(2016, 9, 26).holidays(:au_act)[0][:name]
+
+assert_equal 'Australia Day', Date.civil(2014,1,26).holidays(:au_qld)[0][:name]
+assert_equal 'Australia Day', Date.civil(2014,1,27).holidays(:au_qld, :observed)[0][:name]
+
+assert_equal 'Cairns Show', Date.civil(2014,7,18).holidays(:au_qld_cairns)[0][:name]
+assert_equal 'Cairns Show', Date.civil(2013,7,19).holidays(:au_qld_cairns)[0][:name]
+
+assert_equal 'Royal Hobart Show', Date.civil(2013, 10, 24).holidays(:au_tas_south)[0][:name]
+assert_equal 'Royal Hobart Show', Date.civil(2014, 10, 23).holidays(:au_tas_south)[0][:name]
+assert_equal 'Royal Hobart Show', Date.civil(2015, 10, 22).holidays(:au_tas_south)[0][:name]
+assert_equal 'Royal Hobart Show', Date.civil(2016, 10, 20).holidays(:au_tas_south)[0][:name]
+
+assert_equal 'Recreation Day', Date.civil(2013, 11, 4).holidays(:au_tas_north)[0][:name]
+assert_equal 'Recreation Day', Date.civil(2014, 11, 3).holidays(:au_tas_north)[0][:name]
+assert_equal 'Recreation Day', Date.civil(2015, 11, 2).holidays(:au_tas_north)[0][:name]
+assert_equal 'Recreation Day', Date.civil(2016, 11, 7).holidays(:au_tas_north)[0][:name]
+
+assert_equal 'G20 Day', Date.civil(2014,11,14).holidays(:au_qld_brisbane)[0][:name]
+assert_equal [], Date.civil(2014,11,14).holidays(:au_qld)
+assert_equal [], Date.civil(2015,11,14).holidays(:au_qld_brisbane)
+
+assert_equal 'Melbourne Cup Day', Date.civil(2014,11,4).holidays(:au_vic)[0][:name]
+assert_equal 'Melbourne Cup Day', Date.civil(2015,11,3).holidays(:au_vic)[0][:name]
   end
 end
