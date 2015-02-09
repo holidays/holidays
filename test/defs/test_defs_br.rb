@@ -7,18 +7,18 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class BrDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_br
-{Date.civil(2008,1,1) => 'Dia da Confraternização Universal', 
+{Date.civil(2008,1,1) => 'Dia da Confraternização Universal',
  Date.civil(2005,2,8) => 'Carnaval',
  Date.civil(2006,2,28) => 'Carnaval',
  Date.civil(2007,2,20) => 'Carnaval',
  Date.civil(2008,2,5) => 'Carnaval',
- Date.civil(2008,3,21) => 'Sexta-feira Santa', 
+ Date.civil(2008,3,21) => 'Sexta-feira Santa',
  Date.civil(2008,3,23) => 'Páscoa',
  Date.civil(2008,4,21) => 'Dia de Tiradentes',
  Date.civil(2008,5,1) => 'Dia do Trabalho',
- Date.civil(2005,5,26) => 'Corpus Christ',
- Date.civil(2007,6,7) => 'Corpus Christ',
- Date.civil(2008,5,22) => 'Corpus Christ',
+ Date.civil(2005,5,26) => 'Corpus Christi',
+ Date.civil(2007,6,7) => 'Corpus Christi',
+ Date.civil(2008,5,22) => 'Corpus Christi',
  Date.civil(2008,9,7) => 'Proclamação da Independência',
  Date.civil(2008,10,12) => 'Dia de Nossa Senhora Aparecida',
  Date.civil(2008,11,2) => 'Dia de Finados',

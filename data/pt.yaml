@@ -1,6 +1,6 @@
 # Portugese holiday definitions for the Ruby Holiday gem.
 #
-# Updated: 2012-02-07.
+# Updated: 2014-03-01.
 # Sources:
 # - http://thomasallen.home.sapo.pt/travel/hols.htm
 # - http://en.wikipedia.org/wiki/Holidays_in_Portugal
@@ -8,9 +8,10 @@
 # - http://www.worldtravelguide.net/country/227/public_holidays/Europe/Portugal.html
 # - http://en.wikipedia.org/wiki/Portugal_Day
 # - http://www.timeanddate.com/calendar/custom.html?year=2008&country=15
---- 
+# - http://en.wikipedia.org/wiki/Public_holidays_in_Portugal#Revoked_holidays_in_2012
+---
 months:
-  0: 
+  0:
   - name: Carnaval # same as Shrove Tuesday
     regions: [pt]
     function: easter(year)-47
@@ -21,7 +22,7 @@ months:
   - name: Páscoa
     regions: [pt]
     function: easter(year)
-  1: 
+  1:
   - name: Ano Novo
     regions: [pt]
     mday: 1
@@ -29,7 +30,7 @@ months:
   - name: Dia da Liberdade
     regions: [pt]
     mday: 25
-  5: 
+  5:
   - name: Dia do Trabalhador
     regions: [pt]
     mday: 1
@@ -37,11 +38,11 @@ months:
   - name: Dia de Portugal
     regions: [pt]
     mday: 10
-  11: 
-  - name: Todos os Santos
+  8:
+  - name: Assunção de Nossa Senhora
     regions: [pt]
-    mday: 1
-  12: 
+    mday: 15
+  12:
   - name: Imaculada Conceição
     regions: [pt]
     mday: 8
@@ -49,17 +50,17 @@ months:
     regions: [pt]
     mday: 25
 tests: |
-    {Date.civil(2008,1,1) => 'Ano Novo', 
+    {Date.civil(2008,1,1) => 'Ano Novo',
      Date.civil(2005,2,8) => 'Carnaval',
      Date.civil(2006,2,28) => 'Carnaval',
      Date.civil(2007,2,20) => 'Carnaval',
      Date.civil(2008,2,5) => 'Carnaval',
-     Date.civil(2008,3,21) => 'Sexta-feira Santa', 
+     Date.civil(2008,3,21) => 'Sexta-feira Santa',
      Date.civil(2008,3,23) => 'Páscoa',
      Date.civil(2008,4,25) => 'Dia da Liberdade',
      Date.civil(2008,5,1) => 'Dia do Trabalhador',
      Date.civil(2008,6,10) => 'Dia de Portugal',
-     Date.civil(2008,11,1) => 'Todos os Santos',
+     Date.civil(2008,8,15) => 'Assunção de Nossa Senhora',
      Date.civil(2008,12,8) => 'Imaculada Conceição',
      Date.civil(2008,12,25) => 'Natal'}.each do |date, name|
       assert_equal name, (Holidays.on(date, :pt, :informal)[0] || {})[:name]

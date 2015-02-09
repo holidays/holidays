@@ -1,0 +1,65 @@
+# Belgium holiday definitions for the Ruby Holiday gem.
+#
+# Updated: 2012-06-20.
+# Sources:
+# - http://en.wikipedia.org/wiki/Public_holidays_in_Belgium
+--- 
+months:
+  0: 
+  - name: Easter
+    regions: [be]
+    function: easter(year)
+  - name: Easter Monday
+    regions: [be]
+    function: easter(year)+1
+  - name: Ascension
+    regions: [be]
+    function: easter(year)+39
+  - name: Pentecost
+    regions: [be]
+    function: easter(year)+49
+  - name: Pentecost Monday
+    regions: [be]
+    function: easter(year)+50
+  1: 
+  - name: New Year's Day
+    regions: [be]
+    mday: 1
+  5: 
+  - name: Labour Day
+    regions: [be]
+    mday: 1
+  7:
+  - name: National holiday
+    regions: [be]
+    mday: 21
+  8: 
+  - name: Assumption of Mary
+    regions: [be]
+    mday: 15
+  11: 
+  - name: All Saints
+    regions: [be]
+    mday: 1
+  - name: Armistice Day
+    regions: [be]
+    mday: 11
+  12:
+  - name: Christmas
+    regions: [be]
+    mday: 25
+tests: |
+    {Date.civil(2007,1,1) => 'New Year\'s Day', 
+     Date.civil(2007,4,8) => 'Easter',
+     Date.civil(2007,4,9) => 'Easter Monday',
+     Date.civil(2007,5,1) => 'Labour Day',
+     Date.civil(2007,5,17) => 'Ascension',
+     Date.civil(2007,5,27) => 'Pentecost',
+     Date.civil(2007,5,28) => 'Pentecost Monday',
+     Date.civil(2007,7,21) => 'National holiday',
+     Date.civil(2007,8,15) => 'Assumption of Mary',
+     Date.civil(2007,11,1) => 'All Saints',
+     Date.civil(2007,11,11) => 'Armistice Day',
+     Date.civil(2007,12,25) => 'Christmas'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :be, :informal)[0] || {})[:name]
+    end

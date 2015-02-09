@@ -1,0 +1,63 @@
+# Costa Rican holiday definitions for the Ruby Holiday gem.
+#
+#
+# Updated: 2014-11-22.
+#
+# Sources:
+# - http://en.wikipedia.org/wiki/Public_holidays_in_Costa_Rica
+#
+months:
+  0:
+  - name: Jueves Santo
+    regions: [cr]
+    function: easter(year)-3
+  - name: Viernes Santo
+    regions: [cr]
+    function: easter(year)-2
+  1:
+  - name: Año Nuevo
+    regions: [cr]
+    mday: 1
+  4:
+  - name: Día de Juan Santamaría
+    regions: [cr]
+    mday: 11
+  5:
+  - name: Día del Trabajador
+    regions: [cr]
+    mday: 1
+  7:
+  - name: Día de la Anexión de Guanacaste
+    regions: [cr]
+    mday: 25
+  8:
+  - name: Día de la Virgen de los Angeles
+    regions: [cr]
+    mday: 2
+  - name: Día de la Madre
+    regions: [cr]
+    mday: 15
+  9:
+  - name: Día de la Independencia
+    regions: [cr]
+    mday: 15
+  10:
+  - name: Día de las Culturas
+    regions: [cr]
+    mday: 12
+  12:
+  - name: Navidad
+    regions: [cr]
+    mday: 25
+tests: |
+    {Date.civil(2015,1,1) => 'Año Nuevo',
+     Date.civil(2015,4,11) => 'Día de Juan Santamaría',
+     Date.civil(2015,5,1) => 'Día del Trabajador',
+     Date.civil(2015,7,25) => 'Día de la Anexión de Guanacaste',
+     Date.civil(2015,8,2) => 'Día de la Virgen de los Angeles',
+     Date.civil(2015,8,15) => 'Día de la Madre',
+     Date.civil(2015,9,15) => 'Día de la Independencia',
+     Date.civil(2015,10,12) => 'Día de las Culturas',
+     Date.civil(2016,12,25) => 'Navidad'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :cr)[0] || {})[:name]
+    end

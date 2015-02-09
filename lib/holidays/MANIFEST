@@ -1,15 +1,20 @@
 ==== Regional definitions
 The following definition files are included in this installation:
 
+* holidays/ar
 * holidays/at
 * holidays/au
+* holidays/be
 * holidays/br
 * holidays/ca
 * holidays/ch
 * holidays/cme
+* holidays/cl
+* holidays/cr
 * holidays/cz
 * holidays/de
 * holidays/dk
+* holidays/ecb_target
 * holidays/el
 * holidays/es
 * holidays/europe
@@ -17,12 +22,15 @@ The following definition files are included in this installation:
 * holidays/fi
 * holidays/fr
 * holidays/gb
+* holidays/hr
 * holidays/hu
 * holidays/ie
 * holidays/is
 * holidays/it
 * holidays/jp
 * holidays/li
+* holidays/lt
+* holidays/ma
 * holidays/mx
 * holidays/nerc
 * holidays/nl
@@ -32,9 +40,15 @@ The following definition files are included in this installation:
 * holidays/nz
 * holidays/pl
 * holidays/pt
+* holidays/ro
 * holidays/scandinavia
 * holidays/se
+* holidays/sg
+* holidays/si
+* holidays/sk
 * holidays/united_nations
 * holidays/ups
 * holidays/us
+* holidays/ve
+* holidays/vi
 * holidays/za

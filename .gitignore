@@ -4,3 +4,5 @@ nbproject
 doc/
 rdoc/
 Gemfile.lock
+.ruby-version
+.bundle

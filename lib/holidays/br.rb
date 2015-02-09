@@ -21,7 +21,7 @@ module Holidays
               0 => [{:function => lambda { |year| Holidays.easter(year)-47 }, :function_id => "easter(year)-47", :type => :informal, :name => "Carnaval", :regions => [:br]},
             {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Sexta-feira Santa", :regions => [:br]},
             {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Páscoa", :regions => [:br]},
-            {:function => lambda { |year| Holidays.easter(year)+60 }, :function_id => "easter(year)+60", :name => "Corpus Christ", :regions => [:br]}],
+            {:function => lambda { |year| Holidays.easter(year)+60 }, :function_id => "easter(year)+60", :name => "Corpus Christi", :regions => [:br]}],
       1 => [{:mday => 1, :name => "Dia da Confraternização Universal", :regions => [:br]}],
       4 => [{:mday => 21, :name => "Dia de Tiradentes", :regions => [:br]}],
       5 => [{:mday => 1, :name => "Dia do Trabalho", :regions => [:br]}],
