@@ -72,5 +72,10 @@ assert_equal [], Date.civil(2015,11,14).holidays(:au_qld_brisbane)
 
 assert_equal 'Melbourne Cup Day', Date.civil(2014,11,4).holidays(:au_vic)[0][:name]
 assert_equal 'Melbourne Cup Day', Date.civil(2015,11,3).holidays(:au_vic)[0][:name]
+
+assert_equal 'Royal Hobart Regatta', Date.civil(2012, 2, 13).holidays(:au_tas_south)[0][:name]
+assert_equal 'Royal Hobart Regatta', Date.civil(2014, 2, 10).holidays(:au_tas_south)[0][:name]
+assert_equal 'Royal Hobart Regatta', Date.civil(2015, 2, 9).holidays(:au_tas_south)[0][:name]
+assert_equal 'Royal Hobart Regatta', Date.civil(2016, 2, 8).holidays(:au_tas_south)[0][:name]
   end
 end
