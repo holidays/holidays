@@ -13,7 +13,7 @@ module Holidays
   # All the definitions are available at https://github.com/alexdunae/holidays
   module AU # :nodoc:
     def self.defined_regions
-      [:au, :au_nsw, :au_vic, :au_qld, :au_nt, :au_act, :au_sa, :au_qld_brisbane, :au_qld_cairns, :au_tas, :au_wa, :au_tas_south, :au_tas_north]
+      [:au, :au_nsw, :au_vic, :au_qld, :au_nt, :au_act, :au_sa, :au_qld_brisbane, :au_qld_cairns, :au_tas, :au_tas_south, :au_wa, :au_tas_north]
     end
 
     def self.holidays_by_month
@@ -25,6 +25,7 @@ module Holidays
             {:function => lambda { |year| Holidays.easter(year)+2 }, :function_id => "easter(year)+2", :name => "Easter Monday", :regions => [:au_tas]}],
       1 => [{:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "New Year's Day", :regions => [:au]},
             {:mday => 26, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "Australia Day", :regions => [:au]}],
+      2 => [{:wday => 1, :week => 2, :name => "Royal Hobart Regatta", :regions => [:au_tas_south]}],
       3 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:au_wa]},
             {:wday => 1, :week => 2, :name => "Eight Hours Day", :regions => [:au_tas]},
             {:wday => 1, :week => 2, :name => "Labour Day", :regions => [:au_vic]}],
