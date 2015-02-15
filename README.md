@@ -75,6 +75,16 @@ Lookup Canada Day in different regions.
     d.holiday?(:fr) # France
     => false
 
+### Caching
+
+If you are checking holidays regularly, you can cache your results for improved performance. Run this before looking up a holiday (eg. in an initializer):
+    
+    Holidays.cache_between Time.now, 2.years.from_now, :ca, :us, :observed
+
+Holidays for the regions specified (in this case `us` and `ca` on the date they are `observed`), within the dates specified, will be pre-calculated.
+
+See the [original pull request](https://github.com/alexdunae/holidays/pull/36) for more details.
+
 ### How to contribute
 
 To make changes to any of the definitions, edit the YAML files only.
