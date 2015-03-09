@@ -17,6 +17,7 @@ defs:
   EL: ['el.yaml']
   ES: ['es.yaml']
   Federal_Reserve: ['federal_reserve.yaml']
+  Fed_Ex: ['fedex.yaml']
   FI: ['fi.yaml']
   FR: ['fr.yaml']
   GB: ['gb.yaml']
