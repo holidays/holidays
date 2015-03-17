@@ -18,8 +18,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Good Friday", :regions => [:federal_reserve]}],
-      1 => [{:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "New Year's Day", :regions => [:federal_reserve]},
+              1 => [{:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "New Year's Day", :regions => [:federal_reserve]},
             {:wday => 1, :week => 3, :name => "Birthday of Martin Luther King, Jr", :regions => [:federal_reserve]},
             {:function => lambda { |year| Holidays.us_inauguration_day(year) }, :function_id => "us_inauguration_day(year)", :name => "Inauguration Day", :regions => [:federal_reserve]}],
       2 => [{:wday => 1, :week => 3, :name => "Washington's Birthday", :regions => [:federal_reserve]}],
@@ -29,9 +28,7 @@ module Holidays
       10 => [{:wday => 1, :week => 2, :name => "Columbus Day", :regions => [:federal_reserve]}],
       11 => [{:mday => 11, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Veterans Day", :regions => [:federal_reserve]},
             {:wday => 4, :week => 4, :name => "Thanksgiving Day", :regions => [:federal_reserve]}],
-      12 => [{:mday => 24, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Christmas Eve", :regions => [:federal_reserve]},
-            {:mday => 25, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Christmas Day", :regions => [:federal_reserve]},
-            {:mday => 31, :name => "New Year's Eve", :regions => [:federal_reserve]}]
+      12 => [{:mday => 25, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Christmas Day", :regions => [:federal_reserve]}]
       }
     end
   end
