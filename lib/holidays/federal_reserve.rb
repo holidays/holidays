@@ -4,14 +4,14 @@ module Holidays
   #
   # Definitions loaded: data/federal_reserve.yaml
   #
-  # To use the definitions in this file, load it right after you load the 
+  # To use the definitions in this file, load it right after you load the
   # Holiday gem:
   #
   #   require 'holidays'
   #   require 'holidays/federal_reserve'
   #
   # All the definitions are available at https://github.com/alexdunae/holidays
-  module Federal_Reserve # :nodoc:
+  module FEDERAL_RESERVE # :nodoc:
     def self.defined_regions
       [:federal_reserve]
     end
@@ -47,4 +47,4 @@ end
 
 end
 
-Holidays.merge_defs(Holidays::Federal_Reserve.defined_regions, Holidays::Federal_Reserve.holidays_by_month)
+Holidays.merge_defs(Holidays::FEDERAL_RESERVE.defined_regions, Holidays::FEDERAL_RESERVE.holidays_by_month)

@@ -4,14 +4,14 @@ module Holidays
   #
   # Definitions loaded: data/ca.yaml, data/mx.yaml, data/us.yaml, data/north_america_informal.yaml
   #
-  # To use the definitions in this file, load it right after you load the 
+  # To use the definitions in this file, load it right after you load the
   # Holiday gem:
   #
   #   require 'holidays'
   #   require 'holidays/north_america'
   #
   # All the definitions are available at https://github.com/alexdunae/holidays
-  module North_America # :nodoc:
+  module NORTH_AMERICA # :nodoc:
     def self.defined_regions
       [:ca, :ca_qc, :ca_ab, :ca_on, :ca_sk, :ca_mb, :ca_ns, :ca_pe, :ca_bc, :ca_nf, :ca_nt, :ca_nu, :ca_nb, :ca_yk, :mx, :mx_pue, :us, :us_dc]
     end
@@ -117,4 +117,4 @@ end
 
 end
 
-Holidays.merge_defs(Holidays::North_America.defined_regions, Holidays::North_America.holidays_by_month)
+Holidays.merge_defs(Holidays::NORTH_AMERICA.defined_regions, Holidays::NORTH_AMERICA.holidays_by_month)
