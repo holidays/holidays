@@ -134,6 +134,30 @@ end
   assert_equal 'Allerheiligen', Date.civil(2009,11,1).holidays(r)[0][:name]
 end
 
+[:de_be, :de_hb, :de_hh, :de_ni, :de_sh].each do |r|
+  assert_equal 'Tag der Deutschen Einheit', Date.civil(2009,10,3).holidays(r)[0][:name]
+end
+
+[:de_be, :de_hb, :de_hh, :de_ni, :de_sh].each do |r|
+  assert !Date.civil(2009,1,6).holiday?(r), "Heilige Drei Könige is not a holiday in #{r}"
+end
+
+[:de_be, :de_hb, :de_hh, :de_ni, :de_sh].each do |r|
+  assert !Date.civil(2009,6,11).holiday?(r), "Fronleichnam is not a holiday in #{r}"
+end
+
+[:de_be, :de_hb, :de_hh, :de_ni, :de_sh].each do |r|
+  assert !Date.civil(2009,8,15).holiday?(r), "Mariä Himmelfahrt is not a holiday in #{r}"
+end
+
+[:de_be, :de_hb, :de_hh, :de_ni, :de_sh].each do |r|
+  assert !Date.civil(2009,10,31).holiday?(r), 'Reformationstag is not a holiday in #{r}'
+end
+
+[:de_be, :de_hb, :de_hh, :de_ni, :de_sh].each do |r|
+  assert !Date.civil(2009,11,1).holiday?(r), "Allerheiligen is not a holiday in #{r}"
+end
+
 assert !Date.civil(2010,5,8).holiday?(:de), '2010-05-08 is not a holiday in Germany'
 
 # Repentance Day
