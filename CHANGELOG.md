@@ -1,5 +1,17 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 1.1.0
+
+* Add support to load custom holidays on the fly
+* Add hobart & launceston show days (https://github.com/ghiculescu)
+* Add Melbourne Cup day (https://github.com/ghiculescu)
+* Add Hobart Regatte Day (https://github.com/ghiculescu)
+* Add Costa Rican holidays (https://github.com/kevinwmerritt)
+* Update Canadian Holidays (https://github.com/KevinBrowne)
+* Add substitute holidays for Japan (https://github.com/YoshiyukiHirano)
+* Fix USA Federal Reserve Holidays
+* Add FedEx holidays (https://github.com/adamrunner)
+
 ## 1.0.7
 
 * Load parent region even when sub region is not explicitly defined (https://github.com/csage)
