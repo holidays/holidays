@@ -157,4 +157,19 @@ class HolidaysTests < Test::Unit::TestCase
       }
     }
   end
+
+  def test_caching
+    Holidays.cache_between(Date.civil(2008,3,21), Date.civil(2008,3,25), :ca, :informal)
+
+    # Test that cache has been set
+    cache_key = [:ca, :informal]
+    assert_equal Date.civil(2008,3,21), Holidays.cache_range[cache_key].begin
+    assert_equal Date.civil(2008,3,25), Holidays.cache_range[cache_key].end
+    assert_equal Date.civil(2008,3,21), Holidays.cache[cache_key].first[:date]
+    assert_equal Date.civil(2008,3,24), Holidays.cache[cache_key].last[:date]
+
+    # Test that correct results are returned outside the cache range, and with no caching
+    assert_equal 1, Holidays.on(Date.civil(2035,1,1), :ca, :informal).length
+    assert_equal 1, Holidays.on(Date.civil(2035,1,1), :us).length
+  end
 end
