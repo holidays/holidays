@@ -19,8 +19,7 @@ module Holidays
     def self.holidays_by_month
       {
               1 => [{:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "New Year's Day", :regions => [:federal_reserve]},
-            {:wday => 1, :week => 3, :name => "Birthday of Martin Luther King, Jr", :regions => [:federal_reserve]},
-            {:function => lambda { |year| Holidays.us_inauguration_day(year) }, :function_id => "us_inauguration_day(year)", :name => "Inauguration Day", :regions => [:federal_reserve]}],
+            {:wday => 1, :week => 3, :name => "Birthday of Martin Luther King, Jr", :regions => [:federal_reserve]}],
       2 => [{:wday => 1, :week => 3, :name => "Washington's Birthday", :regions => [:federal_reserve]}],
       5 => [{:wday => 1, :week => -1, :name => "Memorial Day", :regions => [:federal_reserve]}],
       7 => [{:mday => 4, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Independence Day", :regions => [:federal_reserve]}],
@@ -32,14 +31,6 @@ module Holidays
       }
     end
   end
-
-# January 20, every fourth year, following Presidential election
-def self.us_inauguration_day(year)
-  year % 4 == 1 ? 20 : nil
-end
-
-    
-
 
 
 end

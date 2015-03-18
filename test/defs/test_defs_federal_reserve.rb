@@ -28,7 +28,7 @@ class Federal_reserveDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2013,11,11) => "Veterans Day",
  Date.civil(2013,11,28) => "Thanksgiving Day",
  Date.civil(2013,12,25) => "Christmas Day",
- 
+
  Date.civil(2014,1,1) => "New Year's Day",
  Date.civil(2014,1,20) => "Birthday of Martin Luther King, Jr",
  Date.civil(2014,2,17) => "Washington's Birthday",
@@ -61,8 +61,6 @@ class Federal_reserveDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2016,11,11) => "Veterans Day",
  Date.civil(2016,11,24) => "Thanksgiving Day",
  Date.civil(2016,12,26) => "Christmas Day",
-
- Date.civil(2017,1, 20) => "Inauguration Day",
  }.each do |date, name|
    assert_equal name, (Holidays.on(date, :federal_reserve, :observed)[0] || {})[:name]
  end
