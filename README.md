@@ -1,8 +1,10 @@
-# Ruby Holidays Gem
+# Ruby Holidays Gem [![Build Status](https://travis-ci.org/alexdunae/holidays.svg?branch=master)](https://travis-ci.org/alexdunae/holidays)
 
 A set of functions to deal with holidays in Ruby.
 
 Extends Ruby's built-in Date class and supports custom holiday definition lists.
+
+Full documentation can be found [here](http://www.rubydoc.info/github/alexdunae/holidays/master/frames).
 
 ## Installation
 
@@ -114,14 +116,8 @@ It is also very appreciated if documentation is attached to the pull request.  A
 
 ### Credits and code
 
-* Source: https://github.com/alexdunae/holidays
-* Docs: http://rdoc.info/github/alexdunae/holidays/master/frames
-* Contributors: https://github.com/alexdunae/holidays/contributors
-* Build status: http://travis-ci.org/#!/alexdunae/holidays
+* Started by [Alex Dunae](http://dunae.ca) (e-mail 'code' at the same domain), 2007-12
+* Maintained by [Hana Wang](https://github.com/hahahana), 2013
+* Maintained by [Phil Trimble](https://github.com/ptrimble), 2014-present
 
-Started by [Alex Dunae](http://dunae.ca) (e-mail 'code' at the same domain), 2007-12.
-Maintained by [Hana Wang](https://github.com/hahahana), 2013
-
-On Twitter: @MrMrBug.
-
-Made on Vancouver Island. Maintained in the way more beautiful Houston, TX.
+Plus all of these [wonderful contributors!](https://github.com/alexdunae/holidays/contributors)
