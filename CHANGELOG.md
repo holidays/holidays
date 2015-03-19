@@ -1,5 +1,10 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 1.2.0
+
+* Remove inauguration day from USA Federal Reserve definitions (https://github.com/aripollak)
+* Add caching functionality for date ranges (https://github.com/ndbroadbent & https://github.com/ghiculescu)
+
 ## 1.1.0
 
 * Add support to load custom holidays on the fly
