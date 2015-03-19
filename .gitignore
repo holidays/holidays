@@ -6,3 +6,5 @@ rdoc/
 Gemfile.lock
 .ruby-version
 .bundle
+reports/
+coverage/

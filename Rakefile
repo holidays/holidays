@@ -1,4 +1,5 @@
 $:.unshift File.expand_path('../lib', __FILE__)
+$:.unshift File.expand_path('../test', __FILE__)
 
 require 'bundler/gem_tasks'
 require 'rake/testtask'
@@ -8,7 +9,7 @@ require 'holidays'
 
 Rake::TestTask.new(:test) do |t|
   t.libs << 'test'
-  t.test_files = FileList['test/**/test*.rb']
+  t.test_files = FileList['test/**/test_*.rb']
 end
 
 task :default => :test
