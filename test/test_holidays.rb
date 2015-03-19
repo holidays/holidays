@@ -1,10 +1,10 @@
 require File.expand_path(File.dirname(__FILE__)) + '/test_helper'
 
-require 'holidays/ca'
+require "#{Holidays::DEFINITIONS_PATH}/ca"
 
 # Re-include CA defs via holidays/north_america to ensure that individual
 # defs aren't duplicated.
-require 'holidays/north_america'
+require "#{Holidays::DEFINITIONS_PATH}/north_america"
 
 class HolidaysTests < Test::Unit::TestCase
   def setup

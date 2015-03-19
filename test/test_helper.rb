@@ -9,7 +9,7 @@ require 'rubygems'
 require 'test/unit'
 require 'date'
 require 'holidays'
-require 'holidays/ca'
+require "#{Holidays::DEFINITIONS_PATH}/ca"
 
 module Holidays
   # Test region used for generating a holiday on Date.today

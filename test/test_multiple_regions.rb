@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__)) + '/test_helper'
-require 'holidays/gb'
-require 'holidays/ie'
+require "#{Holidays::DEFINITIONS_PATH}/gb"
+require "#{Holidays::DEFINITIONS_PATH}/ie"
 
 class MultipleRegionsTests < Test::Unit::TestCase
   def setup
