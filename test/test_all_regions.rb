@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__)) + '/test_helper'
 class MultipleRegionsTests < Test::Unit::TestCase
 
   def test_definition_dir
-    assert File.directory?(Holidays::DEFINITION_PATH)
+    assert File.directory?(Holidays::FULL_DEFINITIONS_PATH)
   end
 
   def test_getting_available_paths
@@ -61,6 +61,6 @@ class MultipleRegionsTests < Test::Unit::TestCase
 
 private
   def def_count
-    Dir.glob(Holidays::DEFINITION_PATH + '/*.rb').size
+    Dir.glob(Holidays::FULL_DEFINITIONS_PATH + '/*.rb').size
   end
 end

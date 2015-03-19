@@ -61,7 +61,9 @@ module Holidays
   WEEKS = {:first => 1, :second => 2, :third => 3, :fourth => 4, :fifth => 5, :last => -1, :second_last => -2, :third_last => -3}
   MONTH_LENGTHS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
   DAY_SYMBOLS = Date::DAYNAMES.collect { |n| n.downcase.intern }
-  DEFINITION_PATH = File.expand_path(File.dirname(__FILE__) + '/holidays/')
+
+  DEFINITIONS_PATH = 'holidays'
+  FULL_DEFINITIONS_PATH = File.expand_path(File.dirname(__FILE__) + "/#{DEFINITIONS_PATH}")
 
   # Get all holidays on a given date.
   #
@@ -316,7 +318,7 @@ module Holidays
   #
   # Optional `full_path` param is used internally for loading all the definitions.
   def self.available(full_path = false)
-    paths = Dir.glob(DEFINITION_PATH + '/*.rb')
+    paths = Dir.glob(FULL_DEFINITIONS_PATH + '/*.rb')
     full_path ? paths : paths.collect { |path| path.match(/([a-z_-]+)\.rb/i)[1].to_sym }
   end
 
@@ -366,11 +368,12 @@ private
   # and load its definition. (Common code factored out from parse_regions)
   def self.load_containing_region(sub_reg)
     prefix = sub_reg.split('_').first
+    region_definition = "#{DEFINITIONS_PATH}/#{prefix}"
     unless @@regions.include?(prefix.to_sym)
       begin
-        require "holidays/#{prefix}"
+        require region_definition
       rescue LoadError
-        raise UnknownRegionError, "Could not load holidays/#{prefix}"
+        raise UnknownRegionError, "Could not load #{region_definition}"
       end
     end
   end
@@ -397,19 +400,20 @@ private
 
     regions.flatten!
 
-    require "holidays/north_america" if regions.include?(:us) # special case for north_america/US cross-linking
+    require "#{DEFINITIONS_PATH}/north_america" if regions.include?(:us) # special case for north_america/US cross-linking
 
     regions.each do |r|
       unless r == :any or @@regions.include?(r)
+        region_definition = "#{DEFINITIONS_PATH}/#{r.to_s}"
         begin
-          require "holidays/#{r.to_s}"
+          require region_definition
         rescue LoadError => e
           # This could be a sub region that does not have any holiday
           # definitions of its own; try to load the containing region instead.
           if r.to_s =~ /_/
             load_containing_region(r.to_s)
           else
-            raise UnknownRegionError, "Could not load holidays/#{r.to_s}"
+            raise UnknownRegionError, "Could not load #{region_definition}"
           end
         end
       end
@@ -622,7 +626,7 @@ module Holidays
   # Holiday gem:
   #
   #   require 'holidays'
-  #   require 'holidays/#{module_name.to_s.downcase}'
+  #   require '#{DEFINITIONS_PATH}/#{module_name.to_s.downcase}'
   #
   # All the definitions are available at https://github.com/alexdunae/holidays
   module #{module_name.to_s.upcase} # :nodoc:
