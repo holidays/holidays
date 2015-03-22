@@ -77,5 +77,10 @@ assert_equal 'Royal Hobart Regatta', Date.civil(2012, 2, 13).holidays(:au_tas_so
 assert_equal 'Royal Hobart Regatta', Date.civil(2014, 2, 10).holidays(:au_tas_south)[0][:name]
 assert_equal 'Royal Hobart Regatta', Date.civil(2015, 2, 9).holidays(:au_tas_south)[0][:name]
 assert_equal 'Royal Hobart Regatta', Date.civil(2016, 2, 8).holidays(:au_tas_south)[0][:name]
+
+assert_equal "March Public Holiday", Date.civil(2014, 3, 10).holidays(:au_sa)[0][:name]
+assert_equal "March Public Holiday", Date.civil(2015, 3, 9).holidays(:au_sa)[0][:name]
+assert_equal "March Public Holiday", Date.civil(2016, 3, 14).holidays(:au_sa)[0][:name]
+assert_equal "March Public Holiday", Date.civil(2017, 3, 13).holidays(:au_sa)[0][:name]
   end
 end

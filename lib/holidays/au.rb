@@ -28,10 +28,12 @@ module Holidays
       2 => [{:wday => 1, :week => 2, :name => "Royal Hobart Regatta", :regions => [:au_tas_south]}],
       3 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:au_wa]},
             {:wday => 1, :week => 2, :name => "Eight Hours Day", :regions => [:au_tas]},
-            {:wday => 1, :week => 2, :name => "Labour Day", :regions => [:au_vic]}],
+            {:wday => 1, :week => 2, :name => "Labour Day", :regions => [:au_vic]},
+            {:function => lambda { |year| Holidays.march_pub_hol_sa(year) }, :function_id => "march_pub_hol_sa(year)", :name => "March Public Holiday", :regions => [:au_sa]}],
       4 => [{:mday => 25, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "ANZAC Day", :regions => [:au]}],
       5 => [{:function => lambda { |year| Holidays.qld_labour_day_may(year) }, :function_id => "qld_labour_day_may(year)", :name => "Labour Day", :regions => [:au_qld]},
-            {:wday => 1, :week => 1, :name => "May Day", :regions => [:au_nt]}],
+            {:wday => 1, :week => 1, :name => "May Day", :regions => [:au_nt]},
+            {:function => lambda { |year| Holidays.may_pub_hol_sa(year) }, :function_id => "may_pub_hol_sa(year)", :name => "May Public Holiday", :regions => [:au_sa]}],
       6 => [{:wday => 1, :week => 1, :name => "Foundation Day", :regions => [:au_wa]},
             {:wday => 1, :week => 2, :name => "Queen's Birthday", :regions => [:au_act, :au_nsw, :au_sa, :au_qld, :au_tas, :au_nt, :au_vic]},
             {:mday => 6, :type => :informal, :name => "Queensland Day", :regions => [:au_qld]}],
@@ -85,6 +87,28 @@ end
 def self.hobart_show_day(year)
   fourth_sat_in_oct = Date.civil(year, 10, Date.calculate_mday(year, 10, 4, :saturday))
   fourth_sat_in_oct - 2 # the thursday before
+end
+
+
+# http://www.safework.sa.gov.au/show_page.jsp?id=2483#.VQ9Mfmb8-8E
+# The Holidays Act 1910 provides for the third Monday in May to be a public holiday. Since 2006 this public holiday has been observed on the second Monday in March through the issuing of a special Proclamation by the Governor.
+def self.march_pub_hol_sa(year)
+  if year < 2006
+    nil
+  else
+    Date.civil(year, 3, Date.calculate_mday(year, 3, :second, :monday))
+  end
+end
+
+
+# http://www.safework.sa.gov.au/show_page.jsp?id=2483#.VQ9Mfmb8-8E
+# The Holidays Act 1910 provides for the third Monday in May to be a public holiday. Since 2006 this public holiday has been observed on the second Monday in March through the issuing of a special Proclamation by the Governor.
+def self.may_pub_hol_sa(year)
+  if year >= 2006
+    nil
+  else
+    Date.civil(year, 5, Date.calculate_mday(year, 5, :third, :monday))
+  end
 end
 
 
