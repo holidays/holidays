@@ -1,8 +1,10 @@
-# Ruby Holidays Gem
+# Ruby Holidays Gem [![Build Status](https://travis-ci.org/alexdunae/holidays.svg?branch=master)](https://travis-ci.org/alexdunae/holidays)
 
 A set of functions to deal with holidays in Ruby.
 
 Extends Ruby's built-in Date class and supports custom holiday definition lists.
+
+Full documentation can be found [here](http://www.rubydoc.info/github/alexdunae/holidays/master/frames).
 
 ## Installation
 
@@ -53,6 +55,25 @@ Get informal holidays in February.
     Holidays.between(from, to, :informal)
     => [{:name => 'Valentine\'s Day',...}]
 
+### Loading Custom Definitions on the fly
+
+Load custom definitions file on the fly and use them immediately.
+
+Load custom 'Company Founding' holiday on June 1st:
+
+    Holidays.load_custom('/home/user/holiday_definitions/custom_holidays.yaml')
+
+    date = Date.civil(2013,6,1)
+
+    Holidays.on(date, :my_custom_region)
+      => [{:name => 'Company Founding',...}]
+
+Custom definition files must match the format of the existing definition YAML files location in the 'data' directory.
+
+Multiple files can also be passed:
+
+    Holidays.load_custom('/home/user/holidays/custom_holidays1.yaml', '/home/user/holidays/custom_holidays2.yaml')
+
 ### Extending Ruby's Date class
 
 Check which holidays occur in Iceland on January 1, 2008.
@@ -75,13 +96,13 @@ Lookup Canada Day in different regions.
     d.holiday?(:fr) # France
     => false
 
-### Caching
+### Caching Holiday Lookups
 
-If you are checking holidays regularly, you can cache your results for improved performance. Run this before looking up a holiday (eg. in an initializer):
-    
-    Holidays.cache_between Time.now, 2.years.from_now, :ca, :us, :observed
+If you are checking holidays regularly you can cache your results for improved performance. Run this before looking up a holiday (eg. in an initializer):
 
-Holidays for the regions specified (in this case `us` and `ca` on the date they are `observed`), within the dates specified, will be pre-calculated.
+    Holidays.cache_between(Time.now, 2.years.from_now, :ca, :us, :observed)
+
+Holidays for the regions specified within the dates specified will be pre-calculated.
 
 See the [original pull request](https://github.com/alexdunae/holidays/pull/36) for more details.
 
@@ -97,14 +118,8 @@ It is also very appreciated if documentation is attached to the pull request.  A
 
 ### Credits and code
 
-* Source: https://github.com/alexdunae/holidays
-* Docs: http://rdoc.info/github/alexdunae/holidays/master/frames
-* Contributors: https://github.com/alexdunae/holidays/contributors
-* Build status: http://travis-ci.org/#!/alexdunae/holidays
+* Started by [Alex Dunae](http://dunae.ca) (e-mail 'code' at the same domain), 2007-12
+* Maintained by [Hana Wang](https://github.com/hahahana), 2013
+* Maintained by [Phil Trimble](https://github.com/ptrimble), 2014-present
 
-Started by [Alex Dunae](http://dunae.ca) (e-mail 'code' at the same domain), 2007-12.
-Maintained by [Hana Wang](https://github.com/hahahana), 2013
-
-On Twitter: @MrMrBug.
-
-Made on Vancouver Island. Maintained in the way more beautiful Houston, TX.
+Plus all of these [wonderful contributors!](https://github.com/alexdunae/holidays/contributors)

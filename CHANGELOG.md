@@ -1,7 +1,28 @@
 # Ruby Holidays Gem CHANGELOG
 
-## 1.0.7.pre
+## 1.2.0
 
+* Remove inauguration day from USA Federal Reserve definitions (https://github.com/aripollak)
+* Add caching functionality for date ranges (https://github.com/ndbroadbent & https://github.com/ghiculescu)
+
+## 1.1.0
+
+* Add support to load custom holidays on the fly
+* Add hobart & launceston show days (https://github.com/ghiculescu)
+* Add Melbourne Cup day (https://github.com/ghiculescu)
+* Add Hobart Regatte Day (https://github.com/ghiculescu)
+* Add Costa Rican holidays (https://github.com/kevinwmerritt)
+* Update Canadian Holidays (https://github.com/KevinBrowne)
+* Add substitute holidays for Japan (https://github.com/YoshiyukiHirano)
+* Fix USA Federal Reserve Holidays
+* Add FedEx holidays (https://github.com/adamrunner)
+
+## 1.0.7
+
+* Load parent region even when sub region is not explicitly defined (https://github.com/csage)
+* Full support for http://en.wikipedia.org/wiki/ISO_3166-2:DE (https://github.com/rojoko)
+* Added Lithuanian definitions (https://github.com/Brunas)
+* Added Chilean definitions (https://github.com/marcelo-soto)g
 * Added European Central Bank TARGET definitions (Toby Bryans, NASDAQ OMX NLX)
 * FR: Make Pâques and Pentecôte informal holidays (https://github.com/wizcover)
 * NL: Update for the new King (https://github.com/johankok)

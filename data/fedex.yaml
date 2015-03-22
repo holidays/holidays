@@ -1,0 +1,56 @@
+# FedEx holiday definitions for the Ruby Holiday gem.
+#
+# By Adam Runner
+#
+# Updated: 2015-03-09.
+# Source:  http://www.fedex.com/us/service-guide/holiday-schedule.html
+---
+months:
+  1:
+  - name: New Year's Day
+    regions: [fedex]
+    mday: 1
+    observed: to_weekday_if_weekend
+  5:
+  - name: Memorial Day
+    week: -1
+    regions: [fedex]
+    wday: 1
+  7:
+  - name: Independence Day
+    regions: [fedex]
+    mday: 4
+    observed: to_weekday_if_weekend
+  9:
+  - name: Labor Day
+    week: 1
+    regions: [fedex]
+    wday: 1
+  11:
+  - name: Thanksgiving
+    week: 4
+    regions: [fedex]
+    wday: 4
+  - name: Day After Thanksgiving
+    week: 4
+    regions: [fedex]
+    wday: 5
+  12:
+  - name: Christmas Day
+    regions: [fedex]
+    mday: 25
+    observed: to_weekday_if_weekend
+  - name: New Year's Eve
+    regions: [fedex]
+    mday: 31
+tests: |
+    {Date.civil(2015,1,1) => 'New Year\'s Day',
+     Date.civil(2015,5,25) => 'Memorial Day',
+     Date.civil(2015,7,4) => 'Independence Day',
+     Date.civil(2015,9,7) => 'Labor Day',
+     Date.civil(2015,11,26) => 'Thanksgiving',
+     Date.civil(2015,11,27) => 'Day After Thanksgiving',
+     Date.civil(2015,12,25) => 'Christmas Day',
+     Date.civil(2015,12,31) => 'New Year\'s Eve',}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :ups)[0] || {})[:name]
+    end

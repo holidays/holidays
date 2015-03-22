@@ -21,6 +21,7 @@ class JpDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2008,12,23) => '天皇誕生日',
  Date.civil(2010,3,22) => '振替休日',
  Date.civil(2008,11,24) => '振替休日',
+ Date.civil(2012,1,2) => '振替休日',
 }.each do |date, name|
    assert_equal name, (Holidays.on(date, :jp, :informal)[0] || {})[:name]
 end

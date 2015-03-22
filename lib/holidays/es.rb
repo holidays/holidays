@@ -4,7 +4,7 @@ module Holidays
   #
   # Definitions loaded: data/es.yaml
   #
-  # To use the definitions in this file, load it right after you load the 
+  # To use the definitions in this file, load it right after you load the
   # Holiday gem:
   #
   #   require 'holidays'

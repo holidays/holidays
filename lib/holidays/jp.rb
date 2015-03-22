@@ -4,7 +4,7 @@ module Holidays
   #
   # Definitions loaded: data/jp.yaml
   #
-  # To use the definitions in this file, load it right after you load the 
+  # To use the definitions in this file, load it right after you load the
   # Holiday gem:
   #
   #   require 'holidays'
@@ -19,7 +19,8 @@ module Holidays
     def self.holidays_by_month
       {
               1 => [{:mday => 1, :name => "元日", :regions => [:jp]},
-            {:wday => 1, :week => 2, :name => "成人の日", :regions => [:jp]}],
+            {:wday => 1, :week => 2, :name => "成人の日", :regions => [:jp]},
+            {:function => lambda { |year| Holidays.jp_substitute_holiday(year, 1, 1) }, :function_id => "jp_substitute_holiday(year, 1, 1)", :name => "振替休日", :regions => [:jp]}],
       2 => [{:mday => 11, :name => "建国記念日", :regions => [:jp]},
             {:function => lambda { |year| Holidays.jp_substitute_holiday(year, 2, 11) }, :function_id => "jp_substitute_holiday(year, 2, 11)", :name => "振替休日", :regions => [:jp]}],
       3 => [{:function => lambda { |year| Holidays.jp_vernal_equinox_day(year) }, :function_id => "jp_vernal_equinox_day(year)", :name => "春分の日", :regions => [:jp]},

@@ -1,0 +1,88 @@
+# Lithuanian holiday definitions for the Ruby Holiday gem.
+#
+# Updated: 2014-10-02
+# Sources:
+# - http://en.wikipedia.org/wiki/Public_holidays_in_Lithuania
+# - http://day.lt/sventes/nedarbo
+---
+months:
+  0:
+  - name: Šv. Velykos
+    regions: [lt]
+    function: easter(year)
+  - name: Antroji Velykų diena
+    regions: [lt]
+    function: easter(year)+1
+  1:
+  - name: Naujieji metai
+    regions: [lt]
+    mday: 1
+  2:
+  - name: Valstybės atkūrimo diena
+    regions: [lt]
+    mday: 16
+  3:
+  - name: Nepriklausomybės atkūrimo diena
+    regions: [lt]
+    mday: 11
+  5:
+  - name: Darbininkų diena
+    regions: [lt]
+    mday: 1
+  6:
+  - name: Joninės
+    regions: [lt]
+    mday: 24
+  7:
+  - name: Valstybės diena
+    regions: [lt]
+    mday: 6
+  8:
+  - name: Žolinė
+    regions: [lt]
+    mday: 15
+  11:
+  - name: Visų šventųjų diena
+    regions: [lt]
+    mday: 1
+  12:
+  - name: Šv. Kūčios
+    regions: [lt]
+    mday: 24
+  - name: Šv. Kalėdos
+    regions: [lt]
+    mday: 25
+  - name: Antroji Kalėdų diena
+    regions: [lt]
+    mday: 26
+tests: |
+    {Date.civil(2008,1,1) => 'Naujieji metai',
+     Date.civil(2008,2,16) => 'Valstybės atkūrimo diena',
+     Date.civil(2008,3,11) => 'Nepriklausomybės atkūrimo diena',
+     Date.civil(2008,3,23) => 'Šv. Velykos',
+     Date.civil(2008,3,24) => 'Antroji Velykų diena',
+     Date.civil(2008,5,1) => 'Darbininkų diena',
+     Date.civil(2008,6,24) => 'Joninės',
+     Date.civil(2008,7,6) => 'Valstybės diena',
+     Date.civil(2008,8,15) => 'Žolinė',
+     Date.civil(2008,11,1) => 'Visų šventųjų diena',
+     Date.civil(2008,12,24) => 'Šv. Kūčios',
+     Date.civil(2008,12,25) => 'Šv. Kalėdos',
+     Date.civil(2008,12,26) => 'Antroji Kalėdų diena'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :lt)[0] || {})[:name]
+    end
+    {Date.civil(2012,1,1) => 'Naujieji metai',
+     Date.civil(2012,2,16) => 'Valstybės atkūrimo diena',
+     Date.civil(2012,3,11) => 'Nepriklausomybės atkūrimo diena',
+     Date.civil(2012,4,8) => 'Šv. Velykos',
+     Date.civil(2012,4,9) => 'Antroji Velykų diena',
+     Date.civil(2012,5,1) => 'Darbininkų diena',
+     Date.civil(2012,6,24) => 'Joninės',
+     Date.civil(2012,7,6) => 'Valstybės diena',
+     Date.civil(2012,8,15) => 'Žolinė',
+     Date.civil(2012,11,1) => 'Visų šventųjų diena',
+     Date.civil(2012,12,24) => 'Šv. Kūčios',
+     Date.civil(2012,12,25) => 'Šv. Kalėdos',
+     Date.civil(2012,12,26) => 'Antroji Kalėdų diena'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :lt)[0] || {})[:name]
+    end

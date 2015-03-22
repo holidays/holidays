@@ -8,6 +8,8 @@ The following definition files are included in this installation:
 * holidays/br
 * holidays/ca
 * holidays/ch
+* holidays/cl
+* holidays/cr
 * holidays/cz
 * holidays/de
 * holidays/dk
@@ -15,6 +17,7 @@ The following definition files are included in this installation:
 * holidays/el
 * holidays/es
 * holidays/europe
+* holidays/fed_ex
 * holidays/federal_reserve
 * holidays/fi
 * holidays/fr
@@ -26,6 +29,7 @@ The following definition files are included in this installation:
 * holidays/it
 * holidays/jp
 * holidays/li
+* holidays/lt
 * holidays/ma
 * holidays/mx
 * holidays/nerc

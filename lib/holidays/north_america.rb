@@ -4,16 +4,16 @@ module Holidays
   #
   # Definitions loaded: data/ca.yaml, data/mx.yaml, data/us.yaml, data/north_america_informal.yaml
   #
-  # To use the definitions in this file, load it right after you load the 
+  # To use the definitions in this file, load it right after you load the
   # Holiday gem:
   #
   #   require 'holidays'
   #   require 'holidays/north_america'
   #
   # All the definitions are available at https://github.com/alexdunae/holidays
-  module North_America # :nodoc:
+  module NORTH_AMERICA # :nodoc:
     def self.defined_regions
-      [:ca, :ca_qc, :ca_ab, :ca_on, :ca_sk, :ca_mb, :ca_bc, :ca_nf, :ca_nt, :ca_nu, :ca_ns, :ca_yk, :mx, :mx_pue, :us, :us_dc]
+      [:ca, :ca_qc, :ca_ab, :ca_on, :ca_sk, :ca_mb, :ca_ns, :ca_pe, :ca_bc, :ca_nf, :ca_nt, :ca_nu, :ca_nb, :ca_yk, :mx, :mx_pue, :us, :us_dc]
     end
 
     def self.holidays_by_month
@@ -32,6 +32,8 @@ module Holidays
             {:function => lambda { |year| Holidays.us_inauguration_day(year) }, :function_id => "us_inauguration_day(year)", :name => "Inauguration Day", :regions => [:us_dc]}],
       2 => [{:wday => 1, :week => 3, :name => "Family Day", :regions => [:ca_ab, :ca_on, :ca_sk]},
             {:wday => 1, :week => 3, :name => "Louis Riel Day", :regions => [:ca_mb]},
+            {:wday => 1, :week => 3, :name => "Nova Scotia Heritage Day", :regions => [:ca_ns]},
+            {:wday => 1, :week => 3, :name => "Islander Day", :regions => [:ca_pe]},
             {:wday => 1, :week => 2, :name => "BC Family Day", :regions => [:ca_bc]},
             {:wday => 1, :week => 1, :name => "Día de la Constitución", :regions => [:mx]},
             {:wday => 1, :week => 3, :name => "Presidents' Day", :regions => [:us]},
@@ -63,7 +65,8 @@ module Holidays
             {:wday => 1, :week => 1, :name => "Saskatchewan Day", :regions => [:ca_sk]},
             {:wday => 1, :week => 1, :name => "Heritage Day", :regions => [:ca_ab]},
             {:wday => 1, :week => 1, :name => "Natal Day", :regions => [:ca_ns]},
-            {:wday => 1, :week => 1, :name => "Civic Holiday", :regions => [:ca_on]},
+            {:wday => 1, :week => 1, :name => "Civic Holiday", :regions => [:ca_on, :ca_nt, :ca_nu, :ca_pe]},
+            {:wday => 1, :week => 1, :name => "New Brunswick Day", :regions => [:ca_nb]},
             {:wday => 1, :week => 3, :name => "Discovery Day", :regions => [:ca_yk]}],
       9 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:ca]},
             {:mday => 15, :name => "Grito de Dolores", :regions => [:mx]},
@@ -114,4 +117,4 @@ end
 
 end
 
-Holidays.merge_defs(Holidays::North_America.defined_regions, Holidays::North_America.holidays_by_month)
+Holidays.merge_defs(Holidays::NORTH_AMERICA.defined_regions, Holidays::NORTH_AMERICA.holidays_by_month)
