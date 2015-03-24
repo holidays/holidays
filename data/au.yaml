@@ -15,12 +15,12 @@ months:
     regions: [au_nsw, au_vic, au_qld, au_nt, au_act, au_sa, au_qld_brisbane, au_qld_cairns]
     function: easter(year)-1
   - name: Easter Sunday
-    regions: [au_nsw]
+    regions: [au_nsw, au_vic]
     function: easter(year)
   - name: Easter Monday
     regions: [au]
     function: easter(year)+1
-  - name: Easter Monday
+  - name: Easter Tuesday
     regions: [au_tas]
     function: easter(year)+2
   1: 
