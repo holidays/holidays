@@ -6,7 +6,6 @@ rvm:
   - 2.0.0
   - 2.1.0
   - jruby
-  - ree
 before_install:
   - gem update bundler
   - bundle --version
