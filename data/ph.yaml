@@ -9,7 +9,7 @@ months:
   0:
   - name: Maundy Thursday
     regions: [ph]
-    function: easter(year)-2
+    function: easter(year)-3
   - name: Good Friday
     regions: [ph]
     function: easter(year)-2
