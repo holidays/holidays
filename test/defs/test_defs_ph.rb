@@ -8,6 +8,7 @@ class PhDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_ph
 {Date.civil(2015,2,25) => 'People Power Anniversary',
+ Date.civil(2015,4,3) => 'Good Friday',
  Date.civil(2015,4,9) => 'The Day of Valor',
  Date.civil(2015,5,1) => 'Labor Day',
  Date.civil(2015,6,12) => 'Independence Day',
