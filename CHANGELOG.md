@@ -1,5 +1,14 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 2.0.0
+
+* Add test coverage
+* Remove support for Ruby 1.8.7 and REE. (https://github.com/itsmechlark)
+* Add support for Ruby 2.2 (https://github.com/itsmechlark)
+* Add PH holidays (https://github.com/itsmechlark)
+* Belgian holidays now written in French instead of English (https://github.com/maximerety)
+* Update California (USA) holidays to include Cesar Chavez and Thanksgiving (https://github.com/evansagge)
+
 ## 1.2.0
 
 * Remove inauguration day from USA Federal Reserve definitions (https://github.com/aripollak)
