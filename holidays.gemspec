@@ -18,4 +18,6 @@ Gem::Specification.new do |gem|
   gem.licenses      = ['MIT']
   gem.add_development_dependency 'bundler'
   gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'coveralls'
+  gem.add_development_dependency 'test-unit'
 end
