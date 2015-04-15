@@ -16,6 +16,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(/^test/)
   gem.require_paths = ['lib']
   gem.licenses      = ['MIT']
+  gem.add_runtime_dependency('when_easter', '~> 0.3.1')
   gem.add_development_dependency 'bundler'
   gem.add_development_dependency 'rake'
 end

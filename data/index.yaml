@@ -6,6 +6,7 @@ defs:
   AU: ['au.yaml']
   BE: ['be.yaml']
   BR: ['br.yaml']
+  BG: ['bg.yaml']
   CA: ['ca.yaml', 'north_america_informal.yaml']
   CH: ['ch.yaml']
   CL: ['cl.yaml']
