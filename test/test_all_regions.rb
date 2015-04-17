@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__)) + '/test_helper'
 
-class MultipleRegionsTests < Test::Unit::TestCase
+class MultipleRegionsTests < Minitest::Test
 
   def test_definition_dir
     assert File.directory?(Holidays::DEFINITION_PATH)

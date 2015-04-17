@@ -6,7 +6,7 @@ require 'holidays/ca'
 # defs aren't duplicated.
 require 'holidays/north_america'
 
-class HolidaysTests < Test::Unit::TestCase
+class HolidaysTests < Minitest::Test
   def setup
     @date = Date.civil(2008,1,1)
   end
