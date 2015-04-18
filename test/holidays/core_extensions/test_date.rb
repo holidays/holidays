@@ -2,10 +2,12 @@ require File.expand_path(File.dirname(__FILE__)) + '/../../test_helper'
 
 require 'holidays/core_extensions/date'
 
-class DateTests < Test::Unit::TestCase
+class Date
+  include Holidays::CoreExtensions::Date
+end
+
+class CoreExtensionDateTests < Test::Unit::TestCase
   def setup
-    Date.include Holidays::CoreExtensions::Date::Include
-    Date.extend Holidays::CoreExtensions::Date::Extend
     @date = Date.civil(2008,1,1)
   end
 
