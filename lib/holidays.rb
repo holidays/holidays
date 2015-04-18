@@ -4,7 +4,7 @@ $:.unshift File.dirname(__FILE__)
 require 'digest/md5'
 require 'date'
 require 'yaml'
-require 'holidays/definition_generator'
+require 'holidays/definitions'
 
 # == Region options
 # Holidays can be defined as belonging to one or more regions and sub regions.
@@ -335,22 +335,20 @@ module Holidays
 
   # Parses provided holiday definition file(s) and loads them so that they are immediately available.
   def self.load_custom(*files)
-    def_generator = DefinitionGenerator.new
-    regions, rules_by_month, custom_methods, tests = def_generator.parse_definition_files(files)
+    regions, rules_by_month, custom_methods, tests = Definitions.file_parser.parse_definition_files(files)
     merge_defs(regions, rules_by_month)
   end
 
   # Parses provided holiday definition file(s) and returns strings containing the generated module and test source
   def self.parse_definition_files_and_return_source(module_name, *files)
-    def_generator = DefinitionGenerator.new
-
-    regions, rules_by_month, custom_methods, tests = def_generator.parse_definition_files(files)
-    module_src, test_src = def_generator.generate_definition_source(module_name, files, regions, rules_by_month, custom_methods, tests)
+    regions, rules_by_month, custom_methods, tests = Definitions.file_parser.parse_definition_files(files)
+    module_src, test_src = Definitions.source_generator.generate_definition_source(module_name, files, regions, rules_by_month, custom_methods, tests)
 
     return module_src, test_src
   end
 
 private
+
   # Returns [(arr)regions, (bool)observed, (bool)informal]
   def self.parse_options(*options) # :nodoc:
     options.flatten!

@@ -1,10 +1,10 @@
-require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
+require File.expand_path(File.dirname(__FILE__)) + '/../../test_helper'
 
-require 'holidays/definition_generator'
+require 'holidays/definitions/generator'
 
-class DefinitionGeneratorTests < Test::Unit::TestCase
+class GeneratorTests < Test::Unit::TestCase
   def setup
-    @generator = Holidays::DefinitionGenerator.new
+    @generator = Holidays::Definitions::Generator.new
   end
 
   def test_parse_definition_files_raises_error_if_argument_is_nil
