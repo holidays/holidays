@@ -1,3 +1,5 @@
+require 'yaml'
+
 module Holidays
   module Definitions
     class Generator

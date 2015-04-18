@@ -76,14 +76,21 @@ Multiple files can also be passed:
 
 ### Extending Ruby's Date class
 
-Check which holidays occur in Iceland on January 1, 2008.
+We offer two sets of functionality for the Date class that can be optionally included by your application.
+
+To include new instance methods:
+
+    require 'holidays/core_extensions/date'
+    Date.include Holidays::CoreExtensions::Date::Include
+
+Now you can check which holidays occur in Iceland on January 1, 2008:
 
     d = Date.civil(2008,7,1)
 
     d.holidays(:is)
     => [{:name => 'Nýársdagur'}...]
 
-Lookup Canada Day in different regions.
+Or lookup Canada Day in different regions:
 
     d = Date.civil(2008,7,1)
 
@@ -95,6 +102,16 @@ Lookup Canada Day in different regions.
 
     d.holiday?(:fr) # France
     => false
+
+To include new class methods:
+
+    require 'holidays/core_extensions/date'
+    Date.extend Holidays::CoreExtensions::Date::Extend
+
+Now you can calculate the day of the month:
+
+    Date.calculate_mday(2015, 4, :first, 2)
+    => 7
 
 ### Caching Holiday Lookups
 

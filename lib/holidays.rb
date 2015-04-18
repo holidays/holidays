@@ -3,7 +3,6 @@ $:.unshift File.dirname(__FILE__)
 
 require 'digest/md5'
 require 'date'
-require 'yaml'
 require 'holidays/definitions'
 
 # == Region options
@@ -162,7 +161,7 @@ module Holidays
             end
           else
             # Calculate the mday
-            mday = h[:mday] || Date.calculate_mday(year, month, h[:week], h[:wday])
+            mday = h[:mday] || self.calculate_mday(year, month, h[:week], h[:wday])
           end
 
           # Silently skip bad mdays
@@ -469,50 +468,6 @@ private
     proc_key = Digest::MD5.hexdigest("#{function.to_s}_#{year.to_s}")
     @@proc_cache[proc_key] = function.call(year) unless @@proc_cache[proc_key]
     @@proc_cache[proc_key]
-  end
-end
-
-# === Extending Ruby's Date class with the Holidays gem
-# The Holidays gem automatically extends Ruby's Date class and gives you access
-# to three new methods: holiday?, #holidays and #calculate_mday.
-#
-# ==== Examples
-# Lookup Canada Day in the <tt>:ca</tt> region
-#   Date.civil(2008,7,1).holiday?(:ca)
-#   => true
-#
-# Lookup Canada Day in the <tt>:fr</tt> region
-#   Date.civil(2008,7,1).holiday?(:fr)
-#   => false
-#
-# Lookup holidays on North America in January 1.
-#   Date.civil(2008,1,1).holidays(:ca, :mx, :us, :informal, :observed)
-#   => [{:name => 'New Year\'s Day'...}]
-class Date
-  include Holidays
-
-  # Get holidays on the current date.
-  #
-  # Returns an array of hashes or nil. See Holidays#between for options
-  # and the output format.
-  #
-  #   Date.civil('2008-01-01').holidays(:ca_)
-  #   => [{:name => 'New Year\'s Day',...}]
-  #
-  # Also available via Holidays#on.
-  def holidays(*options)
-    Holidays.on(self, options)
-  end
-
-  # Check if the current date is a holiday.
-  #
-  # Returns true or false.
-  #
-  #   Date.civil('2008-01-01').holiday?(:ca)
-  #   => true
-  def holiday?(*options)
-    holidays = self.holidays(options)
-    holidays && !holidays.empty?
   end
 
   # Calculate day of the month based on the week number and the day of the

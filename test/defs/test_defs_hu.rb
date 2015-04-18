@@ -23,7 +23,7 @@ class HuDefinitionTests < Test::Unit::TestCase  # :nodoc:
   assert_equal name, (Holidays.on(date, :hu, :informal)[0] || {})[:name]
 end
 
-assert !Date.civil(2012,3,14).holiday?(:hu), '2012-03-14 is not a holiday in Hungary'
+assert_equal [], Holidays.on(Date.civil(2012,3,14), :hu), '2012-03-14 is not a holiday in Hungary'
 
   end
 end

@@ -18,7 +18,7 @@ class AtDefinitionTests < Test::Unit::TestCase  # :nodoc:
   assert_equal name, (Holidays.on(date, :at, :informal)[0] || {})[:name]
 end
 
-assert !Date.civil(2010,5,8).holiday?(:at), '2010-05-08 is not a holiday in Austria'
+assert_equal [], Holidays.on(Date.civil(2010,5,8), :at), '2010-05-08 is not a holiday in Austria'
 
   end
 end

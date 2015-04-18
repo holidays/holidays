@@ -30,8 +30,7 @@ class RoDefinitionTests < Test::Unit::TestCase  # :nodoc:
   assert_equal name, (Holidays.on(date, :ro, :informal)[0] || {})[:name]
  end
 
- assert !Date.civil(2013,7,23).holiday?(:ro), '2010-07-23 is not a holiday in Romania'
- assert !Date.civil(2013,7,23).holiday?(:ro), '2010-07-23 is not a holiday in Romania'
+ assert_equal [], Holidays.on(Date.civil(2013,7,23), :ro), '2013-07-23 is not a holiday in Romania'
 
   end
 end

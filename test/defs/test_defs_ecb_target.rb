@@ -16,8 +16,8 @@ class Ecb_targetDefinitionTests < Test::Unit::TestCase  # :nodoc:
   assert_equal name, (Holidays.on(date, :ecb_target)[0] || {})[:name]
 end
 
-assert_equal 'Good Friday', Date.civil(2013,3,29).holidays(:ecb_target)[0][:name]
-assert_equal 'Easter Monday', Date.civil(2013,4,1).holidays(:ecb_target)[0][:name]
+assert_equal 'Good Friday', Holidays.on(Date.civil(2013,3,29), :ecb_target)[0][:name]
+assert_equal 'Easter Monday', Holidays.on(Date.civil(2013,4,1), :ecb_target)[0][:name]
 
   end
 end

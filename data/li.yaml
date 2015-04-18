@@ -89,14 +89,14 @@ tests: |
     end
     
     [:li].each do |r|
-      assert_equal 'Fronleichnam', Date.civil(2009,6,11).holidays(r)[0][:name]
+      assert_equal 'Fronleichnam', Holidays.on(Date.civil(2009,6,11), r)[0][:name]
     end
     
     [:li].each do |r|
-      assert_equal 'Staatsfeiertag', Date.civil(2009,8,15).holidays(r)[0][:name]
+      assert_equal 'Staatsfeiertag', Holidays.on(Date.civil(2009,8,15), r)[0][:name]
     end
     
     [:li].each do |r|
-      assert_equal 'Allerheiligen', Date.civil(2009,11,1).holidays(r)[0][:name]
+      assert_equal 'Allerheiligen', Holidays.on(Date.civil(2009,11,1), r)[0][:name]
     end
 
