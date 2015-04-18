@@ -1,8 +1,6 @@
 module Holidays
   module CoreExtensions
     module Date
-      include Holidays
-
       module Include
         # Get holidays on the current date.
         #
