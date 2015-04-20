@@ -15,14 +15,11 @@ months:
     regions: [au_nsw, au_vic, au_qld, au_nt, au_act, au_sa, au_qld_brisbane, au_qld_cairns]
     function: easter(year)-1
   - name: Easter Sunday
-    regions: [au_nsw]
+    regions: [au_nsw, au_vic]
     function: easter(year)
   - name: Easter Monday
     regions: [au]
     function: easter(year)+1
-  - name: Easter Monday
-    regions: [au_tas]
-    function: easter(year)+2
   1: 
   - name: New Year's Day
     regions: [au]
@@ -50,6 +47,9 @@ months:
     regions: [au_vic]
     week: 2
     wday: 1
+  - name: March Public Holiday
+    regions: [au_sa]
+    function: march_pub_hol_sa(year)
   4: 
   - name: ANZAC Day
     regions: [au]
@@ -63,6 +63,9 @@ months:
     regions: [au_nt]
     week: 1
     wday: 1
+  - name: May Public Holiday
+    regions: [au_sa]
+    function: may_pub_hol_sa(year)
   6: 
   - name: Foundation Day
     regions: [au_wa]
@@ -164,6 +167,26 @@ methods:
       fourth_sat_in_oct = Date.civil(year, 10, Date.calculate_mday(year, 10, 4, :saturday))
       fourth_sat_in_oct - 2 # the thursday before
     end
+  march_pub_hol_sa: |
+    # http://www.safework.sa.gov.au/show_page.jsp?id=2483#.VQ9Mfmb8-8E
+    # The Holidays Act 1910 provides for the third Monday in May to be a public holiday. Since 2006 this public holiday has been observed on the second Monday in March through the issuing of a special Proclamation by the Governor.
+    def self.march_pub_hol_sa(year)
+      if year < 2006
+        nil
+      else
+        Date.civil(year, 3, Date.calculate_mday(year, 3, :second, :monday))
+      end
+    end
+  may_pub_hol_sa: |
+    # http://www.safework.sa.gov.au/show_page.jsp?id=2483#.VQ9Mfmb8-8E
+    # The Holidays Act 1910 provides for the third Monday in May to be a public holiday. Since 2006 this public holiday has been observed on the second Monday in March through the issuing of a special Proclamation by the Governor.
+    def self.may_pub_hol_sa(year)
+      if year >= 2006
+        nil
+      else
+        Date.civil(year, 5, Date.calculate_mday(year, 5, :third, :monday))
+      end
+    end
 tests: |
     {Date.civil(2007,1,1) => 'New Year\'s Day', 
      Date.civil(2007,1,26) => 'Australia Day', 
@@ -235,3 +258,12 @@ tests: |
     assert_equal 'Royal Hobart Regatta', Date.civil(2014, 2, 10).holidays(:au_tas_south)[0][:name]
     assert_equal 'Royal Hobart Regatta', Date.civil(2015, 2, 9).holidays(:au_tas_south)[0][:name]
     assert_equal 'Royal Hobart Regatta', Date.civil(2016, 2, 8).holidays(:au_tas_south)[0][:name]
+
+    assert_equal "May Public Holiday", Date.civil(2005, 5, 16).holidays(:au_sa)[0][:name]
+    assert_equal [], Date.civil(2014, 5, 19).holidays(:au_sa)
+
+    assert_equal [], Date.civil(2005, 3, 14).holidays(:au_sa)
+    assert_equal "March Public Holiday", Date.civil(2014, 3, 10).holidays(:au_sa)[0][:name]
+    assert_equal "March Public Holiday", Date.civil(2015, 3, 9).holidays(:au_sa)[0][:name]
+    assert_equal "March Public Holiday", Date.civil(2016, 3, 14).holidays(:au_sa)[0][:name]
+    assert_equal "March Public Holiday", Date.civil(2017, 3, 13).holidays(:au_sa)[0][:name]

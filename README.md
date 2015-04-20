@@ -104,6 +104,8 @@ If you are checking holidays regularly you can cache your results for improved p
 
 Holidays for the regions specified within the dates specified will be pre-calculated.
 
+See the [original pull request](https://github.com/alexdunae/holidays/pull/36) for more details.
+
 ### How to contribute
 
 To make changes to any of the definitions, edit the YAML files only.
