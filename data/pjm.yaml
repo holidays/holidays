@@ -10,7 +10,7 @@ months:
   - name: New Year's Day
     regions: [pjm]
     mday: 1
-    observed: to_monday_if_sunday
+    observed: to_monday_if_sunday_to_friday_if_saturday
   - name: Martin Luther King, Jr. Day
     regions: [pjm]
     week: 3
