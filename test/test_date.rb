@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__)) + '/test_helper'
 
-class DateTests < Minitest::Test
+class DateTests < Test::Unit::TestCase
   def setup
     @date = Date.civil(2008,1,1)
   end

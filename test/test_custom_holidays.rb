@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__)) + '/test_helper'
 
-class CustomHolidaysTest < Minitest::Test
+class CustomHolidaysTest < Test::Unit::TestCase
 
   def test_custom_region_present_after_single_file_parsing
     assert_raises Holidays::UnknownRegionError do

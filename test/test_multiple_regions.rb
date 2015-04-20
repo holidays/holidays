@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__)) + '/test_helper'
 require 'holidays/gb'
 require 'holidays/ie'
 
-class MultipleRegionsTests < Minitest::Test
+class MultipleRegionsTests < Test::Unit::TestCase
   def setup
     @date = Date.civil(2008,1,1)
   end

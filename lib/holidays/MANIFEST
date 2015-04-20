@@ -8,8 +8,8 @@ The following definition files are included in this installation:
 * holidays/br
 * holidays/ca
 * holidays/ch
-* holidays/cl
 * holidays/cme
+* holidays/cl
 * holidays/cr
 * holidays/cz
 * holidays/de
@@ -38,7 +38,6 @@ The following definition files are included in this installation:
 * holidays/north_america
 * holidays/nyse
 * holidays/nz
-* holidays/pjm
 * holidays/pl
 * holidays/pt
 * holidays/ro
