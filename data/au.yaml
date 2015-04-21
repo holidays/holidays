@@ -54,6 +54,13 @@ months:
   - name: ANZAC Day
     regions: [au]
     mday: 25
+  - name: ANZAC Day
+    regions: [au_nsw, au_vic, au_qld, au_nt, au_act, au_sa, au_tas]
+    mday: 25
+    observed: to_monday_if_sunday
+  - name: ANZAC Day
+    regions: [au_wa]
+    mday: 25
     observed: to_monday_if_weekend
   5: 
   - name: Labour Day
@@ -267,3 +274,8 @@ tests: |
     assert_equal "March Public Holiday", Date.civil(2015, 3, 9).holidays(:au_sa)[0][:name]
     assert_equal "March Public Holiday", Date.civil(2016, 3, 14).holidays(:au_sa)[0][:name]
     assert_equal "March Public Holiday", Date.civil(2017, 3, 13).holidays(:au_sa)[0][:name]
+
+    assert_equal "ANZAC Day", Date.civil(2015, 4, 25).holidays(:au_qld)[0][:name]
+    assert_equal "ANZAC Day", Date.civil(2015, 4, 25).holidays(:au_wa)[0][:name]
+    assert_equal [], Date.civil(2015, 4, 27).holidays(:au_qld, :observed)
+    assert_equal "ANZAC Day", Date.civil(2015, 4, 27).holidays(:au_wa, :observed)[0][:name]
