@@ -35,6 +35,7 @@ defs:
   "NO": ['no.yaml']
   NYSE: ['nyse.yaml']
   NZ: ['nz.yaml']
+  PJM: ['pjm.yaml']
   PL: ['pl.yaml']
   PT: ['pt.yaml']
   RO: ['ro.yaml']

@@ -4,7 +4,7 @@ module Holidays
   #
   # Definitions loaded: data/cme.yaml
   #
-  # To use the definitions in this file, load it right after you load the 
+  # To use the definitions in this file, load it right after you load the
   # Holiday gem:
   #
   #   require 'holidays'
@@ -25,7 +25,9 @@ module Holidays
       5 => [{:wday => 1, :week => -1, :name => "Memorial Day", :regions => [:cme]}],
       7 => [{:mday => 4, :observed => lambda { |date| Holidays.to_monday_if_sunday_to_friday_if_saturday(date) }, :observed_id => "to_monday_if_sunday_to_friday_if_saturday", :name => "Independence Day", :regions => [:cme]}],
       9 => [{:wday => 1, :week => 1, :name => "Labor Day", :regions => [:cme]}],
-      11 => [{:wday => 4, :week => 4, :name => "Thanksgiving Day", :regions => [:cme]}],
+      10 => [{:wday => 1, :week => 2, :name => "Columbus Day", :regions => [:cme]}],
+      11 => [{:mday => 11, :name => "Veterans Day", :regions => [:cme]},
+            {:wday => 4, :week => 4, :name => "Thanksgiving Day", :regions => [:cme]}],
       12 => [{:mday => 25, :observed => lambda { |date| Holidays.to_monday_if_sunday_to_friday_if_saturday(date) }, :observed_id => "to_monday_if_sunday_to_friday_if_saturday", :name => "Christmas Day", :regions => [:cme]}]
       }
     end
