@@ -46,6 +46,7 @@ months:
   - name: Waitangi Day
     regions: [nz]
     mday: 6
+    observed: to_monday_if_weekend
   3:
   - name: Otago Anniversary Day
     regions: [nz_ot]
@@ -59,6 +60,7 @@ months:
   - name: ANZAC Day
     regions: [nz]
     mday: 25
+    observed: to_monday_if_weekend
   6:
   - name: Queen's Birthday
     regions: [nz]
