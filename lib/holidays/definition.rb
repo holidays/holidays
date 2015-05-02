@@ -1,7 +1,7 @@
-require 'holidays/definitions/generator'
+require 'holidays/definition/generator'
 
 module Holidays
-  module Definitions
+  module Definition
     class << self
       def file_parser
         Generator.new

@@ -1,7 +1,7 @@
 require 'yaml'
 
 module Holidays
-  module Definitions
+  module Definition
     class Generator
 
       def parse_definition_files(files)
