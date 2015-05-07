@@ -31,6 +31,7 @@ module Holidays
             {:mday => 4, :name => "みどりの日", :regions => [:jp]},
             {:mday => 5, :name => "こどもの日", :regions => [:jp]},
             {:function => lambda { |year| Holidays.jp_substitute_holiday(year, 5, 3) }, :function_id => "jp_substitute_holiday(year, 5, 3)", :name => "振替休日", :regions => [:jp]},
+            {:function => lambda { |year| Holidays.jp_substitute_holiday(year, 5, 4) }, :function_id => "jp_substitute_holiday(year, 5, 4)", :name => "振替休日", :regions => [:jp]},
             {:function => lambda { |year| Holidays.jp_substitute_holiday(year, 5, 5) }, :function_id => "jp_substitute_holiday(year, 5, 5)", :name => "振替休日", :regions => [:jp]}],
       7 => [{:wday => 1, :week => 3, :name => "海の日", :regions => [:jp]},
             {:function => lambda { |year| Holidays.jp_substitute_holiday(year, 7, Date.calculate_mday(year, 7, 3, 1)) }, :function_id => "jp_substitute_holiday(year, 7, Date.calculate_mday(year, 7, 3, 1))", :name => "振替休日", :regions => [:jp]}],
@@ -104,7 +105,15 @@ end
 
 def self.jp_substitute_holiday(*date)
   date = date[0].kind_of?(Date) ? date.first : Date.civil(*date)
-  date.wday == 0 ? date+1 : nil
+  date.wday == 0 ? Holidays.jp_next_weekday(date+1) : nil
+end
+
+
+def self.jp_next_weekday(date)
+  is_holiday = Holidays::JP.holidays_by_month[date.month].any? do |holiday|
+    holiday[:mday] == date.day
+  end
+  date.wday == 0 || is_holiday ? Holidays.jp_next_weekday(date+1) : date
 end
 
 

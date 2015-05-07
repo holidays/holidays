@@ -9,6 +9,7 @@
 # CHANGES:
 #  2010-12-25: Initial version by Tatsuki Sugiura <sugi@nemui.org>
 #  2014-11-09: Added substitute holiday by Yoshiyuki Hirano <yoshiyuki.hirano@henteco-labs.com>
+#  2015-05-10: Non-Monday substitute holidays by Shuhei Kagawa <shuhei.kagawa@gmail.com>
 # 
 ---
 months:
@@ -57,6 +58,9 @@ months:
   - name: 振替休日
     regions: [jp]
     function: jp_substitute_holiday(year, 5, 3)
+  - name: 振替休日
+    regions: [jp]
+    function: jp_substitute_holiday(year, 5, 4)
   - name: 振替休日
     regions: [jp]
     function: jp_substitute_holiday(year, 5, 5)
@@ -165,7 +169,14 @@ methods:
   jp_substitute_holiday: |
     def self.jp_substitute_holiday(*date)
       date = date[0].kind_of?(Date) ? date.first : Date.civil(*date)
-      date.wday == 0 ? date+1 : nil
+      date.wday == 0 ? Holidays.jp_next_weekday(date+1) : nil
+    end
+  jp_next_weekday(date): |
+    def self.jp_next_weekday(date)
+      is_holiday = Holidays::JP.holidays_by_month[date.month].any? do |holiday|
+        holiday[:mday] == date.day
+      end
+      date.wday == 0 || is_holiday ? Holidays.jp_next_weekday(date+1) : date
     end
 tests: |
   {Date.civil(2008,1,1) => '元日', 
@@ -183,6 +194,9 @@ tests: |
    Date.civil(2010,3,22) => '振替休日',
    Date.civil(2008,11,24) => '振替休日',
    Date.civil(2012,1,2) => '振替休日',
+   Date.civil(2013,5,6) => '振替休日',
+   Date.civil(2014,5,6) => '振替休日',
+   Date.civil(2015,5,6) => '振替休日'
   }.each do |date, name|
      assert_equal name, (Holidays.on(date, :jp, :informal)[0] || {})[:name]
   end
