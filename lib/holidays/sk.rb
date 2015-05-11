@@ -31,7 +31,7 @@ module Holidays
             {:mday => 17, :name => "Deň boja za slobodu a demokraciu", :regions => [:sk]}],
       12 => [{:mday => 24, :name => "Štedrý deň", :regions => [:sk]},
             {:mday => 25, :name => "1. sviatok vianočný", :regions => [:sk]},
-            {:mday => 26, :name => "2. sviatek vianočný", :regions => [:sk]}]
+            {:mday => 26, :name => "2. sviatok vianočný", :regions => [:sk]}]
       }
     end
   end
