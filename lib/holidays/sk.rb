@@ -22,7 +22,7 @@ module Holidays
             {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Veľký piatok", :regions => [:sk]}],
       1 => [{:mday => 1, :name => "Nový rok", :regions => [:sk]}],
       5 => [{:mday => 1, :name => "Sviatok práce", :regions => [:sk]},
-            {:mday => 8, :name => "Deň víťazstva", :regions => [:sk]}],
+            {:mday => 8, :name => "Deň víťazstva nad fašizmom", :regions => [:sk]}],
       7 => [{:mday => 5, :name => "Sviatok svätého Cyrila a svätého Metoda", :regions => [:sk]}],
       8 => [{:mday => 29, :name => "Výročie Slovenského národného povstania", :regions => [:sk]}],
       9 => [{:mday => 1, :name => "Deň Ústavy Slovenskej republiky", :regions => [:sk]},
@@ -31,7 +31,7 @@ module Holidays
             {:mday => 17, :name => "Deň boja za slobodu a demokraciu", :regions => [:sk]}],
       12 => [{:mday => 24, :name => "Štedrý deň", :regions => [:sk]},
             {:mday => 25, :name => "1. sviatok vianočný", :regions => [:sk]},
-            {:mday => 26, :name => "2. sviatek vianočný", :regions => [:sk]}]
+            {:mday => 26, :name => "2. sviatok vianočný", :regions => [:sk]}]
       }
     end
   end
