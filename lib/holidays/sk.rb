@@ -20,7 +20,8 @@ module Holidays
       {
               0 => [{:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Veľkonočný pondelok", :regions => [:sk]},
             {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Veľký piatok", :regions => [:sk]}],
-      1 => [{:mday => 1, :name => "Nový rok", :regions => [:sk]}],
+      1 => [{:mday => 1, :name => "Nový rok", :regions => [:sk]},
+            {:mday => 6, :name => "Zjavenie Pána (Traja králi)", :regions => [:sk]}],
       5 => [{:mday => 1, :name => "Sviatok práce", :regions => [:sk]},
             {:mday => 8, :name => "Deň víťazstva nad fašizmom", :regions => [:sk]}],
       7 => [{:mday => 5, :name => "Sviatok svätého Cyrila a svätého Metoda", :regions => [:sk]}],

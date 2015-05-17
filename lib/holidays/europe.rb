@@ -173,6 +173,7 @@ module Holidays
             {:mday => 1, :name => "Anul nou", :regions => [:ro]},
             {:mday => 2, :name => "Anul nou", :regions => [:ro]},
             {:mday => 1, :name => "Nový rok", :regions => [:sk]},
+            {:mday => 6, :name => "Zjavenie Pána (Traja králi)", :regions => [:sk]},
             {:mday => 1, :name => "novo leto", :regions => [:si]}],
       5 => [{:mday => 1, :name => "Staatsfeiertag", :regions => [:at]},
             {:mday => 1, :name => "Fête du travail", :regions => [:be]},

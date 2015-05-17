@@ -669,6 +669,7 @@ end
 
 
 {Date.civil(2013,1,1) => 'Nový rok',
+ Date.civil(2013,1,6) => 'Zjavenie Pána (Traja králi)',
  Date.civil(2013,3,29) => 'Veľký piatok',
  Date.civil(2013,4,1) => 'Veľkonočný pondelok',
  Date.civil(2013,5,1) => 'Sviatok práce',
