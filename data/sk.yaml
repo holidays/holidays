@@ -3,9 +3,9 @@
 # Updated: 2013-12-26.
 # Sources:
 # - http://sk.wikipedia.org/wiki/Slovensk%C3%A9_%C5%A1t%C3%A1tne_sviatky
---- 
+---
 months:
-  0: 
+  0:
   - name: Veľkonočný pondelok
     regions: [sk]
     function: easter(year)+1
@@ -16,11 +16,14 @@ months:
   - name: Nový rok
     regions: [sk]
     mday: 1
+  - name: Zjavenie Pána (Traja králi)
+    regions: [sk]
+    mday: 6
   5:
   - name: Sviatok práce
     regions: [sk]
     mday: 1
-  - name: Deň víťazstva
+  - name: Deň víťazstva nad fašizmom
     regions: [sk]
     mday: 8
   7:
@@ -57,10 +60,11 @@ months:
     mday: 26
 tests: |
     {Date.civil(2013,1,1) => 'Nový rok',
+     Date.civil(2013,1,6) => 'Zjavenie Pána (Traja králi)',
      Date.civil(2013,3,29) => 'Veľký piatok',
      Date.civil(2013,4,1) => 'Veľkonočný pondelok',
      Date.civil(2013,5,1) => 'Sviatok práce',
-     Date.civil(2013,5,8) => 'Deň víťazstva',
+     Date.civil(2013,5,8) => 'Deň víťazstva nad fašizmom',
      Date.civil(2013,7,5) => 'Sviatok svätého Cyrila a svätého Metoda',
      Date.civil(2013,8,29) => 'Výročie Slovenského národného povstania',
      Date.civil(2013,9,1) => 'Deň Ústavy Slovenskej republiky',
