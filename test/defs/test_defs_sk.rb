@@ -20,7 +20,7 @@ class SkDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2013,11,17) => 'Deň boja za slobodu a demokraciu',
  Date.civil(2013,12,24) => 'Štedrý deň',
  Date.civil(2013,12,25) => '1. sviatok vianočný',
- Date.civil(2013,12,26) => '2. sviatek vianočný'}.each do |date, name|
+ Date.civil(2013,12,26) => '2. sviatok vianočný'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :sk, :informal)[0] || {})[:name]
 end
 

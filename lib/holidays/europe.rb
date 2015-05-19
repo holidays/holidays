@@ -343,7 +343,7 @@ module Holidays
             {:mday => 26, :name => "Sărbătoarea Nașterii Domnului", :regions => [:ro]},
             {:mday => 24, :name => "Štedrý deň", :regions => [:sk]},
             {:mday => 25, :name => "1. sviatok vianočný", :regions => [:sk]},
-            {:mday => 26, :name => "2. sviatek vianočný", :regions => [:sk]},
+            {:mday => 26, :name => "2. sviatok vianočný", :regions => [:sk]},
             {:mday => 25, :name => "božič", :regions => [:si]},
             {:mday => 26, :name => "dan samostojnosti in enotnosti", :regions => [:si]}],
       7 => [{:mday => 21, :name => "Fête nationale", :regions => [:be]},
