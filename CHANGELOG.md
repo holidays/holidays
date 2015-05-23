@@ -1,5 +1,13 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 2.1.0
+
+* Updated Slovak holiday definitions (https://github.com/guitarman)
+* Fix Japanese non-Monday substitute holidays (https://github.com/shuhei)
+* Fixed typo in Slovak holiday definitions (https://github.com/martinsabo)
+* Updated New Zealand definitions to reflect new weekend-to-monday rules (https://github.com/SebastianEdwards)
+* Fix Australian definitions (https://github.com/ghiculescu)
+
 ## 2.0.0
 
 * Add test coverage
