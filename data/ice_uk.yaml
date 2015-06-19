@@ -1,0 +1,84 @@
+# ICE UK holiday definitions for the Ruby Holiday gem.
+#
+# Including England and Wales.
+#
+# Updated: 2015-6-19.
+# Sources:
+# - http://en.wikipedia.org/wiki/List_of_holidays_by_country#United_Kingdom_and_Crown_dependencies
+# https://www.theice.com/publicdocs/Trading_Schedule.pdf
+# https://www.theice.com/marketdata/ExpiryCalendar.shtml?expiry
+# gb.yaml
+#
+---
+months:
+  0:
+  - name: Good Friday
+    regions: [ice_uk]
+    function: easter(year)-2
+  - name: Easter Sunday
+    regions: [ice_uk]
+    function: easter(year)
+  - name: Easter Monday
+    regions: [ice_uk]
+    function: easter(year)+1
+  1:
+  - name: New Year's Day
+    regions: [ice_uk]
+    mday: 1
+    observed: to_monday_if_weekend
+  5:
+  - name: May Day
+    regions: [ice_uk]
+    week: 1
+    wday: 1
+  - name: Bank Holiday
+    regions: [ice_uk]
+    week: -1
+    wday: 1
+  8:
+  - name: Bank Holiday
+    regions: [ice_uk]
+    week: -1
+    wday: 1
+  12:
+  - name: Day Before Christmas Day
+    regions: [ice_uk]
+    mday: 24
+  - name: Christmas Day
+    regions: [ice_uk]
+    mday: 25
+    observed: to_monday_if_weekend
+  - name: Boxing Day
+    regions: [ice_uk]
+    mday: 26
+    observed: to_weekday_if_boxing_weekend
+  - name: Day Before New Year's Day
+    regions: [ice_uk]
+    mday: 31
+tests: |
+    {Date.civil(2008,3,21) => 'Good Friday',
+     Date.civil(2008,3,23) => 'Easter Sunday',
+     Date.civil(2008,5,5) => 'May Day',
+     Date.civil(2008,5,26) => 'Bank Holiday',
+     Date.civil(2008,12,25) => 'Christmas Day',
+     Date.civil(2008,12,26) => 'Boxing Day'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :ice_uk, :informal)[0] || {})[:name]
+    end
+
+    assert_equal 'Christmas Day', Date.civil(2008,12,25).holidays(:ice_uk, :observed)[0][:name]
+    assert_equal 'Christmas Day', Date.civil(2009,12,25).holidays(:ice_uk, :observed)[0][:name]
+    assert_equal 'Christmas Day', Date.civil(2010,12,27).holidays(:ice_uk, :observed)[0][:name]
+
+    assert_equal 'Boxing Day', Date.civil(2008,12,26).holidays(:ice_uk, :observed)[0][:name]
+    assert_equal 'Boxing Day', Date.civil(2009,12,28).holidays(:ice_uk, :observed)[0][:name]
+    assert_equal 'Boxing Day', Date.civil(2010,12,28).holidays(:ice_uk, :observed)[0][:name]
+    assert_equal 'Boxing Day', Date.civil(2011,12,27).holidays(:ice_uk, :observed)[0][:name]
+
+    assert_equal 'New Year\'s Day', Date.civil(2010,1,1).holidays(:ice_uk, :observed)[0][:name]
+    assert_equal 'New Year\'s Day', Date.civil(2011,1,3).holidays(:ice_uk, :observed)[0][:name]
+    assert_equal 'New Year\'s Day', Date.civil(2012,1,2).holidays(:ice_uk, :observed)[0][:name]
+
+    [:ice_uk].each do |r|
+      assert_equal 'Easter Monday', Date.civil(2008,3,24).holidays(r)[0][:name]
+      assert_equal 'Bank Holiday', Date.civil(2008,8,25).holidays(r)[0][:name]
+    end

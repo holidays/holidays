@@ -23,6 +23,7 @@ defs:
   GB: ['gb.yaml']
   HR: ['hr.yaml']
   HU: ['hu.yaml']
+  ICE_UK: ['ice_uk.yaml']
   IE: ['ie.yaml']
   IS: ['is.yaml']
   IT: ['it.yaml']
