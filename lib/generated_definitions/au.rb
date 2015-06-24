@@ -74,14 +74,14 @@ end
 # http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
 # changed from may to october after 2012
 def self.qld_labour_day_may(year)
-  year <= 2012 ? Holidays.calculate_mday(year, 5, 1, 1) : nil
+  year <= 2012 ? Holidays::DateCalculator.day_of_month(year, 5, 1, 1) : nil
 end
 
 
 # http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
 # changed from may to october after 2012
 def self.qld_labour_day_october(year)
-  year <= 2012 ? nil : Holidays.calculate_mday(year, 10, 1, 1)
+  year <= 2012 ? nil : Holidays::DateCalculator.day_of_month(year, 10, 1, 1)
 end
 
 
@@ -95,7 +95,7 @@ end
 # http://worksafe.tas.gov.au/__data/assets/pdf_file/0008/287036/Public_Holidays_2014.pdf
 # The Thursday before the fourth Saturday in October. 
 def self.hobart_show_day(year)
-  fourth_sat_in_oct = Date.civil(year, 10, Holidays.calculate_mday(year, 10, 4, :saturday))
+  fourth_sat_in_oct = Date.civil(year, 10, Holidays::DateCalculator.day_of_month(year, 10, 4, :saturday))
   fourth_sat_in_oct - 2 # the thursday before
 end
 

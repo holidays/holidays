@@ -71,7 +71,7 @@ months:
     week: 3
   - name: 振替休日
     regions: [jp]
-    function: jp_substitute_holiday(year, 7, Holidays.calculate_mday(year, 7, 3, 1))
+    function: jp_substitute_holiday(year, 7, Holidays::DateCalculator.day_of_month(year, 7, 3, 1))
   9:
   - name: 敬老の日
     regions: [jp]
@@ -79,7 +79,7 @@ months:
     week: 3
   - name: 振替休日
     regions: [jp]
-    function: jp_substitute_holiday(year, 9, Holidays.calculate_mday(year, 9, 3, 1))
+    function: jp_substitute_holiday(year, 9, Holidays::DateCalculator.day_of_month(year, 9, 3, 1))
   - name: 国民の休日
     regions: [jp]
     function: jp_citizons_holiday(year)
@@ -96,7 +96,7 @@ months:
     week: 2
   - name: 振替休日
     regions: [jp]
-    function: jp_substitute_holiday(year, 10, Holidays.calculate_mday(year, 10, 2, 1))
+    function: jp_substitute_holiday(year, 10, Holidays::DateCalculator.day_of_month(year, 10, 2, 1))
   11:
   - name: 文化の日
     regions: [jp]

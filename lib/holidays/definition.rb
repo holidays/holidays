@@ -1,7 +1,7 @@
 require 'holidays/definition/generator'
 
 module Holidays
-  module Definition
+  module Definition #TODO This should be named a 'factory' for clarity
     class << self
       def file_parser
         Generator.new

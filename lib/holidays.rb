@@ -162,7 +162,7 @@ module Holidays
             end
           else
             # Calculate the mday
-            mday = h[:mday] || self.calculate_mday(year, month, h[:week], h[:wday])
+            mday = h[:mday] || DateCalculator.day_of_month(year, month, h[:week], h[:wday])
           end
 
           # Silently skip bad mdays
@@ -414,54 +414,5 @@ private
     proc_key = Digest::MD5.hexdigest("#{function.to_s}_#{year.to_s}")
     @@proc_cache[proc_key] = function.call(year) unless @@proc_cache[proc_key]
     @@proc_cache[proc_key]
-  end
-
-  # Calculate day of the month based on the week number and the day of the
-  # week.
-  #
-  # ==== Parameters
-  # [<tt>year</tt>]  Integer.
-  # [<tt>month</tt>] Integer from 1-12.
-  # [<tt>week</tt>]  One of <tt>:first</tt>, <tt>:second</tt>, <tt>:third</tt>,
-  #                  <tt>:fourth</tt>, <tt>:fifth</tt> or <tt>:last</tt>.
-  # [<tt>wday</tt>]  Day of the week as an integer from 0 (Sunday) to 6
-  #                  (Saturday) or as a symbol (e.g. <tt>:monday</tt>).
-  #
-  # Returns an integer.
-  #
-  # ===== Examples
-  # First Monday of January, 2008:
-  #   Date.calculate_mday(2008, 1, :first, :monday)
-  #   => 7
-  #
-  # Third Thursday of December, 2008:
-  #   Date.calculate_mday(2008, 12, :third, :thursday)
-  #   => 18
-  #
-  # Last Monday of January, 2008:
-  #   Date.calculate_mday(2008, 1, :last, 1)
-  #   => 28
-  #--
-  # see http://www.irt.org/articles/js050/index.htm
-  def self.calculate_mday(year, month, week, wday)
-    raise ArgumentError, "Week parameter must be one of Holidays::WEEKS (provided #{week})." unless WEEKS.include?(week) or WEEKS.has_value?(week)
-
-    unless wday.kind_of?(Numeric) and wday.between?(0,6) or DAY_SYMBOLS.index(wday)
-      raise ArgumentError, "Wday parameter must be an integer between 0 and 6 or one of Date::DAY_SYMBOLS."
-    end
-
-    week = WEEKS[week] if week.kind_of?(Symbol)
-    wday = DAY_SYMBOLS.index(wday) if wday.kind_of?(Symbol)
-
-    # :first, :second, :third, :fourth or :fifth
-    if week > 0
-      return ((week - 1) * 7) + 1 + ((wday - Date.civil(year, month,(week-1)*7 + 1).wday) % 7)
-    end
-
-    days = MONTH_LENGTHS[month-1]
-
-    days = 29 if month == 2 and Date.leap?(year)
-
-    return days - ((Date.civil(year, month, days).wday - wday + 7) % 7) - (7 * (week.abs - 1))
   end
 end

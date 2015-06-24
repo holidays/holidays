@@ -30,4 +30,8 @@ class DateCalculatorTests < Test::Unit::TestCase
   def test_to_monday_if_sunday
     assert @subject.to_monday_if_sunday(Date.civil(2015, 4, 1)).is_a?(Date)
   end
+
+  def test_day_of_month
+    assert @subject.day_of_month(2008, 1, :first, 6)
+  end
 end
