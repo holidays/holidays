@@ -1,5 +1,9 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 2.2.0
+
+* Correct 'informal' type for Dodenherdenking holiday in NL definitions (https://github.com/MathijsK93)
+
 ## 2.1.0
 
 * Updated Slovak holiday definitions (https://github.com/guitarman)
