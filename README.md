@@ -1,4 +1,4 @@
-# Ruby Holidays Gem [![Build Status](https://travis-ci.org/alexdunae/holidays.svg?branch=master)](https://travis-ci.org/alexdunae/holidays) [![Coverage Status](https://coveralls.io/repos/alexdunae/holidays/badge.svg)](https://coveralls.io/r/alexdunae/holidays)
+# Ruby Holidays Gem [![Build Status](https://travis-ci.org/holidays/holidays.svg?branch=master)](https://travis-ci.org/holidays/holidays) [![Coverage Status](https://coveralls.io/repos/holidays/holidays/badge.svg)](https://coveralls.io/r/holidays/holidays)
 
 A set of functions to deal with holidays in Ruby.
 
