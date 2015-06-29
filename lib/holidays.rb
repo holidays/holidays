@@ -3,7 +3,7 @@ $:.unshift File.dirname(__FILE__)
 
 require 'digest/md5'
 require 'date'
-require 'holidays/definition'
+require 'holidays/definition_factory'
 require 'holidays/date_calculator'
 
 # == Region options
@@ -194,35 +194,18 @@ module Holidays
     @@cache_range[options] = start_date..end_date
   end
 
-  # Merge a new set of definitions into the Holidays module.
-  #
-  # This method is automatically called when including holiday definition
-  # files.
+  #TODO This should not be publicly available. I need to restructure the public
+  #     API for this class to something more sensible.
   def self.merge_defs(regions, holidays) # :nodoc:
-    @@regions = @@regions | regions
-    @@regions.uniq!
+    merge_result = DefinitionFactory.merger.call(
+      @@regions,
+      regions,
+      @@holidays_by_month,
+      holidays
+    )
 
-    holidays.each do |month, holiday_defs|
-      @@holidays_by_month[month] = [] unless @@holidays_by_month[month]
-      holiday_defs.each do |holiday_def|
-
-          exists = false
-          @@holidays_by_month[month].each do |ex|
-            # TODO: gross.
-            if ex[:name] == holiday_def[:name] and ex[:wday] == holiday_def[:wday] and ex[:mday] == holiday_def[:mday] and ex[:week] == holiday_def[:week] and ex[:function_id] == holiday_def[:function_id] and ex[:type] == holiday_def[:type] and ex[:observed_id] == holiday_def[:observed_id]
-              # append regions
-              ex[:regions] << holiday_def[:regions]
-
-              # Should do this once we're done
-              ex[:regions].flatten!
-              ex[:regions].uniq!
-              exists = true
-            end
-          end
-
-          @@holidays_by_month[month] << holiday_def  unless exists
-      end
-    end
+    @@regions = merge_result.updated_known_regions
+    @@holidays_by_month = merge_result.updated_holidays_by_month
   end
 
   def self.easter(year)
@@ -280,14 +263,14 @@ module Holidays
 
   # Parses provided holiday definition file(s) and loads them so that they are immediately available.
   def self.load_custom(*files)
-    regions, rules_by_month, custom_methods, tests = Definition.file_parser.parse_definition_files(files)
+    regions, rules_by_month, custom_methods, tests = DefinitionFactory.file_parser.parse_definition_files(files)
     merge_defs(regions, rules_by_month)
   end
 
   # Parses provided holiday definition file(s) and returns strings containing the generated module and test source
   def self.parse_definition_files_and_return_source(module_name, *files)
-    regions, rules_by_month, custom_methods, tests = Definition.file_parser.parse_definition_files(files)
-    module_src, test_src = Definition.source_generator.generate_definition_source(module_name, files, regions, rules_by_month, custom_methods, tests)
+    regions, rules_by_month, custom_methods, tests = DefinitionFactory.file_parser.parse_definition_files(files)
+    module_src, test_src = DefinitionFactory.source_generator.generate_definition_source(module_name, files, regions, rules_by_month, custom_methods, tests)
 
     return module_src, test_src
   end
