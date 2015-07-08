@@ -14,4 +14,12 @@ class DefinitionFactoryTests < Test::Unit::TestCase
   def test_definition_merger
     assert Holidays::DefinitionFactory.merger.is_a?(Holidays::Definition::Context::Merger)
   end
+
+  def test_holidays_by_month_repository
+    assert Holidays::DefinitionFactory.holidays_by_month_repository.is_a?(Holidays::Definition::Repository::HolidaysByMonth)
+  end
+
+  def test_regions_repository
+    assert Holidays::DefinitionFactory.regions_repository.is_a?(Holidays::Definition::Repository::Regions)
+  end
 end
