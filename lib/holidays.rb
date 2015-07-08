@@ -5,6 +5,7 @@ require 'digest/md5'
 require 'date'
 require 'holidays/definition_factory'
 require 'holidays/date_calculator'
+require 'holidays/option_factory'
 
 # == Region options
 # Holidays can be defined as belonging to one or more regions and sub regions.
@@ -48,8 +49,6 @@ module Holidays
   # Exception thrown when an unknown region is requested.
   class UnknownRegionError < ArgumentError; end
 
-  @@regions = []
-  @@holidays_by_month = {}
   @@proc_cache = {}
 
   @@cache = {}
@@ -128,7 +127,7 @@ module Holidays
       end
     end
 
-    regions, observed, informal = parse_options(options)
+    regions, observed, informal = OptionFactory.parse_options.call(options)
     holidays = []
 
     dates = {}
@@ -141,7 +140,7 @@ module Holidays
 
     dates.each do |year, months|
       months.each do |month|
-        next unless hbm = @@holidays_by_month[month]
+        next unless hbm = DefinitionFactory.holidays_by_month_repository.find_by_month(month)
 
         hbm.each do |h|
           next unless in_region?(regions, h[:regions])
@@ -197,15 +196,7 @@ module Holidays
   #TODO This should not be publicly available. I need to restructure the public
   #     API for this class to something more sensible.
   def self.merge_defs(regions, holidays) # :nodoc:
-    merge_result = DefinitionFactory.merger.call(
-      @@regions,
-      regions,
-      @@holidays_by_month,
-      holidays
-    )
-
-    @@regions = merge_result.updated_known_regions
-    @@holidays_by_month = merge_result.updated_holidays_by_month
+    DefinitionFactory.merger.call(regions, holidays)
   end
 
   def self.easter(year)
@@ -253,7 +244,7 @@ module Holidays
 
   # Returns an array of symbols of all the available holiday regions.
   def self.regions
-    @@regions
+    DefinitionFactory.regions_repository.all
   end
 
   # Load all available holiday definitions
@@ -277,78 +268,12 @@ module Holidays
 
 private
 
-  # Returns [(arr)regions, (bool)observed, (bool)informal]
-  def self.parse_options(*options) # :nodoc:
-    options.flatten!
-    observed = options.delete(:observed) ? true : false
-    informal = options.delete(:informal) ? true : false
-    regions = parse_regions(options)
-    return regions, observed, informal
-  end
-
   def self.get_date(date)
     if date.respond_to?(:to_date)
       date.to_date
     else
       Date.civil(date.year, date.mon, date.mday)
     end
-  end
-
-  # Derive the containing region from a sub region wild-card or a sub region
-  # and load its definition. (Common code factored out from parse_regions)
-  def self.load_containing_region(sub_reg)
-    prefix = sub_reg.split('_').first
-    region_definition = "#{DEFINITIONS_PATH}/#{prefix}"
-    unless @@regions.include?(prefix.to_sym)
-      begin
-        require region_definition
-      rescue LoadError
-        raise UnknownRegionError, "Could not load #{region_definition}"
-      end
-    end
-  end
-
-  # Check regions against list of supported regions and return an array of
-  # symbols.
-  #
-  # If a wildcard region is found (e.g. <tt>:ca_</tt>) it is expanded into all
-  # of its available sub regions.
-  def self.parse_regions(regions) # :nodoc:
-    regions = [regions] unless regions.kind_of?(Array)
-    return [:any] if regions.empty?
-
-    regions = regions.collect { |r| r.to_sym }
-
-    # Found sub region wild-card
-    regions.delete_if do |r|
-      if r.to_s =~ /_$/
-        load_containing_region(r.to_s)
-        regions << @@regions.select { |dr| dr.to_s =~ Regexp.new("^#{r.to_s}") }
-        true
-      end
-    end
-
-    regions.flatten!
-
-    require "#{DEFINITIONS_PATH}/north_america" if regions.include?(:us) # special case for north_america/US cross-linking
-
-    regions.each do |r|
-      unless r == :any or @@regions.include?(r)
-        region_definition = "#{DEFINITIONS_PATH}/#{r.to_s}"
-        begin
-          require region_definition
-        rescue LoadError => e
-          # This could be a sub region that does not have any holiday
-          # definitions of its own; try to load the containing region instead.
-          if r.to_s =~ /_/
-            load_containing_region(r.to_s)
-          else
-            raise UnknownRegionError, "Could not load #{region_definition}"
-          end
-        end
-      end
-    end
-    regions
   end
 
   # Check sub regions.

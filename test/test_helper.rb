@@ -7,6 +7,7 @@ $KCODE = 'u' if RUBY_VERSION =~ /^1\.8/
 
 require 'rubygems'
 require 'test/unit'
+require 'mocha/test_unit'
 require 'date'
 require 'holidays'
 require "#{Holidays::DEFINITIONS_PATH}/ca"
