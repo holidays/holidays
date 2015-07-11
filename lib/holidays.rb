@@ -3,7 +3,7 @@ $:.unshift File.dirname(__FILE__)
 
 require 'date'
 require 'holidays/definition_factory'
-require 'holidays/date_calculator'
+require 'holidays/date_calculator_factory'
 require 'holidays/option_factory'
 
 # == Region options
@@ -148,7 +148,7 @@ module Holidays
               end
             else
               # Calculate the mday
-              mday = h[:mday] || DateCalculator.day_of_month(year, month, h[:week], h[:wday])
+              mday = h[:mday] || DateCalculatorFactory.day_of_month_calculator.call(year, month, h[:week], h[:wday])
             end
 
             # Silently skip bad mdays
@@ -188,25 +188,25 @@ module Holidays
     end
 
     def easter(year)
-      DateCalculator.calculate_easter_for(year)
+      DateCalculatorFactory.easter_calculator.calculate_easter_for(year)
     end
 
     def orthodox_easter(year)
-      DateCalculator.calculate_orthodox_easter_for(year)
+      DateCalculatorFactory.easter_calculator.calculate_orthodox_easter_for(year)
     end
 
     def to_monday_if_sunday(date)
-      DateCalculator.to_monday_if_sunday(date)
+      DateCalculatorFactory.weekend_modifier.to_monday_if_sunday(date)
     end
 
     def to_monday_if_weekend(date)
-      DateCalculator.to_monday_if_weekend(date)
+      DateCalculatorFactory.weekend_modifier.to_monday_if_weekend(date)
     end
 
     # Move Boxing Day if it falls on a weekend, leaving room for Christmas.
     # Used as an observed function.
     def to_weekday_if_boxing_weekend(date)
-      DateCalculator.to_weekday_if_boxing_weekend(date)
+      DateCalculatorFactory.weekend_modifier.to_weekday_if_boxing_weekend(date)
     end
 
     # Call to_weekday_if_boxing_weekend but first get date based on year
@@ -219,7 +219,11 @@ module Holidays
     # Saturday.
     # Used as a callback function.
     def to_weekday_if_weekend(date)
-      DateCalculator.to_weekday_if_weekend(date)
+      DateCalculatorFactory.weekend_modifier.to_weekday_if_weekend(date)
+    end
+
+    def calculate_day_of_month(year, month, day, wday)
+      DateCalculatorFactory.day_of_month_calculator.call(year, month, day, wday)
     end
 
     # Returns an array of symbols all the available holiday definitions.
