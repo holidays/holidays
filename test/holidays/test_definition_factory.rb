@@ -26,4 +26,9 @@ class DefinitionFactoryTests < Test::Unit::TestCase
   def test_cache_repository
     assert Holidays::DefinitionFactory.cache_repository.is_a?(Holidays::Definition::Repository::Cache)
   end
+
+  def test_proc_cache_repository
+    assert Holidays::DefinitionFactory.proc_cache_repository.is_a?(Holidays::Definition::Repository::ProcCache)
+  end
+
 end

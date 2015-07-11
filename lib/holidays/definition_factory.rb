@@ -3,6 +3,7 @@ require 'holidays/definition/context/merger'
 require 'holidays/definition/repository/holidays_by_month'
 require 'holidays/definition/repository/regions'
 require 'holidays/definition/repository/cache'
+require 'holidays/definition/repository/proc_cache'
 
 module Holidays
   module DefinitionFactory
@@ -32,6 +33,10 @@ module Holidays
 
       def cache_repository
         @cache_repo ||= Definition::Repository::Cache.new
+      end
+
+      def proc_cache_repository
+        @proc_cache_repo ||= Definition::Repository::ProcCache.new
       end
     end
   end
