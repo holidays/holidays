@@ -2,6 +2,7 @@ require 'holidays/definition/context/generator'
 require 'holidays/definition/context/merger'
 require 'holidays/definition/repository/holidays_by_month'
 require 'holidays/definition/repository/regions'
+require 'holidays/definition/repository/cache'
 
 module Holidays
   module DefinitionFactory
@@ -27,6 +28,10 @@ module Holidays
 
       def regions_repository
         @regions_repo ||= Definition::Repository::Regions.new
+      end
+
+      def cache_repository
+        @cache_repo ||= Definition::Repository::Cache.new
       end
     end
   end

@@ -158,15 +158,21 @@ class HolidaysTests < Test::Unit::TestCase
     }
   end
 
+  #FIXME - I am not a huge fan of this test as it is written. It depends on the definitions not changing.
+  #        I think that this is fine for an integration test but I think it should be labeled as such.
   def test_caching
+    start_date = Date.civil(2008, 3, 21)
+    end_date = Date.civil(2008, 3, 25)
+    cache_data = Holidays.between(start_date, end_date, :ca, :informal)
+    options = [:ca, :informal]
+
+    Holidays::DefinitionFactory.cache_repository.expects(:cache_between).with(start_date, end_date, cache_data, options)
+
     Holidays.cache_between(Date.civil(2008,3,21), Date.civil(2008,3,25), :ca, :informal)
 
-    # Test that cache has been set
-    cache_key = [:ca, :informal]
-    assert_equal Date.civil(2008,3,21), Holidays.cache_range[cache_key].begin
-    assert_equal Date.civil(2008,3,25), Holidays.cache_range[cache_key].end
-    assert_equal Date.civil(2008,3,21), Holidays.cache[cache_key].first[:date]
-    assert_equal Date.civil(2008,3,24), Holidays.cache[cache_key].last[:date]
+    # Test that cache has been set and it returns the same as before
+    assert_equal 1, Holidays.on(Date.civil(2008, 3, 21), :ca, :informal).length
+    assert_equal 1, Holidays.on(Date.civil(2008, 3, 24), :ca, :informal).length
 
     # Test that correct results are returned outside the cache range, and with no caching
     assert_equal 1, Holidays.on(Date.civil(2035,1,1), :ca, :informal).length

@@ -51,13 +51,6 @@ module Holidays
 
   @@proc_cache = {}
 
-  @@cache = {}
-  @@cache_range = {}
-  class << self
-    def cache_range; @@cache_range; end
-    def cache; @@cache; end
-  end
-
   WEEKS = {:first => 1, :second => 2, :third => 3, :fourth => 4, :fifth => 5, :last => -1, :second_last => -2, :third_last => -3}
   MONTH_LENGTHS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
   DAY_SYMBOLS = Date::DAYNAMES.collect { |n| n.downcase.intern }
@@ -119,12 +112,8 @@ module Holidays
     # get simple dates
     start_date, end_date = get_date(start_date), get_date(end_date)
 
-    if range = @@cache_range[options]
-      if range.begin < start_date && range.end > end_date
-        return @@cache[options].select do |holiday|
-          holiday[:date] >= start_date && holiday[:date] <= end_date
-        end
-      end
+    if cached_holidays = DefinitionFactory.cache_repository.find(start_date, end_date, options)
+      return cached_holidays
     end
 
     regions, observed, informal = OptionFactory.parse_options.call(options)
@@ -189,8 +178,9 @@ module Holidays
   # Allows a developer to explicitly calculate and cache holidays within a given period
   def self.cache_between(start_date, end_date, *options)
     start_date, end_date = get_date(start_date), get_date(end_date)
-    @@cache[options]       = between(start_date, end_date, *options)
-    @@cache_range[options] = start_date..end_date
+    cache_data = between(start_date, end_date, *options)
+
+    DefinitionFactory.cache_repository.cache_between(start_date, end_date, cache_data, options)
   end
 
   #TODO This should not be publicly available. I need to restructure the public

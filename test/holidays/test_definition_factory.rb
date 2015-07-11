@@ -22,4 +22,8 @@ class DefinitionFactoryTests < Test::Unit::TestCase
   def test_regions_repository
     assert Holidays::DefinitionFactory.regions_repository.is_a?(Holidays::Definition::Repository::Regions)
   end
+
+  def test_cache_repository
+    assert Holidays::DefinitionFactory.cache_repository.is_a?(Holidays::Definition::Repository::Cache)
+  end
 end
