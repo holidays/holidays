@@ -26,7 +26,7 @@ module Holidays
             {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pinksteren", :regions => [:nl]}],
       1 => [{:mday => 1, :name => "Nieuwjaar", :regions => [:nl]}],
       4 => [{:mday => 27, :name => "Koningsdag", :regions => [:nl]}],
-      5 => [{:mday => 4, :name => "Dodenherdenking", :regions => [:nl]},
+      5 => [{:mday => 4, :type => :informal, :name => "Dodenherdenking", :regions => [:nl]},
             {:mday => 5, :name => "Bevrijdingsdag", :regions => [:nl]}],
       12 => [{:mday => 5, :type => :informal, :name => "Sinterklaas", :regions => [:nl]},
             {:mday => 25, :name => "Kerstmis", :regions => [:nl]},

@@ -17,6 +17,14 @@ class NzDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2007,12,26) => 'Boxing Day'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :nz, :informal)[0] || {})[:name]
 end
+assert_equal 'ANZAC Day', Date.civil(2015, 4, 25).holidays(:nz)[0][:name]
+assert_equal 'ANZAC Day', Date.civil(2015, 4, 27).holidays(:nz, :observed)[0][:name]
+assert_equal 'ANZAC Day', Date.civil(2016, 4, 25).holidays(:nz)[0][:name]
+assert_equal 'ANZAC Day', Date.civil(2016, 4, 25).holidays(:nz, :observed)[0][:name]
+assert_equal 'Waitangi Day', Date.civil(2015, 2, 6).holidays(:nz)[0][:name]
+assert_equal 'Waitangi Day', Date.civil(2015, 2, 6).holidays(:nz, :observed)[0][:name]
+assert_equal 'Waitangi Day', Date.civil(2016, 2, 6).holidays(:nz)[0][:name]
+assert_equal 'Waitangi Day', Date.civil(2016, 2, 8).holidays(:nz, :observed)[0][:name]
 
   end
 end

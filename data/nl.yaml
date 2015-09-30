@@ -37,6 +37,7 @@ months:
   - name: Dodenherdenking
     regions: [nl]
     mday: 4
+    type: informal
   - name: Bevrijdingsdag
     regions: [nl]
     mday: 5

@@ -21,18 +21,18 @@ end
 assert !Date.civil(2010,5,8).holiday?(:at), '2010-05-08 is not a holiday in Austria'
 
 
-{Date.civil(2007,1,1) => 'New Year\'s Day', 
- Date.civil(2007,4,8) => 'Easter',
- Date.civil(2007,4,9) => 'Easter Monday',
- Date.civil(2007,5,1) => 'Labour Day',
+{Date.civil(2007,1,1) => 'Jour de l\'an',
+ Date.civil(2007,4,8) => 'Pâques',
+ Date.civil(2007,4,9) => 'Lundi de Pâques',
+ Date.civil(2007,5,1) => 'Fête du travail',
  Date.civil(2007,5,17) => 'Ascension',
- Date.civil(2007,5,27) => 'Pentecost',
- Date.civil(2007,5,28) => 'Pentecost Monday',
- Date.civil(2007,7,21) => 'National holiday',
- Date.civil(2007,8,15) => 'Assumption of Mary',
- Date.civil(2007,11,1) => 'All Saints',
- Date.civil(2007,11,11) => 'Armistice Day',
- Date.civil(2007,12,25) => 'Christmas'}.each do |date, name|
+ Date.civil(2007,5,27) => 'Pentecôte',
+ Date.civil(2007,5,28) => 'Lundi de Pentecôte',
+ Date.civil(2007,7,21) => 'Fête nationale',
+ Date.civil(2007,8,15) => 'Assomption',
+ Date.civil(2007,11,1) => 'Toussaint',
+ Date.civil(2007,11,11) => 'Armistice 1918',
+ Date.civil(2007,12,25) => 'Noël'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :be, :informal)[0] || {})[:name]
 end
 
@@ -669,10 +669,11 @@ end
 
 
 {Date.civil(2013,1,1) => 'Nový rok',
+ Date.civil(2013,1,6) => 'Zjavenie Pána (Traja králi)',
  Date.civil(2013,3,29) => 'Veľký piatok',
  Date.civil(2013,4,1) => 'Veľkonočný pondelok',
  Date.civil(2013,5,1) => 'Sviatok práce',
- Date.civil(2013,5,8) => 'Deň víťazstva',
+ Date.civil(2013,5,8) => 'Deň víťazstva nad fašizmom',
  Date.civil(2013,7,5) => 'Sviatok svätého Cyrila a svätého Metoda',
  Date.civil(2013,8,29) => 'Výročie Slovenského národného povstania',
  Date.civil(2013,9,1) => 'Deň Ústavy Slovenskej republiky',
@@ -681,7 +682,7 @@ end
  Date.civil(2013,11,17) => 'Deň boja za slobodu a demokraciu',
  Date.civil(2013,12,24) => 'Štedrý deň',
  Date.civil(2013,12,25) => '1. sviatok vianočný',
- Date.civil(2013,12,26) => '2. sviatek vianočný'}.each do |date, name|
+ Date.civil(2013,12,26) => '2. sviatok vianočný'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :sk, :informal)[0] || {})[:name]
 end
 

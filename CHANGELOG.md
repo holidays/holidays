@@ -1,5 +1,26 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 2.2.0
+
+* Correct 'informal' type for Dodenherdenking holiday in NL definitions (https://github.com/MathijsK93)
+
+## 2.1.0
+
+* Updated Slovak holiday definitions (https://github.com/guitarman)
+* Fix Japanese non-Monday substitute holidays (https://github.com/shuhei)
+* Fixed typo in Slovak holiday definitions (https://github.com/martinsabo)
+* Updated New Zealand definitions to reflect new weekend-to-monday rules (https://github.com/SebastianEdwards)
+* Fix Australian definitions (https://github.com/ghiculescu)
+
+## 2.0.0
+
+* Add test coverage
+* Remove support for Ruby 1.8.7 and REE. (https://github.com/itsmechlark)
+* Add support for Ruby 2.2 (https://github.com/itsmechlark)
+* Add PH holidays (https://github.com/itsmechlark)
+* Belgian holidays now written in French instead of English (https://github.com/maximerety)
+* Update California (USA) holidays to include Cesar Chavez and Thanksgiving (https://github.com/evansagge)
+
 ## 1.2.0
 
 * Remove inauguration day from USA Federal Reserve definitions (https://github.com/aripollak)

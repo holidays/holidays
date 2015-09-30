@@ -1,0 +1,87 @@
+# Philippines holiday definitions for the Ruby Holiday gem.
+#
+# Updated: 2015-03-25 by itsmechlark
+# Sources:
+# - http://www.gov.ph/2014/07/23/list-of-nationwide-holidays-for-2015/
+# - http://www.timeanddate.com/holidays/philippines/
+---
+months:
+  0:
+  - name: Maundy Thursday
+    regions: [ph]
+    function: easter(year)-3
+  - name: Good Friday
+    regions: [ph]
+    function: easter(year)-2
+  - name: Holy Saturday
+    regions: [ph]
+    function: easter(year)-1
+  - name: Easter Sunday
+    regions: [ph]
+    function: easter(year)
+  1:
+  - name: New Year’s Day
+    regions: [ph]
+    mday: 1
+  2:
+  - name: People Power Anniversary
+    regions: [ph]
+    mday: 25
+  4:
+  - name: The Day of Valor
+    regions: [ph]
+    mday: 9
+  5:
+  - name: Labor Day
+    regions: [ph]
+    mday: 1
+  6:
+  - name: Independence Day
+    regions: [ph]
+    mday: 12
+  8:
+  - name: Ninoy Aquino Day
+    regions: [ph]
+    mday: 21
+  - name: National Heroes Day
+    regions: [ph]
+    function: ph_heroes_day(year)
+  11:
+  - name: All Saints Day
+    regions: [ph]
+    mday: 1
+  - name: Bonifacio Day
+    regions: [ph]
+    mday: 30
+  12:
+  - name: Christmas Day
+    regions: [ph]
+    mday: 25
+  - name: Rizal Day
+    regions: [ph]
+    mday: 30
+  - name: New Year's Eve
+    regions: [ph]
+    mday: 31
+methods:
+  ph_heroes_day: |
+    # last Monday of August
+    def self.ph_heroes_day(year)
+      date = Date.new(year, 8, -1)
+      return date if date.wday == 1
+      date -= date.wday - 1
+    end
+tests: |
+    {Date.civil(2015,2,25) => 'People Power Anniversary',
+     Date.civil(2015,4,3) => 'Good Friday',
+     Date.civil(2015,4,9) => 'The Day of Valor',
+     Date.civil(2015,5,1) => 'Labor Day',
+     Date.civil(2015,6,12) => 'Independence Day',
+     Date.civil(2015,8,21) => 'Ninoy Aquino Day',
+     Date.civil(2015,8,31) => 'National Heroes Day',
+     Date.civil(2015,11,1) => 'All Saints Day',
+     Date.civil(2015,11,30) => 'Bonifacio Day',
+     Date.civil(2015,12,25) => 'Christmas Day',
+     Date.civil(2015,12,30) => 'Rizal Day'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :ph)[0] || {})[:name]
+    end
