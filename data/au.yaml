@@ -105,7 +105,10 @@ months:
     regions: [au_act]
     week: -1
     wday: 1
-  10: 
+  10:
+  - name: Friday before the AFL Grand Final
+    regions: [au_vic]
+    function: afl_grand_final(year)
   - name: Labour Day
     regions: [au_act, au_nsw, au_sa]
     week: 1
@@ -143,6 +146,12 @@ months:
     mday: 26
     observed: to_weekday_if_boxing_weekend
 methods:
+  afl_grand_final: |
+    def self.afl_grand_final(year)
+      if year == 2015
+        Date.civil(2015, 10, 2)
+      end
+    end    
   qld_queens_bday_october: |
     # http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
     # celebrated twice in 2012
@@ -263,6 +272,9 @@ tests: |
 
     assert_equal 'Melbourne Cup Day', Date.civil(2014,11,4).holidays(:au_vic_melbourne)[0][:name]
     assert_equal 'Melbourne Cup Day', Date.civil(2015,11,3).holidays(:au_vic_melbourne)[0][:name]
+
+    assert_equal 'Friday before the AFL Grand Final', Date.civil(2015,10,2).holidays(:au_vic)[0][:name]
+    assert_nil Date.civil(2016,10,2).holidays(:au_vic)[0]
 
     assert_equal 'Royal Hobart Regatta', Date.civil(2012, 2, 13).holidays(:au_tas_south)[0][:name]
     assert_equal 'Royal Hobart Regatta', Date.civil(2014, 2, 10).holidays(:au_tas_south)[0][:name]

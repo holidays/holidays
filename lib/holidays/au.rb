@@ -42,7 +42,8 @@ module Holidays
       8 => [{:wday => 3, :week => -3, :name => "Ekka", :regions => [:au_qld_brisbane]}],
       9 => [{:wday => 1, :week => -1, :name => "Queen's Birthday", :regions => [:au_wa]},
             {:wday => 1, :week => -1, :name => "Family & Community Day", :regions => [:au_act]}],
-      10 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:au_act, :au_nsw, :au_sa]},
+      10 => [{:function => lambda { |year| Holidays.afl_grand_final(year) }, :function_id => "afl_grand_final(year)", :name => "Friday before the AFL Grand Final", :regions => [:au_vic]},
+            {:wday => 1, :week => 1, :name => "Labour Day", :regions => [:au_act, :au_nsw, :au_sa]},
             {:function => lambda { |year| Holidays.qld_labour_day_october(year) }, :function_id => "qld_labour_day_october(year)", :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "Labour Day", :regions => [:au_qld]},
             {:function => lambda { |year| Holidays.qld_queens_bday_october(year) }, :function_id => "qld_queens_bday_october(year)", :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "Queen's Birthday", :regions => [:au_qld]},
             {:function => lambda { |year| Holidays.hobart_show_day(year) }, :function_id => "hobart_show_day(year)", :name => "Royal Hobart Show", :regions => [:au_tas_south]}],
@@ -54,6 +55,13 @@ module Holidays
       }
     end
   end
+
+def self.afl_grand_final(year)
+  if year == 2015
+    Date.civil(2015, 10, 2)
+  end
+end    
+
 
 # http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
 # celebrated twice in 2012
