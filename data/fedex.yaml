@@ -32,9 +32,8 @@ months:
     regions: [fedex]
     wday: 4
   - name: Day After Thanksgiving
-    week: 4
+    function: day_after_thanksgiving(year)
     regions: [fedex]
-    wday: 5
   12:
   - name: Christmas Day
     regions: [fedex]
@@ -43,6 +42,11 @@ months:
   - name: New Year's Eve
     regions: [fedex]
     mday: 31
+methods:
+  day_after_thanksgiving: |
+    def self.day_after_thanksgiving(year)
+      Date.calculate_mday(year, 11, 4, 4) + 1
+    end
 tests: |
     {Date.civil(2015,1,1) => 'New Year\'s Day',
      Date.civil(2015,5,25) => 'Memorial Day',
@@ -50,6 +54,8 @@ tests: |
      Date.civil(2015,9,7) => 'Labor Day',
      Date.civil(2015,11,26) => 'Thanksgiving',
      Date.civil(2015,11,27) => 'Day After Thanksgiving',
+     Date.civil(2013,11,28) => 'Thanksgiving',
+     Date.civil(2013,11,29) => 'Day After Thanksgiving',
      Date.civil(2015,12,25) => 'Christmas Day',
      Date.civil(2015,12,31) => 'New Year\'s Eve',}.each do |date, name|
       assert_equal name, (Holidays.on(date, :ups)[0] || {})[:name]
