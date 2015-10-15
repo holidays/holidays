@@ -13,7 +13,7 @@
 months:
   0:
   - name: Jueves Santo
-    regions: [es_pv, es_ct, es_na, es_v, es_vc, es_an]
+    regions: [es_pv, es_na, es_an, es_ib, es_cm, es_mu, es_m, es_ar, es_cl, es_cn, es_lo, es_ga, es_ce, es_o, es_ex]
     function: easter(year)-3
   - name: Viernes Santo
     regions: [es]
@@ -45,11 +45,11 @@ months:
     mday: 19
     observed: to_monday_if_sunday
   4:
-  - name: San Jorge
-    regions: [es_ar, es_cl]
+  - name: Día de Castilla y León
+    regions: [es_cl]
     mday: 23
     observed: to_monday_if_sunday
-  - name: Día de Aragón
+  - name: San Jorge, Día de Aragón
     regions: [es_ar]
     mday: 23
     observed: to_monday_if_sunday
