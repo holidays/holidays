@@ -14,8 +14,6 @@ class CmeDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2009,5,25) => "Memorial Day",
  Date.civil(2009,7,3) => "Independence Day",
  Date.civil(2009,9,7) => "Labor Day",
- Date.civil(2009,10,12) => "Columbus Day",
- Date.civil(2009,11,11) => "Veterans Day",
  Date.civil(2009,11,26) => "Thanksgiving Day",
  Date.civil(2009,12,25) => "Christmas Day",
 
@@ -26,8 +24,6 @@ class CmeDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2010,5,31) => "Memorial Day",
  Date.civil(2010,7,5) => "Independence Day",
  Date.civil(2010,9,6) => "Labor Day",
- Date.civil(2010,10,11) => "Columbus Day",
- Date.civil(2010,11,11) => "Veterans Day",
  Date.civil(2010,11,25) => "Thanksgiving Day",
  Date.civil(2010,12,24) => "Christmas Day", 
 
@@ -37,8 +33,6 @@ class CmeDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2011,5,30) => "Memorial Day",
  Date.civil(2011,7,4) => "Independence Day",
  Date.civil(2011,9,5) => "Labor Day",
- Date.civil(2011,10,10) => "Columbus Day",
- Date.civil(2011,11,11) => "Veterans Day",
  Date.civil(2011,11,24) => "Thanksgiving Day",
  Date.civil(2011,12,26) => "Christmas Day",
 
@@ -49,8 +43,6 @@ class CmeDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2012,5,28) => "Memorial Day",
  Date.civil(2012,7,4) => "Independence Day",
  Date.civil(2012,9,3) => "Labor Day",
- Date.civil(2012,10,8) => "Columbus Day",
- Date.civil(2012,11,11) => "Veterans Day",
  Date.civil(2012,11,22) => "Thanksgiving Day",
  Date.civil(2012,12,25) => "Christmas Day",
 
@@ -61,8 +53,6 @@ class CmeDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2013,5,27) => "Memorial Day",
  Date.civil(2013,7,4) => "Independence Day",
  Date.civil(2013,9,2) => "Labor Day",
- Date.civil(2013,10,14) => "Columbus Day",
- Date.civil(2013,11,11) => "Veterans Day",
  Date.civil(2013,11,28) => "Thanksgiving Day",
  Date.civil(2013,12,25) => "Christmas Day",
  
@@ -73,8 +63,6 @@ class CmeDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2014,5,26) => "Memorial Day",
  Date.civil(2014,7,4) => "Independence Day",
  Date.civil(2014,9,1) => "Labor Day",
- Date.civil(2014,10,13) => "Columbus Day",
- Date.civil(2014,11,11) => "Veterans Day",
  Date.civil(2014,11,27) => "Thanksgiving Day",
  Date.civil(2014,12,25) => "Christmas Day",
  
@@ -85,8 +73,6 @@ class CmeDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2015,5,25) => "Memorial Day",
  Date.civil(2015,7,3) => "Independence Day",
  Date.civil(2015,9,7) => "Labor Day",
- Date.civil(2015,10,12) => "Columbus Day",
- Date.civil(2015,11,11) => "Veterans Day",
  Date.civil(2015,11,26) => "Thanksgiving Day",
  Date.civil(2015,12,25) => "Christmas Day"
 
