@@ -31,4 +31,6 @@ module Holidays
 
 end
 
-Holidays.merge_defs(Holidays::ECB_TARGET.defined_regions, Holidays::ECB_TARGET.holidays_by_month)
+defined_regions = Holidays::ECB_TARGET.defined_regions
+holidays_by_month = Holidays::ECB_TARGET.holidays_by_month
+Holidays.merge_defs(defined_regions, holidays_by_month)

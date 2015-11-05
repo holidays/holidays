@@ -68,4 +68,6 @@ end
 
 end
 
-Holidays.merge_defs(Holidays::FI.defined_regions, Holidays::FI.holidays_by_month)
+defined_regions = Holidays::FI.defined_regions
+holidays_by_month = Holidays::FI.holidays_by_month
+Holidays.merge_defs(defined_regions, holidays_by_month)

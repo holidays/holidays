@@ -45,12 +45,12 @@ namespace :generate do
   task :manifest do
     File.open("lib/holidays/MANIFEST", "w") do |file|
       file.puts <<-EOH
-==== Regional definitions
-The following definition files are included in this installation:
+        ==== Regional definitions
+        The following definition files are included in this installation:
 
-  EOH
+      EOH
       FileList.new('lib/holidays/*.rb').exclude(/version/).each do |str|
-        file.puts('* ' + str.gsub(/^lib\/|\.rb$/, ''))
+        file.puts('* ' + str.gsub(%r(/^lib\/|\.rb$/), ''))
       end
     end
     puts "Updated manifest file."

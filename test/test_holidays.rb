@@ -50,7 +50,9 @@ class HolidaysTests < Test::Unit::TestCase
     assert_equal(false, Holidays.full_week?(Date.civil(2012, 9, 5), :us))
     # Should be 10 non-full weeks in the year (in the US)
     weeks_in_2012 = Date.commercial(2013, -1).cweek
-    holidays_in_2012 = weeks_in_2012.times.count { |week| Holidays.full_week?(Date.commercial(2012, week + 1), :us) == false }
+    holidays_in_2012 = weeks_in_2012.times.count do |week|
+      Holidays.full_week?(Date.commercial(2012, week + 1), :us) == false
+    end
     assert_equal 10, holidays_in_2012
   end
 
@@ -148,13 +150,13 @@ class HolidaysTests < Test::Unit::TestCase
   end
 
   def test_sorting
-    (1..10).each{|year|
-      (1..12).each{|month|
+    (1..10).each do |year|
+      (1..12).each do |month|
         holidays = Holidays.between(Date.civil(year, month, 1), Date.civil(year, month, 28), :gb_)
-        holidays.each_with_index{|holiday, index|
+        holidays.each_with_index do |holiday, index|
           assert holiday[:date] >= holidays[index - 1][:date] if index > 0
-        }
-      }
-    }
+        end
+      end
+    end
   end
 end

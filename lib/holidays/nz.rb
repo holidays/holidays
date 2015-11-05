@@ -70,4 +70,6 @@ end
 
 end
 
-Holidays.merge_defs(Holidays::NZ.defined_regions, Holidays::NZ.holidays_by_month)
+defined_regions = Holidays::NZ.defined_regions
+holidays_by_month = Holidays::NZ.holidays_by_month
+Holidays.merge_defs(defined_regions, holidays_by_month)

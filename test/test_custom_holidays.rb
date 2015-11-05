@@ -24,7 +24,9 @@ class CustomHolidaysTest < Test::Unit::TestCase
       Holidays.on(Date.civil(2013, 3, 1), :custom_multiple_files_govt)
     end
 
-    Holidays.load_custom('test/data/test_multiple_custom_holiday_defs.yaml', 'test/data/test_custom_govt_holiday_defs.yaml')
+    multiple_custom_holiday_defs = 'test/data/test_multiple_custom_holiday_defs.yaml'
+    multiple_custom_gov_holiday_defs = 'test/data/test_custom_govt_holiday_defs.yaml'
+    Holidays.load_custom(multiple_custom_holiday_defs, multiple_custom_gov_holiday_defs)
 
     assert_not_equal [], Holidays.on(Date.civil(2013, 10, 5), :custom_multiple_files)
     assert_not_equal [], Holidays.on(Date.civil(2013, 3, 1), :custom_multiple_files)

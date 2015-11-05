@@ -3,6 +3,9 @@ AllCops:
   - "**/*.gemspec"
   - "**/Gemfile"
   - "**/Rakefile"
+  Exclude:
+  - "lib/holidays/**/*"
+  - "test/defs/**/*"
   DisplayCopNames: false
   StyleGuideCopsOnly: false
 Documentation:
