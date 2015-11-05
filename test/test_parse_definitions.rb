@@ -1,7 +1,6 @@
 require File.expand_path(File.dirname(__FILE__)) + '/test_helper'
 
 class ParseDefinitionsTests < Test::Unit::TestCase
-
   def test_single_parse_definition_file
     module_src, test_src = Holidays.parse_definition_files_and_return_source(:test_region, 'test/data/test_single_custom_holiday_defs.yaml')
 

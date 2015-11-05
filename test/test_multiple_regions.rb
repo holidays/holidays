@@ -4,21 +4,20 @@ require 'holidays/ie'
 
 class MultipleRegionsTests < Test::Unit::TestCase
   def setup
-    @date = Date.civil(2008,1,1)
+    @date = Date.civil(2008, 1, 1)
   end
 
   def test_defining_holidays
-    h = Holidays.on(Date.civil(2008,12,26), :ie)
+    h = Holidays.on(Date.civil(2008, 12, 26), :ie)
     assert_equal 'St. Stephen\'s Day', h[0][:name]
 
-    h = Holidays.on(Date.civil(2008,5,9), :gb_)
+    h = Holidays.on(Date.civil(2008, 5, 9), :gb_)
     assert_equal 'Liberation Day', (h[0] || {})[:name]
 
-
-    h = Holidays.on(Date.civil(2008,5,9), :je)
+    h = Holidays.on(Date.civil(2008, 5, 9), :je)
     assert_equal 'Liberation Day', h[0][:name]
 
-    h = Holidays.on(Date.civil(2008,5,9), :gb)
+    h = Holidays.on(Date.civil(2008, 5, 9), :gb)
     assert h.empty?
   end
 end
