@@ -111,4 +111,6 @@ end
 
 end
 
-Holidays.merge_defs(Holidays::JP.defined_regions, Holidays::JP.holidays_by_month)
+defined_regions = Holidays::JP.defined_regions
+holidays_by_month = Holidays::JP.holidays_by_month
+Holidays.merge_defs(defined_regions, holidays_by_month)

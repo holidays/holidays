@@ -34,4 +34,6 @@ module Holidays
 
 end
 
-Holidays.merge_defs(Holidays::PJM.defined_regions, Holidays::PJM.holidays_by_month)
+defined_regions = Holidays::PJM.defined_regions
+holidays_by_month = Holidays::PJM.holidays_by_month
+Holidays.merge_defs(defined_regions, holidays_by_month)

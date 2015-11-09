@@ -82,4 +82,6 @@ module Holidays
 
 end
 
-Holidays.merge_defs(Holidays::UNITED_NATIONS.defined_regions, Holidays::UNITED_NATIONS.holidays_by_month)
+defined_regions = Holidays::UNITED_NATIONS.defined_regions
+holidays_by_month = Holidays::UNITED_NATIONS.holidays_by_month
+Holidays.merge_defs(defined_regions, holidays_by_month)

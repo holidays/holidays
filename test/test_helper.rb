@@ -14,7 +14,7 @@ module Holidays
     DEFINED_REGIONS = [:test]
 
     HOLIDAYS_BY_MONTH = {
-      Date.today.mon => [{:mday => Date.today.mday, :name => "Test Holiday", :regions => [:test]}]
+      Date.today.mon => [{ mday: Date.today.mday, name: "Test Holiday", regions: [:test] }]
     }
   end
 end

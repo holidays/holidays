@@ -1,7 +1,6 @@
 require File.expand_path(File.dirname(__FILE__)) + '/test_helper'
 
 class MultipleRegionsTests < Test::Unit::TestCase
-
   def test_definition_dir
     assert File.directory?(Holidays::DEFINITION_PATH)
   end
@@ -11,7 +10,7 @@ class MultipleRegionsTests < Test::Unit::TestCase
     assert_equal def_count, defs.size
 
     defs.each do |f|
-      assert f.kind_of?(String)
+      assert f.is_a?(String)
       assert File.exists?(f)
     end
   end
@@ -20,13 +19,12 @@ class MultipleRegionsTests < Test::Unit::TestCase
     defs = Holidays.available(false)
     assert_equal def_count, defs.size
 
-    defs.each { |f| assert f.kind_of?(Symbol) }
+    defs.each { |f| assert f.is_a?(Symbol) }
 
     # some spot checks
     assert defs.include?(:ca)
     assert defs.include?(:united_nations)
   end
-
 
   def test_loading_all
     Holidays.load_all
@@ -36,9 +34,9 @@ class MultipleRegionsTests < Test::Unit::TestCase
     assert holidays.size > 15
 
     # some spot checks
-    assert holidays.any? { |h| h[:name] == 'Staatsfeiertag' }  # :at
+    assert holidays.any? { |h| h[:name] == 'Staatsfeiertag' } # :at
     assert holidays.any? { |h| h[:name] == 'Dia do Trabalho' } # :br
-    assert holidays.any? { |h| h[:name] == 'Vappu' }           # :fi
+    assert holidays.any? { |h| h[:name] == 'Vappu' } # :fi
   end
 
   def test_getting_regions
@@ -52,14 +50,15 @@ class MultipleRegionsTests < Test::Unit::TestCase
   end
 
   def test_load_subregion
-    Holidays.send(:remove_const, :DE) #unload de module so that is has to be loaded again
+    Holidays.send(:remove_const, :DE) # unload de module so that is has to be loaded again
     Holidays.send(:class_variable_set, :@@regions, []) # reset regions
     holidays = Holidays.on(Date.civil(2014, 1, 1), :de_bb)
 
     assert holidays.any? { |h| h[:name] == 'Neujahrstag' }
   end
 
-private
+  private
+
   def def_count
     Dir.glob(Holidays::DEFINITION_PATH + '/*.rb').size
   end

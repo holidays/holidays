@@ -507,4 +507,6 @@ end
 
 end
 
-Holidays.merge_defs(Holidays::EUROPE.defined_regions, Holidays::EUROPE.holidays_by_month)
+defined_regions = Holidays::EUROPE.defined_regions
+holidays_by_month = Holidays::EUROPE.holidays_by_month
+Holidays.merge_defs(defined_regions, holidays_by_month)

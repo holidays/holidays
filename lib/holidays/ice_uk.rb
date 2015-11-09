@@ -36,4 +36,6 @@ module Holidays
 
 end
 
-Holidays.merge_defs(Holidays::ICE_UK.defined_regions, Holidays::ICE_UK.holidays_by_month)
+defined_regions = Holidays::ICE_UK.defined_regions
+holidays_by_month = Holidays::ICE_UK.holidays_by_month
+Holidays.merge_defs(defined_regions, holidays_by_month)

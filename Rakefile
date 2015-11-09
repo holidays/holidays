@@ -11,7 +11,7 @@ Rake::TestTask.new(:test) do |t|
   t.test_files = FileList['test/**/test*.rb']
 end
 
-task :default => :test
+task default: :test
 
 namespace :generate do
   DATA_PATH = 'data'
@@ -29,11 +29,11 @@ namespace :generate do
       files = files.collect { |f| "#{DATA_PATH}/#{f}" }.uniq
 
       module_src, test_src = Holidays.parse_definition_files_and_return_source(region, files)
-      File.open("lib/holidays/#{region.downcase.to_s}.rb","w") do |file|
+      File.open("lib/holidays/#{region.downcase}.rb", "w") do |file|
         file.puts module_src
       end
       unless test_src.empty?
-        File.open("test/defs/test_defs_#{region.downcase.to_s}.rb","w") do |file|
+        File.open("test/defs/test_defs_#{region.downcase}.rb", "w") do |file|
           file.puts test_src
         end
       end
@@ -43,19 +43,18 @@ namespace :generate do
 
   desc 'Build the definition manifest'
   task :manifest do
-    File.open("lib/holidays/MANIFEST","w") do |file|
+    File.open("lib/holidays/MANIFEST", "w") do |file|
       file.puts <<-EOH
-==== Regional definitions
-The following definition files are included in this installation:
+        ==== Regional definitions
+        The following definition files are included in this installation:
 
-  EOH
+      EOH
       FileList.new('lib/holidays/*.rb').exclude(/version/).each do |str|
-        file.puts('* ' + str.gsub(/^lib\/|\.rb$/, ''))
+        file.puts('* ' + str.gsub(%r(/^lib\/|\.rb$/), ''))
       end
     end
     puts "Updated manifest file."
   end
 end
 
-task :generate => ['generate:definitions', 'generate:manifest']
-
+task generate: ['generate:definitions', 'generate:manifest']

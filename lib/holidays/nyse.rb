@@ -34,4 +34,6 @@ module Holidays
 
 end
 
-Holidays.merge_defs(Holidays::NYSE.defined_regions, Holidays::NYSE.holidays_by_month)
+defined_regions = Holidays::NYSE.defined_regions
+holidays_by_month = Holidays::NYSE.holidays_by_month
+Holidays.merge_defs(defined_regions, holidays_by_month)

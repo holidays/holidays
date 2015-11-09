@@ -51,7 +51,7 @@ module Holidays
   @@holidays_by_month = {}
   @@proc_cache = {}
 
-  WEEKS = {:first => 1, :second => 2, :third => 3, :fourth => 4, :fifth => 5, :last => -1, :second_last => -2, :third_last => -3}
+  WEEKS = { first: 1, second: 2, third: 3, fourth: 4, fifth: 5, last: -1, second_last: -2, third_last: -3 }
   MONTH_LENGTHS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
   DAY_SYMBOLS = Date::DAYNAMES.collect { |n| n.downcase.intern }
   DEFINITION_PATH = File.expand_path(File.dirname(__FILE__) + '/holidays/')
@@ -66,13 +66,15 @@ module Holidays
   #
   # Also available via Date#holidays.
   def self.on(date, *options)
-    self.between(date, date, options)
+    between(date, date, options)
   end
 
   # Does the given work-week have any holidays?
   #
   # [<tt>date</tt>]   A Date object.
-  # [<tt>:options</tt>] One or more region symbols, and/or <tt>:informal</tt>. Automatically includes <tt>:observed</tt>. If you don't want this, pass <tt>:no_observed</tt>
+  # [<tt>:options</tt>] One or more region symbols, and/or <tt>:informal</tt>.
+  # Automatically includes <tt>:observed</tt>.
+  # If you don't want this, pass <tt>:no_observed</tt>
   #
   # The given Date can be any day of the week.
   # Returns true if any holidays fall on Monday - Friday of the given week.
@@ -83,7 +85,7 @@ module Holidays
     end_date = date + days_to_friday
     options += [:observed] unless options.include?(:no_observed)
     options.delete(:no_observed)
-    self.between(start_date, end_date, options).empty?
+    between(start_date, end_date, options).empty?
   end
 
   # Get all holidays occuring between two dates, inclusively.
@@ -139,14 +141,14 @@ module Holidays
           next unless in_region?(regions, h[:regions])
 
           # Skip informal holidays unless they have been requested
-          next if h[:type] == :informal and not informal
+          next if h[:type] == :informal && !informal
 
           if h[:function]
             # Holiday definition requires a calculation
             result = call_proc(h[:function], year)
 
             # Procs may return either Date or an integer representing mday
-            if result.kind_of?(Date)
+            if result.is_a?(Date)
               month = result.month
               mday = result.mday
             else
@@ -164,19 +166,18 @@ module Holidays
 
           # If the :observed option is set, calculate the date when the holiday
           # is observed.
-          if observed and h[:observed]
+          if observed && h[:observed]
             date = call_proc(h[:observed], date)
           end
 
           if date.between?(start_date, end_date)
-            holidays << {:date => date, :name => h[:name], :regions => h[:regions]}
+            holidays << { date: date, name: h[:name], regions: h[:regions] }
           end
-
         end
       end
     end
 
-    holidays.sort{|a, b| a[:date] <=> b[:date] }
+    holidays.sort { |a, b| a[:date] <=> b[:date] }
   end
 
   # Merge a new set of definitions into the Holidays module.
@@ -190,22 +191,27 @@ module Holidays
     holidays.each do |month, holiday_defs|
       @@holidays_by_month[month] = [] unless @@holidays_by_month[month]
       holiday_defs.each do |holiday_def|
+        exists = false
+        @@holidays_by_month[month].each do |ex|
+          # TODO: gross.
+          if ex[:name] == holiday_def[:name] &&
+             ex[:wday] == holiday_def[:wday] &&
+             ex[:mday] == holiday_def[:mday] &&
+             ex[:week] == holiday_def[:week] &&
+             ex[:function_id] == holiday_def[:function_id] &&
+             ex[:type] == holiday_def[:type] &&
+             ex[:observed_id] == holiday_def[:observed_id]
+            # append regions
+            ex[:regions] << holiday_def[:regions]
 
-          exists = false
-          @@holidays_by_month[month].each do |ex|
-            # TODO: gross.
-            if ex[:name] == holiday_def[:name] and ex[:wday] == holiday_def[:wday] and ex[:mday] == holiday_def[:mday] and ex[:week] == holiday_def[:week] and ex[:function_id] == holiday_def[:function_id] and ex[:type] == holiday_def[:type] and ex[:observed_id] == holiday_def[:observed_id]
-              # append regions
-              ex[:regions] << holiday_def[:regions]
-
-              # Should do this once we're done
-              ex[:regions].flatten!
-              ex[:regions].uniq!
-              exists = true
-            end
+            # Should do this once we're done
+            ex[:regions].flatten!
+            ex[:regions].uniq!
+            exists = true
           end
+        end
 
-          @@holidays_by_month[month] << holiday_def  unless exists
+        @@holidays_by_month[month] << holiday_def unless exists
       end
     end
   end
@@ -239,24 +245,25 @@ module Holidays
     y = year
     g = y % 19
     i = (19 * g + 15) % 30
-    j = (year + year/4 + i) % 7
+    j = (year + year / 4 + i) % 7
     j_month = 3 + (i - j + 40) / 44
     j_day = i - j + 28 - 31 * (j_month / 4)
     j_date = Date.civil(year, j_month, j_day)
     case
       # up until 1582, julian and gregorian easter dates were identical
-      when year <= 1582
-        offset = 0
+    when year <= 1582
+      offset = 0
       # between the years 1583 and 1699 10 days are added to the julian day count
-      when (year >= 1583 and year <= 1699)
-        offset = 10
-      # after 1700, 1 day is added for each century, except if the century year is exactly divisible by 400 (in which case no days are added).
+    when (year >= 1583 && year <= 1699)
+      offset = 10
+      # after 1700, 1 day is added for each century,
+      # except if the century year is exactly divisible by 400 (in which case no days are added).
       # Safe until 4100 AD, when one leap day will be removed.
-      when year >= 1700
-        offset = (year - 1700).divmod(100)[0] + ((year - year.divmod(100)[1]).divmod(400)[1] == 0 ? 0 : 1) - (year - year.divmod(100)[1] - 1700).divmod(400)[0] + 10
+    when year >= 1700
+      offset = (year - 1700).divmod(100)[0] + ((year - year.divmod(100)[1]).divmod(400)[1] == 0 ? 0 : 1) - (year - year.divmod(100)[1] - 1700).divmod(400)[0] + 10
     end
     # add offset to the julian day
-    return Date.jd(j_date.jd + offset)
+    Date.jd(j_date.jd + offset)
   end
 
   # Move date to Monday if it occurs on a Sunday.
@@ -268,7 +275,7 @@ module Holidays
 
   def self.to_monday_if_sunday_to_friday_if_saturday(date)
     if date.wday == 0
-      date += 1 
+      date += 1
     elsif date.wday == 6
       date -= 1
     end
@@ -292,7 +299,7 @@ module Holidays
   # Move Boxing Day if it falls on a weekend, leaving room for Christmas.
   # Used as a callback function.
   def self.to_weekday_if_boxing_weekend(date)
-    if date.wday == 6 or date.wday == 0
+    if date.wday == 6 || date.wday == 0
       date += 2
     elsif date.wday == 1
       date += 1
@@ -324,31 +331,32 @@ module Holidays
 
   # Load all available holiday definitions
   def self.load_all
-    self.available(true).each { |path| require path }
+    available(true).each { |path| require path }
   end
 
   # Parses provided holiday definition file(s) and loads them so that they are immediately available.
   def self.load_custom(*files)
-    regions, rules_by_month, custom_methods, tests = self.parse_definition_files(files)
+    regions, rules_by_month, _custom_methods, _tests = parse_definition_files(files)
     merge_defs(regions, rules_by_month)
   end
 
   # Parses provided holiday definition file(s) and returns strings containing the generated module and test source
-  def self.parse_definition_files_and_return_source(module_name, *files)
-    regions, rules_by_month, custom_methods, tests = self.parse_definition_files(files)
-    module_src, test_src = self.generate_definition_source(module_name, files, regions, rules_by_month, custom_methods, tests)
+  def self.parse_definition_files_and_return_source(mod_name, *files)
+    regions, rules_by_month, custom_methods, tests = parse_definition_files(files)
+    mod_src, test_src = generate_definition_source(mod_name, files, regions, rules_by_month, custom_methods, tests)
 
-    return module_src, test_src
+    [mod_src, test_src]
   end
 
-private
+  private
+
   # Returns [(arr)regions, (bool)observed, (bool)informal]
   def self.parse_options(*options) # :nodoc:
     options.flatten!
     observed = options.delete(:observed) ? true : false
     informal = options.delete(:informal) ? true : false
     regions = parse_regions(options)
-    return regions, observed, informal
+    [regions, observed, informal]
   end
 
   # Derive the containing region from a sub region wild-card or a sub region
@@ -370,16 +378,16 @@ private
   # If a wildcard region is found (e.g. <tt>:ca_</tt>) it is expanded into all
   # of its available sub regions.
   def self.parse_regions(regions) # :nodoc:
-    regions = [regions] unless regions.kind_of?(Array)
+    regions = [regions] unless regions.is_a?(Array)
     return [:any] if regions.empty?
 
-    regions = regions.collect { |r| r.to_sym }
+    regions = regions.collect(&:to_sym)
 
     # Found sub region wild-card
     regions.delete_if do |r|
       if r.to_s =~ /_$/
         load_containing_region(r.to_s)
-        regions << @@regions.select { |dr| dr.to_s =~ Regexp.new("^#{r.to_s}") }
+        regions << @@regions.select { |dr| dr.to_s =~ Regexp.new("^#{r}") }
         true
       end
     end
@@ -389,16 +397,16 @@ private
     require "holidays/north_america" if regions.include?(:us) # special case for north_america/US cross-linking
 
     regions.each do |r|
-      unless r == :any or @@regions.include?(r)
+      unless r == :any || @@regions.include?(r)
         begin
-          require "holidays/#{r.to_s}"
-        rescue LoadError => e
+          require "holidays/#{r}"
+        rescue LoadError => _e
           # This could be a sub region that does not have any holiday
           # definitions of its own; try to load the containing region instead.
           if r.to_s =~ /_/
             load_containing_region(r.to_s)
           else
-            raise UnknownRegionError, "Could not load holidays/#{r.to_s}"
+            raise UnknownRegionError, "Could not load holidays/#{r}"
           end
         end
       end
@@ -449,7 +457,7 @@ private
   # 1000  1.234000   0.000000   1.234000 (  1.234000)
   # 5000  6.094000   0.031000   6.125000 (  6.141000)
   def self.call_proc(function, year) # :nodoc:
-    proc_key = Digest::MD5.hexdigest("#{function.to_s}_#{year.to_s}")
+    proc_key = Digest::MD5.hexdigest("#{function}_#{year}")
     @@proc_cache[proc_key] = function.call(year) unless @@proc_cache[proc_key]
     @@proc_cache[proc_key]
   end
@@ -467,19 +475,19 @@ private
     files.each do |file|
       definition_file = YAML.load_file(file)
 
-      regions, rules_by_month = self.parse_month_definitions(definition_file['months'])
+      regions, rules_by_month = parse_month_definitions(definition_file['months'])
 
       all_regions << regions.flatten
 
-      all_rules_by_month.merge!(rules_by_month) { |month, existing, new|
+      all_rules_by_month.merge!(rules_by_month) do |_month, existing, new|
         existing << new
         existing.flatten!
-      }
+      end
 
-      custom_methods = self.parse_method_definitions(definition_file['methods'])
+      custom_methods = parse_method_definitions(definition_file['methods'])
       all_custom_methods.merge!(custom_methods)
 
-      all_tests << self.parse_test_definitions(definition_file['tests'])
+      all_tests << parse_test_definitions(definition_file['tests'])
     end
 
     all_regions.flatten!.uniq!
@@ -501,13 +509,19 @@ private
             rule[key.to_sym] = val
           end
 
-          rule[:regions] = rule[:regions].collect { |r| r.to_sym }
+          rule[:regions] = rule[:regions].collect(&:to_sym)
 
           regions << rule[:regions]
 
           exists = false
           rules_by_month[month].each do |ex|
-            if ex[:name] == rule[:name] and ex[:wday] == rule[:wday] and ex[:mday] == rule[:mday] and ex[:week] == rule[:week] and ex[:type] == rule[:type] and ex[:function] == rule[:function] and ex[:observed] == rule[:observed]
+            if ex[:name] == rule[:name] &&
+               ex[:wday] == rule[:wday] &&
+               ex[:mday] == rule[:mday] &&
+               ex[:week] == rule[:week] &&
+               ex[:type] == rule[:type] &&
+               ex[:function] == rule[:function] &&
+               ex[:observed] == rule[:observed]
               ex[:regions] << rule[:regions].flatten
               exists = true
             end
@@ -546,25 +560,25 @@ private
   end
 
   def self.generate_definition_source(module_name, files, regions, rules_by_month, custom_methods, tests)
-    month_strings = self.generate_month_definition_strings(rules_by_month)
+    month_strings = generate_month_definition_strings(rules_by_month)
 
     # Build the custom methods string
     custom_method_string = ''
-    custom_methods.each do |key, code|
+    custom_methods.each do |_key, code|
       custom_method_string << code + "\n\n"
     end
 
-    module_src = self.generate_module_src(module_name, files, regions, month_strings, custom_method_string)
-    test_src = self.generate_test_src(module_name, files, tests)
+    module_src = generate_module_src(module_name, files, regions, month_strings, custom_method_string)
+    test_src = generate_test_src(module_name, files, tests)
 
-    return module_src, test_src || ''
+    [module_src, test_src || '']
   end
 
   def self.generate_month_definition_strings(rules_by_month)
     month_strings = []
 
     rules_by_month.each do |month, rules|
-      month_string = "      #{month.to_s} => ["
+      month_string = "      #{month} => ["
       rule_strings = []
       rules.each do |rule|
         string = '{'
@@ -572,14 +586,14 @@ private
           string << ":mday => #{rule[:mday]}, "
         elsif rule[:function]
           string << ":function => lambda { |year| Holidays.#{rule[:function]} }, "
-          string << ":function_id => \"#{rule[:function].to_s}\", "
+          string << ":function_id => \"#{rule[:function]}\", "
         else
           string << ":wday => #{rule[:wday]}, :week => #{rule[:week]}, "
         end
 
         if rule[:observed]
           string << ":observed => lambda { |date| Holidays.#{rule[:observed]}(date) }, "
-          string << ":observed_id => \"#{rule[:observed].to_s}\", "
+          string << ":observed_id => \"#{rule[:observed]}\", "
         end
 
         if rule[:type]
@@ -594,13 +608,11 @@ private
       month_strings << month_string
     end
 
-    return month_strings
+    month_strings
   end
 
   def self.generate_module_src(module_name, files, regions, month_strings, custom_methods)
-    module_src = ""
-
-    module_src =<<-EOM
+    module_src = <<-EOM
 # encoding: utf-8
 module Holidays
   # This file is generated by the Ruby Holidays gem.
@@ -629,17 +641,17 @@ module Holidays
 #{custom_methods}
 end
 
-Holidays.merge_defs(Holidays::#{module_name.to_s.upcase}.defined_regions, Holidays::#{module_name.to_s.upcase}.holidays_by_month)
-  EOM
+defined_regions = Holidays::#{module_name.to_s.upcase}.defined_regions
+holidays_by_month = Holidays::#{module_name.to_s.upcase}.holidays_by_month
+Holidays.merge_defs(defined_regions, holidays_by_month)
+EOM
 
-    return module_src
+    module_src
   end
 
   def self.generate_test_src(module_name, files, tests)
     unless tests.empty?
-      test_src = ""
-
-      test_src =<<-EndOfTests
+      test_src = <<-EndOfTests
 # encoding: utf-8
 require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 
@@ -655,7 +667,7 @@ end
       EndOfTests
     end
 
-    return test_src
+    test_src
   end
 end
 
@@ -730,24 +742,25 @@ class Date
   #--
   # see http://www.irt.org/articles/js050/index.htm
   def self.calculate_mday(year, month, week, wday)
-    raise ArgumentError, "Week parameter must be one of Holidays::WEEKS (provided #{week})." unless WEEKS.include?(week) or WEEKS.has_value?(week)
+    valid_week = WEEKS.include?(week) || WEEKS.has_value?(week)
+    raise ArgumentError, "Week parameter must be one of Holidays::WEEKS (provided #{week})." unless valid_week
 
-    unless wday.kind_of?(Numeric) and wday.between?(0,6) or DAY_SYMBOLS.index(wday)
+    unless wday.is_a?(Numeric) && wday.between?(0, 6) || DAY_SYMBOLS.index(wday)
       raise ArgumentError, "Wday parameter must be an integer between 0 and 6 or one of Date::DAY_SYMBOLS."
     end
 
-    week = WEEKS[week] if week.kind_of?(Symbol)
-    wday = DAY_SYMBOLS.index(wday) if wday.kind_of?(Symbol)
+    week = WEEKS[week] if week.is_a?(Symbol)
+    wday = DAY_SYMBOLS.index(wday) if wday.is_a?(Symbol)
 
     # :first, :second, :third, :fourth or :fifth
     if week > 0
-      return ((week - 1) * 7) + 1 + ((wday - Date.civil(year, month,(week-1)*7 + 1).wday) % 7)
+      return ((week - 1) * 7) + 1 + ((wday - Date.civil(year, month, (week - 1) * 7 + 1).wday) % 7)
     end
 
-    days = MONTH_LENGTHS[month-1]
+    days = MONTH_LENGTHS[month - 1]
 
-    days = 29 if month == 2 and Date.leap?(year)
+    days = 29 if month == 2 && Date.leap?(year)
 
-    return days - ((Date.civil(year, month, days).wday - wday + 7) % 7) - (7 * (week.abs - 1))
+    days - ((Date.civil(year, month, days).wday - wday + 7) % 7) - (7 * (week.abs - 1))
   end
 end

@@ -179,4 +179,6 @@ end
 
 end
 
-Holidays.merge_defs(Holidays::SCANDINAVIA.defined_regions, Holidays::SCANDINAVIA.holidays_by_month)
+defined_regions = Holidays::SCANDINAVIA.defined_regions
+holidays_by_month = Holidays::SCANDINAVIA.holidays_by_month
+Holidays.merge_defs(defined_regions, holidays_by_month)
