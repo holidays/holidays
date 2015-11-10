@@ -1,0 +1,65 @@
+# Intercontinental Exchange holidays definition for the Ruby Holiday gem.
+#
+# Updated: 2015-11-10
+#
+---
+months:
+  0:
+  - name: Good Friday
+    function: easter(year)-2
+    regions: [ice]
+  1:
+  - name: New Year's Day
+    regions: [ice]
+    function: ice_new_year(year)
+  12:
+  - name: Christmas Day
+    regions: [ice]
+    mday: 25
+    observed: to_monday_if_sunday_to_friday_if_saturday
+methods:
+  ice_new_year: |
+    # January 1st on M-F, January 2nd on January 1st falls on Sunday, NA if January 1st falls on Saturday
+    def self.ice_new_year(year)
+      ny = Date.new(year, 1, 1)
+      ny += 1  if ny.wday == 0
+      ny = nil if ny.wday == 6
+      ny
+    end
+
+tests: |
+  {Date.civil(2009,1,1) => "New Year's Day",
+   Date.civil(2009,4,10) => "Good Friday",
+   Date.civil(2009,12,25) => "Christmas Day",
+
+   Date.civil(2010,1,1) => "New Year's Day",
+   Date.civil(2010,4,2) => "Good Friday",
+   Date.civil(2010,12,24) => "Christmas Day",
+
+   Date.civil(2011,4,22) => "Good Friday",
+   Date.civil(2011,12,26) => "Christmas Day",
+
+   Date.civil(2012,1,2) => "New Year's Day",
+   Date.civil(2012,4,6) => "Good Friday",
+   Date.civil(2012,12,25) => "Christmas Day",
+
+   Date.civil(2013,1,1) => "New Year's Day",
+   Date.civil(2013,3,29) => "Good Friday",
+   Date.civil(2013,12,25) => "Christmas Day",
+
+   Date.civil(2014,1,1) => "New Year's Day",
+   Date.civil(2014,4,18) => "Good Friday",
+   Date.civil(2014,12,25) => "Christmas Day",
+
+   Date.civil(2015,1,1) => "New Year's Day",
+   Date.civil(2015,4,3) => "Good Friday",
+   Date.civil(2015,12,25) => "Christmas Day"
+
+   }.each do |date, name|
+     assert_equal name, (Holidays.on(date, :ice, :observed)[0] || {})[:name]
+   end
+
+   # Known holidays that aren't registered as ICE dates
+   [Date.civil(2011, 1, 1)].each do |date|
+     assert_equal [], Holidays.on(date, :ice, :observed)
+   end
