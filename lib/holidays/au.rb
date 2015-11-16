@@ -51,7 +51,8 @@ module Holidays
             {:wday => 1, :week => 1, :name => "Recreation Day", :regions => [:au_tas_north]},
             {:wday => 2, :week => 1, :name => "Melbourne Cup Day", :regions => [:au_vic_melbourne]}],
       12 => [{:mday => 25, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "Christmas Day", :regions => [:au]},
-            {:mday => 26, :observed => lambda { |date| Holidays.to_weekday_if_boxing_weekend(date) }, :observed_id => "to_weekday_if_boxing_weekend", :name => "Boxing Day", :regions => [:au]}]
+            {:mday => 26, :observed => lambda { |date| Holidays.to_weekday_if_boxing_weekend(date) }, :observed_id => "to_weekday_if_boxing_weekend", :name => "Boxing Day", :regions => [:au_nsw, :au_vic, :au_qld, :au_act, :au_wa]},
+            {:function => lambda { |year| Holidays.to_weekday_if_boxing_weekend_from_year(year) }, :function_id => "to_weekday_if_boxing_weekend_from_year(year)", :name => "Boxing Day", :regions => [:au_sa, :au_tas, :au_nt]}]
       }
     end
   end

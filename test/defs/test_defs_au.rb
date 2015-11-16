@@ -12,8 +12,7 @@ class AuDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2007,4,6) => 'Good Friday',
  Date.civil(2007,4,9) => 'Easter Monday',
  Date.civil(2007,4,25) => 'ANZAC Day',
- Date.civil(2007,12,25) => 'Christmas Day',
- Date.civil(2007,12,26) => 'Boxing Day'}.each do |date, name|
+ Date.civil(2007,12,25) => 'Christmas Day'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :au, :informal)[0] || {})[:name]
 end
 
@@ -97,5 +96,17 @@ assert_equal "ANZAC Day", Date.civil(2015, 4, 25).holidays(:au_qld)[0][:name]
 assert_equal "ANZAC Day", Date.civil(2015, 4, 25).holidays(:au_wa)[0][:name]
 assert_equal [], Date.civil(2015, 4, 27).holidays(:au_qld, :observed)
 assert_equal "ANZAC Day", Date.civil(2015, 4, 27).holidays(:au_wa, :observed)[0][:name]
+
+# BOXING DAY - QLD observes weekend and monday
+assert_equal "Boxing Day", Date.civil(2015, 12, 26).holidays(:au_qld)[0][:name]
+assert_equal "Boxing Day", Date.civil(2015, 12, 28).holidays(:au_qld, :observed)[0][:name]
+
+# BOXING DAY - SA gets monday only. same for TAS and NT.
+assert_nil Date.civil(2015, 12, 26).holidays(:au_sa)[0]
+assert_equal "Boxing Day", Date.civil(2015, 12, 28).holidays(:au_sa)[0][:name]
+assert_nil Date.civil(2015, 12, 26).holidays(:au_tas)[0]
+assert_equal "Boxing Day", Date.civil(2015, 12, 28).holidays(:au_nt)[0][:name]
+  assert_nil Date.civil(2015, 12, 26).holidays(:au_nt)[0]
+assert_equal "Boxing Day", Date.civil(2015, 12, 28).holidays(:au_nt)[0][:name]
   end
 end
