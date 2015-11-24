@@ -86,6 +86,10 @@ def parse_holiday_defs(module_name, files)
         str << ":hide_date => true, "
       end
 
+      if rule['slug']
+        str << ":slug => \"#{rule['slug']}\", "
+      end
+
       if rule['length']
         str << ":length => #{rule['length']}, "
       end

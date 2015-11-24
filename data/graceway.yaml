@@ -7,155 +7,192 @@ months:
   - name: Ash Wednesday
     regions: [graceway]
     function: easter(year)-46
+    slug: ash-wednesday
   - name: Lent
     regions: [graceway]
     function: easter(year)-46
     length: 43
+    slug: lent
   - name: Palm Sunday
     regions: [graceway]
     function: easter(year)-7
+    slug: palm-sunday
   - name: Passover
     regions: [graceway]
     function: passover_start(year)
     length: 8
+    slug: passover
   - name: Good Friday
     regions: [graceway]
     function: easter(year)-2
+    slug: good-friday
   - name: Easter Sunday
     regions: [graceway]
     function: easter(year)
+    slug: easter
   - name: Pentecost
     regions: [graceway]
     function: easter(year)+49
+    slug: pentecost
   - name: Trinity Sunday
     regions: [graceway]
     function: easter(year)+56
+    slug: trinity-sunday
   - name: Advent
     regions: [graceway]
     function: advent_sunday(year)
     date_end: "12/24"
+    slug: advent
   1:
   - name: New Years
     regions: [graceway]
     mday: 1
+    slug: new-years
   - name: Martin Luther King Jr
     week: 3
     regions: [graceway]
     wday: 1
+    slug: mlk-day
   - name: Sanctity of Life Week
     week: 3
     wday: 0
     regions: [graceway]
+    slug: sanctity-of-life
   2:
   - name: Superbowl Sunday
     week: 1
     regions: [graceway]
     wday: 0
+    slug: superbowl-sunday
   - name: Valentine's Day
     mday: 14
     regions: [graceway]
+    slug: valentines-day
   3:
   - name: Daylight Savings Begins
     week: 2
     wday: 0
     regions: [graceway]
+    slug: daylight-savings-begins
   - name: Spring Events
     regions: [graceway]
     week: 1
     wday: 0
     hidedate: true
+    slug: spring
   5:
   - name: National Day of Prayer
     regions: [graceway]
     week: 1
     wday: 4
+    slug: national-day-of-prayer
   - name: Mother's Day
     regions: [graceway]
     week: 2
     wday: 0
+    slug: mothers-day
   - name: Graduation
     regions: [graceway]
     week: 3
     wday: 0
     hidedate: true
+    slug: graduation
   - name: Memorial Day
     week: -1
     regions: [graceway]
     wday: 1
+    slug: memorial-day
   6:
   - name: Summer Events
     regions: [graceway]
     week: 1
     wday: 0
     hidedate: true
+    slug: summer
   - name: Father's Day
     regions: [graceway]
     week: 3
     wday: 0
+    slug: fathers-day
   7:
   - name: Independence Day
     regions: [graceway]
     mday: 4
+    slug: independence-day
   - name: VBS
     regions: [graceway]
     week: 2
     wday: 0
     hidedate: true
+    slug: vbs
   8:
   - name: Back to School
     regions: [graceway]
     week: 2
     wday: 0
     hidedate: true
+    slug: back-to-school
   - name: Fall Events
     regions: [graceway]
     week: 1
     wday: 0
     hidedate: true
+    slug: fall
   9:
   - name: Labor Day
     week: 1
     regions: [graceway]
     wday: 1
+    slug: labor-day
   - name: See You at the Pole
     regions: [graceway]
     week: 4
     wday: 3
+    slug: see-you-at-the-pole
   10:
   - name: Pastor Appreciation
     regions: [graceway]
     week: 2
     wday: 0
+    slug: pastor-appreciation
   - name: Halloween
     regions: [graceway]
     mday: 31
+    slug: halloween
   - name: Reformation Day
     regions: [graceway]
     mday: 31
+    slug: reformation-day
   11:
   - name: Daylight Savings Ends
     regions: [graceway]
     week: 1
     wday: 0
+    slug: daylight-savings-ends
   - name: Election Day
     function: election_day(year)
     regions: [graceway]
+    slug: election-day
   - name: Veteran's Day
     regions: [graceway]
     mday: 11
+    slug: veterans-day
   - name: Thanksgiving
     week: 4
     regions: [graceway]
     wday: 4
+    slug: thanksgiving
   12:
   - name: Winter Events
     regions: [graceway]
     week: 1
     wday: 0
     hidedate: true
+    slug: winter
   - name: Christmas Day
     regions: [graceway]
     mday: 25
+    slug: christmas
 methods:
   advent_sunday: |
     def self.advent_sunday(year)
