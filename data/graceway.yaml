@@ -59,11 +59,11 @@ months:
     regions: [graceway]
     slug: sanctity-of-life
   2:
-  - name: Superbowl Sunday
+  - name: Super Bowl Sunday
     week: 1
     regions: [graceway]
     wday: 0
-    slug: superbowl-sunday
+    slug: super-bowl-sunday
   - name: Valentine's Day
     mday: 14
     regions: [graceway]

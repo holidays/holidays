@@ -30,7 +30,7 @@ module Holidays
       1 => [{:mday => 1, :slug => "new-years", :name => "New Years", :regions => [:graceway]},
             {:wday => 1, :week => 3, :slug => "mlk-day", :name => "Martin Luther King Jr", :regions => [:graceway]},
             {:wday => 0, :week => 3, :slug => "sanctity-of-life", :name => "Sanctity of Life Week", :regions => [:graceway]}],
-      2 => [{:wday => 0, :week => 1, :slug => "superbowl-sunday", :name => "Superbowl Sunday", :regions => [:graceway]},
+      2 => [{:wday => 0, :week => 1, :slug => "super-bowl-sunday", :name => "Super Bowl Sunday", :regions => [:graceway]},
             {:mday => 14, :slug => "valentines-day", :name => "Valentine's Day", :regions => [:graceway]}],
       3 => [{:wday => 0, :week => 2, :slug => "daylight-savings-begins", :name => "Daylight Savings Begins", :regions => [:graceway]},
             {:wday => 0, :week => 1, :hide_date => true, :slug => "spring", :name => "Spring Events", :regions => [:graceway]}],
