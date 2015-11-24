@@ -120,7 +120,7 @@ module Holidays
       end_date = Date.civil(end_date.year, end_date.mon, end_date.mday)
     end
 
-    regions, observed, informal, hide_date, slug = parse_options(options)
+    regions, observed, informal, hide_date = parse_options(options)
     holidays = []
 
     dates = {}
@@ -335,10 +335,9 @@ private
     options.flatten!
     observed = options.delete(:observed) ? true : false
     informal = options.delete(:informal) ? true : false
-    hide_date = options.delete(:hide_date) ? true: false
-    slug = options.delete(:slug)
+		hide_date = options.delete(:hide_date) ? true: false
     regions = parse_regions(options)
-    return regions, observed, informal, hide_date, slug
+    return regions, observed, informal, hide_date
   end
 
   # Check regions against list of supported regions and return an array of
