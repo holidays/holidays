@@ -13,9 +13,12 @@ class Fed_exDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2015,9,7) => 'Labor Day',
  Date.civil(2015,11,26) => 'Thanksgiving',
  Date.civil(2015,11,27) => 'Day After Thanksgiving',
+ Date.civil(2013,11,28) => 'Thanksgiving',
+ Date.civil(2013,11,29) => 'Day After Thanksgiving',
  Date.civil(2015,12,25) => 'Christmas Day',
  Date.civil(2015,12,31) => 'New Year\'s Eve',}.each do |date, name|
   assert_equal name, (Holidays.on(date, :ups)[0] || {})[:name]
 end
+
   end
 end
