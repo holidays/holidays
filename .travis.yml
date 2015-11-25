@@ -1,5 +1,6 @@
 notifications:
   disabled: true
+sudo: false
 rvm:
   - 1.9.2
   - 1.9.3
@@ -7,6 +8,10 @@ rvm:
   - 2.1.0
   - 2.2.0
   - jruby
+  - ruby-head
+matrix:
+  allow_failures:
+    - ruby-head
 before_install:
   - gem update bundler
   - bundle --version
