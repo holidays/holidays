@@ -12,7 +12,7 @@ months:
     regions: [au]
     function: easter(year)-2
   - name: Easter Saturday
-    regions: [au_nsw, au_vic, au_qld, au_nt, au_act, au_sa, au_qld_brisbane, au_qld_cairns]
+    regions: [au_nsw, au_vic, au_qld, au_nt, au_act, au_sa]
     function: easter(year)-1
   - name: Easter Sunday
     regions: [au_nsw, au_vic]
@@ -105,7 +105,10 @@ months:
     regions: [au_act]
     week: -1
     wday: 1
-  10: 
+  10:
+  - name: Friday before the AFL Grand Final
+    regions: [au_vic]
+    function: afl_grand_final(year)
   - name: Labour Day
     regions: [au_act, au_nsw, au_sa]
     week: 1
@@ -130,7 +133,7 @@ months:
     wday: 1
     week: 1
   - name: Melbourne Cup Day
-    regions: [au_vic]
+    regions: [au_vic_melbourne]
     week: 1
     wday: 2
   12: 
@@ -139,10 +142,19 @@ months:
     mday: 25
     observed: to_monday_if_weekend
   - name: Boxing Day
-    regions: [au]
+    regions: [au_nsw, au_vic, au_qld, au_act, au_wa]
     mday: 26
     observed: to_weekday_if_boxing_weekend
+  - name: Boxing Day
+    regions: [au_sa, au_tas, au_nt]
+    function: to_weekday_if_boxing_weekend_from_year(year)
 methods:
+  afl_grand_final: |
+    def self.afl_grand_final(year)
+      if year == 2015
+        Date.civil(2015, 10, 2)
+      end
+    end    
   qld_queens_bday_october: |
     # http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
     # celebrated twice in 2012
@@ -200,8 +212,7 @@ tests: |
      Date.civil(2007,4,6) => 'Good Friday',
      Date.civil(2007,4,9) => 'Easter Monday',
      Date.civil(2007,4,25) => 'ANZAC Day',
-     Date.civil(2007,12,25) => 'Christmas Day',
-     Date.civil(2007,12,26) => 'Boxing Day'}.each do |date, name|
+     Date.civil(2007,12,25) => 'Christmas Day'}.each do |date, name|
       assert_equal name, (Holidays.on(date, :au, :informal)[0] || {})[:name]
     end
 
@@ -258,8 +269,14 @@ tests: |
     assert_equal [], Date.civil(2014,11,14).holidays(:au_qld)
     assert_equal [], Date.civil(2015,11,14).holidays(:au_qld_brisbane)
 
-    assert_equal 'Melbourne Cup Day', Date.civil(2014,11,4).holidays(:au_vic)[0][:name]
-    assert_equal 'Melbourne Cup Day', Date.civil(2015,11,3).holidays(:au_vic)[0][:name]
+    assert_nil Date.civil(2014,11,4).holidays(:au_vic)[0]
+    assert_nil Date.civil(2015,11,3).holidays(:au_vic)[0]
+
+    assert_equal 'Melbourne Cup Day', Date.civil(2014,11,4).holidays(:au_vic_melbourne)[0][:name]
+    assert_equal 'Melbourne Cup Day', Date.civil(2015,11,3).holidays(:au_vic_melbourne)[0][:name]
+
+    assert_equal 'Friday before the AFL Grand Final', Date.civil(2015,10,2).holidays(:au_vic)[0][:name]
+    assert_nil Date.civil(2016,10,2).holidays(:au_vic)[0]
 
     assert_equal 'Royal Hobart Regatta', Date.civil(2012, 2, 13).holidays(:au_tas_south)[0][:name]
     assert_equal 'Royal Hobart Regatta', Date.civil(2014, 2, 10).holidays(:au_tas_south)[0][:name]
@@ -279,3 +296,15 @@ tests: |
     assert_equal "ANZAC Day", Date.civil(2015, 4, 25).holidays(:au_wa)[0][:name]
     assert_equal [], Date.civil(2015, 4, 27).holidays(:au_qld, :observed)
     assert_equal "ANZAC Day", Date.civil(2015, 4, 27).holidays(:au_wa, :observed)[0][:name]
+
+    # BOXING DAY - QLD observes weekend and monday
+    assert_equal "Boxing Day", Date.civil(2015, 12, 26).holidays(:au_qld)[0][:name]
+    assert_equal "Boxing Day", Date.civil(2015, 12, 28).holidays(:au_qld, :observed)[0][:name]
+
+    # BOXING DAY - SA gets monday only. same for TAS and NT.
+    assert_nil Date.civil(2015, 12, 26).holidays(:au_sa)[0]
+    assert_equal "Boxing Day", Date.civil(2015, 12, 28).holidays(:au_sa)[0][:name]
+    assert_nil Date.civil(2015, 12, 26).holidays(:au_tas)[0]
+    assert_equal "Boxing Day", Date.civil(2015, 12, 28).holidays(:au_tas)[0][:name]
+    assert_nil Date.civil(2015, 12, 26).holidays(:au_nt)[0]
+    assert_equal "Boxing Day", Date.civil(2015, 12, 28).holidays(:au_nt)[0][:name]

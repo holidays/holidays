@@ -287,7 +287,7 @@ module Holidays
   end
 
   # Move Boxing Day if it falls on a weekend, leaving room for Christmas.
-  # Used as a callback function.
+  # Used as an observed function.
   def self.to_weekday_if_boxing_weekend(date)
     if date.wday == 6 or date.wday == 0
       date += 2
@@ -295,6 +295,12 @@ module Holidays
       date += 1
     end
     date
+  end
+
+  # Call to_weekday_if_boxing_weekend but first get date based on year
+  # Used as a callback function.
+  def self.to_weekday_if_boxing_weekend_from_year(year)
+    to_weekday_if_boxing_weekend(Date.civil(year, 12, 26))
   end
 
   # Move date to Monday if it occurs on a Sunday or to Friday if it occurs on a
