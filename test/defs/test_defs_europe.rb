@@ -198,8 +198,10 @@ end
   assert_equal name, (Holidays.on(date, :es, :informal)[0] || {})[:name]
 end
 
-[:es_pv, :es_ct, :es_na, :es_v, :es_vc, :es_].each do |r|
+[:es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex, :es_].each do |r|
   assert_equal 'Jueves Santo', Date.civil(2009,4,9).holidays(r)[0][:name]
+end
+[:es_pv, :es_ct, :es_na, :es_v, :es_vc, :es_].each do |r|
   assert_equal 'Lunes de Pascua', Date.civil(2009,4,13).holidays(r)[0][:name]
 end
 
@@ -209,8 +211,17 @@ assert_equal 'Jueves Santo', Date.civil(2009,4,9).holidays(:es_an)[0][:name]
   assert_equal 'San José', Date.civil(2009,3,19).holidays(r)[0][:name]
 end
 
-[:es_ar, :es_cl, :es_].each do |r|
-  assert_equal 'San Jorge', Date.civil(2009,4,23).holidays(r)[0][:name]
+[:es_cl].each do |r|
+  assert_equal 'Día de Castilla y León', Date.civil(2009,4,23).holidays(r)[0][:name]
+end
+
+[:es_ar].each do |r|
+  assert_equal 'San Jorge, Día de Aragón', Date.civil(2009,4,23).holidays(r)[0][:name]
+end
+
+[:es_].each do |r|
+  assert_equal 'Día de Castilla y León', Date.civil(2009,4,23).holidays(r)[0][:name]
+  assert_equal 'San Jorge, Día de Aragón', Date.civil(2009,4,23).holidays(r)[1][:name]
 end
 
 [:es_vc, :es_v, :es_].each do |r|
