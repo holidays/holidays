@@ -1,0 +1,130 @@
+# Bulgaria holiday definitions for the Ruby Holiday gem.
+#
+# Updated: 2015-04-01.
+# Source:  http://en.wikipedia.org/wiki/Public_holidays_in_Bulgaria
+---
+months:
+  0:
+  - name: Good Friday
+    regions: [bg_en]
+    function: easter_orthodox(year)-2
+  - name: Разпети петък
+    regions: [bg_bg]
+    function: easter_orthodox(year)-2
+  - name: Holy Saturday
+    regions: [bg_en]
+    function: easter_orthodox(year)-1
+  - name: Велика събота
+    regions: [bg_bg]
+    function: easter_orthodox(year)-1
+  - name: Easter Sunday
+    regions: [bg_en]
+    function: easter_orthodox(year)
+  - name: Възкресение Христово. Великден
+    regions: [bg_bg]
+    function: easter_orthodox(year)
+  - name: Easter Monday
+    regions: [bg_en]
+    function: easter_orthodox(year)+1
+  - name: Възкресение Христово. Великден
+    regions: [bg_bg]
+    function: easter_orthodox(year)+1
+  1:
+  - name: New Year's Day
+    regions: [bg_en]
+    mday: 1
+  - name: Нова година
+    regions: [bg_bg]
+    mday: 1
+  3:
+  - name: Liberation Day
+    regions: [bg_en]
+    mday: 3
+  - name: Освобожението на България
+    regions: [bg_bg]
+    mday: 3
+  5:
+  - name: Labour Day
+    regions: [bg_en]
+    mday: 1
+  - name: Ден на труда
+    regions: [bg_bg]
+    mday: 1
+  - name: St. George's Day
+    regions: [bg_en]
+    mday: 6
+  - name: Гергьовден. Ден на храбростта
+    regions: [bg_bg]
+    mday: 6
+  - name: Slavic Literacy Day
+    regions: [bg_en]
+    mday: 24
+  - name: Ден на славянската писменост
+    regions: [bg_bg]
+    mday: 24
+  9:
+  - name: Unification Day
+    regions: [bg_en]
+    mday: 6
+  - name: Ден на Съединението
+    regions: [bg_bg]
+    mday: 6
+  - name: The Independence Day
+    regions: [bg_en]
+    mday: 22
+  - name: Ден на Независимостта
+    regions: [bg_bg]
+    mday: 22
+  11:
+  - name: Revival Leader's Day
+    regions: [bg_en]
+    mday: 1
+  - name: Ден на Народните будители
+    regions: [bg_bg]
+    mday: 1
+  12:
+  - name: Christmas Eve
+    regions: [bg_en]
+    mday: 24
+  - name: Бъдни вечер
+    regions: [bg_bg]
+    mday: 24
+  - name: Christmas
+    regions: [bg_en]
+    mday: 25
+  - name: Рождество Христово. Коледа
+    regions: [bg_bg]
+    mday: 25
+  - name: Christmas
+    regions: [bg_en]
+    mday: 26
+  - name: Рождество Христово. Коледа
+    regions: [bg_bg]
+    mday: 26
+methods: 
+  easter_orthodox(year): |
+    # Orthodox Easter
+    def self.easter_orthodox(year)
+        my_cal = WhenEaster::EasterCalendar.new(year)
+        easter = my_cal.greek_easter
+        Date.civil(easter.year,easter.month,easter.day)
+    end
+tests: |
+    {Date.civil(2015,1,1) => 'New Year\'s Day',
+     Date.civil(2015,3,3) => 'Liberation day',
+     Date.civil(2015,4,10) => 'Good Friday',
+     Date.civil(2015,4,11) => 'Holy Saturday',
+     Date.civil(2015,4,12) => 'Easter Sunday',
+     Date.civil(2015,4,13) => 'Easter Monday',
+     Date.civil(2015,5,1) => 'Labour Day',
+     Date.civil(2015,5,6) => 'St. George\'s Day',
+     Date.civil(2015,5,24) => 'Slavic Literacy Day',
+     Date.civil(2015,9,6) => 'Unification Day',
+     Date.civil(2015,9,22) => 'The Independence Day',
+     Date.civil(2015,11,1) => 'Revival Leader's Day',
+     Date.civil(2015,12,24) => 'Christmas Eve',
+     Date.civil(2015,12,25) => 'Christmas',
+     Date.civil(2015,12,26) => 'Christmas'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :bg_en)[0] || {})[:name]
+    end
+

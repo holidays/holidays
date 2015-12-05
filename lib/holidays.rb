@@ -4,6 +4,7 @@ $:.unshift File.dirname(__FILE__)
 require 'digest/md5'
 require 'date'
 require 'yaml'
+require 'when_easter'
 
 # == Region options
 # Holidays can be defined as belonging to one or more regions and sub regions.
