@@ -105,8 +105,8 @@ assert_equal "Boxing Day", Date.civil(2015, 12, 28).holidays(:au_qld, :observed)
 assert_nil Date.civil(2015, 12, 26).holidays(:au_sa)[0]
 assert_equal "Boxing Day", Date.civil(2015, 12, 28).holidays(:au_sa)[0][:name]
 assert_nil Date.civil(2015, 12, 26).holidays(:au_tas)[0]
-assert_equal "Boxing Day", Date.civil(2015, 12, 28).holidays(:au_nt)[0][:name]
-  assert_nil Date.civil(2015, 12, 26).holidays(:au_nt)[0]
+assert_equal "Boxing Day", Date.civil(2015, 12, 28).holidays(:au_tas)[0][:name]
+assert_nil Date.civil(2015, 12, 26).holidays(:au_nt)[0]
 assert_equal "Boxing Day", Date.civil(2015, 12, 28).holidays(:au_nt)[0][:name]
   end
 end

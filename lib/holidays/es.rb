@@ -13,12 +13,12 @@ module Holidays
   # All the definitions are available at https://github.com/alexdunae/holidays
   module ES # :nodoc:
     def self.defined_regions
-      [:es_pv, :es_ct, :es_na, :es_v, :es_vc, :es_an, :es, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex]
+      [:es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex, :es, :es_ct, :es_v, :es_vc]
     end
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)-3 }, :function_id => "easter(year)-3", :name => "Jueves Santo", :regions => [:es_pv, :es_ct, :es_na, :es_v, :es_vc, :es_an]},
+              0 => [{:function => lambda { |year| Holidays.easter(year)-3 }, :function_id => "easter(year)-3", :name => "Jueves Santo", :regions => [:es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex]},
             {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Viernes Santo", :regions => [:es]},
             {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Lunes de Pascua", :regions => [:es_pv, :es_ct, :es_na, :es_v, :es_vc]}],
       1 => [{:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Año Nuevo", :regions => [:es]},
@@ -26,8 +26,8 @@ module Holidays
       2 => [{:mday => 28, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Día de Andalucía", :regions => [:es_an]}],
       3 => [{:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Día de las Islas Baleares", :regions => [:es_ib]},
             {:mday => 19, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "San José", :regions => [:es_v, :es_vc, :es_cm, :es_mu, :es_m]}],
-      4 => [{:mday => 23, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "San Jorge", :regions => [:es_ar, :es_cl]},
-            {:mday => 23, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Día de Aragón", :regions => [:es_ar]}],
+      4 => [{:mday => 23, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Día de Castilla y León", :regions => [:es_cl]},
+            {:mday => 23, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "San Jorge, Día de Aragón", :regions => [:es_ar]}],
       5 => [{:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Día del Trabajador", :regions => [:es]},
             {:mday => 2, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Fiesta de la Comunidad", :regions => [:es_m]},
             {:mday => 30, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Día de las Canarias", :regions => [:es_cn]},

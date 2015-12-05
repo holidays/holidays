@@ -163,11 +163,17 @@ tests: |
       assert_equal 'San José', Date.civil(2009,3,19).holidays(r)[0][:name]
     end
 
-    [:es_cl, :es_].each do |r|
+    [:es_cl].each do |r|
       assert_equal 'Día de Castilla y León', Date.civil(2009,4,23).holidays(r)[0][:name]
     end
-    [:es_ar, :es_].each do |r|
+
+    [:es_ar].each do |r|
       assert_equal 'San Jorge, Día de Aragón', Date.civil(2009,4,23).holidays(r)[0][:name]
+    end
+
+    [:es_].each do |r|
+      assert_equal 'Día de Castilla y León', Date.civil(2009,4,23).holidays(r)[0][:name]
+      assert_equal 'San Jorge, Día de Aragón', Date.civil(2009,4,23).holidays(r)[1][:name]
     end
 
     [:es_vc, :es_v, :es_].each do |r|
