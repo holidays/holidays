@@ -13,7 +13,7 @@ module Holidays
   # All the definitions are available at https://github.com/alexdunae/holidays
   module DE # :nodoc:
     def self.defined_regions
-      [:de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_st, :de_bb, :de_mv, :de_sn, :de_th]
+      [:de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_st, :de_by_aux, :de_bb, :de_mv, :de_sn, :de_th]
     end
 
     def self.holidays_by_month
@@ -26,7 +26,8 @@ module Holidays
       1 => [{:mday => 1, :name => "Neujahrstag", :regions => [:de]},
             {:mday => 6, :name => "Heilige Drei Könige", :regions => [:de_bw, :de_by, :de_st]}],
       5 => [{:mday => 1, :name => "Tag der Arbeit", :regions => [:de]}],
-      8 => [{:mday => 15, :name => "Mariä Himmelfahrt", :regions => [:de_by, :de_sl]}],
+      8 => [{:mday => 15, :name => "Mariä Himmelfahrt", :regions => [:de_by, :de_sl]},
+            {:mday => 8, :name => "Friedensfest", :regions => [:de_by_aux]}],
       10 => [{:mday => 3, :name => "Tag der Deutschen Einheit", :regions => [:de]},
             {:mday => 31, :name => "Reformationstag", :regions => [:de_bb, :de_mv, :de_sn, :de_st, :de_th]}],
       11 => [{:mday => 1, :name => "Allerheiligen", :regions => [:de_bw, :de_by, :de_nw, :de_rp, :de_sl]},

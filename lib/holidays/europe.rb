@@ -13,7 +13,7 @@ module Holidays
   # All the definitions are available at https://github.com/alexdunae/holidays
   module EUROPE # :nodoc:
     def self.defined_regions
-      [:at, :be, :ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_ne, :ch_ge, :ch_ju, :ch_vs, :ch, :cz, :dk, :de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_st, :de_bb, :de_mv, :de_sn, :de_th, :el, :es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex, :es, :es_ct, :es_v, :es_vc, :fr, :gb, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :gb_sct, :gb_con, :je, :gb_jsy, :gg, :gb_gsy, :im, :gb_iom, :hr, :hu, :ie, :is, :it, :li, :lt, :nl, :no, :pl, :pt, :ro, :sk, :si]
+      [:at, :be, :ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_ne, :ch_ge, :ch_ju, :ch_vs, :ch, :cz, :dk, :de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_st, :de_by_aux, :de_bb, :de_mv, :de_sn, :de_th, :el, :es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex, :es, :es_ct, :es_v, :es_vc, :fr, :gb, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :gb_sct, :gb_con, :je, :gb_jsy, :gg, :gb_gsy, :im, :gb_iom, :hr, :hu, :ie, :is, :it, :li, :lt, :nl, :no, :pl, :pt, :ro, :sk, :si]
     end
 
     def self.holidays_by_month
@@ -219,6 +219,7 @@ module Holidays
             {:mday => 1, :name => "Bundesfeiertag", :regions => [:ch]},
             {:mday => 15, :name => "Mariä Himmelfahrt", :regions => [:ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_zg, :ch_fr, :ch_so, :ch_ai, :ch_ag, :ch_ti, :ch_vs, :ch_ju]},
             {:mday => 15, :name => "Mariä Himmelfahrt", :regions => [:de_by, :de_sl]},
+            {:mday => 8, :name => "Friedensfest", :regions => [:de_by_aux]},
             {:mday => 15, :name => "Κοίμηση της Θεοτόκου", :regions => [:el]},
             {:mday => 15, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Asunción", :regions => [:es]},
             {:mday => 15, :name => "Assomption", :regions => [:fr]},
