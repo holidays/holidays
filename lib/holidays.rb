@@ -137,21 +137,14 @@ module Holidays
       DateCalculatorFactory.weekend_modifier.to_monday_if_weekend(date)
     end
 
-    # Move Boxing Day if it falls on a weekend, leaving room for Christmas.
-    # Used as an observed function.
     def to_weekday_if_boxing_weekend(date)
       DateCalculatorFactory.weekend_modifier.to_weekday_if_boxing_weekend(date)
     end
 
-    # Call to_weekday_if_boxing_weekend but first get date based on year
-    # Used as a callback function.
     def to_weekday_if_boxing_weekend_from_year(year)
-      to_weekday_if_boxing_weekend(Date.civil(year, 12, 26))
+      DateCalculatorFactory.weekend_modifier.to_weekday_if_boxing_weekend_from_year(year)
     end
 
-    # Move date to Monday if it occurs on a Sunday or to Friday if it occurs on a
-    # Saturday.
-    # Used as a callback function.
     def to_weekday_if_weekend(date)
       DateCalculatorFactory.weekend_modifier.to_weekday_if_weekend(date)
     end

@@ -1,3 +1,5 @@
+require 'date'
+
 module Holidays
   module DateCalculator
     class WeekendModifier
@@ -24,7 +26,14 @@ module Holidays
         elsif date.wday == 1
           date += 1
         end
+
         date
+      end
+
+      # Call to_weekday_if_boxing_weekend but first get date based on year
+      # Used as a callback function.
+      def to_weekday_if_boxing_weekend_from_year(year)
+        to_weekday_if_boxing_weekend(Date.civil(year, 12, 26))
       end
 
       # Move date to Monday if it occurs on a Sunday or to Friday if it occurs on a
