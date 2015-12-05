@@ -7,7 +7,7 @@
 # - http://www.germany.info/relaunch/welcome/travel/holidays.html
 --- 
 months:
-  0: 
+  0:
   - name: Karfreitag
     regions: [de]
     function: easter(year)-2
@@ -23,22 +23,25 @@ months:
   - name: Fronleichnam
     regions: [de_bw, de_by, de_he, de_nw, de_rp, de_sl]
     function: easter(year)+60
-  1: 
+  1:
   - name: Neujahrstag
     regions: [de]
     mday: 1
   - name: Heilige Drei Könige
     regions: [de_bw, de_by, de_st]
     mday: 6
-  5: 
+  5:
   - name: Tag der Arbeit
     regions: [de]
     mday: 1
-  8: 
+  8:
   - name: Mariä Himmelfahrt
     regions: [de_by, de_sl]
     mday: 15
-  10: 
+  - name: Friedensfest
+    regions: [de_by_aux]
+    mday: 8
+  10:
   - name: Tag der Deutschen Einheit
     regions: [de]
     mday: 3
@@ -108,6 +111,10 @@ tests: |
       assert_equal 'Tag der Deutschen Einheit', Date.civil(2009,10,3).holidays(r)[0][:name]
     end
 
+    [:de_by_aux].each do |r|
+      assert_equal 'Friedensfest', Date.civil(2015,8,8).holidays(r)[0][:name]
+    end
+
     [:de_be, :de_hb, :de_hh, :de_ni, :de_sh].each do |r|
       assert !Date.civil(2009,1,6).holiday?(r), "Heilige Drei Könige is not a holiday in #{r}"
     end
@@ -128,7 +135,15 @@ tests: |
       assert !Date.civil(2009,11,1).holiday?(r), "Allerheiligen is not a holiday in #{r}"
     end
 
+    [:de,
+     :de_bw, :de_by, :de_be, :de_bb, :de_hb, :de_hh, :de_he, :de_mv,
+     :de_ni, :de_nw, :de_rp, :de_sl, :de_sn, :de_st, :de_sh, :de_th].each do |r|
+      assert !Date.civil(2015,8,8).holiday?(r), "Friedensfest is not a holiday in #{r}"
+    end
+
     assert !Date.civil(2010,5,8).holiday?(:de), '2010-05-08 is not a holiday in Germany'
+
+    assert !Date.civil(2015,8,8).holiday?(:de), '2015-08-08 is not a holiday in Germany'
 
     # Repentance Day
     assert_equal 'Buß- und Bettag', Date.civil(2004,11,17).holidays(:de_sn)[0][:name]
