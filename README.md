@@ -120,13 +120,15 @@ See the [original pull request](https://github.com/alexdunae/holidays/pull/36) f
 
 ### How to contribute
 
-To make changes to any of the definitions, edit the YAML files only.
+To make changes to any of the definitions, edit the YAML files under the 'data' directory only. These YAML files are read by the 'generate' rake target and the final definition files are created automatically. Don't directly edit any other files.
 
-Tests are also added at the end of the YAML files. Please add tests, it makes the pull requests go around.
+Tests are also allowed at the end of the YAML files. Please add tests. PRs will not be accepted unless there are tests proving that the new definitions work.
 
-After you're satisfied with the YAML file, edit the index.yaml file, run `rake generate`, which will generate the Ruby files that make up the actual code as well as the tests.  Then run `rake test`.
+After you're satisfied with the YAML file if you have added a brand-new region you must edit the index.yaml file to include the new region. Then run `rake generate`, which will generate the Ruby files that make up the actual code as well as the tests.  Then run `rake test`. If that passes then add all of the changed files to a commit and open a pull request.
 
 It is also very appreciated if documentation is attached to the pull request.  A simple Wikipedia or government link referencing the change would be perfect.
+
+If you wish to test out your changes via irb you can run `bin/console`. This will load all required lib files and open an irb session.
 
 ### Credits and code
 
