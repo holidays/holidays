@@ -12,7 +12,13 @@ class ParseOptionsTests < Test::Unit::TestCase
   def setup
     @regions_repo = mock()
 
-    @subject = Holidays::Option::Context::ParseOptions.new(@regions_repo)
+    @region_validator = mock()
+    @region_validator.stubs(:valid?).returns(true)
+
+    @subject = Holidays::Option::Context::ParseOptions.new(
+      @regions_repo,
+      @region_validator,
+    )
   end
 
   def test_returns_observed_true_if_options_contains_observed_flag
@@ -51,5 +57,13 @@ class ParseOptionsTests < Test::Unit::TestCase
 
     regions, observed, informal = @subject.call([:ch_])
     assert_equal(false, regions.include?(:ch_))
+  end
+
+  def test_raises_error_if_regions_are_invalid
+    @region_validator.stubs(:valid?).returns(false)
+
+    assert_raise Holidays::UnknownRegionError do
+      @subject.call([:unknown_region])
+    end
   end
 end

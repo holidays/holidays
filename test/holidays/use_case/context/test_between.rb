@@ -22,7 +22,7 @@ class BetweenTests < Test::Unit::TestCase
       @options_parser,
       @holidays_by_month_repo,
       @day_of_month_calculator,
-      @proc_cache_repo
+      @proc_cache_repo,
     )
   end
 

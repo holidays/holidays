@@ -4,6 +4,7 @@ require 'holidays/definition/repository/holidays_by_month'
 require 'holidays/definition/repository/regions'
 require 'holidays/definition/repository/cache'
 require 'holidays/definition/repository/proc_cache'
+require 'holidays/definition/validator/region'
 
 module Holidays
   module DefinitionFactory
@@ -19,6 +20,12 @@ module Holidays
       def merger
         Definition::Context::Merger.new(
           holidays_by_month_repository,
+          regions_repository
+        )
+      end
+
+      def region_validator
+        Definition::Validator::Region.new(
           regions_repository
         )
       end

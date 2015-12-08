@@ -26,11 +26,13 @@ namespace :generate do
     # create a dir for the generated tests
     FileUtils.mkdir_p(TEST_DEFS_PATH)
 
+    all_regions = []
+
     def_index['defs'].each do |region, files|
       puts "Building #{region} definition module:"
       files = files.collect { |f| "#{DATA_PATH}/#{f}" }.uniq
 
-      module_src, test_src = Holidays.parse_definition_files_and_return_source(region, files)
+      module_src, test_src, regions = Holidays.parse_definition_files_and_return_source(region, files)
       File.open("lib/#{Holidays::DEFINITIONS_PATH}/#{region.downcase.to_s}.rb","w") do |file|
         file.puts module_src
       end
@@ -39,8 +41,24 @@ namespace :generate do
           file.puts test_src
         end
       end
+
+      all_regions << regions
+
       puts "Done.\n\n"
     end
+
+    puts "Building regions master file for later validation:"
+
+    File.open("lib/#{Holidays::DEFINITIONS_PATH}/REGIONS.rb","w") do |file|
+      file.puts <<-EOR
+# encoding: utf-8
+module Holidays
+  REGIONS = [:#{all_regions.join(', :')}]
+end
+  EOR
+    end
+
+    puts "Done.\n\n"
   end
 
   desc 'Build the definition manifest'

@@ -182,7 +182,7 @@ module Holidays
       regions, rules_by_month, custom_methods, tests = DefinitionFactory.file_parser.parse_definition_files(files)
       module_src, test_src = DefinitionFactory.source_generator.generate_definition_source(module_name, files, regions, rules_by_month, custom_methods, tests)
 
-      return module_src, test_src
+      return module_src, test_src, regions
     end
 
     private

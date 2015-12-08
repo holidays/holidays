@@ -9,7 +9,7 @@ module Holidays
           OptionFactory.parse_options,
           DefinitionFactory.holidays_by_month_repository,
           DateCalculatorFactory.day_of_month_calculator,
-          DefinitionFactory.proc_cache_repository
+          DefinitionFactory.proc_cache_repository,
         )
       end
     end
