@@ -12,7 +12,7 @@ To install the gem from RubyGems:
 
     gem install holidays
 
-The Holidays gem is tested on Ruby 1.9.2, 1.9.3, 2.0.0, 2.1.0, 2.2.0 and JRuby.
+The Holidays gem is tested on Ruby 2.0.0, 2.1.0, 2.2.0 and JRuby.
 
 ## Time zones
 
