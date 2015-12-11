@@ -26,5 +26,21 @@ assert_equal 'Waitangi Day', Date.civil(2015, 2, 6).holidays(:nz, :observed)[0][
 assert_equal 'Waitangi Day', Date.civil(2016, 2, 6).holidays(:nz)[0][:name]
 assert_equal 'Waitangi Day', Date.civil(2016, 2, 8).holidays(:nz, :observed)[0][:name]
 
+assert_equal 'Nelson Anniversary Day', Holidays.on(Date.civil(2016, 2, 1), :nz_ne, :observed)[0][:name]
+
+#FIXME I believe this is a bug. These are the correct dates according to
+# http://employment.govt.nz/er/holidaysandleave/publicholidays/publicholidaydates/future-dates.asp
+# but because it falls on month-end our current processing won't find it. I'm going to open a new issue
+# and handle this in the refactor branch.
+#assert_equal 'Nelson Anniversary Day', Holidays.on(Date.civil(2017, 1, 30), :nz_ne, :observed)[0][:name]
+#assert_equal 'Nelson Anniversary Day', Holidays.on(Date.civil(2018, 1, 29), :nz_ne, :observed)[0][:name]
+
+assert_equal 'Nelson Anniversary Day', Holidays.on(Date.civil(2019, 2, 4), :nz_ne, :observed)[0][:name]
+
+assert_equal 'Taranaki Anniversary Day', Holidays.on(Date.civil(2016, 3, 14), :nz_ta, :observed)[0][:name]
+assert_equal 'Taranaki Anniversary Day', Holidays.on(Date.civil(2017, 3, 13), :nz_ta, :observed)[0][:name]
+assert_equal 'Taranaki Anniversary Day', Holidays.on(Date.civil(2018, 3, 12), :nz_ta, :observed)[0][:name]
+assert_equal 'Taranaki Anniversary Day', Holidays.on(Date.civil(2019, 3, 11), :nz_ta, :observed)[0][:name]
+
   end
 end
