@@ -13,7 +13,7 @@ module Holidays
   # All the definitions are available at https://github.com/alexdunae/holidays
   module NZ # :nodoc:
     def self.defined_regions
-      [:nz, :nz_sl, :nz_we, :nz_ak, :nz_nl, :nz_ot, :nz_sc, :nz_hb, :nz_mb, :nz_ca, :nz_ch, :nz_wl]
+      [:nz, :nz_sl, :nz_we, :nz_ak, :nz_nl, :nz_ne, :nz_ot, :nz_ta, :nz_sc, :nz_hb, :nz_mb, :nz_ca, :nz_ch, :nz_wl]
     end
 
     def self.holidays_by_month
@@ -27,10 +27,10 @@ module Holidays
             {:mday => 22, :observed => lambda { |date| Holidays.closest_monday(date) }, :observed_id => "closest_monday", :name => "Wellington Anniversary Day", :regions => [:nz_we]},
             {:mday => 29, :observed => lambda { |date| Holidays.closest_monday(date) }, :observed_id => "closest_monday", :name => "Auckland Anniversary Day", :regions => [:nz_ak]},
             {:mday => 29, :observed => lambda { |date| Holidays.closest_monday(date) }, :observed_id => "closest_monday", :name => "Northland Anniversary Day", :regions => [:nz_nl]}],
-      2 => [{:mday => 1, :observed => lambda { |date| Holidays.closest_monday(date) }, :observed_id => "closest_monday", :name => "Nelson Anniversary Day", :regions => [:nz_ak]},
+      2 => [{:mday => 1, :observed => lambda { |date| Holidays.closest_monday(date) }, :observed_id => "closest_monday", :name => "Nelson Anniversary Day", :regions => [:nz_ne]},
             {:mday => 6, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "Waitangi Day", :regions => [:nz]}],
       3 => [{:mday => 23, :observed => lambda { |date| Holidays.closest_monday(date) }, :observed_id => "closest_monday", :name => "Otago Anniversary Day", :regions => [:nz_ot]},
-            {:wday => 1, :week => 2, :name => "Taranaki Anniversary Day", :regions => [:nz_ak]}],
+            {:wday => 1, :week => 2, :observed => lambda { |date| Holidays.closest_monday(date) }, :observed_id => "closest_monday", :name => "Taranaki Anniversary Day", :regions => [:nz_ta]}],
       4 => [{:mday => 25, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "ANZAC Day", :regions => [:nz]}],
       6 => [{:wday => 1, :week => 1, :name => "Queen's Birthday", :regions => [:nz]}],
       9 => [{:wday => 1, :week => 4, :name => "Dominion Day", :regions => [:nz_sc]}],
