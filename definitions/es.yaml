@@ -1,0 +1,200 @@
+# Spanish holiday definitions for the Ruby Holiday gem.
+#
+# Including the Balearic Islands and the Canary Islands.
+#
+# Updated: 2008-11-29.
+#
+# Sources:
+# - http://en.wikipedia.org/wiki/Public_holidays_in_Spain
+# - http://www.timeanddate.com/calendar/index.html?country=16
+#
+# Notes:
+# - Valencia is encoded as both es_v and es_vc
+months:
+  0:
+  - name: Jueves Santo
+    regions: [es_pv, es_na, es_an, es_ib, es_cm, es_mu, es_m, es_ar, es_cl, es_cn, es_lo, es_ga, es_ce, es_o, es_ex]
+    function: easter(year)-3
+  - name: Viernes Santo
+    regions: [es]
+    function: easter(year)-2
+  - name: Lunes de Pascua
+    regions: [es_pv, es_ct, es_na, es_v, es_vc]
+    function: easter(year)+1
+  1:
+  - name: Año Nuevo
+    regions: [es]
+    mday: 1
+    observed: to_monday_if_sunday
+  - name: Día de Reyes
+    regions: [es]
+    mday: 6
+    observed: to_monday_if_sunday
+  2:
+  - name: Día de Andalucía
+    regions: [es_an]
+    mday: 28
+    observed: to_monday_if_sunday
+  3:
+  - name: Día de las Islas Baleares
+    regions: [es_ib]
+    mday: 1
+    observed: to_monday_if_sunday
+  - name: San José
+    regions: [es_v, es_vc, es_cm, es_mu, es_m]
+    mday: 19
+    observed: to_monday_if_sunday
+  4:
+  - name: Día de Castilla y León
+    regions: [es_cl]
+    mday: 23
+    observed: to_monday_if_sunday
+  - name: San Jorge, Día de Aragón
+    regions: [es_ar]
+    mday: 23
+    observed: to_monday_if_sunday
+  5:
+  - name: Día del Trabajador
+    regions: [es]
+    mday: 1
+    observed: to_monday_if_sunday
+  - name: Fiesta de la Comunidad
+    regions: [es_m]
+    mday: 2
+    observed: to_monday_if_sunday
+  - name: Día de las Canarias
+    regions: [es_cn]
+    mday: 30
+    observed: to_monday_if_sunday
+  - name: Día de la Región Castilla-La Mancha
+    regions: [es_cm]
+    mday: 31
+    observed: to_monday_if_sunday
+  6:
+  - name: Día de la Región de Murcia
+    regions: [es_mu]
+    mday: 9
+    observed: to_monday_if_sunday
+  - name: Día de La Rioja
+    regions: [es_lo]
+    mday: 9
+    observed: to_monday_if_sunday
+  7:
+  - name: Santiago Apostol
+    regions: [es_ga]
+    mday: 23
+    observed: to_monday_if_sunday
+  8:
+  - name: Asunción
+    regions: [es]
+    mday: 15
+    observed: to_monday_if_sunday
+  9:
+  - name: Día de Ceuta
+    regions: [es_ce]
+    mday: 2
+    observed: to_monday_if_sunday
+  - name: Día de Asturias
+    regions: [es_o]
+    mday: 8
+    observed: to_monday_if_sunday
+  - name: Día de Extremadura
+    regions: [es_ex]
+    mday: 8
+  - name: Fiesta Nacional de Cataluña
+    regions: [es_ct]
+    mday: 11
+    observed: to_monday_if_sunday
+  10:
+  - name: Día de Valencia
+    regions: [es_vc, es_v]
+    mday: 9
+    observed: to_monday_if_sunday
+  - name: Día de la Hispanidad
+    regions: [es]
+    mday: 12
+    observed: to_monday_if_sunday
+  11:
+  - name: Todos los Santos
+    regions: [es]
+    mday: 1
+    observed: to_monday_if_sunday
+  12:
+  - name: Día de la Constitución
+    regions: [es]
+    mday: 6
+    observed: to_monday_if_sunday
+  - name: Inmaculada Concepción
+    regions: [es]
+    mday: 8
+    observed: to_monday_if_sunday
+  - name: Navidad del Señor
+    regions: [es]
+    mday: 25
+    observed: to_monday_if_sunday
+  - name: San Esteban
+    regions: [es_ib, es_ct]
+    mday: 26
+    observed: to_monday_if_sunday
+tests: |
+    {Date.civil(2009,1,1) => 'Año Nuevo',
+     Date.civil(2009,1,6) => 'Día de Reyes',
+     Date.civil(2009,4,10) => 'Viernes Santo',
+     Date.civil(2009,5,1) => 'Día del Trabajador',
+     Date.civil(2009,8,15) => 'Asunción',
+     Date.civil(2009,10,12) => 'Día de la Hispanidad',
+     Date.civil(2009,11,1) => 'Todos los Santos',
+     Date.civil(2009,12,6) => 'Día de la Constitución',
+     Date.civil(2009,12,8) => 'Inmaculada Concepción',
+     Date.civil(2009,12,25) => 'Navidad del Señor'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :es, :informal)[0] || {})[:name]
+    end
+
+    [:es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex, :es_].each do |r|
+      assert_equal 'Jueves Santo', Holidays.on(Date.civil(2009,4,9), r)[0][:name]
+    end
+    [:es_pv, :es_ct, :es_na, :es_v, :es_vc, :es_].each do |r|
+      assert_equal 'Lunes de Pascua', Holidays.on(Date.civil(2009,4,13), r)[0][:name]
+    end
+
+    assert_equal 'Jueves Santo', Holidays.on(Date.civil(2009,4,9), :es_an)[0][:name]
+
+    [:es_v, :es_vc, :es_cm, :es_mu, :es_m, :es_].each do |r|
+      assert_equal 'San José', Holidays.on(Date.civil(2009,3,19), r)[0][:name]
+    end
+
+    [:es_cl].each do |r|
+      assert_equal 'Día de Castilla y León', Holidays.on(Date.civil(2009,4,23), r)[0][:name]
+    end
+
+    [:es_ar].each do |r|
+      assert_equal 'San Jorge, Día de Aragón', Holidays.on(Date.civil(2009,4,23), r)[0][:name]
+    end
+
+    [:es_].each do |r|
+      assert_equal 'Día de Castilla y León', Holidays.on(Date.civil(2009,4,23), r)[0][:name]
+      assert_equal 'San Jorge, Día de Aragón', Holidays.on(Date.civil(2009,4,23), r)[1][:name]
+    end
+
+    [:es_vc, :es_v, :es_].each do |r|
+      assert_equal 'Día de Valencia', Holidays.on(Date.civil(2009,10,9), r)[0][:name]
+    end
+
+    [:es_ib, :es_ct, :es_].each do |r|
+      assert_equal 'San Esteban', Holidays.on(Date.civil(2009,12,26), r)[0][:name]
+    end
+
+    assert_equal 'Año Nuevo', Holidays.on(Date.civil(2012,1,1), :es)[0][:name]
+    assert_equal 'Año Nuevo', Holidays.on(Date.civil(2012,1,2), :es, :observed)[0][:name]
+    assert_equal 'Día de Andalucía', Holidays.on(Date.civil(2009,2,28), :es_an)[0][:name]
+    assert_equal 'Día de las Islas Baleares', Holidays.on(Date.civil(2009,3,1), :es_ib)[0][:name]
+    assert_equal 'Fiesta de la Comunidad', Holidays.on(Date.civil(2006,5,2), :es_m)[0][:name]
+    assert_equal 'Día de las Canarias', Holidays.on(Date.civil(2006,5,30), :es_cn)[0][:name]
+    assert_equal 'Día de la Región Castilla-La Mancha', Holidays.on(Date.civil(2009,5,31), :es_cm)[0][:name]
+    assert_equal 'Día de la Región de Murcia', Holidays.on(Date.civil(2009,6,9), :es_mu)[0][:name]
+    assert_equal 'Día de La Rioja', Holidays.on(Date.civil(2009,6,9), :es_lo)[0][:name]
+    assert_equal 'Santiago Apostol', Holidays.on(Date.civil(2009,7,23), :es_ga)[0][:name]
+    assert_equal 'Día de Ceuta', Holidays.on(Date.civil(2009,9,2), :es_ce)[0][:name]
+    assert_equal 'Día de Asturias', Holidays.on(Date.civil(2009,9,8), :es_o)[0][:name]
+    assert_equal 'Día de Extremadura', Holidays.on(Date.civil(2009,9,8), :es_ex)[0][:name]
+    assert_equal 'Fiesta Nacional de Cataluña', Holidays.on(Date.civil(2009,9,11), :es_ct)[0][:name]

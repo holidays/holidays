@@ -1,0 +1,162 @@
+# New Zealand holiday definitions for the Ruby Holiday gem.
+# Updated: 2010-03-28.
+# Sources:
+# - http://en.wikipedia.org/wiki/Public_holidays_in_New_Zealand
+---
+months:
+  0:
+  - name: Good Friday
+    regions: [nz]
+    function: easter(year)-2
+  - name: Easter Saturday
+    regions: [nz]
+    function: easter(year)-1
+  - name: Easter Monday
+    regions: [nz]
+    function: easter(year)+1
+  1:
+  - name: New Year's Day
+    regions: [nz]
+    mday: 1
+    observed: to_monday_if_weekend
+  - name: Day after New Year's Day
+    regions: [nz]
+    mday: 2
+    observed: to_weekday_if_boxing_weekend
+  - name: Southland Anniversary Day
+    regions: [nz_sl]
+    mday: 17
+  - name: Wellington Anniversary Day
+    regions: [nz_we]
+    mday: 22
+    observed: closest_monday
+  - name: Auckland Anniversary Day
+    regions: [nz_ak]
+    mday: 29
+    observed: closest_monday
+  - name: Northland Anniversary Day
+    regions: [nz_nl]
+    mday: 29
+    observed: closest_monday
+  2:
+  - name: Nelson Anniversary Day
+    regions: [nz_ne]
+    mday: 1
+    observed: closest_monday
+  - name: Waitangi Day
+    regions: [nz]
+    mday: 6
+    observed: to_monday_if_weekend
+  3:
+  - name: Otago Anniversary Day
+    regions: [nz_ot]
+    mday: 23
+    observed: closest_monday
+  - name: Taranaki Anniversary Day
+    regions: [nz_ta]
+    week: 2
+    wday: 1
+    observed: closest_monday
+  4:
+  - name: ANZAC Day
+    regions: [nz]
+    mday: 25
+    observed: to_monday_if_weekend
+  6:
+  - name: Queen's Birthday
+    regions: [nz]
+    week: 1
+    wday: 1
+  9:
+  - name: Dominion Day
+    regions: [nz_sc]
+    week: 4
+    wday: 1
+  10:
+  - name: Hawke's bay Anniversary Day
+    regions: [nz_hb]
+    week: 1
+    wday: 1
+    observed: previous_friday
+  - name: Labour Day
+    regions: [nz]
+    week: 4
+    wday: 1
+  - name: Marlborough Anniversary Day
+    regions: [nz_mb]
+    week: 4
+    wday: 1
+    observed: next_week
+  11:
+  - name: Canterbury Anniversary Day
+    regions: [nz_ca]
+    week: 2
+    wday: 5
+  - name: Chatham Island Anniversary Day
+    regions: [nz_ch]
+    mday: 30
+    observed: closest_monday
+  12:
+  - name: Westland Anniversary Day
+    regions: [nz_wl]
+    mday: 1
+    observed: closest_monday
+  - name: Christmas Day
+    regions: [nz]
+    mday: 25
+    observed: to_monday_if_weekend
+  - name: Boxing Day
+    regions: [nz]
+    mday: 26
+    observed: to_weekday_if_boxing_weekend
+tests: |
+    {Date.civil(2007,1,1) => 'New Year\'s Day',
+     Date.civil(2007,1,2) => 'Day after New Year\'s Day',
+     Date.civil(2007,2,6) => 'Waitangi Day',
+     Date.civil(2007,4,6) => 'Good Friday',
+     Date.civil(2007,4,9) => 'Easter Monday',
+     Date.civil(2007,4,25) => 'ANZAC Day',
+     Date.civil(2007,12,25) => 'Christmas Day',
+     Date.civil(2007,12,26) => 'Boxing Day'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :nz, :informal)[0] || {})[:name]
+    end
+    assert_equal 'ANZAC Day', Holidays.on(Date.civil(2015, 4, 25), :nz)[0][:name]
+    assert_equal 'ANZAC Day', Holidays.on(Date.civil(2015, 4, 27), :nz, :observed)[0][:name]
+    assert_equal 'ANZAC Day', Holidays.on(Date.civil(2016, 4, 25), :nz)[0][:name]
+    assert_equal 'ANZAC Day', Holidays.on(Date.civil(2016, 4, 25), :nz, :observed)[0][:name]
+    assert_equal 'Waitangi Day', Holidays.on(Date.civil(2015, 2, 6), :nz)[0][:name]
+    assert_equal 'Waitangi Day', Holidays.on(Date.civil(2015, 2, 6), :nz, :observed)[0][:name]
+    assert_equal 'Waitangi Day', Holidays.on(Date.civil(2016, 2, 6), :nz)[0][:name]
+    assert_equal 'Waitangi Day', Holidays.on(Date.civil(2016, 2, 8), :nz, :observed)[0][:name]
+
+    assert_equal 'Nelson Anniversary Day', Holidays.on(Date.civil(2016, 2, 1), :nz_ne, :observed)[0][:name]
+    assert_equal 'Nelson Anniversary Day', Holidays.on(Date.civil(2017, 1, 30), :nz_ne, :observed)[0][:name]
+    assert_equal 'Nelson Anniversary Day', Holidays.on(Date.civil(2018, 1, 29), :nz_ne, :observed)[0][:name]
+    assert_equal 'Nelson Anniversary Day', Holidays.on(Date.civil(2019, 2, 4), :nz_ne, :observed)[0][:name]
+
+    assert_equal 'Taranaki Anniversary Day', Holidays.on(Date.civil(2016, 3, 14), :nz_ta, :observed)[0][:name]
+    assert_equal 'Taranaki Anniversary Day', Holidays.on(Date.civil(2017, 3, 13), :nz_ta, :observed)[0][:name]
+    assert_equal 'Taranaki Anniversary Day', Holidays.on(Date.civil(2018, 3, 12), :nz_ta, :observed)[0][:name]
+    assert_equal 'Taranaki Anniversary Day', Holidays.on(Date.civil(2019, 3, 11), :nz_ta, :observed)[0][:name]
+methods:
+  closest_monday: |
+    def self.closest_monday(date)
+      if [1, 2, 3, 4].include?(date.wday)
+        date -= (date.wday - 1)
+      elsif 0 == date.wday
+        date += 1
+      else
+        date += 8 - date.wday
+      end
+      date
+    end
+
+  previous_friday: |
+    def self.previous_friday(date)
+      date - 3
+    end
+
+  next_week: |
+    def self.next_week(date)
+      date + 7
+    end

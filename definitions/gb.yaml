@@ -1,0 +1,124 @@
+# Great Britain/United Kingdom holiday definitions for the Ruby Holiday gem.
+#
+# Including England, Wales, Scotland, N. Ireland, the Isle of Man, Guernsey
+# and Jersey.
+#
+# Updated: 2008-11-28.
+# Sources:
+# - http://en.wikipedia.org/wiki/List_of_holidays_by_country#United_Kingdom_and_Crown_dependencies
+#
+# Notes:
+# - Jersey, Guernsey and the Isle of Man are encode with both their ISO 3166-1 and ISO 3-3166-2 codes.
+# - England and Wales together should be encoded as [gb_eng, gb_wls, gb_eaw...]
+---
+months:
+  0:
+  - name: Good Friday
+    regions: [gb]
+    function: easter(year)-2
+  - name: Easter Sunday
+    regions: [gb]
+    function: easter(year)
+  - name: Easter Monday
+    regions: [gb_eng, gb_wls, gb_eaw, gb_nir]
+    function: easter(year)+1
+  1:
+  - name: New Year's Day
+    regions: [gb]
+    mday: 1
+    observed: to_monday_if_weekend
+  - name: 2nd January
+    regions: [gb_sct]
+    mday: 2
+    observed: to_weekday_if_boxing_weekend
+  3:
+  - name: St. Piran's Day
+    regions: [gb_con]
+    mday: 5
+  - name: St. Patrick's Day
+    regions: [gb_nir]
+    mday: 17
+  5:
+  - name: May Day
+    regions: [gb]
+    week: 1
+    wday: 1
+  - name: Liberation Day
+    regions: [je, gb_jsy, gg, gb_gsy]
+    mday: 9
+  - name: Bank Holiday
+    regions: [gb]
+    week: -1
+    wday: 1
+  7:
+  - name: Tynwald Day
+    regions: [im, gb_iom]
+    mday: 5
+  - name: Battle of the Boyne
+    regions: [gb_nir]
+    mday: 12
+  8:
+  - name: Bank Holiday
+    regions: [gb_sct]
+    week: 1
+    wday: 1
+  - name: Bank Holiday
+    regions: [gb_eng, gb_wls, gb_eaw, gb_nir]
+    week: -1
+    wday: 1
+  11:
+  - name: Guy Fawkes Day
+    regions: [gb]
+    mday: 5
+    type: informal
+  - name: St. Andrew's Day
+    regions: [gb_sct]
+    mday: 30
+    type: informal
+    observed: to_monday_if_weekend
+  12:
+  - name: Christmas Day
+    regions: [gb]
+    mday: 25
+    observed: to_monday_if_weekend
+  - name: Boxing Day
+    regions: [gb]
+    mday: 26
+    observed: to_weekday_if_boxing_weekend
+tests: |
+    {Date.civil(2008,3,21) => 'Good Friday',
+     Date.civil(2008,3,23) => 'Easter Sunday',
+     Date.civil(2008,5,5) => 'May Day',
+     Date.civil(2008,5,26) => 'Bank Holiday',
+     Date.civil(2008,11,5) => 'Guy Fawkes Day',
+     Date.civil(2008,12,25) => 'Christmas Day',
+     Date.civil(2008,12,26) => 'Boxing Day'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :gb, :informal)[0] || {})[:name]
+    end
+
+    assert_equal 'St. Patrick\'s Day', Holidays.on(Date.civil(2008,3,17), :gb_nir, :informal)[0][:name]
+    assert_equal 'St. Andrew\'s Day', Holidays.on(Date.civil(2008,11,30), :gb_sct, :informal)[0][:name]
+
+    assert_equal 'Christmas Day', Holidays.on(Date.civil(2008,12,25), :gb_, :observed)[0][:name]
+    assert_equal 'Christmas Day', Holidays.on(Date.civil(2009,12,25), :gb_, :observed)[0][:name]
+    assert_equal 'Christmas Day', Holidays.on(Date.civil(2010,12,27), :gb_, :observed)[0][:name]
+
+    assert_equal 'Boxing Day', Holidays.on(Date.civil(2008,12,26), :gb_, :observed)[0][:name]
+    assert_equal 'Boxing Day', Holidays.on(Date.civil(2009,12,28), :gb_, :observed)[0][:name]
+    assert_equal 'Boxing Day', Holidays.on(Date.civil(2010,12,28), :gb_, :observed)[0][:name]
+    assert_equal 'Boxing Day', Holidays.on(Date.civil(2011,12,27), :gb_, :observed)[0][:name]
+
+    assert_equal 'New Year\'s Day', Holidays.on(Date.civil(2010,1,1), :gb, :observed)[0][:name]
+    assert_equal 'New Year\'s Day', Holidays.on(Date.civil(2011,1,3), :gb, :observed)[0][:name]
+    assert_equal 'New Year\'s Day', Holidays.on(Date.civil(2012,1,2), :gb, :observed)[0][:name]
+
+    assert_equal '2nd January', Holidays.on(Date.civil(2010,1,4), :gb_sct, :observed)[0][:name]
+    assert_equal '2nd January', Holidays.on(Date.civil(2011,1,4), :gb_sct, :observed)[0][:name]
+    assert_equal '2nd January', Holidays.on(Date.civil(2012,1,3), :gb_sct, :observed)[0][:name]
+    assert_equal '2nd January', Holidays.on(Date.civil(2013,1,2), :gb_sct, :observed)[0][:name]
+    assert_equal '2nd January', Holidays.on(Date.civil(2014,1,2), :gb_sct, :observed)[0][:name]
+
+    [:gb_wls, :gb_eng, :gb_nir, :gb_eaw, :gb_].each do |r|
+      assert_equal 'Easter Monday', Holidays.on(Date.civil(2008,3,24), r)[0][:name]
+      assert_equal 'Bank Holiday', Holidays.on(Date.civil(2008,8,25), r)[0][:name]
+    end

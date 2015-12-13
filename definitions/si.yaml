@@ -1,0 +1,84 @@
+# Slovenia holiday definitions for the Ruby Holiday gem.
+#
+# Updated: 2014-04-09.
+# Sources:
+# - http://en.wikipedia.org/wiki/Public_holidays_in_Slovenia
+
+months:
+  0:
+  - name: velikonočna nedelja
+    regions: [si]
+    function: easter(year)
+  - name: velikonočni ponedeljek
+    regions: [si]
+    function: easter(year)+1
+  - name: binkošti
+    regions: [si]
+    function: easter(year)+49
+  1:
+  - name: novo leto
+    regions: [si]
+    mday: 1
+  2:
+  - name: Prešernov dan, slovenski kulturni praznik
+    regions: [si]
+    mday: 8
+  4:
+  - name: dan upora proti okupatorju
+    regions: [si]
+    mday: 27
+  5:
+  - name: praznik dela
+    regions: [si]
+    mday: 1
+  - name: praznik dela
+    regions: [si]
+    mday: 2
+  6:
+  - name: dan državnosti
+    regions: [si]
+    mday: 25
+  8:
+  - name: Marijino vnebovzetje
+    regions: [si]
+    mday: 15
+  10:
+  - name: dan reformacije
+    regions: [si]
+    mday: 31
+  11:
+  - name: dan spomina na mrtve
+    regions: [si]
+    mday: 1
+  12:
+  - name: božič
+    regions: [si]
+    mday: 25
+  - name: dan samostojnosti in enotnosti
+    regions: [si]
+    mday: 26
+tests: |
+    assert_equal 'velikonočna nedelja', Holidays.on(Date.civil(2015,4,5), :si)[0][:name]
+    assert_equal 'velikonočna nedelja', Holidays.on(Date.civil(2016,3,27), :si)[0][:name]
+
+    assert_equal 'velikonočni ponedeljek', Holidays.on(Date.civil(2015,4,6), :si)[0][:name]
+    assert_equal 'velikonočni ponedeljek', Holidays.on(Date.civil(2016,3,28), :si)[0][:name]
+
+    assert_equal 'binkošti', Holidays.on(Date.civil(2015,5,24), :si)[0][:name]
+    assert_equal 'binkošti', Holidays.on(Date.civil(2016,5,15), :si)[0][:name]
+
+    (2014..2020).each do |year|
+      {Date.civil(year,1,1) => 'novo leto',
+       Date.civil(year,2,8) => 'Prešernov dan, slovenski kulturni praznik',
+       Date.civil(year,4,27) => 'dan upora proti okupatorju',
+       Date.civil(year,5,1) => 'praznik dela',
+       Date.civil(year,5,2) => 'praznik dela',
+       Date.civil(year,6,25) => 'dan državnosti',
+       Date.civil(year,8,15) => 'Marijino vnebovzetje',
+       Date.civil(year,10,31) => 'dan reformacije',
+       Date.civil(year,11,1) => 'dan spomina na mrtve',
+       Date.civil(year,12,25) => 'božič',
+       Date.civil(2008,12,26) => 'dan samostojnosti in enotnosti'}.each do |date, name|
+        assert_equal name, (Holidays.on(date, :si, :informal)[0] || {})[:name]
+      end
+    end

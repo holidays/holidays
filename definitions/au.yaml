@@ -1,0 +1,310 @@
+# Australian holiday definitions for the Ruby Holiday gem.
+# Updated: 2008-11-29.
+# Sources:  
+# - http://en.wikipedia.org/wiki/Australian_public_holidays
+# - http://www.docep.wa.gov.au/lr/LabourRelations/Content/Wages%20and%20Conditions/Public%20Holidays/Public_Holidays.html
+# - http://www.wst.tas.gov.au/employment_info/public_holidays
+# TODO: missing some regional holidays
+--- 
+months:
+  0: 
+  - name: Good Friday
+    regions: [au]
+    function: easter(year)-2
+  - name: Easter Saturday
+    regions: [au_nsw, au_vic, au_qld, au_nt, au_act, au_sa]
+    function: easter(year)-1
+  - name: Easter Sunday
+    regions: [au_nsw, au_vic]
+    function: easter(year)
+  - name: Easter Monday
+    regions: [au]
+    function: easter(year)+1
+  1: 
+  - name: New Year's Day
+    regions: [au]
+    mday: 1
+    observed: to_monday_if_weekend
+  - name: Australia Day
+    regions: [au]
+    mday: 26
+    observed: to_monday_if_weekend
+  2:
+  - name: Royal Hobart Regatta
+    regions: [au_tas_south]
+    week: 2
+    wday: 1
+  3: 
+  - name: Labour Day
+    regions: [au_wa]
+    week: 1
+    wday: 1
+  - name: Eight Hours Day
+    regions: [au_tas]
+    week: 2
+    wday: 1
+  - name: Labour Day
+    regions: [au_vic]
+    week: 2
+    wday: 1
+  - name: March Public Holiday
+    regions: [au_sa]
+    function: march_pub_hol_sa(year)
+  4: 
+  - name: ANZAC Day
+    regions: [au]
+    mday: 25
+  - name: ANZAC Day
+    regions: [au_nsw, au_vic, au_qld, au_nt, au_act, au_sa, au_tas]
+    mday: 25
+    observed: to_monday_if_sunday
+  - name: ANZAC Day
+    regions: [au_wa]
+    mday: 25
+    observed: to_monday_if_weekend
+  5: 
+  - name: Labour Day
+    regions: [au_qld]
+    function: qld_labour_day_may(year)
+  - name: May Day
+    regions: [au_nt]
+    week: 1
+    wday: 1
+  - name: May Public Holiday
+    regions: [au_sa]
+    function: may_pub_hol_sa(year)
+  6: 
+  - name: Foundation Day
+    regions: [au_wa]
+    week: 1
+    wday: 1
+  - name: Queen's Birthday
+    regions: [au_act, au_nsw, au_sa, au_qld, au_tas, au_nt, au_vic]
+    week: 2
+    wday: 1
+  - name: Queensland Day
+    regions: [au_qld]
+    mday: 6
+    type: informal
+  7:
+  - name: Cairns Show
+    regions: [au_qld_cairns]
+    week: 3
+    wday: 5
+  8:
+  - name: Ekka
+    regions: [au_qld_brisbane]
+    week: -3
+    wday: 3
+  9:
+  - name: Queen's Birthday
+    regions: [au_wa]
+    week: -1
+    wday: 1
+  - name: "Family & Community Day"
+    regions: [au_act]
+    week: -1
+    wday: 1
+  10:
+  - name: Friday before the AFL Grand Final
+    regions: [au_vic]
+    function: afl_grand_final(year)
+  - name: Labour Day
+    regions: [au_act, au_nsw, au_sa]
+    week: 1
+    wday: 1
+  - name: Labour Day
+    regions: [au_qld]
+    function: qld_labour_day_october(year)
+    observed: to_monday_if_weekend
+  - name: Queen's Birthday
+    regions: [au_qld]
+    function: qld_queens_bday_october(year)
+    observed: to_monday_if_weekend
+  - name: Royal Hobart Show
+    regions: [au_tas_south]
+    function: hobart_show_day(year)
+  11:
+  - name: G20 Day
+    regions: [au_qld_brisbane]
+    function: g20_day_2014_only(year)
+  - name: Recreation Day # http://www.timeanddate.com/holidays/australia/recreation-day
+    regions: [au_tas_north]
+    wday: 1
+    week: 1
+  - name: Melbourne Cup Day
+    regions: [au_vic_melbourne]
+    week: 1
+    wday: 2
+  12: 
+  - name: Christmas Day
+    regions: [au]
+    mday: 25
+    observed: to_monday_if_weekend
+  - name: Boxing Day
+    regions: [au_nsw, au_vic, au_qld, au_act, au_wa]
+    mday: 26
+    observed: to_weekday_if_boxing_weekend
+  - name: Boxing Day
+    regions: [au_sa, au_tas, au_nt]
+    function: to_weekday_if_boxing_weekend_from_year(year)
+methods:
+  afl_grand_final: |
+    def self.afl_grand_final(year)
+      if year == 2015
+        Date.civil(2015, 10, 2)
+      end
+    end    
+  qld_queens_bday_october: |
+    # http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
+    # celebrated twice in 2012
+    def self.qld_queens_bday_october(year)
+      year == 2012 ? 1 : nil
+    end
+  qld_labour_day_may: |
+    # http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
+    # changed from may to october after 2012
+    def self.qld_labour_day_may(year)
+      year <= 2012 ? Holidays.calculate_day_of_month(year, 5, 1, 1) : nil
+    end
+  qld_labour_day_october: |
+    # http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
+    # changed from may to october after 2012
+    def self.qld_labour_day_october(year)
+      year <= 2012 ? nil : Holidays.calculate_day_of_month(year, 10, 1, 1)
+    end
+  g20_day_2014_only: |
+    # http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
+    # G20 day in brisbane, in 2014, on november 14
+    def self.g20_day_2014_only(year)
+      year == 2014 ? 14 : nil
+    end
+  hobart_show_day: |
+    # http://worksafe.tas.gov.au/__data/assets/pdf_file/0008/287036/Public_Holidays_2014.pdf
+    # The Thursday before the fourth Saturday in October. 
+    def self.hobart_show_day(year)
+      fourth_sat_in_oct = Date.civil(year, 10, Holidays.calculate_day_of_month(year, 10, 4, :saturday))
+      fourth_sat_in_oct - 2 # the thursday before
+    end
+  march_pub_hol_sa: |
+    # http://www.safework.sa.gov.au/show_page.jsp?id=2483#.VQ9Mfmb8-8E
+    # The Holidays Act 1910 provides for the third Monday in May to be a public holiday. Since 2006 this public holiday has been observed on the second Monday in March through the issuing of a special Proclamation by the Governor.
+    def self.march_pub_hol_sa(year)
+      if year < 2006
+        nil
+      else
+        Date.civil(year, 3, Date.calculate_mday(year, 3, :second, :monday))
+      end
+    end
+  may_pub_hol_sa: |
+    # http://www.safework.sa.gov.au/show_page.jsp?id=2483#.VQ9Mfmb8-8E
+    # The Holidays Act 1910 provides for the third Monday in May to be a public holiday. Since 2006 this public holiday has been observed on the second Monday in March through the issuing of a special Proclamation by the Governor.
+    def self.may_pub_hol_sa(year)
+      if year >= 2006
+        nil
+      else
+        Date.civil(year, 5, Date.calculate_mday(year, 5, :third, :monday))
+      end
+    end
+tests: |
+    {Date.civil(2007,1,1) => 'New Year\'s Day', 
+     Date.civil(2007,1,26) => 'Australia Day', 
+     Date.civil(2007,4,6) => 'Good Friday',
+     Date.civil(2007,4,9) => 'Easter Monday',
+     Date.civil(2007,4,25) => 'ANZAC Day',
+     Date.civil(2007,12,25) => 'Christmas Day'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :au, :informal)[0] || {})[:name]
+    end
+
+    [:au_sa, :au_act, :au_nsw, :au_].each do |r|
+      assert_equal 'Labour Day', Holidays.on(Date.civil(2007,10,1), r)[0][:name]
+    end
+
+    [:au_sa, :au_act, :au_nsw, :au_vic, :au_tas, :au_qld, :au_nt, :au_].each do |r|
+      assert_equal 'Queen\'s Birthday', Holidays.on(Date.civil(2007,6,11), r)[0][:name]
+    end
+
+    assert_equal 'Labour Day', Holidays.on(Date.civil(2007,3,5), :au_wa)[0][:name]
+    assert_equal 'Labour Day', Holidays.on(Date.civil(2007,3,12), :au_vic)[0][:name]
+    assert_equal 'Labour Day', Holidays.on(Date.civil(2007,5,7), :au_qld)[0][:name]
+
+    assert_equal 'Easter Sunday', Holidays.on(Date.civil(2007,4,8), :au_nsw)[0][:name]
+
+    assert_equal 'May Day', Holidays.on(Date.civil(2007,5,7), :au_nt)[0][:name]
+
+    assert_equal 'Eight Hours Day', Holidays.on(Date.civil(2007,3,12), :au_tas)[0][:name]
+
+    assert_equal 'Labour Day', Holidays.on(Date.civil(2013,10,7), :au_qld)[0][:name]
+    assert_equal 'Labour Day', Holidays.on(Date.civil(2012,5,7), :au_qld)[0][:name]
+
+    assert_equal "Queen's Birthday", Holidays.on(Date.civil(2012,6,11), :au_qld)[0][:name]
+    assert_equal "Queen's Birthday", Holidays.on(Date.civil(2012,10,1), :au_qld)[0][:name]
+    assert_equal "Queen's Birthday", Holidays.on(Date.civil(2013,6,10), :au_qld)[0][:name]
+
+    assert_equal "Queen's Birthday", Holidays.on(Date.civil(2014, 9, 29), :au_wa)[0][:name]
+    assert_equal "Queen's Birthday", Holidays.on(Date.civil(2015, 9, 28), :au_wa)[0][:name]
+    assert_equal "Queen's Birthday", Holidays.on(Date.civil(2016, 9, 26), :au_wa)[0][:name]
+
+    assert_equal "Family & Community Day", Holidays.on(Date.civil(2014, 9, 29), :au_act)[0][:name]
+    assert_equal "Family & Community Day", Holidays.on(Date.civil(2015, 9, 28), :au_act)[0][:name]
+    assert_equal "Family & Community Day", Holidays.on(Date.civil(2016, 9, 26), :au_act)[0][:name]
+
+    assert_equal 'Australia Day', Holidays.on(Date.civil(2014,1,26), :au_qld)[0][:name]
+    assert_equal 'Australia Day', Holidays.on(Date.civil(2014,1,27), :au_qld, :observed)[0][:name]
+
+    assert_equal 'Cairns Show', Holidays.on(Date.civil(2014,7,18), :au_qld_cairns)[0][:name]
+    assert_equal 'Cairns Show', Holidays.on(Date.civil(2013,7,19), :au_qld_cairns)[0][:name]
+
+    assert_equal 'Royal Hobart Show', Holidays.on(Date.civil(2013, 10, 24), :au_tas_south)[0][:name]
+    assert_equal 'Royal Hobart Show', Holidays.on(Date.civil(2014, 10, 23), :au_tas_south)[0][:name]
+    assert_equal 'Royal Hobart Show', Holidays.on(Date.civil(2015, 10, 22), :au_tas_south)[0][:name]
+    assert_equal 'Royal Hobart Show', Holidays.on(Date.civil(2016, 10, 20), :au_tas_south)[0][:name]
+
+    assert_equal 'Recreation Day', Holidays.on(Date.civil(2013, 11, 4), :au_tas_north)[0][:name]
+    assert_equal 'Recreation Day', Holidays.on(Date.civil(2014, 11, 3), :au_tas_north)[0][:name]
+    assert_equal 'Recreation Day', Holidays.on(Date.civil(2015, 11, 2), :au_tas_north)[0][:name]
+    assert_equal 'Recreation Day', Holidays.on(Date.civil(2016, 11, 7), :au_tas_north)[0][:name]
+
+    assert_nil Date.civil(2014,11,4).holidays(:au_vic)[0]
+    assert_nil Date.civil(2015,11,3).holidays(:au_vic)[0]
+
+    assert_equal 'Melbourne Cup Day', Holidays.on(Date.civil(2014,11,4), :au_vic_melbourne)[0][:name]
+    assert_equal 'Melbourne Cup Day', Holidays.on(Date.civil(2015,11,3), :au_vic_melbourne)[0][:name]
+
+    assert_equal 'Friday before the AFL Grand Final', Date.civil(2015,10,2).holidays(:au_vic)[0][:name]
+    assert_nil Date.civil(2016,10,2).holidays(:au_vic)[0]
+
+    assert_equal "May Public Holiday", Date.civil(2005, 5, 16).holidays(:au_sa)[0][:name]
+    assert_equal [], Date.civil(2014, 5, 19).holidays(:au_sa)
+
+    assert_equal [], Date.civil(2005, 3, 14).holidays(:au_sa)
+    assert_equal "March Public Holiday", Date.civil(2014, 3, 10).holidays(:au_sa)[0][:name]
+    assert_equal "March Public Holiday", Date.civil(2015, 3, 9).holidays(:au_sa)[0][:name]
+    assert_equal "March Public Holiday", Date.civil(2016, 3, 14).holidays(:au_sa)[0][:name]
+    assert_equal "March Public Holiday", Date.civil(2017, 3, 13).holidays(:au_sa)[0][:name]
+
+    assert_equal "ANZAC Day", Date.civil(2015, 4, 25).holidays(:au_qld)[0][:name]
+    assert_equal "ANZAC Day", Date.civil(2015, 4, 25).holidays(:au_wa)[0][:name]
+    assert_equal [], Date.civil(2015, 4, 27).holidays(:au_qld, :observed)
+    assert_equal "ANZAC Day", Date.civil(2015, 4, 27).holidays(:au_wa, :observed)[0][:name]
+
+    # BOXING DAY - QLD observes weekend and monday
+    assert_equal "Boxing Day", Date.civil(2015, 12, 26).holidays(:au_qld)[0][:name]
+    assert_equal "Boxing Day", Date.civil(2015, 12, 28).holidays(:au_qld, :observed)[0][:name]
+
+    # BOXING DAY - SA gets monday only. same for TAS and NT.
+    assert_nil Date.civil(2015, 12, 26).holidays(:au_sa)[0]
+    assert_equal "Boxing Day", Date.civil(2015, 12, 28).holidays(:au_sa)[0][:name]
+    assert_nil Date.civil(2015, 12, 26).holidays(:au_tas)[0]
+    assert_equal "Boxing Day", Date.civil(2015, 12, 28).holidays(:au_tas)[0][:name]
+    assert_nil Date.civil(2015, 12, 26).holidays(:au_nt)[0]
+    assert_equal "Boxing Day", Date.civil(2015, 12, 28).holidays(:au_nt)[0][:name]
+
+    assert_equal 'G20 Day', Holidays.on(Date.civil(2014,11,14), :au_qld_brisbane)[0][:name]
+    assert_equal [], Holidays.on(Date.civil(2014,11,14), :au_qld)
+    assert_equal [], Holidays.on(Date.civil(2015,11,14), :au_qld_brisbane)
+
+    assert_equal 'Royal Hobart Regatta', Holidays.on(Date.civil(2012, 2, 13), :au_tas_south)[0][:name]
+    assert_equal 'Royal Hobart Regatta', Holidays.on(Date.civil(2014, 2, 10), :au_tas_south)[0][:name]
+    assert_equal 'Royal Hobart Regatta', Holidays.on(Date.civil(2015, 2, 9), :au_tas_south)[0][:name]
+    assert_equal 'Royal Hobart Regatta', Holidays.on(Date.civil(2016, 2, 8), :au_tas_south)[0][:name]

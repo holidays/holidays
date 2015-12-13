@@ -7,9 +7,10 @@ $KCODE = 'u' if RUBY_VERSION =~ /^1\.8/
 
 require 'rubygems'
 require 'test/unit'
+require 'mocha/test_unit'
 require 'date'
 require 'holidays'
-require 'holidays/ca'
+require "#{Holidays::DEFINITIONS_PATH}/ca"
 
 module Holidays
   # Test region used for generating a holiday on Date.today

@@ -1,10 +1,10 @@
 require File.expand_path(File.dirname(__FILE__)) + '/test_helper'
 
-require 'holidays/ca'
+require "#{Holidays::DEFINITIONS_PATH}/ca"
 
 # Re-include CA defs via holidays/north_america to ensure that individual
 # defs aren't duplicated.
-require 'holidays/north_america'
+require "#{Holidays::DEFINITIONS_PATH}/north_america"
 
 class HolidaysTests < Test::Unit::TestCase
   def setup
@@ -19,17 +19,6 @@ class HolidaysTests < Test::Unit::TestCase
     assert_equal 0, holidays.length
   end
 
-  def test_between
-    holidays = Holidays.between(Date.civil(2008,7,1), Date.civil(2008,7,1), :ca)
-    assert_equal 1, holidays.length
-
-    holidays = Holidays.between(Date.civil(2008,7,1), Date.civil(2008,7,31), :ca)
-    assert_equal 1, holidays.length
-    
-    holidays = Holidays.between(Date.civil(2008,7,2), Date.civil(2008,7,31), :ca)
-    assert_equal 0, holidays.length
-  end
-
   def test_full_week
     ## Full weeks:
     # Try with a Monday
@@ -40,7 +29,7 @@ class HolidaysTests < Test::Unit::TestCase
     assert Holidays.full_week?(Date.civil(2012,1,29), :us)
     # Try Wednesday on a week going into a new month
     assert Holidays.full_week?(Date.civil(2012,2,1), :us)
-    
+
     ## Weeks with holidays:
     # New Year's 2012 (on Sunday, observed Monday). Test from a Wednesday.
     assert_equal(false, Holidays.full_week?(Date.civil(2012,1,4), :us))
@@ -53,7 +42,7 @@ class HolidaysTests < Test::Unit::TestCase
     holidays_in_2012 = weeks_in_2012.times.count { |week| Holidays.full_week?(Date.commercial(2012,week+1), :us) == false }
     assert_equal 10, holidays_in_2012
   end
-  
+
   def test_requires_valid_regions
     assert_raises Holidays::UnknownRegionError do
       Holidays.on(Date.civil(2008,1,1), :xx)
@@ -75,7 +64,7 @@ class HolidaysTests < Test::Unit::TestCase
     holidays = Holidays.on(@date, [:ca_bc,:ca])
     assert_equal 1, holidays.length
   end
-  
+
   def test_observed_dates
     # Should fall on Tuesday the 1st
    assert_equal 1, Holidays.on(Date.civil(2008,7,1), :ca, :observed).length
@@ -100,7 +89,7 @@ class HolidaysTests < Test::Unit::TestCase
     holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31))
     assert holidays.length >= 3
   end
-  
+
   def test_sub_regions
     # Should return Victoria Day.
     holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca)
@@ -126,7 +115,7 @@ class HolidaysTests < Test::Unit::TestCase
     assert_equal '2067-04-03', Holidays.easter(2067).to_s
     assert_equal '2099-04-12', Holidays.easter(2099).to_s
   end
-  
+
   def test_orthodox_easter
     assert_equal '2000-04-30', Holidays.orthodox_easter(2000).to_s
     assert_equal '2008-04-27', Holidays.orthodox_easter(2008).to_s
@@ -158,15 +147,21 @@ class HolidaysTests < Test::Unit::TestCase
     }
   end
 
+  #FIXME - I am not a huge fan of this test as it is written. It depends on the definitions not changing.
+  #        I think that this is fine for an integration test but I think it should be labeled as such.
   def test_caching
+    start_date = Date.civil(2008, 3, 21)
+    end_date = Date.civil(2008, 3, 25)
+    cache_data = Holidays.between(start_date, end_date, :ca, :informal)
+    options = [:ca, :informal]
+
+    Holidays::DefinitionFactory.cache_repository.expects(:cache_between).with(start_date, end_date, cache_data, options)
+
     Holidays.cache_between(Date.civil(2008,3,21), Date.civil(2008,3,25), :ca, :informal)
 
-    # Test that cache has been set
-    cache_key = [:ca, :informal]
-    assert_equal Date.civil(2008,3,21), Holidays.cache_range[cache_key].begin
-    assert_equal Date.civil(2008,3,25), Holidays.cache_range[cache_key].end
-    assert_equal Date.civil(2008,3,21), Holidays.cache[cache_key].first[:date]
-    assert_equal Date.civil(2008,3,24), Holidays.cache[cache_key].last[:date]
+    # Test that cache has been set and it returns the same as before
+    assert_equal 1, Holidays.on(Date.civil(2008, 3, 21), :ca, :informal).length
+    assert_equal 1, Holidays.on(Date.civil(2008, 3, 24), :ca, :informal).length
 
     # Test that correct results are returned outside the cache range, and with no caching
     assert_equal 1, Holidays.on(Date.civil(2035,1,1), :ca, :informal).length

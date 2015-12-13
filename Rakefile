@@ -15,7 +15,8 @@ end
 task :default => :test
 
 namespace :generate do
-  DATA_PATH = 'data'
+  DATA_PATH = 'definitions'
+  TEST_DEFS_PATH = 'test/defs'
 
   desc 'Generate the holiday definition files'
   task :definitions do
@@ -23,34 +24,52 @@ namespace :generate do
     def_index = YAML.load_file("#{DATA_PATH}/index.yaml")
 
     # create a dir for the generated tests
-    FileUtils.mkdir_p('test/defs')
+    FileUtils.mkdir_p(TEST_DEFS_PATH)
+
+    all_regions = []
 
     def_index['defs'].each do |region, files|
       puts "Building #{region} definition module:"
       files = files.collect { |f| "#{DATA_PATH}/#{f}" }.uniq
 
-      module_src, test_src = Holidays.parse_definition_files_and_return_source(region, files)
-      File.open("lib/holidays/#{region.downcase.to_s}.rb","w") do |file|
+      module_src, test_src, regions = Holidays.parse_definition_files_and_return_source(region, files)
+      File.open("lib/#{Holidays::DEFINITIONS_PATH}/#{region.downcase.to_s}.rb","w") do |file|
         file.puts module_src
       end
       unless test_src.empty?
-        File.open("test/defs/test_defs_#{region.downcase.to_s}.rb","w") do |file|
+        File.open("#{TEST_DEFS_PATH}/test_defs_#{region.downcase.to_s}.rb","w") do |file|
           file.puts test_src
         end
       end
+
+      all_regions << regions
+
       puts "Done.\n\n"
     end
+
+    puts "Building regions master file for later validation:"
+
+    File.open("lib/#{Holidays::DEFINITIONS_PATH}/REGIONS.rb","w") do |file|
+      file.puts <<-EOR
+# encoding: utf-8
+module Holidays
+  REGIONS = [:#{all_regions.join(', :')}]
+end
+  EOR
+    end
+
+    puts "Done.\n\n"
   end
 
   desc 'Build the definition manifest'
   task :manifest do
-    File.open("lib/holidays/MANIFEST","w") do |file|
+    File.open("lib/#{Holidays::DEFINITIONS_PATH}/MANIFEST","w") do |file|
       file.puts <<-EOH
 ==== Regional definitions
 The following definition files are included in this installation:
 
   EOH
-      FileList.new('lib/holidays/*.rb').exclude(/version/).each do |str|
+      FileList.new("lib/#{Holidays::DEFINITIONS_PATH}/*.rb").exclude(/version/).each do |str|
         file.puts('* ' + str.gsub(/^lib\/|\.rb$/, ''))
       end
     end
@@ -59,4 +78,3 @@ The following definition files are included in this installation:
 end
 
 task :generate => ['generate:definitions', 'generate:manifest']
-

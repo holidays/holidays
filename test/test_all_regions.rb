@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__)) + '/test_helper'
 class MultipleRegionsTests < Test::Unit::TestCase
 
   def test_definition_dir
-    assert File.directory?(Holidays::DEFINITION_PATH)
+    assert File.directory?(Holidays::FULL_DEFINITIONS_PATH)
   end
 
   def test_getting_available_paths
@@ -26,7 +26,6 @@ class MultipleRegionsTests < Test::Unit::TestCase
     assert defs.include?(:ca)
     assert defs.include?(:united_nations)
   end
-
 
   def test_loading_all
     Holidays.load_all
@@ -59,8 +58,20 @@ class MultipleRegionsTests < Test::Unit::TestCase
     assert holidays.any? { |h| h[:name] == 'Neujahrstag' }
   end
 
+  def test_unknown_region_raises_exception
+    assert_raise Holidays::UnknownRegionError do
+      Holidays.on(Date.civil(2014, 1, 1), :something_we_do_not_recognize)
+    end
+  end
+
+  def test_malicious_load_attempt_raises_exception
+    assert_raise Holidays::UnknownRegionError do
+      Holidays.between(Date.civil(2014, 1, 1), Date.civil(2016, 1, 1), '../../../../../../../../../../../../tmp/profile_pic.jpg')
+    end
+  end
+
 private
   def def_count
-    Dir.glob(Holidays::DEFINITION_PATH + '/*.rb').size
+    Dir.glob(Holidays::FULL_DEFINITIONS_PATH + '/*.rb').size
   end
 end

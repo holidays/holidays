@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = 'https://github.com/alexdunae/holidays'
   gem.description   = %q(A collection of Ruby methods to deal with statutory and other holidays. You deserve a holiday!)
   gem.summary       = %q(A collection of Ruby methods to deal with statutory and other holidays.)
-  gem.files         = `git ls-files`.split("\n") - ['.gitignore', '.travis.yml']
+  gem.files         = `git ls-files`.split("\n") - ['.gitignore', '.travis.yml', '.coveralls.yml']
   gem.test_files    = gem.files.grep(/^test/)
   gem.require_paths = ['lib']
   gem.licenses      = ['MIT']
@@ -20,4 +20,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'coveralls'
   gem.add_development_dependency 'test-unit'
+  gem.add_development_dependency 'mocha', '~>1.0'
 end

@@ -1,0 +1,75 @@
+# Austrian holiday definitions for the Ruby Holiday gem.
+#
+# Created: 2013-07-23 by Mihai Târnovan
+# Sources:
+# - http://ro.wikipedia.org/wiki/S%C4%83rb%C4%83tori_publice_%C3%AEn_Rom%C3%A2nia
+# - http://en.wikipedia.org/wiki/Public_holidays_in_Romania
+---
+months:
+  0:
+  - name: Paștele
+    regions: [ro]
+    function: orthodox_easter(year)
+  - name: Paștele
+    regions: [ro]
+    function: orthodox_easter(year)+1
+  - name: Rusaliile
+    regions: [ro]
+    function: orthodox_easter(year) + 49
+  - name: Rusaliile
+    regions: [ro]
+    function: orthodox_easter(year) + 50
+  1:
+  - name: Anul nou
+    regions: [ro]
+    mday: 1
+  - name: Anul nou
+    regions: [ro]
+    mday: 2
+  5:
+  - name: Ziua muncii
+    regions: [ro]
+    mday: 1
+  8:
+  - name: Adormirea Maicii Domnului
+    regions: [ro]
+    mday: 15
+  11:
+  - name: Sfântul Apostol Andrei
+    regions: [ro]
+    mday: 30
+  12:
+  - name: Ziua Națională
+    regions: [ro]
+    mday: 1
+  - name: Sărbătoarea Nașterii Domnului
+    regions: [ro]
+    mday: 25
+  - name: Sărbătoarea Nașterii Domnului
+    regions: [ro]
+    mday: 26
+tests: |
+    {
+     Date.civil(1961,4,9) => 'Paștele',
+     Date.civil(1961,4,10) => 'Paștele',
+     Date.civil(2013,5,5) => 'Paștele',
+     Date.civil(2013,5,6) => 'Paștele',
+     Date.civil(2027,5,2) => 'Paștele',
+     Date.civil(2027,5,3) => 'Paștele',
+     Date.civil(2012,6,4) => 'Rusaliile',
+     Date.civil(2013,6,23) => 'Rusaliile',
+     Date.civil(2013,6,24) => 'Rusaliile',
+     Date.civil(1986,6,22) => 'Rusaliile',
+     Date.civil(1986,6,23) => 'Rusaliile',
+     Date.civil(2009,1,1) => 'Anul nou',
+     Date.civil(2014,1,2) => 'Anul nou',
+     Date.civil(2009,5,1) => 'Ziua muncii',
+     Date.civil(2012,8,15) => 'Adormirea Maicii Domnului',
+     Date.civil(2013,11,30) => 'Sfântul Apostol Andrei',
+     Date.civil(2013,12,1) => 'Ziua Națională',
+     Date.civil(2013,12,25) => 'Sărbătoarea Nașterii Domnului',
+     Date.civil(2013,12,26) => 'Sărbătoarea Nașterii Domnului'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :ro, :informal)[0] || {})[:name]
+     end
+
+     assert_equal [], Holidays.on(Date.civil(2013,7,23), :ro), '2013-07-23 is not a holiday in Romania'

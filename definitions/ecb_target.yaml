@@ -1,0 +1,42 @@
+# ECB TARGET Closing Days
+#
+# Updated: 2014-01-04.
+# Sources:
+# - http://www.ecb.europa.eu/home/html/holidays.en.html
+# - http://www.ecb.europa.eu/press/pr/date/2000/html/pr001214_4.en.html
+---
+months:
+  0:
+  - name: Good Friday
+    regions: [ecb_target]
+    function: easter(year)-2
+  - name: Easter Monday
+    regions: [ecb_target]
+    function: easter(year)+1
+  1:
+  - name: New Year's Day
+    regions: [ecb_target]
+    mday: 1
+  5:
+  - name: Labour Day
+    regions: [ecb_target]
+    mday: 1
+  12:
+  - name: Christmas Day
+    regions: [ecb_target]
+    mday: 25
+  - name: Christmas Holiday
+    regions: [ecb_target]
+    mday: 26
+tests: |
+    {Date.civil(2013,1,1) => 'New Year\'s Day',
+     Date.civil(2013,5,1) => 'Labour Day',
+     Date.civil(2013,3,29) => 'Good Friday',
+     Date.civil(2013,4,1) => 'Easter Monday',
+     Date.civil(2013,12,25) => 'Christmas Day',
+     Date.civil(2013,12,26) => 'Christmas Holiday'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :ecb_target)[0] || {})[:name]
+    end
+
+    assert_equal 'Good Friday', Holidays.on(Date.civil(2013,3,29), :ecb_target)[0][:name]
+    assert_equal 'Easter Monday', Holidays.on(Date.civil(2013,4,1), :ecb_target)[0][:name]
