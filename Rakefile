@@ -15,7 +15,7 @@ end
 task :default => :test
 
 namespace :generate do
-  DATA_PATH = 'data'
+  DATA_PATH = 'definitions'
   TEST_DEFS_PATH = 'test/defs'
 
   desc 'Generate the holiday definition files'

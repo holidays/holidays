@@ -68,7 +68,7 @@ Load custom 'Company Founding' holiday on June 1st:
     Holidays.on(date, :my_custom_region)
       => [{:name => 'Company Founding',...}]
 
-Custom definition files must match the format of the existing definition YAML files location in the 'data' directory.
+Custom definition files must match the format of the existing definition YAML files location in the 'definitions' directory.
 
 Multiple files can also be passed:
 
@@ -120,7 +120,7 @@ See the [original pull request](https://github.com/alexdunae/holidays/pull/36) f
 
 ### How to contribute
 
-To make changes to any of the definitions, edit the YAML files under the 'data' directory only. These YAML files are read by the 'generate' rake target and the final definition files are created automatically. Don't directly edit any other files.
+To make changes to any of the definitions, edit the YAML files under the 'definitions' directory only. These YAML files are read by the 'generate' rake target and the final definition files are created automatically. Don't directly edit any other files.
 
 Tests are also allowed at the end of the YAML files. Please add tests. PRs will not be accepted unless there are tests proving that the new definitions work.
 
