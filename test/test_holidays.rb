@@ -19,17 +19,6 @@ class HolidaysTests < Test::Unit::TestCase
     assert_equal 0, holidays.length
   end
 
-  def test_between
-    holidays = Holidays.between(Date.civil(2008,7,1), Date.civil(2008,7,1), :ca)
-    assert_equal 1, holidays.length
-
-    holidays = Holidays.between(Date.civil(2008,7,1), Date.civil(2008,7,31), :ca)
-    assert_equal 1, holidays.length
-    
-    holidays = Holidays.between(Date.civil(2008,7,2), Date.civil(2008,7,31), :ca)
-    assert_equal 0, holidays.length
-  end
-
   def test_full_week
     ## Full weeks:
     # Try with a Monday
@@ -40,7 +29,7 @@ class HolidaysTests < Test::Unit::TestCase
     assert Holidays.full_week?(Date.civil(2012,1,29), :us)
     # Try Wednesday on a week going into a new month
     assert Holidays.full_week?(Date.civil(2012,2,1), :us)
-    
+
     ## Weeks with holidays:
     # New Year's 2012 (on Sunday, observed Monday). Test from a Wednesday.
     assert_equal(false, Holidays.full_week?(Date.civil(2012,1,4), :us))
@@ -53,7 +42,7 @@ class HolidaysTests < Test::Unit::TestCase
     holidays_in_2012 = weeks_in_2012.times.count { |week| Holidays.full_week?(Date.commercial(2012,week+1), :us) == false }
     assert_equal 10, holidays_in_2012
   end
-  
+
   def test_requires_valid_regions
     assert_raises Holidays::UnknownRegionError do
       Holidays.on(Date.civil(2008,1,1), :xx)
@@ -75,7 +64,7 @@ class HolidaysTests < Test::Unit::TestCase
     holidays = Holidays.on(@date, [:ca_bc,:ca])
     assert_equal 1, holidays.length
   end
-  
+
   def test_observed_dates
     # Should fall on Tuesday the 1st
    assert_equal 1, Holidays.on(Date.civil(2008,7,1), :ca, :observed).length
@@ -100,7 +89,7 @@ class HolidaysTests < Test::Unit::TestCase
     holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31))
     assert holidays.length >= 3
   end
-  
+
   def test_sub_regions
     # Should return Victoria Day.
     holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca)
@@ -126,7 +115,7 @@ class HolidaysTests < Test::Unit::TestCase
     assert_equal '2067-04-03', Holidays.easter(2067).to_s
     assert_equal '2099-04-12', Holidays.easter(2099).to_s
   end
-  
+
   def test_orthodox_easter
     assert_equal '2000-04-30', Holidays.orthodox_easter(2000).to_s
     assert_equal '2008-04-27', Holidays.orthodox_easter(2008).to_s

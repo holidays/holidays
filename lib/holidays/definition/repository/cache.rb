@@ -3,8 +3,7 @@ module Holidays
     module Repository
       class Cache
         def initialize
-          @cache = {}
-          @cache_range = {}
+          reset!
         end
 
         def cache_between(start_date, end_date, cache_data, *options)
@@ -22,6 +21,11 @@ module Holidays
               end
             end
           end
+        end
+
+        def reset!
+          @cache = {}
+          @cache_range = {}
         end
       end
     end

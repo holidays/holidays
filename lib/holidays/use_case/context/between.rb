@@ -2,40 +2,18 @@ module Holidays
   module UseCase
     module Context
       class Between
-        def initialize(cache_repo, options_parser, holidays_by_month_repo, day_of_month_calculator, proc_cache_repo)
-          @cache_repo = cache_repo
-          @options_parser = options_parser
+        def initialize(holidays_by_month_repo, day_of_month_calculator, proc_cache_repo)
           @holidays_by_month_repo = holidays_by_month_repo
           @day_of_month_calculator = day_of_month_calculator
           @proc_cache_repo = proc_cache_repo
         end
 
-        def call(start_date, end_date, *options)
-          raise ArgumentError unless start_date && end_date
+        def call(start_date, end_date, dates_driver, regions, observed, informal)
+          validate!(start_date, end_date, dates_driver, regions)
 
-          # remove the timezone
-          start_date = start_date.new_offset(0) + start_date.offset if start_date.respond_to?(:new_offset)
-          end_date = end_date.new_offset(0) + end_date.offset if end_date.respond_to?(:new_offset)
-
-          # get simple dates
-          start_date, end_date = get_date(start_date), get_date(end_date)
-
-          if cached_holidays = cache_repo.find(start_date, end_date, options)
-            return cached_holidays
-          end
-
-          regions, observed, informal = options_parser.call(options)
           holidays = []
 
-          dates = {}
-          (start_date..end_date).each do |date|
-            # Always include month '0' for variable-month holidays
-            dates[date.year] = [0] unless dates[date.year]
-            # TODO: test this, maybe should push then flatten
-            dates[date.year] << date.month unless dates[date.year].include?(date.month)
-          end
-
-          dates.each do |year, months|
+          dates_driver.each do |year, months|
             months.each do |month|
               next unless hbm = holidays_by_month_repo.find_by_month(month)
 
@@ -75,7 +53,6 @@ module Holidays
                 if date.between?(start_date, end_date)
                   holidays << {:date => date, :name => h[:name], :regions => h[:regions]}
                 end
-
               end
             end
           end
@@ -85,19 +62,23 @@ module Holidays
 
         private
 
-        attr_reader :cache_repo, :options_parser, :holidays_by_month_repo, :day_of_month_calculator, :proc_cache_repo
+        attr_reader :holidays_by_month_repo, :day_of_month_calculator, :proc_cache_repo
+
+        def validate!(start_date, end_date, dates_driver, regions)
+          raise ArgumentError unless start_date
+          raise ArgumentError unless end_date
+
+          raise ArgumentError if dates_driver.nil? || dates_driver.empty?
+
+          dates_driver.each do |year, months|
+            raise ArgumentError if months.nil? || months.empty?
+          end
+
+          raise ArgumentError if regions.nil? || regions.empty?
+        end
 
         def call_proc(function, year)
           proc_cache_repo.lookup(function, year)
-        end
-
-        #FIXME This is repeated in the main module. I need a better solution.
-        def get_date(date)
-          if date.respond_to?(:to_date)
-            date.to_date
-          else
-            Date.civil(date.year, date.mon, date.mday)
-          end
         end
 
         # Check sub regions.

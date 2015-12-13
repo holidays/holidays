@@ -2,47 +2,74 @@ require File.expand_path(File.dirname(__FILE__)) + '/../../../test_helper'
 
 require 'holidays/use_case/context/between'
 
-# I am going to be a jerk and punt on testing this for right now. If the overall
-# integration tests pass then I am happy. This class does too much at the moment
-# and needs to be split up into somethig more manageable. I don't want to write
-# a bunch of tests just for something I will tear apart.
-#
-# If this comment remains for more than a few weeks then you can publically ridicule
-# me.
+#TODO These tests need love. This is the heart of the holiday logic and I'm only
+# now starting to tear bits and pieces of it apart to untangle it. This is a start
+# but definitely needs more coverage.
 class BetweenTests < Test::Unit::TestCase
   def setup
-    @cache_repo = mock()
-    @options_parser = mock()
     @holidays_by_month_repo = mock()
     @day_of_month_calculator = mock()
     @proc_cache_repo = mock()
 
     @subject = Holidays::UseCase::Context::Between.new(
-      @cache_repo,
-      @options_parser,
       @holidays_by_month_repo,
       @day_of_month_calculator,
       @proc_cache_repo,
     )
+
+    @start_date = Date.civil(2015, 1, 1)
+    @end_date = Date.civil(2015, 1, 1)
+    @dates_driver = {2015 => [0, 1, 2], 2014 => [0, 12]}
+    @regions = [:us]
+    @observed = false
+    @informal = false
   end
 
-  def test_returns_error_if_dates_are_missing
+  def test_returns_error_if_start_date_is_missing
     assert_raise ArgumentError do
-      @subject.call(nil, Date.civil(2015, 1, 1), :us)
+      @subject.call(nil, @end_date, @dates_driver, @regions, @observed, @informal)
+    end
+  end
+
+  def test_returns_error_if_end_date_is_missing
+    assert_raise ArgumentError do
+      @subject.call(@start_date, nil, @dates_driver, @regions, @observed, @informal)
+    end
+  end
+
+  def test_returns_error_if_driver_hash_is_nil
+    assert_raise ArgumentError do
+      @subject.call(@start_date, @end_date, nil, @regions, @observed, @informal)
+    end
+  end
+
+  def test_returns_error_if_driver_hash_is_empty
+    assert_raise ArgumentError do
+      @subject.call(@start_date, @end_date, {}, @regions, @observed, @informal)
+    end
+  end
+
+  def test_returns_error_if_driver_hash_has_empty_months_array
+    assert_raise ArgumentError do
+      @subject.call(@start_date, @end_date, {2015 => nil}, @regions, @observed, @informal)
     end
 
     assert_raise ArgumentError do
-      @subject.call(Date.civil(2015, 1, 1), nil, :us)
+      @subject.call(@start_date, @end_date, {2015 => []}, @regions, @observed, @informal)
+    end
+
+    assert_raise ArgumentError do
+      @subject.call(@start_date, @end_Date, {2015 => [1], 2016 => [1], 2017 => []}, @regions, @observed, @informal)
     end
   end
 
-  def test_cached_holidays_are_returned_if_present
-    start_date = Date.civil(2015, 1, 1)
-    end_date = Date.civil(2015, 1, 31)
-    options = [:us, :informal]
+  def test_returns_error_if_regions_are_missing_or_empty
+    assert_raise ArgumentError do
+      @subject.call(@start_date, @end_date, @dates_driver, nil, @observed, @informal)
+    end
 
-    @cache_repo.expects(:find).with(start_date, end_date, options).returns({cached: 'data'})
-
-    assert_equal({cached: 'data'}, @subject.call(start_date, end_date, *options))
+    assert_raise ArgumentError do
+      @subject.call(@start_date, @end_date, @dates_driver, [], @observed, @informal)
+    end
   end
 end

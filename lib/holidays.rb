@@ -104,7 +104,22 @@ module Holidays
     #   => [{:name => 'Canada Day', :regions => [:ca]...}
     #       {:name => 'Independence Day'', :regions => [:us], ...}]
     def between(start_date, end_date, *options)
-      UseCaseFactory.between.call(start_date, end_date, options)
+      raise ArgumentError unless start_date && end_date
+
+      # remove the timezone
+      start_date = start_date.new_offset(0) + start_date.offset if start_date.respond_to?(:new_offset)
+      end_date = end_date.new_offset(0) + end_date.offset if end_date.respond_to?(:new_offset)
+
+      start_date, end_date = get_date(start_date), get_date(end_date)
+
+      if cached_holidays = DefinitionFactory.cache_repository.find(start_date, end_date, options)
+        return cached_holidays
+      end
+
+      regions, observed, informal = OptionFactory.parse_options.call(options)
+      date_driver_hash = UseCaseFactory.dates_driver_builder.call(start_date, end_date)
+
+      UseCaseFactory.between.call(start_date, end_date, date_driver_hash, regions, observed, informal)
     end
 
     # Allows a developer to explicitly calculate and cache holidays within a given period

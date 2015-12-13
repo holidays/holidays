@@ -66,4 +66,17 @@ class CacheRepoTests < Test::Unit::TestCase
       @subject.cache_between(start_date, end_date, nil, options)
     end
   end
+
+  def test_reset_clears_cache
+    start_date = Date.civil(2015, 1, 1)
+    end_date = Date.civil(2015, 1, 1)
+    cache_data =  [{:date=>Date.civil(2015, 1, 1), :name=>"New Year's Day", :regions=>[:us]}]
+    options = :us
+    @subject.cache_between(start_date, end_date, cache_data, options)
+
+    assert_equal(cache_data, @subject.find(start_date, end_date, options))
+
+    @subject.reset!
+    assert_nil(@subject.find(start_date, end_date, options))
+  end
 end
