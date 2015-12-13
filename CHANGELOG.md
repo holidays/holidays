@@ -1,5 +1,16 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 3.0.0
+
+* Major refactor! Lots of code moved around and some methods were removed from the public api (they were never intended to be public).
+* Only supports ruby 2.0.0 and up. Travis config has been updated to reflect this.
+* Moves 'date' monkeypatching out of main lib and makes it a core extension. See README for usage.
+* Fixes remote execution bug in issue-86 (thanks to https://github.com/Intrepidd for reporting)
+* No region definition changes.
+
+I decided to make this a major version bump due to how much I changed. I truly hope no one will notice.
+See the README for the usage. It has, except for the date core extension, not changed.
+
 ## 2.2.0
 
 * Correct 'informal' type for Dodenherdenking holiday in NL definitions (https://github.com/MathijsK93)
