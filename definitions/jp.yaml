@@ -10,7 +10,8 @@
 #  2010-12-25: Initial version by Tatsuki Sugiura <sugi@nemui.org>
 #  2014-11-09: Added substitute holiday by Yoshiyuki Hirano <yoshiyuki.hirano@henteco-labs.com>
 #  2015-05-10: Non-Monday substitute holidays by Shuhei Kagawa <shuhei.kagawa@gmail.com>
-# 
+#  2015-12-15: Added mountain day by Tsuyoshi Sano <ttwo32@gmail.com>
+#
 ---
 months:
   1:
@@ -72,6 +73,13 @@ months:
   - name: 振替休日
     regions: [jp]
     function: jp_substitute_holiday(year, 7, Holidays.calculate_day_of_month(year, 7, 3, 1))
+  8:
+  - name: 山の日
+    regions: [jp]
+    function: jp_mountain_holiday(year)
+  - name: 振替休日
+    regions: [jp]
+    function: jp_substitute_holiday(Holidays.jp_mountain_holiday(year))
   9:
   - name: 敬老の日
     regions: [jp]
@@ -166,8 +174,14 @@ methods:
         nil
       end
     end
+  jp_mountain_holiday: |
+    def self.jp_mountain_holiday(year)
+      return nil if year < 2016
+      Date.civil(year, 8, 11)
+    end
   jp_substitute_holiday: |
     def self.jp_substitute_holiday(*date)
+      return nil unless date[0]
       date = date[0].kind_of?(Date) ? date.first : Date.civil(*date)
       date.wday == 0 ? Holidays.jp_next_weekday(date+1) : nil
     end
@@ -179,8 +193,8 @@ methods:
       date.wday == 0 || is_holiday ? Holidays.jp_next_weekday(date+1) : date
     end
 tests: |
-  {Date.civil(2008,1,1) => '元日', 
-   Date.civil(2010,1,11) => '成人の日', 
+  {Date.civil(2008,1,1) => '元日',
+   Date.civil(2010,1,11) => '成人の日',
    Date.civil(2008,2,11) => '建国記念日',
    Date.civil(2008,4,29) => '昭和の日',
    Date.civil(2008,5,3) => '憲法記念日',
@@ -196,11 +210,12 @@ tests: |
    Date.civil(2012,1,2) => '振替休日',
    Date.civil(2013,5,6) => '振替休日',
    Date.civil(2014,5,6) => '振替休日',
-   Date.civil(2015,5,6) => '振替休日'
+   Date.civil(2015,5,6) => '振替休日',
+   Date.civil(2019,8,12) => '振替休日'
   }.each do |date, name|
      assert_equal name, (Holidays.on(date, :jp, :informal)[0] || {})[:name]
   end
-  
+
   # vernal equinox day
   [Date.civil(2004,3,20), Date.civil(2005,3,20), Date.civil(2006,3,21),
    Date.civil(2007,3,21), Date.civil(2008,3,20), Date.civil(2009,3,20),
@@ -221,3 +236,13 @@ tests: |
    Date.civil(2015,9,22), Date.civil(2026,9,22)].each do |date|
     assert_equal '国民の休日', Holidays.on(date, :jp)[0][:name]
   end
+
+  # mountain holiday start since 2016
+  [Date.civil(2016,8,11), Date.civil(2017,8,11),Date.civil(2018,8,11),
+   Date.civil(2019,8,11), Date.civil(2020,8,11),Date.civil(2021,8,11),
+   Date.civil(2022,8,11)].each do |date|
+    assert_equal '山の日', Holidays.on(date, :jp)[0][:name]
+  end
+
+  # before 2016, there is no mountain holiday.
+  assert_nil Date.civil(2015,8,11).holidays(:jp)[0]

@@ -35,6 +35,8 @@ module Holidays
             {:function => lambda { |year| Holidays.jp_substitute_holiday(year, 5, 5) }, :function_id => "jp_substitute_holiday(year, 5, 5)", :name => "振替休日", :regions => [:jp]}],
       7 => [{:wday => 1, :week => 3, :name => "海の日", :regions => [:jp]},
             {:function => lambda { |year| Holidays.jp_substitute_holiday(year, 7, Holidays.calculate_day_of_month(year, 7, 3, 1)) }, :function_id => "jp_substitute_holiday(year, 7, Holidays.calculate_day_of_month(year, 7, 3, 1))", :name => "振替休日", :regions => [:jp]}],
+      8 => [{:function => lambda { |year| Holidays.jp_mountain_holiday(year) }, :function_id => "jp_mountain_holiday(year)", :name => "山の日", :regions => [:jp]},
+            {:function => lambda { |year| Holidays.jp_substitute_holiday(Holidays.jp_mountain_holiday(year)) }, :function_id => "jp_substitute_holiday(Holidays.jp_mountain_holiday(year))", :name => "振替休日", :regions => [:jp]}],
       9 => [{:wday => 1, :week => 3, :name => "敬老の日", :regions => [:jp]},
             {:function => lambda { |year| Holidays.jp_substitute_holiday(year, 9, Holidays.calculate_day_of_month(year, 9, 3, 1)) }, :function_id => "jp_substitute_holiday(year, 9, Holidays.calculate_day_of_month(year, 9, 3, 1))", :name => "振替休日", :regions => [:jp]},
             {:function => lambda { |year| Holidays.jp_citizons_holiday(year) }, :function_id => "jp_citizons_holiday(year)", :name => "国民の休日", :regions => [:jp]},
@@ -103,7 +105,14 @@ def self.jp_citizons_holiday(year)
 end
 
 
+def self.jp_mountain_holiday(year)
+  return nil if year < 2016
+  Date.civil(year, 8, 11)
+end
+
+
 def self.jp_substitute_holiday(*date)
+  return nil unless date[0]
   date = date[0].kind_of?(Date) ? date.first : Date.civil(*date)
   date.wday == 0 ? Holidays.jp_next_weekday(date+1) : nil
 end

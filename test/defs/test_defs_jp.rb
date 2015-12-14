@@ -7,8 +7,8 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class JpDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_jp
-{Date.civil(2008,1,1) => '元日', 
- Date.civil(2010,1,11) => '成人の日', 
+{Date.civil(2008,1,1) => '元日',
+ Date.civil(2010,1,11) => '成人の日',
  Date.civil(2008,2,11) => '建国記念日',
  Date.civil(2008,4,29) => '昭和の日',
  Date.civil(2008,5,3) => '憲法記念日',
@@ -24,7 +24,8 @@ class JpDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2012,1,2) => '振替休日',
  Date.civil(2013,5,6) => '振替休日',
  Date.civil(2014,5,6) => '振替休日',
- Date.civil(2015,5,6) => '振替休日'
+ Date.civil(2015,5,6) => '振替休日',
+ Date.civil(2019,8,12) => '振替休日'
 }.each do |date, name|
    assert_equal name, (Holidays.on(date, :jp, :informal)[0] || {})[:name]
 end
@@ -49,6 +50,16 @@ end
  Date.civil(2015,9,22), Date.civil(2026,9,22)].each do |date|
   assert_equal '国民の休日', Holidays.on(date, :jp)[0][:name]
 end
+
+# mountain holiday start since 2016
+[Date.civil(2016,8,11), Date.civil(2017,8,11),Date.civil(2018,8,11),
+ Date.civil(2019,8,11), Date.civil(2020,8,11),Date.civil(2021,8,11),
+ Date.civil(2022,8,11)].each do |date|
+  assert_equal '山の日', Holidays.on(date, :jp)[0][:name]
+end
+
+# before 2016, there is no mountain holiday.
+assert_nil Date.civil(2015,8,11).holidays(:jp)[0]
 
   end
 end
