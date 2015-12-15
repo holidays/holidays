@@ -33,10 +33,11 @@ module Holidays
 
 # Ireland - Stephens Day is always the day after christmas day
 def self.ie_st_stephens_day(date)
-  date += 2 if date.wday == 6
-  date += 2 if date.wday == 0
-  date += 1 if date.wday == 1
-  date
+  case date.wday
+  when 6, 0 then date + 2
+  when 1 then date + 1
+  else date
+  end
 end
 
 
