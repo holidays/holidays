@@ -11,7 +11,7 @@ class ProcCacheRepoTests < Test::Unit::TestCase
     function = lambda { |year| Date.civil(year, 2, 1) - 1 }
     year = 2015
 
-    assert_equal(Date.civil(year, 1, 31), @subject.lookup(function, year))
+    assert_equal(Date.civil(year, 1, 31), @subject.lookup_and_call(function, year))
   end
 
   #FIXME This test stinks. I don't know how to show that the second invocation
@@ -21,9 +21,14 @@ class ProcCacheRepoTests < Test::Unit::TestCase
     function = lambda { |year| Date.civil(year, 2, 1) - 1 }
     year = 2015
 
-    @subject.lookup(function, year)
+    assert_equal(Date.civil(year, 1, 31), @subject.lookup_and_call(function, year))
+  end
 
-    assert_equal(Date.civil(year, 1, 31), @subject.lookup(function, year))
+  #FIXME This test depends on easter being available. That's garbage.
+  def test_lookup_correctly_processing_function_as_string
+    function = "Holidays.easter(year)"
+    year = 2015
+
+    assert_equal(Date.civil(year, 4, 5), @subject.lookup_and_call(function, year))
   end
 end
-

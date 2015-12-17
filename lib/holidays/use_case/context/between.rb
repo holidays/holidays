@@ -99,7 +99,7 @@ module Holidays
         end
 
         def call_proc(function, year)
-          proc_cache_repo.lookup(function, year)
+          proc_cache_repo.lookup_and_call(function, year)
         end
 
         # Check sub regions.

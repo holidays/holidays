@@ -72,7 +72,7 @@ class GeneratorTests < Test::Unit::TestCase
     assert_equal expected_module_src, module_src
   end
 
-  def test_generate_definition_source_correctly_genrate_test_src
+  def test_generate_definition_source_correctly_generate_test_src
     files = ['test/data/test_single_custom_holiday_defs.yaml']
     regions, rules_by_month, custom_methods, tests = @generator.parse_definition_files(files)
     module_src, test_src = @generator.generate_definition_source("test", files, regions, rules_by_month, custom_methods, tests)

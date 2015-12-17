@@ -25,10 +25,16 @@ module Holidays
           @proc_cache = {}
         end
 
-        def lookup(function, year)
+        def lookup_and_call(function, year)
           proc_key = Digest::MD5.hexdigest("#{function.to_s}_#{year.to_s}")
-          @proc_cache[proc_key] = function.call(year) unless @proc_cache[proc_key]
+          @proc_cache[proc_key] = convert(function).call(year) unless @proc_cache[proc_key]
           @proc_cache[proc_key]
+        end
+
+        private
+
+        def convert(function)
+          function.is_a?(String) ? Proc.new{ |year| eval(function) } : function
         end
       end
     end

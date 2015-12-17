@@ -13,6 +13,8 @@ module Holidays
         end
 
         def call(target_regions, target_holidays)
+          #FIXME Does this need to come in this exact order? God I hope not.
+          # If not then we should swap the order so it matches the init.
           regions_repo.add(target_regions)
           holidays_repo.add(target_holidays)
         end
