@@ -2,12 +2,13 @@ require File.expand_path(File.dirname(__FILE__)) + '/../../test_helper'
 
 require 'holidays/date_calculator/easter'
 
-class EasterDateCalculatorTests < Test::Unit::TestCase
+class GregorianEasterDateCalculatorTests < Test::Unit::TestCase
   def setup
-    @subject = Holidays::DateCalculator::Easter.new
+    @subject = Holidays::DateCalculator::Easter::Gregorian.new
   end
 
   def test_calculate_easter_for_returns_expected_results
+    assert_equal '0960-04-20', @subject.calculate_easter_for(960).to_s
     assert_equal '1800-04-13', @subject.calculate_easter_for(1800).to_s
     assert_equal '1899-04-02', @subject.calculate_easter_for(1899).to_s
     assert_equal '1900-04-15', @subject.calculate_easter_for(1900).to_s
