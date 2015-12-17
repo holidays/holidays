@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/bg'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module BG # :nodoc:
     def self.defined_regions
       [:bg_en, :bg_bg]

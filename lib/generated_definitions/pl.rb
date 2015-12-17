@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/pl'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module PL # :nodoc:
     def self.defined_regions
       [:pl]
@@ -62,16 +62,16 @@ module Holidays
     end
   end
 
-# Poland: January 6 is holiday since 2011
 def self.pl_trzech_kroli(year)
-  year >= 2011 ? 6 : nil
+year >= 2011 ? 6 : nil
 end
 
 
-# Poland: January 6 wasn't holiday before 2011
+
 def self.pl_trzech_kroli_informal(year)
-  year < 2011 ? 6 : nil
+year < 2011 ? 6 : nil
 end
+
 
 
 

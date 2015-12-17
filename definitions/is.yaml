@@ -100,9 +100,10 @@ months:
     regions: [is]
     mday: 31
 methods:
-  is_sumardagurinn_fyrsti: |
+  is_sumardagurinn_fyrsti:
     # Iceland: first day of summer (Thursday after 18 April)
-    def self.is_sumardagurinn_fyrsti(year)
+    arguments: year
+    source: |
       date = Date.civil(year,4,18)
       if date.wday < 4
         date += (4 - date.wday)
@@ -110,9 +111,8 @@ methods:
         date += (11 - date.wday)
       end
       date
-    end
 tests: |
-    {Date.civil(2007,1,1) => 'Nýársdagur', 
+    {Date.civil(2007,1,1) => 'Nýársdagur',
      Date.civil(2007,1,6) => 'Þrettándinn',
      Date.civil(2007,1,19) => 'Bóndadagur',
      Date.civil(2007,2,18) => 'Konudagur',

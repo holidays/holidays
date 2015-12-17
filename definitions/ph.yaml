@@ -64,13 +64,13 @@ months:
     regions: [ph]
     mday: 31
 methods:
-  ph_heroes_day: |
+  ph_heroes_day:
     # last Monday of August
-    def self.ph_heroes_day(year)
+    arguments: year
+    source: |
       date = Date.new(year, 8, -1)
       return date if date.wday == 1
       date -= date.wday - 1
-    end
 tests: |
     {Date.civil(2015,2,25) => 'People Power Anniversary',
      Date.civil(2015,4,3) => 'Good Friday',

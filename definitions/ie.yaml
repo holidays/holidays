@@ -51,15 +51,15 @@ months:
     mday: 26
     observed: ie_st_stephens_day
 methods:
-  ie_st_stephens_day: |
+  ie_st_stephens_day:
     # Ireland - Stephens Day is always the day after christmas day
-    def self.ie_st_stephens_day(date)
+    arguments: date
+    source: |
       case date.wday
       when 6, 0 then date + 2
       when 1 then date + 1
       else date
       end
-    end
 tests: |
     {Date.civil(2008,1,1) => 'New Year\'s Day',
      Date.civil(2008,3,17) => 'St. Patrick\'s Day',

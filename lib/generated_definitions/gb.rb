@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/gb'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module GB # :nodoc:
     def self.defined_regions
       [:gb, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :gb_sct, :gb_con, :je, :gb_jsy, :gg, :gb_gsy, :im, :gb_iom]

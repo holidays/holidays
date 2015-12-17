@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/nerc'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module NERC # :nodoc:
     def self.defined_regions
       [:nerc]

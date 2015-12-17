@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/fed_ex'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module FED_EX # :nodoc:
     def self.defined_regions
       [:fedex]
@@ -31,8 +31,9 @@ module Holidays
   end
 
 def self.day_after_thanksgiving(year)
-  Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 11, 4, 4) + 1
+Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 11, 4, 4) + 1
 end
+
 
 
 

@@ -1,17 +1,17 @@
 require File.expand_path(File.dirname(__FILE__)) + '/../../../test_helper'
 
-require 'holidays/definition/repository/proc_cache'
+require 'holidays/definition/repository/proc_result_cache'
 
-class ProcCacheRepoTests < Test::Unit::TestCase
+class ProcResultCacheRepoTests < Test::Unit::TestCase
   def setup
-    @subject = Holidays::Definition::Repository::ProcCache.new
+    @subject = Holidays::Definition::Repository::ProcResultCache.new
   end
 
   def test_lookup_stores_and_returns_result_of_function_if_it_is_not_present
     function = lambda { |year| Date.civil(year, 2, 1) - 1 }
     year = 2015
 
-    assert_equal(Date.civil(year, 1, 31), @subject.lookup_and_call(function, year))
+    assert_equal(Date.civil(year, 1, 31), @subject.lookup(function, year))
   end
 
   #FIXME This test stinks. I don't know how to show that the second invocation
@@ -21,7 +21,7 @@ class ProcCacheRepoTests < Test::Unit::TestCase
     function = lambda { |year| Date.civil(year, 2, 1) - 1 }
     year = 2015
 
-    assert_equal(Date.civil(year, 1, 31), @subject.lookup_and_call(function, year))
+    assert_equal(Date.civil(year, 1, 31), @subject.lookup(function, year))
   end
 
   #FIXME This test depends on easter being available. That's garbage.
@@ -29,6 +29,6 @@ class ProcCacheRepoTests < Test::Unit::TestCase
     function = "Holidays.easter(year)"
     year = 2015
 
-    assert_equal(Date.civil(year, 4, 5), @subject.lookup_and_call(function, year))
+    assert_equal(Date.civil(year, 4, 5), @subject.lookup(function, year))
   end
 end

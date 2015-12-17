@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/europe'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module EUROPE # :nodoc:
     def self.defined_regions
       [:at, :be_fr, :be_nl, :ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_ne, :ch_ge, :ch_ju, :ch_vs, :ch, :cz, :dk, :de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_aux, :de_th_aux, :de_sn, :de_st, :de_by_aux, :de_bb, :de_mv, :de_th, :el, :es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex, :es, :es_ct, :es_v, :es_vc, :fr, :gb, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :gb_sct, :gb_con, :je, :gb_jsy, :gg, :gb_gsy, :im, :gb_iom, :hr, :hu, :ie, :is, :it, :li, :lt, :nl, :no, :pl, :pt, :ro, :sk, :si, :bg_en, :bg_bg]
@@ -473,89 +473,89 @@ module Holidays
     end
   end
 
-# Monday after the third Sunday of September
 def self.ch_vd_lundi_du_jeune_federal(year)
-  date = Date.civil(year,9,1)
-  # Find the first Sunday of September
-  until date.wday.eql? 0 do
-    date += 1
-  end
-  # There are 15 days between the first Sunday
-  # and the Monday after the third Sunday
-  date + 15
+date = Date.civil(year,9,1)
+# Find the first Sunday of September
+until date.wday.eql? 0 do
+  date += 1
+end
+# There are 15 days between the first Sunday
+# and the Monday after the third Sunday
+date + 15
 end
 
 
-# Thursday after the first Sunday of September
+
 def self.ch_ge_jeune_genevois(year)
-  date = Date.civil(year,9,1)
-  # Find the first Sunday of September
-  until date.wday.eql? 0 do
-    date += 1
-  end
-  # Thursday is four days after Sunday
-  date + 4
+date = Date.civil(year,9,1)
+# Find the first Sunday of September
+until date.wday.eql? 0 do
+  date += 1
+end
+# Thursday is four days after Sunday
+date + 4
 end
 
 
-# First Thursday of April. If the first Thursday of April is in the week before easter, then a week later.
+
 def self.ch_gl_naefelser_fahrt(year)
-  date = Date.civil(year,4,1)
-  # Find the first Thursday of April
-  until date.wday.eql? 4 do
-    date += 1
-  end
-  if date.eql?(easter(year)-3)
-    date += 7
-  end
-  date
+date = Date.civil(year,4,1)
+# Find the first Thursday of April
+until date.wday.eql? 4 do
+  date += 1
+end
+if date.eql?(easter(year)-3)
+  date += 7
+end
+date
 end
 
 
-# Germany: Wednesday before November 23
+
 def self.de_buss_und_bettag(year)
-  date = Date.civil(year,11,23)
-  if date.wday > 3
-    date -= (date.wday - 3)
-  else
-    date -= (date.wday + 4)
-  end
-  date
+date = Date.civil(year,11,23)
+if date.wday > 3
+  date -= (date.wday - 3)
+else
+  date -= (date.wday + 4)
+end
+date
 end
 
 
-# Ireland - Stephens Day is always the day after christmas day
+
 def self.ie_st_stephens_day(date)
-  case date.wday
-  when 6, 0 then date + 2
-  when 1 then date + 1
-  else date
-  end
+case date.wday
+when 6, 0 then date + 2
+when 1 then date + 1
+else date
+end
 end
 
 
-# Iceland: first day of summer (Thursday after 18 April)
+
 def self.is_sumardagurinn_fyrsti(year)
-  date = Date.civil(year,4,18)
-  if date.wday < 4
-    date += (4 - date.wday)
-  else date
-    date += (11 - date.wday)
-  end
-  date
+date = Date.civil(year,4,18)
+if date.wday < 4
+  date += (4 - date.wday)
+else date
+  date += (11 - date.wday)
+end
+date
 end
 
 
-# Poland: January 6 is holiday since 2011
+
 def self.pl_trzech_kroli(year)
-  year >= 2011 ? 6 : nil
+year >= 2011 ? 6 : nil
 end
 
 
-# Poland: January 6 wasn't holiday before 2011
+
 def self.pl_trzech_kroli_informal(year)
-  year < 2011 ? 6 : nil
+year < 2011 ? 6 : nil
 end
+
 
 
 

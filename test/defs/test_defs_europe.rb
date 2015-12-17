@@ -399,7 +399,7 @@ end
 end
 
 
-{Date.civil(2007,1,1) => 'Nýársdagur', 
+{Date.civil(2007,1,1) => 'Nýársdagur',
  Date.civil(2007,1,6) => 'Þrettándinn',
  Date.civil(2007,1,19) => 'Bóndadagur',
  Date.civil(2007,2,18) => 'Konudagur',
@@ -421,6 +421,7 @@ end
  Date.civil(2007,12,31) => 'Gamlárskvöld'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :is, :informal)[0] || {})[:name]
 end
+
 
 {Date.civil(2007,1,1) => 'Capodanno', 
  Date.civil(2007,1,6) => 'Epifania',
@@ -661,6 +662,7 @@ end
 # Wniebowzięcie Najświętszej Maryi Panny & Święto Wojska Polskiego
   assert_equal 'Wniebowzięcie Najświętszej Maryi Panny', (Holidays.on(Date.civil(2011,8,15), :pl)[0] || {})[:name]
   assert_equal 'Święto Wojska Polskiego', (Holidays.on(Date.civil(2011,8,15), :pl)[1] || {})[:name]
+
 
 {Date.civil(2008,1,1) => 'Ano Novo',
  Date.civil(2005,2,8) => 'Carnaval',

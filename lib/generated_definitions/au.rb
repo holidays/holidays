@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/au'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module AU # :nodoc:
     def self.defined_regions
       [:au, :au_nsw, :au_vic, :au_qld, :au_nt, :au_act, :au_sa, :au_tas_south, :au_wa, :au_tas, :au_qld_cairns, :au_qld_brisbane, :au_tas_north, :au_vic_melbourne]
@@ -62,88 +62,76 @@ module Holidays
   end
 
 def self.afl_grand_final(year)
-  if year == 2015
-    Date.civil(2015, 10, 2)
-  end
-end    
+if year == 2015
+  Date.civil(2015, 10, 2)
+end
+end
 
 
-# http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
-# celebrated twice in 2012
-# in october again from 2016
+
 def self.qld_queens_bday_october(year)
-  if year >= 2016
-    Holidays.calculate_day_of_month(year, 10, 1, 1)
-  elsif year == 2012
-    1
-  else
-    nil
-  end
+if year >= 2016
+  Holidays.calculate_day_of_month(year, 10, 1, 1)
+elsif year == 2012
+  1
+else
+  nil
+end
 end
 
 
-# http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
-# for 2013 to 2016 it was in October, otherwise it's in May
+
 def self.qld_labour_day_may(year)
-  if year < 2013 || year >= 2016
-    Holidays.calculate_day_of_month(year, 5, 1, 1)
-  end
+year <= 2012 ? Holidays.calculate_day_of_month(year, 5, 1, 1) : nil
 end
 
 
-# http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
-# for 2013 to 2016 it was in October, otherwise it's in May
+
 def self.qld_labour_day_october(year)
-  if year >= 2013 && year < 2016
-    Holidays.calculate_day_of_month(year, 10, 1, 1)
-  end
+year <= 2012 ? nil : Holidays.calculate_day_of_month(year, 10, 1, 1)
 end
 
 
-# http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
-# in june until 2015
+
 def self.qld_queens_birthday_june(year)
-  if year <= 2015
-    Holidays.calculate_day_of_month(year, 6, 2, 1)
-  end
+if year <= 2015
+  Holidays.calculate_day_of_month(year, 6, 2, 1)
+end
 end
 
 
-# http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
-# G20 day in brisbane, in 2014, on november 14
+
 def self.g20_day_2014_only(year)
-  year == 2014 ? 14 : nil
+year == 2014 ? 14 : nil
 end
 
 
-# http://worksafe.tas.gov.au/__data/assets/pdf_file/0008/287036/Public_Holidays_2014.pdf
-# The Thursday before the fourth Saturday in October. 
+
 def self.hobart_show_day(year)
-  fourth_sat_in_oct = Date.civil(year, 10, Holidays.calculate_day_of_month(year, 10, 4, :saturday))
-  fourth_sat_in_oct - 2 # the thursday before
+fourth_sat_in_oct = Date.civil(year, 10, Holidays.calculate_day_of_month(year, 10, 4, :saturday))
+fourth_sat_in_oct - 2 # the thursday before
 end
 
 
-# http://www.safework.sa.gov.au/show_page.jsp?id=2483#.VQ9Mfmb8-8E
-# The Holidays Act 1910 provides for the third Monday in May to be a public holiday. Since 2006 this public holiday has been observed on the second Monday in March through the issuing of a special Proclamation by the Governor.
+
 def self.march_pub_hol_sa(year)
-  if year < 2006
-    nil
-  else
-    Date.civil(year, 3, Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 3, :second, :monday))
-  end
+if year < 2006
+  nil
+else
+  Date.civil(year, 3, Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 3, :second, :monday))
+end
 end
 
 
-# http://www.safework.sa.gov.au/show_page.jsp?id=2483#.VQ9Mfmb8-8E
-# The Holidays Act 1910 provides for the third Monday in May to be a public holiday. Since 2006 this public holiday has been observed on the second Monday in March through the issuing of a special Proclamation by the Governor.
+
 def self.may_pub_hol_sa(year)
-  if year >= 2006
-    nil
-  else
-    Date.civil(year, 5, Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 5, :third, :monday))
-  end
+if year >= 2006
+  nil
+else
+  Date.civil(year, 5, Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 5, :third, :monday))
 end
+end
+
 
 
 

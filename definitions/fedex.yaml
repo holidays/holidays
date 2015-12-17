@@ -43,10 +43,10 @@ months:
     regions: [fedex]
     mday: 31
 methods:
-  day_after_thanksgiving: |
-    def self.day_after_thanksgiving(year)
+  day_after_thanksgiving:
+    arguments: year
+    source: |
       Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 11, 4, 4) + 1
-    end
 tests: |
     {Date.civil(2015,1,1) => 'New Year\'s Day',
      Date.civil(2015,5,25) => 'Memorial Day',

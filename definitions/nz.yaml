@@ -136,8 +136,9 @@ tests: |
     assert_equal 'Taranaki Anniversary Day', Holidays.on(Date.civil(2018, 3, 12), :nz_ta, :observed)[0][:name]
     assert_equal 'Taranaki Anniversary Day', Holidays.on(Date.civil(2019, 3, 11), :nz_ta, :observed)[0][:name]
 methods:
-  closest_monday: |
-    def self.closest_monday(date)
+  closest_monday:
+    arguments: date
+    source: |
       if [1, 2, 3, 4].include?(date.wday)
         date -= (date.wday - 1)
       elsif 0 == date.wday
@@ -146,14 +147,11 @@ methods:
         date += 8 - date.wday
       end
       date
-    end
-
-  previous_friday: |
-    def self.previous_friday(date)
+  previous_friday:
+    arguments: date
+    source: |
       date - 3
-    end
-
-  next_week: |
-    def self.next_week(date)
+  next_week:
+    arguments: date
+    source: |
       date + 7
-    end

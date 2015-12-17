@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/se'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module SE # :nodoc:
     def self.defined_regions
       [:se]
@@ -39,20 +39,20 @@ module Holidays
     end
   end
 
-# Sweden: Mid-summer (Saturday between June 20–26)
 def self.se_midsommardagen(year)
-  date = Date.civil(year,6,20)
-  date += (6 - date.wday)
-  date
+date = Date.civil(year,6,20)
+date += (6 - date.wday)
+date
 end
 
 
-# Sweden: All Saint's Day (Saturday between Oct 31 and Nov 6)
+
 def self.se_alla_helgons_dag(year)
-  date = Date.civil(year,10,31)
-  date += (6 - date.wday)
-  date
+date = Date.civil(year,10,31)
+date += (6 - date.wday)
+date
 end
+
 
 
 

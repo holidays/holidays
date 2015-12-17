@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/is'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module IS # :nodoc:
     def self.defined_regions
       [:is]
@@ -48,16 +48,16 @@ module Holidays
     end
   end
 
-# Iceland: first day of summer (Thursday after 18 April)
 def self.is_sumardagurinn_fyrsti(year)
-  date = Date.civil(year,4,18)
-  if date.wday < 4
-    date += (4 - date.wday)
-  else date
-    date += (11 - date.wday)
-  end
-  date
+date = Date.civil(year,4,18)
+if date.wday < 4
+  date += (4 - date.wday)
+else date
+  date += (11 - date.wday)
 end
+date
+end
+
 
 
 

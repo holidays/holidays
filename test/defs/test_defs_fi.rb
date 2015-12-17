@@ -7,10 +7,10 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class FiDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_fi
-{Date.civil(2008,1,1) => 'Uudenvuodenpäivä', 
+{Date.civil(2008,1,1) => 'Uudenvuodenpäivä',
  Date.civil(2008,1,6) => 'Loppiainen',
- Date.civil(2008,3,21) => 'Pitkäperjantai', 
- Date.civil(2008,3,23) => 'Pääsiäispäivä', 
+ Date.civil(2008,3,21) => 'Pitkäperjantai',
+ Date.civil(2008,3,23) => 'Pääsiäispäivä',
  Date.civil(2008,3,24) => '2. Pääsiäispäivä',
  Date.civil(2008,5,1) => 'Vappu',
  Date.civil(2008,5,1) => 'Helatorstai',
@@ -34,5 +34,6 @@ class FiDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2008,12,26) => 'Tapaninpäivä'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :fi, :informal)[0] || {})[:name]
 end
+
   end
 end

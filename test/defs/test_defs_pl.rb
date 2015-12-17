@@ -141,5 +141,6 @@ end
 # Wniebowzięcie Najświętszej Maryi Panny & Święto Wojska Polskiego
   assert_equal 'Wniebowzięcie Najświętszej Maryi Panny', (Holidays.on(Date.civil(2011,8,15), :pl)[0] || {})[:name]
   assert_equal 'Święto Wojska Polskiego', (Holidays.on(Date.civil(2011,8,15), :pl)[1] || {})[:name]
+
   end
 end

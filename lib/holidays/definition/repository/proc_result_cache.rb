@@ -20,12 +20,12 @@ module Holidays
       # 0100  0.125000   0.000000   0.125000 (  0.125000)
       # 1000  1.234000   0.000000   1.234000 (  1.234000)
       # 5000  6.094000   0.031000   6.125000 (  6.141000)
-      class ProcCache
+      class ProcResultCache
         def initialize
           @proc_cache = {}
         end
 
-        def lookup_and_call(function, year)
+        def lookup(function, year)
           proc_key = Digest::MD5.hexdigest("#{function.to_s}_#{year.to_s}")
           @proc_cache[proc_key] = convert(function).call(year) unless @proc_cache[proc_key]
           @proc_cache[proc_key]

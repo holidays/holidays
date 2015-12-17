@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/ie'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module IE # :nodoc:
     def self.defined_regions
       [:ie]
@@ -31,14 +31,14 @@ module Holidays
     end
   end
 
-# Ireland - Stephens Day is always the day after christmas day
 def self.ie_st_stephens_day(date)
-  case date.wday
-  when 6, 0 then date + 2
-  when 1 then date + 1
-  else date
-  end
+case date.wday
+when 6, 0 then date + 2
+when 1 then date + 1
+else date
 end
+end
+
 
 
 

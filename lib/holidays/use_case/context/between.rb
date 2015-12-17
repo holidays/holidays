@@ -2,10 +2,10 @@ module Holidays
   module UseCase
     module Context
       class Between
-        def initialize(holidays_by_month_repo, day_of_month_calculator, proc_cache_repo)
+        def initialize(holidays_by_month_repo, day_of_month_calculator, proc_result_cache_repo)
           @holidays_by_month_repo = holidays_by_month_repo
           @day_of_month_calculator = day_of_month_calculator
-          @proc_cache_repo = proc_cache_repo
+          @proc_result_cache_repo = proc_result_cache_repo
         end
 
         def call(start_date, end_date, dates_driver, regions, observed, informal)
@@ -18,6 +18,7 @@ module Holidays
               next unless hbm = holidays_by_month_repo.find_by_month(month)
               hbm.each do |h|
                 next unless in_region?(regions, h[:regions])
+                next if h[:type] == :informal && !informal
 
                 # Skip informal holidays unless they have been requested
                 next if h[:type] == :informal and not informal
@@ -45,9 +46,14 @@ module Holidays
                   next unless valid_range_year
                 end
 
+                #FIXME I don't like this entire if/else. If it's a function, do something, else do some
+                # weird mday logic? Bollocks. I think this should be a refactor target.
                 if h[:function]
-                  # Holiday definition requires a calculation
                   result = call_proc(h[:function], year)
+
+                  #FIXME This is a dangerous assumption. We should raise an error or something
+                  #      if these procs return something unexpected.
+                  #
                   # Procs may return either Date or an integer representing mday
                   if result.kind_of?(Date)
                     month = result.month
@@ -56,7 +62,6 @@ module Holidays
                     mday = result
                   end
                 else
-                  # Calculate the mday
                   mday = h[:mday] || day_of_month_calculator.call(year, month, h[:week], h[:wday])
                 end
 
@@ -65,9 +70,7 @@ module Holidays
                   date = Date.civil(year, month, mday)
                 rescue; next; end
 
-                # If the :observed option is set, calculate the date when the holiday
-                # is observed.
-                if observed and h[:observed]
+                if observed && h[:observed]
                   date = call_proc(h[:observed], date)
                 end
 
@@ -83,7 +86,7 @@ module Holidays
 
         private
 
-        attr_reader :holidays_by_month_repo, :day_of_month_calculator, :proc_cache_repo
+        attr_reader :holidays_by_month_repo, :day_of_month_calculator, :proc_result_cache_repo
 
         def validate!(start_date, end_date, dates_driver, regions)
           raise ArgumentError unless start_date
@@ -99,7 +102,7 @@ module Holidays
         end
 
         def call_proc(function, year)
-          proc_cache_repo.lookup_and_call(function, year)
+          proc_result_cache_repo.lookup(function, year)
         end
 
         # Check sub regions.

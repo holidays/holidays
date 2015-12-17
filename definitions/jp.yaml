@@ -139,8 +139,9 @@ months:
     regions: [jp]
     function: jp_substitute_holiday(year, 12, 23)
 methods:
-  jp_vernal_equinox_day: |
-    def self.jp_vernal_equinox_day(year)
+  jp_vernal_equinox_day:
+    arguments: year
+    source: |
       day =
         case year
         when 1851..1899
@@ -157,9 +158,9 @@ methods:
       day += 0.242194 * (year - 1980) - ((year - 1980)/4).floor
       day = day.floor
       Date.civil(year, 3, day)
-    end
-  jp_national_culture_day: |
-    def self.jp_national_culture_day(year)
+  jp_national_culture_day:
+    arguments: year
+    source: |
       day =
         case year
         when 1851..1899
@@ -176,9 +177,9 @@ methods:
       day += 0.242194 * (year - 1980) - ((year - 1980)/4).floor
       day = day.floor
       Date.civil(year, 9, day)
-    end
-  jp_citizons_holiday: |
-    def self.jp_citizons_holiday(year)
+  jp_citizons_holiday:
+    arguments: year
+    source: |
       year < 2003 and return nil
       ncd = Holidays.jp_national_culture_day(year)
       if ncd.wday == 3
@@ -186,24 +187,24 @@ methods:
       else
         nil
       end
-    end
-  jp_mountain_holiday: |
-    def self.jp_mountain_holiday(year)
+  jp_mountain_holiday:
+    arguments: year
+    source: |
+      return nil if year < 2016
       Date.civil(year, 8, 11)
-    end
-  jp_substitute_holiday: |
-    def self.jp_substitute_holiday(*date)
+  jp_substitute_holiday:
+    arguments: "*date"
+    source: |
       return nil unless date[0]
       date = date[0].kind_of?(Date) ? date.first : Date.civil(*date)
       date.wday == 0 ? Holidays.jp_next_weekday(date+1) : nil
-    end
-  jp_next_weekday(date): |
-    def self.jp_next_weekday(date)
+  jp_next_weekday:
+    arguments: date
+    source: |
       is_holiday = Holidays::JP.holidays_by_month[date.month].any? do |holiday|
         holiday[:mday] == date.day
       end
       date.wday == 0 || is_holiday ? Holidays.jp_next_weekday(date+1) : date
-    end
 tests: |
   {Date.civil(2008,1,1) => '元日',
    Date.civil(2010,1,11) => '成人の日',

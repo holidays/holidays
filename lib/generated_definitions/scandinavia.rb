@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/scandinavia'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module SCANDINAVIA # :nodoc:
     def self.defined_regions
       [:dk, :is, :no, :se, :fi]
@@ -120,60 +120,60 @@ module Holidays
     end
   end
 
-# Iceland: first day of summer (Thursday after 18 April)
 def self.is_sumardagurinn_fyrsti(year)
-  date = Date.civil(year,4,18)
-  if date.wday < 4
-    date += (4 - date.wday)
-  else date
-    date += (11 - date.wday)
-  end
-  date
+date = Date.civil(year,4,18)
+if date.wday < 4
+  date += (4 - date.wday)
+else date
+  date += (11 - date.wday)
+end
+date
 end
 
 
-# Sweden: Mid-summer (Saturday between June 20–26)
+
 def self.se_midsommardagen(year)
-  date = Date.civil(year,6,20)
-  date += (6 - date.wday)
-  date
+date = Date.civil(year,6,20)
+date += (6 - date.wday)
+date
 end
 
 
-# Sweden: All Saint's Day (Saturday between Oct 31 and Nov 6)
+
 def self.se_alla_helgons_dag(year)
-  date = Date.civil(year,10,31)
-  date += (6 - date.wday)
-  date
+date = Date.civil(year,10,31)
+date += (6 - date.wday)
+date
 end
 
 
-# Finland: Mid-summer eve (Friday between June 19–25)
+
 def self.fi_juhannusaatto(year)
-  date = Date.civil(year,6,19)
-  if date.wday > 5 #if 19.6 is saturday
-    date += 6
-  else 
-    date += (5 - date.wday)
-  end
-  date
+date = Date.civil(year,6,19)
+if date.wday > 5 #if 19.6 is saturday
+  date += 6
+else
+  date += (5 - date.wday)
+end
+date
 end
 
 
-# Finland: Mid-summer (Saturday between June 20–26)
+
 def self.fi_juhannuspaiva(year)
-  date = Date.civil(year,6,20)
-  date += (6 - date.wday)
-  date
+date = Date.civil(year,6,20)
+date += (6 - date.wday)
+date
 end
 
 
-# Finland: All Saint's Day (Saturday between Oct 31 and Nov 6)
+
 def self.fi_pyhainpaiva(year)
-  date = Date.civil(year,10,31)
-  date += (6 - date.wday)
-  date
+date = Date.civil(year,10,31)
+date += (6 - date.wday)
+date
 end
+
 
 
 

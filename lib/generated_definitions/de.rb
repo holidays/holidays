@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/de'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module DE # :nodoc:
     def self.defined_regions
       [:de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_aux, :de_th_aux, :de_sn, :de_st, :de_by_aux, :de_bb, :de_mv, :de_th]
@@ -47,16 +47,16 @@ module Holidays
     end
   end
 
-# Germany: Wednesday before November 23
 def self.de_buss_und_bettag(year)
-  date = Date.civil(year,11,23)
-  if date.wday > 3
-    date -= (date.wday - 3)
-  else
-    date -= (date.wday + 4)
-  end
-  date
+date = Date.civil(year,11,23)
+if date.wday > 3
+  date -= (date.wday - 3)
+else
+  date -= (date.wday + 4)
 end
+date
+end
+
 
 
 

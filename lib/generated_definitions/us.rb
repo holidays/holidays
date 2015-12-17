@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/us'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module US # :nodoc:
     def self.defined_regions
       [:us, :us_dc, :us_ca, :ca]
@@ -46,15 +46,16 @@ module Holidays
     end
   end
 
-# January 20, every fourth year, following Presidential election
 def self.us_inauguration_day(year)
-  year % 4 == 1 ? 20 : nil
+year % 4 == 1 ? 20 : nil
 end
+
 
 
 def self.day_after_thanksgiving(year)
-  Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 11, 4, 4) + 1
+Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 11, 4, 4) + 1
 end
+
 
 
 

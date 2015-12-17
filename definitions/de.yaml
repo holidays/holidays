@@ -110,10 +110,12 @@ months:
     regions: [de]
     mday: 31
     type: informal
+
 methods:
-  de_buss_und_bettag: |
+  de_buss_und_bettag:
     # Germany: Wednesday before November 23
-    def self.de_buss_und_bettag(year)
+    arguments: year
+    source: |
       date = Date.civil(year,11,23)
       if date.wday > 3
         date -= (date.wday - 3)
@@ -121,7 +123,6 @@ methods:
         date -= (date.wday + 4)
       end
       date
-    end
 
 tests: |
     {Date.civil(2009,1,1) => 'Neujahrstag',

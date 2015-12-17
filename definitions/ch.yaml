@@ -121,9 +121,10 @@ months:
     regions: [ch_ge]
     mday: 31
 methods:
-  ch_vd_lundi_du_jeune_federal: |
+  ch_vd_lundi_du_jeune_federal:
     # Monday after the third Sunday of September
-    def self.ch_vd_lundi_du_jeune_federal(year)
+    arguments: year
+    source: |
       date = Date.civil(year,9,1)
       # Find the first Sunday of September
       until date.wday.eql? 0 do
@@ -132,10 +133,10 @@ methods:
       # There are 15 days between the first Sunday
       # and the Monday after the third Sunday
       date + 15
-    end
-  ch_ge_jeune_genevois: |
+  ch_ge_jeune_genevois:
     # Thursday after the first Sunday of September
-    def self.ch_ge_jeune_genevois(year)
+    arguments: year
+    source: |
       date = Date.civil(year,9,1)
       # Find the first Sunday of September
       until date.wday.eql? 0 do
@@ -143,10 +144,10 @@ methods:
       end
       # Thursday is four days after Sunday
       date + 4
-    end
-  ch_gl_naefelser_fahrt: |
+  ch_gl_naefelser_fahrt:
     # First Thursday of April. If the first Thursday of April is in the week before easter, then a week later.
-    def self.ch_gl_naefelser_fahrt(year)
+    arguments: year
+    source: |
       date = Date.civil(year,4,1)
       # Find the first Thursday of April
       until date.wday.eql? 4 do
@@ -156,7 +157,6 @@ methods:
         date += 7
       end
       date
-    end
 tests: |
     { Date.civil(2012,8,1) => 'Bundesfeiertag',
       Date.civil(2012,12,25) => 'Weihnachten',

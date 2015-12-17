@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/jp'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module JP # :nodoc:
     def self.defined_regions
       [:jp]
@@ -56,74 +56,81 @@ module Holidays
   end
 
 def self.jp_vernal_equinox_day(year)
-  day =
-    case year
-    when 1851..1899
-      19.8277
-    when 1900..1979
-      20.8357
-    when 1980..2099
-      20.8431
-    when 2100..2150
-      21.8510
-    else
-      raise IndexError.new("Out of range")
-    end
-  day += 0.242194 * (year - 1980) - ((year - 1980)/4).floor
-  day = day.floor
-  Date.civil(year, 3, day)
+day =
+  case year
+  when 1851..1899
+    19.8277
+  when 1900..1979
+    20.8357
+  when 1980..2099
+    20.8431
+  when 2100..2150
+    21.8510
+  else
+    raise IndexError.new("Out of range")
+  end
+day += 0.242194 * (year - 1980) - ((year - 1980)/4).floor
+day = day.floor
+Date.civil(year, 3, day)
 end
+
 
 
 def self.jp_national_culture_day(year)
-  day =
-    case year
-    when 1851..1899
-      22.2588
-    when 1900..1979
-      23.2588
-    when 1980..2099
-      23.2488
-    when 2100..2150
-      24.2488
-    else
-      raise IndexError.new("Out of range")
-    end
-  day += 0.242194 * (year - 1980) - ((year - 1980)/4).floor
-  day = day.floor
-  Date.civil(year, 9, day)
+day =
+  case year
+  when 1851..1899
+    22.2588
+  when 1900..1979
+    23.2588
+  when 1980..2099
+    23.2488
+  when 2100..2150
+    24.2488
+  else
+    raise IndexError.new("Out of range")
+  end
+day += 0.242194 * (year - 1980) - ((year - 1980)/4).floor
+day = day.floor
+Date.civil(year, 9, day)
 end
+
 
 
 def self.jp_citizons_holiday(year)
-  year < 2003 and return nil
-  ncd = Holidays.jp_national_culture_day(year)
-  if ncd.wday == 3
-    ncd - 1
-  else
-    nil
-  end
+year < 2003 and return nil
+ncd = Holidays.jp_national_culture_day(year)
+if ncd.wday == 3
+  ncd - 1
+else
+  nil
 end
+end
+
 
 
 def self.jp_mountain_holiday(year)
-  Date.civil(year, 8, 11)
+return nil if year < 2016
+Date.civil(year, 8, 11)
 end
+
 
 
 def self.jp_substitute_holiday(*date)
-  return nil unless date[0]
-  date = date[0].kind_of?(Date) ? date.first : Date.civil(*date)
-  date.wday == 0 ? Holidays.jp_next_weekday(date+1) : nil
+return nil unless date[0]
+date = date[0].kind_of?(Date) ? date.first : Date.civil(*date)
+date.wday == 0 ? Holidays.jp_next_weekday(date+1) : nil
 end
+
 
 
 def self.jp_next_weekday(date)
-  is_holiday = Holidays::JP.holidays_by_month[date.month].any? do |holiday|
-    holiday[:mday] == date.day
-  end
-  date.wday == 0 || is_holiday ? Holidays.jp_next_weekday(date+1) : date
+is_holiday = Holidays::JP.holidays_by_month[date.month].any? do |holiday|
+  holiday[:mday] == date.day
 end
+date.wday == 0 || is_holiday ? Holidays.jp_next_weekday(date+1) : date
+end
+
 
 
 

@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/fi'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module FI # :nodoc:
     def self.defined_regions
       [:fi]
@@ -37,32 +37,32 @@ module Holidays
     end
   end
 
-# Finland: Mid-summer eve (Friday between June 19–25)
 def self.fi_juhannusaatto(year)
-  date = Date.civil(year,6,19)
-  if date.wday > 5 #if 19.6 is saturday
-    date += 6
-  else 
-    date += (5 - date.wday)
-  end
-  date
+date = Date.civil(year,6,19)
+if date.wday > 5 #if 19.6 is saturday
+  date += 6
+else
+  date += (5 - date.wday)
+end
+date
 end
 
 
-# Finland: Mid-summer (Saturday between June 20–26)
+
 def self.fi_juhannuspaiva(year)
-  date = Date.civil(year,6,20)
-  date += (6 - date.wday)
-  date
+date = Date.civil(year,6,20)
+date += (6 - date.wday)
+date
 end
 
 
-# Finland: All Saint's Day (Saturday between Oct 31 and Nov 6)
+
 def self.fi_pyhainpaiva(year)
-  date = Date.civil(year,10,31)
-  date += (6 - date.wday)
-  date
+date = Date.civil(year,10,31)
+date += (6 - date.wday)
+date
 end
+
 
 
 

@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/ca'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module CA # :nodoc:
     def self.defined_regions
       [:ca, :ca_qc, :ca_ab, :ca_on, :ca_sk, :ca_mb, :ca_ns, :ca_pe, :ca_bc, :ca_nf, :ca_nt, :ca_nu, :ca_nb, :ca_yk, :us]
@@ -62,16 +62,16 @@ module Holidays
     end
   end
 
-# Monday on or before May 24
 def self.ca_victoria_day(year)
-  date = Date.civil(year,5,24)
-  if date.wday > 1
-    date -= (date.wday - 1)
-  elsif date.wday == 0
-    date -= 6
-  end
-  date
+date = Date.civil(year,5,24)
+if date.wday > 1
+  date -= (date.wday - 1)
+elsif date.wday == 0
+  date -= 6
 end
+date
+end
+
 
 
 

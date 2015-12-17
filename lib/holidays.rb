@@ -204,6 +204,10 @@ module Holidays
     end
 
     # Parses provided holiday definition file(s) and loads them so that they are immediately available.
+    #
+    #FIXME There is a very subtle bug here. When we load a region we require the file, which captures any additional
+    # custom methods we need. But when we load a custom file we do NOT require it. This means that custom regions
+    # used by custom defs (for example easter) do not show up, in addition to any custom procs themselves!
     def load_custom(*files)
       regions, rules_by_month, custom_methods, tests = DefinitionFactory.file_parser.parse_definition_files(files)
       merge_defs(regions, rules_by_month)

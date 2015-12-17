@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/ch'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module CH # :nodoc:
     def self.defined_regions
       [:ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_ne, :ch_ge, :ch_ju, :ch_vs, :ch]
@@ -47,43 +47,43 @@ module Holidays
     end
   end
 
-# Monday after the third Sunday of September
 def self.ch_vd_lundi_du_jeune_federal(year)
-  date = Date.civil(year,9,1)
-  # Find the first Sunday of September
-  until date.wday.eql? 0 do
-    date += 1
-  end
-  # There are 15 days between the first Sunday
-  # and the Monday after the third Sunday
-  date + 15
+date = Date.civil(year,9,1)
+# Find the first Sunday of September
+until date.wday.eql? 0 do
+  date += 1
+end
+# There are 15 days between the first Sunday
+# and the Monday after the third Sunday
+date + 15
 end
 
 
-# Thursday after the first Sunday of September
+
 def self.ch_ge_jeune_genevois(year)
-  date = Date.civil(year,9,1)
-  # Find the first Sunday of September
-  until date.wday.eql? 0 do
-    date += 1
-  end
-  # Thursday is four days after Sunday
-  date + 4
+date = Date.civil(year,9,1)
+# Find the first Sunday of September
+until date.wday.eql? 0 do
+  date += 1
+end
+# Thursday is four days after Sunday
+date + 4
 end
 
 
-# First Thursday of April. If the first Thursday of April is in the week before easter, then a week later.
+
 def self.ch_gl_naefelser_fahrt(year)
-  date = Date.civil(year,4,1)
-  # Find the first Thursday of April
-  until date.wday.eql? 4 do
-    date += 1
-  end
-  if date.eql?(easter(year)-3)
-    date += 7
-  end
-  date
+date = Date.civil(year,4,1)
+# Find the first Thursday of April
+until date.wday.eql? 4 do
+  date += 1
 end
+if date.eql?(easter(year)-3)
+  date += 7
+end
+date
+end
+
 
 
 

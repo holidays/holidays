@@ -4,6 +4,10 @@ module Holidays
   module Definition
     module Context
       class Generator
+        def initialize(custom_method_parser, custom_method_source_decorator)
+          @custom_method_parser = custom_method_parser
+          @custom_method_source_decorator = custom_method_source_decorator
+        end
 
         def parse_definition_files(files)
           raise ArgumentError, "Must have at least one file to parse" if files.nil? || files.empty?
@@ -28,6 +32,11 @@ module Holidays
             }
 
             custom_methods = parse_method_definitions(definition_file['methods'])
+
+            #FIXME This is a problem. We will have a 'global' list of methods. That's always bad. What effects will this have?
+            # This is an existing problem (just so we are clear). An issue would be extremely rare because we are generally parsing
+            # single files/custom files. But it IS possible that we would parse a bunch of things at the same time and step
+            # on each other so we need a solution.
             all_custom_methods.merge!(custom_methods)
 
             all_tests << parse_test_definitions(definition_file['tests'])
@@ -44,7 +53,7 @@ module Holidays
           # Build the custom methods string
           custom_method_string = ''
           custom_methods.each do |key, code|
-            custom_method_string << code + "\n\n"
+            custom_method_string << custom_method_source_decorator.call(code) + "\n\n"
           end
 
           module_src = generate_module_src(module_name, files, regions, month_strings, custom_method_string)
@@ -54,6 +63,8 @@ module Holidays
         end
 
         private
+
+        attr_reader :custom_method_parser, :custom_method_source_decorator
 
         def parse_month_definitions(month_definitions)
           regions = []
@@ -92,15 +103,8 @@ module Holidays
         end
 
         def parse_method_definitions(methods)
-          custom_methods = {}
-
-          if methods
-            methods.each do |name, code|
-              custom_methods[name] = code
-            end
-          end
-
-          custom_methods
+          return {} if methods.nil? || methods.empty? #FIXME This is not necessary, the parser checks it as well.
+          custom_method_parser.call(methods)
         end
 
         def parse_test_definitions(tests)
@@ -180,7 +184,7 @@ module Holidays
   #   require 'holidays'
   #   require '#{DEFINITIONS_PATH}/#{module_name.to_s.downcase}'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module #{module_name.to_s.upcase} # :nodoc:
     def self.defined_regions
       [:#{regions.join(', :')}]

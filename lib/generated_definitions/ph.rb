@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/ph'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module PH # :nodoc:
     def self.defined_regions
       [:ph]
@@ -38,12 +38,12 @@ module Holidays
     end
   end
 
-# last Monday of August
 def self.ph_heroes_day(year)
-  date = Date.new(year, 8, -1)
-  return date if date.wday == 1
-  date -= date.wday - 1
+date = Date.new(year, 8, -1)
+return date if date.wday == 1
+date -= date.wday - 1
 end
+
 
 
 

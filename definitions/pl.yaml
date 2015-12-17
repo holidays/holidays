@@ -163,16 +163,16 @@ months:
     mday: 31
     type: informal
 methods:
-  pl_trzech_kroli: |
+  pl_trzech_kroli:
     # Poland: January 6 is holiday since 2011
-    def self.pl_trzech_kroli(year)
+    arguments: year
+    source: |
       year >= 2011 ? 6 : nil
-    end
-  pl_trzech_kroli_informal: |
+  pl_trzech_kroli_informal:
     # Poland: January 6 wasn't holiday before 2011
-    def self.pl_trzech_kroli_informal(year)
+    arguments: year
+    source: |
       year < 2011 ? 6 : nil
-    end
 tests: |
     {Date.civil(2011,1,1) => 'Nowy Rok',
     Date.civil(2011,5,1) => 'Święto Państwowe (Święto Pracy)',

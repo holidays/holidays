@@ -7,11 +7,11 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class SeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_se
-{Date.civil(2008,1,1) => 'Nyårsdagen', 
+{Date.civil(2008,1,1) => 'Nyårsdagen',
  Date.civil(2008,1,6) => 'Trettondedag jul',
  Date.civil(2008,3,21) => 'Långfredagen',
  Date.civil(2008,3,22) => 'Påskafton',
- Date.civil(2008,3,23) => 'Påskdagen', 
+ Date.civil(2008,3,23) => 'Påskdagen',
  Date.civil(2008,3,24) => 'Annandag påsk',
  Date.civil(2008,5,1) => 'Första maj',
  Date.civil(2008,5,1) => 'Kristi himmelsfärdsdag',
@@ -35,5 +35,6 @@ class SeDefinitionTests < Test::Unit::TestCase  # :nodoc:
  }.each do |date, name|
   assert_equal name, (Holidays.on(date, :se, :informal)[0] || {})[:name]
 end
+
   end
 end

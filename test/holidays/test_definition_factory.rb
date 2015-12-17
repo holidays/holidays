@@ -27,8 +27,15 @@ class DefinitionFactoryTests < Test::Unit::TestCase
     assert Holidays::DefinitionFactory.cache_repository.is_a?(Holidays::Definition::Repository::Cache)
   end
 
-  def test_proc_cache_repository
-    assert Holidays::DefinitionFactory.proc_cache_repository.is_a?(Holidays::Definition::Repository::ProcCache)
+  def test_proc_result_cache_repository
+    assert Holidays::DefinitionFactory.proc_result_cache_repository.is_a?(Holidays::Definition::Repository::ProcResultCache)
   end
 
+  def test_custom_method_parser
+    assert Holidays::DefinitionFactory.custom_method_parser.is_a?(Holidays::Definition::Parser::CustomMethod)
+  end
+
+  def test_custom_method_source_decorator
+    assert Holidays::DefinitionFactory.custom_method_source_decorator.is_a?(Holidays::Definition::Decorator::CustomMethodSource)
+  end
 end
