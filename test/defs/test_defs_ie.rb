@@ -7,7 +7,7 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class IeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_ie
-{Date.civil(2008,1,1) => 'New Year\'s Day', 
+{Date.civil(2008,1,1) => 'New Year\'s Day',
  Date.civil(2008,3,17) => 'St. Patrick\'s Day',
  Date.civil(2008,3,24) => 'Easter Monday',
  Date.civil(2008,5,5) => 'May Day',
@@ -18,7 +18,7 @@ class IeDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2008,12,26) => 'St. Stephen\'s Day'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :ie)[0] || {})[:name]
 end
-{Date.civil(2012,1,2) => 'New Year\'s Day', 
+{Date.civil(2012,1,2) => 'New Year\'s Day',
  Date.civil(2012,3,19) => 'St. Patrick\'s Day',
  Date.civil(2012,4,9) => 'Easter Monday',
  Date.civil(2012,5,7) => 'May Day',
@@ -28,7 +28,8 @@ end
  Date.civil(2011,12,26) => 'Christmas Day',
  Date.civil(2011,12,27) => 'St. Stephen\'s Day',
  Date.civil(2012,12,25) => 'Christmas Day',
- Date.civil(2012,12,26) => 'St. Stephen\'s Day'}.each do |date, name|
+ Date.civil(2012,12,26) => 'St. Stephen\'s Day',
+ Date.civil(2015,12,28) => 'St. Stephen\'s Day'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :ie, :observed)[0] || {})[:name]
 end
 
