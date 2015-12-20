@@ -1,5 +1,12 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 3.1.0
+
+* Fix St. Stephen observance holiday for Ireland (https://github.com/gumchum)
+* Add Bulgarian holidays (https://github.com/thekazak)
+* Add new mountain holiday for Japan (https://github.com/ttwo32)
+* Add ability to calculate Easter in either Gregorian (existing) or Julian (new) dates
+
 ## 3.0.0
 
 * Major refactor! Lots of code moved around and some methods were removed from the public api (they were never intended to be public).
