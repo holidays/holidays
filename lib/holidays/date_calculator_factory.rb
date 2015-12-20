@@ -4,11 +4,25 @@ require 'holidays/date_calculator/day_of_month'
 
 module Holidays
   module DateCalculatorFactory
-    class << self
-      def easter_calculator
-        DateCalculator::Easter.new
+    module Easter
+      module Gregorian
+        class << self
+          def easter_calculator
+            DateCalculator::Easter::Gregorian.new
+          end
+        end
       end
 
+      module Julian
+        class << self
+          def easter_calculator
+            DateCalculator::Easter::Julian.new
+          end
+        end
+      end
+    end
+
+    class << self
       def weekend_modifier
         DateCalculator::WeekendModifier.new
       end

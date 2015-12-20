@@ -15,7 +15,13 @@ class DateCalculatorFactoryTests < Test::Unit::TestCase
     assert @subject.weekend_modifier.is_a?(Holidays::DateCalculator::WeekendModifier)
   end
 
-  def test_easter_calculator
-    assert @subject.easter_calculator.is_a?(Holidays::DateCalculator::Easter)
+  def test_easter_calculator_gregorian
+    @subject = @subject::Easter::Gregorian
+    assert @subject.easter_calculator.is_a?(Holidays::DateCalculator::Easter::Gregorian)
+  end
+
+  def test_easter_calculator_julian
+    @subject = @subject::Easter::Julian
+    assert @subject.easter_calculator.is_a?(Holidays::DateCalculator::Easter::Julian)
   end
 end

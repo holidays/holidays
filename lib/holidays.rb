@@ -137,11 +137,15 @@ module Holidays
     end
 
     def easter(year)
-      DateCalculatorFactory.easter_calculator.calculate_easter_for(year)
+      DateCalculatorFactory::Easter::Gregorian.easter_calculator.calculate_easter_for(year)
     end
 
     def orthodox_easter(year)
-      DateCalculatorFactory.easter_calculator.calculate_orthodox_easter_for(year)
+      DateCalculatorFactory::Easter::Gregorian.easter_calculator.calculate_orthodox_easter_for(year)
+    end
+
+    def orthodox_easter_julian(year)
+      DateCalculatorFactory::Easter::Julian.easter_calculator.calculate_orthodox_easter_for(year)
     end
 
     def to_monday_if_sunday(date)
