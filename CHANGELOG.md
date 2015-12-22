@@ -1,5 +1,9 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 3.1.1
+
+* Require 'digest/md5' in main 'holidays' module. This was missed during the refactor (thanks to https://github.com/espen)
+
 ## 3.1.0
 
 * Fix St. Stephen observance holiday for Ireland (https://github.com/gumchum)
