@@ -2,6 +2,7 @@
 $:.unshift File.dirname(__FILE__)
 
 require 'date'
+require 'digest/md5'
 require 'holidays/definition_factory'
 require 'holidays/date_calculator_factory'
 require 'holidays/option_factory'
