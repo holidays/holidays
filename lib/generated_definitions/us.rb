@@ -53,7 +53,7 @@ end
 
 
 def self.day_after_thanksgiving(year)
-  Date.calculate_mday(year, 11, 4, 4) + 1
+  Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 11, 4, 4) + 1
 end
 
 

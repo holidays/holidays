@@ -79,7 +79,7 @@ methods:
     end
   day_after_thanksgiving: |
     def self.day_after_thanksgiving(year)
-      Date.calculate_mday(year, 11, 4, 4) + 1
+      Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 11, 4, 4) + 1
     end
 tests: |
     {Date.civil(2008,1,1) => 'New Year\'s Day',

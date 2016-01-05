@@ -106,7 +106,7 @@ def self.march_pub_hol_sa(year)
   if year < 2006
     nil
   else
-    Date.civil(year, 3, Date.calculate_mday(year, 3, :second, :monday))
+    Date.civil(year, 3, Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 3, :second, :monday))
   end
 end
 
@@ -117,7 +117,7 @@ def self.may_pub_hol_sa(year)
   if year >= 2006
     nil
   else
-    Date.civil(year, 5, Date.calculate_mday(year, 5, :third, :monday))
+    Date.civil(year, 5, Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 5, :third, :monday))
   end
 end
 
