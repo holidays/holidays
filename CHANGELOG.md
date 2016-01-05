@@ -1,5 +1,9 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 3.1.2
+
+* Do not require Date monkeypatching in definitions to use mday calculations (thanks to https://github.com/CloCkWeRX)
+
 ## 3.1.1
 
 * Require 'digest/md5' in main 'holidays' module. This was missed during the refactor (thanks to https://github.com/espen)
