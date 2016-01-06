@@ -19,7 +19,7 @@ module Holidays
     def self.holidays_by_month
       {
               0 => [{:function => lambda { |year| Holidays.easter(year)-49 }, :function_id => "easter(year)-49", :type => :informal, :name => "Fastelavn", :regions => [:dk]},
-            {:function => lambda { |year| Holidays.easter(year)-7 }, :function_id => "easter(year)-7", :name => "Palmesøndag", :regions => [:dk]},
+            {:function => lambda { |year| Holidays.easter(year)-7 }, :function_id => "easter(year)-7", :type => :informal, :name => "Palmesøndag", :regions => [:dk]},
             {:function => lambda { |year| Holidays.easter(year)-3 }, :function_id => "easter(year)-3", :name => "Skærtorsdag", :regions => [:dk]},
             {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Langfredag", :regions => [:dk]},
             {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Påskedag", :regions => [:dk]},
@@ -74,7 +74,7 @@ module Holidays
             {:mday => 9, :type => :informal, :name => "Danmarks besættelse", :regions => [:dk]},
             {:mday => 16, :type => :informal, :name => "Dronningens fødselsdag", :regions => [:dk]},
             {:function => lambda { |year| Holidays.is_sumardagurinn_fyrsti(year) }, :function_id => "is_sumardagurinn_fyrsti(year)", :name => "Sumardagurinn fyrsti", :regions => [:is]}],
-      5 => [{:mday => 1, :name => "Arbejdernes kampdag", :regions => [:dk]},
+      5 => [{:mday => 1, :type => :informal, :name => "Arbejdernes kampdag", :regions => [:dk]},
             {:mday => 5, :type => :informal, :name => "Danmarks befrielse", :regions => [:dk]},
             {:mday => 1, :name => "Verkalýðsdagurinn", :regions => [:is]},
             {:mday => 13, :name => "Mæðradagurinn", :regions => [:is]},
