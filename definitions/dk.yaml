@@ -15,6 +15,7 @@ months:
   - name: Palmesøndag
     regions: [dk]
     function: easter(year)-7
+    type: informal
   - name: Skærtorsdag
     regions: [dk]
     function: easter(year)-3
@@ -60,6 +61,7 @@ months:
   - name: Arbejdernes kampdag
     regions: [dk]
     mday: 1
+    type: informal
   - name: Danmarks befrielse
     regions: [dk]
     mday: 5

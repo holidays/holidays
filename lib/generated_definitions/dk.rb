@@ -19,7 +19,7 @@ module Holidays
     def self.holidays_by_month
       {
               0 => [{:function => lambda { |year| Holidays.easter(year)-49 }, :function_id => "easter(year)-49", :type => :informal, :name => "Fastelavn", :regions => [:dk]},
-            {:function => lambda { |year| Holidays.easter(year)-7 }, :function_id => "easter(year)-7", :name => "Palmesøndag", :regions => [:dk]},
+            {:function => lambda { |year| Holidays.easter(year)-7 }, :function_id => "easter(year)-7", :type => :informal, :name => "Palmesøndag", :regions => [:dk]},
             {:function => lambda { |year| Holidays.easter(year)-3 }, :function_id => "easter(year)-3", :name => "Skærtorsdag", :regions => [:dk]},
             {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Langfredag", :regions => [:dk]},
             {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Påskedag", :regions => [:dk]},
@@ -32,7 +32,7 @@ module Holidays
       4 => [{:mday => 1, :type => :informal, :name => "1. april", :regions => [:dk]},
             {:mday => 9, :type => :informal, :name => "Danmarks besættelse", :regions => [:dk]},
             {:mday => 16, :type => :informal, :name => "Dronningens fødselsdag", :regions => [:dk]}],
-      5 => [{:mday => 1, :name => "Arbejdernes kampdag", :regions => [:dk]},
+      5 => [{:mday => 1, :type => :informal, :name => "Arbejdernes kampdag", :regions => [:dk]},
             {:mday => 5, :type => :informal, :name => "Danmarks befrielse", :regions => [:dk]}],
       6 => [{:mday => 5, :type => :informal, :name => "Grundlovsdag", :regions => [:dk]},
             {:mday => 15, :type => :informal, :name => "Valdemarsdag og Genforeningsdag", :regions => [:dk]},
