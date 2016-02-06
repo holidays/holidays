@@ -16,17 +16,36 @@ module Holidays
           dates_driver.each do |year, months|
             months.each do |month|
               next unless hbm = holidays_by_month_repo.find_by_month(month)
-
               hbm.each do |h|
                 next unless in_region?(regions, h[:regions])
 
                 # Skip informal holidays unless they have been requested
                 next if h[:type] == :informal and not informal
 
+                # range check feature.
+                if h[:year_ranges]
+                  valid_range_year = false
+                  h[:year_ranges].each do |year_range|
+                    next unless year_range.is_a?(Hash) && year_range.length == 1
+                    next unless year_range.select{|operator,year|[:before,:after,:limited,:between].include?(operator)}.count > 0
+                    case year_range.keys.first
+                    when :before
+                      valid_range_year = true if year <= year_range[:before]
+                    when :after
+                      valid_range_year = true if year >= year_range[:after]
+                    when :limited
+                      valid_range_year = true if year_range[:limited].include?(year)
+                    when :between
+                      valid_range_year = true if year_range[:between].cover?(year)
+                    end
+                    break if valid_range_year
+                  end
+                  next unless valid_range_year
+                end
+
                 if h[:function]
                   # Holiday definition requires a calculation
                   result = call_proc(h[:function], year)
-
                   # Procs may return either Date or an integer representing mday
                   if result.kind_of?(Date)
                     month = result.month

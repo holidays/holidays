@@ -130,6 +130,26 @@ module Holidays
                 string << ":wday => #{rule[:wday]}, :week => #{rule[:week]}, "
               end
 
+              if rule[:year_ranges] && rule[:year_ranges].kind_of?(Array)
+                year_string = " :year_ranges => ["
+                len = rule[:year_ranges].length
+                rule[:year_ranges].each_with_index do |year,index|
+                  # if year.keys.first == "limited"
+                  #   p year.values.first
+                  #   year_string << "{:#{year.keys.first} => #{year.values.first.to_array}}"
+                  # else
+                  #   year_string << "{:#{year.keys.first} => #{year.values.first}}"
+                  # end
+                  year_string << "{:#{year.keys.first} => #{year.values.first}}"
+                  if len == index + 1
+                    year_string << "],"
+                  else
+                    year_string << ","
+                  end
+                end
+                string << year_string
+              end
+
               if rule[:observed]
                 string << ":observed => lambda { |date| Holidays.#{rule[:observed]}(date) }, "
                 string << ":observed_id => \"#{rule[:observed].to_s}\", "
