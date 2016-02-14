@@ -17,7 +17,7 @@ class ParseOptionsTests < Test::Unit::TestCase
 
     @subject = Holidays::Option::Context::ParseOptions.new(
       @regions_repo,
-      @region_validator,
+      @region_validator
     )
   end
 
