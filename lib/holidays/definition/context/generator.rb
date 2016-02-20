@@ -134,12 +134,6 @@ module Holidays
                 year_string = " :year_ranges => ["
                 len = rule[:year_ranges].length
                 rule[:year_ranges].each_with_index do |year,index|
-                  # if year.keys.first == "limited"
-                  #   p year.values.first
-                  #   year_string << "{:#{year.keys.first} => #{year.values.first.to_array}}"
-                  # else
-                  #   year_string << "{:#{year.keys.first} => #{year.values.first}}"
-                  # end
                   year_string << "{:#{year.keys.first} => #{year.values.first}}"
                   if len == index + 1
                     year_string << "],"
