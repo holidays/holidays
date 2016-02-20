@@ -27,16 +27,18 @@ module Holidays
                   valid_range_year = false
                   h[:year_ranges].each do |year_range|
                     next unless year_range.is_a?(Hash) && year_range.length == 1
-                    next unless year_range.select{|operator,year|[:before,:after,:limited,:between].include?(operator)}.count > 0
+                    next unless year_range.select{
+                      |operator,year|[:before,"before",:after,"after",:limited,"limited",:between,"between"].include?(operator)}.count > 0
                     case year_range.keys.first
-                    when :before
-                      valid_range_year = true if year <= year_range[:before]
-                    when :after
-                      valid_range_year = true if year >= year_range[:after]
-                    when :limited
-                      valid_range_year = true if year_range[:limited].include?(year)
-                    when :between
-                      valid_range_year = true if year_range[:between].cover?(year)
+                    when :before,"before"
+                      valid_range_year = true if year <= year_range[year_range.keys.first]
+                    when :after,"after"
+                      valid_range_year = true if year >= year_range[year_range.keys.first]
+                    when :limited,"limited"
+                      valid_range_year = true if year_range[year_range.keys.first].include?(year)
+                    when :between,"between"
+                      year_range[year_range.keys.first] = Range.new(*year_range[year_range.keys.first].split("..").map(&:to_i)) if year_range[year_range.keys.first].is_a?(String)
+                      valid_range_year = true if year_range[year_range.keys.first].cover?(year)
                     end
                     break if valid_range_year
                   end
