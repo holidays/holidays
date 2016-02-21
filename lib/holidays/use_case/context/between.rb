@@ -16,17 +16,38 @@ module Holidays
           dates_driver.each do |year, months|
             months.each do |month|
               next unless hbm = holidays_by_month_repo.find_by_month(month)
-
               hbm.each do |h|
                 next unless in_region?(regions, h[:regions])
 
                 # Skip informal holidays unless they have been requested
                 next if h[:type] == :informal and not informal
 
+                # range check feature.
+                if h[:year_ranges]
+                  valid_range_year = false
+                  h[:year_ranges].each do |year_range|
+                    next unless year_range.is_a?(Hash) && year_range.length == 1
+                    next unless year_range.select{
+                      |operator,year|[:before,"before",:after,"after",:limited,"limited",:between,"between"].include?(operator)}.count > 0
+                    case year_range.keys.first
+                    when :before,"before"
+                      valid_range_year = true if year <= year_range[year_range.keys.first]
+                    when :after,"after"
+                      valid_range_year = true if year >= year_range[year_range.keys.first]
+                    when :limited,"limited"
+                      valid_range_year = true if year_range[year_range.keys.first].include?(year)
+                    when :between,"between"
+                      year_range[year_range.keys.first] = Range.new(*year_range[year_range.keys.first].split("..").map(&:to_i)) if year_range[year_range.keys.first].is_a?(String)
+                      valid_range_year = true if year_range[year_range.keys.first].cover?(year)
+                    end
+                    break if valid_range_year
+                  end
+                  next unless valid_range_year
+                end
+
                 if h[:function]
                   # Holiday definition requires a calculation
                   result = call_proc(h[:function], year)
-
                   # Procs may return either Date or an integer representing mday
                   if result.kind_of?(Date)
                     month = result.month
