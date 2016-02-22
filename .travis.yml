@@ -2,6 +2,8 @@ notifications:
   disabled: true
 sudo: false
 rvm:
+  - ree
+  - 1.9.3
   - 2.0.0
   - 2.1.0
   - 2.2.0
