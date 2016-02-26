@@ -15,7 +15,7 @@ class ArDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2016,4,2) => 'Día del Veterano y de los Caídos en la Guerra de Malvinas',
  Date.civil(2016,5,1) => 'Día del Trabajador',
  Date.civil(2016,5,25) => 'Día de la Revolución de Mayo',
- Date.civil(2016,6,20) => 'Paso a la Inmortalidad del General Manuel Belgrano',
+ Date.civil(2016,6,20) => 'Día de la Bandera',
  Date.civil(2016,7,8) => 'Feriado puente turístico',
  Date.civil(2016,7,9) => 'Día de la Independencia',
  Date.civil(2016,8,15) => 'Paso a la Inmortalidad del General José de San Martín',

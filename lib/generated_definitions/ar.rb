@@ -26,7 +26,7 @@ module Holidays
       4 => [{:mday => 2, :name => "Día del Veterano y de los Caídos en la Guerra de Malvinas", :regions => [:ar]}],
       5 => [{:mday => 1, :name => "Día del Trabajador", :regions => [:ar]},
             {:mday => 25, :name => "Día de la Revolución de Mayo", :regions => [:ar]}],
-      6 => [{:mday => 20, :name => "Paso a la Inmortalidad del General Manuel Belgrano", :regions => [:ar]}],
+      6 => [{:mday => 20, :name => "Día de la Bandera", :regions => [:ar]}],
       7 => [{:mday => 8, :name => "Feriado puente turístico", :regions => [:ar]},
             {:mday => 9, :name => "Día de la Independencia", :regions => [:ar]}],
       8 => [{:mday => 15, :name => "Paso a la Inmortalidad del General José de San Martín", :regions => [:ar]}],
