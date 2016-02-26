@@ -1,10 +1,10 @@
 # Argentinian holiday definitions for the Ruby Holiday gem.
 #
-# Updated: 2013-10-17.
+# Updated: 2016-02-26.
 #
 # Sources:
 # - http://en.wikipedia.org/wiki/Public_holidays_in_Argentina
-#
+# - http://servicios.lanacion.com.ar/feriados/2016
 ---
 months:
   0:
