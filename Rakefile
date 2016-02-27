@@ -14,6 +14,11 @@ end
 
 task :default => :test
 
+desc 'Launch IRB session'
+task :console do
+  sh "irb -rubygems -I lib -r holidays.rb"
+end
+
 namespace :generate do
   DATA_PATH = 'definitions'
   TEST_DEFS_PATH = 'test/defs'
