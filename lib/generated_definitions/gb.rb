@@ -18,11 +18,11 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Good Friday", :regions => [:gb]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Easter Sunday", :regions => [:gb]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Easter Monday", :regions => [:gb_eng, :gb_wls, :gb_eaw, :gb_nir]}],
-      1 => [{:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "New Year's Day", :regions => [:gb]},
-            {:mday => 2, :observed => lambda { |date| Holidays.to_weekday_if_boxing_weekend(date) }, :observed_id => "to_weekday_if_boxing_weekend", :name => "2nd January", :regions => [:gb_sct]}],
+              0 => [{:function => "easter(year)", :function_modifier => -2, :name => "Good Friday", :regions => [:gb]},
+            {:function => "easter(year)", :name => "Easter Sunday", :regions => [:gb]},
+            {:function => "easter(year)", :function_modifier => 1, :name => "Easter Monday", :regions => [:gb_eng, :gb_wls, :gb_eaw, :gb_nir]}],
+      1 => [{:mday => 1, :observed => "to_monday_if_weekend(date)", :name => "New Year's Day", :regions => [:gb]},
+            {:mday => 2, :observed => "to_weekday_if_boxing_weekend(date)", :name => "2nd January", :regions => [:gb_sct]}],
       3 => [{:mday => 5, :name => "St. Piran's Day", :regions => [:gb_con]},
             {:mday => 17, :name => "St. Patrick's Day", :regions => [:gb_nir]}],
       5 => [{:wday => 1, :week => 1, :name => "May Day", :regions => [:gb]},
@@ -33,14 +33,16 @@ module Holidays
       8 => [{:wday => 1, :week => 1, :name => "Bank Holiday", :regions => [:gb_sct]},
             {:wday => 1, :week => -1, :name => "Bank Holiday", :regions => [:gb_eng, :gb_wls, :gb_eaw, :gb_nir]}],
       11 => [{:mday => 5, :type => :informal, :name => "Guy Fawkes Day", :regions => [:gb]},
-            {:mday => 30, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :type => :informal, :name => "St. Andrew's Day", :regions => [:gb_sct]}],
-      12 => [{:mday => 25, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "Christmas Day", :regions => [:gb]},
-            {:mday => 26, :observed => lambda { |date| Holidays.to_weekday_if_boxing_weekend(date) }, :observed_id => "to_weekday_if_boxing_weekend", :name => "Boxing Day", :regions => [:gb]}]
+            {:mday => 30, :observed => "to_monday_if_weekend(date)", :type => :informal, :name => "St. Andrew's Day", :regions => [:gb_sct]}],
+      12 => [{:mday => 25, :observed => "to_monday_if_weekend(date)", :name => "Christmas Day", :regions => [:gb]},
+            {:mday => 26, :observed => "to_weekday_if_boxing_weekend(date)", :name => "Boxing Day", :regions => [:gb]}]
+      }
+    end
+
+    def self.custom_methods
+      {
+        
       }
     end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::GB.defined_regions, Holidays::GB.holidays_by_month)

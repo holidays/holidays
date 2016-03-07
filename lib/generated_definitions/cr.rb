@@ -18,8 +18,8 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)-3 }, :function_id => "easter(year)-3", :name => "Jueves Santo", :regions => [:cr]},
-            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Viernes Santo", :regions => [:cr]}],
+              0 => [{:function => "easter(year)", :function_modifier => -3, :name => "Jueves Santo", :regions => [:cr]},
+            {:function => "easter(year)", :function_modifier => -2, :name => "Viernes Santo", :regions => [:cr]}],
       1 => [{:mday => 1, :name => "Año Nuevo", :regions => [:cr]}],
       4 => [{:mday => 11, :name => "Día de Juan Santamaría", :regions => [:cr]}],
       5 => [{:mday => 1, :name => "Día del Trabajador", :regions => [:cr]}],
@@ -31,9 +31,11 @@ module Holidays
       12 => [{:mday => 25, :name => "Navidad", :regions => [:cr]}]
       }
     end
+
+    def self.custom_methods
+      {
+        
+      }
+    end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::CR.defined_regions, Holidays::CR.holidays_by_month)

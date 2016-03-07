@@ -53,7 +53,7 @@ module Holidays
           # Build the custom methods string
           custom_method_string = ''
           custom_methods.each do |key, code|
-            custom_method_string << custom_method_source_decorator.call(code) + "\n\n"
+            custom_method_string << custom_method_source_decorator.call(code) + ",\n\n"
           end
 
           module_src = generate_module_src(module_name, files, regions, month_strings, custom_method_string)
@@ -127,10 +127,20 @@ module Holidays
               string = '{'
               if rule[:mday]
                 string << ":mday => #{rule[:mday]}, "
-              elsif rule[:function]
-                string << ":function => lambda { |year| Holidays.#{rule[:function]} }, "
-                string << ":function_id => \"#{rule[:function].to_s}\", "
-              else
+              end
+
+              if rule[:function]
+                string << ":function => \"#{rule[:function].to_s}\", "
+
+                if rule[:function_modifier]
+                  string << ":function_modifier => #{rule[:function_modifier].to_s}, "
+                end
+              end
+
+              # This is the 'else'. It is possible for mday AND function
+              # to be set but this is the fallback. This whole area
+              # needs to be reworked!
+              if string == '{'
                 string << ":wday => #{rule[:wday]}, :week => #{rule[:week]}, "
               end
 
@@ -149,8 +159,7 @@ module Holidays
               end
 
               if rule[:observed]
-                string << ":observed => lambda { |date| Holidays.#{rule[:observed]}(date) }, "
-                string << ":observed_id => \"#{rule[:observed].to_s}\", "
+                string << ":observed => \"#{rule[:observed].to_s}\", "
               end
 
               if rule[:type]
@@ -195,12 +204,14 @@ module Holidays
         #{month_strings.join(",\n")}
       }
     end
+
+    def self.custom_methods
+      {
+        #{custom_methods}
+      }
+    end
   end
-
-#{custom_methods}
 end
-
-Holidays.merge_defs(Holidays::#{module_name.to_s.upcase}.defined_regions, Holidays::#{module_name.to_s.upcase}.holidays_by_month)
         EOM
 
           return module_src

@@ -7,7 +7,7 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class ViDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_vi
-{Date.civil(2014,1,1) => 'New Year', 
+{Date.civil(2014,1,1) => 'New Year',
  Date.civil(2014,4,30) => 'Liberation Day',
  Date.civil(2014,5,1) => "International Workers' Day",
  Date.civil(2014,9,2) => 'National Day'}.each do |date, name|

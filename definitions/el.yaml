@@ -8,28 +8,33 @@
     # http://5dspace-time.org/Calendar/Algorithm.html - for offsets
     # http://el.wikipedia.org/wiki/Επίσημες_αργίες_στην_Ελλάδα - for holidays
     # http://www.eortologio.gr/arthra/pasxa.php - for holidays
---- 
+---
 months:
-  0: 
+  0:
   - name: Μεγάλη Παρασκευή
     regions: [el]
-    function: orthodox_easter(year)-2
+    function: orthodox_easter(year)
+    function_modifier: -2
   - name: Μεγάλο Σάββατο
     regions: [el]
-    function: orthodox_easter(year)-1
+    function: orthodox_easter(year)
+    function_modifier: -1
   - name: Κυριακή του Πάσχα
     regions: [el]
     function: orthodox_easter(year)
   - name: Δευτέρα του Πάσχα
     regions: [el]
-    function: orthodox_easter(year)+1
+    function: orthodox_easter(year)
+    function_modifier: 1
   - name: Καθαρά Δευτέρα
     regions: [el]
-    function: orthodox_easter(year)-48
+    function: orthodox_easter(year)
+    function_modifier: -48
   - name: Αγίου Πνεύματος
     regions: [el]
-    function: orthodox_easter(year)+50
-  1: 
+    function: orthodox_easter(year)
+    function_modifier: 50
+  1:
   - name: Πρωτοχρονιά
     regions: [el]
     mday: 1
@@ -44,15 +49,15 @@ months:
   - name: Πρωτομαγιά
     regions: [el]
     mday: 1
-  8: 
+  8:
   - name: Κοίμηση της Θεοτόκου
     regions: [el]
     mday: 15
   10:
   - name: Επέτειος του Όχι
     regions: [el]
-    mday: 28      
-  12: 
+    mday: 28
+  12:
   - name: Χριστούγεννα
     regions: [el]
     mday: 25
@@ -60,13 +65,13 @@ months:
     regions: [el]
     mday: 26
 tests: |
-    {Date.civil(2011,1,1) => 'Πρωτοχρονιά', 
+    {Date.civil(2011,1,1) => 'Πρωτοχρονιά',
      Date.civil(2011,1,6) => 'Θεοφάνεια',
-     Date.civil(2011,4,22) => 'Μεγάλη Παρασκευή', 
-     Date.civil(1970,4,25) => 'Μεγάλο Σάββατο', 
-     Date.civil(1985,4,14) => 'Κυριακή του Πάσχα', 
-     Date.civil(2011,4,24) => 'Κυριακή του Πάσχα', 
-     Date.civil(2027,5,2) => 'Κυριακή του Πάσχα', 
+     Date.civil(2011,4,22) => 'Μεγάλη Παρασκευή',
+     Date.civil(1970,4,25) => 'Μεγάλο Σάββατο',
+     Date.civil(1985,4,14) => 'Κυριακή του Πάσχα',
+     Date.civil(2011,4,24) => 'Κυριακή του Πάσχα',
+     Date.civil(2027,5,2) => 'Κυριακή του Πάσχα',
      Date.civil(2046,4,30) => 'Δευτέρα του Πάσχα',
      Date.civil(2011,5,1) => 'Πρωτομαγιά',
      Date.civil(2011,6,13) => 'Αγίου Πνεύματος',

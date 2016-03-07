@@ -1,15 +1,17 @@
 # Hungarian holiday definitions for the Ruby Holiday gem.
 #
 # Updated: 2012-03-01 by spap
---- 
+---
 months:
-  0: 
+  0:
   - name: Húsvét hétfő
     regions: [hu]
-    function: easter(year)+1
+    function: easter(year)
+    function_modifier: 1
   - name: Pünkösd hétfő
     regions: [hu]
-    function: easter(year)+50
+    function: easter(year)
+    function_modifier: 50
   1:
   - name: Újév
     regions: [hu]
@@ -42,8 +44,8 @@ months:
     regions: [hu]
     mday: 26
 tests: |
-    {Date.civil(2012,1,1) => 'Újév', 
-     Date.civil(2011,1,1) => 'Újév', 
+    {Date.civil(2012,1,1) => 'Újév',
+     Date.civil(2011,1,1) => 'Újév',
      Date.civil(2012,3,15) => '1848/49-es forradalom és szabadságharc ünnepe',
      Date.civil(2011,4,25) => 'Húsvét hétfő',
      Date.civil(2012,4,9) => 'Húsvét hétfő',

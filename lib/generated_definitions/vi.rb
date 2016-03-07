@@ -24,9 +24,11 @@ module Holidays
       9 => [{:mday => 2, :name => "National Day", :regions => [:vi]}]
       }
     end
+
+    def self.custom_methods
+      {
+        
+      }
+    end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::VI.defined_regions, Holidays::VI.holidays_by_month)

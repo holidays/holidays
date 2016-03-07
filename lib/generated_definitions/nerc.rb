@@ -18,17 +18,19 @@ module Holidays
 
     def self.holidays_by_month
       {
-              1 => [{:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "New Year's Day", :regions => [:nerc]}],
+              1 => [{:mday => 1, :observed => "to_monday_if_sunday(date)", :name => "New Year's Day", :regions => [:nerc]}],
       5 => [{:wday => 1, :week => -1, :name => "Memorial Day", :regions => [:nerc]}],
-      7 => [{:mday => 4, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Independence Day", :regions => [:nerc]}],
+      7 => [{:mday => 4, :observed => "to_monday_if_sunday(date)", :name => "Independence Day", :regions => [:nerc]}],
       9 => [{:wday => 1, :week => 1, :name => "Labor Day", :regions => [:nerc]}],
       11 => [{:wday => 4, :week => 4, :name => "Thanksgiving", :regions => [:nerc]}],
-      12 => [{:mday => 25, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Christmas Day", :regions => [:nerc]}]
+      12 => [{:mday => 25, :observed => "to_monday_if_sunday(date)", :name => "Christmas Day", :regions => [:nerc]}]
+      }
+    end
+
+    def self.custom_methods
+      {
+        
       }
     end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::NERC.defined_regions, Holidays::NERC.holidays_by_month)

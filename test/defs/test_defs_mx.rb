@@ -7,8 +7,8 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class MxDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_mx
-{Date.civil(2007,1,1) => 'Año nuevo', 
- Date.civil(2007,2,5) => 'Día de la Constitución', 
+{Date.civil(2007,1,1) => 'Año nuevo',
+ Date.civil(2007,2,5) => 'Día de la Constitución',
  Date.civil(2007,5,1) => 'Día del Trabajo',
  Date.civil(2007,5,5) => 'Cinco de Mayo',
  Date.civil(2007,9,16) => 'Día de la Independencia',
@@ -17,7 +17,8 @@ class MxDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2007,11,19) => 'Día de la Revolución',
  Date.civil(2007,12,25) => 'Navidad'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :mx, :informal)[0] || {})[:name]
-end  
+end
+
 
 {Date.civil(2013,2,2) => 'Groundhog Day',
  Date.civil(2013,2,14) => 'Valentine\'s Day',

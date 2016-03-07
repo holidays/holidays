@@ -7,44 +7,54 @@ months:
   0:
   - name: Tłusty Czwartek
     regions: [pl]
-    function: easter(year)-52
+    function: easter(year)
+    function_modifier: -52
     type: informal
   - name: Ostatki
     regions: [pl]
-    function: easter(year)-47
+    function: easter(year)
+    function_modifier: -47
     type: informal
   - name: Środa Popielcowa
     regions: [pl]
-    function: easter(year)-46
+    function: easter(year)
+    function_modifier: -46
     type: informal
   - name: Niedziela Palmowa
     regions: [pl]
-    function: easter(year)-7
+    function: easter(year)
+    function_modifier: -7
     type: informal
   - name: Wielki Czwartek
     regions: [pl]
-    function: easter(year)-3
+    function: easter(year)
+    function_modifier: -3
     type: informal
   - name: Wielki Piątek
     regions: [pl]
-    function: easter(year)-2
+    function: easter(year)
+    function_modifier: -2
     type: informal
   - name: Wielka Sobota
     regions: [pl]
-    function: easter(year)-1
+    function: easter(year)
+    function_modifier: -1
     type: informal
   - name: Niedziela Wielkanocna
     regions: [pl]
     function: easter(year)
   - name: Poniedziałek Wielkanocny (Lany Poniedziałek)
     regions: [pl]
-    function: easter(year)+1
+    function: easter(year)
+    function_modifier: 1
   - name: Zesłanie Ducha Świętego (Zielone Świątki)
     regions: [pl]
-    function: easter(year)+49
+    function: easter(year)
+    function_modifier: 49
   - name: Uroczystość Najświętszego Ciała i Krwi Pańskiej (Boże Ciało)
     regions: [pl]
-    function: easter(year)+60
+    function: easter(year)
+    function_modifier: 60
   1:
   - name: Nowy Rok
     regions: [pl]

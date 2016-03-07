@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/be_fr'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module BE_FR # :nodoc:
     def self.defined_regions
       [:be_fr]
@@ -18,11 +18,11 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Pâques", :regions => [:be_fr]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Lundi de Pâques", :regions => [:be_fr]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Ascension", :regions => [:be_fr]},
-            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "Pentecôte", :regions => [:be_fr]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Lundi de Pentecôte", :regions => [:be_fr]}],
+              0 => [{:function => "easter(year)", :name => "Pâques", :regions => [:be_fr]},
+            {:function => "easter(year)", :function_modifier => 1, :name => "Lundi de Pâques", :regions => [:be_fr]},
+            {:function => "easter(year)", :function_modifier => 39, :name => "Ascension", :regions => [:be_fr]},
+            {:function => "easter(year)", :function_modifier => 49, :name => "Pentecôte", :regions => [:be_fr]},
+            {:function => "easter(year)", :function_modifier => 50, :name => "Lundi de Pentecôte", :regions => [:be_fr]}],
       1 => [{:mday => 1, :name => "Jour de l'an", :regions => [:be_fr]}],
       5 => [{:mday => 1, :name => "Fête du travail", :regions => [:be_fr]}],
       7 => [{:mday => 21, :name => "Fête nationale", :regions => [:be_fr]}],
@@ -32,9 +32,11 @@ module Holidays
       12 => [{:mday => 25, :name => "Noël", :regions => [:be_fr]}]
       }
     end
+
+    def self.custom_methods
+      {
+        
+      }
+    end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::BE_FR.defined_regions, Holidays::BE_FR.holidays_by_month)

@@ -18,44 +18,42 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Långfredagen", :regions => [:se]},
-            {:function => lambda { |year| Holidays.easter(year)-1 }, :function_id => "easter(year)-1", :type => :informal, :name => "Påskafton", :regions => [:se]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Påskdagen", :regions => [:se]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Annandag påsk", :regions => [:se]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Kristi himmelsfärdsdag", :regions => [:se]},
-            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "Pingstdagen", :regions => [:se]},
-            {:function => lambda { |year| Holidays.se_alla_helgons_dag(year) }, :function_id => "se_alla_helgons_dag(year)", :name => "Alla helgons dag", :regions => [:se]}],
+              0 => [{:function => "easter(year)", :function_modifier => -2, :name => "Långfredagen", :regions => [:se]},
+            {:function => "easter(year)", :function_modifier => -1, :type => :informal, :name => "Påskafton", :regions => [:se]},
+            {:function => "easter(year)", :name => "Påskdagen", :regions => [:se]},
+            {:function => "easter(year)", :function_modifier => 1, :name => "Annandag påsk", :regions => [:se]},
+            {:function => "easter(year)", :function_modifier => 39, :name => "Kristi himmelsfärdsdag", :regions => [:se]},
+            {:function => "easter(year)", :function_modifier => 49, :name => "Pingstdagen", :regions => [:se]},
+            {:function => "se_alla_helgons_dag(year)", :name => "Alla helgons dag", :regions => [:se]}],
       1 => [{:mday => 1, :name => "Nyårsdagen", :regions => [:se]},
             {:mday => 6, :name => "Trettondedag jul", :regions => [:se]}],
       5 => [{:mday => 1, :name => "Första maj", :regions => [:se]}],
       6 => [{:mday => 6, :name => "Nationaldagen", :regions => [:se]},
-            {:function => lambda { |year| Holidays.se_midsommardagen(year) }, :function_id => "se_midsommardagen(year)", :name => "Midsommardagen", :regions => [:se]},
-            {:function => lambda { |year| Holidays.se_midsommardagen(year)-1 }, :function_id => "se_midsommardagen(year)-1", :type => :informal, :name => "Midsommarafton", :regions => [:se]}],
+            {:function => "se_midsommardagen(year)", :name => "Midsommardagen", :regions => [:se]},
+            {:function => "se_midsommardagen(year)", :function_modifier => -1, :type => :informal, :name => "Midsommarafton", :regions => [:se]}],
       12 => [{:mday => 24, :type => :informal, :name => "Julafton", :regions => [:se]},
             {:mday => 25, :name => "Juldagen", :regions => [:se]},
             {:mday => 26, :name => "Annandag jul", :regions => [:se]},
             {:mday => 31, :type => :informal, :name => "Nyårsafton", :regions => [:se]}]
       }
     end
-  end
 
-def self.se_midsommardagen(year)
+    def self.custom_methods
+      {
+        "se_midsommardagen(year)" => Proc.new { |year|
 date = Date.civil(year,6,20)
 date += (6 - date.wday)
 date
-end
+},
 
-
-
-def self.se_alla_helgons_dag(year)
+"se_alla_helgons_dag(year)" => Proc.new { |year|
 date = Date.civil(year,10,31)
 date += (6 - date.wday)
 date
+},
+
+
+      }
+    end
+  end
 end
-
-
-
-
-end
-
-Holidays.merge_defs(Holidays::SE.defined_regions, Holidays::SE.holidays_by_month)

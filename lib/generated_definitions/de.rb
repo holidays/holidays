@@ -18,16 +18,16 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Karfreitag", :regions => [:de]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :type => :informal, :name => "Ostersonntag", :regions => [:de]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Ostermontag", :regions => [:de]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Christi Himmelfahrt", :regions => [:de]},
-            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :type => :informal, :name => "Pfingstsonntag", :regions => [:de]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pfingstmontag", :regions => [:de]},
-            {:function => lambda { |year| Holidays.easter(year)+60 }, :function_id => "easter(year)+60", :name => "Fronleichnam", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_aux, :de_th_aux]},
-            {:function => lambda { |year| Holidays.easter(year)-52 }, :function_id => "easter(year)-52", :type => :informal, :name => "Weiberfastnacht", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn]},
-            {:function => lambda { |year| Holidays.easter(year)-48 }, :function_id => "easter(year)-48", :type => :informal, :name => "Rosenmontag", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn]},
-            {:function => lambda { |year| Holidays.easter(year)-46 }, :function_id => "easter(year)-46", :type => :informal, :name => "Aschermittwoch", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn]}],
+              0 => [{:function => "easter(year)-2", :function_modifier => -2, :name => "Karfreitag", :regions => [:de]},
+            {:function => "easter(year)", :type => :informal, :name => "Ostersonntag", :regions => [:de]},
+            {:function => "easter(year)", :function_modifier => 1, :name => "Ostermontag", :regions => [:de]},
+            {:function => "easter(year)", :function_modifier => 39, :name => "Christi Himmelfahrt", :regions => [:de]},
+            {:function => "easter(year)+49", :function_modifier => 49, :type => :informal, :name => "Pfingstsonntag", :regions => [:de]},
+            {:function => "easter(year)", :function_modifier => 50, :name => "Pfingstmontag", :regions => [:de]},
+            {:function => "easter(year)", :function_modifier => 60, :name => "Fronleichnam", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_aux, :de_th_aux]},
+            {:function => "easter(year)", :function_modifier => -52, :type => :informal, :name => "Weiberfastnacht", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn]},
+            {:function => "easter(year)", :function_modifier => -48, :type => :informal, :name => "Rosenmontag", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn]},
+            {:function => "easter(year)", :function_modifier => -46, :type => :informal, :name => "Aschermittwoch", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn]}],
       1 => [{:mday => 1, :name => "Neujahrstag", :regions => [:de]},
             {:mday => 6, :name => "Heilige Drei Könige", :regions => [:de_bw, :de_by, :de_st]}],
       5 => [{:mday => 1, :name => "Tag der Arbeit", :regions => [:de]}],
@@ -38,16 +38,17 @@ module Holidays
             {:mday => 31, :type => :informal, :name => "Reformationstag", :regions => [:de_bw]},
             {:mday => 31,  :year_ranges => [{:limited => [2017]}],:name => "Reformationstag", :regions => [:de]}],
       11 => [{:mday => 1, :name => "Allerheiligen", :regions => [:de_bw, :de_by, :de_nw, :de_rp, :de_sl]},
-            {:function => lambda { |year| Holidays.de_buss_und_bettag(year) }, :function_id => "de_buss_und_bettag(year)", :name => "Buß- und Bettag", :regions => [:de_sn]}],
+            {:function => "de_buss_und_bettag(year)", :name => "Buß- und Bettag", :regions => [:de_sn]}],
       12 => [{:mday => 24, :type => :informal, :name => "Heilig Abend", :regions => [:de]},
             {:mday => 25, :name => "1. Weihnachtstag", :regions => [:de]},
             {:mday => 26, :name => "2. Weihnachtstag", :regions => [:de]},
             {:mday => 31, :type => :informal, :name => "Silvester", :regions => [:de]}]
       }
     end
-  end
 
-def self.de_buss_und_bettag(year)
+    def self.custom_methods
+      {
+        "de_buss_und_bettag(year)" => Proc.new { |year|
 date = Date.civil(year,11,23)
 if date.wday > 3
   date -= (date.wday - 3)
@@ -55,11 +56,10 @@ else
   date -= (date.wday + 4)
 end
 date
+},
+
+
+      }
+    end
+  end
 end
-
-
-
-
-end
-
-Holidays.merge_defs(Holidays::DE.defined_regions, Holidays::DE.holidays_by_month)

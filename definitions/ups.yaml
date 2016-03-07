@@ -10,7 +10,7 @@ months:
   - name: New Year's Day
     regions: [ups]
     mday: 1
-    observed: to_weekday_if_weekend
+    observed: to_weekday_if_weekend(date)
   5:
   - name: Memorial Day
     week: -1
@@ -20,7 +20,7 @@ months:
   - name: Independence Day
     regions: [ups]
     mday: 4
-    observed: to_weekday_if_weekend
+    observed: to_weekday_if_weekend(date)
   9:
   - name: Labor Day
     week: 1
@@ -38,7 +38,7 @@ months:
   - name: Christmas Day
     regions: [ups]
     mday: 25
-    observed: to_weekday_if_weekend
+    observed: to_weekday_if_weekend(date)
   - name: New Year's Eve
     regions: [ups]
     mday: 31

@@ -50,9 +50,11 @@ module Holidays
             {:mday => 28, :name => "Los Santos Inocentes", :regions => [:mx]}]
       }
     end
+
+    def self.custom_methods
+      {
+        
+      }
+    end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::MX.defined_regions, Holidays::MX.holidays_by_month)

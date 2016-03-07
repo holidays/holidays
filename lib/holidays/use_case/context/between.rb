@@ -2,9 +2,10 @@ module Holidays
   module UseCase
     module Context
       class Between
-        def initialize(holidays_by_month_repo, day_of_month_calculator, proc_result_cache_repo)
+        def initialize(holidays_by_month_repo, day_of_month_calculator, custom_methods_repo, proc_result_cache_repo)
           @holidays_by_month_repo = holidays_by_month_repo
           @day_of_month_calculator = day_of_month_calculator
+          @custom_methods_repo = custom_methods_repo
           @proc_result_cache_repo = proc_result_cache_repo
         end
 
@@ -19,9 +20,6 @@ module Holidays
               hbm.each do |h|
                 next unless in_region?(regions, h[:regions])
                 next if h[:type] == :informal && !informal
-
-                # Skip informal holidays unless they have been requested
-                next if h[:type] == :informal and not informal
 
                 # range check feature.
                 if h[:year_ranges]
@@ -48,14 +46,29 @@ module Holidays
 
                 #FIXME I don't like this entire if/else. If it's a function, do something, else do some
                 # weird mday logic? Bollocks. I think this should be a refactor target.
+
                 if h[:function]
-                  result = call_proc(h[:function], year)
+                  function_arguments = [year]
+
+                  #FIXME Oof, this is bad. This assumption is that if the mday is
+                  # set in the definition then we are probably passing in year, month, day, otherwise we are just passing in a year
+                  # That's no good. I need to find a better way to handle these situations.
+                  if h[:mday]
+                    function_arguments << month
+                    function_arguments << h[:mday]
+                  end
+
+                  result = call_proc(h[:function], *function_arguments)
 
                   #FIXME This is a dangerous assumption. We should raise an error or something
                   #      if these procs return something unexpected.
                   #
                   # Procs may return either Date or an integer representing mday
                   if result.kind_of?(Date)
+                    if h[:function_modifier]
+                      result = result + h[:function_modifier] # NOTE: This could be a positive OR negative number.
+                    end
+
                     month = result.month
                     mday = result.mday
                   else
@@ -86,7 +99,7 @@ module Holidays
 
         private
 
-        attr_reader :holidays_by_month_repo, :day_of_month_calculator, :proc_result_cache_repo
+        attr_reader :holidays_by_month_repo, :day_of_month_calculator, :custom_methods_repo, :proc_result_cache_repo
 
         def validate!(start_date, end_date, dates_driver, regions)
           raise ArgumentError unless start_date
@@ -101,8 +114,11 @@ module Holidays
           raise ArgumentError if regions.nil? || regions.empty?
         end
 
-        def call_proc(function, year)
-          proc_result_cache_repo.lookup(function, year)
+        def call_proc(function_id, *arguments)
+          function = custom_methods_repo.find(function_id)
+          raise Holidays::FunctionNotFound.new("Unable to find function with id '#{function_id}") if function.nil?
+
+          proc_result_cache_repo.lookup(function, *arguments)
         end
 
         # Check sub regions.

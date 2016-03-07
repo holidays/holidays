@@ -1,7 +1,7 @@
 # Federal reserve holidays definition for the Ruby Holiday gem.
 #
 # Updated: 2015-03-16
-# 
+#
 # Sources:
 #  - http://www.federalreserve.gov/aboutthefed/k8.htm
 ---
@@ -9,8 +9,8 @@ months:
   1:
   - name: New Year's Day
     regions: [federal_reserve]
-    mday: 1 
-    observed: to_monday_if_sunday
+    mday: 1
+    observed: to_monday_if_sunday(date)
   - name: Birthday of Martin Luther King, Jr
     week: 3
     wday: 1
@@ -20,40 +20,40 @@ months:
     week: 3
     wday: 1
     regions: [federal_reserve]
-  5: 
+  5:
   - name: Memorial Day
     week: -1
     wday: 1
     regions: [federal_reserve]
-  7: 
+  7:
   - name: Independence Day
     regions: [federal_reserve]
     mday: 4
-    observed: to_monday_if_sunday
-  9: 
+    observed: to_monday_if_sunday(date)
+  9:
   - name: Labor Day
     week: 1
     regions: [federal_reserve]
     wday: 1
-  10: 
+  10:
   - name: Columbus Day
     week: 2
     regions: [federal_reserve]
     wday: 1
-  11: 
+  11:
   - name: Veterans Day
     regions: [federal_reserve]
     mday: 11
-    observed: to_monday_if_sunday
+    observed: to_monday_if_sunday(date)
   - name: Thanksgiving Day
     week: 4
     wday: 4
     regions: [federal_reserve]
-  12: 
+  12:
   - name: Christmas Day
     regions: [federal_reserve]
     mday: 25
-    observed: to_monday_if_sunday
+    observed: to_monday_if_sunday(date)
 tests: |
   {Date.civil(2012,1,2) => "New Year's Day",
    Date.civil(2012,1,16) => "Birthday of Martin Luther King, Jr",

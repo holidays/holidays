@@ -18,19 +18,19 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Karfreitag", :regions => [:ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_ne, :ch_ge, :ch_ju]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Ostermontag", :regions => [:ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_vs, :ch_ge, :ch_ju]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Auffahrt", :regions => [:ch]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pfingstmontag", :regions => [:ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_vs, :ch_ge, :ch_ju]},
-            {:function => lambda { |year| Holidays.easter(year)+60 }, :function_id => "easter(year)+60", :name => "Fronleichnam", :regions => [:ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_zg, :ch_fr, :ch_so, :ch_ai, :ch_ag, :ch_ti, :ch_vs, :ch_ne, :ch_ju]},
-            {:function => lambda { |year| Holidays.ch_vd_lundi_du_jeune_federal(year) }, :function_id => "ch_vd_lundi_du_jeune_federal(year)", :name => "Lundi du Jeûne fédéral", :regions => [:ch_vd]},
-            {:function => lambda { |year| Holidays.ch_ge_jeune_genevois(year) }, :function_id => "ch_ge_jeune_genevois(year)", :name => "Jeûne genevois", :regions => [:ch_ge]}],
+              0 => [{:function => "easter(year)", :function_modifier => -2, :name => "Karfreitag", :regions => [:ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_ne, :ch_ge, :ch_ju]},
+            {:function => "easter(year)", :function_modifier => 1, :name => "Ostermontag", :regions => [:ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_vs, :ch_ge, :ch_ju]},
+            {:function => "easter(year)", :function_modifier => 39, :name => "Auffahrt", :regions => [:ch]},
+            {:function => "easter(year)", :function_modifier => 50, :name => "Pfingstmontag", :regions => [:ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_vs, :ch_ge, :ch_ju]},
+            {:function => "easter(year)", :function_modifier => 60, :name => "Fronleichnam", :regions => [:ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_zg, :ch_fr, :ch_so, :ch_ai, :ch_ag, :ch_ti, :ch_vs, :ch_ne, :ch_ju]},
+            {:function => "ch_vd_lundi_du_jeune_federal(year)", :name => "Lundi du Jeûne fédéral", :regions => [:ch_vd]},
+            {:function => "ch_ge_jeune_genevois(year)", :name => "Jeûne genevois", :regions => [:ch_ge]}],
       1 => [{:mday => 1, :name => "Neujahrstag", :regions => [:ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_vd, :ch_vs, :ch_ne, :ch_ge, :ch_ju, :ch_ti]},
             {:mday => 2, :name => "Berchtoldstag", :regions => [:ch_zh, :ch_be, :ch_lu, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_sh, :ch_sg, :ch_ag, :ch_tg, :ch_vd, :ch_vs, :ch_ne, :ch_ju]},
             {:mday => 6, :name => "Dreikönigstag", :regions => [:ch_ur, :ch_sz, :ch_ti]}],
       3 => [{:mday => 1, :name => "Instauration de la République", :regions => [:ch_ne]},
             {:mday => 19, :name => "Josephstag", :regions => [:ch_ur, :ch_sz, :ch_nw, :ch_ti, :ch_vs]}],
-      4 => [{:function => lambda { |year| Holidays.ch_gl_naefelser_fahrt(year) }, :function_id => "ch_gl_naefelser_fahrt(year)", :name => "Näfelser Fahrt", :regions => [:ch_gl]}],
+      4 => [{:function => "ch_gl_naefelser_fahrt(year)", :name => "Näfelser Fahrt", :regions => [:ch_gl]}],
       5 => [{:mday => 1, :name => "Tag der Arbeit", :regions => [:ch_zh, :ch_bs, :ch_bl, :ch_sh, :ch_ag, :ch_tg, :ch_ti, :ch_ne, :ch_ju]}],
       6 => [{:mday => 23, :name => "Commémoration du plébiscite jurassien", :regions => [:ch_ju]},
             {:mday => 29, :name => "San Pietro e Paolo", :regions => [:ch_ti]}],
@@ -45,9 +45,10 @@ module Holidays
             {:mday => 31, :name => "Restauration de la République", :regions => [:ch_ge]}]
       }
     end
-  end
 
-def self.ch_vd_lundi_du_jeune_federal(year)
+    def self.custom_methods
+      {
+        "ch_vd_lundi_du_jeune_federal(year)" => Proc.new { |year|
 date = Date.civil(year,9,1)
 # Find the first Sunday of September
 until date.wday.eql? 0 do
@@ -56,11 +57,9 @@ end
 # There are 15 days between the first Sunday
 # and the Monday after the third Sunday
 date + 15
-end
+},
 
-
-
-def self.ch_ge_jeune_genevois(year)
+"ch_ge_jeune_genevois(year)" => Proc.new { |year|
 date = Date.civil(year,9,1)
 # Find the first Sunday of September
 until date.wday.eql? 0 do
@@ -68,25 +67,22 @@ until date.wday.eql? 0 do
 end
 # Thursday is four days after Sunday
 date + 4
-end
+},
 
-
-
-def self.ch_gl_naefelser_fahrt(year)
+"ch_gl_naefelser_fahrt(year)" => Proc.new { |year|
 date = Date.civil(year,4,1)
 # Find the first Thursday of April
 until date.wday.eql? 4 do
   date += 1
 end
-if date.eql?(easter(year)-3)
+if date.eql?(Holidays.easter(year)-3)
   date += 7
 end
 date
+},
+
+
+      }
+    end
+  end
 end
-
-
-
-
-end
-
-Holidays.merge_defs(Holidays::CH.defined_regions, Holidays::CH.holidays_by_month)

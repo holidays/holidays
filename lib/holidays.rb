@@ -1,4 +1,4 @@
-# encoding: utf-8
+## encoding: utf-8
 $:.unshift File.dirname(__FILE__)
 
 require 'date'
@@ -7,6 +7,8 @@ require 'holidays/definition_factory'
 require 'holidays/date_calculator_factory'
 require 'holidays/option_factory'
 require 'holidays/use_case_factory'
+require 'holidays/errors'
+require 'holidays/load_all_definitions'
 
 # == Region options
 # Holidays can be defined as belonging to one or more regions and sub regions.
@@ -47,9 +49,6 @@ require 'holidays/use_case_factory'
 #
 #   Holidays.between(from, to, :ca_bc, :informal)
 module Holidays
-  # Exception thrown when an unknown region is requested.
-  class UnknownRegionError < ArgumentError; end
-
   WEEKS = {:first => 1, :second => 2, :third => 3, :fourth => 4, :fifth => 5, :last => -1, :second_last => -2, :third_last => -3}
   MONTH_LENGTHS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
   DAY_SYMBOLS = Date::DAYNAMES.collect { |n| n.downcase.intern }
@@ -133,8 +132,8 @@ module Holidays
 
     #TODO This should not be publicly available. I need to restructure the public
     #     API for this class to something more sensible.
-    def merge_defs(regions, holidays) # :nodoc:
-      DefinitionFactory.merger.call(regions, holidays)
+    def merge_defs(regions, holidays, custom_methods) # :nodoc:
+      DefinitionFactory.merger.call(regions, holidays, custom_methods)
     end
 
     def easter(year)
@@ -200,17 +199,13 @@ module Holidays
 
     # Load all available holiday definitions
     def load_all
-      available(true).each { |path| require path }
+      OptionFactory.parse_options.call(Holidays::REGIONS)
     end
 
     # Parses provided holiday definition file(s) and loads them so that they are immediately available.
-    #
-    #FIXME There is a very subtle bug here. When we load a region we require the file, which captures any additional
-    # custom methods we need. But when we load a custom file we do NOT require it. This means that custom regions
-    # used by custom defs (for example easter) do not show up, in addition to any custom procs themselves!
     def load_custom(*files)
       regions, rules_by_month, custom_methods, tests = DefinitionFactory.file_parser.parse_definition_files(files)
-      merge_defs(regions, rules_by_month)
+      merge_defs(regions, rules_by_month, custom_methods)
     end
 
     # Parses provided holiday definition file(s) and returns strings containing the generated module and test source
@@ -232,3 +227,5 @@ module Holidays
     end
   end
 end
+
+Holidays::LoadAllDefinitions.call

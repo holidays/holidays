@@ -8,6 +8,7 @@ module Holidays
         UseCase::Context::Between.new(
           DefinitionFactory.holidays_by_month_repository,
           DateCalculatorFactory.day_of_month_calculator,
+          DefinitionFactory.custom_methods_repository,
           DefinitionFactory.proc_result_cache_repository,
         )
       end

@@ -25,16 +25,25 @@ module Holidays
           @proc_cache = {}
         end
 
-        def lookup(function, year)
-          proc_key = Digest::MD5.hexdigest("#{function.to_s}_#{year.to_s}")
-          @proc_cache[proc_key] = convert(function).call(year) unless @proc_cache[proc_key]
+        def lookup(function, *function_arguments)
+          validate!(function, function_arguments)
+
+          proc_key = build_proc_key(function, function_arguments)
+          @proc_cache[proc_key] = function.call(*function_arguments) unless @proc_cache[proc_key]
           @proc_cache[proc_key]
         end
 
         private
 
-        def convert(function)
-          function.is_a?(String) ? Proc.new{ |year| eval(function) } : function
+        def validate!(function, function_arguments)
+          raise ArgumentError.new("function must be a proc") unless function.is_a?(Proc)
+          function_arguments.each do |arg|
+            raise ArgumentError.new("function arguments '#{function_arguments}' must contain either integers or dates") unless arg.is_a?(Integer) || arg.is_a?(Date)
+          end
+        end
+
+        def build_proc_key(function, function_arguments)
+          Digest::MD5.hexdigest("#{function.to_s}_#{function_arguments.join('_')}")
         end
       end
     end

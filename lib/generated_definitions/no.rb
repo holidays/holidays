@@ -18,15 +18,15 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)-49 }, :function_id => "easter(year)-49", :type => :informal, :name => "Fastelavn", :regions => [:no]},
-            {:function => lambda { |year| Holidays.easter(year)-7 }, :function_id => "easter(year)-7", :name => "Palmesøndag", :regions => [:no]},
-            {:function => lambda { |year| Holidays.easter(year)-3 }, :function_id => "easter(year)-3", :name => "Skjærtorsdag", :regions => [:no]},
-            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Langfredag", :regions => [:no]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "1. påskedag", :regions => [:no]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "2. påskedag", :regions => [:no]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Kristi Himmelfartsdag", :regions => [:no]},
-            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "1. pinsedag", :regions => [:no]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "2. pinsedag", :regions => [:no]}],
+              0 => [{:function => "easter(year)", :function_modifier => -49, :type => :informal, :name => "Fastelavn", :regions => [:no]},
+            {:function => "easter(year)", :function_modifier => -7, :name => "Palmesøndag", :regions => [:no]},
+            {:function => "easter(year)", :function_modifier => -3, :name => "Skjærtorsdag", :regions => [:no]},
+            {:function => "easter(year)", :function_modifier => -2, :name => "Langfredag", :regions => [:no]},
+            {:function => "easter(year)", :name => "1. påskedag", :regions => [:no]},
+            {:function => "easter(year)", :function_modifier => 1, :name => "2. påskedag", :regions => [:no]},
+            {:function => "easter(year)", :function_modifier => 39, :name => "Kristi Himmelfartsdag", :regions => [:no]},
+            {:function => "easter(year)", :function_modifier => 49, :name => "1. pinsedag", :regions => [:no]},
+            {:function => "easter(year)", :function_modifier => 50, :name => "2. pinsedag", :regions => [:no]}],
       1 => [{:mday => 1, :name => "Nyttårsdag", :regions => [:no]}],
       5 => [{:mday => 1, :name => "1. mai", :regions => [:no]},
             {:mday => 17, :name => "17. mai", :regions => [:no]}],
@@ -36,9 +36,11 @@ module Holidays
             {:mday => 31, :type => :informal, :name => "Nyttårsaften", :regions => [:no]}]
       }
     end
+
+    def self.custom_methods
+      {
+        
+      }
+    end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::NO.defined_regions, Holidays::NO.holidays_by_month)

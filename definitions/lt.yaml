@@ -12,7 +12,8 @@ months:
     function: easter(year)
   - name: Antroji Velykų diena
     regions: [lt]
-    function: easter(year)+1
+    function: easter(year)
+    function_modifier: 1
   1:
   - name: Naujieji metai
     regions: [lt]

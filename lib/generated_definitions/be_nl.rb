@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/be_nl'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module BE_NL # :nodoc:
     def self.defined_regions
       [:be_nl]
@@ -18,11 +18,11 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Pasen", :regions => [:be_nl]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Paasmaandag", :regions => [:be_nl]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "O.H. Hemelvaart", :regions => [:be_nl]},
-            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "Pinksteren", :regions => [:be_nl]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pinkstermaandag", :regions => [:be_nl]}],
+              0 => [{:function => "easter(year)", :name => "Pasen", :regions => [:be_nl]},
+            {:function => "easter(year)+1", :name => "Paasmaandag", :regions => [:be_nl]},
+            {:function => "easter(year)+39", :name => "O.H. Hemelvaart", :regions => [:be_nl]},
+            {:function => "easter(year)+49", :name => "Pinksteren", :regions => [:be_nl]},
+            {:function => "easter(year)+50", :name => "Pinkstermaandag", :regions => [:be_nl]}],
       1 => [{:mday => 1, :name => "Nieuwjaar", :regions => [:be_nl]}],
       5 => [{:mday => 1, :name => "Feest van de Arbeid", :regions => [:be_nl]}],
       7 => [{:mday => 21, :name => "Nationale Feestdag", :regions => [:be_nl]}],
@@ -32,9 +32,11 @@ module Holidays
       12 => [{:mday => 25, :name => "Kerstmis", :regions => [:be_nl]}]
       }
     end
+
+    def self.custom_methods
+      {
+        
+      }
+    end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::BE_NL.defined_regions, Holidays::BE_NL.holidays_by_month)

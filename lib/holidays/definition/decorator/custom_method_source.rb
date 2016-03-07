@@ -9,7 +9,7 @@ module Holidays
           args = args_string(proc.arguments)
           source = proc.source
 
-          "def self.#{method_name.to_s}(#{args})\n#{source}end\n\n"
+          "\"#{method_name.to_s}(#{args})\" => Proc.new { |#{args}|\n#{source}}"
         end
 
         private

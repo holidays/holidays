@@ -9,7 +9,8 @@ months:
   0:
   - name: Good Friday
     regions: [nyse]
-    function: easter(year)-2
+    function: easter(year)
+    function_modifier: -2
   1:
   - name: New Year's Day
     regions: [nyse]
@@ -28,12 +29,12 @@ months:
     week: -1
     regions: [nyse]
     wday: 1
-  7: 
+  7:
   - name: Independence Day
     regions: [nyse]
     mday: 4
-    observed: to_weekday_if_weekend
-  9: 
+    observed: to_weekday_if_weekend(date)
+  9:
   - name: Labor Day
     week: 1
     regions: [nyse]
@@ -43,14 +44,14 @@ months:
     week: 4
     regions: [nyse]
     wday: 4
-  12: 
+  12:
   - name: Christmas Day
     regions: [nyse]
     mday: 25
-    observed: to_weekday_if_weekend
+    observed: to_weekday_if_weekend(date)
 methods:
 tests: |
-    {Date.civil(2008,1,1) => 'New Year\'s Day', 
+    {Date.civil(2008,1,1) => 'New Year\'s Day',
      Date.civil(2008,1,21) => 'Martin Luther King, Jr. Day',
      Date.civil(2008,2,18) => 'Presidents\' Day',
      Date.civil(2008,3,21) => 'Good Friday',

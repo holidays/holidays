@@ -6,6 +6,7 @@ require 'holidays/definition/repository/holidays_by_month'
 require 'holidays/definition/repository/regions'
 require 'holidays/definition/repository/cache'
 require 'holidays/definition/repository/proc_result_cache'
+require 'holidays/definition/repository/custom_methods'
 require 'holidays/definition/validator/region'
 
 module Holidays
@@ -28,7 +29,8 @@ module Holidays
       def merger
         Definition::Context::Merger.new(
           holidays_by_month_repository,
-          regions_repository
+          regions_repository,
+          custom_methods_repository,
         )
       end
 
@@ -60,6 +62,10 @@ module Holidays
 
       def proc_result_cache_repository
         @proc_result_cache_repo ||= Definition::Repository::ProcResultCache.new
+      end
+
+      def custom_methods_repository
+        @custom_methods_repository ||= Definition::Repository::CustomMethods.new
       end
     end
   end

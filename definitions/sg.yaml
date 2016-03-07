@@ -10,15 +10,16 @@
 # http://publicholidays.sg/
 
 months:
-  0: 
+  0:
   - name: Good Friday
     regions: [sg]
-    function: easter(year)-2
-  1: 
+    function: easter(year)
+    function_modifier: -2
+  1:
   - name: New Year's Day
     regions: [sg]
     mday: 1
-    observed: to_weekday_if_weekend
+    observed: to_weekday_if_weekend(date)
   2:
   - name: Valentine's Day
     regions: [sg]
@@ -36,15 +37,15 @@ months:
   - name: National Day
     regions: [sg]
     mday: 9
-    observed: to_weekday_if_weekend
-  12: 
+    observed: to_weekday_if_weekend(date)
+  12:
   - name: Christmas Day
     regions: [sg]
     mday: 25
-    observed: to_weekday_if_weekend
+    observed: to_weekday_if_weekend(date)
 
 tests: |
-    {Date.civil(2014,1,1) => 'New Year\'s Day', 
+    {Date.civil(2014,1,1) => 'New Year\'s Day',
      Date.civil(2014,2,14) => 'Valentine\'s Day',
      Date.civil(2014,2,15) => 'Total Defence Day',
      Date.civil(2014,4,18) => 'Good Friday',

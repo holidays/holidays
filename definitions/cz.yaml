@@ -9,10 +9,12 @@ months:
   0:
   - name: Velký pátek
     regions: [cz]
-    function: easter(year)-2
+    function: easter(year)
+    function_modifier: -2
   - name: Velikonoční pondělí
     regions: [cz]
-    function: easter(year)+1
+    function: easter(year)
+    function_modifier: 1
   1:
   - name: Den obnovy samostatného českého státu
     regions: [cz]

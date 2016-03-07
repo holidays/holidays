@@ -93,22 +93,6 @@ class HolidaysByMonthRepoTests < Test::Unit::TestCase
     assert_equal(expected, @subject.all)
   end
 
-  def test_add_is_successful_if_function_id_is_different
-    target_holidays = {0 => [:mday => 1, :name => "Test", :function_id => 'test', :regions => [:test]]}
-
-    @subject.add(@existing_holidays_by_month)
-    @subject.add(target_holidays)
-
-    expected = {
-                 0 => [
-                        {:mday=>1, :name=>"Test", :regions=>[:test]},
-                        {:mday=>1, :name=>"Test", :function_id => 'test', :regions=>[:test]}
-                      ]
-                }
-
-    assert_equal(expected, @subject.all)
-  end
-
   def test_add_is_successful_if_type_is_different
     target_holidays = {0 => [:mday => 1, :name => "Test", :type => :informal, :regions => [:test]]}
 
@@ -119,22 +103,6 @@ class HolidaysByMonthRepoTests < Test::Unit::TestCase
                  0 => [
                         {:mday=>1, :name=>"Test", :regions=>[:test]},
                         {:mday=>1, :name=>"Test", :type => :informal, :regions=>[:test]}
-                      ]
-                }
-
-    assert_equal(expected, @subject.all)
-  end
-
-  def test_add_is_successful_if_observed_id_is_different
-    target_holidays = {0 => [:mday => 1, :name => "Test", :observed_id => :informal, :regions => [:test]]}
-
-    @subject.add(@existing_holidays_by_month)
-    @subject.add(target_holidays)
-
-    expected = {
-                 0 => [
-                        {:mday=>1, :name=>"Test", :regions=>[:test]},
-                        {:mday=>1, :name=>"Test", :observed_id => :informal, :regions=>[:test]}
                       ]
                 }
 

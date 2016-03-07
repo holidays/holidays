@@ -18,26 +18,27 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Pitkäperjantai", :regions => [:fi]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Pääsiäispäivä", :regions => [:fi]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "2. Pääsiäispäivä", :regions => [:fi]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Helatorstai", :regions => [:fi]},
-            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "Helluntaipäivä", :regions => [:fi]},
-            {:function => lambda { |year| Holidays.fi_pyhainpaiva(year) }, :function_id => "fi_pyhainpaiva(year)", :name => "Pyhäinpäivä", :regions => [:fi]}],
+              0 => [{:function => "easter(year)", :function_modifier => -2, :name => "Pitkäperjantai", :regions => [:fi]},
+            {:function => "easter(year)", :name => "Pääsiäispäivä", :regions => [:fi]},
+            {:function => "easter(year)", :function_modifier => 1, :name => "2. Pääsiäispäivä", :regions => [:fi]},
+            {:function => "easter(year)", :function_modifier => 39, :name => "Helatorstai", :regions => [:fi]},
+            {:function => "easter(year)", :function_modifier => 49, :name => "Helluntaipäivä", :regions => [:fi]},
+            {:function => "fi_pyhainpaiva(year)", :name => "Pyhäinpäivä", :regions => [:fi]}],
       1 => [{:mday => 1, :name => "Uudenvuodenpäivä", :regions => [:fi]},
             {:mday => 6, :name => "Loppiainen", :regions => [:fi]}],
       5 => [{:mday => 1, :name => "Vappu", :regions => [:fi]}],
-      6 => [{:function => lambda { |year| Holidays.fi_juhannusaatto(year) }, :function_id => "fi_juhannusaatto(year)", :name => "Juhannusaatto", :regions => [:fi]},
-            {:function => lambda { |year| Holidays.fi_juhannuspaiva(year) }, :function_id => "fi_juhannuspaiva(year)", :name => "Juhannuspäivä", :regions => [:fi]}],
+      6 => [{:function => "fi_juhannusaatto(year)", :name => "Juhannusaatto", :regions => [:fi]},
+            {:function => "fi_juhannuspaiva(year)", :name => "Juhannuspäivä", :regions => [:fi]}],
       12 => [{:mday => 6, :name => "Itsenäisyyspäivä", :regions => [:fi]},
             {:mday => 24, :name => "Jouluaatto", :regions => [:fi]},
             {:mday => 25, :name => "Joulupäivä", :regions => [:fi]},
             {:mday => 26, :name => "Tapaninpäivä", :regions => [:fi]}]
       }
     end
-  end
 
-def self.fi_juhannusaatto(year)
+    def self.custom_methods
+      {
+        "fi_juhannusaatto(year)" => Proc.new { |year|
 date = Date.civil(year,6,19)
 if date.wday > 5 #if 19.6 is saturday
   date += 6
@@ -45,27 +46,22 @@ else
   date += (5 - date.wday)
 end
 date
-end
+},
 
-
-
-def self.fi_juhannuspaiva(year)
+"fi_juhannuspaiva(year)" => Proc.new { |year|
 date = Date.civil(year,6,20)
 date += (6 - date.wday)
 date
-end
+},
 
-
-
-def self.fi_pyhainpaiva(year)
+"fi_pyhainpaiva(year)" => Proc.new { |year|
 date = Date.civil(year,10,31)
 date += (6 - date.wday)
 date
+},
+
+
+      }
+    end
+  end
 end
-
-
-
-
-end
-
-Holidays.merge_defs(Holidays::FI.defined_regions, Holidays::FI.holidays_by_month)

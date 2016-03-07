@@ -8,6 +8,7 @@ class CzDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_cz
 {Date.civil(2010,1,1) => 'Den obnovy samostatného českého státu',
+ Date.civil(2016,3,25) => 'Velký pátek',
  Date.civil(2010,4,5) => 'Velikonoční pondělí',
  Date.civil(2010,5,1) => 'Svátek práce',
  Date.civil(2010,5,8) => 'Den vítězství',

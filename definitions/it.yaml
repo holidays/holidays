@@ -3,16 +3,17 @@
 # Updated: 2008-11-23.
 # Sources:
 # - http://en.wikipedia.org/wiki/Holidays_in_Italy
---- 
+---
 months:
-  0: 
+  0:
   - name: Pasqua
     regions: [it]
     function: easter(year)
   - name: Lunedì dell'Angelo
     regions: [it]
-    function: easter(year)+1
-  1: 
+    function: easter(year)
+    function_modifier: 1
+  1:
   - name: Capodanno
     regions: [it]
     mday: 1
@@ -23,7 +24,7 @@ months:
   - name: Festa della Liberazione
     regions: [it]
     mday: 25
-  5: 
+  5:
   - name: Festa dei Lavoratori
     regions: [it]
     mday: 1
@@ -31,11 +32,11 @@ months:
   - name: Festa della Repubblica
     regions: [it]
     mday: 2
-  8: 
+  8:
   - name: Assunzione
     regions: [it]
     mday: 15
-  11: 
+  11:
   - name: Ognissanti
     regions: [it]
     mday: 1
@@ -50,7 +51,7 @@ months:
     regions: [it]
     mday: 26
 tests: |
-    {Date.civil(2007,1,1) => 'Capodanno', 
+    {Date.civil(2007,1,1) => 'Capodanno',
      Date.civil(2007,1,6) => 'Epifania',
      Date.civil(2007,4,8) => 'Pasqua',
      Date.civil(2007,4,9) => 'Lunedì dell\'Angelo',

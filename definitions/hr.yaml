@@ -3,7 +3,7 @@
 # Updated: 2012-08-29.
 # Sources:
 #  http://en.wikipedia.org/wiki/Public_holidays_in_Croatia
---- 
+---
 months:
   0:
   - name: Uskrs
@@ -11,10 +11,12 @@ months:
     function: easter(year)
   - name: Uskrsni ponedjeljak
     regions: [hr]
-    function: easter(year)+1
+    function: easter(year)
+    function_modifier: 1
   - name: Tijelovo
     regions: [hr]
-    function: easter(year)+60
+    function: easter(year)
+    function_modifier: 60
   1:
   - name: Nova godina
     regions: [hr]
@@ -56,8 +58,8 @@ months:
     regions: [hr]
     mday: 26
 tests: |
-  {Date.civil(2012,1,1) => 'Nova godina', 
-   Date.civil(2012,1,6) => 'Sveta tri kralja', 
+  {Date.civil(2012,1,1) => 'Nova godina',
+   Date.civil(2012,1,6) => 'Sveta tri kralja',
    Date.civil(2012,5,1) => 'Međunarodni praznik rada',
    Date.civil(2012,6,22) => 'Dan antifašističke borbe',
    Date.civil(2012,6,25) => 'Dan državnosti',
@@ -69,7 +71,7 @@ tests: |
    Date.civil(2012,12,26) => 'Sveti Stjepan'}.each do |date, name|
     assert_equal name, (Holidays.on(date, :hr, :informal)[0] || {})[:name]
   end
-  
+
   # Tijelovo
   [Date.civil(2008,5,22), Date.civil(2009,6,11), Date.civil(2010,6,3),
    Date.civil(2012,6,7), Date.civil(2013,5,30), Date.civil(2014,6,19)].each do |date|

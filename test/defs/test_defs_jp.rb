@@ -67,7 +67,7 @@ end
 end
 
 # before 2016, there is no mountain holiday.
-assert_nil Date.civil(2015,8,11).holidays(:jp)[0]
+assert_nil Holidays.on(Date.civil(2015,8,11), :jp)[0]
 
   end
 end

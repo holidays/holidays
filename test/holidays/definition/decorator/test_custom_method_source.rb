@@ -16,7 +16,7 @@ class DecoratorCustomMethodSourceTests < Test::Unit::TestCase
     )
 
     source = @decorator.call(entity)
-    expected_source = "def self.#{entity.name}(#{entity.arguments[0]})\n#{entity.source}end\n\n"
+    expected_source = "\"#{entity.name}(#{entity.arguments[0]})\" => Proc.new { |year|\n#{entity.source}}"
 
     assert_equal expected_source, source
   end
@@ -29,7 +29,9 @@ class DecoratorCustomMethodSourceTests < Test::Unit::TestCase
     )
 
     source = @decorator.call(entity)
-    expected_source = "def self.#{entity.name}(#{entity.arguments[0]}, #{entity.arguments[1]})\n#{entity.source}end\n\n"
+    expected_args = "#{entity.arguments[0]}, #{entity.arguments[1]}"
+
+    expected_source = "\"#{entity.name}(#{expected_args})\" => Proc.new { |#{expected_args}|\n#{entity.source}}"
 
     assert_equal expected_source, source
   end
@@ -42,7 +44,7 @@ class DecoratorCustomMethodSourceTests < Test::Unit::TestCase
     )
 
     source = @decorator.call(entity)
-    expected_source = "def self.#{entity.name}(#{entity.arguments[0]})\n#{entity.source}end\n\n"
+    expected_source = "\"#{entity.name}(#{entity.arguments[0]})\" => Proc.new { |year|\n#{entity.source}}"
 
     assert_equal expected_source, source
   end

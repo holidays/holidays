@@ -5,13 +5,15 @@ months:
   0:
   - name: Good Friday
     regions: [ca]
-    function: easter(year)-2
+    function: easter(year)
+    function_modifier: -2
   - name: Easter Sunday
     regions: [ca]
     function: easter(year)
   - name: Easter Monday
     regions: [ca]
-    function: easter(year)+1
+    function: easter(year)
+    function_modifier: 1
     type: informal
   1:
   - name: New Year's Day
@@ -70,7 +72,7 @@ months:
   - name: Canada Day
     regions: [ca]
     mday: 1
-    observed: to_monday_if_sunday
+    observed: to_monday_if_sunday(date)
   - name: Orangemen's Day
     regions: [ca_nf]
     mday: 12

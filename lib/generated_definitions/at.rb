@@ -18,10 +18,10 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Ostermontag", :regions => [:at]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Christi Himmelfahrt", :regions => [:at]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pfingstmontag", :regions => [:at]},
-            {:function => lambda { |year| Holidays.easter(year)+60 }, :function_id => "easter(year)+60", :name => "Fronleichnam", :regions => [:at]}],
+              0 => [{:function => "easter(year)", :function_modifier => 1, :name => "Ostermontag", :regions => [:at]},
+            {:function => "easter(year)", :function_modifier => 39, :name => "Christi Himmelfahrt", :regions => [:at]},
+            {:function => "easter(year)", :function_modifier => 50, :name => "Pfingstmontag", :regions => [:at]},
+            {:function => "easter(year)", :function_modifier => 60, :name => "Fronleichnam", :regions => [:at]}],
       1 => [{:mday => 1, :name => "Neujahrstag", :regions => [:at]},
             {:mday => 6, :name => "Heilige Drei Könige", :regions => [:at]}],
       5 => [{:mday => 1, :name => "Staatsfeiertag", :regions => [:at]}],
@@ -33,9 +33,11 @@ module Holidays
             {:mday => 26, :name => "2. Weihnachtstag", :regions => [:at]}]
       }
     end
+
+    def self.custom_methods
+      {
+        
+      }
+    end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::AT.defined_regions, Holidays::AT.holidays_by_month)

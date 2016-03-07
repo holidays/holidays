@@ -18,10 +18,10 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.orthodox_easter(year) }, :function_id => "orthodox_easter(year)", :name => "Paștele", :regions => [:ro]},
-            {:function => lambda { |year| Holidays.orthodox_easter(year)+1 }, :function_id => "orthodox_easter(year)+1", :name => "Paștele", :regions => [:ro]},
-            {:function => lambda { |year| Holidays.orthodox_easter(year) + 49 }, :function_id => "orthodox_easter(year) + 49", :name => "Rusaliile", :regions => [:ro]},
-            {:function => lambda { |year| Holidays.orthodox_easter(year) + 50 }, :function_id => "orthodox_easter(year) + 50", :name => "Rusaliile", :regions => [:ro]}],
+              0 => [{:function => "orthodox_easter(year)", :name => "Paștele - duminică", :regions => [:ro]},
+            {:function => "orthodox_easter(year)", :function_modifier => 1, :name => "Paștele - luni", :regions => [:ro]},
+            {:function => "orthodox_easter(year)", :function_modifier => 49, :name => "Rusaliile - 50", :regions => [:ro]},
+            {:function => "orthodox_easter(year)", :function_modifier => 50, :name => "Rusaliile - 51", :regions => [:ro]}],
       1 => [{:mday => 1, :name => "Anul nou", :regions => [:ro]},
             {:mday => 2, :name => "Anul nou", :regions => [:ro]}],
       5 => [{:mday => 1, :name => "Ziua muncii", :regions => [:ro]}],
@@ -32,9 +32,11 @@ module Holidays
             {:mday => 26, :name => "Sărbătoarea Nașterii Domnului", :regions => [:ro]}]
       }
     end
+
+    def self.custom_methods
+      {
+        
+      }
+    end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::RO.defined_regions, Holidays::RO.holidays_by_month)

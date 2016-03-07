@@ -7,7 +7,7 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class LiDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_li
-{Date.civil(2009,1,1) => 'Neujahrstag', 
+{Date.civil(2009,1,1) => 'Neujahrstag',
  Date.civil(2011,3,8) => 'Fasnachtsdienstag',
  Date.civil(2009,4,10) => 'Karfreitag',
  Date.civil(2009,4,12) => 'Ostern',

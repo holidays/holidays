@@ -5,46 +5,55 @@
 # - http://en.wikipedia.org/wiki/Holidays_in_Denmark
 # - http://www.amblondon.um.dk/en/menu/AboutDenmark/PublicHolidaysInDK/PublicHolidaysinDenmark-until2010.htm
 # - http://borger.dk/forside/kirke-og-tro/folkekirken/officielle-helligdage
---- 
+---
 months:
-  0: 
+  0:
   - name: Fastelavn
     regions: [dk]
-    function: easter(year)-49
+    function: easter(year)
+    function_modifier: -49
     type: informal
   - name: Palmesøndag
     regions: [dk]
-    function: easter(year)-7
+    function: easter(year)
+    function_modifier: -7
     type: informal
   - name: Skærtorsdag
     regions: [dk]
-    function: easter(year)-3
+    function: easter(year)
+    function_modifier: -3
   - name: Langfredag
     regions: [dk]
-    function: easter(year)-2
+    function: easter(year)
+    function_modifier: -2
   - name: Påskedag
     regions: [dk]
     function: easter(year)
   - name: 2. påskedag
     regions: [dk]
-    function: easter(year)+1
+    function: easter(year)
+    function_modifier: 1
   - name: Store Bededag
     regions: [dk]
-    function: easter(year)+26
+    function: easter(year)
+    function_modifier: 26
   - name: Kristi Himmelfartsdag
     regions: [dk]
-    function: easter(year)+39
+    function: easter(year)
+    function_modifier: 39
   - name: Pinsedag
     regions: [dk]
-    function: easter(year)+49
+    function: easter(year)
+    function_modifier: 49
   - name: 2. Pinsedag
     regions: [dk]
-    function: easter(year)+50
-  1: 
+    function: easter(year)
+    function_modifier: 50
+  1:
   - name: Nytårsdag
     regions: [dk]
     mday: 1
-  4: 
+  4:
   - name: 1. april
     regions: [dk]
     mday: 1
@@ -79,12 +88,12 @@ months:
     regions: [dk]
     mday: 23
     type: informal
-  11: 
+  11:
   - name: Mortensaften
     regions: [dk]
     mday: 10
     type: informal
-  12: 
+  12:
   - name: Sankt Lucia
     regions: [dk]
     mday: 13
@@ -100,8 +109,8 @@ months:
     regions: [dk]
     mday: 26
 tests: |
-    {Date.civil(2007,1,1) => 'Nytårsdag', 
-     Date.civil(2007,2,18) => 'Fastelavn', 
+    {Date.civil(2007,1,1) => 'Nytårsdag',
+     Date.civil(2007,2,18) => 'Fastelavn',
      Date.civil(2007,4,9) => 'Danmarks besættelse',
      Date.civil(2007,4,16) => 'Dronningens fødselsdag',
      Date.civil(2007,4,5) => 'Skærtorsdag',

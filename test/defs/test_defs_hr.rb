@@ -7,8 +7,8 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class HrDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_hr
-{Date.civil(2012,1,1) => 'Nova godina', 
- Date.civil(2012,1,6) => 'Sveta tri kralja', 
+{Date.civil(2012,1,1) => 'Nova godina',
+ Date.civil(2012,1,6) => 'Sveta tri kralja',
  Date.civil(2012,5,1) => 'Međunarodni praznik rada',
  Date.civil(2012,6,22) => 'Dan antifašističke borbe',
  Date.civil(2012,6,25) => 'Dan državnosti',

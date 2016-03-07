@@ -10,17 +10,20 @@ months:
   0:
   - name: Carnaval # same as Shrove Tuesday
     regions: [br]
-    function: easter(year)-47
+    function: easter(year)
+    function_modifier: -47
     type: informal
   - name: Sexta-feira Santa
     regions: [br]
-    function: easter(year)-2
+    function: easter(year)
+    function_modifier: -2
   - name: Páscoa
     regions: [br]
     function: easter(year)
   - name: Corpus Christi
     regions: [br]
-    function: easter(year)+60
+    function: easter(year)
+    function_modifier: 60
   1:
   - name: Dia da Confraternização Universal
     regions: [br]

@@ -6,43 +6,53 @@
 # - http://www.iceland.is/history-and-culture/Traditions/IcelandicHolidays/
 # - http://en.wikipedia.org/wiki/Public_holidays_in_Iceland
 # - http://www.qppstudio.net/publicholidays2007/iceland.htm
---- 
+---
 months:
-  0: 
+  0:
   - name: Bolludagur
     regions: [is]
-    function: easter(year)-48
+    function: easter(year)
+    function_modifier: -48
   - name: Sprengidagur
     regions: [is]
-    function: easter(year)-47
+    function: easter(year)
+    function_modifier: -47
   - name: Öskudagur
     regions: [is]
-    function: easter(year)-46
+    function: easter(year)
+    function_modifier: -46
   - name: Pálmasunnudagur
     regions: [is]
-    function: easter(year)-7
+    function: easter(year)
+    function_modifier: -7
   - name: Skírdagur
     regions: [is]
-    function: easter(year)-3
+    function: easter(year)
+    function_modifier: -3
   - name: Föstudaginn langi
     regions: [is]
-    function: easter(year)-2
+    function: easter(year)
+    function_modifier: -2
   - name: Páskadagur
     regions: [is]
     function: easter(year)
   - name: Annar í páskum
     regions: [is]
-    function: easter(year)+1
+    function: easter(year)
+    function_modifier: 1
   - name: Uppstigningardagur
     regions: [is]
-    function: easter(year)+39
+    function: easter(year)
+    function_modifier: 39
   - name: Hvítasunnudagur
     regions: [is]
-    function: easter(year)+49
+    function: easter(year)
+    function_modifier: 49
   - name: Annar í hvítasunnu
     regions: [is]
-    function: easter(year)+50
-  1: 
+    function: easter(year)
+    function_modifier: 50
+  1:
   - name: Nýársdagur
     regions: [is]
     mday: 1
@@ -57,7 +67,7 @@ months:
   - name: Konudagur
     regions: [is]
     mday: 18
-    type: informal  
+    type: informal
   4:
   - name: Sumardagurinn fyrsti
     regions: [is]

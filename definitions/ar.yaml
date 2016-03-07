@@ -10,7 +10,8 @@ months:
   0:
   - name: Viernes Santo
     regions: [ar]
-    function: easter(year)-2
+    function: easter(year)
+    function_modifier: -2
   1:
   - name: Año Nuevo
     regions: [ar]

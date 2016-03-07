@@ -9,10 +9,12 @@ months:
   0:
   - name: Good Friday
     regions: [ecb_target]
-    function: easter(year)-2
+    function: easter(year)
+    function_modifier: -2
   - name: Easter Monday
     regions: [ecb_target]
-    function: easter(year)+1
+    function: easter(year)
+    function_modifier: 1
   1:
   - name: New Year's Day
     regions: [ecb_target]

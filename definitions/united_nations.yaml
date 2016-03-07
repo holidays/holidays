@@ -1,12 +1,12 @@
 # United Nationas holiday definitions for the Ruby Holiday gem.
 # Updated 2008-11-21.
---- 
+---
 months:
-  2: 
+  2:
   - name: International Mother Language Day
     regions: [united_nations]
     mday: 2
-  3: 
+  3:
   - name: United Nations Day for Women's Rights and International Peace
     regions: [united_nations]
     mday: 8
@@ -22,14 +22,14 @@ months:
   - name: World Meteorological Day
     regions: [united_nations]
     mday: 23
-  4: 
+  4:
   - name: World Health Day
     regions: [united_nations]
     mday: 7
   - name: World Book and Copyright Day
     regions: [united_nations]
     mday: 23
-  5: 
+  5:
   - name: World Press Freedom Day
     regions: [united_nations]
     mday: 3
@@ -54,7 +54,7 @@ months:
   - name: World No-Tobacco Day
     regions: [united_nations]
     mday: 31
-  6: 
+  6:
   - name: International Day of Innocent Children Victims of Aggression
     regions: [united_nations]
     mday: 4
@@ -76,7 +76,7 @@ months:
   - name: International Day in Support of Victims of Torture
     regions: [united_nations]
     mday: 26
-  7: 
+  7:
   - name: International Day of Cooperatives
     week: 1
     regions: [united_nations]
@@ -84,7 +84,7 @@ months:
   - name: World Population Day
     regions: [united_nations]
     mday: 11
-  8: 
+  8:
   - name: International Day of the World's Indigenous People
     regions: [united_nations]
     mday: 9
@@ -94,7 +94,7 @@ months:
   - name: International Day for the Remembrance of the Slave Trade and Its Abolition
     regions: [united_nations]
     mday: 23
-  9: 
+  9:
   - name: International Literacy Day
     regions: [united_nations]
     mday: 8
@@ -107,7 +107,7 @@ months:
   - name: International Day of Older Persons
     regions: [united_nations]
     mday: 1
-  10: 
+  10:
   - name: World Space Week
     regions: [united_nations]
     mday: 4
@@ -143,7 +143,7 @@ months:
   - name: Disarmament Week
     regions: [united_nations]
     mday: 24
-  11: 
+  11:
   - name: International Day for Preventing the Exploitation of the Environment in War and Armed Conflict
     regions: [united_nations]
     mday: 6
@@ -165,7 +165,7 @@ months:
   - name: International Day of Solidarity with the Palestinian People
     regions: [united_nations]
     mday: 29
-  12: 
+  12:
   - name: World AIDS Day
     regions: [united_nations]
     mday: 1

@@ -29,9 +29,11 @@ module Holidays
             {:mday => 18, :name => "Eid Al Istiqulal", :regions => [:ma]}]
       }
     end
+
+    def self.custom_methods
+      {
+        
+      }
+    end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::MA.defined_regions, Holidays::MA.holidays_by_month)

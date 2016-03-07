@@ -18,8 +18,8 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Veľkonočný pondelok", :regions => [:sk]},
-            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Veľký piatok", :regions => [:sk]}],
+              0 => [{:function => "easter(year)", :function_modifier => 1, :name => "Veľkonočný pondelok", :regions => [:sk]},
+            {:function => "easter(year)", :function_modifier => -2, :name => "Veľký piatok", :regions => [:sk]}],
       1 => [{:mday => 1, :name => "Nový rok", :regions => [:sk]},
             {:mday => 6, :name => "Zjavenie Pána (Traja králi)", :regions => [:sk]}],
       5 => [{:mday => 1, :name => "Sviatok práce", :regions => [:sk]},
@@ -35,9 +35,11 @@ module Holidays
             {:mday => 26, :name => "2. sviatok vianočný", :regions => [:sk]}]
       }
     end
+
+    def self.custom_methods
+      {
+        
+      }
+    end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::SK.defined_regions, Holidays::SK.holidays_by_month)

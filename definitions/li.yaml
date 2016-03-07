@@ -3,59 +3,65 @@
 # Updated: 2011-10-17.
 # Sources:
 #  http://www.tourismus.li/de/navpage-RegionLI-InformationLI-44728.html
---- 
+---
 months:
-  0: 
+  0:
   - name: Fasnachtsdienstag
     regions: [li]
-    function: easter(year)-47
+    function: easter(year)
+    function_modifier: -47
   - name: Karfreitag
     regions: [li]
-    function: easter(year)-2
+    function: easter(year)
+    function_modifier: -2
   - name: Ostern
     regions: [li]
     function: easter(year)
     type: informal
   - name: Ostermontag
     regions: [li]
-    function: easter(year)+1
+    function: easter(year)
+    function_modifier: 1
   - name: Auffahrt
     regions: [li]
-    function: easter(year)+39
+    function: easter(year)
+    function_modifier: 39
   - name: Pfingstmontag
     regions: [li]
-    function: easter(year)+50
+    function: easter(year)
+    function_modifier: 50
   - name: Fronleichnam
     regions: [li]
-    function: easter(year)+60
-  1: 
+    function: easter(year)
+    function_modifier: 60
+  1:
   - name: Neujahrstag
     regions: [li]
     mday: 1
   - name: Heilige Drei Könige
     regions: [li, li]
     mday: 6
-  2: 
+  2:
   - name: Maria Lichtmess
     regions: [li]
     mday: 2
-  3: 
+  3:
   - name: St. Josef
     regions: [li]
     mday: 19
-  5: 
+  5:
   - name: Tag der Arbeit
     regions: [li]
     mday: 1
-  8: 
+  8:
   - name: Staatsfeiertag
     regions: [li]
     mday: 15
-  9: 
+  9:
   - name: Maria Geburt
     regions: [li]
     mday: 8
-  11: 
+  11:
   - name: Allerheiligen
     regions: [li]
     mday: 1
@@ -76,7 +82,7 @@ months:
     regions: [li]
     mday: 31
 tests: |
-    {Date.civil(2009,1,1) => 'Neujahrstag', 
+    {Date.civil(2009,1,1) => 'Neujahrstag',
      Date.civil(2011,3,8) => 'Fasnachtsdienstag',
      Date.civil(2009,4,10) => 'Karfreitag',
      Date.civil(2009,4,12) => 'Ostern',
@@ -87,16 +93,15 @@ tests: |
      Date.civil(2009,12,26) => 'Stefanstag'}.each do |date, name|
       assert_equal name, Holidays.on(date, :li, :informal)[0][:name]
     end
-    
+
     [:li].each do |r|
       assert_equal 'Fronleichnam', Holidays.on(Date.civil(2009,6,11), r)[0][:name]
     end
-    
+
     [:li].each do |r|
       assert_equal 'Staatsfeiertag', Holidays.on(Date.civil(2009,8,15), r)[0][:name]
     end
-    
+
     [:li].each do |r|
       assert_equal 'Allerheiligen', Holidays.on(Date.civil(2009,11,1), r)[0][:name]
     end
-

@@ -7,8 +7,8 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class ScandinaviaDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_scandinavia
-{Date.civil(2007,1,1) => 'Nytårsdag', 
- Date.civil(2007,2,18) => 'Fastelavn', 
+{Date.civil(2007,1,1) => 'Nytårsdag',
+ Date.civil(2007,2,18) => 'Fastelavn',
  Date.civil(2007,4,9) => 'Danmarks besættelse',
  Date.civil(2007,4,16) => 'Dronningens fødselsdag',
  Date.civil(2007,4,5) => 'Skærtorsdag',
@@ -70,6 +70,7 @@ end
  Date.civil(2010,5,24) => '2. pinsedag'}.each do |date, name|
    assert_equal name, (Holidays.on(date, :no, :informal)[0] || {})[:name]
  end
+
 
 {Date.civil(2008,1,1) => 'Nyårsdagen',
  Date.civil(2008,1,6) => 'Trettondedag jul',

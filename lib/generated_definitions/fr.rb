@@ -18,11 +18,11 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :type => :informal, :name => "Pâques", :regions => [:fr]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Lundi de Pâques", :regions => [:fr]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Ascension", :regions => [:fr]},
-            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :type => :informal, :name => "Pentecôte", :regions => [:fr]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Lundi de Pentecôte", :regions => [:fr]}],
+              0 => [{:function => "easter(year)", :type => :informal, :name => "Pâques", :regions => [:fr]},
+            {:function => "easter(year)", :function_modifier => 1, :name => "Lundi de Pâques", :regions => [:fr]},
+            {:function => "easter(year)", :function_modifier => 39, :name => "Ascension", :regions => [:fr]},
+            {:function => "easter(year)", :function_modifier => 49, :type => :informal, :name => "Pentecôte", :regions => [:fr]},
+            {:function => "easter(year)", :function_modifier => 50, :name => "Lundi de Pentecôte", :regions => [:fr]}],
       1 => [{:mday => 1, :name => "Jour de l'an", :regions => [:fr]}],
       5 => [{:mday => 1, :name => "Fête du travail", :regions => [:fr]},
             {:mday => 8, :name => "Victoire 1945", :regions => [:fr]}],
@@ -33,9 +33,11 @@ module Holidays
       12 => [{:mday => 25, :name => "Noël", :regions => [:fr]}]
       }
     end
+
+    def self.custom_methods
+      {
+        
+      }
+    end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::FR.defined_regions, Holidays::FR.holidays_by_month)
