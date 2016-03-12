@@ -1,5 +1,3 @@
-require 'date'
-
 module Holidays
   module DateCalculator
     class WeekendModifier
