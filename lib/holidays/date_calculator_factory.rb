@@ -1,6 +1,7 @@
 require 'holidays/date_calculator/easter'
 require 'holidays/date_calculator/weekend_modifier'
 require 'holidays/date_calculator/day_of_month'
+require 'holidays/date_calculator/lunisolar'
 
 module Holidays
   module DateCalculatorFactory
