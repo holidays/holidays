@@ -265,6 +265,7 @@ module Holidays
             {:mday => 3, :name => "Tag der Deutschen Einheit", :regions => [:de]},
             {:mday => 31, :name => "Reformationstag", :regions => [:de_bb, :de_mv, :de_sn, :de_st, :de_th]},
             {:mday => 31, :type => :informal, :name => "Reformationstag", :regions => [:de_bw]},
+            {:mday => 31,  :year_ranges => [{:limited => [2017]}],:name => "Reformationstag", :regions => [:de]},
             {:mday => 28, :name => "Επέτειος του Όχι", :regions => [:el]},
             {:mday => 9, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Día de Valencia", :regions => [:es_vc, :es_v]},
             {:mday => 12, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Día de la Hispanidad", :regions => [:es]},

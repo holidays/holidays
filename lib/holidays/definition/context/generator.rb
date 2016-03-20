@@ -75,7 +75,7 @@ module Holidays
 
                 exists = false
                 rules_by_month[month].each do |ex|
-                  if ex[:name] == rule[:name] and ex[:wday] == rule[:wday] and ex[:mday] == rule[:mday] and ex[:week] == rule[:week] and ex[:type] == rule[:type] and ex[:function] == rule[:function] and ex[:observed] == rule[:observed]
+                  if ex[:name] == rule[:name] and ex[:wday] == rule[:wday] and ex[:mday] == rule[:mday] and ex[:week] == rule[:week] and ex[:type] == rule[:type] and ex[:function] == rule[:function] and ex[:observed] == rule[:observed] and ex[:year_ranges] == rule[:year_ranges]
                     ex[:regions] << rule[:regions].flatten
                     exists = true
                   end
@@ -120,6 +120,9 @@ module Holidays
             month_string = "      #{month.to_s} => ["
             rule_strings = []
             rules.each do |rule|
+if rule[:name] == 'Reformationstag'
+  p rule
+end
               string = '{'
               if rule[:mday]
                 string << ":mday => #{rule[:mday]}, "
