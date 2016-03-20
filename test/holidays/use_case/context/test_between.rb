@@ -14,7 +14,7 @@ class BetweenTests < Test::Unit::TestCase
     @subject = Holidays::UseCase::Context::Between.new(
       @holidays_by_month_repo,
       @day_of_month_calculator,
-      @proc_cache_repo,
+      @proc_cache_repo
     )
 
     @start_date = Date.civil(2015, 1, 1)

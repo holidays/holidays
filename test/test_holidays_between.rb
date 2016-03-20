@@ -46,9 +46,9 @@ class HolidaysTests < Test::Unit::TestCase
     end_date = Date.civil(2015, 1, 31)
     options = [:us, :informal]
 
-    Holidays::DefinitionFactory.cache_repository.expects(:find).with(start_date, end_date, options).returns({cached: 'data'})
+    Holidays::DefinitionFactory.cache_repository.expects(:find).with(start_date, end_date, options).returns({:cached => 'data'})
 
-    assert_equal({cached: 'data'}, @subject.call(start_date, end_date, *options))
+    assert_equal({:cached => 'data'}, @subject.call(start_date, end_date, *options))
   end
 
   def test_options_are_parsed
