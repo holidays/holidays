@@ -103,7 +103,7 @@ months:
     regions: [de]
     mday: 31    
     year_ranges:
-    - limited: [2017]
+    - limited: 2017
   11: 
   - name: Allerheiligen
     regions: [de_bw, de_by, de_nw, de_rp, de_sl]
