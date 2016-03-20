@@ -31,13 +31,14 @@ end
 [:de_by, :de_sl, :de_].each do |r|
   assert_equal 'Mariä Himmelfahrt', Holidays.on(Date.civil(2009,8,15), r)[0][:name]
 end
-
+#Free day in schools
 [:de_bb, :de_mv, :de_sn, :de_st, :de_th, :de_].each do |r|
   assert_equal 'Reformationstag', Holidays.on(Date.civil(2009,10,31), r)[0][:name]
 end
 #500 years reformation in 2017
-assert_equal [], Holidays.on(Date.civil(2016,10,31), :de), "Reformationstag is not a holiday in 2016"
 assert_equal 'Reformationstag', Holidays.on(Date.civil(2017,10,31), :de)[0][:name]
+assert_equal [], Holidays.on(Date.civil(2016,10,31), :de), "Reformationstag is not a holiday in 2016 in whole Germany"
+assert_equal [], Holidays.on(Date.civil(2018,10,31), :de), "Reformationstag is not a holiday in 2018 in whole Germany"
 
 [:de_bw, :de_by, :de_nw, :de_rp, :de_sl, :de_].each do |r|
   assert_equal 'Allerheiligen', Holidays.on(Date.civil(2009,11,1), r)[0][:name]
