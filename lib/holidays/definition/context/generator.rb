@@ -120,9 +120,6 @@ module Holidays
             month_string = "      #{month.to_s} => ["
             rule_strings = []
             rules.each do |rule|
-if rule[:name] == 'Reformationstag'
-  p rule
-end
               string = '{'
               if rule[:mday]
                 string << ":mday => #{rule[:mday]}, "
