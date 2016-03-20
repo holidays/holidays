@@ -104,6 +104,7 @@ end
 
 {Date.civil(2009,1,1) => 'Neujahrstag', 
  Date.civil(2009,4,10) => 'Karfreitag',
+ Date.civil(2009,4,12) => 'Ostersonntag',
  Date.civil(2009,4,13) => 'Ostermontag',
  Date.civil(2009,5,1) => 'Tag der Arbeit',
  Date.civil(2009,5,21) => 'Christi Himmelfahrt',
@@ -129,13 +130,16 @@ end
 [:de_bb, :de_mv, :de_sn, :de_st, :de_th, :de_].each do |r|
   assert_equal 'Reformationstag', Holidays.on(Date.civil(2009,10,31), r)[0][:name]
 end
+#500 years reformation in 2017
+assert_equal [], Holidays.on(Date.civil(2016,10,31), :de), "Reformationstag is not a holiday in 2016"
+assert_equal 'Reformationstag', Holidays.on(Date.civil(2017,10,31), :de)[0][:name]
 
 [:de_bw, :de_by, :de_nw, :de_rp, :de_sl, :de_].each do |r|
   assert_equal 'Allerheiligen', Holidays.on(Date.civil(2009,11,1), r)[0][:name]
 end
 
 [:de_by_aux].each do |r|
-  assert_equal 'Friedensfest', Date.civil(2015,8,8).holidays(r)[0][:name]
+  assert_equal 'Friedensfest', Holidays.on(Date.civil(2015,8,8),r)[0][:name]
 end
 
 [:de,
