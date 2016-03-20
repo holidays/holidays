@@ -138,6 +138,7 @@ methods:
       end
       date
     end
+
 tests: |
     {Date.civil(2009,1,1) => 'Neujahrstag', 
      Date.civil(2009,4,10) => 'Karfreitag',
