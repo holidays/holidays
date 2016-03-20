@@ -104,6 +104,7 @@ end
 
 {Date.civil(2009,1,1) => 'Neujahrstag', 
  Date.civil(2009,4,10) => 'Karfreitag',
+ Date.civil(2009,4,12) => 'Ostersonntag',
  Date.civil(2009,4,13) => 'Ostermontag',
  Date.civil(2009,5,1) => 'Tag der Arbeit',
  Date.civil(2009,5,21) => 'Christi Himmelfahrt',
@@ -135,7 +136,7 @@ end
 end
 
 [:de_by_aux].each do |r|
-  assert_equal 'Friedensfest', Date.civil(2015,8,8).holidays(r)[0][:name]
+  assert_equal 'Friedensfest', Holidays.on(Date.civil(2015,8,8),r)[0][:name]
 end
 
 [:de,
