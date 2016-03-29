@@ -10,6 +10,7 @@ months:
   - name: Goede Vrijdag
     regions: [nl]
     function: easter(year)-2
+    informal: true
   - name: Pasen
     regions: [nl]
     function: easter(year)
