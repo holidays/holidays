@@ -76,9 +76,13 @@ months:
   8:
   - name: 山の日
     regions: [jp]
+    year_ranges:
+      - after: 2016
     function: jp_mountain_holiday(year)
   - name: 振替休日
     regions: [jp]
+    year_ranges:
+      - after: 2016
     function: jp_substitute_holiday(Holidays.jp_mountain_holiday(year))
   9:
   - name: 敬老の日
@@ -176,7 +180,6 @@ methods:
     end
   jp_mountain_holiday: |
     def self.jp_mountain_holiday(year)
-      return nil if year < 2016
       Date.civil(year, 8, 11)
     end
   jp_substitute_holiday: |

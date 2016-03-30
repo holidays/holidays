@@ -1,5 +1,11 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 3.2.0
+
+* add 'valid year' functionality to definitions - https://github.com/holidays/holidays/issues/33 - (thanks to https://github.com/ttwo32)
+* Fix 'day after thanksgiving' namespace bug during definition generation (thanks to https://github.com/ttwo32)
+* fix Danish holidays 'palmesondag and 1/5 (danish fightday)' to set to informal (thanks to https://github.com/bjensen)
+
 ## 3.1.2
 
 * Do not require Date monkeypatching in definitions to use mday calculations (thanks to https://github.com/CloCkWeRX)
