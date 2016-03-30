@@ -8,9 +8,6 @@ months:
   - name: Good Friday
     regions: [nz]
     function: easter(year)-2
-  - name: Easter Saturday
-    regions: [nz]
-    function: easter(year)-1
   - name: Easter Monday
     regions: [nz]
     function: easter(year)+1
