@@ -68,11 +68,20 @@ months:
   7:
   - name: 海の日
     regions: [jp]
-    wday: 1
-    week: 3
+    mday: 20
+    year_ranges:
+      - between: 1996..2002
   - name: 振替休日
     regions: [jp]
-    function: jp_substitute_holiday(year, 7, Holidays.calculate_day_of_month(year, 7, 3, 1))
+    function: jp_substitute_holiday(year, 7, 20)
+    year_ranges:
+      - between: 1996..2002
+  - name: 海の日
+    regions: [jp]
+    wday: 1
+    week: 3
+    year_ranges:
+      - after: 2003
   8:
   - name: 山の日
     regions: [jp]
@@ -238,6 +247,14 @@ tests: |
   [Date.civil(2032,9,21), Date.civil(2049,9,21), Date.civil(2009,9,22),
    Date.civil(2015,9,22), Date.civil(2026,9,22)].each do |date|
     assert_equal '国民の休日', Holidays.on(date, :jp)[0][:name]
+  end
+
+  # marine day since 1996
+  [Date.civil(1996, 7, 20), Date.civil(2002, 7, 20), Date.civil(2003, 7, 21),
+   Date.civil(2004, 7, 19), Date.civil(2005, 7, 18), Date.civil(2006, 7, 17),
+   Date.civil(2007, 7, 16), Date.civil(2009, 7, 20), Date.civil(2013, 7, 15),
+   Date.civil(2014, 7, 21)].each do |date|
+    assert_equal '海の日', Holidays.on(date, :jp)[0][:name]
   end
 
   # mountain holiday start since 2016
