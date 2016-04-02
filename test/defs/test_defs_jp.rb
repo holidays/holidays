@@ -51,6 +51,14 @@ end
   assert_equal '国民の休日', Holidays.on(date, :jp)[0][:name]
 end
 
+# ocean holiday start since 1996
+[Date.civil(1996, 7, 20), Date.civil(2002, 7, 20), Date.civil(2003, 7, 21),
+ Date.civil(2004, 7, 19), Date.civil(2005, 7, 18), Date.civil(2006, 7, 17),
+ Date.civil(2007, 7, 16), Date.civil(2009, 7, 20), Date.civil(2013, 7, 15),
+ Date.civil(2014, 7, 21)].each do |date|
+  assert_equal '海の日', Holidays.on(date, :jp)[0][:name]
+end
+
 # mountain holiday start since 2016
 [Date.civil(2016,8,11), Date.civil(2017,8,11),Date.civil(2018,8,11),
  Date.civil(2019,8,11), Date.civil(2020,8,11),Date.civil(2021,8,11),
