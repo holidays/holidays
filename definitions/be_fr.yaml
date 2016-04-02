@@ -1,4 +1,4 @@
-# Belgium holiday definitions for the Ruby Holiday gem.
+# Belgium holiday definitions for the Ruby Holiday gem in French.
 #
 # Updated: 2012-06-20.
 # Sources:
@@ -7,46 +7,46 @@
 months:
   0: 
   - name: Pâques
-    regions: [be]
+    regions: [be_fr]
     function: easter(year)
   - name: Lundi de Pâques
-    regions: [be]
+    regions: [be_fr]
     function: easter(year)+1
   - name: Ascension
-    regions: [be]
+    regions: [be_fr]
     function: easter(year)+39
   - name: Pentecôte
-    regions: [be]
+    regions: [be_fr]
     function: easter(year)+49
   - name: Lundi de Pentecôte
-    regions: [be]
+    regions: [be_fr]
     function: easter(year)+50
   1: 
   - name: Jour de l'an
-    regions: [be]
+    regions: [be_fr]
     mday: 1
   5: 
   - name: Fête du travail
-    regions: [be]
+    regions: [be_fr]
     mday: 1
   7:
   - name: Fête nationale
-    regions: [be]
+    regions: [be_fr]
     mday: 21
   8: 
   - name: Assomption
-    regions: [be]
+    regions: [be_fr]
     mday: 15
   11: 
   - name: Toussaint
-    regions: [be]
+    regions: [be_fr]
     mday: 1
   - name: Armistice 1918
-    regions: [be]
+    regions: [be_fr]
     mday: 11
   12:
   - name: Noël
-    regions: [be]
+    regions: [be_fr]
     mday: 25
 tests: |
     {Date.civil(2007,1,1) => 'Jour de l\'an',
@@ -61,5 +61,5 @@ tests: |
      Date.civil(2007,11,1) => 'Toussaint',
      Date.civil(2007,11,11) => 'Armistice 1918',
      Date.civil(2007,12,25) => 'Noël'}.each do |date, name|
-      assert_equal name, (Holidays.on(date, :be, :informal)[0] || {})[:name]
+      assert_equal name, (Holidays.on(date, :be_fr, :informal)[0] || {})[:name]
     end
