@@ -46,15 +46,20 @@ module Holidays
 
                 #FIXME I don't like this entire if/else. If it's a function, do something, else do some
                 # weird mday logic? Bollocks. I think this should be a refactor target.
-
                 if h[:function]
-                  function_arguments = [year]
+                  function_arguments = []
 
-                  #FIXME Oof, this is bad. This assumption is that if the mday is
-                  # set in the definition then we are probably passing in year, month, day, otherwise we are just passing in a year
-                  # That's no good. I need to find a better way to handle these situations.
-                  if h[:mday]
+                  #FIXME This is a refactor target. We should also allow 'date'. Right now these are the only
+                  # three things that we allow in. I think having a more testable, robust approach here is vital.
+                  if h[:function_arguments].include?(:year)
+                    function_arguments << year
+                  end
+
+                  if h[:function_arguments].include?(:month)
                     function_arguments << month
+                  end
+
+                  if h[:function_arguments].include?(:day)
                     function_arguments << h[:mday]
                   end
 
@@ -83,6 +88,9 @@ module Holidays
                   date = Date.civil(year, month, mday)
                 rescue; next; end
 
+                #FIXME We should be checking the function arguments and passing in what is specified.
+                # Right now all 'observed' functions require 'date' but that is by convention. Nothing
+                # is requiring that. We should be more explicit.
                 if observed && h[:observed]
                   date = call_proc(h[:observed], date)
                 end
@@ -116,7 +124,7 @@ module Holidays
 
         def call_proc(function_id, *arguments)
           function = custom_methods_repo.find(function_id)
-          raise Holidays::FunctionNotFound.new("Unable to find function with id '#{function_id}") if function.nil?
+          raise Holidays::FunctionNotFound.new("Unable to find function with id '#{function_id}'") if function.nil?
 
           proc_result_cache_repo.lookup(function, *arguments)
         end

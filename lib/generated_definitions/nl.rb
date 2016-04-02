@@ -18,12 +18,12 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :function_modifier => -2, :type => :informal, :name => "Goede Vrijdag", :regions => [:nl]},
-            {:function => "easter(year)", :name => "Eerste Pasen", :regions => [:nl]},
-            {:function => "easter(year)", :function_modifier => 1, :name => "Tweede Pasen", :regions => [:nl]},
-            {:function => "easter(year)", :function_modifier => 39, :name => "Hemelvaartsdag", :regions => [:nl]},
-            {:function => "easter(year)", :function_modifier => 49, :name => "Eerste Pinksteren", :regions => [:nl]},
-            {:function => "easter(year)", :function_modifier => 50, :name => "Tweede Pinksteren", :regions => [:nl]}],
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :type => :informal, :name => "Goede Vrijdag", :regions => [:nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :name => "Eerste Pasen", :regions => [:nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Tweede Pasen", :regions => [:nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Hemelvaartsdag", :regions => [:nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Eerste Pinksteren", :regions => [:nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Tweede Pinksteren", :regions => [:nl]}],
       1 => [{:mday => 1, :name => "Nieuwjaar", :regions => [:nl]}],
       4 => [{:mday => 27, :name => "Koningsdag", :regions => [:nl]}],
       5 => [{:mday => 4, :type => :informal, :name => "Dodenherdenking", :regions => [:nl]},

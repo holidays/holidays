@@ -18,9 +18,9 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :function_modifier => -47, :type => :informal, :name => "Carnaval", :regions => [:pt]},
-            {:function => "easter(year)", :function_modifier => -2, :name => "Sexta-feira Santa", :regions => [:pt]},
-            {:function => "easter(year)", :name => "Páscoa", :regions => [:pt]}],
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -47, :type => :informal, :name => "Carnaval", :regions => [:pt]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Sexta-feira Santa", :regions => [:pt]},
+            {:function => "easter(year)", :function_arguments => [:year], :name => "Páscoa", :regions => [:pt]}],
       1 => [{:mday => 1, :name => "Ano Novo", :regions => [:pt]}],
       4 => [{:mday => 25, :name => "Dia da Liberdade", :regions => [:pt]}],
       5 => [{:mday => 1, :name => "Dia do Trabalhador", :regions => [:pt]}],

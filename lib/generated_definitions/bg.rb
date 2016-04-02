@@ -18,13 +18,13 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "orthodox_easter_julian(year)", :function_modifier => -2, :name => "Good Friday", :regions => [:bg_en]},
-            {:function => "orthodox_easter_julian(year)", :function_modifier => -2, :name => "Разпети петък", :regions => [:bg_bg]},
-            {:function => "orthodox_easter_julian(year)", :function_modifier => -1, :name => "Holy Saturday", :regions => [:bg_en]},
-            {:function => "orthodox_easter_julian(year)", :function_modifier => -1, :name => "Велика събота", :regions => [:bg_bg]},
-            {:function => "orthodox_easter_julian(year)", :name => "Easter Sunday", :regions => [:bg_en]},
-            {:function => "orthodox_easter_julian(year)", :name => "Възкресение Христово. Великден", :regions => [:bg_bg, :bg_bg]},
-            {:function => "orthodox_easter_julian(year)", :function_modifier => 1, :name => "Easter Monday", :regions => [:bg_en]}],
+              0 => [{:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:bg_en]},
+            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Разпети петък", :regions => [:bg_bg]},
+            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :function_modifier => -1, :name => "Holy Saturday", :regions => [:bg_en]},
+            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :function_modifier => -1, :name => "Велика събота", :regions => [:bg_bg]},
+            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :name => "Easter Sunday", :regions => [:bg_en]},
+            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :name => "Възкресение Христово. Великден", :regions => [:bg_bg, :bg_bg]},
+            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:bg_en]}],
       1 => [{:mday => 1, :name => "New Year's Day", :regions => [:bg_en]},
             {:mday => 1, :name => "Нова година", :regions => [:bg_bg]}],
       3 => [{:mday => 3, :name => "Liberation Day", :regions => [:bg_en]},

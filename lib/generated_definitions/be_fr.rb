@@ -18,11 +18,11 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :name => "Pâques", :regions => [:be_fr]},
-            {:function => "easter(year)", :function_modifier => 1, :name => "Lundi de Pâques", :regions => [:be_fr]},
-            {:function => "easter(year)", :function_modifier => 39, :name => "Ascension", :regions => [:be_fr]},
-            {:function => "easter(year)", :function_modifier => 49, :name => "Pentecôte", :regions => [:be_fr]},
-            {:function => "easter(year)", :function_modifier => 50, :name => "Lundi de Pentecôte", :regions => [:be_fr]}],
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :name => "Pâques", :regions => [:be_fr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Lundi de Pâques", :regions => [:be_fr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Ascension", :regions => [:be_fr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Pentecôte", :regions => [:be_fr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Lundi de Pentecôte", :regions => [:be_fr]}],
       1 => [{:mday => 1, :name => "Jour de l'an", :regions => [:be_fr]}],
       5 => [{:mday => 1, :name => "Fête du travail", :regions => [:be_fr]}],
       7 => [{:mday => 21, :name => "Fête nationale", :regions => [:be_fr]}],

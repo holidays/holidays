@@ -205,6 +205,11 @@ module Holidays
     # Parses provided holiday definition file(s) and loads them so that they are immediately available.
     def load_custom(*files)
       regions, rules_by_month, custom_methods, tests = DefinitionFactory.file_parser.parse_definition_files(files)
+
+      custom_methods.each do |method_key, method_entity|
+        custom_methods[method_key] = Holidays::DefinitionFactory.custom_method_proc_decorator.call(method_entity)
+      end
+
       merge_defs(regions, rules_by_month, custom_methods)
     end
 

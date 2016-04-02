@@ -18,17 +18,17 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :function_modifier => -3, :name => "Maundy Thursday", :regions => [:ph]},
-            {:function => "easter(year)", :function_modifier => -2, :name => "Good Friday", :regions => [:ph]},
-            {:function => "easter(year)", :function_modifier => -1, :name => "Holy Saturday", :regions => [:ph]},
-            {:function => "easter(year)", :name => "Easter Sunday", :regions => [:ph]}],
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -3, :name => "Maundy Thursday", :regions => [:ph]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:ph]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -1, :name => "Holy Saturday", :regions => [:ph]},
+            {:function => "easter(year)", :function_arguments => [:year], :name => "Easter Sunday", :regions => [:ph]}],
       1 => [{:mday => 1, :name => "New Year’s Day", :regions => [:ph]}],
       2 => [{:mday => 25, :name => "People Power Anniversary", :regions => [:ph]}],
       4 => [{:mday => 9, :name => "The Day of Valor", :regions => [:ph]}],
       5 => [{:mday => 1, :name => "Labor Day", :regions => [:ph]}],
       6 => [{:mday => 12, :name => "Independence Day", :regions => [:ph]}],
       8 => [{:mday => 21, :name => "Ninoy Aquino Day", :regions => [:ph]},
-            {:function => "ph_heroes_day(year)", :name => "National Heroes Day", :regions => [:ph]}],
+            {:function => "ph_heroes_day(year)", :function_arguments => [:year], :name => "National Heroes Day", :regions => [:ph]}],
       11 => [{:mday => 1, :name => "All Saints Day", :regions => [:ph]},
             {:mday => 30, :name => "Bonifacio Day", :regions => [:ph]}],
       12 => [{:mday => 25, :name => "Christmas Day", :regions => [:ph]},

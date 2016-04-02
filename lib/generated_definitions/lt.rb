@@ -18,8 +18,8 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :name => "Šv. Velykos", :regions => [:lt]},
-            {:function => "easter(year)", :function_modifier => 1, :name => "Antroji Velykų diena", :regions => [:lt]}],
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :name => "Šv. Velykos", :regions => [:lt]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Antroji Velykų diena", :regions => [:lt]}],
       1 => [{:mday => 1, :name => "Naujieji metai", :regions => [:lt]}],
       2 => [{:mday => 16, :name => "Valstybės atkūrimo diena", :regions => [:lt]}],
       3 => [{:mday => 11, :name => "Nepriklausomybės atkūrimo diena", :regions => [:lt]}],

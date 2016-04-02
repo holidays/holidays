@@ -18,9 +18,9 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :name => "Uskrs", :regions => [:hr]},
-            {:function => "easter(year)", :function_modifier => 1, :name => "Uskrsni ponedjeljak", :regions => [:hr]},
-            {:function => "easter(year)", :function_modifier => 60, :name => "Tijelovo", :regions => [:hr]}],
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :name => "Uskrs", :regions => [:hr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Uskrsni ponedjeljak", :regions => [:hr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 60, :name => "Tijelovo", :regions => [:hr]}],
       1 => [{:mday => 1, :name => "Nova godina", :regions => [:hr]},
             {:mday => 6, :name => "Sveta tri kralja", :regions => [:hr]}],
       5 => [{:mday => 1, :name => "Međunarodni praznik rada", :regions => [:hr]}],

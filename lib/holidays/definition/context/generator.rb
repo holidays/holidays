@@ -4,9 +4,10 @@ module Holidays
   module Definition
     module Context
       class Generator
-        def initialize(custom_method_parser, custom_method_source_decorator)
+        def initialize(custom_method_parser, custom_method_source_decorator, custom_methods_repository)
           @custom_method_parser = custom_method_parser
           @custom_method_source_decorator = custom_method_source_decorator
+          @custom_methods_repository = custom_methods_repository
         end
 
         def parse_definition_files(files)
@@ -22,7 +23,9 @@ module Holidays
           files.each do |file|
             definition_file = YAML.load_file(file)
 
-            regions, rules_by_month = parse_month_definitions(definition_file['months'])
+            custom_methods = custom_method_parser.call(definition_file['methods'])
+
+            regions, rules_by_month = parse_month_definitions(definition_file['months'], custom_methods)
 
             all_regions << regions.flatten
 
@@ -30,8 +33,6 @@ module Holidays
               existing << new
               existing.flatten!
             }
-
-            custom_methods = parse_method_definitions(definition_file['methods'])
 
             #FIXME This is a problem. We will have a 'global' list of methods. That's always bad. What effects will this have?
             # This is an existing problem (just so we are clear). An issue would be extremely rare because we are generally parsing
@@ -48,7 +49,7 @@ module Holidays
         end
 
         def generate_definition_source(module_name, files, regions, rules_by_month, custom_methods, tests)
-          month_strings = generate_month_definition_strings(rules_by_month)
+          month_strings = generate_month_definition_strings(rules_by_month, custom_methods)
 
           # Build the custom methods string
           custom_method_string = ''
@@ -64,9 +65,10 @@ module Holidays
 
         private
 
-        attr_reader :custom_method_parser, :custom_method_source_decorator
+        attr_reader :custom_method_parser, :custom_method_source_decorator, :custom_methods_repository
 
-        def parse_month_definitions(month_definitions)
+        #FIXME This should be a 'month_definitions_parser' like the above parser
+        def parse_month_definitions(month_definitions, parsed_custom_methods)
           regions = []
           rules_by_month = {}
 
@@ -93,6 +95,12 @@ module Holidays
                 end
 
                 unless exists
+                  # This will add in the custom method arguments so they are immediately
+                  # available for 'on the fly' def loading.
+                  if rule[:function]
+                    rule[:function_arguments] = get_function_arguments(rule[:function], parsed_custom_methods)
+                  end
+
                   rules_by_month[month] << rule
                 end
               end
@@ -100,11 +108,6 @@ module Holidays
           end
 
           [regions, rules_by_month]
-        end
-
-        def parse_method_definitions(methods)
-          return {} if methods.nil? || methods.empty? #FIXME This is not necessary, the parser checks it as well.
-          custom_method_parser.call(methods)
         end
 
         def parse_test_definitions(tests)
@@ -117,7 +120,8 @@ module Holidays
           test_strings
         end
 
-        def generate_month_definition_strings(rules_by_month)
+        #FIXME This should really be split out and tested with its own unit tests.
+        def generate_month_definition_strings(rules_by_month, parsed_custom_methods)
           month_strings = []
 
           rules_by_month.each do |month, rules|
@@ -132,6 +136,10 @@ module Holidays
               if rule[:function]
                 string << ":function => \"#{rule[:function].to_s}\", "
 
+                # We need to add in the arguments so we can know what to send in when calling the custom proc during holiday lookups.
+                # NOTE: the allowed arguments are enforced in the custom methods parser.
+                string << ":function_arguments => #{get_function_arguments(rule[:function], parsed_custom_methods)}, "
+
                 if rule[:function_modifier]
                   string << ":function_modifier => #{rule[:function_modifier].to_s}, "
                 end
@@ -144,6 +152,7 @@ module Holidays
                 string << ":wday => #{rule[:wday]}, :week => #{rule[:week]}, "
               end
 
+              #FIXME I think this should be split out into its own file.
               if rule[:year_ranges] && rule[:year_ranges].kind_of?(Array)
                 year_string = " :year_ranges => ["
                 len = rule[:year_ranges].length
@@ -160,6 +169,7 @@ module Holidays
 
               if rule[:observed]
                 string << ":observed => \"#{rule[:observed].to_s}\", "
+                string << ":observed_arguments => #{get_function_arguments(rule[:observed], parsed_custom_methods)}, "
               end
 
               if rule[:type]
@@ -175,6 +185,19 @@ module Holidays
           end
 
           return month_strings
+        end
+
+        # This method sucks. The issue here is that the custom methods repo has the 'general' methods (like easter)
+        # but the 'parsed_custom_methods' have the recently parsed stuff. We don't load those until they are needed later.
+        # This entire file is a refactor target so I am adding some tech debt to get me over the hump.
+        # What we should do is ensure that all custom methods are loaded into the repo as soon as they are parsed
+        # so we only have one place to look.
+        def get_function_arguments(function_id, parsed_custom_methods)
+          if method = custom_methods_repository.find(function_id)
+            method.parameters.collect { |arg| arg[1] }
+          elsif method = parsed_custom_methods[function_id]
+            method.arguments.collect { |arg| arg.to_sym }
+          end
         end
 
         def generate_module_src(module_name, files, regions, month_strings, custom_methods)

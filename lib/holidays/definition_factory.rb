@@ -1,5 +1,6 @@
 require 'holidays/definition/context/generator'
 require 'holidays/definition/context/merger'
+require 'holidays/definition/decorator/custom_method_proc'
 require 'holidays/definition/decorator/custom_method_source'
 require 'holidays/definition/parser/custom_method'
 require 'holidays/definition/repository/holidays_by_month'
@@ -16,6 +17,7 @@ module Holidays
         Definition::Context::Generator.new(
           custom_method_parser,
           custom_method_source_decorator,
+          custom_methods_repository,
         )
       end
 
@@ -23,6 +25,7 @@ module Holidays
         Definition::Context::Generator.new(
           custom_method_parser,
           custom_method_source_decorator,
+          custom_methods_repository,
         )
       end
 
@@ -36,6 +39,10 @@ module Holidays
 
       def custom_method_parser
         Definition::Parser::CustomMethod.new
+      end
+
+      def custom_method_proc_decorator
+        Definition::Decorator::CustomMethodProc.new
       end
 
       def custom_method_source_decorator

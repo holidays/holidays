@@ -18,13 +18,13 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :function_modifier => -47, :name => "Fasnachtsdienstag", :regions => [:li]},
-            {:function => "easter(year)", :function_modifier => -2, :name => "Karfreitag", :regions => [:li]},
-            {:function => "easter(year)", :type => :informal, :name => "Ostern", :regions => [:li]},
-            {:function => "easter(year)", :function_modifier => 1, :name => "Ostermontag", :regions => [:li]},
-            {:function => "easter(year)", :function_modifier => 39, :name => "Auffahrt", :regions => [:li]},
-            {:function => "easter(year)", :function_modifier => 50, :name => "Pfingstmontag", :regions => [:li]},
-            {:function => "easter(year)", :function_modifier => 60, :name => "Fronleichnam", :regions => [:li]}],
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -47, :name => "Fasnachtsdienstag", :regions => [:li]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Karfreitag", :regions => [:li]},
+            {:function => "easter(year)", :function_arguments => [:year], :type => :informal, :name => "Ostern", :regions => [:li]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Ostermontag", :regions => [:li]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Auffahrt", :regions => [:li]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Pfingstmontag", :regions => [:li]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 60, :name => "Fronleichnam", :regions => [:li]}],
       1 => [{:mday => 1, :name => "Neujahrstag", :regions => [:li]},
             {:mday => 6, :name => "Heilige Drei Könige", :regions => [:li]}],
       2 => [{:mday => 2, :name => "Maria Lichtmess", :regions => [:li]}],

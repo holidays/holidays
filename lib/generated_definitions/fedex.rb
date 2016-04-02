@@ -18,13 +18,13 @@ module Holidays
 
     def self.holidays_by_month
       {
-              1 => [{:mday => 1, :observed => "to_weekday_if_weekend(date)", :name => "New Year's Day", :regions => [:fedex]}],
+              1 => [{:mday => 1, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:fedex]}],
       5 => [{:wday => 1, :week => -1, :name => "Memorial Day", :regions => [:fedex]}],
-      7 => [{:mday => 4, :observed => "to_weekday_if_weekend(date)", :name => "Independence Day", :regions => [:fedex]}],
+      7 => [{:mday => 4, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Independence Day", :regions => [:fedex]}],
       9 => [{:wday => 1, :week => 1, :name => "Labor Day", :regions => [:fedex]}],
       11 => [{:wday => 4, :week => 4, :name => "Thanksgiving", :regions => [:fedex]},
-            {:function => "day_after_thanksgiving(year)", :name => "Day After Thanksgiving", :regions => [:fedex]}],
-      12 => [{:mday => 25, :observed => "to_weekday_if_weekend(date)", :name => "Christmas Day", :regions => [:fedex]},
+            {:function => "day_after_thanksgiving(year)", :function_arguments => [:year], :name => "Day After Thanksgiving", :regions => [:fedex]}],
+      12 => [{:mday => 25, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:fedex]},
             {:mday => 31, :name => "New Year's Eve", :regions => [:fedex]}]
       }
     end

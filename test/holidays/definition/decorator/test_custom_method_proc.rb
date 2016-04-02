@@ -1,11 +1,11 @@
 require File.expand_path(File.dirname(__FILE__)) + '/../../../test_helper'
 
-require 'holidays/definition/decorator/custom_method_lambda'
+require 'holidays/definition/decorator/custom_method_proc'
 require 'holidays/definition/entity/custom_method'
 
-class DecoratorCustomMethodLambdaTests < Test::Unit::TestCase
+class DecoratorCustomMethodProcTests < Test::Unit::TestCase
   def setup
-    @decorator = Holidays::Definition::Decorator::CustomMethodLambda.new
+    @decorator = Holidays::Definition::Decorator::CustomMethodProc.new
   end
 
   def test_generates_lambda_from_entity

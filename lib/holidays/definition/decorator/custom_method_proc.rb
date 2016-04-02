@@ -1,7 +1,7 @@
 module Holidays
   module Definition
     module Decorator
-      class CustomMethodLambda
+      class CustomMethodProc
         def call(proc)
           validate!(proc)
 
@@ -19,7 +19,8 @@ module Holidays
         end
 
         def parse_arguments(args)
-          argStr = args.join(", ")
+          a = args.join(", ")
+          a[0..-1]
         end
       end
     end

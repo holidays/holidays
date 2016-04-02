@@ -18,8 +18,8 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :function_modifier => -2, :name => "Good Friday", :regions => [:ecb_target]},
-            {:function => "easter(year)", :function_modifier => 1, :name => "Easter Monday", :regions => [:ecb_target]}],
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:ecb_target]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:ecb_target]}],
       1 => [{:mday => 1, :name => "New Year's Day", :regions => [:ecb_target]}],
       5 => [{:mday => 1, :name => "Labour Day", :regions => [:ecb_target]}],
       12 => [{:mday => 25, :name => "Christmas Day", :regions => [:ecb_target]},
