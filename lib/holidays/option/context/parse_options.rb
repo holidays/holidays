@@ -91,7 +91,7 @@ module Holidays
         end
 
         def load_definition_data(region)
-          target_region_module = Module.const_get("Holidays::#{region.upcase}")
+          target_region_module = Module.const_get("Holidays").const_get(region.upcase)
 
           Holidays.merge_defs(
             target_region_module.defined_regions,
