@@ -81,16 +81,17 @@ For example, Canada celebrates Victoria Day, which falls on the Monday on or bef
 
 ```
 methods:
-  ca_victoria_day: |
-    def self.ca_victoria_day(year)
-      date = Date.civil(year,5,24)
+  ca_victoria_day:
+    arguments: year
+    source: |
+      date = Date.civil(year, 5, 24)
       if date.wday > 1
         date -= (date.wday - 1)
       elsif date.wday == 0
         date -= 6
       end
+
       date
-    end
 ```
 
 This would be represented in `months` entry as:
@@ -108,7 +109,7 @@ If a holiday can occur in different months (e.g. Easter) it can go in the '0' mo
 0:
 - name: Easter Monday
   regions: [ca]
-  function: easter(year)+1
+  function: easter(year)
 ```
 
 There are pre-existing methods for highly-used calculations. They are:
@@ -127,9 +128,37 @@ There are pre-existing methods for highly-used calculations. They are:
 0:
 - name: Good Friday
   regions: [us]
-  function: easter(year)-2
+  function: easter(year)
+  function_modifier: -2
   type: informal
 ```
+
+Use the `function_modifier` property, which can be positive or negative, to modify the result of the function.
+
+In addition, you may only specify the following values for arguments into a custom method: `date`, `year`, `month`, `day`.
+
+If attempt to specify anything else then you will receive an error on definition generation. This is because these are the only values that are available to
+call into the custom methods will calculating the result of a function.
+
+Correct example:
+
+```
+1:
+- name: Custom Method
+  regions: [us]
+  function: custom_method(year, month, day)
+```
+
+You may do the following:
+
+```
+1:
+- name: Custom Method
+  regions: [us]
+  function: custom_method(week)
+```
+
+This will result in an error.
 
 ### Calculating observed dates
 
