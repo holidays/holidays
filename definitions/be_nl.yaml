@@ -1,0 +1,65 @@
+# Belgium holiday definitions for the Ruby Holiday gem. In Dutch.
+#
+# Updated: 2016-02-17.
+# Sources:
+# - http://en.wikipedia.org/wiki/Public_holidays_in_Belgium
+---
+months:
+  0:
+  - name: Pasen
+    regions: [be_nl]
+    function: easter(year)
+  - name: Paasmaandag
+    regions: [be_nl]
+    function: easter(year)+1
+  - name: O.H. Hemelvaart
+    regions: [be_nl]
+    function: easter(year)+39
+  - name: Pinksteren
+    regions: [be_nl]
+    function: easter(year)+49
+  - name: Pinkstermaandag
+    regions: [be_nl]
+    function: easter(year)+50
+  1:
+  - name: Nieuwjaar
+    regions: [be_nl]
+    mday: 1
+  5:
+  - name: Feest van de Arbeid
+    regions: [be_nl]
+    mday: 1
+  7:
+  - name: Nationale Feestdag
+    regions: [be_nl]
+    mday: 21
+  8:
+  - name: O.L.V. Hemelvaart
+    regions: [be_nl]
+    mday: 15
+  11:
+  - name: Allerheiligen
+    regions: [be_nl]
+    mday: 1
+  - name: Wapenstilstand 1918
+    regions: [be_nl]
+    mday: 11
+  12:
+  - name: Kerstmis
+    regions: [be_nl]
+    mday: 25
+tests: |
+    {Date.civil(2007,1,1) => 'Nieuwjaar',
+     Date.civil(2007,4,8) => 'Pasen',
+     Date.civil(2007,4,9) => 'Paasmaandag',
+     Date.civil(2007,5,1) => 'Feest van de Arbeid',
+     Date.civil(2007,5,17) => 'O.H. Hemelvaart',
+     Date.civil(2007,5,27) => 'Pinksteren',
+     Date.civil(2007,5,28) => 'Pinkstermaandag',
+     Date.civil(2007,7,21) => 'Nationale Feestdag',
+     Date.civil(2007,8,15) => 'O.L.V. Hemelvaart',
+     Date.civil(2007,11,1) => 'Allerheiligen',
+     Date.civil(2007,11,11) => 'Wapenstilstand 1918',
+     Date.civil(2007,12,25) => 'Kerstmis'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :be_nl, :informal)[0] || {})[:name]
+    end

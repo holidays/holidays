@@ -6,6 +6,8 @@ The following definition files are included in this installation:
 * generated_definitions/at
 * generated_definitions/au
 * generated_definitions/be
+* generated_definitions/be_fr
+* generated_definitions/be_nl
 * generated_definitions/bg
 * generated_definitions/br
 * generated_definitions/ca
