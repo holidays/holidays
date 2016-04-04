@@ -18,7 +18,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Goede Vrijdag", :regions => [:nl]},
+              0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :type => :informal, :name => "Goede Vrijdag", :regions => [:nl]},
             {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Pasen", :regions => [:nl]},
             {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Pasen", :regions => [:nl]},
             {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Hemelvaartsdag", :regions => [:nl]},
