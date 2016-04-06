@@ -1,12 +1,15 @@
 # Czech holiday definitions for the Ruby Holiday gem.
 #
-# Updated: 2010-01-20.
+# Updated: 2016-04-20.
 # Sources:
 # - http://cs.wikipedia.org/wiki/%C4%8Cesk%C3%BD_st%C3%A1tn%C3%AD_sv%C3%A1tek
 # - http://www.mpsv.cz/cs/74
---- 
+---
 months:
-  0: 
+  0:
+  - name: Velký pátek
+    regions: [cz]
+    function: easter(year)-2
   - name: Velikonoční pondělí
     regions: [cz]
     function: easter(year)+1
@@ -52,6 +55,7 @@ months:
     mday: 26
 tests: |
     {Date.civil(2010,1,1) => 'Den obnovy samostatného českého státu',
+     Date.civil(2016,3,25) => 'Velký pátek',
      Date.civil(2010,4,5) => 'Velikonoční pondělí',
      Date.civil(2010,5,1) => 'Svátek práce',
      Date.civil(2010,5,8) => 'Den vítězství',
@@ -65,4 +69,3 @@ tests: |
      Date.civil(2010,12,26) => '2. svátek vánoční'}.each do |date, name|
       assert_equal name, (Holidays.on(date, :cz, :informal)[0] || {})[:name]
     end
-
