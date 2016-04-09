@@ -1,28 +1,59 @@
 # German holiday definitions for the Ruby Holiday gem.
 #
-# Updated: 2009-11-05.
+# Updated: 2016-03-16
+#
+# Changes 2016-03-16:
+# - Add Ostersonntag, Pfingstsonntag, Heilig Abend and Silvester as informal holidays.
+# - Add Fronleichnam for de_sn_aux, de_th_aux
+# - Add Reformationstag as informal holiday for de_bw (it is school free)
+# - Add Reformationstag for 2017 (500 years)
+# - Correction in test for :de_by_aux
+#
 # Sources:
 # - http://en.wikipedia.org/wiki/Holidays_in_Germany
 # - http://www.timeanddate.com/calendar/index.html?country=8
 # - http://www.germany.info/relaunch/welcome/travel/holidays.html
---- 
+---
 months:
   0:
   - name: Karfreitag
     regions: [de]
     function: easter(year)-2
+  - name: Ostersonntag
+    regions: [de]
+    function: easter(year)
+    type: informal
   - name: Ostermontag
     regions: [de]
     function: easter(year)+1
   - name: Christi Himmelfahrt
     regions: [de]
     function: easter(year)+39
+  - name: Pfingstsonntag
+    regions: [de]
+    function: easter(year)+49
+    type: informal
   - name: Pfingstmontag
     regions: [de]
     function: easter(year)+50
   - name: Fronleichnam
     regions: [de_bw, de_by, de_he, de_nw, de_rp, de_sl]
     function: easter(year)+60
+  - name: Fronleichnam
+    regions: [de_sn_aux, de_th_aux]
+    function: easter(year)+60
+  - name: Weiberfastnacht
+    regions: [de_bw, de_by, de_he, de_nw, de_rp, de_sl, de_sn ]
+    function: easter(year)-52
+    type: informal
+  - name: Rosenmontag
+    regions: [de_bw, de_by, de_he, de_nw, de_rp, de_sl, de_sn]
+    function: easter(year)-48
+    type: informal
+  - name: Aschermittwoch
+    regions: [de_bw, de_by, de_he, de_nw, de_rp, de_sl, de_sn]
+    function: easter(year)-46
+    type: informal
   1:
   - name: Neujahrstag
     regions: [de]
@@ -48,7 +79,16 @@ months:
   - name: Reformationstag
     regions: [de_bb, de_mv, de_sn, de_st, de_th]
     mday: 31
-  11: 
+  - name: Reformationstag
+    regions: [de_bw]
+    mday: 31
+    type: informal
+  - name: Reformationstag
+    regions: [de]
+    mday: 31
+    year_ranges:
+    - limited: [2017]
+  11:
   - name: Allerheiligen
     regions: [de_bw, de_by, de_nw, de_rp, de_sl]
     mday: 1
@@ -56,12 +96,20 @@ months:
     regions: [de_sn]
     function: de_buss_und_bettag(year)
   12:
+  - name: Heilig Abend
+    regions: [de]
+    mday: 24
+    type: informal
   - name: 1. Weihnachtstag
     regions: [de]
     mday: 25
   - name: 2. Weihnachtstag
     regions: [de]
     mday: 26
+  - name: Silvester
+    regions: [de]
+    mday: 31
+    type: informal
 methods:
   de_buss_und_bettag: |
     # Germany: Wednesday before November 23
@@ -74,19 +122,24 @@ methods:
       end
       date
     end
+
 tests: |
-    {Date.civil(2009,1,1) => 'Neujahrstag', 
+    {Date.civil(2009,1,1) => 'Neujahrstag',
      Date.civil(2009,4,10) => 'Karfreitag',
+     Date.civil(2009,4,12) => 'Ostersonntag',
      Date.civil(2009,4,13) => 'Ostermontag',
      Date.civil(2009,5,1) => 'Tag der Arbeit',
      Date.civil(2009,5,21) => 'Christi Himmelfahrt',
+     Date.civil(2009,5,31) => 'Pfingstsonntag',
      Date.civil(2009,6,1) => 'Pfingstmontag',
      Date.civil(2009,10,3) => 'Tag der Deutschen Einheit',
+     Date.civil(2009,12,24) => 'Heilig Abend',
      Date.civil(2009,12,25) => '1. Weihnachtstag',
-     Date.civil(2009,12,26) => '2. Weihnachtstag'}.each do |date, name|
-      assert_equal name, (Holidays.on(date, :de, :informal)[0] || {})[:name]
+     Date.civil(2009,12,26) => '2. Weihnachtstag',
+     Date.civil(2009,12,31) => 'Silvester'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :de, :informal)[0] || {})[:name], "Failed on '#{name}' for date '#{date}'"
     end
-    
+
     [:de_bw, :de_by, :de_st, :de_].each do |r|
       assert_equal 'Heilige Drei Könige', Holidays.on(Date.civil(2009,1,6), r)[0][:name]
     end
@@ -94,21 +147,31 @@ tests: |
     [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_].each do |r|
       assert_equal 'Fronleichnam', Holidays.on(Date.civil(2009,6,11), r)[0][:name]
     end
-    
+
     [:de_by, :de_sl, :de_].each do |r|
       assert_equal 'Mariä Himmelfahrt', Holidays.on(Date.civil(2009,8,15), r)[0][:name]
     end
-    
+
     [:de_bb, :de_mv, :de_sn, :de_st, :de_th, :de_].each do |r|
       assert_equal 'Reformationstag', Holidays.on(Date.civil(2009,10,31), r)[0][:name]
     end
+
+    # Free day in schools
+    [:de_bw].each do |r|
+      assert_equal 'Reformationstag', Holidays.on(Date.civil(2009,10,31), r, :informal)[0][:name]
+    end
+
+    # 500 years reformation in 2017
+    assert_equal 'Reformationstag', Holidays.on(Date.civil(2017,10,31), :de)[0][:name]
+    assert_equal [], Holidays.on(Date.civil(2016,10,31), :de), "Reformationstag is not a holiday in 2016 in whole Germany"
+    assert_equal [], Holidays.on(Date.civil(2018,10,31), :de), "Reformationstag is not a holiday in 2018 in whole Germany"
 
     [:de_bw, :de_by, :de_nw, :de_rp, :de_sl, :de_].each do |r|
       assert_equal 'Allerheiligen', Holidays.on(Date.civil(2009,11,1), r)[0][:name]
     end
 
     [:de_by_aux].each do |r|
-      assert_equal 'Friedensfest', Date.civil(2015,8,8).holidays(r)[0][:name]
+      assert_equal 'Friedensfest', Holidays.on(Date.civil(2015,8,8),r)[0][:name]
     end
 
     [:de,
@@ -126,3 +189,10 @@ tests: |
     assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2005,11,16), :de_sn)[0][:name]
     assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2006,11,22), :de_sn)[0][:name]
     assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2009,11,18), :de_sn)[0][:name]
+
+    # Carnival
+    [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn].each do |r|
+      assert_equal 'Weiberfastnacht', Holidays.on(Date.civil(2016,2,4),r,:informal)[0][:name]
+      assert_equal 'Rosenmontag', Holidays.on(Date.civil(2016,2,8),r,:informal)[0][:name]
+      assert_equal 'Aschermittwoch', Holidays.on(Date.civil(2016,2,10),r,:informal)[0][:name]
+     end

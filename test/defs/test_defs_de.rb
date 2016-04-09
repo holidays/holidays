@@ -7,16 +7,20 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class DeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_de
-{Date.civil(2009,1,1) => 'Neujahrstag', 
+{Date.civil(2009,1,1) => 'Neujahrstag',
  Date.civil(2009,4,10) => 'Karfreitag',
+ Date.civil(2009,4,12) => 'Ostersonntag',
  Date.civil(2009,4,13) => 'Ostermontag',
  Date.civil(2009,5,1) => 'Tag der Arbeit',
  Date.civil(2009,5,21) => 'Christi Himmelfahrt',
+ Date.civil(2009,5,31) => 'Pfingstsonntag',
  Date.civil(2009,6,1) => 'Pfingstmontag',
  Date.civil(2009,10,3) => 'Tag der Deutschen Einheit',
+ Date.civil(2009,12,24) => 'Heilig Abend',
  Date.civil(2009,12,25) => '1. Weihnachtstag',
- Date.civil(2009,12,26) => '2. Weihnachtstag'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :de, :informal)[0] || {})[:name]
+ Date.civil(2009,12,26) => '2. Weihnachtstag',
+ Date.civil(2009,12,31) => 'Silvester'}.each do |date, name|
+  assert_equal name, (Holidays.on(date, :de, :informal)[0] || {})[:name], "Failed on '#{name}' for date '#{date}'"
 end
 
 [:de_bw, :de_by, :de_st, :de_].each do |r|
@@ -35,12 +39,22 @@ end
   assert_equal 'Reformationstag', Holidays.on(Date.civil(2009,10,31), r)[0][:name]
 end
 
+# Free day in schools
+[:de_bw].each do |r|
+  assert_equal 'Reformationstag', Holidays.on(Date.civil(2009,10,31), r, :informal)[0][:name]
+end
+
+# 500 years reformation in 2017
+assert_equal 'Reformationstag', Holidays.on(Date.civil(2017,10,31), :de)[0][:name]
+assert_equal [], Holidays.on(Date.civil(2016,10,31), :de), "Reformationstag is not a holiday in 2016 in whole Germany"
+assert_equal [], Holidays.on(Date.civil(2018,10,31), :de), "Reformationstag is not a holiday in 2018 in whole Germany"
+
 [:de_bw, :de_by, :de_nw, :de_rp, :de_sl, :de_].each do |r|
   assert_equal 'Allerheiligen', Holidays.on(Date.civil(2009,11,1), r)[0][:name]
 end
 
 [:de_by_aux].each do |r|
-  assert_equal 'Friedensfest', Date.civil(2015,8,8).holidays(r)[0][:name]
+  assert_equal 'Friedensfest', Holidays.on(Date.civil(2015,8,8),r)[0][:name]
 end
 
 [:de,
@@ -58,6 +72,13 @@ assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2004,11,17), :de_sn)[0][
 assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2005,11,16), :de_sn)[0][:name]
 assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2006,11,22), :de_sn)[0][:name]
 assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2009,11,18), :de_sn)[0][:name]
+
+# Carnival
+[:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn].each do |r|
+  assert_equal 'Weiberfastnacht', Holidays.on(Date.civil(2016,2,4),r,:informal)[0][:name]
+  assert_equal 'Rosenmontag', Holidays.on(Date.civil(2016,2,8),r,:informal)[0][:name]
+  assert_equal 'Aschermittwoch', Holidays.on(Date.civil(2016,2,10),r,:informal)[0][:name]
+ end
 
   end
 end

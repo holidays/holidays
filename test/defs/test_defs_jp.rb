@@ -51,7 +51,7 @@ end
   assert_equal '国民の休日', Holidays.on(date, :jp)[0][:name]
 end
 
-# ocean holiday start since 1996
+# marine day since 1996
 [Date.civil(1996, 7, 20), Date.civil(2002, 7, 20), Date.civil(2003, 7, 21),
  Date.civil(2004, 7, 19), Date.civil(2005, 7, 18), Date.civil(2006, 7, 17),
  Date.civil(2007, 7, 16), Date.civil(2009, 7, 20), Date.civil(2013, 7, 15),
