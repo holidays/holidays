@@ -18,11 +18,11 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)-2", :function_arguments => , :function_modifier => -2, :name => "Karfreitag", :regions => [:de]},
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Karfreitag", :regions => [:de]},
             {:function => "easter(year)", :function_arguments => [:year], :type => :informal, :name => "Ostersonntag", :regions => [:de]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Ostermontag", :regions => [:de]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Christi Himmelfahrt", :regions => [:de]},
-            {:function => "easter(year)+49", :function_arguments => , :function_modifier => 49, :type => :informal, :name => "Pfingstsonntag", :regions => [:de]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :type => :informal, :name => "Pfingstsonntag", :regions => [:de]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Pfingstmontag", :regions => [:de]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 60, :name => "Fronleichnam", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_aux, :de_th_aux]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -52, :type => :informal, :name => "Weiberfastnacht", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn]},

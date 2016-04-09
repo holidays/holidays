@@ -19,10 +19,10 @@ module Holidays
     def self.holidays_by_month
       {
               0 => [{:function => "easter(year)", :function_arguments => [:year], :name => "Pasen", :regions => [:be_nl]},
-            {:function => "easter(year)+1", :function_arguments => , :name => "Paasmaandag", :regions => [:be_nl]},
-            {:function => "easter(year)+39", :function_arguments => , :name => "O.H. Hemelvaart", :regions => [:be_nl]},
-            {:function => "easter(year)+49", :function_arguments => , :name => "Pinksteren", :regions => [:be_nl]},
-            {:function => "easter(year)+50", :function_arguments => , :name => "Pinkstermaandag", :regions => [:be_nl]}],
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Paasmaandag", :regions => [:be_nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "O.H. Hemelvaart", :regions => [:be_nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Pinksteren", :regions => [:be_nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Pinkstermaandag", :regions => [:be_nl]}],
       1 => [{:mday => 1, :name => "Nieuwjaar", :regions => [:be_nl]}],
       5 => [{:mday => 1, :name => "Feest van de Arbeid", :regions => [:be_nl]}],
       7 => [{:mday => 21, :name => "Nationale Feestdag", :regions => [:be_nl]}],

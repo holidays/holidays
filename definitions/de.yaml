@@ -18,7 +18,7 @@ months:
   0:
   - name: Karfreitag
     regions: [de]
-    function: easter(year)-2
+    function: easter(year)
     function_modifier: -2
   - name: Ostersonntag
     regions: [de]
@@ -34,7 +34,7 @@ months:
     function_modifier: 39
   - name: Pfingstsonntag
     regions: [de]
-    function: easter(year)+49
+    function: easter(year)
     function_modifier: 49
     type: informal
   - name: Pfingstmontag

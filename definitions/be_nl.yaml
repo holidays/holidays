@@ -11,16 +11,20 @@ months:
     function: easter(year)
   - name: Paasmaandag
     regions: [be_nl]
-    function: easter(year)+1
+    function: easter(year)
+    function_modifier: 1
   - name: O.H. Hemelvaart
     regions: [be_nl]
-    function: easter(year)+39
+    function: easter(year)
+    function_modifier: 39
   - name: Pinksteren
     regions: [be_nl]
-    function: easter(year)+49
+    function: easter(year)
+    function_modifier: 49
   - name: Pinkstermaandag
     regions: [be_nl]
-    function: easter(year)+50
+    function: easter(year)
+    function_modifier: 50
   1:
   - name: Nieuwjaar
     regions: [be_nl]
