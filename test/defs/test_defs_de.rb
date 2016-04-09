@@ -7,7 +7,7 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class DeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_de
-{Date.civil(2009,1,1) => 'Neujahrstag', 
+{Date.civil(2009,1,1) => 'Neujahrstag',
  Date.civil(2009,4,10) => 'Karfreitag',
  Date.civil(2009,4,12) => 'Ostersonntag',
  Date.civil(2009,4,13) => 'Ostermontag',
@@ -20,7 +20,7 @@ class DeDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2009,12,25) => '1. Weihnachtstag',
  Date.civil(2009,12,26) => '2. Weihnachtstag',
  Date.civil(2009,12,31) => 'Silvester'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :de, :informal)[0] || {})[:name]
+  assert_equal name, (Holidays.on(date, :de, :informal)[0] || {})[:name], "Failed on '#{name}' for date '#{date}'"
 end
 
 [:de_bw, :de_by, :de_st, :de_].each do |r|
@@ -34,15 +34,17 @@ end
 [:de_by, :de_sl, :de_].each do |r|
   assert_equal 'Mariä Himmelfahrt', Holidays.on(Date.civil(2009,8,15), r)[0][:name]
 end
-#Free day in schools
+
 [:de_bb, :de_mv, :de_sn, :de_st, :de_th, :de_].each do |r|
   assert_equal 'Reformationstag', Holidays.on(Date.civil(2009,10,31), r)[0][:name]
 end
-#Free day in schools
+
+# Free day in schools
 [:de_bw].each do |r|
   assert_equal 'Reformationstag', Holidays.on(Date.civil(2009,10,31), r, :informal)[0][:name]
 end
-#500 years reformation in 2017
+
+# 500 years reformation in 2017
 assert_equal 'Reformationstag', Holidays.on(Date.civil(2017,10,31), :de)[0][:name]
 assert_equal [], Holidays.on(Date.civil(2016,10,31), :de), "Reformationstag is not a holiday in 2016 in whole Germany"
 assert_equal [], Holidays.on(Date.civil(2018,10,31), :de), "Reformationstag is not a holiday in 2018 in whole Germany"
@@ -71,11 +73,12 @@ assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2005,11,16), :de_sn)[0][
 assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2006,11,22), :de_sn)[0][:name]
 assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2009,11,18), :de_sn)[0][:name]
 
-#Carnival
+# Carnival
 [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn].each do |r|
-  assert_equal 'Weiberfastnacht', Holidays.on(Date.civil(2016,2,4),r,:informal)[0][:name]      
+  assert_equal 'Weiberfastnacht', Holidays.on(Date.civil(2016,2,4),r,:informal)[0][:name]
   assert_equal 'Rosenmontag', Holidays.on(Date.civil(2016,2,8),r,:informal)[0][:name]
-  assert_equal 'Aschermittwoch', Holidays.on(Date.civil(2016,2,10),r,:informal)[0][:name]      
+  assert_equal 'Aschermittwoch', Holidays.on(Date.civil(2016,2,10),r,:informal)[0][:name]
  end
+
   end
 end
