@@ -51,7 +51,7 @@ The two required properties are:
 
 For example, the following holiday is on the first of January and available in the `:ca`, `:us` and `:au` regions:
 
-```
+```yaml
 1:
 - name: New Year's Day
   regions: [ca, us, au]
@@ -65,12 +65,162 @@ For example, the following holiday is on the first of January and available in t
 
 For example, the following holiday is on the first Monday of September and available in the `:ca` region:
 
-```
+```yaml
 9:
 - name: Labour Day
   regions: [ca]
   week: 1
   wday: 1
+```
+
+### 'Formal' vs 'Informal' types
+
+As mentioned above you can specify two different types. By default a holiday is considered 'formal'. By adding a `type: informal` to a definition you will mark it as 'informal' and it will only show up if the user specifically asks for it.
+
+Example:
+
+```yaml
+9:
+- name: Some Holiday
+  regions: [fr]
+  mday: 1
+  type: informal
+```
+
+If a user submits:
+
+```ruby
+Holidays.on(Date.civil(2016, 9, 1), :fr)
+```
+
+then they will not see the holiday. However, if they submit:
+
+```ruby
+Holidays.on(Date.civil(2016, 9, 1), :fr, :informal)
+```
+
+Then the holiday will be returned. This is especially useful for holidays like "Valentine's Day" in the USA, where it is commonly recognized as a holiday in society but not as a day that is celebrated by taking the day off.
+
+### Year ranges
+
+Certain holidays in various countries are only in effect during specific year ranges. For example, a new holiday might come into effect that is only valid after a speciic year (say, 2017).
+
+To address this we have the ability to specify these 'year ranges' in the definition. The gem will then only return a match on a date that adheres to these rules.
+
+There are a total of four selectors that can be specified. All must be specified in terms of 'years'.
+
+#### `before`
+
+The 'before' selector will only find a match if the supplied date takes place
+before or equal to the holiday.
+
+Example:
+
+```yaml
+7:
+  name: 振替休日
+  regions: [jp]
+  mday: 1
+  year_ranges:
+    - before: 2002
+```
+
+This will return successfully:
+
+```ruby
+Holidays.on(Date.civil(2000, 7, 1), :jp)
+```
+
+This will not:
+
+```ruby
+Holidays.on(Date.civil(2016, 7, 1), :jp)
+```
+
+#### `after`
+
+The 'after' selector will only find a match if the supplied date takes place
+after or equal to the holiday.
+
+Example:
+
+```yaml
+7:
+  name: 振替休日
+  regions: [jp]
+  mday: 1
+  year_ranges:
+    - after: 2002
+```
+
+This will return successfully:
+
+```ruby
+Holidays.on(Date.civil(2016, 7, 1), :jp)
+```
+
+This will not:
+
+```ruby
+Holidays.on(Date.civil(2000, 7, 1), :jp)
+```
+
+#### `limited`
+
+The 'limited' selector will only find a match if the supplied date takes place during
+one of the specified years. Multiple years can be specified.
+
+An array of years *must* be supplied. Individual integers will result in an error.
+
+Example:
+
+```yaml
+7:
+  name: 振替休日
+  regions: [jp]
+  mday: 1
+  year_ranges:
+    - limited: [2002]
+```
+
+This will return successfully:
+
+```ruby
+Holidays.on(Date.civil(2002, 7, 1), :jp)
+```
+
+This will not:
+
+```ruby
+Holidays.on(Date.civil(2000, 7, 1), :jp)
+```
+
+#### `between`
+
+The 'between' selector will only find a match if the supplied date takes place during the specified range of years. Only a single range is allowed at this time.
+
+Example:
+
+```yaml
+7:
+  name: 振替休日
+  regions: [jp]
+  mday: 1
+  year_ranges:
+    - between: 1996..2002
+```
+
+This will return successfully:
+
+```ruby
+Holidays.on(Date.civil(2000, 7, 1), :jp)
+```
+
+This will not:
+
+```ruby
+Holidays.on(Date.civil(2003, 7, 1), :jp)
+Holidays.on(Date.civil(1995, 7, 1), :jp)
 ```
 
 ## Methods
@@ -149,7 +299,7 @@ Correct example:
   function: custom_method(year, month, day)
 ```
 
-You may do the following:
+If you do the following:
 
 ```
 1:
@@ -158,7 +308,7 @@ You may do the following:
   function: custom_method(week)
 ```
 
-This will result in an error.
+This will result in an error since `week` is not a recognized method argument.
 
 ### Calculating observed dates
 
