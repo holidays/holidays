@@ -38,4 +38,12 @@ class DefinitionFactoryTests < Test::Unit::TestCase
   def test_custom_method_source_decorator
     assert Holidays::DefinitionFactory.custom_method_source_decorator.is_a?(Holidays::Definition::Decorator::CustomMethodSource)
   end
+
+  def test_custom_method_validator
+    assert Holidays::DefinitionFactory.custom_method_validator.is_a?(Holidays::Definition::Validator::CustomMethod)
+  end
+
+  def test_region_validator
+    assert Holidays::DefinitionFactory.region_validator.is_a?(Holidays::Definition::Validator::Region)
+  end
 end

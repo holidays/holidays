@@ -8,6 +8,7 @@ require 'holidays/definition/repository/regions'
 require 'holidays/definition/repository/cache'
 require 'holidays/definition/repository/proc_result_cache'
 require 'holidays/definition/repository/custom_methods'
+require 'holidays/definition/validator/custom_method'
 require 'holidays/definition/validator/region'
 
 module Holidays
@@ -38,7 +39,9 @@ module Holidays
       end
 
       def custom_method_parser
-        Definition::Parser::CustomMethod.new
+        Definition::Parser::CustomMethod.new(
+          custom_method_validator,
+        )
       end
 
       def custom_method_proc_decorator
@@ -53,6 +56,10 @@ module Holidays
         Definition::Validator::Region.new(
           regions_repository
         )
+      end
+
+      def custom_method_validator
+        Definition::Validator::CustomMethod.new
       end
 
       def holidays_by_month_repository

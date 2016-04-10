@@ -4,7 +4,9 @@ module Holidays
   module Definition
     module Parser
       class CustomMethod
-        VALID_ARGUMENTS = ["date", "year", "month", "day"]
+        def initialize(validator)
+          @validator = validator
+        end
 
         def call(methods)
           return {} if methods.nil? || methods.empty?
@@ -28,44 +30,18 @@ module Holidays
 
         private
 
-        def method_key(name, args)
-          "#{name.to_s}(#{args_string(args)})"
-        end
+        attr_reader :validator
 
-        def args_string(args)
-          a = args.join(", ")
-          a[0..-1]
-        end
-
-        #FIXME This should probably be split out into a separate 'custom method' validator and simply called here.
         def validate!(methods)
-          methods.each do |name, pieces|
-            validate_name!(name)
-            validate_arguments!(pieces["arguments"])
-            validate_source!(pieces["source"])
+          raise ArgumentError unless methods.all? do |name, pieces|
+            validator.valid?(
+              {
+                :name => name,
+                :arguments => pieces["arguments"],
+                :source => pieces["source"]
+              }
+            )
           end
-        end
-
-        def validate_name!(name)
-          raise ArgumentError.new("name cannot be missing") if name.nil? || name.empty?
-        end
-
-        def validate_arguments!(arguments)
-          splitArgs = arguments.split(",")
-
-          splitArgs.each do |arg|
-            if arg != arg.chomp
-              raise ArgumentError.new("argument '#{arg}' cannot contain a carriage return")
-            end
-
-            if !VALID_ARGUMENTS.include?(arg.strip)
-              raise ArgumentError.new("argument '#{arg.strip}' is unrecognized, only the following arguments are allowed at this time: '#{VALID_ARGUMENTS.join(', ')}'")
-            end
-          end
-        end
-
-        def validate_source!(source)
-          raise ArgumentError.new("source must not be missing") if source.nil? || source.empty?
         end
 
         def parse_arguments!(arguments)
@@ -77,6 +53,15 @@ module Holidays
           end
 
           parsedArgs
+        end
+
+        def method_key(name, args)
+          "#{name.to_s}(#{args_string(args)})"
+        end
+
+        def args_string(args)
+          a = args.join(", ")
+          a[0..-1]
         end
       end
     end
