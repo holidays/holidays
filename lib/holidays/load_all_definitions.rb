@@ -29,8 +29,7 @@ module Holidays
           "calculate_day_of_month(year, month, day, wday)" => Holidays.method(:calculate_day_of_month).to_proc,
         }
 
-
-        Holidays.merge_defs([], {}, global_methods)
+        Holidays::DefinitionFactory.custom_methods_repository.add(global_methods)
       end
     end
   end
