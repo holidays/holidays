@@ -214,13 +214,13 @@ methods:
     # changed from may to october after 2012
     arguments: year
     source: |
-      year <= 2012 ? Holidays.calculate_day_of_month(year, 5, 1, 1) : nil
+      year <= 2012 ? Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 5, 1, 1) : nil
   qld_labour_day_october:
     # http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
     # changed from may to october after 2012
     arguments: year
     source: |
-      year <= 2012 ? nil : Holidays.calculate_day_of_month(year, 10, 1, 1)
+      year <= 2012 ? nil : Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 10, 1, 1)
   g20_day_2014_only:
     # http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
     # G20 day in brisbane, in 2014, on november 14
@@ -232,7 +232,7 @@ methods:
     # The Thursday before the fourth Saturday in October.
     arguments: year
     source: |
-      fourth_sat_in_oct = Date.civil(year, 10, Holidays.calculate_day_of_month(year, 10, 4, :saturday))
+      fourth_sat_in_oct = Date.civil(year, 10, Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 10, 4, :saturday))
       fourth_sat_in_oct - 2 # the thursday before
   march_pub_hol_sa:
     # http://www.safework.sa.gov.au/show_page.jsp?id=2483#.VQ9Mfmb8-8E

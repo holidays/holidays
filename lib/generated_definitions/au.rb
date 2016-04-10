@@ -79,11 +79,11 @@ end
 },
 
 "qld_labour_day_may(year)" => Proc.new { |year|
-year <= 2012 ? Holidays.calculate_day_of_month(year, 5, 1, 1) : nil
+year <= 2012 ? Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 5, 1, 1) : nil
 },
 
 "qld_labour_day_october(year)" => Proc.new { |year|
-year <= 2012 ? nil : Holidays.calculate_day_of_month(year, 10, 1, 1)
+year <= 2012 ? nil : Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 10, 1, 1)
 },
 
 "qld_queens_birthday_june(year)" => Proc.new { |year|
@@ -97,7 +97,7 @@ year == 2014 ? 14 : nil
 },
 
 "hobart_show_day(year)" => Proc.new { |year|
-fourth_sat_in_oct = Date.civil(year, 10, Holidays.calculate_day_of_month(year, 10, 4, :saturday))
+fourth_sat_in_oct = Date.civil(year, 10, Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 10, 4, :saturday))
 fourth_sat_in_oct - 2 # the thursday before
 },
 

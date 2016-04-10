@@ -7,6 +7,7 @@ module Holidays
         Option::Context::ParseOptions.new(
           DefinitionFactory.regions_repository,
           DefinitionFactory.region_validator,
+          DefinitionFactory.merger,
         )
       end
     end

@@ -501,7 +501,8 @@ date = Date.civil(year,4,1)
 until date.wday.eql? 4 do
   date += 1
 end
-if date.eql?(Holidays.easter(year)-3)
+
+if date.eql?(Holidays::DateCalculatorFactory::Easter::Gregorian.easter_calculator.calculate_easter_for(year)-3)
   date += 7
 end
 date

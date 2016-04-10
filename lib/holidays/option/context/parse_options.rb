@@ -2,9 +2,10 @@ module Holidays
   module Option
     module Context
       class ParseOptions
-        def initialize(regions_repo, region_validator)
+        def initialize(regions_repo, region_validator, definition_merger)
           @regions_repo = regions_repo
           @region_validator = region_validator
+          @definition_merger = definition_merger
         end
 
         # Returns [(arr)regions, (bool)observed, (bool)informal]
@@ -23,7 +24,7 @@ module Holidays
 
         private
 
-        attr_reader :regions_repo, :region_validator
+        attr_reader :regions_repo, :region_validator, :definition_merger
 
         # Check regions against list of supported regions and return an array of
         # symbols.
@@ -93,7 +94,7 @@ module Holidays
         def load_definition_data(region)
           target_region_module = Module.const_get("Holidays").const_get(region.upcase)
 
-          Holidays.merge_defs(
+          definition_merger.call(
             target_region_module.defined_regions,
             target_region_module.holidays_by_month,
             target_region_module.custom_methods,

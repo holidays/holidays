@@ -18,18 +18,36 @@ module Holidays
         # of making that big of a breaking API change since these are public. For the time
         # being I'll load them manually like this.
         global_methods = {
-          "easter(year)" => Holidays.method(:easter).to_proc,
-          "orthodox_easter(year)" => Holidays.method(:orthodox_easter).to_proc,
-          "orthodox_easter_julian(year)" => Holidays.method(:orthodox_easter_julian).to_proc,
-          "to_monday_if_sunday(date)" => Holidays.method(:to_monday_if_sunday).to_proc,
-          "to_monday_if_weekend(date)" => Holidays.method(:to_monday_if_weekend).to_proc,
-          "to_weekday_if_boxing_weekend(date)" => Holidays.method(:to_weekday_if_boxing_weekend).to_proc,
-          "to_weekday_if_boxing_weekend_from_year(year)" => Holidays.method(:to_weekday_if_boxing_weekend_from_year).to_proc,
-          "to_weekday_if_weekend(date)" => Holidays.method(:to_weekday_if_weekend).to_proc,
-          "calculate_day_of_month(year, month, day, wday)" => Holidays.method(:calculate_day_of_month).to_proc,
+          "easter(year)" => gregorian_easter.method(:calculate_easter_for).to_proc,
+          "orthodox_easter(year)" => gregorian_easter.method(:calculate_orthodox_easter_for).to_proc,
+          "orthodox_easter_julian(year)" => julian_easter.method(:calculate_orthodox_easter_for).to_proc,
+          "to_monday_if_sunday(date)" => weekend_modifier.method(:to_monday_if_sunday).to_proc,
+          "to_monday_if_weekend(date)" => weekend_modifier.method(:to_monday_if_weekend).to_proc,
+          "to_weekday_if_boxing_weekend(date)" => weekend_modifier.method(:to_weekday_if_boxing_weekend).to_proc,
+          "to_weekday_if_boxing_weekend_from_year(year)" => weekend_modifier.method(:to_weekday_if_boxing_weekend_from_year).to_proc,
+          "to_weekday_if_weekend(date)" => weekend_modifier.method(:to_weekday_if_weekend).to_proc,
+          "calculate_day_of_month(year, month, day, wday)" => day_of_month_calculator.method(:call).to_proc,
         }
 
         Holidays::DefinitionFactory.custom_methods_repository.add(global_methods)
+      end
+
+      private
+
+      def gregorian_easter
+        DateCalculatorFactory::Easter::Gregorian.easter_calculator
+      end
+
+      def julian_easter
+        DateCalculatorFactory::Easter::Julian.easter_calculator
+      end
+
+      def weekend_modifier
+        DateCalculatorFactory.weekend_modifier
+      end
+
+      def day_of_month_calculator
+        DateCalculatorFactory.day_of_month_calculator
       end
     end
   end

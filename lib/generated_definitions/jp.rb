@@ -57,7 +57,7 @@ module Holidays
     def self.custom_methods
       {
         "jp_health_sports_day_substitute(year)" => Proc.new { |year|
-Holidays::DefinitionFactory.custom_methods_repository.find("jp_substitute_holiday(year, month, day)").call(year, 10, Holidays.calculate_day_of_month(year, 10, 2, 1))
+Holidays::DefinitionFactory.custom_methods_repository.find("jp_substitute_holiday(year, month, day)").call(year, 10, Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 10, 2, 1))
 },
 
 "jp_vernal_equinox_day(year)" => Proc.new { |year|
@@ -85,7 +85,7 @@ Holidays::DefinitionFactory.custom_methods_repository.find("jp_substitute_holida
 },
 
 "jp_marine_day_substitute(year)" => Proc.new { |year|
-Holidays::DefinitionFactory.custom_methods_repository.find("jp_substitute_holiday(year, month, day)").call(year, 7, Holidays.calculate_day_of_month(year, 7, 3, 1))
+Holidays::DefinitionFactory.custom_methods_repository.find("jp_substitute_holiday(year, month, day)").call(year, 7, Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 7, 3, 1))
 },
 
 "jp_national_culture_day(year)" => Proc.new { |year|
@@ -133,7 +133,7 @@ Holidays::DefinitionFactory.custom_methods_repository.find("jp_substitute_holida
 },
 
 "jp_respect_for_aged_holiday_substitute(year)" => Proc.new { |year|
-Holidays::DefinitionFactory.custom_methods_repository.find("jp_substitute_holiday(year, month, day)").call(year, 9, Holidays.calculate_day_of_month(year, 9, 3, 1))
+Holidays::DefinitionFactory.custom_methods_repository.find("jp_substitute_holiday(year, month, day)").call(year, 9, Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 9, 3, 1))
 },
 
 "jp_substitute_holiday(year, month, day)" => Proc.new { |year, month, day|

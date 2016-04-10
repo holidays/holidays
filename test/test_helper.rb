@@ -24,4 +24,4 @@ module Holidays
   end
 end
 
-Holidays.merge_defs(Holidays::Test::DEFINED_REGIONS, Holidays::Test::HOLIDAYS_BY_MONTH, Holidays::Test::CUSTOM_METHODS)
+Holidays::DefinitionFactory.merger.call(Holidays::Test::DEFINED_REGIONS, Holidays::Test::HOLIDAYS_BY_MONTH, Holidays::Test::CUSTOM_METHODS)

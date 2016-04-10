@@ -37,7 +37,9 @@ namespace :generate do
       puts "Building #{region} definition module:"
       files = files.collect { |f| "#{DATA_PATH}/#{f}" }.uniq
 
-      module_src, test_src, regions = Holidays.parse_definition_files_and_return_source(region, files)
+      regions, rules_by_month, custom_methods, tests = Holidays::DefinitionFactory.file_parser.parse_definition_files(files)
+      module_src, test_src = Holidays::DefinitionFactory.source_generator.generate_definition_source(region, files, regions, rules_by_month, custom_methods, tests)
+
       File.open("lib/#{Holidays::DEFINITIONS_PATH}/#{region.downcase.to_s}.rb","w") do |file|
         file.puts module_src
       end
