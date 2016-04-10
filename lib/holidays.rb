@@ -165,10 +165,6 @@ module Holidays
       DateCalculatorFactory.weekend_modifier.to_tuesday_if_sunday_or_monday_if_saturday(year)
     end
 
-    def to_monday_if_weekend(date)
-      DateCalculatorFactory.weekend_modifier.to_monday_if_weekend(date)
-    end
-
     def xmas_to_weekday_if_weekend(year)
       DateCalculatorFactory.weekend_modifier.xmas_to_weekday_if_weekend(year)
     end
