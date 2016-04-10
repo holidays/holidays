@@ -56,7 +56,7 @@ module Holidays
               region_definition = "#{DEFINITIONS_PATH}/#{region.to_s}"
               begin
                 require region_definition #FIXME This is unacceptable, we can't be loading external files while parsing options
-              rescue LoadError => e
+              rescue LoadError
                 # This could be a sub region that does not have any holiday
                 # definitions of its own; try to load the containing region instead.
                 if region.to_s =~ /_/

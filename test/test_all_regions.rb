@@ -12,7 +12,7 @@ class MultipleRegionsTests < Test::Unit::TestCase
 
     defs.each do |f|
       assert f.kind_of?(String)
-      assert File.exists?(f)
+      assert File.exist?(f)
     end
   end
 
