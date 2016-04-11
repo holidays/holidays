@@ -11,8 +11,7 @@ class AuDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2007,1,26) => 'Australia Day', 
  Date.civil(2007,4,6) => 'Good Friday',
  Date.civil(2007,4,9) => 'Easter Monday',
- Date.civil(2007,4,25) => 'ANZAC Day',
- Date.civil(2007,12,25) => 'Christmas Day'}.each do |date, name|
+ Date.civil(2007,4,25) => 'ANZAC Day'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :au, :informal)[0] || {})[:name]
 end
 
@@ -109,5 +108,29 @@ assert_equal 'Royal Hobart Regatta', Holidays.on(Date.civil(2014, 2, 10), :au_ta
 assert_equal 'Royal Hobart Regatta', Holidays.on(Date.civil(2015, 2, 9), :au_tas_south)[0][:name]
 assert_equal 'Royal Hobart Regatta', Holidays.on(Date.civil(2016, 2, 8), :au_tas_south)[0][:name]
 
+# CHRISTMAS DAY - ACT, NSW, QLD, Tas, WA observe on 27th (and 25th) if 25th is a Sunday
+assert_equal "Christmas Day", Date.civil(2016, 12, 25).holidays(:au_qld)[0][:name]
+assert_equal "Christmas Day", Date.civil(2016, 12, 27).holidays(:au_qld, :observed)[0][:name]
+assert_equal "Christmas Day", Date.civil(2016, 12, 25).holidays(:au_nsw)[0][:name]
+assert_equal "Christmas Day", Date.civil(2016, 12, 27).holidays(:au_nsw, :observed)[0][:name]
+assert_equal "Christmas Day", Date.civil(2016, 12, 25).holidays(:au_act)[0][:name]
+assert_equal "Christmas Day", Date.civil(2016, 12, 27).holidays(:au_act, :observed)[0][:name]
+assert_equal "Christmas Day", Date.civil(2016, 12, 25).holidays(:au_tas)[0][:name]
+assert_equal "Christmas Day", Date.civil(2016, 12, 27).holidays(:au_tas, :observed)[0][:name]
+assert_equal "Christmas Day", Date.civil(2016, 12, 25).holidays(:au_wa)[0][:name]
+assert_equal "Christmas Day", Date.civil(2016, 12, 27).holidays(:au_wa, :observed)[0][:name]
+
+# CHRISTMAS DAY - SA observes on 26th if 25th is a Sunday (Boxing Day goes to 27th)
+assert_equal "Christmas Day", Date.civil(2016, 12, 25).holidays(:au_sa)[0][:name]
+assert_equal "Christmas Day", Date.civil(2016, 12, 26).holidays(:au_sa, :observed)[0][:name]
+assert_equal "Boxing Day", Date.civil(2016, 12, 27).holidays(:au_sa)[0][:name]
+
+# CHRISTMAS DAY - Victoria and NT don't observe 25th if weekend - xmas is on the 27th
+assert_nil Date.civil(2016, 12, 25).holidays(:au_vic)[0]
+assert_nil Date.civil(2016, 12, 25).holidays(:au_nt)[0]
+assert_equal "Boxing Day", Date.civil(2016, 12, 26).holidays(:au_vic)[0][:name]
+assert_equal "Boxing Day", Date.civil(2016, 12, 26).holidays(:au_nt)[0][:name]
+assert_equal "Christmas Day", Date.civil(2016, 12, 27).holidays(:au_vic)[0][:name]
+assert_equal "Christmas Day", Date.civil(2016, 12, 27).holidays(:au_nt)[0][:name]
   end
 end

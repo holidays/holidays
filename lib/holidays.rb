@@ -161,6 +161,18 @@ module Holidays
       DateCalculatorFactory.weekend_modifier.to_weekday_if_boxing_weekend(date)
     end
 
+    def to_tuesday_if_sunday_or_monday_if_saturday(year)
+      DateCalculatorFactory.weekend_modifier.to_tuesday_if_sunday_or_monday_if_saturday(year)
+    end
+
+    def xmas_to_weekday_if_weekend(year)
+      DateCalculatorFactory.weekend_modifier.xmas_to_weekday_if_weekend(year)
+    end
+
+    def to_weekday_if_boxing_weekend_from_year_or_to_tuesday_if_monday(year)
+      DateCalculatorFactory.weekend_modifier.to_weekday_if_boxing_weekend_from_year_or_to_tuesday_if_monday(year)
+    end
+
     def to_weekday_if_boxing_weekend_from_year(year)
       DateCalculatorFactory.weekend_modifier.to_weekday_if_boxing_weekend_from_year(year)
     end

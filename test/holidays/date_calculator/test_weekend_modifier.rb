@@ -30,4 +30,14 @@ class WeekendModifierDateCalculatorTests < Test::Unit::TestCase
   def test_to_weekday_if_boxing_weekend_from_year
     assert_equal Date.civil(2015, 12, 28), @subject.to_weekday_if_boxing_weekend_from_year(2015)
   end
+
+  def test_to_weekday_if_boxing_weekend_from_year_or_to_tuesday_if_monday
+    assert_equal Date.civil(2015, 12, 28), @subject.to_weekday_if_boxing_weekend_from_year_or_to_tuesday_if_monday(2015) # saturday to monday
+    assert_equal Date.civil(2016, 12, 27), @subject.to_weekday_if_boxing_weekend_from_year_or_to_tuesday_if_monday(2016) # monday to tuesday
+  end
+
+  def test_to_tuesday_if_sunday_or_monday_if_saturday
+    assert_equal Date.civil(2016, 12, 26), @subject.to_tuesday_if_sunday_or_monday_if_saturday(Date.civil(2016, 12, 24)) # sat to mon
+    assert_equal Date.civil(2016, 12, 27), @subject.to_tuesday_if_sunday_or_monday_if_saturday(Date.civil(2016, 12, 25)) # sun to tue
+  end
 end
