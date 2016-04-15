@@ -35,10 +35,14 @@ assert_equal 'Eight Hours Day', Holidays.on(Date.civil(2007,3,12), :au_tas)[0][:
 
 assert_equal 'Labour Day', Holidays.on(Date.civil(2013,10,7), :au_qld)[0][:name]
 assert_equal 'Labour Day', Holidays.on(Date.civil(2012,5,7), :au_qld)[0][:name]
+assert_equal 'Labour Day', Holidays.on(Date.civil(2015,10,5), :au_qld)[0][:name]
+assert_equal 'Labour Day', Holidays.on(Date.civil(2016,5,2), :au_qld)[0][:name]
 
 assert_equal "Queen's Birthday", Holidays.on(Date.civil(2012,6,11), :au_qld)[0][:name]
 assert_equal "Queen's Birthday", Holidays.on(Date.civil(2012,10,1), :au_qld)[0][:name]
 assert_equal "Queen's Birthday", Holidays.on(Date.civil(2013,6,10), :au_qld)[0][:name]
+assert_equal "Queen's Birthday", Holidays.on(Date.civil(2015,6,8), :au_qld)[0][:name]
+assert_equal "Queen's Birthday", Holidays.on(Date.civil(2016,10,3), :au_qld)[0][:name]
 
 assert_equal "Queen's Birthday", Holidays.on(Date.civil(2014, 9, 29), :au_wa)[0][:name]
 assert_equal "Queen's Birthday", Holidays.on(Date.civil(2015, 9, 28), :au_wa)[0][:name]
