@@ -36,7 +36,8 @@ module Holidays
             {:wday => 1, :week => 1, :name => "May Day", :regions => [:au_nt]},
             {:function => lambda { |year| Holidays.may_pub_hol_sa(year) }, :function_id => "may_pub_hol_sa(year)", :name => "May Public Holiday", :regions => [:au_sa]}],
       6 => [{:wday => 1, :week => 1, :name => "Foundation Day", :regions => [:au_wa]},
-            {:wday => 1, :week => 2, :name => "Queen's Birthday", :regions => [:au_act, :au_nsw, :au_sa, :au_qld, :au_tas, :au_nt, :au_vic]},
+            {:wday => 1, :week => 2, :name => "Queen's Birthday", :regions => [:au_act, :au_nsw, :au_sa, :au_tas, :au_nt, :au_vic]},
+            {:function => lambda { |year| Holidays.qld_queens_birthday_june(year) }, :function_id => "qld_queens_birthday_june(year)", :name => "Queen's Birthday", :regions => [:au_qld]},
             {:mday => 6, :type => :informal, :name => "Queensland Day", :regions => [:au_qld]}],
       7 => [{:wday => 5, :week => 3, :name => "Cairns Show", :regions => [:au_qld_cairns]}],
       8 => [{:wday => 3, :week => -3, :name => "Ekka", :regions => [:au_qld_brisbane]}],
@@ -69,22 +70,42 @@ end
 
 # http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
 # celebrated twice in 2012
+# in october again from 2016
 def self.qld_queens_bday_october(year)
-  year == 2012 ? 1 : nil
+  if year >= 2016
+    Holidays.calculate_day_of_month(year, 10, 1, 1)
+  elsif year == 2012
+    1
+  else
+    nil
+  end
 end
 
 
 # http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
-# changed from may to october after 2012
+# for 2013 to 2016 it was in October, otherwise it's in May
 def self.qld_labour_day_may(year)
-  year <= 2012 ? Holidays.calculate_day_of_month(year, 5, 1, 1) : nil
+  if year < 2013 || year >= 2016
+    Holidays.calculate_day_of_month(year, 5, 1, 1)
+  end
 end
 
 
 # http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
-# changed from may to october after 2012
+# for 2013 to 2016 it was in October, otherwise it's in May
 def self.qld_labour_day_october(year)
-  year <= 2012 ? nil : Holidays.calculate_day_of_month(year, 10, 1, 1)
+  if year >= 2013 && year < 2016
+    Holidays.calculate_day_of_month(year, 10, 1, 1)
+  end
+end
+
+
+# http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
+# in june until 2015
+def self.qld_queens_birthday_june(year)
+  if year <= 2015
+    Holidays.calculate_day_of_month(year, 6, 2, 1)
+  end
 end
 
 
