@@ -37,7 +37,7 @@ module Holidays
             {:function => "may_pub_hol_sa(year)", :function_arguments => [:year], :name => "May Public Holiday", :regions => [:au_sa]}],
       6 => [{:wday => 1, :week => 1, :name => "Foundation Day", :regions => [:au_wa]},
             {:wday => 1, :week => 2, :name => "Queen's Birthday", :regions => [:au_act, :au_nsw, :au_sa, :au_tas, :au_nt, :au_vic]},
-            {:function => "qld_queens_birthday_june(year)", :name => "Queen's Birthday", :regions => [:au_qld]},
+            {:function => "qld_queens_birthday_june(year)", :function_arguments => [:year], :name => "Queen's Birthday", :regions => [:au_qld]},
             {:mday => 6, :type => :informal, :name => "Queensland Day", :regions => [:au_qld]}],
       7 => [{:wday => 5, :week => 3, :name => "Cairns Show", :regions => [:au_qld_cairns]}],
       8 => [{:wday => 3, :week => -3, :name => "Ekka", :regions => [:au_qld_brisbane]}],
@@ -51,12 +51,12 @@ module Holidays
       11 => [{:function => "g20_day_2014_only(year)", :function_arguments => [:year], :name => "G20 Day", :regions => [:au_qld_brisbane]},
             {:wday => 1, :week => 1, :name => "Recreation Day", :regions => [:au_tas_north]},
             {:wday => 2, :week => 1, :name => "Melbourne Cup Day", :regions => [:au_vic_melbourne]}],
-      12 => [{:mday => 25, :observed => "to_tuesday_if_sunday_or_monday_if_saturday", :name => "Christmas Day", :regions => [:au_qld, :au_nsw, :au_act, :au_tas, :au_wa]},
-            {:mday => 25, :observed => "to_monday_if_weekend", :name => "Christmas Day", :regions => [:au_sa]},
-            {:function => "xmas_to_weekday_if_weekend(year)", :name => "Christmas Day", :regions => [:au_vic, :au_nt]},
-            {:mday => 26, :observed => "to_tuesday_if_sunday_or_monday_if_saturday", :name => "Boxing Day", :regions => [:au_nsw, :au_vic, :au_qld, :au_act, :au_wa]},
-            {:function => "to_weekday_if_boxing_weekend_from_year_or_to_tuesday_if_monday(year)", :name => "Boxing Day", :regions => [:au_sa]},
-            {:function => "to_weekday_if_boxing_weekend_from_year(year)", :name => "Boxing Day", :regions => [:au_tas, :au_nt]}]
+      12 => [{:mday => 25, :observed => "to_tuesday_if_sunday_or_monday_if_saturday(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:au_qld, :au_nsw, :au_act, :au_tas, :au_wa]},
+            {:mday => 25, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:au_sa]},
+            {:function => "xmas_to_weekday_if_weekend(year)", :function_arguments => [:year], :name => "Christmas Day", :regions => [:au_vic, :au_nt]},
+            {:mday => 26, :observed => "to_tuesday_if_sunday_or_monday_if_saturday(date)", :observed_arguments => [:date], :name => "Boxing Day", :regions => [:au_nsw, :au_vic, :au_qld, :au_act, :au_wa]},
+            {:function => "to_weekday_if_boxing_weekend_from_year_or_to_tuesday_if_monday(year)", :function_arguments => [:year], :name => "Boxing Day", :regions => [:au_sa]},
+            {:function => "to_weekday_if_boxing_weekend_from_year(year)", :function_arguments => [:year], :name => "Boxing Day", :regions => [:au_tas, :au_nt]}]
       }
     end
 
@@ -70,7 +70,7 @@ end
 
 "qld_queens_bday_october(year)" => Proc.new { |year|
 if year >= 2016
-  Holidays.calculate_day_of_month(year, 10, 1, 1)
+  DateCalculatorFactory.day_of_month_calculator.call(year, 10, 1, 1)
 elsif year == 2012
   1
 else
@@ -78,17 +78,21 @@ else
 end
 },
 
+"qld_queens_birthday_june(year)" => Proc.new { |year|
+if year <= 2015
+  DateCalculatorFactory.day_of_month_calculator.call(year, 6, 2, 1)
+end
+},
+
 "qld_labour_day_may(year)" => Proc.new { |year|
-year <= 2012 ? Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 5, 1, 1) : nil
+if year < 2013 || year >= 2016
+  DateCalculatorFactory.day_of_month_calculator.call(year, 5, 1, 1)
+end
 },
 
 "qld_labour_day_october(year)" => Proc.new { |year|
-year <= 2012 ? nil : Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 10, 1, 1)
-},
-
-"qld_queens_birthday_june(year)" => Proc.new { |year|
-if year <= 2015
-  Holidays.calculate_day_of_month(year, 6, 2, 1)
+if year >= 2013 && year < 2016
+  DateCalculatorFactory.day_of_month_calculator.call(year, 10, 1, 1)
 end
 },
 
