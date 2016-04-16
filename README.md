@@ -55,6 +55,16 @@ Get informal holidays in February.
     Holidays.between(from, to, :informal)
     => [{:name => 'Valentine\'s Day',...}]
 
+Return all available regions:
+
+    Holidays.available_regions
+    => [:ar, :at, ..., :sg] # this will be a big array
+
+To check if there are any holidays taking place during a specified work week:
+
+    Holidays.any_holidays_during_work_week?(Date.civil(2016, 1, 1))
+    => true
+
 ### Loading Custom Definitions on the fly
 
 Load custom definitions file on the fly and use them immediately.
@@ -118,27 +128,7 @@ Holidays for the regions specified within the dates specified will be pre-calcul
 
 ### How to contribute
 
-#### For definition updates
-
-* Fork the repository
-* Edit desired definition YAML file(s) located under `definitions/`. If you are adding a new region be sure to update `definitions/index.yaml` as well
-* Run `bundle exec rake generate` to generate updated final definitions (they will be located under `lib/generated_definitions/`)
-* Run `bundle exec rake test` to ensure your changes did not introduce errors
-* Open a PR with *all* of these changes. You *MUST* include the generated definition files in your PR. There is no automatic process to generated definitions at this time
-
-Including documentation with your updates is very much appreciated. A simple Wikipedia entry or government link in the comments alongside your changes would be perfect.
-
-Lastly, note that there are many 'meta' regions. For example, there are regions for Europe, Scandinavia, and North America. If your new region(s) falls into these areas consider adding them. You can find these 'meta' regions in `definitions/index.yaml`.
-
-#### For non-definition functionality
-
-* Fork the repository
-* Make your changes
-* Create a PR pointing back to `master`
-
-Don't worry about versioning, we'll handle it on our end.
-
-*Tests are required*. If your PR results in lower test coverage then it will not be accepted.
+See our [contribution guidelines](CONTRIBUTING.md) for information on how to help out!
 
 ### Credits and code
 
