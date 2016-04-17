@@ -1,5 +1,24 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 3.3.0
+
+This is the final minor point release in v3.X.X. I am releasing it so that all of the latest definitions can be
+used by anyone that is not ready to jump to version 4.0.0. I am not planning on supporting this version unless a major
+issue is found that needs to be immediately addressed.
+
+* Update public holidays for Argentina (https://github.com/schmierkov)
+* Remove redundant `require` from weekend modifier (https://github.com/Eric-Guo)
+* FIX: Easter Saturday not a holiday in NZ (https://github.com/ghiculescu)
+* FIX: Japan 'Marine Day' for 1996-2002 year ranges (https://github.com/shuhei)
+* FIX: Australia calculations for Christmas and Boxing (https://github.com/ghiculescu)
+* Add dutch language version of definitions for Belgium (michael.cox@novalex.be)
+* Make 'Goede Vrijdag' informal for NL definitions (https://github.com/MathijsK93)
+* Add 'Great Friday' to Czech holidays (juris@uol.cz)
+* Add new informal holidays for Germany (https://github.com/knut2)
+* FIX: correctly check for new `year_range` attribute in holidays by month repository (https://github.com/knut2)
+* Add DE-Reformationstag for 2017 (https://github.com/knut2)
+* Update Australia QLD definition Queens Bday and Labour Day (https://github.com/ghiculescu)
+
 ## 3.2.0
 
 * add 'valid year' functionality to definitions - https://github.com/holidays/holidays/issues/33 - (thanks to https://github.com/ttwo32)
