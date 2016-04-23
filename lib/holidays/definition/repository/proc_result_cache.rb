@@ -20,15 +20,30 @@ module Holidays
       # 0100  0.125000   0.000000   0.125000 (  0.125000)
       # 1000  1.234000   0.000000   1.234000 (  1.234000)
       # 5000  6.094000   0.031000   6.125000 (  6.141000)
-      class ProcCache
+      class ProcResultCache
         def initialize
           @proc_cache = {}
         end
 
-        def lookup(function, year)
-          proc_key = Digest::MD5.hexdigest("#{function.to_s}_#{year.to_s}")
-          @proc_cache[proc_key] = function.call(year) unless @proc_cache[proc_key]
+        def lookup(function, *function_arguments)
+          validate!(function, function_arguments)
+
+          proc_key = build_proc_key(function, function_arguments)
+          @proc_cache[proc_key] = function.call(*function_arguments) unless @proc_cache[proc_key]
           @proc_cache[proc_key]
+        end
+
+        private
+
+        def validate!(function, function_arguments)
+          raise ArgumentError.new("function must be a proc") unless function.is_a?(Proc)
+          function_arguments.each do |arg|
+            raise ArgumentError.new("function arguments '#{function_arguments}' must contain either integers or dates") unless arg.is_a?(Integer) || arg.is_a?(Date)
+          end
+        end
+
+        def build_proc_key(function, function_arguments)
+          Digest::MD5.hexdigest("#{function.to_s}_#{function_arguments.join('_')}")
         end
       end
     end

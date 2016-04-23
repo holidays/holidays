@@ -7,7 +7,7 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class AtDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_at
-{Date.civil(2009,1,1) => 'Neujahrstag', 
+{Date.civil(2009,1,1) => 'Neujahrstag',
  Date.civil(2009,4,13) => 'Ostermontag',
  Date.civil(2009,5,1) => 'Staatsfeiertag',
  Date.civil(2009,5,21) => 'Christi Himmelfahrt',

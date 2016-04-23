@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/hu'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module HU # :nodoc:
     def self.defined_regions
       [:hu]
@@ -18,8 +18,8 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Húsvét hétfő", :regions => [:hu]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pünkösd hétfő", :regions => [:hu]}],
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Húsvét hétfő", :regions => [:hu]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Pünkösd hétfő", :regions => [:hu]}],
       1 => [{:mday => 1, :name => "Újév", :regions => [:hu]}],
       3 => [{:mday => 15, :name => "1848/49-es forradalom és szabadságharc ünnepe", :regions => [:hu]}],
       5 => [{:mday => 1, :name => "A munka ünnepe", :regions => [:hu]}],
@@ -30,9 +30,11 @@ module Holidays
             {:mday => 26, :name => "Karácsony", :regions => [:hu]}]
       }
     end
+
+    def self.custom_methods
+      {
+        
+      }
+    end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::HU.defined_regions, Holidays::HU.holidays_by_month)

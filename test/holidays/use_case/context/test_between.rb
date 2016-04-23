@@ -9,11 +9,13 @@ class BetweenTests < Test::Unit::TestCase
   def setup
     @holidays_by_month_repo = mock()
     @day_of_month_calculator = mock()
+    @custom_method_repo = mock()
     @proc_cache_repo = mock()
 
     @subject = Holidays::UseCase::Context::Between.new(
       @holidays_by_month_repo,
       @day_of_month_calculator,
+      @custom_method_repo,
       @proc_cache_repo,
     )
 

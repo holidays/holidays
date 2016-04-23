@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/bg'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module BG # :nodoc:
     def self.defined_regions
       [:bg_en, :bg_bg]
@@ -18,14 +18,13 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.orthodox_easter_julian(year)-2 }, :function_id => "orthodox_easter_julian(year)-2", :name => "Good Friday", :regions => [:bg_en]},
-            {:function => lambda { |year| Holidays.orthodox_easter_julian(year)-2 }, :function_id => "orthodox_easter_julian(year)-2", :name => "Разпети петък", :regions => [:bg_bg]},
-            {:function => lambda { |year| Holidays.orthodox_easter_julian(year)-1 }, :function_id => "orthodox_easter_julian(year)-1", :name => "Holy Saturday", :regions => [:bg_en]},
-            {:function => lambda { |year| Holidays.orthodox_easter_julian(year)-1 }, :function_id => "orthodox_easter_julian(year)-1", :name => "Велика събота", :regions => [:bg_bg]},
-            {:function => lambda { |year| Holidays.orthodox_easter_julian(year) }, :function_id => "orthodox_easter_julian(year)", :name => "Easter Sunday", :regions => [:bg_en]},
-            {:function => lambda { |year| Holidays.orthodox_easter_julian(year) }, :function_id => "orthodox_easter_julian(year)", :name => "Възкресение Христово. Великден", :regions => [:bg_bg]},
-            {:function => lambda { |year| Holidays.orthodox_easter_julian(year)+1 }, :function_id => "orthodox_easter_julian(year)+1", :name => "Easter Monday", :regions => [:bg_en]},
-            {:function => lambda { |year| Holidays.orthodox_easter_julian(year)+1 }, :function_id => "orthodox_easter_julian(year)+1", :name => "Възкресение Христово. Великден", :regions => [:bg_bg]}],
+              0 => [{:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:bg_en]},
+            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Разпети петък", :regions => [:bg_bg]},
+            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :function_modifier => -1, :name => "Holy Saturday", :regions => [:bg_en]},
+            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :function_modifier => -1, :name => "Велика събота", :regions => [:bg_bg]},
+            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :name => "Easter Sunday", :regions => [:bg_en]},
+            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :name => "Възкресение Христово. Великден", :regions => [:bg_bg, :bg_bg]},
+            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:bg_en]}],
       1 => [{:mday => 1, :name => "New Year's Day", :regions => [:bg_en]},
             {:mday => 1, :name => "Нова година", :regions => [:bg_bg]}],
       3 => [{:mday => 3, :name => "Liberation Day", :regions => [:bg_en]},
@@ -50,9 +49,11 @@ module Holidays
             {:mday => 26, :name => "Рождество Христово. Коледа", :regions => [:bg_bg]}]
       }
     end
+
+    def self.custom_methods
+      {
+        
+      }
+    end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::BG.defined_regions, Holidays::BG.holidays_by_month)

@@ -13,17 +13,21 @@ months:
     type: informal
   - name: Lundi de Pâques
     regions: [fr]
-    function: easter(year)+1
+    function: easter(year)
+    function_modifier: 1
   - name: Ascension
     regions: [fr]
-    function: easter(year)+39
+    function: easter(year)
+    function_modifier: 39
   - name: Pentecôte
     regions: [fr]
-    function: easter(year)+49
+    function: easter(year)
+    function_modifier: 49
     type: informal
   - name: Lundi de Pentecôte
     regions: [fr]
-    function: easter(year)+50
+    function: easter(year)
+    function_modifier: 50
   1:
   - name: Jour de l'an
     regions: [fr]

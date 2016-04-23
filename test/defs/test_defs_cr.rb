@@ -18,5 +18,6 @@ class CrDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2016,12,25) => 'Navidad'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :cr)[0] || {})[:name]
 end
+
   end
 end

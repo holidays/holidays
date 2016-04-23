@@ -8,10 +8,12 @@ months:
   0:
   - name: Veľkonočný pondelok
     regions: [sk]
-    function: easter(year)+1
+    function: easter(year)
+    function_modifier: 1
   - name: Veľký piatok
     regions: [sk]
-    function: easter(year)-2
+    function: easter(year)
+    function_modifier: -2
   1:
   - name: Nový rok
     regions: [sk]

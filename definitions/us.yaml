@@ -7,7 +7,8 @@ months:
   0:
   - name: Good Friday
     regions: [us]
-    function: easter(year)-2
+    function: easter(year)
+    function_modifier: -2
     type: informal
   - name: Easter Sunday
     regions: [us]
@@ -17,7 +18,7 @@ months:
   - name: New Year's Day
     regions: [us]
     mday: 1
-    observed: to_weekday_if_weekend
+    observed: to_weekday_if_weekend(date)
   - name: Martin Luther King, Jr. Day
     week: 3
     regions: [us]
@@ -43,7 +44,7 @@ months:
   - name: Independence Day
     regions: [us]
     mday: 4
-    observed: to_weekday_if_weekend
+    observed: to_weekday_if_weekend(date)
   9:
   - name: Labor Day
     week: 1
@@ -58,7 +59,7 @@ months:
   - name: Veterans Day
     regions: [us]
     mday: 11
-    observed: to_weekday_if_weekend
+    observed: to_weekday_if_weekend(date)
   - name: Thanksgiving
     week: 4
     regions: [us]
@@ -70,17 +71,17 @@ months:
   - name: Christmas Day
     regions: [us]
     mday: 25
-    observed: to_weekday_if_weekend
+    observed: to_weekday_if_weekend(date)
 methods:
-  us_inauguration_day: |
+  us_inauguration_day:
     # January 20, every fourth year, following Presidential election
-    def self.us_inauguration_day(year)
+    arguments: year
+    source: |
       year % 4 == 1 ? 20 : nil
-    end
-  day_after_thanksgiving: |
-    def self.day_after_thanksgiving(year)
+  day_after_thanksgiving:
+    arguments: year
+    source: |
       Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 11, 4, 4) + 1
-    end
 tests: |
     {Date.civil(2008,1,1) => 'New Year\'s Day',
      Date.civil(2008,1,21) => 'Martin Luther King, Jr. Day',

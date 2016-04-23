@@ -1,33 +1,65 @@
 require 'holidays/definition/context/generator'
 require 'holidays/definition/context/merger'
+require 'holidays/definition/decorator/custom_method_proc'
+require 'holidays/definition/decorator/custom_method_source'
+require 'holidays/definition/parser/custom_method'
 require 'holidays/definition/repository/holidays_by_month'
 require 'holidays/definition/repository/regions'
 require 'holidays/definition/repository/cache'
-require 'holidays/definition/repository/proc_cache'
+require 'holidays/definition/repository/proc_result_cache'
+require 'holidays/definition/repository/custom_methods'
+require 'holidays/definition/validator/custom_method'
 require 'holidays/definition/validator/region'
 
 module Holidays
   module DefinitionFactory
     class << self
       def file_parser
-        Definition::Context::Generator.new
+        Definition::Context::Generator.new(
+          custom_method_parser,
+          custom_method_source_decorator,
+          custom_methods_repository,
+        )
       end
 
       def source_generator
-        Definition::Context::Generator.new
+        Definition::Context::Generator.new(
+          custom_method_parser,
+          custom_method_source_decorator,
+          custom_methods_repository,
+        )
       end
 
       def merger
         Definition::Context::Merger.new(
           holidays_by_month_repository,
-          regions_repository
+          regions_repository,
+          custom_methods_repository,
         )
+      end
+
+      def custom_method_parser
+        Definition::Parser::CustomMethod.new(
+          custom_method_validator,
+        )
+      end
+
+      def custom_method_proc_decorator
+        Definition::Decorator::CustomMethodProc.new
+      end
+
+      def custom_method_source_decorator
+        Definition::Decorator::CustomMethodSource.new
       end
 
       def region_validator
         Definition::Validator::Region.new(
           regions_repository
         )
+      end
+
+      def custom_method_validator
+        Definition::Validator::CustomMethod.new
       end
 
       def holidays_by_month_repository
@@ -42,8 +74,12 @@ module Holidays
         @cache_repo ||= Definition::Repository::Cache.new
       end
 
-      def proc_cache_repository
-        @proc_cache_repo ||= Definition::Repository::ProcCache.new
+      def proc_result_cache_repository
+        @proc_result_cache_repo ||= Definition::Repository::ProcResultCache.new
+      end
+
+      def custom_methods_repository
+        @custom_methods_repository ||= Definition::Repository::CustomMethods.new
       end
     end
   end

@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/is'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module IS # :nodoc:
     def self.defined_regions
       [:is]
@@ -18,22 +18,22 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)-48 }, :function_id => "easter(year)-48", :name => "Bolludagur", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year)-47 }, :function_id => "easter(year)-47", :name => "Sprengidagur", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year)-46 }, :function_id => "easter(year)-46", :name => "Öskudagur", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year)-7 }, :function_id => "easter(year)-7", :name => "Pálmasunnudagur", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year)-3 }, :function_id => "easter(year)-3", :name => "Skírdagur", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Föstudaginn langi", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Páskadagur", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Annar í páskum", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Uppstigningardagur", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "Hvítasunnudagur", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Annar í hvítasunnu", :regions => [:is]}],
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -48, :name => "Bolludagur", :regions => [:is]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -47, :name => "Sprengidagur", :regions => [:is]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -46, :name => "Öskudagur", :regions => [:is]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -7, :name => "Pálmasunnudagur", :regions => [:is]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -3, :name => "Skírdagur", :regions => [:is]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Föstudaginn langi", :regions => [:is]},
+            {:function => "easter(year)", :function_arguments => [:year], :name => "Páskadagur", :regions => [:is]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Annar í páskum", :regions => [:is]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Uppstigningardagur", :regions => [:is]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Hvítasunnudagur", :regions => [:is]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Annar í hvítasunnu", :regions => [:is]}],
       1 => [{:mday => 1, :name => "Nýársdagur", :regions => [:is]},
             {:mday => 6, :name => "Þrettándinn", :regions => [:is]},
             {:mday => 19, :type => :informal, :name => "Bóndadagur", :regions => [:is]}],
       2 => [{:mday => 18, :type => :informal, :name => "Konudagur", :regions => [:is]}],
-      4 => [{:function => lambda { |year| Holidays.is_sumardagurinn_fyrsti(year) }, :function_id => "is_sumardagurinn_fyrsti(year)", :name => "Sumardagurinn fyrsti", :regions => [:is]}],
+      4 => [{:function => "is_sumardagurinn_fyrsti(year)", :function_arguments => [:year], :name => "Sumardagurinn fyrsti", :regions => [:is]}],
       5 => [{:mday => 1, :name => "Verkalýðsdagurinn", :regions => [:is]},
             {:mday => 13, :name => "Mæðradagurinn", :regions => [:is]}],
       6 => [{:mday => 3, :type => :informal, :name => "Sjómannadagurinn", :regions => [:is]},
@@ -46,21 +46,21 @@ module Holidays
             {:mday => 31, :name => "Gamlárskvöld", :regions => [:is]}]
       }
     end
-  end
 
-# Iceland: first day of summer (Thursday after 18 April)
-def self.is_sumardagurinn_fyrsti(year)
-  date = Date.civil(year,4,18)
-  if date.wday < 4
-    date += (4 - date.wday)
-  else date
-    date += (11 - date.wday)
-  end
-  date
+    def self.custom_methods
+      {
+        "is_sumardagurinn_fyrsti(year)" => Proc.new { |year|
+date = Date.civil(year,4,18)
+if date.wday < 4
+  date += (4 - date.wday)
+else date
+  date += (11 - date.wday)
 end
+date
+},
 
 
-
+      }
+    end
+  end
 end
-
-Holidays.merge_defs(Holidays::IS.defined_regions, Holidays::IS.holidays_by_month)

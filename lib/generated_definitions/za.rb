@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/za'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module ZA # :nodoc:
     def self.defined_regions
       [:za]
@@ -18,23 +18,25 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Good Friday", :regions => [:za]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Family Day", :regions => [:za]}],
-      1 => [{:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "New Year's Day", :regions => [:za]}],
-      3 => [{:mday => 21, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Human Rights Day", :regions => [:za]}],
-      4 => [{:mday => 27, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Freedom Day", :regions => [:za]}],
-      5 => [{:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Workers Day", :regions => [:za]}],
-      6 => [{:mday => 16, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Youth Day", :regions => [:za]}],
-      8 => [{:mday => 9, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "National Women's Day", :regions => [:za]}],
-      9 => [{:mday => 24, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Heritage Day", :regions => [:za]}],
-      12 => [{:mday => 16, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Day of Reconciliation", :regions => [:za]},
-            {:mday => 25, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Christmas Day", :regions => [:za]},
-            {:mday => 26, :observed => lambda { |date| Holidays.to_weekday_if_boxing_weekend(date) }, :observed_id => "to_weekday_if_boxing_weekend", :name => "Day of Goodwill", :regions => [:za]}]
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:za]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Family Day", :regions => [:za]}],
+      1 => [{:mday => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:za]}],
+      3 => [{:mday => 21, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Human Rights Day", :regions => [:za]}],
+      4 => [{:mday => 27, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Freedom Day", :regions => [:za]}],
+      5 => [{:mday => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Workers Day", :regions => [:za]}],
+      6 => [{:mday => 16, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Youth Day", :regions => [:za]}],
+      8 => [{:mday => 9, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "National Women's Day", :regions => [:za]}],
+      9 => [{:mday => 24, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Heritage Day", :regions => [:za]}],
+      12 => [{:mday => 16, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Day of Reconciliation", :regions => [:za]},
+            {:mday => 25, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:za]},
+            {:mday => 26, :observed => "to_weekday_if_boxing_weekend(date)", :observed_arguments => [:date], :name => "Day of Goodwill", :regions => [:za]}]
+      }
+    end
+
+    def self.custom_methods
+      {
+        
       }
     end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::ZA.defined_regions, Holidays::ZA.holidays_by_month)

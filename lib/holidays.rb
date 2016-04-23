@@ -1,4 +1,4 @@
-# encoding: utf-8
+## encoding: utf-8
 $:.unshift File.dirname(__FILE__)
 
 require 'date'
@@ -7,6 +7,8 @@ require 'holidays/definition_factory'
 require 'holidays/date_calculator_factory'
 require 'holidays/option_factory'
 require 'holidays/use_case_factory'
+require 'holidays/errors'
+require 'holidays/load_all_definitions'
 
 # == Region options
 # Holidays can be defined as belonging to one or more regions and sub regions.
@@ -47,9 +49,6 @@ require 'holidays/use_case_factory'
 #
 #   Holidays.between(from, to, :ca_bc, :informal)
 module Holidays
-  # Exception thrown when an unknown region is requested.
-  class UnknownRegionError < ArgumentError; end
-
   WEEKS = {:first => 1, :second => 2, :third => 3, :fourth => 4, :fifth => 5, :last => -1, :second_last => -2, :third_last => -3}
   MONTH_LENGTHS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
   DAY_SYMBOLS = Date::DAYNAMES.collect { |n| n.downcase.intern }
@@ -78,7 +77,7 @@ module Holidays
     #
     # The given Date can be any day of the week.
     # Returns true if any holidays fall on Monday - Friday of the given week.
-    def full_week?(date, *options)
+    def any_holidays_during_work_week?(date, *options)
       days_to_monday = date.wday - 1
       days_to_friday = 5 - date.wday
       start_date = date - days_to_monday
@@ -113,7 +112,7 @@ module Holidays
 
       start_date, end_date = get_date(start_date), get_date(end_date)
 
-      if cached_holidays = DefinitionFactory.cache_repository.find(start_date, end_date, options)
+      if cached_holidays = definition_cache_repository.find(start_date, end_date, options)
         return cached_holidays
       end
 
@@ -128,93 +127,25 @@ module Holidays
       start_date, end_date = get_date(start_date), get_date(end_date)
       cache_data = between(start_date, end_date, *options)
 
-      DefinitionFactory.cache_repository.cache_between(start_date, end_date, cache_data, options)
-    end
-
-    #TODO This should not be publicly available. I need to restructure the public
-    #     API for this class to something more sensible.
-    def merge_defs(regions, holidays) # :nodoc:
-      DefinitionFactory.merger.call(regions, holidays)
-    end
-
-    def easter(year)
-      DateCalculatorFactory::Easter::Gregorian.easter_calculator.calculate_easter_for(year)
-    end
-
-    def orthodox_easter(year)
-      DateCalculatorFactory::Easter::Gregorian.easter_calculator.calculate_orthodox_easter_for(year)
-    end
-
-    def orthodox_easter_julian(year)
-      DateCalculatorFactory::Easter::Julian.easter_calculator.calculate_orthodox_easter_for(year)
-    end
-
-    def to_monday_if_sunday(date)
-      DateCalculatorFactory.weekend_modifier.to_monday_if_sunday(date)
-    end
-
-    def to_monday_if_weekend(date)
-      DateCalculatorFactory.weekend_modifier.to_monday_if_weekend(date)
-    end
-
-    def to_weekday_if_boxing_weekend(date)
-      DateCalculatorFactory.weekend_modifier.to_weekday_if_boxing_weekend(date)
-    end
-
-    def to_tuesday_if_sunday_or_monday_if_saturday(year)
-      DateCalculatorFactory.weekend_modifier.to_tuesday_if_sunday_or_monday_if_saturday(year)
-    end
-
-    def xmas_to_weekday_if_weekend(year)
-      DateCalculatorFactory.weekend_modifier.xmas_to_weekday_if_weekend(year)
-    end
-
-    def to_weekday_if_boxing_weekend_from_year_or_to_tuesday_if_monday(year)
-      DateCalculatorFactory.weekend_modifier.to_weekday_if_boxing_weekend_from_year_or_to_tuesday_if_monday(year)
-    end
-
-    def to_weekday_if_boxing_weekend_from_year(year)
-      DateCalculatorFactory.weekend_modifier.to_weekday_if_boxing_weekend_from_year(year)
-    end
-
-    def to_weekday_if_weekend(date)
-      DateCalculatorFactory.weekend_modifier.to_weekday_if_weekend(date)
-    end
-
-    def calculate_day_of_month(year, month, day, wday)
-      DateCalculatorFactory.day_of_month_calculator.call(year, month, day, wday)
-    end
-
-    # Returns an array of symbols all the available holiday definitions.
-    #
-    # Optional `full_path` param is used internally for loading all the definitions.
-    def available(full_path = false)
-      paths = Dir.glob(FULL_DEFINITIONS_PATH + '/*.rb')
-      full_path ? paths : paths.collect { |path| path.match(/([a-z_-]+)\.rb/i)[1].to_sym }
+      definition_cache_repository.cache_between(start_date, end_date, cache_data, options)
     end
 
     # Returns an array of symbols of all the available holiday regions.
-    def regions
-      DefinitionFactory.regions_repository.all
-    end
-
-    # Load all available holiday definitions
-    def load_all
-      available(true).each { |path| require path }
+    def available_regions
+      Holidays::REGIONS
     end
 
     # Parses provided holiday definition file(s) and loads them so that they are immediately available.
     def load_custom(*files)
       regions, rules_by_month, custom_methods, tests = DefinitionFactory.file_parser.parse_definition_files(files)
-      merge_defs(regions, rules_by_month)
-    end
 
-    # Parses provided holiday definition file(s) and returns strings containing the generated module and test source
-    def parse_definition_files_and_return_source(module_name, *files)
-      regions, rules_by_month, custom_methods, tests = DefinitionFactory.file_parser.parse_definition_files(files)
-      module_src, test_src = DefinitionFactory.source_generator.generate_definition_source(module_name, files, regions, rules_by_month, custom_methods, tests)
+      custom_methods.each do |method_key, method_entity|
+        custom_methods[method_key] = Holidays::DefinitionFactory.custom_method_proc_decorator.call(method_entity)
+      end
 
-      return module_src, test_src, regions
+      DefinitionFactory.merger.call(regions, rules_by_month, custom_methods)
+
+      rules_by_month
     end
 
     private
@@ -226,5 +157,11 @@ module Holidays
         Date.civil(date.year, date.mon, date.mday)
       end
     end
+
+    def definition_cache_repository
+      DefinitionFactory.cache_repository
+    end
   end
 end
+
+Holidays::LoadAllDefinitions.call

@@ -9,16 +9,20 @@ months:
   0:
   - name: Lunes Carnaval
     regions: [ve]
-    function: easter(year)-48
+    function: easter(year)
+    function_modifier: -48
   - name: Martes Carnaval
     regions: [ve]
-    function: easter(year)-47
+    function: easter(year)
+    function_modifier: -47
   - name: Jueves Santo
     regions: [ve]
-    function: easter(year)-3
+    function: easter(year)
+    function_modifier: -3
   - name: Viernes Santo
     regions: [ve]
-    function: easter(year)-2
+    function: easter(year)
+    function_modifier: -2
   1:
   - name: Año Nuevo
     regions: [ve]

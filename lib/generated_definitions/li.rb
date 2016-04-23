@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/li'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module LI # :nodoc:
     def self.defined_regions
       [:li]
@@ -18,13 +18,13 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)-47 }, :function_id => "easter(year)-47", :name => "Fasnachtsdienstag", :regions => [:li]},
-            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Karfreitag", :regions => [:li]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :type => :informal, :name => "Ostern", :regions => [:li]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Ostermontag", :regions => [:li]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Auffahrt", :regions => [:li]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pfingstmontag", :regions => [:li]},
-            {:function => lambda { |year| Holidays.easter(year)+60 }, :function_id => "easter(year)+60", :name => "Fronleichnam", :regions => [:li]}],
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -47, :name => "Fasnachtsdienstag", :regions => [:li]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Karfreitag", :regions => [:li]},
+            {:function => "easter(year)", :function_arguments => [:year], :type => :informal, :name => "Ostern", :regions => [:li]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Ostermontag", :regions => [:li]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Auffahrt", :regions => [:li]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Pfingstmontag", :regions => [:li]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 60, :name => "Fronleichnam", :regions => [:li]}],
       1 => [{:mday => 1, :name => "Neujahrstag", :regions => [:li]},
             {:mday => 6, :name => "Heilige Drei Könige", :regions => [:li]}],
       2 => [{:mday => 2, :name => "Maria Lichtmess", :regions => [:li]}],
@@ -40,9 +40,11 @@ module Holidays
             {:mday => 31, :name => "Silvester", :regions => [:li]}]
       }
     end
+
+    def self.custom_methods
+      {
+        
+      }
+    end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::LI.defined_regions, Holidays::LI.holidays_by_month)

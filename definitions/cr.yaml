@@ -10,10 +10,12 @@ months:
   0:
   - name: Jueves Santo
     regions: [cr]
-    function: easter(year)-3
+    function: easter(year)
+    function_modifier: -3
   - name: Viernes Santo
     regions: [cr]
-    function: easter(year)-2
+    function: easter(year)
+    function_modifier: -2
   1:
   - name: Año Nuevo
     regions: [cr]

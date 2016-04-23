@@ -7,8 +7,8 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class AuDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_au
-{Date.civil(2007,1,1) => 'New Year\'s Day', 
- Date.civil(2007,1,26) => 'Australia Day', 
+{Date.civil(2007,1,1) => 'New Year\'s Day',
+ Date.civil(2007,1,26) => 'Australia Day',
  Date.civil(2007,4,6) => 'Good Friday',
  Date.civil(2007,4,9) => 'Easter Monday',
  Date.civil(2007,4,25) => 'ANZAC Day'}.each do |date, name|
@@ -136,5 +136,6 @@ assert_equal "Boxing Day", Date.civil(2016, 12, 26).holidays(:au_vic)[0][:name]
 assert_equal "Boxing Day", Date.civil(2016, 12, 26).holidays(:au_nt)[0][:name]
 assert_equal "Christmas Day", Date.civil(2016, 12, 27).holidays(:au_vic)[0][:name]
 assert_equal "Christmas Day", Date.civil(2016, 12, 27).holidays(:au_nt)[0][:name]
+
   end
 end

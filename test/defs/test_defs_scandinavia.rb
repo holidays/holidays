@@ -7,8 +7,8 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class ScandinaviaDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_scandinavia
-{Date.civil(2007,1,1) => 'Nytårsdag', 
- Date.civil(2007,2,18) => 'Fastelavn', 
+{Date.civil(2007,1,1) => 'Nytårsdag',
+ Date.civil(2007,2,18) => 'Fastelavn',
  Date.civil(2007,4,9) => 'Danmarks besættelse',
  Date.civil(2007,4,16) => 'Dronningens fødselsdag',
  Date.civil(2007,4,5) => 'Skærtorsdag',
@@ -28,7 +28,7 @@ class ScandinaviaDefinitionTests < Test::Unit::TestCase  # :nodoc:
 end
 
 
-{Date.civil(2007,1,1) => 'Nýársdagur', 
+{Date.civil(2007,1,1) => 'Nýársdagur',
  Date.civil(2007,1,6) => 'Þrettándinn',
  Date.civil(2007,1,19) => 'Bóndadagur',
  Date.civil(2007,2,18) => 'Konudagur',
@@ -51,6 +51,7 @@ end
   assert_equal name, (Holidays.on(date, :is, :informal)[0] || {})[:name]
 end
 
+
 {Date.civil(2010,1,1) => 'Nyttårsdag',
  Date.civil(2010,5,1) => '1. mai',
  Date.civil(2010,5,17) => '17. mai',
@@ -70,11 +71,12 @@ end
    assert_equal name, (Holidays.on(date, :no, :informal)[0] || {})[:name]
  end
 
-{Date.civil(2008,1,1) => 'Nyårsdagen', 
+
+{Date.civil(2008,1,1) => 'Nyårsdagen',
  Date.civil(2008,1,6) => 'Trettondedag jul',
  Date.civil(2008,3,21) => 'Långfredagen',
  Date.civil(2008,3,22) => 'Påskafton',
- Date.civil(2008,3,23) => 'Påskdagen', 
+ Date.civil(2008,3,23) => 'Påskdagen',
  Date.civil(2008,3,24) => 'Annandag påsk',
  Date.civil(2008,5,1) => 'Första maj',
  Date.civil(2008,5,1) => 'Kristi himmelsfärdsdag',
@@ -99,10 +101,11 @@ end
   assert_equal name, (Holidays.on(date, :se, :informal)[0] || {})[:name]
 end
 
-{Date.civil(2008,1,1) => 'Uudenvuodenpäivä', 
+
+{Date.civil(2008,1,1) => 'Uudenvuodenpäivä',
  Date.civil(2008,1,6) => 'Loppiainen',
- Date.civil(2008,3,21) => 'Pitkäperjantai', 
- Date.civil(2008,3,23) => 'Pääsiäispäivä', 
+ Date.civil(2008,3,21) => 'Pitkäperjantai',
+ Date.civil(2008,3,23) => 'Pääsiäispäivä',
  Date.civil(2008,3,24) => '2. Pääsiäispäivä',
  Date.civil(2008,5,1) => 'Vappu',
  Date.civil(2008,5,1) => 'Helatorstai',
@@ -126,5 +129,6 @@ end
  Date.civil(2008,12,26) => 'Tapaninpäivä'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :fi, :informal)[0] || {})[:name]
 end
+
   end
 end

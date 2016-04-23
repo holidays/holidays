@@ -7,18 +7,21 @@
 ---
 months:
   0:
-  - name: Paștele
+  - name: Paștele - duminică
     regions: [ro]
     function: orthodox_easter(year)
-  - name: Paștele
+  - name: Paștele - luni
     regions: [ro]
-    function: orthodox_easter(year)+1
-  - name: Rusaliile
+    function: orthodox_easter(year)
+    function_modifier: 1
+  - name: Rusaliile - 50
     regions: [ro]
-    function: orthodox_easter(year) + 49
-  - name: Rusaliile
+    function: orthodox_easter(year)
+    function_modifier: 49
+  - name: Rusaliile - 51
     regions: [ro]
-    function: orthodox_easter(year) + 50
+    function: orthodox_easter(year)
+    function_modifier: 50
   1:
   - name: Anul nou
     regions: [ro]
@@ -50,17 +53,17 @@ months:
     mday: 26
 tests: |
     {
-     Date.civil(1961,4,9) => 'Paștele',
-     Date.civil(1961,4,10) => 'Paștele',
-     Date.civil(2013,5,5) => 'Paștele',
-     Date.civil(2013,5,6) => 'Paștele',
-     Date.civil(2027,5,2) => 'Paștele',
-     Date.civil(2027,5,3) => 'Paștele',
-     Date.civil(2012,6,4) => 'Rusaliile',
-     Date.civil(2013,6,23) => 'Rusaliile',
-     Date.civil(2013,6,24) => 'Rusaliile',
-     Date.civil(1986,6,22) => 'Rusaliile',
-     Date.civil(1986,6,23) => 'Rusaliile',
+     Date.civil(1961,4,9) => 'Paștele - duminică',
+     Date.civil(1961,4,10) => 'Paștele - luni',
+     Date.civil(2013,5,5) => 'Paștele - duminică',
+     Date.civil(2013,5,6) => 'Paștele - luni',
+     Date.civil(2027,5,2) => 'Paștele - duminică',
+     Date.civil(2027,5,3) => 'Paștele - luni',
+     Date.civil(2012,6,4) => 'Rusaliile - 51',
+     Date.civil(2013,6,23) => 'Rusaliile - 50',
+     Date.civil(2013,6,24) => 'Rusaliile - 51',
+     Date.civil(1986,6,22) => 'Rusaliile - 50',
+     Date.civil(1986,6,23) => 'Rusaliile - 51',
      Date.civil(2009,1,1) => 'Anul nou',
      Date.civil(2014,1,2) => 'Anul nou',
      Date.civil(2009,5,1) => 'Ziua muncii',

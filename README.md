@@ -14,7 +14,9 @@ To install the gem from RubyGems:
 
 The Holidays gem is tested on Ruby 2.0.0, 2.1.0, 2.2.0, 2.3.0 and JRuby.
 
-The Holidays gem follows [semantic versioning](http://semver.org/). Please take this into account when relying on this gem as a dependency.
+This gem follows [semantic versioning](http://semver.org/). The only methods covered by this guarantee are under the
+`Holidays` namespace specifically. Anything that is not a method off of `Holidays` or the core extension is not covered by
+semver. Please take this into account when relying on this gem as a dependency.
 
 ## Time zones
 
@@ -52,6 +54,16 @@ Get informal holidays in February.
 
     Holidays.between(from, to, :informal)
     => [{:name => 'Valentine\'s Day',...}]
+
+Return all available regions:
+
+    Holidays.available_regions
+    => [:ar, :at, ..., :sg] # this will be a big array
+
+To check if there are any holidays taking place during a specified work week:
+
+    Holidays.any_holidays_during_work_week?(Date.civil(2016, 1, 1))
+    => true
 
 ### Loading Custom Definitions on the fly
 
@@ -112,32 +124,11 @@ If you are checking holidays regularly you can cache your results for improved p
 
     Holidays.cache_between(Time.now, 2.years.from_now, :ca, :us, :observed)
 
-Holidays for the regions specified within the dates specified will be pre-calculated.
-
-See the [original pull request](https://github.com/alexdunae/holidays/pull/36) for more details.
+Holidays for the regions specified within the dates specified will be pre-calculated and stored in-memory. Future lookups will be much faster.
 
 ### How to contribute
 
-#### For definition updates
-
-* Edit desired definition YAML file(s) located under `definitions/`. If you are adding a new region be sure to update `definitions/index.yaml` as well
-* Run `bundle exec rake generate` to generate updated final definitions (they will be located under `lib/generated_definitions/`)
-* Run `bundle exec rake test` to ensure your changes did not introduce errors
-* Open a PR with *all* of these changes. You *MUST* include the generated definition files in your PR. There is no automatic process to generated definitions at this time
-
-Including documentation with your updates is very much appreciated. A simple Wikipedia entry or government link in the comments alongside your changes would be perfect.
-
-Lastly, note that there are many 'meta' regions. For example, there are regions for Europe, Scandinavia, and North America. If your new region(s) falls into these areas consider adding them. You can find these 'meta' regions in `definitions/index.yaml`.
-
-#### For non-definition functionality
-
-* Fork the repository
-* Make your changes
-* Create a PR pointing back to `master`
-
-Don't worry about versioning, we'll handle it on our end.
-
-Tests are required. If your PR results in lower test coverage then it will not be accepted.
+See our [contribution guidelines](CONTRIBUTING.md) for information on how to help out!
 
 ### Credits and code
 
@@ -145,4 +136,4 @@ Tests are required. If your PR results in lower test coverage then it will not b
 * Maintained by [Hana Wang](https://github.com/hahahana), 2013
 * Maintained by [Phil Trimble](https://github.com/ptrimble), 2014-present
 
-Plus all of these [wonderful contributors!](https://github.com/alexdunae/holidays/contributors)
+Plus all of these [wonderful contributors!](https://github.com/holidays/holidays/contributors)

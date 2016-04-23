@@ -10,7 +10,7 @@ months:
   - name: New Year's Day
     regions: [ups]
     mday: 1
-    observed: to_weekday_if_weekend
+    observed: to_weekday_if_weekend(date)
   5:
   - name: Memorial Day
     week: -1
@@ -20,7 +20,7 @@ months:
   - name: Independence Day
     regions: [ups]
     mday: 4
-    observed: to_weekday_if_weekend
+    observed: to_weekday_if_weekend(date)
   9:
   - name: Labor Day
     week: 1
@@ -38,15 +38,15 @@ months:
   - name: Christmas Day
     regions: [ups]
     mday: 25
-    observed: to_weekday_if_weekend
+    observed: to_weekday_if_weekend(date)
   - name: New Year's Eve
     regions: [ups]
     mday: 31
 methods:
-  day_after_thanksgiving: |
-    def self.day_after_thanksgiving(year)
+  day_after_thanksgiving:
+    arguments: year
+    source: |
       Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 11, 4, 4) + 1
-    end
 tests: |
     {Date.civil(2008,1,1) => 'New Year\'s Day',
      Date.civil(2008,5,26) => 'Memorial Day',

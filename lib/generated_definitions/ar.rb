@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/ar'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module AR # :nodoc:
     def self.defined_regions
       [:ar]
@@ -18,7 +18,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Viernes Santo", :regions => [:ar]}],
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Viernes Santo", :regions => [:ar]}],
       1 => [{:mday => 1, :name => "Año Nuevo", :regions => [:ar]}],
       2 => [{:mday => 8, :name => "Carnaval", :regions => [:ar]},
             {:mday => 9, :name => "Carnaval", :regions => [:ar]}],
@@ -37,9 +37,11 @@ module Holidays
             {:mday => 25, :name => "Navidad", :regions => [:ar]}]
       }
     end
+
+    def self.custom_methods
+      {
+        
+      }
+    end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::AR.defined_regions, Holidays::AR.holidays_by_month)

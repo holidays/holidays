@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/ie'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module IE # :nodoc:
     def self.defined_regions
       [:ie]
@@ -18,30 +18,30 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Easter Monday", :regions => [:ie]}],
-      1 => [{:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "New Year's Day", :regions => [:ie]}],
-      3 => [{:mday => 17, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "St. Patrick's Day", :regions => [:ie]}],
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:ie]}],
+      1 => [{:mday => 1, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:ie]}],
+      3 => [{:mday => 17, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "St. Patrick's Day", :regions => [:ie]}],
       5 => [{:wday => 1, :week => 1, :name => "May Day", :regions => [:ie]}],
       6 => [{:wday => 1, :week => 1, :name => "June Bank Holiday", :regions => [:ie]}],
       8 => [{:wday => 1, :week => 1, :name => "August Bank Holiday", :regions => [:ie]}],
       10 => [{:wday => 1, :week => -1, :name => "October Bank Holiday", :regions => [:ie]}],
-      12 => [{:mday => 25, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "Christmas Day", :regions => [:ie]},
-            {:mday => 26, :observed => lambda { |date| Holidays.ie_st_stephens_day(date) }, :observed_id => "ie_st_stephens_day", :name => "St. Stephen's Day", :regions => [:ie]}]
+      12 => [{:mday => 25, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:ie]},
+            {:mday => 26, :observed => "ie_st_stephens_day(date)", :observed_arguments => [:date], :name => "St. Stephen's Day", :regions => [:ie]}]
+      }
+    end
+
+    def self.custom_methods
+      {
+        "ie_st_stephens_day(date)" => Proc.new { |date|
+case date.wday
+when 6, 0 then date + 2
+when 1 then date + 1
+else date
+end
+},
+
+
       }
     end
   end
-
-# Ireland - Stephens Day is always the day after christmas day
-def self.ie_st_stephens_day(date)
-  case date.wday
-  when 6, 0 then date + 2
-  when 1 then date + 1
-  else date
-  end
 end
-
-
-
-end
-
-Holidays.merge_defs(Holidays::IE.defined_regions, Holidays::IE.holidays_by_month)

@@ -2,18 +2,19 @@ module Holidays
   module DateCalculator
     class WeekendModifier
       # Move date to Monday if it occurs on a Saturday on Sunday.
+      # Does not modify date if it is not a weekend.
       # Used as a callback function.
       def to_monday_if_weekend(date)
-        date += 1 if date.wday == 0
-        date += 2 if date.wday == 6
-        date
+        return date unless date.wday == 6 || date.wday == 0
+        to_next_weekday(date)
       end
 
       # Move date to Monday if it occurs on a Sunday.
+      # Does not modify the date if it is not a Sunday.
       # Used as a callback function.
       def to_monday_if_sunday(date)
-        date += 1 if date.wday == 0
-        date
+        return date unless date.wday == 0
+        to_next_weekday(date)
       end
 
       # if Christmas falls on a Sunday, move it to the next Tuesday (Boxing Day will go on Monday)
@@ -63,6 +64,22 @@ module Holidays
       def to_weekday_if_weekend(date)
         date += 1 if date.wday == 0
         date -= 1 if date.wday == 6
+        date
+      end
+
+      # Finds the next weekday. For example, if a 'Friday' date is received
+      # it will return the following Monday. If Sunday then return Monday,
+      # if Saturday return Monday, if Tuesday return Wednesday, etc.
+      def to_next_weekday(date)
+        case date.wday
+        when 6
+          date += 2
+        when 5
+          date += 3
+        else
+          date += 1
+        end
+
         date
       end
     end

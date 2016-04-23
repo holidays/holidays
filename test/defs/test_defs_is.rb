@@ -7,7 +7,7 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class IsDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_is
-{Date.civil(2007,1,1) => 'Nýársdagur', 
+{Date.civil(2007,1,1) => 'Nýársdagur',
  Date.civil(2007,1,6) => 'Þrettándinn',
  Date.civil(2007,1,19) => 'Bóndadagur',
  Date.civil(2007,2,18) => 'Konudagur',
@@ -29,5 +29,6 @@ class IsDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2007,12,31) => 'Gamlárskvöld'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :is, :informal)[0] || {})[:name]
 end
+
   end
 end

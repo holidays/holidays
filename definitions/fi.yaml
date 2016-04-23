@@ -3,36 +3,38 @@
 # Updated: 2010-12-28.
 # Sources:
 # - http://en.wikipedia.org/wiki/Public_holidays_in_Finland
---- 
+---
 months:
-  0: 
+  0:
   - name: Pitkäperjantai
     regions: [fi]
-    function: easter(year)-2
+    function: easter(year)
+    function_modifier: -2
   - name: Pääsiäispäivä
     regions: [fi]
     function: easter(year)
   - name: 2. Pääsiäispäivä
     regions: [fi]
-    function: easter(year)+1
+    function: easter(year)
+    function_modifier: 1
   - name: Helatorstai # Ascension Day
     regions: [fi]
-    function: easter(year)+39
+    function: easter(year)
+    function_modifier: 39
   - name: Helluntaipäivä # Whitsunday
     regions: [fi]
-    function: easter(year)+49
+    function: easter(year)
+    function_modifier: 49
   - name: Pyhäinpäivä # All Saint's Day
     regions: [fi]
     function: fi_pyhainpaiva(year)
-    
-  1: 
+  1:
   - name: Uudenvuodenpäivä
     regions: [fi]
     mday: 1
   - name: Loppiainen
     regions: [fi]
     mday: 6
-
   5:
   - name: Vappu
     regions: [fi]
@@ -44,8 +46,7 @@ months:
   - name: Juhannuspäivä
     regions: [fi]
     function: fi_juhannuspaiva(year)
-
-  12: 
+  12:
   - name: Itsenäisyyspäivä
     regions: [fi]
     mday: 6
@@ -59,36 +60,36 @@ months:
     regions: [fi]
     mday: 26
 methods:
-  fi_juhannusaatto: |
+  fi_juhannusaatto:
     # Finland: Mid-summer eve (Friday between June 19–25)
-    def self.fi_juhannusaatto(year)
+    arguments: year
+    source: |
       date = Date.civil(year,6,19)
       if date.wday > 5 #if 19.6 is saturday
         date += 6
-      else 
+      else
         date += (5 - date.wday)
       end
       date
-    end
-  fi_juhannuspaiva: |
+  fi_juhannuspaiva:
     # Finland: Mid-summer (Saturday between June 20–26)
-    def self.fi_juhannuspaiva(year)
+    arguments: year
+    source: |
       date = Date.civil(year,6,20)
       date += (6 - date.wday)
       date
-    end
-  fi_pyhainpaiva: |
+  fi_pyhainpaiva:
     # Finland: All Saint's Day (Saturday between Oct 31 and Nov 6)
-    def self.fi_pyhainpaiva(year)
+    arguments: year
+    source: |
       date = Date.civil(year,10,31)
       date += (6 - date.wday)
       date
-    end
 tests: |
-    {Date.civil(2008,1,1) => 'Uudenvuodenpäivä', 
+    {Date.civil(2008,1,1) => 'Uudenvuodenpäivä',
      Date.civil(2008,1,6) => 'Loppiainen',
-     Date.civil(2008,3,21) => 'Pitkäperjantai', 
-     Date.civil(2008,3,23) => 'Pääsiäispäivä', 
+     Date.civil(2008,3,21) => 'Pitkäperjantai',
+     Date.civil(2008,3,23) => 'Pääsiäispäivä',
      Date.civil(2008,3,24) => '2. Pääsiäispäivä',
      Date.civil(2008,5,1) => 'Vappu',
      Date.civil(2008,5,1) => 'Helatorstai',

@@ -7,13 +7,13 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class ElDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_el
-{Date.civil(2011,1,1) => 'Πρωτοχρονιά', 
+{Date.civil(2011,1,1) => 'Πρωτοχρονιά',
  Date.civil(2011,1,6) => 'Θεοφάνεια',
- Date.civil(2011,4,22) => 'Μεγάλη Παρασκευή', 
- Date.civil(1970,4,25) => 'Μεγάλο Σάββατο', 
- Date.civil(1985,4,14) => 'Κυριακή του Πάσχα', 
- Date.civil(2011,4,24) => 'Κυριακή του Πάσχα', 
- Date.civil(2027,5,2) => 'Κυριακή του Πάσχα', 
+ Date.civil(2011,4,22) => 'Μεγάλη Παρασκευή',
+ Date.civil(1970,4,25) => 'Μεγάλο Σάββατο',
+ Date.civil(1985,4,14) => 'Κυριακή του Πάσχα',
+ Date.civil(2011,4,24) => 'Κυριακή του Πάσχα',
+ Date.civil(2027,5,2) => 'Κυριακή του Πάσχα',
  Date.civil(2046,4,30) => 'Δευτέρα του Πάσχα',
  Date.civil(2011,5,1) => 'Πρωτομαγιά',
  Date.civil(2011,6,13) => 'Αγίου Πνεύματος',
@@ -24,5 +24,6 @@ class ElDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2011,12,26) => 'Δεύτερη ημέρα των Χριστουγέννων'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :el, :informal)[0] || {})[:name]
 end
+
   end
 end

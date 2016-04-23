@@ -11,10 +11,12 @@ months:
     function: easter(year)
   - name: velikonočni ponedeljek
     regions: [si]
-    function: easter(year)+1
+    function: easter(year)
+    function_modifier: 1
   - name: binkošti
     regions: [si]
-    function: easter(year)+49
+    function: easter(year)
+    function_modifier: 49
   1:
   - name: novo leto
     regions: [si]

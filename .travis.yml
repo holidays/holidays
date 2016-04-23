@@ -1,6 +1,18 @@
-notifications:
-  disabled: true
+language: ruby
+
+cache:
+  bundler: true
+
+before_install:
+  - bundle --version
+  - gem --version
+
 sudo: false
+
+notifications:
+  email:
+    holidaysgem@gmail.com
+
 rvm:
   - 2.0.0
   - 2.1.0
@@ -8,11 +20,7 @@ rvm:
   - 2.3.0
   - jruby
   - ruby-head
+
 matrix:
   allow_failures:
     - rvm: ruby-head
-before_install:
-  - gem update bundler
-  - bundle --version
-  - gem update --system 2.1.11
-  - gem --version

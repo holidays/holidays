@@ -14,11 +14,13 @@ months:
   0:
   - name: Carnaval # same as Shrove Tuesday
     regions: [pt]
-    function: easter(year)-47
+    function: easter(year)
+    function_modifier: -47
     type: informal
   - name: Sexta-feira Santa
     regions: [pt]
-    function: easter(year)-2
+    function: easter(year)
+    function_modifier: -2
   - name: Páscoa
     regions: [pt]
     function: easter(year)

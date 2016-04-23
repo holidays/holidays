@@ -19,27 +19,27 @@ class HolidaysTests < Test::Unit::TestCase
     assert_equal 0, holidays.length
   end
 
-  def test_full_week
+  def test_any_holidays_during_work_week
     ## Full weeks:
     # Try with a Monday
-    assert Holidays.full_week?(Date.civil(2012,1,23), :us)
+    assert Holidays.any_holidays_during_work_week?(Date.civil(2012,1,23), :us)
     # Try with a Wednesday
-    assert Holidays.full_week?(Date.civil(2012,1,25), :us)
+    assert Holidays.any_holidays_during_work_week?(Date.civil(2012,1,25), :us)
     # Try Sunday on a week going into a new month
-    assert Holidays.full_week?(Date.civil(2012,1,29), :us)
+    assert Holidays.any_holidays_during_work_week?(Date.civil(2012,1,29), :us)
     # Try Wednesday on a week going into a new month
-    assert Holidays.full_week?(Date.civil(2012,2,1), :us)
+    assert Holidays.any_holidays_during_work_week?(Date.civil(2012,2,1), :us)
 
     ## Weeks with holidays:
     # New Year's 2012 (on Sunday, observed Monday). Test from a Wednesday.
-    assert_equal(false, Holidays.full_week?(Date.civil(2012,1,4), :us))
+    assert_equal(false, Holidays.any_holidays_during_work_week?(Date.civil(2012,1,4), :us))
     # Ignore observed holidays with :no_observed
-    assert Holidays.full_week?(Date.civil(2012,1,4), :us, :no_observed)
+    assert Holidays.any_holidays_during_work_week?(Date.civil(2012,1,4), :us, :no_observed)
     # Labor Day 2012 should be Sept 3
-    assert_equal(false, Holidays.full_week?(Date.civil(2012,9,5), :us))
+    assert_equal(false, Holidays.any_holidays_during_work_week?(Date.civil(2012,9,5), :us))
     # Should be 10 non-full weeks in the year (in the US)
     weeks_in_2012 = Date.commercial(2013, -1).cweek
-    holidays_in_2012 = weeks_in_2012.times.count { |week| Holidays.full_week?(Date.commercial(2012,week+1), :us) == false }
+    holidays_in_2012 = weeks_in_2012.times.count { |week| Holidays.any_holidays_during_work_week?(Date.commercial(2012,week+1), :us) == false }
     assert_equal 10, holidays_in_2012
   end
 
@@ -102,26 +102,6 @@ class HolidaysTests < Test::Unit::TestCase
     # Should return Victoria Day and National Patriotes Day.
     holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca_)
     assert_equal 2, holidays.length
-  end
-
-  def test_easter_sunday
-    assert_equal '1800-04-13', Holidays.easter(1800).to_s
-    assert_equal '1899-04-02', Holidays.easter(1899).to_s
-    assert_equal '1900-04-15', Holidays.easter(1900).to_s
-    assert_equal '1999-04-04', Holidays.easter(1999).to_s
-    assert_equal '2000-04-23', Holidays.easter(2000).to_s
-    assert_equal '2025-04-20', Holidays.easter(2025).to_s
-    assert_equal '2035-03-25', Holidays.easter(2035).to_s
-    assert_equal '2067-04-03', Holidays.easter(2067).to_s
-    assert_equal '2099-04-12', Holidays.easter(2099).to_s
-  end
-
-  def test_orthodox_easter
-    assert_equal '2000-04-30', Holidays.orthodox_easter(2000).to_s
-    assert_equal '2008-04-27', Holidays.orthodox_easter(2008).to_s
-    assert_equal '2009-04-19', Holidays.orthodox_easter(2009).to_s
-    assert_equal '2011-04-24', Holidays.orthodox_easter(2011).to_s
-    assert_equal '2020-04-19', Holidays.orthodox_easter(2020).to_s
   end
 
   def test_easter_lambda

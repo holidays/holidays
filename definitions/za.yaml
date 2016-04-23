@@ -4,66 +4,68 @@
 # Sources:
 # - http://en.wikipedia.org/wiki/Public_holidays_in_South_Africa
 # - http://www.info.gov.za/aboutsa/holidays.htm
---- 
+---
 months:
-  0: 
+  0:
   - name: Good Friday
     regions: [za]
-    function: easter(year)-2
+    function: easter(year)
+    function_modifier: -2
   - name: Family Day
     regions: [za]
-    function: easter(year)+1
-  1: 
+    function: easter(year)
+    function_modifier: 1
+  1:
   - name: New Year's Day
     regions: [za]
     mday: 1
-    observed: to_monday_if_sunday
-  3: 
+    observed: to_monday_if_sunday(date)
+  3:
   - name: Human Rights Day
     regions: [za]
     mday: 21
-    observed: to_monday_if_sunday
-  4: 
+    observed: to_monday_if_sunday(date)
+  4:
   - name: Freedom Day
     regions: [za]
     mday: 27
-    observed: to_monday_if_sunday
-  5: 
+    observed: to_monday_if_sunday(date)
+  5:
   - name: Workers Day
     regions: [za]
     mday: 1
-    observed: to_monday_if_sunday
+    observed: to_monday_if_sunday(date)
   6:
   - name: Youth Day
     regions: [za]
     mday: 16
-    observed: to_monday_if_sunday
-  8: 
+    observed: to_monday_if_sunday(date)
+  8:
   - name: National Women's Day
     regions: [za]
     mday: 9
-    observed: to_monday_if_sunday
-  9: 
+    observed: to_monday_if_sunday(date)
+  9:
   - name: Heritage Day
     regions: [za]
     mday: 24
-    observed: to_monday_if_sunday
-  12: 
+    observed: to_monday_if_sunday(date)
+  12:
   - name: Day of Reconciliation
     regions: [za]
     mday: 16
-    observed: to_monday_if_sunday
+    observed: to_monday_if_sunday(date)
   - name: Christmas Day
     regions: [za]
     mday: 25
-    observed: to_monday_if_sunday
+    observed: to_monday_if_sunday(date)
   - name: Day of Goodwill
     regions: [za]
     mday: 26
-    observed: to_weekday_if_boxing_weekend
+    observed: to_weekday_if_boxing_weekend(date)
 tests: |
-    {Date.civil(2007,1,1) => 'New Year\'s Day', 
-     Date.civil(2007,3,21) => 'Human Rights Day', 
+    {Date.civil(2007,1,1) => 'New Year\'s Day',
+     Date.civil(2007,3,21) => 'Human Rights Day',
      Date.civil(2007,4,6) => 'Good Friday',
      Date.civil(2007,4,9) => 'Family Day',
      Date.civil(2007,4,27) => 'Freedom Day',

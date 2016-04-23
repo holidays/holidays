@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/north_america'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module NORTH_AMERICA # :nodoc:
     def self.defined_regions
       [:ca, :ca_qc, :ca_ab, :ca_on, :ca_sk, :ca_mb, :ca_ns, :ca_pe, :ca_bc, :ca_nf, :ca_nt, :ca_nu, :ca_nb, :ca_yk, :mx, :mx_pue, :us, :us_dc, :us_ca]
@@ -18,18 +18,18 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Good Friday", :regions => [:ca]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Easter Sunday", :regions => [:ca]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :type => :informal, :name => "Easter Monday", :regions => [:ca]},
-            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :type => :informal, :name => "Good Friday", :regions => [:us]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :type => :informal, :name => "Easter Sunday", :regions => [:us]}],
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:ca]},
+            {:function => "easter(year)", :function_arguments => [:year], :name => "Easter Sunday", :regions => [:ca]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :type => :informal, :name => "Easter Monday", :regions => [:ca]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :type => :informal, :name => "Good Friday", :regions => [:us]},
+            {:function => "easter(year)", :function_arguments => [:year], :type => :informal, :name => "Easter Sunday", :regions => [:us]}],
       1 => [{:mday => 1, :name => "New Year's Day", :regions => [:ca]},
             {:mday => 2, :name => "New Year's", :regions => [:ca_qc]},
             {:mday => 1, :name => "Año nuevo", :regions => [:mx]},
             {:mday => 6, :name => "Dia de los Santos Reyes", :regions => [:mx]},
-            {:mday => 1, :observed => lambda { |date| Holidays.to_weekday_if_weekend(date) }, :observed_id => "to_weekday_if_weekend", :name => "New Year's Day", :regions => [:us]},
+            {:mday => 1, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:us]},
             {:wday => 1, :week => 3, :name => "Martin Luther King, Jr. Day", :regions => [:us]},
-            {:function => lambda { |year| Holidays.us_inauguration_day(year) }, :function_id => "us_inauguration_day(year)", :name => "Inauguration Day", :regions => [:us_dc]}],
+            {:function => "us_inauguration_day(year)", :function_arguments => [:year], :name => "Inauguration Day", :regions => [:us_dc]}],
       2 => [{:wday => 1, :week => 3, :name => "Family Day", :regions => [:ca_ab, :ca_on, :ca_sk]},
             {:wday => 1, :week => 3, :name => "Louis Riel Day", :regions => [:ca_mb]},
             {:wday => 1, :week => 3, :name => "Nova Scotia Heritage Day", :regions => [:ca_ns]},
@@ -43,8 +43,8 @@ module Holidays
             {:wday => 1, :week => 3, :name => "Natalicio de Benito Juárez", :regions => [:mx]},
             {:mday => 31, :name => "Cesar Chavez Day", :regions => [:us_ca]},
             {:mday => 17, :type => :informal, :name => "St. Patrick's Day", :regions => [:us, :ca]}],
-      5 => [{:function => lambda { |year| Holidays.ca_victoria_day(year) }, :function_id => "ca_victoria_day(year)", :name => "Victoria Day", :regions => [:ca]},
-            {:function => lambda { |year| Holidays.ca_victoria_day(year) }, :function_id => "ca_victoria_day(year)", :name => "National Patriotes Day", :regions => [:ca_qc]},
+      5 => [{:function => "ca_victoria_day(year)", :function_arguments => [:year], :name => "Victoria Day", :regions => [:ca]},
+            {:function => "ca_victoria_day(year)", :function_arguments => [:year], :name => "National Patriotes Day", :regions => [:ca_qc]},
             {:mday => 1, :name => "Día del Trabajo", :regions => [:mx]},
             {:mday => 5, :type => :informal, :name => "Cinco de Mayo", :regions => [:mx]},
             {:mday => 5, :name => "La Batalla de Puebla", :regions => [:mx_pue]},
@@ -58,10 +58,10 @@ module Holidays
             {:mday => 21, :name => "National Aboriginal Day", :regions => [:ca_nt]},
             {:wday => 0, :week => 3, :type => :informal, :name => "Día del Padre", :regions => [:mx]},
             {:wday => 0, :week => 3, :type => :informal, :name => "Father's Day", :regions => [:us, :ca]}],
-      7 => [{:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Canada Day", :regions => [:ca]},
+      7 => [{:mday => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Canada Day", :regions => [:ca]},
             {:mday => 12, :name => "Orangemen's Day", :regions => [:ca_nf]},
             {:mday => 9, :name => "Nunavut Day", :regions => [:ca_nu]},
-            {:mday => 4, :observed => lambda { |date| Holidays.to_weekday_if_weekend(date) }, :observed_id => "to_weekday_if_weekend", :name => "Independence Day", :regions => [:us]}],
+            {:mday => 4, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Independence Day", :regions => [:us]}],
       8 => [{:wday => 1, :week => 1, :name => "BC Day", :regions => [:ca_bc]},
             {:wday => 1, :week => 1, :name => "Saskatchewan Day", :regions => [:ca_sk]},
             {:wday => 1, :week => 1, :name => "Heritage Day", :regions => [:ca_ab]},
@@ -81,47 +81,44 @@ module Holidays
             {:mday => 1, :type => :informal, :name => "Todos los Santos", :regions => [:mx]},
             {:mday => 2, :type => :informal, :name => "Los Fieles Difuntos", :regions => [:mx]},
             {:wday => 1, :week => 3, :name => "Día de la Revolución", :regions => [:mx]},
-            {:mday => 11, :observed => lambda { |date| Holidays.to_weekday_if_weekend(date) }, :observed_id => "to_weekday_if_weekend", :name => "Veterans Day", :regions => [:us]},
+            {:mday => 11, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Veterans Day", :regions => [:us]},
             {:wday => 4, :week => 4, :name => "Thanksgiving", :regions => [:us]},
-            {:function => lambda { |year| Holidays.day_after_thanksgiving(year) }, :function_id => "day_after_thanksgiving(year)", :name => "Day after Thanksgiving", :regions => [:us_ca]}],
+            {:function => "day_after_thanksgiving(year)", :function_arguments => [:year], :name => "Day after Thanksgiving", :regions => [:us_ca]}],
       12 => [{:mday => 25, :name => "Christmas Day", :regions => [:ca]},
             {:mday => 26, :name => "Boxing Day", :regions => [:ca]},
             {:mday => 12, :type => :informal, :name => "Día de la Virgen de Guadalupe", :regions => [:mx]},
             {:mday => 24, :type => :informal, :name => "Nochebuena", :regions => [:mx]},
             {:mday => 25, :name => "Navidad", :regions => [:mx]},
             {:mday => 28, :name => "Los Santos Inocentes", :regions => [:mx]},
-            {:mday => 25, :observed => lambda { |date| Holidays.to_weekday_if_weekend(date) }, :observed_id => "to_weekday_if_weekend", :name => "Christmas Day", :regions => [:us]}],
+            {:mday => 25, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:us]}],
       4 => [{:mday => 30, :type => :informal, :name => "Día del Niño", :regions => [:mx]},
             {:mday => 1, :type => :informal, :name => "April Fool's Day", :regions => [:us, :ca]},
             {:mday => 22, :type => :informal, :name => "Earth Day", :regions => [:us, :ca]}]
       }
     end
+
+    def self.custom_methods
+      {
+        "ca_victoria_day(year)" => Proc.new { |year|
+date = Date.civil(year,5,24)
+if date.wday > 1
+  date -= (date.wday - 1)
+elsif date.wday == 0
+  date -= 6
+end
+date
+},
+
+"us_inauguration_day(year)" => Proc.new { |year|
+year % 4 == 1 ? 20 : nil
+},
+
+"day_after_thanksgiving(year)" => Proc.new { |year|
+Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 11, 4, 4) + 1
+},
+
+
+      }
+    end
   end
-
-# Monday on or before May 24
-def self.ca_victoria_day(year)
-  date = Date.civil(year,5,24)
-  if date.wday > 1
-    date -= (date.wday - 1)
-  elsif date.wday == 0
-    date -= 6
-  end
-  date
 end
-
-
-# January 20, every fourth year, following Presidential election
-def self.us_inauguration_day(year)
-  year % 4 == 1 ? 20 : nil
-end
-
-
-def self.day_after_thanksgiving(year)
-  Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 11, 4, 4) + 1
-end
-
-
-
-end
-
-Holidays.merge_defs(Holidays::NORTH_AMERICA.defined_regions, Holidays::NORTH_AMERICA.holidays_by_month)

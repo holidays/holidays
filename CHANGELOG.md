@@ -1,5 +1,49 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 4.0.0
+
+Major refactor with breaking changes! Sorry for the wall of text but there is a lot of info here.
+
+* Fixes issue 144 (loading custom defs with methods). This was the refactor catalyst. Changes highlights include:
+  - Allow for custom methods added via the `load_custom` method to be used immediately as expected
+  - Consolidate and clarify custom method parsing and validation
+  - Change nearly every definition to use new 'custom method' YAML format. See `definitions/README.md` for more info.
+  - Remove `require` functionality when loading new definitions, instead using in-memory repositories. See below for info.
+  - Now loads all generated definitions when `require 'holidays'` is called. See below for performance info.
+* Add `rake console` command for easier local testing
+* Remove or rename many public methods that were never intended for public use:
+  - Remove following date calculation helper methods (definitions must now directly call factory):
+    - `easter`
+    - `orthodox_easter`
+    - `orthodox_easter_julian`
+    - `to_monday_if_sunday`
+    - `to_monday_if_weekend`
+    - `to_weekday_if_boxing_weekend`
+    - `to_weekday_if_boxing_weekend_from_year`
+    - `to_weekday_if_weekend`
+    - `calculate_day_of_month`
+  - Remove `available` method. This was only intended for internal use
+  - Remove `parse_definition_files_and_return_source`. This was only intended for internal use
+  - Remove `load_all` method. This was only intended for internal use
+  - Rename `regions` to `available_regions` for clarity
+  - Rename `full_week?` to `any_holidays_during_work_week?` for clarity
+* Following methods now constitute the 'public API' of this gem:
+  -  `on`
+  -  `any_holidays_during_work_week?` (renamed method, was originally `full_week?`, same behavior as before)
+  -  `between`
+  -  `cache_between`
+  -  `available_regions` (renamed method, was originally `regions`, same behavior as before)
+  -  `load_custom`
+* All generated definitions are now loaded when `require 'holidays'` is called
+  - Previously files were required 'on the fly' when a specific region was specified. By requiring all definitions upon
+    startup we greatly simplify the handling of regions, definitions, and custom methods internally
+  - This results in a performance hit when calling `require 'holidays'`. Here is an example based on my benchmarking:
+    - old: `0.045537`
+    - new: `0.145125`
+
+I decided that this performance hit on startup is acceptable. All other performance should remain the same. If performance is
+a major concern please open an issue so we can discuss your use case.
+
 ## 3.3.0
 
 This is the final minor point release in v3.X.X. I am releasing it so that all of the latest definitions can be

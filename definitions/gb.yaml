@@ -15,22 +15,24 @@ months:
   0:
   - name: Good Friday
     regions: [gb]
-    function: easter(year)-2
+    function: easter(year)
+    function_modifier: -2
   - name: Easter Sunday
     regions: [gb]
     function: easter(year)
   - name: Easter Monday
     regions: [gb_eng, gb_wls, gb_eaw, gb_nir]
-    function: easter(year)+1
+    function: easter(year)
+    function_modifier: 1
   1:
   - name: New Year's Day
     regions: [gb]
     mday: 1
-    observed: to_monday_if_weekend
+    observed: to_monday_if_weekend(date)
   - name: 2nd January
     regions: [gb_sct]
     mday: 2
-    observed: to_weekday_if_boxing_weekend
+    observed: to_weekday_if_boxing_weekend(date)
   3:
   - name: St. Piran's Day
     regions: [gb_con]
@@ -75,16 +77,16 @@ months:
     regions: [gb_sct]
     mday: 30
     type: informal
-    observed: to_monday_if_weekend
+    observed: to_monday_if_weekend(date)
   12:
   - name: Christmas Day
     regions: [gb]
     mday: 25
-    observed: to_monday_if_weekend
+    observed: to_monday_if_weekend(date)
   - name: Boxing Day
     regions: [gb]
     mday: 26
-    observed: to_weekday_if_boxing_weekend
+    observed: to_weekday_if_boxing_weekend(date)
 tests: |
     {Date.civil(2008,3,21) => 'Good Friday',
      Date.civil(2008,3,23) => 'Easter Sunday',

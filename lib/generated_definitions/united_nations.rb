@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/united_nations'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module UNITED_NATIONS # :nodoc:
     def self.defined_regions
       [:united_nations]
@@ -77,9 +77,11 @@ module Holidays
             {:mday => 18, :name => "International Migrants Day", :regions => [:united_nations]}]
       }
     end
+
+    def self.custom_methods
+      {
+        
+      }
+    end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::UNITED_NATIONS.defined_regions, Holidays::UNITED_NATIONS.holidays_by_month)

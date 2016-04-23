@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/nl'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module NL # :nodoc:
     def self.defined_regions
       [:nl]
@@ -18,24 +18,26 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :type => :informal, :name => "Goede Vrijdag", :regions => [:nl]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Pasen", :regions => [:nl]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Pasen", :regions => [:nl]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Hemelvaartsdag", :regions => [:nl]},
-            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "Pinksteren", :regions => [:nl]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pinksteren", :regions => [:nl]}],
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :type => :informal, :name => "Goede Vrijdag", :regions => [:nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :name => "Eerste Pasen", :regions => [:nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Tweede Pasen", :regions => [:nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Hemelvaartsdag", :regions => [:nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Eerste Pinksteren", :regions => [:nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Tweede Pinksteren", :regions => [:nl]}],
       1 => [{:mday => 1, :name => "Nieuwjaar", :regions => [:nl]}],
       4 => [{:mday => 27, :name => "Koningsdag", :regions => [:nl]}],
       5 => [{:mday => 4, :type => :informal, :name => "Dodenherdenking", :regions => [:nl]},
             {:mday => 5, :name => "Bevrijdingsdag", :regions => [:nl]}],
       12 => [{:mday => 5, :type => :informal, :name => "Sinterklaas", :regions => [:nl]},
-            {:mday => 25, :name => "Kerstmis", :regions => [:nl]},
-            {:mday => 26, :name => "Kerstmis", :regions => [:nl]}]
+            {:mday => 25, :name => "Eerste Kerstmis", :regions => [:nl]},
+            {:mday => 26, :name => "Tweede Kerstmis", :regions => [:nl]}]
+      }
+    end
+
+    def self.custom_methods
+      {
+        
       }
     end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::NL.defined_regions, Holidays::NL.holidays_by_month)

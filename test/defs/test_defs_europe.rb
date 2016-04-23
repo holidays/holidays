@@ -7,7 +7,7 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_europe
-{Date.civil(2009,1,1) => 'Neujahrstag', 
+{Date.civil(2009,1,1) => 'Neujahrstag',
  Date.civil(2009,4,13) => 'Ostermontag',
  Date.civil(2009,5,1) => 'Staatsfeiertag',
  Date.civil(2009,5,21) => 'Christi Himmelfahrt',
@@ -83,6 +83,7 @@ end
 
 
 {Date.civil(2010,1,1) => 'Den obnovy samostatného českého státu',
+ Date.civil(2016,3,25) => 'Velký pátek',
  Date.civil(2010,4,5) => 'Velikonoční pondělí',
  Date.civil(2010,5,1) => 'Svátek práce',
  Date.civil(2010,5,8) => 'Den vítězství',
@@ -98,8 +99,8 @@ end
 end
 
 
-{Date.civil(2007,1,1) => 'Nytårsdag', 
- Date.civil(2007,2,18) => 'Fastelavn', 
+{Date.civil(2007,1,1) => 'Nytårsdag',
+ Date.civil(2007,2,18) => 'Fastelavn',
  Date.civil(2007,4,9) => 'Danmarks besættelse',
  Date.civil(2007,4,16) => 'Dronningens fødselsdag',
  Date.civil(2007,4,5) => 'Skærtorsdag',
@@ -193,13 +194,13 @@ assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2009,11,18), :de_sn)[0][
  end
 
 
-{Date.civil(2011,1,1) => 'Πρωτοχρονιά', 
+{Date.civil(2011,1,1) => 'Πρωτοχρονιά',
  Date.civil(2011,1,6) => 'Θεοφάνεια',
- Date.civil(2011,4,22) => 'Μεγάλη Παρασκευή', 
- Date.civil(1970,4,25) => 'Μεγάλο Σάββατο', 
- Date.civil(1985,4,14) => 'Κυριακή του Πάσχα', 
- Date.civil(2011,4,24) => 'Κυριακή του Πάσχα', 
- Date.civil(2027,5,2) => 'Κυριακή του Πάσχα', 
+ Date.civil(2011,4,22) => 'Μεγάλη Παρασκευή',
+ Date.civil(1970,4,25) => 'Μεγάλο Σάββατο',
+ Date.civil(1985,4,14) => 'Κυριακή του Πάσχα',
+ Date.civil(2011,4,24) => 'Κυριακή του Πάσχα',
+ Date.civil(2027,5,2) => 'Κυριακή του Πάσχα',
  Date.civil(2046,4,30) => 'Δευτέρα του Πάσχα',
  Date.civil(2011,5,1) => 'Πρωτομαγιά',
  Date.civil(2011,6,13) => 'Αγίου Πνεύματος',
@@ -210,6 +211,7 @@ assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2009,11,18), :de_sn)[0][
  Date.civil(2011,12,26) => 'Δεύτερη ημέρα των Χριστουγέννων'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :el, :informal)[0] || {})[:name]
 end
+
 
 {Date.civil(2009,1,1) => 'Año Nuevo',
  Date.civil(2009,1,6) => 'Día de Reyes',
@@ -332,8 +334,8 @@ assert_equal '2nd January', Holidays.on(Date.civil(2014,1,2), :gb_sct, :observed
 end
 
 
-{Date.civil(2012,1,1) => 'Nova godina', 
- Date.civil(2012,1,6) => 'Sveta tri kralja', 
+{Date.civil(2012,1,1) => 'Nova godina',
+ Date.civil(2012,1,6) => 'Sveta tri kralja',
  Date.civil(2012,5,1) => 'Međunarodni praznik rada',
  Date.civil(2012,6,22) => 'Dan antifašističke borbe',
  Date.civil(2012,6,25) => 'Dan državnosti',
@@ -353,8 +355,8 @@ end
 end
 
 
-{Date.civil(2012,1,1) => 'Újév', 
- Date.civil(2011,1,1) => 'Újév', 
+{Date.civil(2012,1,1) => 'Újév',
+ Date.civil(2011,1,1) => 'Újév',
  Date.civil(2012,3,15) => '1848/49-es forradalom és szabadságharc ünnepe',
  Date.civil(2011,4,25) => 'Húsvét hétfő',
  Date.civil(2012,4,9) => 'Húsvét hétfő',
@@ -399,7 +401,7 @@ end
 end
 
 
-{Date.civil(2007,1,1) => 'Nýársdagur', 
+{Date.civil(2007,1,1) => 'Nýársdagur',
  Date.civil(2007,1,6) => 'Þrettándinn',
  Date.civil(2007,1,19) => 'Bóndadagur',
  Date.civil(2007,2,18) => 'Konudagur',
@@ -422,7 +424,8 @@ end
   assert_equal name, (Holidays.on(date, :is, :informal)[0] || {})[:name]
 end
 
-{Date.civil(2007,1,1) => 'Capodanno', 
+
+{Date.civil(2007,1,1) => 'Capodanno',
  Date.civil(2007,1,6) => 'Epifania',
  Date.civil(2007,4,8) => 'Pasqua',
  Date.civil(2007,4,9) => 'Lunedì dell\'Angelo',
@@ -437,7 +440,8 @@ end
   assert_equal name, (Holidays.on(date, :it, :informal)[0] || {})[:name]
 end
 
-{Date.civil(2009,1,1) => 'Neujahrstag', 
+
+{Date.civil(2009,1,1) => 'Neujahrstag',
  Date.civil(2011,3,8) => 'Fasnachtsdienstag',
  Date.civil(2009,4,10) => 'Karfreitag',
  Date.civil(2009,4,12) => 'Ostern',
@@ -496,17 +500,18 @@ end
 
 {Date.civil(2008,1,1) => 'Nieuwjaar',
  Date.civil(2008,3,21) => 'Goede Vrijdag',
- Date.civil(2008,3,23) => 'Pasen',
- Date.civil(2008,3,24) => 'Pasen',
+ Date.civil(2008,3,23) => 'Eerste Pasen',
+ Date.civil(2008,3,24) => 'Tweede Pasen',
  Date.civil(2008,4,27) => 'Koningsdag',
  Date.civil(2008,5,1) => 'Hemelvaartsdag', # Ascension, Easter+39
  Date.civil(2008,5,5) => 'Bevrijdingsdag',
- Date.civil(2008,5,11) => 'Pinksteren', # Pentecost, Easter+49
- Date.civil(2008,5,12) => 'Pinksteren', # Pentecost, Easter+50
- Date.civil(2008,12,25) => 'Kerstmis',
- Date.civil(2008,12,26) => 'Kerstmis'}.each do |date, name|
+ Date.civil(2008,5,11) => 'Eerste Pinksteren', # Pentecost, Easter+49
+ Date.civil(2008,5,12) => 'Tweede Pinksteren', # Pentecost, Easter+50
+ Date.civil(2008,12,25) => 'Eerste Kerstmis',
+ Date.civil(2008,12,26) => 'Tweede Kerstmis'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :nl, :informal)[0] || {})[:name]
 end
+
 
 {Date.civil(2010,1,1) => 'Nyttårsdag',
  Date.civil(2010,5,1) => '1. mai',
@@ -526,6 +531,7 @@ end
  Date.civil(2010,5,24) => '2. pinsedag'}.each do |date, name|
    assert_equal name, (Holidays.on(date, :no, :informal)[0] || {})[:name]
  end
+
 
 {Date.civil(2011,1,1) => 'Nowy Rok',
 Date.civil(2011,5,1) => 'Święto Państwowe (Święto Pracy)',
@@ -662,6 +668,7 @@ end
   assert_equal 'Wniebowzięcie Najświętszej Maryi Panny', (Holidays.on(Date.civil(2011,8,15), :pl)[0] || {})[:name]
   assert_equal 'Święto Wojska Polskiego', (Holidays.on(Date.civil(2011,8,15), :pl)[1] || {})[:name]
 
+
 {Date.civil(2008,1,1) => 'Ano Novo',
  Date.civil(2005,2,8) => 'Carnaval',
  Date.civil(2006,2,28) => 'Carnaval',
@@ -680,17 +687,17 @@ end
 
 
 {
- Date.civil(1961,4,9) => 'Paștele',
- Date.civil(1961,4,10) => 'Paștele',
- Date.civil(2013,5,5) => 'Paștele',
- Date.civil(2013,5,6) => 'Paștele',
- Date.civil(2027,5,2) => 'Paștele',
- Date.civil(2027,5,3) => 'Paștele',
- Date.civil(2012,6,4) => 'Rusaliile',
- Date.civil(2013,6,23) => 'Rusaliile',
- Date.civil(2013,6,24) => 'Rusaliile',
- Date.civil(1986,6,22) => 'Rusaliile',
- Date.civil(1986,6,23) => 'Rusaliile',
+ Date.civil(1961,4,9) => 'Paștele - duminică',
+ Date.civil(1961,4,10) => 'Paștele - luni',
+ Date.civil(2013,5,5) => 'Paștele - duminică',
+ Date.civil(2013,5,6) => 'Paștele - luni',
+ Date.civil(2027,5,2) => 'Paștele - duminică',
+ Date.civil(2027,5,3) => 'Paștele - luni',
+ Date.civil(2012,6,4) => 'Rusaliile - 51',
+ Date.civil(2013,6,23) => 'Rusaliile - 50',
+ Date.civil(2013,6,24) => 'Rusaliile - 51',
+ Date.civil(1986,6,22) => 'Rusaliile - 50',
+ Date.civil(1986,6,23) => 'Rusaliile - 51',
  Date.civil(2009,1,1) => 'Anul nou',
  Date.civil(2014,1,2) => 'Anul nou',
  Date.civil(2009,5,1) => 'Ziua muncii',

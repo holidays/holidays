@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/vi'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module VI # :nodoc:
     def self.defined_regions
       [:vi]
@@ -24,9 +24,11 @@ module Holidays
       9 => [{:mday => 2, :name => "National Day", :regions => [:vi]}]
       }
     end
+
+    def self.custom_methods
+      {
+        
+      }
+    end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::VI.defined_regions, Holidays::VI.holidays_by_month)

@@ -15,9 +15,14 @@ class ParseOptionsTests < Test::Unit::TestCase
     @region_validator = mock()
     @region_validator.stubs(:valid?).returns(true)
 
+    # As mentioned above, this set of tests is NOT isolated. We need
+    # the real merger code here.
+    @definition_merger = Holidays::DefinitionFactory.merger
+
     @subject = Holidays::Option::Context::ParseOptions.new(
       @regions_repo,
       @region_validator,
+      @definition_merger,
     )
   end
 

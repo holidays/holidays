@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/ma'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module MA # :nodoc:
     def self.defined_regions
       [:ma]
@@ -29,9 +29,11 @@ module Holidays
             {:mday => 18, :name => "Eid Al Istiqulal", :regions => [:ma]}]
       }
     end
+
+    def self.custom_methods
+      {
+        
+      }
+    end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::MA.defined_regions, Holidays::MA.holidays_by_month)

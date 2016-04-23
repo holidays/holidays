@@ -21,8 +21,8 @@ The following definition files are included in this installation:
 * generated_definitions/el
 * generated_definitions/es
 * generated_definitions/europe
-* generated_definitions/fed_ex
 * generated_definitions/federal_reserve
+* generated_definitions/fedex
 * generated_definitions/fi
 * generated_definitions/fr
 * generated_definitions/gb

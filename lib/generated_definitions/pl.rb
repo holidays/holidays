@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/pl'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module PL # :nodoc:
     def self.defined_regions
       [:pl]
@@ -18,20 +18,20 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)-52 }, :function_id => "easter(year)-52", :type => :informal, :name => "Tłusty Czwartek", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.easter(year)-47 }, :function_id => "easter(year)-47", :type => :informal, :name => "Ostatki", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.easter(year)-46 }, :function_id => "easter(year)-46", :type => :informal, :name => "Środa Popielcowa", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.easter(year)-7 }, :function_id => "easter(year)-7", :type => :informal, :name => "Niedziela Palmowa", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.easter(year)-3 }, :function_id => "easter(year)-3", :type => :informal, :name => "Wielki Czwartek", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :type => :informal, :name => "Wielki Piątek", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.easter(year)-1 }, :function_id => "easter(year)-1", :type => :informal, :name => "Wielka Sobota", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Niedziela Wielkanocna", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Poniedziałek Wielkanocny (Lany Poniedziałek)", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "Zesłanie Ducha Świętego (Zielone Świątki)", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.easter(year)+60 }, :function_id => "easter(year)+60", :name => "Uroczystość Najświętszego Ciała i Krwi Pańskiej (Boże Ciało)", :regions => [:pl]}],
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -52, :type => :informal, :name => "Tłusty Czwartek", :regions => [:pl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -47, :type => :informal, :name => "Ostatki", :regions => [:pl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -46, :type => :informal, :name => "Środa Popielcowa", :regions => [:pl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -7, :type => :informal, :name => "Niedziela Palmowa", :regions => [:pl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -3, :type => :informal, :name => "Wielki Czwartek", :regions => [:pl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :type => :informal, :name => "Wielki Piątek", :regions => [:pl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -1, :type => :informal, :name => "Wielka Sobota", :regions => [:pl]},
+            {:function => "easter(year)", :function_arguments => [:year], :name => "Niedziela Wielkanocna", :regions => [:pl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Poniedziałek Wielkanocny (Lany Poniedziałek)", :regions => [:pl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Zesłanie Ducha Świętego (Zielone Świątki)", :regions => [:pl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 60, :name => "Uroczystość Najświętszego Ciała i Krwi Pańskiej (Boże Ciało)", :regions => [:pl]}],
       1 => [{:mday => 1, :name => "Nowy Rok", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.pl_trzech_kroli(year) }, :function_id => "pl_trzech_kroli(year)", :name => "Objawienie Pańskie (święto Trzech Króli)", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.pl_trzech_kroli_informal(year) }, :function_id => "pl_trzech_kroli_informal(year)", :type => :informal, :name => "Objawienie Pańskie (święto Trzech Króli)", :regions => [:pl]},
+            {:function => "pl_trzech_kroli(year)", :function_arguments => [:year], :name => "Objawienie Pańskie (święto Trzech Króli)", :regions => [:pl]},
+            {:function => "pl_trzech_kroli_informal(year)", :function_arguments => [:year], :type => :informal, :name => "Objawienie Pańskie (święto Trzech Króli)", :regions => [:pl]},
             {:mday => 21, :type => :informal, :name => "Dzień Babci", :regions => [:pl]},
             {:mday => 22, :type => :informal, :name => "Dzień Dziadka", :regions => [:pl]}],
       2 => [{:mday => 2, :type => :informal, :name => "Ofiarowanie Pańskie (Matki Boskiej Gromnicznej)", :regions => [:pl]},
@@ -60,21 +60,19 @@ module Holidays
             {:mday => 31, :type => :informal, :name => "Sylwester", :regions => [:pl]}]
       }
     end
+
+    def self.custom_methods
+      {
+        "pl_trzech_kroli(year)" => Proc.new { |year|
+year >= 2011 ? 6 : nil
+},
+
+"pl_trzech_kroli_informal(year)" => Proc.new { |year|
+year < 2011 ? 6 : nil
+},
+
+
+      }
+    end
   end
-
-# Poland: January 6 is holiday since 2011
-def self.pl_trzech_kroli(year)
-  year >= 2011 ? 6 : nil
 end
-
-
-# Poland: January 6 wasn't holiday before 2011
-def self.pl_trzech_kroli_informal(year)
-  year < 2011 ? 6 : nil
-end
-
-
-
-end
-
-Holidays.merge_defs(Holidays::PL.defined_regions, Holidays::PL.holidays_by_month)

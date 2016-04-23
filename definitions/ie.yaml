@@ -5,23 +5,24 @@
 # - http://en.wikipedia.org/wiki/Public_holidays_in_the_Republic_of_Ireland
 # - http://www.citizensinformation.ie/categories/employment/employment-rights-and-conditions/leave-and-holidays/public-holidays-in-ireland
 # While there is mention that Jan 2 2012 was not officially a bank holiday, in reality very few businesses will not observe that date as a bank holiday
---- 
+---
 months:
-  0: 
+  0:
   - name: Easter Monday
     regions: [ie]
-    function: easter(year)+1
-  1: 
+    function: easter(year)
+    function_modifier: 1
+  1:
   - name: New Year's Day
     regions: [ie]
     mday: 1
-    observed: to_monday_if_weekend
-  3: 
+    observed: to_monday_if_weekend(date)
+  3:
   - name: St. Patrick's Day
     regions: [ie]
     mday: 17
-    observed: to_monday_if_weekend
-  5: 
+    observed: to_monday_if_weekend(date)
+  5:
   - name: May Day
     regions: [ie]
     week: 1
@@ -31,35 +32,35 @@ months:
     regions: [ie]
     week: 1
     wday: 1
-  8: 
+  8:
   - name: August Bank Holiday
     regions: [ie]
     week: 1
     wday: 1
-  10: 
+  10:
   - name: October Bank Holiday
     regions: [ie]
     week: -1
     wday: 1
-  12: 
+  12:
   - name: Christmas Day
     regions: [ie]
     mday: 25
-    observed: to_monday_if_weekend
+    observed: to_monday_if_weekend(date)
   - name: St. Stephen's Day
     regions: [ie]
     mday: 26
-    observed: ie_st_stephens_day
+    observed: ie_st_stephens_day(date)
 methods:
-  ie_st_stephens_day: |
+  ie_st_stephens_day:
     # Ireland - Stephens Day is always the day after christmas day
-    def self.ie_st_stephens_day(date)
+    arguments: date
+    source: |
       case date.wday
       when 6, 0 then date + 2
       when 1 then date + 1
       else date
       end
-    end
 tests: |
     {Date.civil(2008,1,1) => 'New Year\'s Day',
      Date.civil(2008,3,17) => 'St. Patrick\'s Day',

@@ -7,16 +7,20 @@ months:
   0:
   - name: Good Friday
     regions: [bg_en]
-    function: orthodox_easter_julian(year)-2
+    function: orthodox_easter_julian(year)
+    function_modifier: -2
   - name: Разпети петък
     regions: [bg_bg]
-    function: orthodox_easter_julian(year)-2
+    function: orthodox_easter_julian(year)
+    function_modifier: -2
   - name: Holy Saturday
     regions: [bg_en]
-    function: orthodox_easter_julian(year)-1
+    function: orthodox_easter_julian(year)
+    function_modifier: -1
   - name: Велика събота
     regions: [bg_bg]
-    function: orthodox_easter_julian(year)-1
+    function: orthodox_easter_julian(year)
+    function_modifier: -1
   - name: Easter Sunday
     regions: [bg_en]
     function: orthodox_easter_julian(year)
@@ -25,10 +29,12 @@ months:
     function: orthodox_easter_julian(year)
   - name: Easter Monday
     regions: [bg_en]
-    function: orthodox_easter_julian(year)+1
+    function: orthodox_easter_julian(year)
+    function_modifier: 1
   - name: Възкресение Христово. Великден
     regions: [bg_bg]
-    function: orthodox_easter_julian(year)+1
+    function: orthodox_easter_julian(year)
+    function_modifier: 1
   1:
   - name: New Year's Day
     regions: [bg_en]

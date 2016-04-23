@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/pt'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module PT # :nodoc:
     def self.defined_regions
       [:pt]
@@ -18,9 +18,9 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)-47 }, :function_id => "easter(year)-47", :type => :informal, :name => "Carnaval", :regions => [:pt]},
-            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Sexta-feira Santa", :regions => [:pt]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Páscoa", :regions => [:pt]}],
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -47, :type => :informal, :name => "Carnaval", :regions => [:pt]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Sexta-feira Santa", :regions => [:pt]},
+            {:function => "easter(year)", :function_arguments => [:year], :name => "Páscoa", :regions => [:pt]}],
       1 => [{:mday => 1, :name => "Ano Novo", :regions => [:pt]}],
       4 => [{:mday => 25, :name => "Dia da Liberdade", :regions => [:pt]}],
       5 => [{:mday => 1, :name => "Dia do Trabalhador", :regions => [:pt]}],
@@ -30,9 +30,11 @@ module Holidays
             {:mday => 25, :name => "Natal", :regions => [:pt]}]
       }
     end
+
+    def self.custom_methods
+      {
+        
+      }
+    end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::PT.defined_regions, Holidays::PT.holidays_by_month)

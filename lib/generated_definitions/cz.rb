@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/cz'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module CZ # :nodoc:
     def self.defined_regions
       [:cz]
@@ -18,7 +18,8 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Velikonoční pondělí", :regions => [:cz]}],
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Velký pátek", :regions => [:cz]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Velikonoční pondělí", :regions => [:cz]}],
       1 => [{:mday => 1, :name => "Den obnovy samostatného českého státu", :regions => [:cz]}],
       5 => [{:mday => 1, :name => "Svátek práce", :regions => [:cz]},
             {:mday => 8, :name => "Den vítězství", :regions => [:cz]}],
@@ -32,9 +33,11 @@ module Holidays
             {:mday => 26, :name => "2. svátek vánoční", :regions => [:cz]}]
       }
     end
+
+    def self.custom_methods
+      {
+        
+      }
+    end
   end
-
-
 end
-
-Holidays.merge_defs(Holidays::CZ.defined_regions, Holidays::CZ.holidays_by_month)

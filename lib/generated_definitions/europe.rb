@@ -10,7 +10,7 @@ module Holidays
   #   require 'holidays'
   #   require 'generated_definitions/europe'
   #
-  # All the definitions are available at https://github.com/alexdunae/holidays
+  # All the definitions are available at https://github.com/holidays/holidays
   module EUROPE # :nodoc:
     def self.defined_regions
       [:at, :be_fr, :be_nl, :ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_ne, :ch_ge, :ch_ju, :ch_vs, :ch, :cz, :dk, :de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_aux, :de_th_aux, :de_sn, :de_st, :de_by_aux, :de_bb, :de_mv, :de_th, :el, :es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex, :es, :es_ct, :es_v, :es_vc, :fr, :gb, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :gb_sct, :gb_con, :je, :gb_jsy, :gg, :gb_gsy, :im, :gb_iom, :hr, :hu, :ie, :is, :it, :li, :lt, :nl, :no, :pl, :pt, :ro, :sk, :si, :bg_en, :bg_bg]
@@ -18,139 +18,139 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Ostermontag", :regions => [:at]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Christi Himmelfahrt", :regions => [:at]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pfingstmontag", :regions => [:at]},
-            {:function => lambda { |year| Holidays.easter(year)+60 }, :function_id => "easter(year)+60", :name => "Fronleichnam", :regions => [:at]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Pâques", :regions => [:be_fr]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Lundi de Pâques", :regions => [:be_fr]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Ascension", :regions => [:be_fr]},
-            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "Pentecôte", :regions => [:be_fr]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Lundi de Pentecôte", :regions => [:be_fr]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Pasen", :regions => [:be_nl]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Paasmaandag", :regions => [:be_nl]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "O.H. Hemelvaart", :regions => [:be_nl]},
-            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "Pinksteren", :regions => [:be_nl]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pinkstermaandag", :regions => [:be_nl]},
-            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Karfreitag", :regions => [:ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_ne, :ch_ge, :ch_ju]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Ostermontag", :regions => [:ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_vs, :ch_ge, :ch_ju]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Auffahrt", :regions => [:ch]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pfingstmontag", :regions => [:ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_vs, :ch_ge, :ch_ju]},
-            {:function => lambda { |year| Holidays.easter(year)+60 }, :function_id => "easter(year)+60", :name => "Fronleichnam", :regions => [:ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_zg, :ch_fr, :ch_so, :ch_ai, :ch_ag, :ch_ti, :ch_vs, :ch_ne, :ch_ju]},
-            {:function => lambda { |year| Holidays.ch_vd_lundi_du_jeune_federal(year) }, :function_id => "ch_vd_lundi_du_jeune_federal(year)", :name => "Lundi du Jeûne fédéral", :regions => [:ch_vd]},
-            {:function => lambda { |year| Holidays.ch_ge_jeune_genevois(year) }, :function_id => "ch_ge_jeune_genevois(year)", :name => "Jeûne genevois", :regions => [:ch_ge]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Velikonoční pondělí", :regions => [:cz]},
-            {:function => lambda { |year| Holidays.easter(year)-49 }, :function_id => "easter(year)-49", :type => :informal, :name => "Fastelavn", :regions => [:dk]},
-            {:function => lambda { |year| Holidays.easter(year)-7 }, :function_id => "easter(year)-7", :type => :informal, :name => "Palmesøndag", :regions => [:dk]},
-            {:function => lambda { |year| Holidays.easter(year)-3 }, :function_id => "easter(year)-3", :name => "Skærtorsdag", :regions => [:dk]},
-            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Langfredag", :regions => [:dk]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Påskedag", :regions => [:dk]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "2. påskedag", :regions => [:dk]},
-            {:function => lambda { |year| Holidays.easter(year)+26 }, :function_id => "easter(year)+26", :name => "Store Bededag", :regions => [:dk]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Kristi Himmelfartsdag", :regions => [:dk]},
-            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "Pinsedag", :regions => [:dk]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "2. Pinsedag", :regions => [:dk]},
-            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Karfreitag", :regions => [:de]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :type => :informal, :name => "Ostersonntag", :regions => [:de]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Ostermontag", :regions => [:de]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Christi Himmelfahrt", :regions => [:de]},
-            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :type => :informal, :name => "Pfingstsonntag", :regions => [:de]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pfingstmontag", :regions => [:de]},
-            {:function => lambda { |year| Holidays.easter(year)+60 }, :function_id => "easter(year)+60", :name => "Fronleichnam", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_aux, :de_th_aux]},
-            {:function => lambda { |year| Holidays.easter(year)-52 }, :function_id => "easter(year)-52", :type => :informal, :name => "Weiberfastnacht", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn]},
-            {:function => lambda { |year| Holidays.easter(year)-48 }, :function_id => "easter(year)-48", :type => :informal, :name => "Rosenmontag", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn]},
-            {:function => lambda { |year| Holidays.easter(year)-46 }, :function_id => "easter(year)-46", :type => :informal, :name => "Aschermittwoch", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn]},
-            {:function => lambda { |year| Holidays.orthodox_easter(year)-2 }, :function_id => "orthodox_easter(year)-2", :name => "Μεγάλη Παρασκευή", :regions => [:el]},
-            {:function => lambda { |year| Holidays.orthodox_easter(year)-1 }, :function_id => "orthodox_easter(year)-1", :name => "Μεγάλο Σάββατο", :regions => [:el]},
-            {:function => lambda { |year| Holidays.orthodox_easter(year) }, :function_id => "orthodox_easter(year)", :name => "Κυριακή του Πάσχα", :regions => [:el]},
-            {:function => lambda { |year| Holidays.orthodox_easter(year)+1 }, :function_id => "orthodox_easter(year)+1", :name => "Δευτέρα του Πάσχα", :regions => [:el]},
-            {:function => lambda { |year| Holidays.orthodox_easter(year)-48 }, :function_id => "orthodox_easter(year)-48", :name => "Καθαρά Δευτέρα", :regions => [:el]},
-            {:function => lambda { |year| Holidays.orthodox_easter(year)+50 }, :function_id => "orthodox_easter(year)+50", :name => "Αγίου Πνεύματος", :regions => [:el]},
-            {:function => lambda { |year| Holidays.easter(year)-3 }, :function_id => "easter(year)-3", :name => "Jueves Santo", :regions => [:es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex]},
-            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Viernes Santo", :regions => [:es]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Lunes de Pascua", :regions => [:es_pv, :es_ct, :es_na, :es_v, :es_vc]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :type => :informal, :name => "Pâques", :regions => [:fr]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Lundi de Pâques", :regions => [:fr]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Ascension", :regions => [:fr]},
-            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :type => :informal, :name => "Pentecôte", :regions => [:fr]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Lundi de Pentecôte", :regions => [:fr]},
-            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Good Friday", :regions => [:gb]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Easter Sunday", :regions => [:gb]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Easter Monday", :regions => [:gb_eng, :gb_wls, :gb_eaw, :gb_nir]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Uskrs", :regions => [:hr]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Uskrsni ponedjeljak", :regions => [:hr]},
-            {:function => lambda { |year| Holidays.easter(year)+60 }, :function_id => "easter(year)+60", :name => "Tijelovo", :regions => [:hr]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Húsvét hétfő", :regions => [:hu]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pünkösd hétfő", :regions => [:hu]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Easter Monday", :regions => [:ie]},
-            {:function => lambda { |year| Holidays.easter(year)-48 }, :function_id => "easter(year)-48", :name => "Bolludagur", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year)-47 }, :function_id => "easter(year)-47", :name => "Sprengidagur", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year)-46 }, :function_id => "easter(year)-46", :name => "Öskudagur", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year)-7 }, :function_id => "easter(year)-7", :name => "Pálmasunnudagur", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year)-3 }, :function_id => "easter(year)-3", :name => "Skírdagur", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Föstudaginn langi", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Páskadagur", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Annar í páskum", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Uppstigningardagur", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "Hvítasunnudagur", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Annar í hvítasunnu", :regions => [:is]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Pasqua", :regions => [:it]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Lunedì dell'Angelo", :regions => [:it]},
-            {:function => lambda { |year| Holidays.easter(year)-47 }, :function_id => "easter(year)-47", :name => "Fasnachtsdienstag", :regions => [:li]},
-            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Karfreitag", :regions => [:li]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :type => :informal, :name => "Ostern", :regions => [:li]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Ostermontag", :regions => [:li]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Auffahrt", :regions => [:li]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pfingstmontag", :regions => [:li]},
-            {:function => lambda { |year| Holidays.easter(year)+60 }, :function_id => "easter(year)+60", :name => "Fronleichnam", :regions => [:li]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Šv. Velykos", :regions => [:lt]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Antroji Velykų diena", :regions => [:lt]},
-            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :type => :informal, :name => "Goede Vrijdag", :regions => [:nl]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Pasen", :regions => [:nl]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Pasen", :regions => [:nl]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Hemelvaartsdag", :regions => [:nl]},
-            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "Pinksteren", :regions => [:nl]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "Pinksteren", :regions => [:nl]},
-            {:function => lambda { |year| Holidays.easter(year)-49 }, :function_id => "easter(year)-49", :type => :informal, :name => "Fastelavn", :regions => [:no]},
-            {:function => lambda { |year| Holidays.easter(year)-7 }, :function_id => "easter(year)-7", :name => "Palmesøndag", :regions => [:no]},
-            {:function => lambda { |year| Holidays.easter(year)-3 }, :function_id => "easter(year)-3", :name => "Skjærtorsdag", :regions => [:no]},
-            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Langfredag", :regions => [:no]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "1. påskedag", :regions => [:no]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "2. påskedag", :regions => [:no]},
-            {:function => lambda { |year| Holidays.easter(year)+39 }, :function_id => "easter(year)+39", :name => "Kristi Himmelfartsdag", :regions => [:no]},
-            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "1. pinsedag", :regions => [:no]},
-            {:function => lambda { |year| Holidays.easter(year)+50 }, :function_id => "easter(year)+50", :name => "2. pinsedag", :regions => [:no]},
-            {:function => lambda { |year| Holidays.easter(year)-52 }, :function_id => "easter(year)-52", :type => :informal, :name => "Tłusty Czwartek", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.easter(year)-47 }, :function_id => "easter(year)-47", :type => :informal, :name => "Ostatki", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.easter(year)-46 }, :function_id => "easter(year)-46", :type => :informal, :name => "Środa Popielcowa", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.easter(year)-7 }, :function_id => "easter(year)-7", :type => :informal, :name => "Niedziela Palmowa", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.easter(year)-3 }, :function_id => "easter(year)-3", :type => :informal, :name => "Wielki Czwartek", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :type => :informal, :name => "Wielki Piątek", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.easter(year)-1 }, :function_id => "easter(year)-1", :type => :informal, :name => "Wielka Sobota", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Niedziela Wielkanocna", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Poniedziałek Wielkanocny (Lany Poniedziałek)", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "Zesłanie Ducha Świętego (Zielone Świątki)", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.easter(year)+60 }, :function_id => "easter(year)+60", :name => "Uroczystość Najświętszego Ciała i Krwi Pańskiej (Boże Ciało)", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.easter(year)-47 }, :function_id => "easter(year)-47", :type => :informal, :name => "Carnaval", :regions => [:pt]},
-            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Sexta-feira Santa", :regions => [:pt]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "Páscoa", :regions => [:pt]},
-            {:function => lambda { |year| Holidays.orthodox_easter(year) }, :function_id => "orthodox_easter(year)", :name => "Paștele", :regions => [:ro]},
-            {:function => lambda { |year| Holidays.orthodox_easter(year)+1 }, :function_id => "orthodox_easter(year)+1", :name => "Paștele", :regions => [:ro]},
-            {:function => lambda { |year| Holidays.orthodox_easter(year) + 49 }, :function_id => "orthodox_easter(year) + 49", :name => "Rusaliile", :regions => [:ro]},
-            {:function => lambda { |year| Holidays.orthodox_easter(year) + 50 }, :function_id => "orthodox_easter(year) + 50", :name => "Rusaliile", :regions => [:ro]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "Veľkonočný pondelok", :regions => [:sk]},
-            {:function => lambda { |year| Holidays.easter(year)-2 }, :function_id => "easter(year)-2", :name => "Veľký piatok", :regions => [:sk]},
-            {:function => lambda { |year| Holidays.easter(year) }, :function_id => "easter(year)", :name => "velikonočna nedelja", :regions => [:si]},
-            {:function => lambda { |year| Holidays.easter(year)+1 }, :function_id => "easter(year)+1", :name => "velikonočni ponedeljek", :regions => [:si]},
-            {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :name => "binkošti", :regions => [:si]},
-            {:function => lambda { |year| Holidays.orthodox_easter_julian(year)-2 }, :function_id => "orthodox_easter_julian(year)-2", :name => "Good Friday", :regions => [:bg_en]},
-            {:function => lambda { |year| Holidays.orthodox_easter_julian(year)-2 }, :function_id => "orthodox_easter_julian(year)-2", :name => "Разпети петък", :regions => [:bg_bg]},
-            {:function => lambda { |year| Holidays.orthodox_easter_julian(year)-1 }, :function_id => "orthodox_easter_julian(year)-1", :name => "Holy Saturday", :regions => [:bg_en]},
-            {:function => lambda { |year| Holidays.orthodox_easter_julian(year)-1 }, :function_id => "orthodox_easter_julian(year)-1", :name => "Велика събота", :regions => [:bg_bg]},
-            {:function => lambda { |year| Holidays.orthodox_easter_julian(year) }, :function_id => "orthodox_easter_julian(year)", :name => "Easter Sunday", :regions => [:bg_en]},
-            {:function => lambda { |year| Holidays.orthodox_easter_julian(year) }, :function_id => "orthodox_easter_julian(year)", :name => "Възкресение Христово. Великден", :regions => [:bg_bg]},
-            {:function => lambda { |year| Holidays.orthodox_easter_julian(year)+1 }, :function_id => "orthodox_easter_julian(year)+1", :name => "Easter Monday", :regions => [:bg_en]},
-            {:function => lambda { |year| Holidays.orthodox_easter_julian(year)+1 }, :function_id => "orthodox_easter_julian(year)+1", :name => "Възкресение Христово. Великден", :regions => [:bg_bg]}],
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Ostermontag", :regions => [:at]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Christi Himmelfahrt", :regions => [:at]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Pfingstmontag", :regions => [:at]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 60, :name => "Fronleichnam", :regions => [:at]},
+            {:function => "easter(year)", :function_arguments => [:year], :name => "Pâques", :regions => [:be_fr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Lundi de Pâques", :regions => [:be_fr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Ascension", :regions => [:be_fr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Pentecôte", :regions => [:be_fr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Lundi de Pentecôte", :regions => [:be_fr]},
+            {:function => "easter(year)", :function_arguments => [:year], :name => "Pasen", :regions => [:be_nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Paasmaandag", :regions => [:be_nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "O.H. Hemelvaart", :regions => [:be_nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Pinksteren", :regions => [:be_nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Pinkstermaandag", :regions => [:be_nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Karfreitag", :regions => [:ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_ne, :ch_ge, :ch_ju]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Ostermontag", :regions => [:ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_vs, :ch_ge, :ch_ju]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Auffahrt", :regions => [:ch]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Pfingstmontag", :regions => [:ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_vs, :ch_ge, :ch_ju]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 60, :name => "Fronleichnam", :regions => [:ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_zg, :ch_fr, :ch_so, :ch_ai, :ch_ag, :ch_ti, :ch_vs, :ch_ne, :ch_ju]},
+            {:function => "ch_vd_lundi_du_jeune_federal(year)", :function_arguments => [:year], :name => "Lundi du Jeûne fédéral", :regions => [:ch_vd]},
+            {:function => "ch_ge_jeune_genevois(year)", :function_arguments => [:year], :name => "Jeûne genevois", :regions => [:ch_ge]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Velký pátek", :regions => [:cz]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Velikonoční pondělí", :regions => [:cz]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -49, :type => :informal, :name => "Fastelavn", :regions => [:dk]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -7, :type => :informal, :name => "Palmesøndag", :regions => [:dk]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -3, :name => "Skærtorsdag", :regions => [:dk]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Langfredag", :regions => [:dk]},
+            {:function => "easter(year)", :function_arguments => [:year], :name => "Påskedag", :regions => [:dk]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "2. påskedag", :regions => [:dk]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 26, :name => "Store Bededag", :regions => [:dk]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Kristi Himmelfartsdag", :regions => [:dk]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Pinsedag", :regions => [:dk]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "2. Pinsedag", :regions => [:dk]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Karfreitag", :regions => [:de]},
+            {:function => "easter(year)", :function_arguments => [:year], :type => :informal, :name => "Ostersonntag", :regions => [:de]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Ostermontag", :regions => [:de]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Christi Himmelfahrt", :regions => [:de]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :type => :informal, :name => "Pfingstsonntag", :regions => [:de]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Pfingstmontag", :regions => [:de]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 60, :name => "Fronleichnam", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_aux, :de_th_aux]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -52, :type => :informal, :name => "Weiberfastnacht", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -48, :type => :informal, :name => "Rosenmontag", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -46, :type => :informal, :name => "Aschermittwoch", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn]},
+            {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Μεγάλη Παρασκευή", :regions => [:el]},
+            {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => -1, :name => "Μεγάλο Σάββατο", :regions => [:el]},
+            {:function => "orthodox_easter(year)", :function_arguments => [:year], :name => "Κυριακή του Πάσχα", :regions => [:el]},
+            {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Δευτέρα του Πάσχα", :regions => [:el]},
+            {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => -48, :name => "Καθαρά Δευτέρα", :regions => [:el]},
+            {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Αγίου Πνεύματος", :regions => [:el]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -3, :name => "Jueves Santo", :regions => [:es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Viernes Santo", :regions => [:es]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Lunes de Pascua", :regions => [:es_pv, :es_ct, :es_na, :es_v, :es_vc]},
+            {:function => "easter(year)", :function_arguments => [:year], :type => :informal, :name => "Pâques", :regions => [:fr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Lundi de Pâques", :regions => [:fr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Ascension", :regions => [:fr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :type => :informal, :name => "Pentecôte", :regions => [:fr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Lundi de Pentecôte", :regions => [:fr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:gb]},
+            {:function => "easter(year)", :function_arguments => [:year], :name => "Easter Sunday", :regions => [:gb]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:gb_eng, :gb_wls, :gb_eaw, :gb_nir]},
+            {:function => "easter(year)", :function_arguments => [:year], :name => "Uskrs", :regions => [:hr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Uskrsni ponedjeljak", :regions => [:hr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 60, :name => "Tijelovo", :regions => [:hr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Húsvét hétfő", :regions => [:hu]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Pünkösd hétfő", :regions => [:hu]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:ie]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -48, :name => "Bolludagur", :regions => [:is]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -47, :name => "Sprengidagur", :regions => [:is]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -46, :name => "Öskudagur", :regions => [:is]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -7, :name => "Pálmasunnudagur", :regions => [:is]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -3, :name => "Skírdagur", :regions => [:is]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Föstudaginn langi", :regions => [:is]},
+            {:function => "easter(year)", :function_arguments => [:year], :name => "Páskadagur", :regions => [:is]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Annar í páskum", :regions => [:is]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Uppstigningardagur", :regions => [:is]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Hvítasunnudagur", :regions => [:is]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Annar í hvítasunnu", :regions => [:is]},
+            {:function => "easter(year)", :function_arguments => [:year], :name => "Pasqua", :regions => [:it]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Lunedì dell'Angelo", :regions => [:it]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -47, :name => "Fasnachtsdienstag", :regions => [:li]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Karfreitag", :regions => [:li]},
+            {:function => "easter(year)", :function_arguments => [:year], :type => :informal, :name => "Ostern", :regions => [:li]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Ostermontag", :regions => [:li]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Auffahrt", :regions => [:li]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Pfingstmontag", :regions => [:li]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 60, :name => "Fronleichnam", :regions => [:li]},
+            {:function => "easter(year)", :function_arguments => [:year], :name => "Šv. Velykos", :regions => [:lt]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Antroji Velykų diena", :regions => [:lt]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :type => :informal, :name => "Goede Vrijdag", :regions => [:nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :name => "Eerste Pasen", :regions => [:nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Tweede Pasen", :regions => [:nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Hemelvaartsdag", :regions => [:nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Eerste Pinksteren", :regions => [:nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Tweede Pinksteren", :regions => [:nl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -49, :type => :informal, :name => "Fastelavn", :regions => [:no]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -7, :name => "Palmesøndag", :regions => [:no]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -3, :name => "Skjærtorsdag", :regions => [:no]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Langfredag", :regions => [:no]},
+            {:function => "easter(year)", :function_arguments => [:year], :name => "1. påskedag", :regions => [:no]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "2. påskedag", :regions => [:no]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Kristi Himmelfartsdag", :regions => [:no]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "1. pinsedag", :regions => [:no]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "2. pinsedag", :regions => [:no]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -52, :type => :informal, :name => "Tłusty Czwartek", :regions => [:pl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -47, :type => :informal, :name => "Ostatki", :regions => [:pl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -46, :type => :informal, :name => "Środa Popielcowa", :regions => [:pl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -7, :type => :informal, :name => "Niedziela Palmowa", :regions => [:pl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -3, :type => :informal, :name => "Wielki Czwartek", :regions => [:pl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :type => :informal, :name => "Wielki Piątek", :regions => [:pl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -1, :type => :informal, :name => "Wielka Sobota", :regions => [:pl]},
+            {:function => "easter(year)", :function_arguments => [:year], :name => "Niedziela Wielkanocna", :regions => [:pl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Poniedziałek Wielkanocny (Lany Poniedziałek)", :regions => [:pl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Zesłanie Ducha Świętego (Zielone Świątki)", :regions => [:pl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 60, :name => "Uroczystość Najświętszego Ciała i Krwi Pańskiej (Boże Ciało)", :regions => [:pl]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -47, :type => :informal, :name => "Carnaval", :regions => [:pt]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Sexta-feira Santa", :regions => [:pt]},
+            {:function => "easter(year)", :function_arguments => [:year], :name => "Páscoa", :regions => [:pt]},
+            {:function => "orthodox_easter(year)", :function_arguments => [:year], :name => "Paștele - duminică", :regions => [:ro]},
+            {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Paștele - luni", :regions => [:ro]},
+            {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Rusaliile - 50", :regions => [:ro]},
+            {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Rusaliile - 51", :regions => [:ro]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Veľkonočný pondelok", :regions => [:sk]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Veľký piatok", :regions => [:sk]},
+            {:function => "easter(year)", :function_arguments => [:year], :name => "velikonočna nedelja", :regions => [:si]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "velikonočni ponedeljek", :regions => [:si]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "binkošti", :regions => [:si]},
+            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:bg_en]},
+            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Разпети петък", :regions => [:bg_bg]},
+            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :function_modifier => -1, :name => "Holy Saturday", :regions => [:bg_en]},
+            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :function_modifier => -1, :name => "Велика събота", :regions => [:bg_bg]},
+            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :name => "Easter Sunday", :regions => [:bg_en]},
+            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :name => "Възкресение Христово. Великден", :regions => [:bg_bg, :bg_bg]},
+            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:bg_en]}],
       1 => [{:mday => 1, :name => "Neujahrstag", :regions => [:at]},
             {:mday => 6, :name => "Heilige Drei Könige", :regions => [:at]},
             {:mday => 1, :name => "Jour de l'an", :regions => [:be_fr]},
@@ -164,15 +164,15 @@ module Holidays
             {:mday => 6, :name => "Heilige Drei Könige", :regions => [:de_bw, :de_by, :de_st]},
             {:mday => 1, :name => "Πρωτοχρονιά", :regions => [:el]},
             {:mday => 6, :name => "Θεοφάνεια", :regions => [:el]},
-            {:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Año Nuevo", :regions => [:es]},
-            {:mday => 6, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Día de Reyes", :regions => [:es]},
+            {:mday => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Año Nuevo", :regions => [:es]},
+            {:mday => 6, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de Reyes", :regions => [:es]},
             {:mday => 1, :name => "Jour de l'an", :regions => [:fr]},
-            {:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "New Year's Day", :regions => [:gb]},
-            {:mday => 2, :observed => lambda { |date| Holidays.to_weekday_if_boxing_weekend(date) }, :observed_id => "to_weekday_if_boxing_weekend", :name => "2nd January", :regions => [:gb_sct]},
+            {:mday => 1, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:gb]},
+            {:mday => 2, :observed => "to_weekday_if_boxing_weekend(date)", :observed_arguments => [:date], :name => "2nd January", :regions => [:gb_sct]},
             {:mday => 1, :name => "Nova godina", :regions => [:hr]},
             {:mday => 6, :name => "Sveta tri kralja", :regions => [:hr]},
             {:mday => 1, :name => "Újév", :regions => [:hu]},
-            {:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "New Year's Day", :regions => [:ie]},
+            {:mday => 1, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:ie]},
             {:mday => 1, :name => "Nýársdagur", :regions => [:is]},
             {:mday => 6, :name => "Þrettándinn", :regions => [:is]},
             {:mday => 19, :type => :informal, :name => "Bóndadagur", :regions => [:is]},
@@ -184,8 +184,8 @@ module Holidays
             {:mday => 1, :name => "Nieuwjaar", :regions => [:nl]},
             {:mday => 1, :name => "Nyttårsdag", :regions => [:no]},
             {:mday => 1, :name => "Nowy Rok", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.pl_trzech_kroli(year) }, :function_id => "pl_trzech_kroli(year)", :name => "Objawienie Pańskie (święto Trzech Króli)", :regions => [:pl]},
-            {:function => lambda { |year| Holidays.pl_trzech_kroli_informal(year) }, :function_id => "pl_trzech_kroli_informal(year)", :type => :informal, :name => "Objawienie Pańskie (święto Trzech Króli)", :regions => [:pl]},
+            {:function => "pl_trzech_kroli(year)", :function_arguments => [:year], :name => "Objawienie Pańskie (święto Trzech Króli)", :regions => [:pl]},
+            {:function => "pl_trzech_kroli_informal(year)", :function_arguments => [:year], :type => :informal, :name => "Objawienie Pańskie (święto Trzech Króli)", :regions => [:pl]},
             {:mday => 21, :type => :informal, :name => "Dzień Babci", :regions => [:pl]},
             {:mday => 22, :type => :informal, :name => "Dzień Dziadka", :regions => [:pl]},
             {:mday => 1, :name => "Ano Novo", :regions => [:pt]},
@@ -206,10 +206,10 @@ module Holidays
             {:mday => 5, :type => :informal, :name => "Danmarks befrielse", :regions => [:dk]},
             {:mday => 1, :name => "Tag der Arbeit", :regions => [:de]},
             {:mday => 1, :name => "Πρωτομαγιά", :regions => [:el]},
-            {:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Día del Trabajador", :regions => [:es]},
-            {:mday => 2, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Fiesta de la Comunidad", :regions => [:es_m]},
-            {:mday => 30, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Día de las Canarias", :regions => [:es_cn]},
-            {:mday => 31, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Día de la Región Castilla-La Mancha", :regions => [:es_cm]},
+            {:mday => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día del Trabajador", :regions => [:es]},
+            {:mday => 2, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Fiesta de la Comunidad", :regions => [:es_m]},
+            {:mday => 30, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de las Canarias", :regions => [:es_cn]},
+            {:mday => 31, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de la Región Castilla-La Mancha", :regions => [:es_cm]},
             {:mday => 1, :name => "Fête du travail", :regions => [:fr]},
             {:mday => 8, :name => "Victoire 1945", :regions => [:fr]},
             {:wday => 1, :week => 1, :name => "May Day", :regions => [:gb]},
@@ -250,7 +250,7 @@ module Holidays
             {:mday => 15, :name => "Mariä Himmelfahrt", :regions => [:de_by, :de_sl]},
             {:mday => 8, :name => "Friedensfest", :regions => [:de_by_aux]},
             {:mday => 15, :name => "Κοίμηση της Θεοτόκου", :regions => [:el]},
-            {:mday => 15, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Asunción", :regions => [:es]},
+            {:mday => 15, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Asunción", :regions => [:es]},
             {:mday => 15, :name => "Assomption", :regions => [:fr]},
             {:wday => 1, :week => 1, :name => "Bank Holiday", :regions => [:gb_sct]},
             {:wday => 1, :week => -1, :name => "Bank Holiday", :regions => [:gb_eng, :gb_wls, :gb_eaw, :gb_nir]},
@@ -275,8 +275,8 @@ module Holidays
             {:mday => 31, :type => :informal, :name => "Reformationstag", :regions => [:de_bw]},
             {:mday => 31,  :year_ranges => [{:limited => [2017]}],:name => "Reformationstag", :regions => [:de]},
             {:mday => 28, :name => "Επέτειος του Όχι", :regions => [:el]},
-            {:mday => 9, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Día de Valencia", :regions => [:es_vc, :es_v]},
-            {:mday => 12, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Día de la Hispanidad", :regions => [:es]},
+            {:mday => 9, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de Valencia", :regions => [:es_vc, :es_v]},
+            {:mday => 12, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de la Hispanidad", :regions => [:es]},
             {:mday => 8, :name => "Dan neovisnosti", :regions => [:hr]},
             {:mday => 23, :name => "1956-os forradalom és szabadságharc ünnepe", :regions => [:hu]},
             {:wday => 1, :week => -1, :name => "October Bank Holiday", :regions => [:ie]},
@@ -291,12 +291,12 @@ module Holidays
             {:mday => 17, :name => "Den boje za svobodu a demokracii", :regions => [:cz]},
             {:mday => 10, :type => :informal, :name => "Mortensaften", :regions => [:dk]},
             {:mday => 1, :name => "Allerheiligen", :regions => [:de_bw, :de_by, :de_nw, :de_rp, :de_sl]},
-            {:function => lambda { |year| Holidays.de_buss_und_bettag(year) }, :function_id => "de_buss_und_bettag(year)", :name => "Buß- und Bettag", :regions => [:de_sn]},
-            {:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Todos los Santos", :regions => [:es]},
+            {:function => "de_buss_und_bettag(year)", :function_arguments => [:year], :name => "Buß- und Bettag", :regions => [:de_sn]},
+            {:mday => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Todos los Santos", :regions => [:es]},
             {:mday => 1, :name => "Toussaint", :regions => [:fr]},
             {:mday => 11, :name => "Armistice 1918", :regions => [:fr]},
             {:mday => 5, :type => :informal, :name => "Guy Fawkes Day", :regions => [:gb]},
-            {:mday => 30, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :type => :informal, :name => "St. Andrew's Day", :regions => [:gb_sct]},
+            {:mday => 30, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :type => :informal, :name => "St. Andrew's Day", :regions => [:gb_sct]},
             {:mday => 1, :name => "Dan svih svetih", :regions => [:hr]},
             {:mday => 1, :name => "Mindenszentek", :regions => [:hu]},
             {:mday => 16, :name => "Dagur íslenskrar tungu", :regions => [:is]},
@@ -335,19 +335,19 @@ module Holidays
             {:mday => 31, :type => :informal, :name => "Silvester", :regions => [:de]},
             {:mday => 25, :name => "Χριστούγεννα", :regions => [:el]},
             {:mday => 26, :name => "Δεύτερη ημέρα των Χριστουγέννων", :regions => [:el]},
-            {:mday => 6, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Día de la Constitución", :regions => [:es]},
-            {:mday => 8, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Inmaculada Concepción", :regions => [:es]},
-            {:mday => 25, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Navidad del Señor", :regions => [:es]},
-            {:mday => 26, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "San Esteban", :regions => [:es_ib, :es_ct]},
+            {:mday => 6, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de la Constitución", :regions => [:es]},
+            {:mday => 8, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Inmaculada Concepción", :regions => [:es]},
+            {:mday => 25, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Navidad del Señor", :regions => [:es]},
+            {:mday => 26, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "San Esteban", :regions => [:es_ib, :es_ct]},
             {:mday => 25, :name => "Noël", :regions => [:fr]},
-            {:mday => 25, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "Christmas Day", :regions => [:gb]},
-            {:mday => 26, :observed => lambda { |date| Holidays.to_weekday_if_boxing_weekend(date) }, :observed_id => "to_weekday_if_boxing_weekend", :name => "Boxing Day", :regions => [:gb]},
+            {:mday => 25, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:gb]},
+            {:mday => 26, :observed => "to_weekday_if_boxing_weekend(date)", :observed_arguments => [:date], :name => "Boxing Day", :regions => [:gb]},
             {:mday => 25, :name => "Božić", :regions => [:hr]},
             {:mday => 26, :name => "Sveti Stjepan", :regions => [:hr]},
             {:mday => 25, :name => "Karácsony", :regions => [:hu]},
             {:mday => 26, :name => "Karácsony", :regions => [:hu]},
-            {:mday => 25, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "Christmas Day", :regions => [:ie]},
-            {:mday => 26, :observed => lambda { |date| Holidays.ie_st_stephens_day(date) }, :observed_id => "ie_st_stephens_day", :name => "St. Stephen's Day", :regions => [:ie]},
+            {:mday => 25, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:ie]},
+            {:mday => 26, :observed => "ie_st_stephens_day(date)", :observed_arguments => [:date], :name => "St. Stephen's Day", :regions => [:ie]},
             {:mday => 24, :name => "Jól", :regions => [:is]},
             {:mday => 25, :name => "Jól", :regions => [:is]},
             {:mday => 26, :name => "Jól", :regions => [:is]},
@@ -364,8 +364,8 @@ module Holidays
             {:mday => 25, :name => "Šv. Kalėdos", :regions => [:lt]},
             {:mday => 26, :name => "Antroji Kalėdų diena", :regions => [:lt]},
             {:mday => 5, :type => :informal, :name => "Sinterklaas", :regions => [:nl]},
-            {:mday => 25, :name => "Kerstmis", :regions => [:nl]},
-            {:mday => 26, :name => "Kerstmis", :regions => [:nl]},
+            {:mday => 25, :name => "Eerste Kerstmis", :regions => [:nl]},
+            {:mday => 26, :name => "Tweede Kerstmis", :regions => [:nl]},
             {:mday => 24, :type => :informal, :name => "Julaften", :regions => [:no]},
             {:mday => 25, :name => "1. juledag", :regions => [:no]},
             {:mday => 26, :name => "2. juledag", :regions => [:no]},
@@ -396,7 +396,7 @@ module Holidays
             {:mday => 21, :name => "Nationale Feestdag", :regions => [:be_nl]},
             {:mday => 5, :name => "Den slovanských věrozvěstů Cyrila a Metoděje", :regions => [:cz]},
             {:mday => 6, :name => "Den upálení mistra Jana Husa", :regions => [:cz]},
-            {:mday => 23, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Santiago Apostol", :regions => [:es_ga]},
+            {:mday => 23, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Santiago Apostol", :regions => [:es_ga]},
             {:mday => 14, :name => "Fête nationale", :regions => [:fr]},
             {:mday => 5, :name => "Tynwald Day", :regions => [:im, :gb_iom]},
             {:mday => 12, :name => "Battle of the Boyne", :regions => [:gb_nir]},
@@ -405,25 +405,25 @@ module Holidays
       3 => [{:mday => 1, :name => "Instauration de la République", :regions => [:ch_ne]},
             {:mday => 19, :name => "Josephstag", :regions => [:ch_ur, :ch_sz, :ch_nw, :ch_ti, :ch_vs]},
             {:mday => 25, :name => "Επέτειος της Επανάστασης του 1821", :regions => [:el]},
-            {:mday => 1, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Día de las Islas Baleares", :regions => [:es_ib]},
-            {:mday => 19, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "San José", :regions => [:es_v, :es_vc, :es_cm, :es_mu, :es_m]},
+            {:mday => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de las Islas Baleares", :regions => [:es_ib]},
+            {:mday => 19, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "San José", :regions => [:es_v, :es_vc, :es_cm, :es_mu, :es_m]},
             {:mday => 5, :name => "St. Piran's Day", :regions => [:gb_con]},
             {:mday => 17, :name => "St. Patrick's Day", :regions => [:gb_nir]},
             {:mday => 15, :name => "1848/49-es forradalom és szabadságharc ünnepe", :regions => [:hu]},
-            {:mday => 17, :observed => lambda { |date| Holidays.to_monday_if_weekend(date) }, :observed_id => "to_monday_if_weekend", :name => "St. Patrick's Day", :regions => [:ie]},
+            {:mday => 17, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "St. Patrick's Day", :regions => [:ie]},
             {:mday => 19, :name => "St. Josef", :regions => [:li]},
             {:mday => 11, :name => "Nepriklausomybės atkūrimo diena", :regions => [:lt]},
             {:mday => 8, :type => :informal, :name => "Dzień Kobiet", :regions => [:pl]},
             {:mday => 10, :type => :informal, :name => "Dzień Mężczyzn", :regions => [:pl]},
             {:mday => 3, :name => "Liberation Day", :regions => [:bg_en]},
             {:mday => 3, :name => "Освобожението на България", :regions => [:bg_bg]}],
-      4 => [{:function => lambda { |year| Holidays.ch_gl_naefelser_fahrt(year) }, :function_id => "ch_gl_naefelser_fahrt(year)", :name => "Näfelser Fahrt", :regions => [:ch_gl]},
+      4 => [{:function => "ch_gl_naefelser_fahrt(year)", :function_arguments => [:year], :name => "Näfelser Fahrt", :regions => [:ch_gl]},
             {:mday => 1, :type => :informal, :name => "1. april", :regions => [:dk]},
             {:mday => 9, :type => :informal, :name => "Danmarks besættelse", :regions => [:dk]},
             {:mday => 16, :type => :informal, :name => "Dronningens fødselsdag", :regions => [:dk]},
-            {:mday => 23, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Día de Castilla y León", :regions => [:es_cl]},
-            {:mday => 23, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "San Jorge, Día de Aragón", :regions => [:es_ar]},
-            {:function => lambda { |year| Holidays.is_sumardagurinn_fyrsti(year) }, :function_id => "is_sumardagurinn_fyrsti(year)", :name => "Sumardagurinn fyrsti", :regions => [:is]},
+            {:mday => 23, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de Castilla y León", :regions => [:es_cl]},
+            {:mday => 23, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "San Jorge, Día de Aragón", :regions => [:es_ar]},
+            {:function => "is_sumardagurinn_fyrsti(year)", :function_arguments => [:year], :name => "Sumardagurinn fyrsti", :regions => [:is]},
             {:mday => 25, :name => "Festa della Liberazione", :regions => [:it]},
             {:mday => 27, :name => "Koningsdag", :regions => [:nl]},
             {:mday => 1, :type => :informal, :name => "Prima Aprilis", :regions => [:pl]},
@@ -435,8 +435,8 @@ module Holidays
             {:mday => 5, :type => :informal, :name => "Grundlovsdag", :regions => [:dk]},
             {:mday => 15, :type => :informal, :name => "Valdemarsdag og Genforeningsdag", :regions => [:dk]},
             {:mday => 23, :type => :informal, :name => "Sankt Hans aften", :regions => [:dk]},
-            {:mday => 9, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Día de la Región de Murcia", :regions => [:es_mu]},
-            {:mday => 9, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Día de La Rioja", :regions => [:es_lo]},
+            {:mday => 9, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de la Región de Murcia", :regions => [:es_mu]},
+            {:mday => 9, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de La Rioja", :regions => [:es_lo]},
             {:mday => 22, :name => "Dan antifašističke borbe", :regions => [:hr]},
             {:mday => 25, :name => "Dan državnosti", :regions => [:hr]},
             {:wday => 1, :week => 1, :name => "June Bank Holiday", :regions => [:ie]},
@@ -450,10 +450,10 @@ module Holidays
       9 => [{:mday => 22, :name => "Mauritiustag", :regions => [:ch_ai]},
             {:mday => 25, :name => "Bruderklausenfest", :regions => [:ch_ow]},
             {:mday => 28, :name => "Den české státnosti", :regions => [:cz]},
-            {:mday => 2, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Día de Ceuta", :regions => [:es_ce]},
-            {:mday => 8, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Día de Asturias", :regions => [:es_o]},
+            {:mday => 2, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de Ceuta", :regions => [:es_ce]},
+            {:mday => 8, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de Asturias", :regions => [:es_o]},
             {:mday => 8, :name => "Día de Extremadura", :regions => [:es_ex]},
-            {:mday => 11, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Fiesta Nacional de Cataluña", :regions => [:es_ct]},
+            {:mday => 11, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Fiesta Nacional de Cataluña", :regions => [:es_ct]},
             {:mday => 8, :name => "Maria Geburt", :regions => [:li]},
             {:mday => 30, :type => :informal, :name => "Dzień Chłopaka", :regions => [:pl]},
             {:mday => 1, :name => "Deň Ústavy Slovenskej republiky", :regions => [:sk]},
@@ -462,7 +462,7 @@ module Holidays
             {:mday => 6, :name => "Ден на Съединението", :regions => [:bg_bg]},
             {:mday => 22, :name => "The Independence Day", :regions => [:bg_en]},
             {:mday => 22, :name => "Ден на Независимостта", :regions => [:bg_bg]}],
-      2 => [{:mday => 28, :observed => lambda { |date| Holidays.to_monday_if_sunday(date) }, :observed_id => "to_monday_if_sunday", :name => "Día de Andalucía", :regions => [:es_an]},
+      2 => [{:mday => 28, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de Andalucía", :regions => [:es_an]},
             {:mday => 18, :type => :informal, :name => "Konudagur", :regions => [:is]},
             {:mday => 2, :name => "Maria Lichtmess", :regions => [:li]},
             {:mday => 16, :name => "Valstybės atkūrimo diena", :regions => [:lt]},
@@ -471,94 +471,81 @@ module Holidays
             {:mday => 8, :name => "Prešernov dan, slovenski kulturni praznik", :regions => [:si]}]
       }
     end
+
+    def self.custom_methods
+      {
+        "ch_vd_lundi_du_jeune_federal(year)" => Proc.new { |year|
+date = Date.civil(year,9,1)
+# Find the first Sunday of September
+until date.wday.eql? 0 do
+  date += 1
+end
+# There are 15 days between the first Sunday
+# and the Monday after the third Sunday
+date + 15
+},
+
+"ch_ge_jeune_genevois(year)" => Proc.new { |year|
+date = Date.civil(year,9,1)
+# Find the first Sunday of September
+until date.wday.eql? 0 do
+  date += 1
+end
+# Thursday is four days after Sunday
+date + 4
+},
+
+"ch_gl_naefelser_fahrt(year)" => Proc.new { |year|
+date = Date.civil(year,4,1)
+# Find the first Thursday of April
+until date.wday.eql? 4 do
+  date += 1
+end
+
+if date.eql?(Holidays::DateCalculatorFactory::Easter::Gregorian.easter_calculator.calculate_easter_for(year)-3)
+  date += 7
+end
+date
+},
+
+"de_buss_und_bettag(year)" => Proc.new { |year|
+date = Date.civil(year,11,23)
+if date.wday > 3
+  date -= (date.wday - 3)
+else
+  date -= (date.wday + 4)
+end
+date
+},
+
+"ie_st_stephens_day(date)" => Proc.new { |date|
+case date.wday
+when 6, 0 then date + 2
+when 1 then date + 1
+else date
+end
+},
+
+"is_sumardagurinn_fyrsti(year)" => Proc.new { |year|
+date = Date.civil(year,4,18)
+if date.wday < 4
+  date += (4 - date.wday)
+else date
+  date += (11 - date.wday)
+end
+date
+},
+
+"pl_trzech_kroli(year)" => Proc.new { |year|
+year >= 2011 ? 6 : nil
+},
+
+"pl_trzech_kroli_informal(year)" => Proc.new { |year|
+year < 2011 ? 6 : nil
+},
+
+
+      }
+    end
   end
-
-# Monday after the third Sunday of September
-def self.ch_vd_lundi_du_jeune_federal(year)
-  date = Date.civil(year,9,1)
-  # Find the first Sunday of September
-  until date.wday.eql? 0 do
-    date += 1
-  end
-  # There are 15 days between the first Sunday
-  # and the Monday after the third Sunday
-  date + 15
 end
-
-
-# Thursday after the first Sunday of September
-def self.ch_ge_jeune_genevois(year)
-  date = Date.civil(year,9,1)
-  # Find the first Sunday of September
-  until date.wday.eql? 0 do
-    date += 1
-  end
-  # Thursday is four days after Sunday
-  date + 4
-end
-
-
-# First Thursday of April. If the first Thursday of April is in the week before easter, then a week later.
-def self.ch_gl_naefelser_fahrt(year)
-  date = Date.civil(year,4,1)
-  # Find the first Thursday of April
-  until date.wday.eql? 4 do
-    date += 1
-  end
-  if date.eql?(easter(year)-3)
-    date += 7
-  end
-  date
-end
-
-
-# Germany: Wednesday before November 23
-def self.de_buss_und_bettag(year)
-  date = Date.civil(year,11,23)
-  if date.wday > 3
-    date -= (date.wday - 3)
-  else
-    date -= (date.wday + 4)
-  end
-  date
-end
-
-
-# Ireland - Stephens Day is always the day after christmas day
-def self.ie_st_stephens_day(date)
-  case date.wday
-  when 6, 0 then date + 2
-  when 1 then date + 1
-  else date
-  end
-end
-
-
-# Iceland: first day of summer (Thursday after 18 April)
-def self.is_sumardagurinn_fyrsti(year)
-  date = Date.civil(year,4,18)
-  if date.wday < 4
-    date += (4 - date.wday)
-  else date
-    date += (11 - date.wday)
-  end
-  date
-end
-
-
-# Poland: January 6 is holiday since 2011
-def self.pl_trzech_kroli(year)
-  year >= 2011 ? 6 : nil
-end
-
-
-# Poland: January 6 wasn't holiday before 2011
-def self.pl_trzech_kroli_informal(year)
-  year < 2011 ? 6 : nil
-end
-
-
-
-end
-
-Holidays.merge_defs(Holidays::EUROPE.defined_regions, Holidays::EUROPE.holidays_by_month)

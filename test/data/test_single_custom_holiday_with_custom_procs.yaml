@@ -1,0 +1,24 @@
+months:
+  0:
+  - name: Custom Holiday
+    regions: [custom_single_file]
+    function: custom_method(year, month)
+    function_modifier: 5
+  6:
+  - name: Company Founding
+    regions: [custom_single_file]
+    mday: 20
+methods:
+  custom_method:
+    arguments: year, month
+    source: |
+      d = Date.civil(year, month, 1)
+      d + 2
+tests: |
+    {Date.civil(2013,6,20) => 'Company Founding'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :custom_single_file)[0] || {})[:name]
+    end
+
+    {Date.civil(2015, 1, 1) => 'Custom Holiday'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :custom_single_file)[0] || {}[:name]
+    end

@@ -7,6 +7,9 @@ require 'yaml'
 require 'fileutils'
 require 'holidays'
 
+DEFINITION_PATH = 'definitions'
+DEFINITION_TESTS_PATH = 'test/defs'
+
 Rake::TestTask.new(:test) do |t|
   t.libs << 'test'
   t.test_files = FileList['test/**/test_*.rb']
@@ -14,30 +17,57 @@ end
 
 task :default => :test
 
-namespace :generate do
-  DATA_PATH = 'definitions'
-  TEST_DEFS_PATH = 'test/defs'
+desc "Run tests for only a single region. Do not provide sub regions. Example (without quotes): 'rake test_region jp'"
+task :test_region do
+  # Magic to define empty tasks on the fly so we have nicer arguments, see http://cobwwweb.com/4-ways-to-pass-arguments-to-a-rake-task
+  ARGV.each { |a| task a.to_sym do ; end }
 
+  if ARGV[1].nil? || ARGV[1].empty?
+    raise ArgumentError.new("You must provide a region. Example (without quotes): 'rake test_region us'")
+  end
+
+  region = ARGV[1].downcase
+
+  unless Holidays.available_regions.include?(region.to_sym)
+    raise ArgumentError.new("Region '#{region}' not recognized")
+  end
+
+  unless File.file?("#{DEFINITION_TESTS_PATH}/test_defs_#{region}.rb")
+    raise ArgumentError.new("Test file not found for region '#{region}'. Do not use sub regions, try the overall region instead. Example: 'us' instead of 'us_dc'")
+  end
+
+  sh "bundle exec ruby #{DEFINITION_TESTS_PATH}/test_defs_#{region}.rb"
+end
+
+desc 'Launch IRB session'
+task :console do
+  sh "irb -rubygems -I lib -r holidays.rb"
+end
+
+desc 'Generate definitions and tests used in main holiday logic based on raw YAML definitions'
+namespace :generate do
   desc 'Generate the holiday definition files'
   task :definitions do
     # load the index
-    def_index = YAML.load_file("#{DATA_PATH}/index.yaml")
+    def_index = YAML.load_file("#{DEFINITION_PATH}/index.yaml")
 
     # create a dir for the generated tests
-    FileUtils.mkdir_p(TEST_DEFS_PATH)
+    FileUtils.mkdir_p(DEFINITION_TESTS_PATH)
 
     all_regions = []
 
     def_index['defs'].each do |region, files|
       puts "Building #{region} definition module:"
-      files = files.collect { |f| "#{DATA_PATH}/#{f}" }.uniq
+      files = files.collect { |f| "#{DEFINITION_PATH}/#{f}" }.uniq
 
-      module_src, test_src, regions = Holidays.parse_definition_files_and_return_source(region, files)
+      regions, rules_by_month, custom_methods, tests = Holidays::DefinitionFactory.file_parser.parse_definition_files(files)
+      module_src, test_src = Holidays::DefinitionFactory.source_generator.generate_definition_source(region, files, regions, rules_by_month, custom_methods, tests)
+
       File.open("lib/#{Holidays::DEFINITIONS_PATH}/#{region.downcase.to_s}.rb","w") do |file|
         file.puts module_src
       end
       unless test_src.empty?
-        File.open("#{TEST_DEFS_PATH}/test_defs_#{region.downcase.to_s}.rb","w") do |file|
+        File.open("#{DEFINITION_TESTS_PATH}/test_defs_#{region.downcase.to_s}.rb","w") do |file|
           file.puts test_src
         end
       end
