@@ -2,6 +2,10 @@
 
 There are multiple ways to help! We rely on users around the world to help keep our definitions accurate and up to date. In addition, pull requests to address bugs or implement new features are always welcome.
 
+## Code of Conduct
+
+Please read our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing. Everyone interacting with this project (or associated projects) is expected to abide by its terms.
+
 ## For definition updates
 
 Our definitions are written in YAML. You can find a complete guide to our format in the [definitions README](definitions/README.md). We take the YAML definitions and generate final ruby classes that are loaded at runtime for fast calculations.
