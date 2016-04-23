@@ -144,6 +144,8 @@ module Holidays
       end
 
       DefinitionFactory.merger.call(regions, rules_by_month, custom_methods)
+
+      rules_by_month
     end
 
     private

@@ -7,9 +7,15 @@ class CustomHolidaysTest < Test::Unit::TestCase
       Holidays.on(Date.civil(2013,6,20), :custom_single_file)
     end
 
-    Holidays.load_custom('test/data/test_single_custom_holiday_defs.yaml')
+    loaded_holidays = Holidays.load_custom('test/data/test_single_custom_holiday_defs.yaml')
 
     assert_not_equal [], Holidays.on(Date.civil(2013,6,20), :custom_single_file)
+  end
+
+  def test_load_custom_returns_loaded_holidays
+    expected_loaded_holidays = {6=>[{:mday=>20, :name=>"Company Founding", :regions=>[:custom_single_file]}]}
+
+    assert_equal expected_loaded_holidays, Holidays.load_custom('test/data/test_single_custom_holiday_defs.yaml')
   end
 
   def test_custom_holidays_present_after_multiple_file_parsing
