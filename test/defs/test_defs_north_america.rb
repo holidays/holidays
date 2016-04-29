@@ -21,14 +21,102 @@ class North_americaDefinitionTests < Test::Unit::TestCase  # :nodoc:
   assert_equal name, (Holidays.on(date, :ca, :informal)[0] || {})[:name]
 end
 
-# Family Day in BC
-[ Date.civil(2013,2,11), Date.civil(2014,2,10) ].each do |date|
+# Family Day in Alberta - Should only be active on 1990 or later
+[
+  Date.civil(1990,2,19),
+  Date.civil(2013,2,18),
+  Date.civil(2014,2,17),
+  Date.civil(2044,2,15),
+].each do |date|
+  assert_equal 'Family Day', Holidays.on(date, :ca_ab)[0][:name]
+end
+
+# Family Day in Alberta - should not be active before 1990
+[
+  Date.civil(1970,2,16),
+  Date.civil(1988,2,15),
+  Date.civil(1989,2,20),
+].each do |date|
+  assert_equal [], Holidays.on(date, :ca_ab)
+end
+
+# Family Day in Saskatchewan - Should only be active on 2007 or later
+[
+  Date.civil(2007,2,19),
+  Date.civil(2013,2,18),
+  Date.civil(2014,2,17),
+  Date.civil(2044,2,15),
+].each do |date|
+  assert_equal 'Family Day', Holidays.on(date, :ca_sk)[0][:name]
+end
+
+# Family Day in Saskatchewan - should not be active before 2007
+[
+  Date.civil(1970,2,16),
+  Date.civil(1988,2,15),
+  Date.civil(1989,2,20),
+  Date.civil(2006,2,20),
+].each do |date|
+  assert_equal [], Holidays.on(date, :ca_sk)
+end
+
+# Family Day in Ontario - Should only be active on 2008 or later
+[
+  Date.civil(2008,2,18),
+  Date.civil(2013,2,18),
+  Date.civil(2014,2,17),
+  Date.civil(2044,2,15),
+].each do |date|
+  assert_equal 'Family Day', Holidays.on(date, :ca_on)[0][:name]
+end
+
+# Family Day in Ontario - should not be active before 2008
+[
+  Date.civil(1970,2,16),
+  Date.civil(1988,2,15),
+  Date.civil(1989,2,20),
+  Date.civil(2006,2,20),
+  Date.civil(2007,2,19),
+].each do |date|
+  assert_equal [], Holidays.on(date, :ca_on)
+end
+
+# Family Day in BC - Should only be active on 2013 or later
+[
+  Date.civil(2013,2,11),
+  Date.civil(2014,2,10),
+  Date.civil(2044,2,8),
+].each do |date|
   assert_equal 'BC Family Day', Holidays.on(date, :ca_bc)[0][:name]
 end
 
-# Nova Scotia Heritage Day
-[ Date.civil(2015,2,16), Date.civil(2016,2,15) ].each do |date|
+# Family Day in BC - should not be active before 2013
+[
+  Date.civil(2000,2,14),
+  Date.civil(2011,2,14),
+  Date.civil(2012,2,13),
+].each do |date|
+  assert_equal [], Holidays.on(date, :ca_bc)
+end
+
+# Nova Scotia Heritage Day - should only be active on 2015 and later
+[
+  Date.civil(2015,2,16),
+  Date.civil(2016,2,15),
+  Date.civil(2017,2,20),
+  Date.civil(2044,2,15),
+].each do |date|
   assert_equal 'Nova Scotia Heritage Day', Holidays.on(date, :ca_ns)[0][:name]
+end
+
+# Nova Scotia Heritage Day - should not be active before 2015
+[
+  Date.civil(2000,2,21),
+  Date.civil(2012,2,20),
+  Date.civil(2013,2,18),
+  Date.civil(2014,2,17),
+].each do |date|
+  assert_equal [], Holidays.on(date, :ca_ns)
 end
 
 # Islander Day in PE
