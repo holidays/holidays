@@ -122,6 +122,40 @@ module Holidays
       UseCaseFactory.between.call(start_date, end_date, date_driver_hash, regions, observed, informal)
     end
 
+    # Get next holidays occuring form date, inclusively.
+    #
+    # Returns an array of hashes or nil.
+    #
+    # Each holiday is returned as a hash with the following fields:
+    # [<tt>holidays_count</tt>]  Ruby Numeric object. This is the number of holidays to return
+    # [<tt>options</tt>]     One or more region symbols, <tt>:informal</tt> and/or <tt>:observed</tt>.
+    # [<tt>from_date</tt>]    Ruby Date object. This is an optional param, defaulted today.
+    #
+    # ==== Example
+    #   Date.today
+    #   => Tue, 23 Feb 2016
+    #
+    #   regions = [:us, :informal]
+    #
+    #   Holidays.next_holiday(3, regions)
+    #   => [{:name => "St. Patrick's Day",...},
+    #       {:name => "Good Friday",...},
+    #       {:name => "Easter Sunday",...}]
+    def next_holiday(holidays_count, options, from_date = Date.today)
+      raise ArgumentError unless holidays_count
+      raise ArgumentError if options.empty?
+      raise ArgumentError unless options.is_a?(Array)
+
+      # remove the timezone
+      from_date = from_date.new_offset(0) + from_date.offset if from_date.respond_to?(:new_offset)
+
+      from_date = get_date(from_date)
+      regions, observed, informal = OptionFactory.parse_options.call(options)
+      date_driver_hash = UseCaseFactory.dates_driver_builder.build(from_date)
+
+      UseCaseFactory.next_holiday.call(holidays_count, from_date, date_driver_hash, regions, observed, informal)
+    end
+
     # Allows a developer to explicitly calculate and cache holidays within a given period
     def cache_between(start_date, end_date, *options)
       start_date, end_date = get_date(start_date), get_date(end_date)
