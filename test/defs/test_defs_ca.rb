@@ -87,7 +87,7 @@ end
   Date.civil(2014,2,10),
   Date.civil(2044,2,8),
 ].each do |date|
-  assert_equal 'BC Family Day', Holidays.on(date, :ca_bc)[0][:name]
+  assert_equal 'Family Day', Holidays.on(date, :ca_bc)[0][:name]
 end
 
 # Family Day in BC - should not be active before 2013
