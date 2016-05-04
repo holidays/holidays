@@ -11,14 +11,16 @@ module Holidays
         def call(start_date, end_date)
           dates_driver = {}
 
-          (start_date..end_date).each do |current_date|
-            dates_driver[current_date.year] = [] unless dates_driver[current_date.year]
-            dates_driver[current_date.year] << current_date.month
-
-            dates_driver = add_border_months(current_date, dates_driver)
-          end
-
+          (start_date..end_date).map{|current_date|build(dates_driver, current_date)}
           clean(dates_driver)
+        end
+
+        def build(dates_driver = {}, date)
+          raise ArgumentError unless dates_driver
+          raise ArgumentError unless date
+          dates_driver[date.year] = [] unless dates_driver[date.year]
+          dates_driver[date.year] << date.month
+          dates_driver = add_border_months(date, dates_driver)
         end
 
         private
