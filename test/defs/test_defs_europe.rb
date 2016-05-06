@@ -307,7 +307,23 @@ end
 end
 
 assert_equal 'St. Patrick\'s Day', Holidays.on(Date.civil(2008,3,17), :gb_nir, :informal)[0][:name]
-assert_equal 'St. Andrew\'s Day', Holidays.on(Date.civil(2008,11,30), :gb_sct, :informal)[0][:name]
+
+# St. Andrew's Day is informal 2006 and earlier. Should only show up when :informal is passed
+assert_equal 'St. Andrew\'s Day', Holidays.on(Date.civil(2006,11,30), :gb_sct, :informal)[0][:name]
+assert_equal 'St. Andrew\'s Day', Holidays.on(Date.civil(2006,11,30), :gb_sct, :informal, :observed)[0][:name]
+assert_equal 'St. Andrew\'s Day', Holidays.on(Date.civil(2002,12,2), :gb_sct, :informal, :observed)[0][:name]
+assert_equal [], Holidays.on(Date.civil(2004,11,30), :gb_sct)
+assert_equal [], Holidays.on(Date.civil(2005,11,30), :gb_sct)
+assert_equal [], Holidays.on(Date.civil(2006,11,30), :gb_sct)
+
+# St. Andrew's Day is considered a formal bank holiday 2007 and later. It should show up regardless of whether
+# :informal is specified
+assert_equal 'St. Andrew\'s Day', Holidays.on(Date.civil(2007,11,30), :gb_sct)[0][:name]
+assert_equal 'St. Andrew\'s Day', Holidays.on(Date.civil(2007,11,30), :gb_sct, :informal)[0][:name]
+assert_equal 'St. Andrew\'s Day', Holidays.on(Date.civil(2007,11,30), :gb_sct, :informal, :observed)[0][:name]
+assert_equal 'St. Andrew\'s Day', Holidays.on(Date.civil(2016,11,30), :gb_sct)[0][:name]
+assert_equal 'St. Andrew\'s Day', Holidays.on(Date.civil(2019,11,30), :gb_sct)[0][:name]
+assert_equal 'St. Andrew\'s Day', Holidays.on(Date.civil(2019,12,2), :gb_sct, :observed)[0][:name]
 
 assert_equal 'Christmas Day', Holidays.on(Date.civil(2008,12,25), :gb_, :observed)[0][:name]
 assert_equal 'Christmas Day', Holidays.on(Date.civil(2009,12,25), :gb_, :observed)[0][:name]
