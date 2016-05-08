@@ -137,11 +137,11 @@ module Holidays
     #
     #   regions = [:us, :informal]
     #
-    #   Holidays.next_holiday(3, regions)
+    #   Holidays.next_holidays(3, regions)
     #   => [{:name => "St. Patrick's Day",...},
     #       {:name => "Good Friday",...},
     #       {:name => "Easter Sunday",...}]
-    def next_holiday(holidays_count, options, from_date = Date.today)
+    def next_holidays(holidays_count, options, from_date = Date.today)
       raise ArgumentError unless holidays_count
       raise ArgumentError if options.empty?
       raise ArgumentError unless options.is_a?(Array)

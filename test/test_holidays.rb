@@ -59,16 +59,16 @@ class HolidaysTests < Test::Unit::TestCase
 
   def test_requires_valid_regions_holiday_next
     assert_raises Holidays::UnknownRegionError do
-      Holidays.next_holiday(1, [:xx], Date.civil(2008,1,1))
+      Holidays.next_holidays(1, [:xx], Date.civil(2008,1,1))
     end
 
     assert_raises Holidays::UnknownRegionError do
-      Holidays.next_holiday(1, [:ca,:xx], Date.civil(2008,1,1))
+      Holidays.next_holidays(1, [:ca,:xx], Date.civil(2008,1,1))
       Holidays.on(Date.civil(2008,1,1), [:ca,:xx])
     end
 
     assert_raises Holidays::UnknownRegionError do
-      Holidays.next_holiday(1, [:ca,:xx])
+      Holidays.next_holidays(1, [:ca,:xx])
     end
   end
 
@@ -107,7 +107,7 @@ class HolidaysTests < Test::Unit::TestCase
 
   def test_any_region_holiday_next
     # Should return Victoria Day.
-    holidays = Holidays.next_holiday(1, [:ca], Date.civil(2008,5,1))
+    holidays = Holidays.next_holidays(1, [:ca], Date.civil(2008,5,1))
     assert_equal 1, holidays.length
     assert_equal ['2008-05-19','Victoria Day'] , [holidays.first[:date].to_s, holidays.first[:name].to_s]
 
@@ -115,20 +115,20 @@ class HolidaysTests < Test::Unit::TestCase
     #
     # Should be 2 in the CA region but other regional files are loaded during the
     # unit tests add to the :any count.
-    holidays = Holidays.next_holiday(2, [:any], Date.civil(2008,5,1))
+    holidays = Holidays.next_holidays(2, [:any], Date.civil(2008,5,1))
     assert_equal 2, holidays.length
 
     # Must Region.If there is not region, raise ArgumentError.
     assert_raises ArgumentError do
-      Holidays.next_holiday(2, '', Date.civil(2008,5,1))
+      Holidays.next_holidays(2, '', Date.civil(2008,5,1))
     end
     # Options should be present.If they are empty, raise ArgumentError.
     assert_raises ArgumentError do
-      Holidays.next_holiday(2, [], Date.civil(2008,5,1))
+      Holidays.next_holidays(2, [], Date.civil(2008,5,1))
     end
     # Options should be Array.If they are not Array, raise ArgumentError.
     assert_raises ArgumentError do
-      Holidays.next_holiday(2, :ca, Date.civil(2008,5,1))
+      Holidays.next_holidays(2, :ca, Date.civil(2008,5,1))
     end
   end
 
@@ -148,18 +148,18 @@ class HolidaysTests < Test::Unit::TestCase
 
   def test_sub_regions_holiday_next
     # Should return Victoria Day.
-    holidays = Holidays.next_holiday(2, [:ca], Date.civil(2008,5,1))
+    holidays = Holidays.next_holidays(2, [:ca], Date.civil(2008,5,1))
     assert_equal 1, holidays.length
     assert_equal ['2008-05-19','Victoria Day'] , [holidays.first[:date].to_s, holidays.first[:name].to_s]
 
     # Should return Victoria Da and National Patriotes Day.
-    holidays = Holidays.next_holiday(2, [:ca_qc], Date.civil(2008,5,1))
+    holidays = Holidays.next_holidays(2, [:ca_qc], Date.civil(2008,5,1))
     assert_equal 2, holidays.length
     assert_equal ['2008-05-19','Victoria Day'] , [holidays.first[:date].to_s, holidays.first[:name].to_s]
     assert_equal ['2008-05-19','National Patriotes Day'] , [holidays.last[:date].to_s, holidays.last[:name].to_s]
 
     # Should return Victoria Day and National Patriotes Day.
-    holidays = Holidays.next_holiday(2, [:ca_], Date.civil(2008,5,1))
+    holidays = Holidays.next_holidays(2, [:ca_], Date.civil(2008,5,1))
     assert_equal 2, holidays.length
     assert_equal ['2008-05-19','Victoria Day'] , [holidays.first[:date].to_s, holidays.first[:name].to_s]
     assert_equal ['2008-05-19','National Patriotes Day'] , [holidays.last[:date].to_s, holidays.last[:name].to_s]
