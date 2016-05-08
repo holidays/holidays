@@ -122,11 +122,11 @@ module Holidays
       UseCaseFactory.between.call(start_date, end_date, date_driver_hash, regions, observed, informal)
     end
 
-    # Get next holidays occuring form date, inclusively.
+    # Get next holidays occuring from date, inclusively.
     #
     # Returns an array of hashes or nil.
     #
-    # Each holiday is returned as a hash with the following fields:
+    # Incoming arguments are below:
     # [<tt>holidays_count</tt>]  Ruby Numeric object. This is the number of holidays to return
     # [<tt>options</tt>]     One or more region symbols, <tt>:informal</tt> and/or <tt>:observed</tt>.
     # [<tt>from_date</tt>]    Ruby Date object. This is an optional param, defaulted today.
