@@ -1,18 +1,7 @@
 module Holidays
   module UseCase
     module Context
-      class ContextCommon
-        def initialize(holidays_by_month_repo, day_of_month_calculator, custom_methods_repo, proc_result_cache_repo)
-          @holidays_by_month_repo = holidays_by_month_repo
-          @day_of_month_calculator = day_of_month_calculator
-          @custom_methods_repo = custom_methods_repo
-          @proc_result_cache_repo = proc_result_cache_repo
-        end
-              
-        private
-
-        attr_reader :holidays_by_month_repo, :day_of_month_calculator, :custom_methods_repo, :proc_result_cache_repo
-
+      module ContextCommon
         def make_date_array(dates_driver, regions, observed, informal)
           holidays = []
           dates_driver.each do |year, months|
@@ -102,7 +91,7 @@ module Holidays
           end
           holidays
         end
-                
+
         def call_proc(function_id, *arguments)
           function = custom_methods_repo.find(function_id)
           raise Holidays::FunctionNotFound.new("Unable to find function with id '#{function_id}'") if function.nil?
