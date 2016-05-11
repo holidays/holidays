@@ -1,7 +1,7 @@
 module Holidays
   module UseCase
     module Context
-      class Between
+      class NextHoliday
         include ContextCommon
 
         def initialize(holidays_by_month_repo, day_of_month_calculator, custom_methods_repo, proc_result_cache_repo)
@@ -11,12 +11,20 @@ module Holidays
           @proc_result_cache_repo = proc_result_cache_repo
         end
 
-        def call(start_date, end_date, dates_driver, regions, observed, informal)
-          validate!(start_date, end_date, dates_driver, regions)
-
+        def call(holidays_count, from_date, dates_driver, regions, observed, informal)
+          validate!(holidays_count, from_date, dates_driver, regions)
           holidays = []
-          holidays = make_date_array(dates_driver, regions, observed, informal)
-          holidays = holidays.select{|holiday|holiday[:date].between?(start_date, end_date)}
+          ret_holidays = []
+
+          ret_holidays = make_date_array(dates_driver, regions, observed, informal)
+          ret_holidays.each do |holiday|
+            if holiday[:date] >= from_date
+              holidays << holiday
+              holidays_count -= 1
+              break if holidays_count == 0
+            end
+          end
+
           holidays.sort{|a, b| a[:date] <=> b[:date] }
         end
 
@@ -27,9 +35,10 @@ module Holidays
                     :custom_methods_repo,
                     :proc_result_cache_repo
 
-        def validate!(start_date, end_date, dates_driver, regions)
-          raise ArgumentError unless start_date
-          raise ArgumentError unless end_date
+        def validate!(holidays_count, from_date, dates_driver, regions)
+          raise ArgumentError unless holidays_count
+          raise ArgumentError if holidays_count <= 0
+          raise ArgumentError unless from_date
 
           raise ArgumentError if dates_driver.nil? || dates_driver.empty?
 
