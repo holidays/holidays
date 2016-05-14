@@ -65,6 +65,13 @@ To check if there are any holidays taking place during a specified work week:
     Holidays.any_holidays_during_work_week?(Date.civil(2016, 1, 1))
     => true
 
+To find and return the next holidays occurring from date, inclusively:
+
+    Holidays.next_holidays(3, [:us, :informal], Date.civil(2016, 2, 23))
+    => [{:name => "St. Patrick's Day",...}, {:name => "Good Friday",...}, {:name => "Easter Sunday",...}]
+
+Will default to `Date.today` if no date is provided.
+
 ### Loading Custom Definitions on the fly
 
 Load custom definitions file on the fly and use them immediately.
