@@ -1,5 +1,11 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 4.1.0
+
+* Issue-161: correctly report St Andrews Day as informal 2006 and earlier in `gb_sct`
+* Issue-169: set correct years of observance for Family Day in various `ca` provinces
+* Issue-163: Add `next_holidays` method. See README for usage (https://github.com/ttwo32)
+
 ## 4.0.0
 
 Major refactor with breaking changes! Sorry for the wall of text but there is a lot of info here.
