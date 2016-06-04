@@ -1,3 +1,4 @@
+# encoding: utf-8
 require File.expand_path(File.dirname(__FILE__)) + '/test_helper'
 
 require "#{Holidays::DEFINITIONS_PATH}/ca"
@@ -6,6 +7,8 @@ require "#{Holidays::DEFINITIONS_PATH}/ca"
 # defs aren't duplicated.
 require "#{Holidays::DEFINITIONS_PATH}/north_america"
 
+# These are effectively integration tests. We plan on making this explicit somehow
+# in the future.
 class HolidaysTests < Test::Unit::TestCase
   def setup
     @date = Date.civil(2008,1,1)
@@ -118,6 +121,10 @@ class HolidaysTests < Test::Unit::TestCase
     holidays = Holidays.next_holidays(2, [:any], Date.civil(2008,5,1))
     assert_equal 2, holidays.length
 
+    # Should return 1 holiday in July
+    holidays = Holidays.next_holidays(1, [:jp], Date.civil(2016, 5, 22))
+    assert_equal ['2016-07-18','海の日'] , [holidays.first[:date].to_s, holidays.first[:name].to_s]
+
     # Must Region.If there is not region, raise ArgumentError.
     assert_raises ArgumentError do
       Holidays.next_holidays(2, '', Date.civil(2008,5,1))
@@ -149,7 +156,7 @@ class HolidaysTests < Test::Unit::TestCase
   def test_sub_regions_holiday_next
     # Should return Victoria Day.
     holidays = Holidays.next_holidays(2, [:ca], Date.civil(2008,5,1))
-    assert_equal 1, holidays.length
+    assert_equal 2, holidays.length
     assert_equal ['2008-05-19','Victoria Day'] , [holidays.first[:date].to_s, holidays.first[:name].to_s]
 
     # Should return Victoria Da and National Patriotes Day.
