@@ -7,17 +7,17 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class NlDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_nl
-{Date.civil(2008,1,1) => 'Nieuwjaar',
+{Date.civil(2008,1,1) => 'Nieuwjaarsdag',
  Date.civil(2008,3,21) => 'Goede Vrijdag',
- Date.civil(2008,3,23) => 'Eerste Pasen',
- Date.civil(2008,3,24) => 'Tweede Pasen',
+ Date.civil(2008,3,23) => 'Eerste Paasdag',
+ Date.civil(2008,3,24) => 'Tweede Paasdag',
  Date.civil(2008,4,27) => 'Koningsdag',
  Date.civil(2008,5,1) => 'Hemelvaartsdag', # Ascension, Easter+39
  Date.civil(2008,5,5) => 'Bevrijdingsdag',
- Date.civil(2008,5,11) => 'Eerste Pinksteren', # Pentecost, Easter+49
- Date.civil(2008,5,12) => 'Tweede Pinksteren', # Pentecost, Easter+50
- Date.civil(2008,12,25) => 'Eerste Kerstmis',
- Date.civil(2008,12,26) => 'Tweede Kerstmis'}.each do |date, name|
+ Date.civil(2008,5,11) => 'Eerste Pinksterdag', # Pentecost, Easter+49
+ Date.civil(2008,5,12) => 'Tweede Pinksterdag', # Pentecost, Easter+50
+ Date.civil(2008,12,25) => 'Eerste Kerstdag',
+ Date.civil(2008,12,26) => 'Tweede Kerstdag'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :nl, :informal)[0] || {})[:name]
 end
 
