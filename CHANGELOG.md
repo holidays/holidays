@@ -1,5 +1,10 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 4.2.0
+
+* BUGFIX Issue-194: correctly calculate `next_holidays` if next holiday is far in the future
+* Give dutch holidays their proper names (https://github.com/Qqwy)
+
 ## 4.1.0
 
 * Issue-161: correctly report St Andrews Day as informal 2006 and earlier in `gb_sct`
