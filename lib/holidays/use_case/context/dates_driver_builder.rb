@@ -15,6 +15,8 @@ module Holidays
           clean(dates_driver)
         end
 
+        #FIXME Why is the date_driver set to optional as the first param? That's
+        # just plain wrong...
         def build(dates_driver = {}, date)
           raise ArgumentError unless dates_driver
           raise ArgumentError unless date

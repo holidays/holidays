@@ -151,7 +151,11 @@ module Holidays
 
       from_date = get_date(from_date)
       regions, observed, informal = OptionFactory.parse_options.call(options)
-      date_driver_hash = UseCaseFactory.dates_driver_builder.build(from_date)
+
+      # This could be smarter but I don't have any evidence that just checking for
+      # the next 12 months will cause us issues. If it does we can implement something
+      # smarter here to check in smaller increments.
+      date_driver_hash = UseCaseFactory.dates_driver_builder.call(from_date, from_date >> 12)
 
       UseCaseFactory.next_holiday.call(holidays_count, from_date, date_driver_hash, regions, observed, informal)
     end
