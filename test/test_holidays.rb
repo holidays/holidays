@@ -139,6 +139,12 @@ class HolidaysTests < Test::Unit::TestCase
     end
   end
 
+  def test_any_region_holiday_year
+    holidays = Holidays.year_holidays([:ca_on], Date.civil(2016, 2, 23))
+    holidays.each {|h| puts h}
+    # assert_equal 12, holidays.length
+  end 
+
   def test_sub_regions
     # Should return Victoria Day.
     holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca)
