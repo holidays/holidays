@@ -115,10 +115,7 @@ class HolidaysTests < Test::Unit::TestCase
     assert_equal ['2008-05-19','Victoria Day'] , [holidays.first[:date].to_s, holidays.first[:name].to_s]
 
     # Should return 2 holidays.
-    #
-    # Should be 2 in the CA region but other regional files are loaded during the
-    # unit tests add to the :any count.
-    holidays = Holidays.next_holidays(2, [:any], Date.civil(2008,5,1))
+    holidays = Holidays.next_holidays(2, [:ca], Date.civil(2008,5,1))
     assert_equal 2, holidays.length
 
     # Should return 1 holiday in July

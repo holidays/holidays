@@ -46,4 +46,8 @@ class DefinitionFactoryTests < Test::Unit::TestCase
   def test_region_validator
     assert Holidays::DefinitionFactory.region_validator.is_a?(Holidays::Definition::Validator::Region)
   end
+
+  def test_function_processor
+    assert Holidays::DefinitionFactory.function_processor.is_a?(Holidays::Definition::Context::FunctionProcessor)
+  end
 end

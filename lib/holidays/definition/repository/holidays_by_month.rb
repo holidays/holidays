@@ -33,7 +33,7 @@ module Holidays
                 end
               end
 
-              @holidays_by_month[month] << holiday_def  unless exists
+              @holidays_by_month[month] << holiday_def unless exists
             end
           end
         end
