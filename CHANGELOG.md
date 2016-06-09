@@ -1,5 +1,9 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 4.3.0
+
+* Update Portuguese holidays to restore 4 holidays (https://github.com/ruippeixotog)
+
 ## 4.2.0
 
 * BUGFIX Issue-194: correctly calculate `next_holidays` if next holiday is far in the future
