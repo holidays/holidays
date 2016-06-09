@@ -8,7 +8,7 @@
 # - http://www.worldtravelguide.net/country/227/public_holidays/Europe/Portugal.html
 # - http://en.wikipedia.org/wiki/Portugal_Day
 # - http://www.timeanddate.com/calendar/custom.html?year=2008&country=15
-# - http://en.wikipedia.org/wiki/Public_holidays_in_Portugal#Revoked_holidays_in_2012
+# - http://en.wikipedia.org/wiki/Public_holidays_in_Portugal
 ---
 months:
   0:
@@ -24,6 +24,10 @@ months:
   - name: Páscoa
     regions: [pt]
     function: easter(year)
+  - name: Corpo de Deus
+    regions: [pt]
+    function: easter(year)
+    function_modifier: 60
   1:
   - name: Ano Novo
     regions: [pt]
@@ -44,7 +48,18 @@ months:
   - name: Assunção de Nossa Senhora
     regions: [pt]
     mday: 15
+  10:
+  - name: Dia da República
+    regions: [pt]
+    mday: 5
+  11:
+  - name: Dia de Todos-os-Santos
+    regions: [pt]
+    mday: 1   
   12:
+  - name: Restauração da Independência
+    regions: [pt]
+    mday: 1
   - name: Imaculada Conceição
     regions: [pt]
     mday: 8
@@ -59,10 +74,15 @@ tests: |
      Date.civil(2008,2,5) => 'Carnaval',
      Date.civil(2008,3,21) => 'Sexta-feira Santa',
      Date.civil(2008,3,23) => 'Páscoa',
+     Date.civil(2016,3,27) => 'Páscoa',
      Date.civil(2008,4,25) => 'Dia da Liberdade',
      Date.civil(2008,5,1) => 'Dia do Trabalhador',
+     Date.civil(2016,5,26) => 'Corpo de Deus',
      Date.civil(2008,6,10) => 'Dia de Portugal',
      Date.civil(2008,8,15) => 'Assunção de Nossa Senhora',
+     Date.civil(2008,10,5) => 'Dia da República',
+     Date.civil(2008,11,1) => 'Dia de Todos-os-Santos',
+     Date.civil(2008,12,1) => 'Restauração da Independência',
      Date.civil(2008,12,8) => 'Imaculada Conceição',
      Date.civil(2008,12,25) => 'Natal'}.each do |date, name|
       assert_equal name, (Holidays.on(date, :pt, :informal)[0] || {})[:name]
