@@ -1,5 +1,9 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 4.4.0
+
+* Add Peruvian holiday definitions (https://github.com/Xosmond)
+
 ## 4.3.0
 
 * Update Portuguese holidays to restore 4 holidays (https://github.com/ruippeixotog)
