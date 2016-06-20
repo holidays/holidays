@@ -193,7 +193,7 @@ module Holidays
       from_date = from_date.new_offset(0) + from_date.offset if from_date.respond_to?(:new_offset)
 
       from_date = get_date(from_date)
-      to_date = from_date.to_datetime.change(:month => 12).end_of_month.to_date
+      to_date = Date.new(from_date.year, 12, 31)
       regions, observed, informal = OptionFactory.parse_options.call(options)
 
       # This could be smarter but I don't have any evidence that just checking for
