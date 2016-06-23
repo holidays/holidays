@@ -72,6 +72,22 @@ To find and return the next holidays occurring from date, inclusively:
 
 Will default to `Date.today` if no date is provided.
 
+To find all holidays occuring from date to end of year, inclusively:
+
+    Holidays.year_holidays([:ca_on], Date.civil(2016, 2, 23))
+    => [{:name=>"Good Friday",...},
+        {name=>"Easter Sunday",...},
+        {:name=>"Victoria Day",...},
+        {:name=>"Canada Day",...},
+        {:name=>"Civic Holiday",...},
+        {:name=>"Labour Day",...},
+        {:name=>"Thanksgiving",...},
+        {:name=>"Remembrance Day",...},
+        {:name=>"Christmas Day",...},
+        {:name=>"Boxing Day",...}]
+
+Will default to `Date.today` if no date is provided.
+
 ### Loading Custom Definitions on the fly
 
 Load custom definitions file on the fly and use them immediately.

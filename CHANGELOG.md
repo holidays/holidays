@@ -1,5 +1,9 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 4.5.0
+
+* Add `Holidays.year_holidays` method to obtain all holidays occuring from date to end of year, inclusively (thanks to https://github.com/jonathanpike)
+
 ## 4.4.0
 
 * Add Peruvian holiday definitions (https://github.com/Xosmond)
