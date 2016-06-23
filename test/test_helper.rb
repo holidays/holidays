@@ -11,11 +11,16 @@ require 'mocha/test_unit'
 require 'date'
 require 'holidays'
 require 'holidays/core_extensions/date'
+require 'holidays/core_extensions/time'
 
 # Loads core extension for use in various definition tests as necessary
 class Date
   include Holidays::CoreExtensions::Date
 end
+
+class Time
+  include Holidays::CoreExtensions::Time
+end 
 
 module Holidays
   # Test region used for generating a holiday on Date.today

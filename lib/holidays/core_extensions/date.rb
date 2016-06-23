@@ -29,6 +29,24 @@ module Holidays
         holidays && !holidays.empty?
       end
 
+      # Returns a new Date where one or more of the elements have been changed according to the +options+ parameter.
+      # The +options+ parameter is a hash with a combination of these keys: <tt>:year</tt>, <tt>:month</tt>, <tt>:day</tt>.
+      #
+      #   Date.new(2007, 5, 12).change(day: 1)               # => Date.new(2007, 5, 1)
+      #   Date.new(2007, 5, 12).change(year: 2005, month: 1) # => Date.new(2005, 1, 12)
+      def change(options)
+        ::Date.new(
+          options.fetch(:year, year),
+          options.fetch(:month, month),
+          options.fetch(:day, day)
+        )
+      end
+
+      def end_of_month
+        last_day = ::Time.days_in_month( self.month, self.year )
+        change(:day => last_day)
+      end
+
       module ClassMethods
         def calculate_mday(year, month, week, wday)
           Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, month, week, wday)

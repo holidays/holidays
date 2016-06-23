@@ -139,6 +139,61 @@ class HolidaysTests < Test::Unit::TestCase
     end
   end
 
+  def test_year_holidays
+    # Should return 10 holidays from February 23 to December 31
+    holidays = Holidays.year_holidays([:ca_on], Date.civil(2016, 2, 23))
+    assert_equal 10, holidays.length
+
+    # Must have options (Regions)
+    assert_raises ArgumentError do 
+      Holidays.year_holidays([], Date.civil(2016, 2, 23))
+    end 
+
+    # Options must be in the form of an array.  
+    assert_raises ArgumentError do 
+      Holidays.year_holidays(:ca_on, Date.civil(2016, 2, 23))
+    end 
+  end 
+
+  def test_year_holidays_with_specified_year
+    # Should return all 12 holidays for 2016 in Ontario, Canada
+    holidays = Holidays.year_holidays([:ca_on], Date.civil(2016, 1, 1))
+    assert_equal 12, holidays.length
+
+    # Should return all 12 holidays for 2016 in Australia
+    holidays = Holidays.year_holidays([:au], Date.civil(2016, 1, 1))
+    assert_equal 5, holidays.length
+  end 
+
+  def test_year_holidays_without_specified_year 
+    # Gets holidays for current year from today's date
+    holidays = Holidays.year_holidays([:ca_on])
+    assert_equal holidays.first[:date].year, Date.today.year
+  end 
+
+  def test_year_holidays_feb_29_on_non_leap_year
+    # Should throw argument error for invalid date
+    assert_raises ArgumentError do 
+      Holidays.year_holidays([:ca_on], Date.civil(2015, 2, 29))
+    end
+  end 
+
+  def test_year_holidays_random_years
+    # Should be 1 less holiday, as Family day didn't exist in Ontario in 1990
+    holidays = Holidays.year_holidays([:ca_on], Date.civil(1990, 1, 1))
+    assert_equal 11, holidays.length
+
+    # Family day still didn't exist in 2000
+    holidays = Holidays.year_holidays([:ca_on], Date.civil(2000, 1, 1))
+    assert_equal 11, holidays.length
+
+    holidays = Holidays.year_holidays([:ca_on], Date.civil(2020, 1, 1))
+    assert_equal 12, holidays.length
+
+    holidays = Holidays.year_holidays([:ca_on], Date.civil(2050, 1, 1))
+    assert_equal 12, holidays.length
+  end 
+
   def test_sub_regions
     # Should return Victoria Day.
     holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca)
