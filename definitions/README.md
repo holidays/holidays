@@ -103,7 +103,7 @@ Then the holiday will be returned. This is especially useful for holidays like "
 
 ### Year ranges
 
-Certain holidays in various countries are only in effect during specific year ranges. For example, a new holiday might come into effect that is only valid after a speciic year (say, 2017).
+Certain holidays in various countries are only in effect during specific year ranges. For example, a new holiday might come into effect that is only valid after a specific year (say, 2017).
 
 To address this we have the ability to specify these 'year ranges' in the definition. The gem will then only return a match on a date that adheres to these rules.
 
