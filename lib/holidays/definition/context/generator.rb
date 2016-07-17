@@ -1,5 +1,12 @@
 require 'yaml'
 
+#FIXME This whole file is my next refactor target. We do wayyyyy too much by
+#      convention here. We need hard and fast rules and explicit errors when you
+#      try to parse something that isn't allowed. So if you are a dev recognize
+#      that a lot of the guard statements in here are to codify existing legacy
+#      logic. The fact is that we already require these guards, we just don't
+#      enforce it explicitly. Now we will. And by doing so things will begin
+#      to look very, very messy.
 module Holidays
   module Definition
     module Context
@@ -83,8 +90,11 @@ module Holidays
                 end
 
                 rule[:regions] = rule[:regions].collect { |r| r.to_sym }
-
                 regions << rule[:regions]
+
+                if rule[:year_ranges]
+                  rule[:year_ranges] = clean_year_ranges(rule[:year_ranges])
+                end
 
                 exists = false
                 rules_by_month[month].each do |ex|
@@ -108,6 +118,23 @@ module Holidays
           end
 
           [regions, rules_by_month]
+        end
+
+        # In this case we end up parsing a range as "2006..2008" a string. This is codifying
+        # what we already do...today we parse as a string but when writing out to our final
+        # generated files it comes out as a range that Ruby interprets. This just puts it in stone
+        # what we want to do.
+        def clean_year_ranges(year_ranges)
+          year_ranges.collect do |year_range|
+            if year_range["between"]
+              range = year_range["between"]
+              if range.is_a?(String)
+                year_range["between"] = Range.new(*range.split("..").map(&:to_i))
+              end
+            end
+
+            year_range
+          end
         end
 
         def parse_test_definitions(tests)

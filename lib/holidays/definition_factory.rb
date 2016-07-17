@@ -1,5 +1,6 @@
 require 'holidays/definition/context/generator'
 require 'holidays/definition/context/merger'
+require 'holidays/definition/context/function_processor'
 require 'holidays/definition/decorator/custom_method_proc'
 require 'holidays/definition/decorator/custom_method_source'
 require 'holidays/definition/parser/custom_method'
@@ -27,6 +28,13 @@ module Holidays
           custom_method_parser,
           custom_method_source_decorator,
           custom_methods_repository,
+        )
+      end
+
+      def function_processor
+        Definition::Context::FunctionProcessor.new(
+          custom_methods_repository,
+          proc_result_cache_repository,
         )
       end
 

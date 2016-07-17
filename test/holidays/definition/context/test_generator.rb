@@ -132,7 +132,7 @@ class GeneratorTests < Test::Unit::TestCase
           :name => "between_year",
           :regions => [:custom_year_range_file],
           :mday => 3,
-          :year_ranges => [{"between" => "2016..2018"}]
+          :year_ranges => [{"between" => 2016..2018}]
         },
         {
           :name => "limited_year",
@@ -192,4 +192,11 @@ class GeneratorTests < Test::Unit::TestCase
 
     assert_equal expected_test_src, test_src
   end
+
+  #TODO Missing test scenarios. Adding here so I don't forget when I split this
+  #     apart into smaller components.
+  #
+  #     1) If a year_range contains empty entries then we should blow up.
+  #     2) If year_range contains invalid (i.e. too many types per entry) then
+  #        we should blow up
 end

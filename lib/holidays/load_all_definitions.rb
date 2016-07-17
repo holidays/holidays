@@ -17,6 +17,8 @@ module Holidays
         # into some kind of definition file so it can be loaded automatically but I'm afraid
         # of making that big of a breaking API change since these are public. For the time
         # being I'll load them manually like this.
+        #
+        # NOTE: These are no longer public! We can do whatever we want here!
         global_methods = {
           "easter(year)" => gregorian_easter.method(:calculate_easter_for).to_proc,
           "orthodox_easter(year)" => gregorian_easter.method(:calculate_orthodox_easter_for).to_proc,

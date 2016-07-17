@@ -193,7 +193,6 @@ module Holidays
       from_date = from_date.new_offset(0) + from_date.offset if from_date.respond_to?(:new_offset)
 
       from_date = get_date(from_date)
-      to_date = Date.new(from_date.year, 12, 31)
       regions, observed, informal = OptionFactory.parse_options.call(options)
 
       # This could be smarter but I don't have any evidence that just checking for
@@ -201,7 +200,7 @@ module Holidays
       # smarter here to check in smaller increments.
       date_driver_hash = UseCaseFactory.dates_driver_builder.call(from_date, from_date >> 12)
 
-      UseCaseFactory.year_holiday.call(from_date, to_date, date_driver_hash, regions, observed, informal)
+      UseCaseFactory.year_holiday.call(from_date, date_driver_hash, regions, observed, informal)
     end
 
     # Allows a developer to explicitly calculate and cache holidays within a given period

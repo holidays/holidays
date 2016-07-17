@@ -2,21 +2,20 @@ module Holidays
   module UseCase
     module Context
       class YearHoliday
-        include ContextCommon
-
-        def initialize(holidays_by_month_repo, day_of_month_calculator, custom_methods_repo, proc_result_cache_repo)
-          @holidays_by_month_repo = holidays_by_month_repo
-          @day_of_month_calculator = day_of_month_calculator
-          @custom_methods_repo = custom_methods_repo
-          @proc_result_cache_repo = proc_result_cache_repo
+        def initialize(definition_search)
+          @definition_search = definition_search
         end
 
-        def call(from_date, to_date, dates_driver, regions, observed, informal)
-          validate!(from_date, to_date, dates_driver, regions)
+        def call(from_date, dates_driver, regions, observed, informal)
+          validate!(from_date, dates_driver, regions)
+
+          to_date = Date.civil(from_date.year, 12, 31)
           holidays = []
           ret_holidays = []
+          opts = gather_options(observed, informal)
 
-          ret_holidays = make_date_array(dates_driver, regions, observed, informal)
+          ret_holidays = @definition_search.call(dates_driver, regions, opts)
+
           ret_holidays.each do |holiday|
             if holiday[:date] >= from_date && holiday[:date] <= to_date
               holidays << holiday
@@ -28,15 +27,8 @@ module Holidays
 
         private
 
-        attr_reader :holidays_by_month_repo,
-                    :day_of_month_calculator,
-                    :custom_methods_repo,
-                    :proc_result_cache_repo
-
-        def validate!(from_date, to_date, dates_driver, regions)
-          raise ArgumentError unless from_date
-          raise ArgumentError unless to_date
-
+        def validate!(from_date, dates_driver, regions)
+          raise ArgumentError unless from_date && from_date.is_a?(Date)
           raise ArgumentError if dates_driver.nil? || dates_driver.empty?
 
           dates_driver.each do |year, months|
@@ -44,6 +36,15 @@ module Holidays
           end
 
           raise ArgumentError if regions.nil? || regions.empty?
+        end
+
+        def gather_options(observed, informal)
+          opts = []
+
+          opts << :observed if observed == true
+          opts << :informal if informal == true
+
+          opts
         end
       end
     end
