@@ -5,6 +5,19 @@
 # - https://en.wikipedia.org/wiki/Public_holidays_in_Luxembourg
 ---
 months:
+  0:
+  - name: Ouschterméindeg
+    regions: [lu]
+    function: easter(year)
+    function_modifier: 1
+  - name: Christi Himmelfaart
+    regions: [lu]
+    function: easter(year)
+    function_modifier: 39
+  - name: Péngschtméindeg
+    regions: [lu]
+    function: easter(year)
+    function_modifier: 49
   1:
   - name: Neijoerschdag
     regions: [lu]
@@ -29,6 +42,15 @@ months:
     regions: [lu]
     mday: 26
 tests: |
-    {Date.civil(2008,1,1) => 'Neijoerschdag'}.each do |date, name|
+    {Date.civil(2008,1,1) => 'Neijoerschdag',
+    Date.civil(2008,3,24) => 'Ouschterméindeg',
+    Date.civil(2008,5,1) => 'Christi Himmelfaart', # Ascension, Easter+39
+    Date.civil(2008,6,23) => 'Nationalfeierdag',
+    Date.civil(2008,8,15) => 'Léiffrawëschdag',
+    Date.civil(2008,11,1) => 'Allerhellgen',
+    Date.civil(2008,12,25) => 'Chrëschtdag',
+    Date.civil(2008,12,26) => 'Stiefesdag',
+    Date.civil(2008,5,11) => 'Péngschtméindeg'
+    }.each do |date, name|
       assert_equal name, (Holidays.on(date, :lu, :informal)[0] || {})[:name]
     end
