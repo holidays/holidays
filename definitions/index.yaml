@@ -34,6 +34,7 @@ defs:
   MX: ['mx.yaml', 'north_america_informal.yaml']
   NERC: ['nerc.yaml']
   NL: ['nl.yaml']
+  LU: ['lu.yaml']
   "NO": ['no.yaml']
   NYSE: ['nyse.yaml']
   NZ: ['nz.yaml']
