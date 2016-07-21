@@ -1,5 +1,9 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 4.6.0
+
+* Add holidays for 'Luxembourg' (https://github.com/dunyakirkali)
+
 ## 4.5.0
 
 * Add `Holidays.year_holidays` method to obtain all holidays occuring from date to end of year, inclusively (thanks to https://github.com/jonathanpike)
