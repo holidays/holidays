@@ -62,7 +62,7 @@ class HolidaysTests < Test::Unit::TestCase
 
     between_mock = mock()
     Holidays::FinderFactory.stubs(:between).returns(between_mock)
-    between_mock.expects(:call).with(start_date, end_date, {2015 => [0, 1, 2], 2014 => [0, 12]}, [:us], false, false)
+    between_mock.expects(:call).with(start_date, end_date, [:us], false, false)
 
     @subject.call(start_date, end_date, *options)
   end
@@ -72,13 +72,9 @@ class HolidaysTests < Test::Unit::TestCase
     end_date = Date.civil(2015, 1, 31)
     options = [:us]
 
-    dates_driver_builder_mock = mock()
-    Holidays::FinderFactory.stubs(:dates_driver_builder).returns(dates_driver_builder_mock)
-    dates_driver_builder_mock.expects(:call).with(start_date, end_date).returns({2015 => [0, 1, 2]})
-
     between_mock = mock()
     Holidays::FinderFactory.stubs(:between).returns(between_mock)
-    between_mock.expects(:call).with(start_date, end_date, {2015 => [0, 1, 2]}, [:us], false, false)
+    between_mock.expects(:call).with(start_date, end_date, [:us], false, false)
 
     @subject.call(start_date, end_date, *options)
   end

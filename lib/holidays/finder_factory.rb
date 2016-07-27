@@ -21,26 +21,29 @@ module Holidays
       def between
         Finder::Context::Between.new(
           search,
+          dates_driver_builder,
         )
       end
 
       def next_holiday
         Finder::Context::NextHoliday.new(
           search,
+          dates_driver_builder,
         )
       end
 
       def year_holiday
         Finder::Context::YearHoliday.new(
           search,
+          dates_driver_builder,
         )
       end
+
+      private
 
       def dates_driver_builder
         Finder::Context::DatesDriverBuilder.new
       end
-
-      private
 
       def rules
         {

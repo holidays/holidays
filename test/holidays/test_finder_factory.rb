@@ -18,8 +18,4 @@ class FinderFactoryTests < Test::Unit::TestCase
   def test_year_holiday
     assert Holidays::FinderFactory.year_holiday.is_a?(Holidays::Finder::Context::YearHoliday)
   end
-
-  def test_dates_driver_builder_factory
-    assert Holidays::FinderFactory.dates_driver_builder.is_a?(Holidays::Finder::Context::DatesDriverBuilder)
-  end
 end

@@ -5,9 +5,11 @@ require 'holidays/finder/context/year_holiday'
 class YearHolidayTests < Test::Unit::TestCase
   def setup
     @definition_search = mock()
+    @dates_driver_builder = mock()
 
     @subject = Holidays::Finder::Context::YearHoliday.new(
       @definition_search,
+      @dates_driver_builder,
     )
 
     @from_date= Date.civil(2015, 1, 1)
@@ -25,51 +27,33 @@ class YearHolidayTests < Test::Unit::TestCase
       :name => "Test",
       :regions => [:us],
     }])
+
+    @dates_driver_builder.expects(:call).at_most_once.with(
+      @from_date, @from_date >> 12,
+    ).returns(
+      @dates_driver,
+    )
   end
 
   def test_returns_error_if_from_date_is_missing
     assert_raise ArgumentError do
-      @subject.call(nil, @dates_driver, @regions, @observed, @informal)
+      @subject.call(nil, @regions, @observed, @informal)
     end
   end
 
   def test_returns_error_if_from_date_is_not_a_date
     assert_raise ArgumentError do
-      @subject.call("2015-1-1", @dates_driver, @regions, @observed, @informal)
-    end
-  end
-
-  def test_returns_error_if_date_driver_is_missing_or_empty
-    assert_raise ArgumentError do
-      @subject.call(@from_date, nil, @regions, @observed, @informal)
-    end
-
-    assert_raise ArgumentError do
-      @subject.call(@from_date, {}, @regions, @observed, @informal)
-    end
-  end
-
-  def test_returns_error_if_date_driver_contains_nil_or_empty_months
-    bad_dates_driver = {2015 => [0, 1, 2], 2014 => []}
-
-    assert_raise ArgumentError do
-      @subject.call(@from_date, bad_dates_driver, @regions, @observed, @informal)
-    end
-
-    bad_dates_driver = {2015 => [0, 1, 2], 2014 => nil}
-
-    assert_raise ArgumentError do
-      @subject.call(@from_date, bad_dates_driver, @regions, @observed, @informal)
+      @subject.call("2015-1-1", @regions, @observed, @informal)
     end
   end
 
   def test_returns_error_if_regions_is_missing_or_empty
     assert_raise ArgumentError do
-      @subject.call(@from_date, @dates_driver, nil, @observed, @informal)
+      @subject.call(@from_date, nil, @observed, @informal)
     end
 
     assert_raise ArgumentError do
-      @subject.call(@from_date, @dates_driver, [], @observed, @informal)
+      @subject.call(@from_date, [], @observed, @informal)
     end
   end
 
@@ -82,7 +66,7 @@ class YearHolidayTests < Test::Unit::TestCase
           :regions => [:us],
         }
       ],
-      @subject.call(@from_date, @dates_driver, @regions, @observed, @informal)
+      @subject.call(@from_date, @regions, @observed, @informal)
     )
   end
 
@@ -128,7 +112,7 @@ class YearHolidayTests < Test::Unit::TestCase
           :regions => [:us],
         }
       ],
-      @subject.call(@from_date, @dates_driver, @regions, @observed, @informal)
+      @subject.call(@from_date, @regions, @observed, @informal)
     )
   end
 
@@ -169,7 +153,7 @@ class YearHolidayTests < Test::Unit::TestCase
           :regions => [:us],
         },
       ],
-      @subject.call(@from_date, @dates_driver, @regions, @observed, @informal)
+      @subject.call(@from_date, @regions, @observed, @informal)
     )
   end
 
@@ -216,7 +200,7 @@ class YearHolidayTests < Test::Unit::TestCase
           :regions => [:us],
         }
       ],
-      @subject.call(@from_date, @dates_driver, @regions, @observed, @informal)
+      @subject.call(@from_date, @regions, @observed, @informal)
     )
   end
 end

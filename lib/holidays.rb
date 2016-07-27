@@ -112,14 +112,13 @@ module Holidays
 
       start_date, end_date = get_date(start_date), get_date(end_date)
 
-      if cached_holidays = definition_cache_repository.find(start_date, end_date, options)
+      if cached_holidays = DefinitionFactory.cache_repository.find(start_date, end_date, options)
         return cached_holidays
       end
 
       regions, observed, informal = OptionFactory.parse_options.call(options)
-      date_driver_hash = FinderFactory.dates_driver_builder.call(start_date, end_date)
 
-      FinderFactory.between.call(start_date, end_date, date_driver_hash, regions, observed, informal)
+      FinderFactory.between.call(start_date, end_date, regions, observed, informal)
     end
 
     # Get next holidays occuring from date, inclusively.
@@ -152,12 +151,7 @@ module Holidays
       from_date = get_date(from_date)
       regions, observed, informal = OptionFactory.parse_options.call(options)
 
-      # This could be smarter but I don't have any evidence that just checking for
-      # the next 12 months will cause us issues. If it does we can implement something
-      # smarter here to check in smaller increments.
-      date_driver_hash = FinderFactory.dates_driver_builder.call(from_date, from_date >> 12)
-
-      FinderFactory.next_holiday.call(holidays_count, from_date, date_driver_hash, regions, observed, informal)
+      FinderFactory.next_holiday.call(holidays_count, from_date, regions, observed, informal)
     end
 
     # Get all holidays occuring from date to end of year, inclusively.
@@ -195,12 +189,7 @@ module Holidays
       from_date = get_date(from_date)
       regions, observed, informal = OptionFactory.parse_options.call(options)
 
-      # This could be smarter but I don't have any evidence that just checking for
-      # the next 12 months will cause us issues. If it does we can implement something
-      # smarter here to check in smaller increments.
-      date_driver_hash = FinderFactory.dates_driver_builder.call(from_date, from_date >> 12)
-
-      FinderFactory.year_holiday.call(from_date, date_driver_hash, regions, observed, informal)
+      FinderFactory.year_holiday.call(from_date, regions, observed, informal)
     end
 
     # Allows a developer to explicitly calculate and cache holidays within a given period
@@ -208,7 +197,7 @@ module Holidays
       start_date, end_date = get_date(start_date), get_date(end_date)
       cache_data = between(start_date, end_date, *options)
 
-      definition_cache_repository.cache_between(start_date, end_date, cache_data, options)
+      DefinitionFactory.cache_repository.cache_between(start_date, end_date, cache_data, options)
     end
 
     # Returns an array of symbols of all the available holiday regions.
@@ -237,10 +226,6 @@ module Holidays
       else
         Date.civil(date.year, date.mon, date.mday)
       end
-    end
-
-    def definition_cache_repository
-      DefinitionFactory.cache_repository
     end
   end
 end

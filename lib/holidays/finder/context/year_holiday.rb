@@ -2,12 +2,21 @@ module Holidays
   module Finder
     module Context
       class YearHoliday
-        def initialize(definition_search)
+        def initialize(definition_search, dates_driver_builder)
           @definition_search = definition_search
+          @dates_driver_builder = dates_driver_builder
         end
 
-        def call(from_date, dates_driver, regions, observed, informal)
-          validate!(from_date, dates_driver, regions)
+        def call(from_date, regions, observed, informal)
+          validate!(from_date, regions)
+
+          # This could be smarter but I don't have any evidence that just checking for
+          # the next 12 months will cause us issues. If it does we can implement something
+          # smarter here to check in smaller increments.
+          #
+          #FIXME Could this be until the to_date instead? Save us some processing?
+          #      This is matching what was in holidays.rb currently so I'm keeping it. -pp
+          dates_driver = @dates_driver_builder.call(from_date, from_date >> 12)
 
           to_date = Date.civil(from_date.year, 12, 31)
           holidays = []
@@ -27,14 +36,8 @@ module Holidays
 
         private
 
-        def validate!(from_date, dates_driver, regions)
+        def validate!(from_date, regions)
           raise ArgumentError unless from_date && from_date.is_a?(Date)
-          raise ArgumentError if dates_driver.nil? || dates_driver.empty?
-
-          dates_driver.each do |year, months|
-            raise ArgumentError if months.nil? || months.empty?
-          end
-
           raise ArgumentError if regions.nil? || regions.empty?
         end
 

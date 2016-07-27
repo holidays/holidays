@@ -5,9 +5,11 @@ require 'holidays/finder/context/between'
 class BetweenTests < Test::Unit::TestCase
   def setup
     @definition_search = mock()
+    @dates_driver_builder = mock()
 
     @subject = Holidays::Finder::Context::Between.new(
       @definition_search,
+      @dates_driver_builder,
     )
 
     @start_date = Date.civil(2015, 1, 1)
@@ -26,53 +28,33 @@ class BetweenTests < Test::Unit::TestCase
       :name => "Test",
       :regions => [:us],
     }])
+
+    @dates_driver_builder.expects(:call).at_most_once.with(
+      @start_date, @end_date,
+    ).returns(
+      @dates_driver,
+    )
   end
 
   def test_returns_error_if_start_date_is_missing
     assert_raise ArgumentError do
-      @subject.call(nil, @end_date, @dates_driver, @regions, @observed, @informal)
+      @subject.call(nil, @end_date, @regions, @observed, @informal)
     end
   end
 
   def test_returns_error_if_end_date_is_missing
     assert_raise ArgumentError do
-      @subject.call(@start_date, nil, @dates_driver, @regions, @observed, @informal)
-    end
-  end
-
-  def test_returns_error_if_driver_hash_is_nil
-    assert_raise ArgumentError do
-      @subject.call(@start_date, @end_date, nil, @regions, @observed, @informal)
-    end
-  end
-
-  def test_returns_error_if_driver_hash_is_empty
-    assert_raise ArgumentError do
-      @subject.call(@start_date, @end_date, {}, @regions, @observed, @informal)
-    end
-  end
-
-  def test_returns_error_if_driver_hash_has_empty_months_array
-    assert_raise ArgumentError do
-      @subject.call(@start_date, @end_date, {2015 => nil}, @regions, @observed, @informal)
-    end
-
-    assert_raise ArgumentError do
-      @subject.call(@start_date, @end_date, {2015 => []}, @regions, @observed, @informal)
-    end
-
-    assert_raise ArgumentError do
-      @subject.call(@start_date, @end_Date, {2015 => [1], 2016 => [1], 2017 => []}, @regions, @observed, @informal)
+      @subject.call(@start_date, nil, @regions, @observed, @informal)
     end
   end
 
   def test_returns_error_if_regions_are_missing_or_empty
     assert_raise ArgumentError do
-      @subject.call(@start_date, @end_date, @dates_driver, nil, @observed, @informal)
+      @subject.call(@start_date, @end_date, nil, @observed, @informal)
     end
 
     assert_raise ArgumentError do
-      @subject.call(@start_date, @end_date, @dates_driver, [], @observed, @informal)
+      @subject.call(@start_date, @end_date, [], @observed, @informal)
     end
   end
 
@@ -85,7 +67,7 @@ class BetweenTests < Test::Unit::TestCase
           :regions => [:us],
         }
       ],
-      @subject.call(@start_date, @end_date, @dates_driver, @regions, @observed, @informal)
+      @subject.call(@start_date, @end_date, @regions, @observed, @informal)
     )
   end
 
@@ -115,6 +97,12 @@ class BetweenTests < Test::Unit::TestCase
       },
     ])
 
+    @dates_driver_builder.expects(:call).at_most_once.with(
+      @start_date, @end_date,
+    ).returns(
+      @dates_driver,
+    )
+
     assert_equal(
       [
         {
@@ -133,7 +121,7 @@ class BetweenTests < Test::Unit::TestCase
           :regions => [:us],
         },
       ],
-      @subject.call(@start_date, @end_date, @dates_driver, @regions, @observed, @informal)
+      @subject.call(@start_date, @end_date, @regions, @observed, @informal)
     )
   end
 
@@ -163,6 +151,12 @@ class BetweenTests < Test::Unit::TestCase
       },
     ])
 
+    @dates_driver_builder.expects(:call).at_most_once.with(
+      @start_date, @end_date,
+    ).returns(
+      @dates_driver,
+    )
+
     assert_equal(
       [
         {
@@ -176,7 +170,7 @@ class BetweenTests < Test::Unit::TestCase
           :regions => [:us],
         },
       ],
-      @subject.call(@start_date, @end_date, @dates_driver, @regions, @observed, @informal)
+      @subject.call(@start_date, @end_date, @regions, @observed, @informal)
     )
   end
 end
