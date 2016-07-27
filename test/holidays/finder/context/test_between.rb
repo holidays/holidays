@@ -1,12 +1,12 @@
 require File.expand_path(File.dirname(__FILE__)) + '/../../../test_helper'
 
-require 'holidays/use_case/context/between'
+require 'holidays/finder/context/between'
 
 class BetweenTests < Test::Unit::TestCase
   def setup
     @definition_search = mock()
 
-    @subject = Holidays::UseCase::Context::Between.new(
+    @subject = Holidays::Finder::Context::Between.new(
       @definition_search,
     )
 

@@ -1,8 +1,7 @@
 module Holidays
-  module UseCase
+  module Finder
     module Context
       class NextHoliday
-
         def initialize(definition_search)
           @definition_search = definition_search
         end

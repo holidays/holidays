@@ -1,12 +1,12 @@
 require File.expand_path(File.dirname(__FILE__)) + '/../../../test_helper'
 
-require 'holidays/use_case/context/year_holiday'
+require 'holidays/finder/context/year_holiday'
 
 class YearHolidayTests < Test::Unit::TestCase
   def setup
     @definition_search = mock()
 
-    @subject = Holidays::UseCase::Context::YearHoliday.new(
+    @subject = Holidays::Finder::Context::YearHoliday.new(
       @definition_search,
     )
 

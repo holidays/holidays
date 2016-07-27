@@ -6,7 +6,7 @@ require 'digest/md5'
 require 'holidays/definition_factory'
 require 'holidays/date_calculator_factory'
 require 'holidays/option_factory'
-require 'holidays/use_case_factory'
+require 'holidays/finder_factory'
 require 'holidays/errors'
 require 'holidays/load_all_definitions'
 
@@ -117,9 +117,9 @@ module Holidays
       end
 
       regions, observed, informal = OptionFactory.parse_options.call(options)
-      date_driver_hash = UseCaseFactory.dates_driver_builder.call(start_date, end_date)
+      date_driver_hash = FinderFactory.dates_driver_builder.call(start_date, end_date)
 
-      UseCaseFactory.between.call(start_date, end_date, date_driver_hash, regions, observed, informal)
+      FinderFactory.between.call(start_date, end_date, date_driver_hash, regions, observed, informal)
     end
 
     # Get next holidays occuring from date, inclusively.
@@ -155,25 +155,25 @@ module Holidays
       # This could be smarter but I don't have any evidence that just checking for
       # the next 12 months will cause us issues. If it does we can implement something
       # smarter here to check in smaller increments.
-      date_driver_hash = UseCaseFactory.dates_driver_builder.call(from_date, from_date >> 12)
+      date_driver_hash = FinderFactory.dates_driver_builder.call(from_date, from_date >> 12)
 
-      UseCaseFactory.next_holiday.call(holidays_count, from_date, date_driver_hash, regions, observed, informal)
+      FinderFactory.next_holiday.call(holidays_count, from_date, date_driver_hash, regions, observed, informal)
     end
 
-    # Get all holidays occuring from date to end of year, inclusively. 
+    # Get all holidays occuring from date to end of year, inclusively.
     #
-    # Returns an array of hashes or nil. 
+    # Returns an array of hashes or nil.
     #
-    # Incoming arguments are below: 
+    # Incoming arguments are below:
     # [<tt>options</tt>]  One or more region symbols, <tt>:informal</tt> and/or <tt>:observed</tt>.
     # [<tt>from_date</tt>]    Ruby Date object. This is an optional param, defaulted today.
     #
     # ==== Example
     #   Date.today
     #   => Tue, 23 Feb 2016
-    # 
+    #
     #   regions = [:ca_on]
-    # 
+    #
     #   Holidays.year_holidays(regions)
     #   => [{:name=>"Good Friday",...},
     #       {name=>"Easter Sunday",...},
@@ -198,9 +198,9 @@ module Holidays
       # This could be smarter but I don't have any evidence that just checking for
       # the next 12 months will cause us issues. If it does we can implement something
       # smarter here to check in smaller increments.
-      date_driver_hash = UseCaseFactory.dates_driver_builder.call(from_date, from_date >> 12)
+      date_driver_hash = FinderFactory.dates_driver_builder.call(from_date, from_date >> 12)
 
-      UseCaseFactory.year_holiday.call(from_date, date_driver_hash, regions, observed, informal)
+      FinderFactory.year_holiday.call(from_date, date_driver_hash, regions, observed, informal)
     end
 
     # Allows a developer to explicitly calculate and cache holidays within a given period

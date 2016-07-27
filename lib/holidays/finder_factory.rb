@@ -1,3 +1,7 @@
+require 'holidays/finder/context/between'
+require 'holidays/finder/context/dates_driver_builder'
+require 'holidays/finder/context/next_holiday'
+require 'holidays/finder/context/year_holiday'
 require 'holidays/finder/context/search'
 require 'holidays/finder/rules/in_region'
 require 'holidays/finder/rules/year_range'
@@ -12,6 +16,28 @@ module Holidays
           DateCalculatorFactory.day_of_month_calculator,
           rules,
         )
+      end
+
+      def between
+        Finder::Context::Between.new(
+          search,
+        )
+      end
+
+      def next_holiday
+        Finder::Context::NextHoliday.new(
+          search,
+        )
+      end
+
+      def year_holiday
+        Finder::Context::YearHoliday.new(
+          search,
+        )
+      end
+
+      def dates_driver_builder
+        Finder::Context::DatesDriverBuilder.new
       end
 
       private

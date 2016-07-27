@@ -2,10 +2,10 @@
 # we will iterate over each year and then over each month internally and check to see if the
 # supplied dates match any holidays for the region and date. So if we supply start_date of 2015/1/1
 # and end_date of 2015/6/1 then we will return a date driver of {:2015 => [0, 1, 2, 5, 6, 7]}.
-# In the  logic in the 'between' use case we will iterate over this and compare dates in these
-# months to the supplied range to determine whether they should be returned to the user.
+# In the logic in the various other 'finder' contexts we will iterate over this and compare dates
+# in these months to the supplied range to determine whether they should be returned to the user.
 module Holidays
-  module UseCase
+  module Finder
     module Context
       class DatesDriverBuilder
         def call(start_date, end_date)
@@ -54,7 +54,9 @@ module Holidays
 
         def clean(dates_driver)
           dates_driver.each do |year, months|
-            dates_driver[year] << 0 # Always add variable month '0' for proc calc purposes
+            # Always add variable month '0' for proc calc purposes. For example, 'easter' lives in
+            # 'month 0' but is vital to calculating a lot of easter-related dates.
+            dates_driver[year] << 0
 
             dates_driver[year].uniq!
             dates_driver[year].sort!
