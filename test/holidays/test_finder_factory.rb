@@ -18,4 +18,8 @@ class FinderFactoryTests < Test::Unit::TestCase
   def test_year_holiday
     assert Holidays::FinderFactory.year_holiday.is_a?(Holidays::Finder::Context::YearHoliday)
   end
+
+  def test_parse_options_factory
+    assert Holidays::FinderFactory.parse_options.is_a?(Holidays::Finder::Context::ParseOptions)
+  end
 end

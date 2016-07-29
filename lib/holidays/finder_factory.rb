@@ -1,8 +1,9 @@
 require 'holidays/finder/context/between'
 require 'holidays/finder/context/dates_driver_builder'
 require 'holidays/finder/context/next_holiday'
-require 'holidays/finder/context/year_holiday'
+require 'holidays/finder/context/parse_options'
 require 'holidays/finder/context/search'
+require 'holidays/finder/context/year_holiday'
 require 'holidays/finder/rules/in_region'
 require 'holidays/finder/rules/year_range'
 
@@ -22,6 +23,7 @@ module Holidays
         Finder::Context::Between.new(
           search,
           dates_driver_builder,
+          parse_options,
         )
       end
 
@@ -29,6 +31,7 @@ module Holidays
         Finder::Context::NextHoliday.new(
           search,
           dates_driver_builder,
+          parse_options,
         )
       end
 
@@ -36,6 +39,15 @@ module Holidays
         Finder::Context::YearHoliday.new(
           search,
           dates_driver_builder,
+          parse_options,
+        )
+      end
+
+      def parse_options
+        Finder::Context::ParseOptions.new(
+          DefinitionFactory.regions_repository,
+          DefinitionFactory.region_validator,
+          DefinitionFactory.merger,
         )
       end
 

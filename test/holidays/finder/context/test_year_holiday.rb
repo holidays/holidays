@@ -4,19 +4,23 @@ require 'holidays/finder/context/year_holiday'
 
 class YearHolidayTests < Test::Unit::TestCase
   def setup
+    @regions = [:us]
+    @observed = false
+    @informal = false
+
     @definition_search = mock()
     @dates_driver_builder = mock()
+    @options_parser = mock()
 
     @subject = Holidays::Finder::Context::YearHoliday.new(
       @definition_search,
       @dates_driver_builder,
+      @options_parser,
     )
 
     @from_date= Date.civil(2015, 1, 1)
     @dates_driver = {2015 => [0, 1, 2], 2014 => [0, 12]}
-    @regions = [:us]
-    @observed = false
-    @informal = false
+    @options = [@regions, @observed, @informal]
 
     @definition_search.expects(:call).at_most_once.with(
       @dates_driver,
@@ -33,27 +37,19 @@ class YearHolidayTests < Test::Unit::TestCase
     ).returns(
       @dates_driver,
     )
+
+    @options_parser.expects(:call).at_most_once.with(@options).returns(@options)
   end
 
   def test_returns_error_if_from_date_is_missing
     assert_raise ArgumentError do
-      @subject.call(nil, @regions, @observed, @informal)
+      @subject.call(nil, @options)
     end
   end
 
   def test_returns_error_if_from_date_is_not_a_date
     assert_raise ArgumentError do
-      @subject.call("2015-1-1", @regions, @observed, @informal)
-    end
-  end
-
-  def test_returns_error_if_regions_is_missing_or_empty
-    assert_raise ArgumentError do
-      @subject.call(@from_date, nil, @observed, @informal)
-    end
-
-    assert_raise ArgumentError do
-      @subject.call(@from_date, [], @observed, @informal)
+      @subject.call("2015-1-1", @options)
     end
   end
 
@@ -66,7 +62,7 @@ class YearHolidayTests < Test::Unit::TestCase
           :regions => [:us],
         }
       ],
-      @subject.call(@from_date, @regions, @observed, @informal)
+      @subject.call(@from_date, @options)
     )
   end
 
@@ -112,7 +108,7 @@ class YearHolidayTests < Test::Unit::TestCase
           :regions => [:us],
         }
       ],
-      @subject.call(@from_date, @regions, @observed, @informal)
+      @subject.call(@from_date, @options)
     )
   end
 
@@ -153,7 +149,7 @@ class YearHolidayTests < Test::Unit::TestCase
           :regions => [:us],
         },
       ],
-      @subject.call(@from_date, @regions, @observed, @informal)
+      @subject.call(@from_date, @options)
     )
   end
 
@@ -200,7 +196,7 @@ class YearHolidayTests < Test::Unit::TestCase
           :regions => [:us],
         }
       ],
-      @subject.call(@from_date, @regions, @observed, @informal)
+      @subject.call(@from_date, @options)
     )
   end
 end

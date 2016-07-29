@@ -2,13 +2,16 @@ module Holidays
   module Finder
     module Context
       class YearHoliday
-        def initialize(definition_search, dates_driver_builder)
+        def initialize(definition_search, dates_driver_builder, options_parser)
           @definition_search = definition_search
           @dates_driver_builder = dates_driver_builder
+          @options_parser = options_parser
         end
 
-        def call(from_date, regions, observed, informal)
-          validate!(from_date, regions)
+        def call(from_date, options)
+          validate!(from_date)
+
+          regions, observed, informal = @options_parser.call(options)
 
           # This could be smarter but I don't have any evidence that just checking for
           # the next 12 months will cause us issues. If it does we can implement something
@@ -36,9 +39,8 @@ module Holidays
 
         private
 
-        def validate!(from_date, regions)
+        def validate!(from_date)
           raise ArgumentError unless from_date && from_date.is_a?(Date)
-          raise ArgumentError if regions.nil? || regions.empty?
         end
 
         def gather_options(observed, informal)

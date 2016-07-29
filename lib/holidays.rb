@@ -5,7 +5,6 @@ require 'date'
 require 'digest/md5'
 require 'holidays/definition_factory'
 require 'holidays/date_calculator_factory'
-require 'holidays/option_factory'
 require 'holidays/finder_factory'
 require 'holidays/errors'
 require 'holidays/load_all_definitions'
@@ -57,19 +56,6 @@ module Holidays
   FULL_DEFINITIONS_PATH = File.expand_path(File.dirname(__FILE__) + "/#{DEFINITIONS_PATH}")
 
   class << self
-    # Get all holidays on a given date.
-    #
-    # [<tt>date</tt>]     A Date object.
-    # [<tt>:options</tt>] One or more region symbols, <tt>:informal</tt> and/or <tt>:observed</tt>.
-    #
-    # Returns an array of hashes or nil. See Holidays#between for the output
-    # format.
-    #
-    # Also available via Date#holidays.
-    def on(date, *options)
-      between(date, date, options)
-    end
-
     # Does the given work-week have any holidays?
     #
     # [<tt>date</tt>]   A Date object.
@@ -85,6 +71,19 @@ module Holidays
       options += [:observed] unless options.include?(:no_observed)
       options.delete(:no_observed)
       between(start_date, end_date, options).empty?
+    end
+
+    # Get all holidays on a given date.
+    #
+    # [<tt>date</tt>]     A Date object.
+    # [<tt>:options</tt>] One or more region symbols, <tt>:informal</tt> and/or <tt>:observed</tt>.
+    #
+    # Returns an array of hashes or nil. See Holidays#between for the output
+    # format.
+    #
+    # Also available via Date#holidays.
+    def on(date, *options)
+      between(date, date, options)
     end
 
     # Get all holidays occuring between two dates, inclusively.
@@ -116,9 +115,7 @@ module Holidays
         return cached_holidays
       end
 
-      regions, observed, informal = OptionFactory.parse_options.call(options)
-
-      FinderFactory.between.call(start_date, end_date, regions, observed, informal)
+      FinderFactory.between.call(start_date, end_date, options)
     end
 
     # Get next holidays occuring from date, inclusively.
@@ -149,9 +146,8 @@ module Holidays
       from_date = from_date.new_offset(0) + from_date.offset if from_date.respond_to?(:new_offset)
 
       from_date = get_date(from_date)
-      regions, observed, informal = OptionFactory.parse_options.call(options)
 
-      FinderFactory.next_holiday.call(holidays_count, from_date, regions, observed, informal)
+      FinderFactory.next_holiday.call(holidays_count, from_date, options)
     end
 
     # Get all holidays occuring from date to end of year, inclusively.
@@ -185,11 +181,9 @@ module Holidays
 
       # remove the timezone
       from_date = from_date.new_offset(0) + from_date.offset if from_date.respond_to?(:new_offset)
-
       from_date = get_date(from_date)
-      regions, observed, informal = OptionFactory.parse_options.call(options)
 
-      FinderFactory.year_holiday.call(from_date, regions, observed, informal)
+      FinderFactory.year_holiday.call(from_date, options)
     end
 
     # Allows a developer to explicitly calculate and cache holidays within a given period

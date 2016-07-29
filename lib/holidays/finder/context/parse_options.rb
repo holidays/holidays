@@ -1,5 +1,5 @@
 module Holidays
-  module Option
+  module Finder
     module Context
       class ParseOptions
         def initialize(regions_repo, region_validator, definition_merger)

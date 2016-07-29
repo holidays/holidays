@@ -56,13 +56,9 @@ class HolidaysTests < Test::Unit::TestCase
     end_date = Date.civil(2015, 1, 31)
     options = [:us]
 
-    options_parser_mock = mock()
-    Holidays::OptionFactory.stubs(:parse_options).returns(options_parser_mock)
-    options_parser_mock.expects(:call).with(options).returns([[:us], false, false])
-
     between_mock = mock()
     Holidays::FinderFactory.stubs(:between).returns(between_mock)
-    between_mock.expects(:call).with(start_date, end_date, [:us], false, false)
+    between_mock.expects(:call).with(start_date, end_date, [:us])
 
     @subject.call(start_date, end_date, *options)
   end
@@ -74,7 +70,7 @@ class HolidaysTests < Test::Unit::TestCase
 
     between_mock = mock()
     Holidays::FinderFactory.stubs(:between).returns(between_mock)
-    between_mock.expects(:call).with(start_date, end_date, [:us], false, false)
+    between_mock.expects(:call).with(start_date, end_date, [:us])
 
     @subject.call(start_date, end_date, *options)
   end

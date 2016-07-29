@@ -4,20 +4,24 @@ require 'holidays/finder/context/between'
 
 class BetweenTests < Test::Unit::TestCase
   def setup
+    @regions = [:us]
+    @observed = false
+    @informal = false
+
     @definition_search = mock()
     @dates_driver_builder = mock()
+    @options_parser = mock()
 
     @subject = Holidays::Finder::Context::Between.new(
       @definition_search,
       @dates_driver_builder,
+      @options_parser,
     )
 
     @start_date = Date.civil(2015, 1, 1)
     @end_date = Date.civil(2015, 1, 1)
     @dates_driver = {2015 => [0, 1, 2], 2014 => [0, 12]}
-    @regions = [:us]
-    @observed = false
-    @informal = false
+    @options = [@regions, @observed, @informal]
 
     @definition_search.expects(:call).at_most_once.with(
       @dates_driver,
@@ -34,27 +38,19 @@ class BetweenTests < Test::Unit::TestCase
     ).returns(
       @dates_driver,
     )
+
+    @options_parser.expects(:call).at_most_once.with(@options).returns(@options)
   end
 
   def test_returns_error_if_start_date_is_missing
     assert_raise ArgumentError do
-      @subject.call(nil, @end_date, @regions, @observed, @informal)
+      @subject.call(nil, @end_date, @options)
     end
   end
 
   def test_returns_error_if_end_date_is_missing
     assert_raise ArgumentError do
-      @subject.call(@start_date, nil, @regions, @observed, @informal)
-    end
-  end
-
-  def test_returns_error_if_regions_are_missing_or_empty
-    assert_raise ArgumentError do
-      @subject.call(@start_date, @end_date, nil, @observed, @informal)
-    end
-
-    assert_raise ArgumentError do
-      @subject.call(@start_date, @end_date, [], @observed, @informal)
+      @subject.call(@start_date, nil, @options)
     end
   end
 
@@ -67,7 +63,7 @@ class BetweenTests < Test::Unit::TestCase
           :regions => [:us],
         }
       ],
-      @subject.call(@start_date, @end_date, @regions, @observed, @informal)
+      @subject.call(@start_date, @end_date, @options)
     )
   end
 
@@ -121,7 +117,7 @@ class BetweenTests < Test::Unit::TestCase
           :regions => [:us],
         },
       ],
-      @subject.call(@start_date, @end_date, @regions, @observed, @informal)
+      @subject.call(@start_date, @end_date, @options)
     )
   end
 
@@ -170,7 +166,7 @@ class BetweenTests < Test::Unit::TestCase
           :regions => [:us],
         },
       ],
-      @subject.call(@start_date, @end_date, @regions, @observed, @informal)
+      @subject.call(@start_date, @end_date, @options)
     )
   end
 end

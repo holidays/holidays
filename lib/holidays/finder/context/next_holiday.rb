@@ -2,13 +2,16 @@ module Holidays
   module Finder
     module Context
       class NextHoliday
-        def initialize(definition_search, dates_driver_builder)
+        def initialize(definition_search, dates_driver_builder, options_parser)
           @definition_search = definition_search
           @dates_driver_builder = dates_driver_builder
+          @options_parser = options_parser
         end
 
-        def call(holidays_count, from_date, regions, observed, informal)
-          validate!(holidays_count, from_date, regions)
+        def call(holidays_count, from_date, options)
+          validate!(holidays_count, from_date)
+
+          regions, observed, informal = @options_parser.call(options)
 
           holidays = []
           ret_holidays = []
@@ -34,11 +37,10 @@ module Holidays
 
         private
 
-        def validate!(holidays_count, from_date, regions)
+        def validate!(holidays_count, from_date)
           raise ArgumentError unless holidays_count
           raise ArgumentError if holidays_count <= 0
           raise ArgumentError unless from_date
-          raise ArgumentError if regions.nil? || regions.empty?
         end
 
         def gather_options(observed, informal)
