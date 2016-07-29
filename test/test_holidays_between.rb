@@ -17,7 +17,7 @@ class HolidaysTests < Test::Unit::TestCase
   end
 
   def teardown
-    Holidays::DefinitionFactory.cache_repository.reset!
+    Holidays::Factory::Definition.cache_repository.reset!
   end
 
   def test_between
@@ -46,7 +46,7 @@ class HolidaysTests < Test::Unit::TestCase
     end_date = Date.civil(2015, 1, 31)
     options = [:us, :informal]
 
-    Holidays::DefinitionFactory.cache_repository.expects(:find).with(start_date, end_date, options).returns({cached: 'data'})
+    Holidays::Factory::Definition.cache_repository.expects(:find).with(start_date, end_date, options).returns({cached: 'data'})
 
     assert_equal({cached: 'data'}, @subject.call(start_date, end_date, *options))
   end
@@ -57,7 +57,7 @@ class HolidaysTests < Test::Unit::TestCase
     options = [:us]
 
     between_mock = mock()
-    Holidays::FinderFactory.stubs(:between).returns(between_mock)
+    Holidays::Factory::Finder.stubs(:between).returns(between_mock)
     between_mock.expects(:call).with(start_date, end_date, [:us])
 
     @subject.call(start_date, end_date, *options)
@@ -69,7 +69,7 @@ class HolidaysTests < Test::Unit::TestCase
     options = [:us]
 
     between_mock = mock()
-    Holidays::FinderFactory.stubs(:between).returns(between_mock)
+    Holidays::Factory::Finder.stubs(:between).returns(between_mock)
     between_mock.expects(:call).with(start_date, end_date, [:us])
 
     @subject.call(start_date, end_date, *options)

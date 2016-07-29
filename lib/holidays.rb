@@ -3,9 +3,9 @@ $:.unshift File.dirname(__FILE__)
 
 require 'date'
 require 'digest/md5'
-require 'holidays/definition_factory'
-require 'holidays/date_calculator_factory'
-require 'holidays/finder_factory'
+require 'holidays/factory/definition'
+require 'holidays/factory/date_calculator'
+require 'holidays/factory/finder'
 require 'holidays/errors'
 require 'holidays/load_all_definitions'
 
@@ -111,11 +111,11 @@ module Holidays
 
       start_date, end_date = get_date(start_date), get_date(end_date)
 
-      if cached_holidays = DefinitionFactory.cache_repository.find(start_date, end_date, options)
+      if cached_holidays = Factory::Definition.cache_repository.find(start_date, end_date, options)
         return cached_holidays
       end
 
-      FinderFactory.between.call(start_date, end_date, options)
+      Factory::Finder.between.call(start_date, end_date, options)
     end
 
     # Get next holidays occuring from date, inclusively.
@@ -147,7 +147,7 @@ module Holidays
 
       from_date = get_date(from_date)
 
-      FinderFactory.next_holiday.call(holidays_count, from_date, options)
+      Factory::Finder.next_holiday.call(holidays_count, from_date, options)
     end
 
     # Get all holidays occuring from date to end of year, inclusively.
@@ -183,7 +183,7 @@ module Holidays
       from_date = from_date.new_offset(0) + from_date.offset if from_date.respond_to?(:new_offset)
       from_date = get_date(from_date)
 
-      FinderFactory.year_holiday.call(from_date, options)
+      Factory::Finder.year_holiday.call(from_date, options)
     end
 
     # Allows a developer to explicitly calculate and cache holidays within a given period
@@ -191,7 +191,7 @@ module Holidays
       start_date, end_date = get_date(start_date), get_date(end_date)
       cache_data = between(start_date, end_date, *options)
 
-      DefinitionFactory.cache_repository.cache_between(start_date, end_date, cache_data, options)
+      Factory::Definition.cache_repository.cache_between(start_date, end_date, cache_data, options)
     end
 
     # Returns an array of symbols of all the available holiday regions.
@@ -201,13 +201,13 @@ module Holidays
 
     # Parses provided holiday definition file(s) and loads them so that they are immediately available.
     def load_custom(*files)
-      regions, rules_by_month, custom_methods, tests = DefinitionFactory.file_parser.parse_definition_files(files)
+      regions, rules_by_month, custom_methods, tests = Factory::Definition.file_parser.parse_definition_files(files)
 
       custom_methods.each do |method_key, method_entity|
-        custom_methods[method_key] = Holidays::DefinitionFactory.custom_method_proc_decorator.call(method_entity)
+        custom_methods[method_key] = Factory::Definition.custom_method_proc_decorator.call(method_entity)
       end
 
-      DefinitionFactory.merger.call(regions, rules_by_month, custom_methods)
+      Factory::Definition.merger.call(regions, rules_by_month, custom_methods)
 
       rules_by_month
     end

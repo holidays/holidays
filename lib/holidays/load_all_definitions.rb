@@ -34,25 +34,25 @@ module Holidays
           "to_tuesday_if_sunday_or_monday_if_saturday(date)" => weekend_modifier.method(:to_tuesday_if_sunday_or_monday_if_saturday).to_proc,
         }
 
-        Holidays::DefinitionFactory.custom_methods_repository.add(global_methods)
+        Factory::Definition.custom_methods_repository.add(global_methods)
       end
 
       private
 
       def gregorian_easter
-        DateCalculatorFactory::Easter::Gregorian.easter_calculator
+        Factory::DateCalculator::Easter::Gregorian.easter_calculator
       end
 
       def julian_easter
-        DateCalculatorFactory::Easter::Julian.easter_calculator
+        Factory::DateCalculator::Easter::Julian.easter_calculator
       end
 
       def weekend_modifier
-        DateCalculatorFactory.weekend_modifier
+        Factory::DateCalculator.weekend_modifier
       end
 
       def day_of_month_calculator
-        DateCalculatorFactory.day_of_month_calculator
+        Factory::DateCalculator.day_of_month_calculator
       end
     end
   end

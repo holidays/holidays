@@ -49,7 +49,7 @@ module Holidays
 
       module ClassMethods
         def calculate_mday(year, month, week, wday)
-          Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, month, week, wday)
+          Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, month, week, wday)
         end
       end
     end

@@ -17,7 +17,7 @@ class ParseOptionsTests < Test::Unit::TestCase
 
     # As mentioned above, this set of tests is NOT isolated. We need
     # the real merger code here.
-    @definition_merger = Holidays::DefinitionFactory.merger
+    @definition_merger = Holidays::Factory::Definition.merger
 
     @subject = Holidays::Finder::Context::ParseOptions.new(
       @regions_repo,

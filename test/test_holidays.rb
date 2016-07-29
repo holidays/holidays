@@ -255,7 +255,7 @@ class HolidaysTests < Test::Unit::TestCase
     cache_data = Holidays.between(start_date, end_date, :ca, :informal)
     options = [:ca, :informal]
 
-    Holidays::DefinitionFactory.cache_repository.expects(:cache_between).with(start_date, end_date, cache_data, options)
+    Holidays::Factory::Definition.cache_repository.expects(:cache_between).with(start_date, end_date, cache_data, options)
 
     Holidays.cache_between(Date.civil(2008,3,21), Date.civil(2008,3,25), :ca, :informal)
 

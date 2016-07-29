@@ -70,7 +70,7 @@ end
 
 "qld_queens_bday_october(year)" => Proc.new { |year|
 if year >= 2016
-  DateCalculatorFactory.day_of_month_calculator.call(year, 10, 1, 1)
+  Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 10, 1, 1)
 elsif year == 2012
   1
 else
@@ -80,19 +80,19 @@ end
 
 "qld_queens_birthday_june(year)" => Proc.new { |year|
 if year <= 2015
-  DateCalculatorFactory.day_of_month_calculator.call(year, 6, 2, 1)
+  Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 6, 2, 1)
 end
 },
 
 "qld_labour_day_may(year)" => Proc.new { |year|
 if year < 2013 || year >= 2016
-  DateCalculatorFactory.day_of_month_calculator.call(year, 5, 1, 1)
+  Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 5, 1, 1)
 end
 },
 
 "qld_labour_day_october(year)" => Proc.new { |year|
 if year >= 2013 && year < 2016
-  DateCalculatorFactory.day_of_month_calculator.call(year, 10, 1, 1)
+  Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 10, 1, 1)
 end
 },
 
@@ -101,7 +101,7 @@ year == 2014 ? 14 : nil
 },
 
 "hobart_show_day(year)" => Proc.new { |year|
-fourth_sat_in_oct = Date.civil(year, 10, Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 10, 4, :saturday))
+fourth_sat_in_oct = Date.civil(year, 10, Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 10, 4, :saturday))
 fourth_sat_in_oct - 2 # the thursday before
 },
 
@@ -109,7 +109,7 @@ fourth_sat_in_oct - 2 # the thursday before
 if year < 2006
   nil
 else
-  Date.civil(year, 3, Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 3, :second, :monday))
+  Date.civil(year, 3, Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 3, :second, :monday))
 end
 },
 
@@ -117,7 +117,7 @@ end
 if year >= 2006
   nil
 else
-  Date.civil(year, 5, Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 5, :third, :monday))
+  Date.civil(year, 5, Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 5, :third, :monday))
 end
 },
 

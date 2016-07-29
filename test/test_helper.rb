@@ -35,4 +35,4 @@ module Holidays
   end
 end
 
-Holidays::DefinitionFactory.merger.call(Holidays::Test::DEFINED_REGIONS, Holidays::Test::HOLIDAYS_BY_MONTH, Holidays::Test::CUSTOM_METHODS)
+Holidays::Factory::Definition.merger.call(Holidays::Test::DEFINED_REGIONS, Holidays::Test::HOLIDAYS_BY_MONTH, Holidays::Test::CUSTOM_METHODS)
