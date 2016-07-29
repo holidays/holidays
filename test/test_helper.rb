@@ -20,7 +20,7 @@ end
 
 class Time
   include Holidays::CoreExtensions::Time
-end 
+end
 
 module Holidays
   # Test region used for generating a holiday on Date.today
