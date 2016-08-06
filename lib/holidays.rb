@@ -3,10 +3,9 @@ $:.unshift File.dirname(__FILE__)
 
 require 'date'
 require 'digest/md5'
-require 'holidays/definition_factory'
-require 'holidays/date_calculator_factory'
-require 'holidays/option_factory'
-require 'holidays/use_case_factory'
+require 'holidays/factory/definition'
+require 'holidays/factory/date_calculator'
+require 'holidays/factory/finder'
 require 'holidays/errors'
 require 'holidays/load_all_definitions'
 
@@ -57,19 +56,6 @@ module Holidays
   FULL_DEFINITIONS_PATH = File.expand_path(File.dirname(__FILE__) + "/#{DEFINITIONS_PATH}")
 
   class << self
-    # Get all holidays on a given date.
-    #
-    # [<tt>date</tt>]     A Date object.
-    # [<tt>:options</tt>] One or more region symbols, <tt>:informal</tt> and/or <tt>:observed</tt>.
-    #
-    # Returns an array of hashes or nil. See Holidays#between for the output
-    # format.
-    #
-    # Also available via Date#holidays.
-    def on(date, *options)
-      between(date, date, options)
-    end
-
     # Does the given work-week have any holidays?
     #
     # [<tt>date</tt>]   A Date object.
@@ -85,6 +71,19 @@ module Holidays
       options += [:observed] unless options.include?(:no_observed)
       options.delete(:no_observed)
       between(start_date, end_date, options).empty?
+    end
+
+    # Get all holidays on a given date.
+    #
+    # [<tt>date</tt>]     A Date object.
+    # [<tt>:options</tt>] One or more region symbols, <tt>:informal</tt> and/or <tt>:observed</tt>.
+    #
+    # Returns an array of hashes or nil. See Holidays#between for the output
+    # format.
+    #
+    # Also available via Date#holidays.
+    def on(date, *options)
+      between(date, date, options)
     end
 
     # Get all holidays occuring between two dates, inclusively.
@@ -112,14 +111,11 @@ module Holidays
 
       start_date, end_date = get_date(start_date), get_date(end_date)
 
-      if cached_holidays = definition_cache_repository.find(start_date, end_date, options)
+      if cached_holidays = Factory::Definition.cache_repository.find(start_date, end_date, options)
         return cached_holidays
       end
 
-      regions, observed, informal = OptionFactory.parse_options.call(options)
-      date_driver_hash = UseCaseFactory.dates_driver_builder.call(start_date, end_date)
-
-      UseCaseFactory.between.call(start_date, end_date, date_driver_hash, regions, observed, informal)
+      Factory::Finder.between.call(start_date, end_date, options)
     end
 
     # Get next holidays occuring from date, inclusively.
@@ -150,30 +146,24 @@ module Holidays
       from_date = from_date.new_offset(0) + from_date.offset if from_date.respond_to?(:new_offset)
 
       from_date = get_date(from_date)
-      regions, observed, informal = OptionFactory.parse_options.call(options)
 
-      # This could be smarter but I don't have any evidence that just checking for
-      # the next 12 months will cause us issues. If it does we can implement something
-      # smarter here to check in smaller increments.
-      date_driver_hash = UseCaseFactory.dates_driver_builder.call(from_date, from_date >> 12)
-
-      UseCaseFactory.next_holiday.call(holidays_count, from_date, date_driver_hash, regions, observed, informal)
+      Factory::Finder.next_holiday.call(holidays_count, from_date, options)
     end
 
-    # Get all holidays occuring from date to end of year, inclusively. 
+    # Get all holidays occuring from date to end of year, inclusively.
     #
-    # Returns an array of hashes or nil. 
+    # Returns an array of hashes or nil.
     #
-    # Incoming arguments are below: 
+    # Incoming arguments are below:
     # [<tt>options</tt>]  One or more region symbols, <tt>:informal</tt> and/or <tt>:observed</tt>.
     # [<tt>from_date</tt>]    Ruby Date object. This is an optional param, defaulted today.
     #
     # ==== Example
     #   Date.today
     #   => Tue, 23 Feb 2016
-    # 
+    #
     #   regions = [:ca_on]
-    # 
+    #
     #   Holidays.year_holidays(regions)
     #   => [{:name=>"Good Friday",...},
     #       {name=>"Easter Sunday",...},
@@ -191,16 +181,9 @@ module Holidays
 
       # remove the timezone
       from_date = from_date.new_offset(0) + from_date.offset if from_date.respond_to?(:new_offset)
-
       from_date = get_date(from_date)
-      regions, observed, informal = OptionFactory.parse_options.call(options)
 
-      # This could be smarter but I don't have any evidence that just checking for
-      # the next 12 months will cause us issues. If it does we can implement something
-      # smarter here to check in smaller increments.
-      date_driver_hash = UseCaseFactory.dates_driver_builder.call(from_date, from_date >> 12)
-
-      UseCaseFactory.year_holiday.call(from_date, date_driver_hash, regions, observed, informal)
+      Factory::Finder.year_holiday.call(from_date, options)
     end
 
     # Allows a developer to explicitly calculate and cache holidays within a given period
@@ -208,7 +191,7 @@ module Holidays
       start_date, end_date = get_date(start_date), get_date(end_date)
       cache_data = between(start_date, end_date, *options)
 
-      definition_cache_repository.cache_between(start_date, end_date, cache_data, options)
+      Factory::Definition.cache_repository.cache_between(start_date, end_date, cache_data, options)
     end
 
     # Returns an array of symbols of all the available holiday regions.
@@ -218,13 +201,13 @@ module Holidays
 
     # Parses provided holiday definition file(s) and loads them so that they are immediately available.
     def load_custom(*files)
-      regions, rules_by_month, custom_methods, tests = DefinitionFactory.file_parser.parse_definition_files(files)
+      regions, rules_by_month, custom_methods, tests = Factory::Definition.file_parser.parse_definition_files(files)
 
       custom_methods.each do |method_key, method_entity|
-        custom_methods[method_key] = Holidays::DefinitionFactory.custom_method_proc_decorator.call(method_entity)
+        custom_methods[method_key] = Factory::Definition.custom_method_proc_decorator.call(method_entity)
       end
 
-      DefinitionFactory.merger.call(regions, rules_by_month, custom_methods)
+      Factory::Definition.merger.call(regions, rules_by_month, custom_methods)
 
       rules_by_month
     end
@@ -237,10 +220,6 @@ module Holidays
       else
         Date.civil(date.year, date.mon, date.mday)
       end
-    end
-
-    def definition_cache_repository
-      DefinitionFactory.cache_repository
     end
   end
 end

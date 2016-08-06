@@ -1,17 +1,26 @@
 module Holidays
-  module UseCase
+  module Finder
     module Context
       class NextHoliday
-
-        def initialize(definition_search)
+        def initialize(definition_search, dates_driver_builder, options_parser)
           @definition_search = definition_search
+          @dates_driver_builder = dates_driver_builder
+          @options_parser = options_parser
         end
 
-        def call(holidays_count, from_date, dates_driver, regions, observed, informal)
-          validate!(holidays_count, from_date, dates_driver, regions)
+        def call(holidays_count, from_date, options)
+          validate!(holidays_count, from_date)
+
+          regions, observed, informal = @options_parser.call(options)
+
           holidays = []
           ret_holidays = []
           opts = gather_options(observed, informal)
+
+          # This could be smarter but I don't have any evidence that just checking for
+          # the next 12 months will cause us issues. If it does we can implement something
+          # smarter here to check in smaller increments.
+          dates_driver = @dates_driver_builder.call(from_date, from_date >> 12)
 
           ret_holidays = @definition_search.call(dates_driver, regions, opts)
 
@@ -28,18 +37,10 @@ module Holidays
 
         private
 
-        def validate!(holidays_count, from_date, dates_driver, regions)
+        def validate!(holidays_count, from_date)
           raise ArgumentError unless holidays_count
           raise ArgumentError if holidays_count <= 0
           raise ArgumentError unless from_date
-
-          raise ArgumentError if dates_driver.nil? || dates_driver.empty?
-
-          dates_driver.each do |year, months|
-            raise ArgumentError if months.nil? || months.empty?
-          end
-
-          raise ArgumentError if regions.nil? || regions.empty?
         end
 
         def gather_options(observed, informal)

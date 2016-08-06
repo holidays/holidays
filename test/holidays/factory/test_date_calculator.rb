@@ -1,10 +1,10 @@
-require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
+require File.expand_path(File.dirname(__FILE__)) + '/../../test_helper'
 
-require 'holidays/date_calculator_factory'
+require 'holidays/factory/date_calculator'
 
 class DateCalculatorFactoryTests < Test::Unit::TestCase
   def setup
-    @subject = Holidays::DateCalculatorFactory
+    @subject = Holidays::Factory::DateCalculator
   end
 
   def test_day_of_month_calculator

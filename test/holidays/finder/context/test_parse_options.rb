@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__)) + '/../../../test_helper'
 
-require 'holidays/option/context/parse_options'
+require 'holidays/finder/context/parse_options'
 
 #TODO This set of tests need love. Since the class itself requires actual
 #     definition files we have real defs in here, meaning that these tests
@@ -17,9 +17,9 @@ class ParseOptionsTests < Test::Unit::TestCase
 
     # As mentioned above, this set of tests is NOT isolated. We need
     # the real merger code here.
-    @definition_merger = Holidays::DefinitionFactory.merger
+    @definition_merger = Holidays::Factory::Definition.merger
 
-    @subject = Holidays::Option::Context::ParseOptions.new(
+    @subject = Holidays::Finder::Context::ParseOptions.new(
       @regions_repo,
       @region_validator,
       @definition_merger,

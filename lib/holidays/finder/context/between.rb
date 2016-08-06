@@ -1,13 +1,18 @@
 module Holidays
-  module UseCase
+  module Finder
     module Context
       class Between
-        def initialize(definition_search)
+        def initialize(definition_search, dates_driver_builder, options_parser)
           @definition_search = definition_search
+          @dates_driver_builder = dates_driver_builder
+          @options_parser = options_parser
         end
 
-        def call(start_date, end_date, dates_driver, regions, observed, informal)
-          validate!(start_date, end_date, dates_driver, regions)
+        def call(start_date, end_date, options)
+          validate!(start_date, end_date)
+
+          regions, observed, informal = @options_parser.call(options)
+          dates_driver = @dates_driver_builder.call(start_date, end_date)
 
           holidays = []
           opts = gather_options(observed, informal)
@@ -19,17 +24,9 @@ module Holidays
 
         private
 
-        def validate!(start_date, end_date, dates_driver, regions)
+        def validate!(start_date, end_date)
           raise ArgumentError unless start_date
           raise ArgumentError unless end_date
-
-          raise ArgumentError if dates_driver.nil? || dates_driver.empty?
-
-          dates_driver.each do |year, months|
-            raise ArgumentError if months.nil? || months.empty?
-          end
-
-          raise ArgumentError if regions.nil? || regions.empty?
         end
 
         def gather_options(observed, informal)

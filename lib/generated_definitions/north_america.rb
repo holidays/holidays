@@ -116,7 +116,7 @@ year % 4 == 1 ? 20 : nil
 },
 
 "day_after_thanksgiving(year)" => Proc.new { |year|
-Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 11, 4, 4) + 1
+Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 11, 4, 4) + 1
 },
 
 

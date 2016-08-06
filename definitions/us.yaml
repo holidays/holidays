@@ -81,7 +81,7 @@ methods:
   day_after_thanksgiving:
     arguments: year
     source: |
-      Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 11, 4, 4) + 1
+      Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 11, 4, 4) + 1
 tests: |
     {Date.civil(2008,1,1) => 'New Year\'s Day',
      Date.civil(2008,1,21) => 'Martin Luther King, Jr. Day',

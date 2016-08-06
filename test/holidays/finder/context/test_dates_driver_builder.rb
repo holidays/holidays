@@ -1,10 +1,10 @@
 require File.expand_path(File.dirname(__FILE__)) + '/../../../test_helper'
 
-require 'holidays/use_case/context/dates_driver_builder'
+require 'holidays/finder/context/dates_driver_builder'
 
 class DatesDriverBuilderTests < Test::Unit::TestCase
   def setup
-    @subject = Holidays::UseCase::Context::DatesDriverBuilder.new
+    @subject = Holidays::Finder::Context::DatesDriverBuilder.new
   end
 
   def test_returns_appropriately_formatted_hash

@@ -179,7 +179,7 @@ methods:
     arguments: year
     source: |
       if year >= 2016
-        DateCalculatorFactory.day_of_month_calculator.call(year, 10, 1, 1)
+        Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 10, 1, 1)
       elsif year == 2012
         1
       else
@@ -191,7 +191,7 @@ methods:
     arguments: year
     source: |
       if year <= 2015
-        DateCalculatorFactory.day_of_month_calculator.call(year, 6, 2, 1)
+        Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 6, 2, 1)
       end
   qld_labour_day_may:
     # http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
@@ -199,7 +199,7 @@ methods:
     arguments: year
     source: |
       if year < 2013 || year >= 2016
-        DateCalculatorFactory.day_of_month_calculator.call(year, 5, 1, 1)
+        Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 5, 1, 1)
       end
   qld_labour_day_october:
     # http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
@@ -207,7 +207,7 @@ methods:
     arguments: year
     source: |
       if year >= 2013 && year < 2016
-        DateCalculatorFactory.day_of_month_calculator.call(year, 10, 1, 1)
+        Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 10, 1, 1)
       end
   g20_day_2014_only:
     # http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
@@ -220,7 +220,7 @@ methods:
     # The Thursday before the fourth Saturday in October.
     arguments: year
     source: |
-      fourth_sat_in_oct = Date.civil(year, 10, Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 10, 4, :saturday))
+      fourth_sat_in_oct = Date.civil(year, 10, Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 10, 4, :saturday))
       fourth_sat_in_oct - 2 # the thursday before
   march_pub_hol_sa:
     # http://www.safework.sa.gov.au/show_page.jsp?id=2483#.VQ9Mfmb8-8E
@@ -230,7 +230,7 @@ methods:
       if year < 2006
         nil
       else
-        Date.civil(year, 3, Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 3, :second, :monday))
+        Date.civil(year, 3, Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 3, :second, :monday))
       end
   may_pub_hol_sa:
     # http://www.safework.sa.gov.au/show_page.jsp?id=2483#.VQ9Mfmb8-8E
@@ -240,7 +240,7 @@ methods:
       if year >= 2006
         nil
       else
-        Date.civil(year, 5, Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 5, :third, :monday))
+        Date.civil(year, 5, Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 5, :third, :monday))
       end
 
 tests: |

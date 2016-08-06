@@ -57,7 +57,7 @@ module Holidays
     def self.custom_methods
       {
         "jp_health_sports_day_substitute(year)" => Proc.new { |year|
-Holidays::DefinitionFactory.custom_methods_repository.find("jp_substitute_holiday(year, month, day)").call(year, 10, Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 10, 2, 1))
+Holidays::Factory::Definition.custom_methods_repository.find("jp_substitute_holiday(year, month, day)").call(year, 10, Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 10, 2, 1))
 },
 
 "jp_vernal_equinox_day(year)" => Proc.new { |year|
@@ -80,12 +80,12 @@ Date.civil(year, 3, day)
 },
 
 "jp_vernal_equinox_day_substitute(year)" => Proc.new { |year|
-date = Holidays::DefinitionFactory.custom_methods_repository.find("jp_vernal_equinox_day(year)").call(year)
-Holidays::DefinitionFactory.custom_methods_repository.find("jp_substitute_holiday(year, month, day)").call(year, date.month, date.mday)
+date = Holidays::Factory::Definition.custom_methods_repository.find("jp_vernal_equinox_day(year)").call(year)
+Holidays::Factory::Definition.custom_methods_repository.find("jp_substitute_holiday(year, month, day)").call(year, date.month, date.mday)
 },
 
 "jp_marine_day_substitute(year)" => Proc.new { |year|
-Holidays::DefinitionFactory.custom_methods_repository.find("jp_substitute_holiday(year, month, day)").call(year, 7, Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 7, 3, 1))
+Holidays::Factory::Definition.custom_methods_repository.find("jp_substitute_holiday(year, month, day)").call(year, 7, Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 7, 3, 1))
 },
 
 "jp_national_culture_day(year)" => Proc.new { |year|
@@ -108,13 +108,13 @@ Date.civil(year, 9, day)
 },
 
 "jp_national_culture_day_substitute(year)" => Proc.new { |year|
-date = Holidays::DefinitionFactory.custom_methods_repository.find("jp_national_culture_day(year)").call(year)
-Holidays::DefinitionFactory.custom_methods_repository.find("jp_substitute_holiday(year, month, day)").call(year, date.month, date.mday)
+date = Holidays::Factory::Definition.custom_methods_repository.find("jp_national_culture_day(year)").call(year)
+Holidays::Factory::Definition.custom_methods_repository.find("jp_substitute_holiday(year, month, day)").call(year, date.month, date.mday)
 },
 
 "jp_citizens_holiday(year)" => Proc.new { |year|
 year < 2003 and return nil
-ncd = Holidays::DefinitionFactory.custom_methods_repository.find("jp_national_culture_day(year)").call(year)
+ncd = Holidays::Factory::Definition.custom_methods_repository.find("jp_national_culture_day(year)").call(year)
 if ncd.wday == 3
   ncd - 1
 else
@@ -128,24 +128,24 @@ Date.civil(year, 8, 11)
 },
 
 "jp_mountain_holiday_substitute(year)" => Proc.new { |year|
-date = Holidays::DefinitionFactory.custom_methods_repository.find("jp_mountain_holiday(year)").call(year)
-Holidays::DefinitionFactory.custom_methods_repository.find("jp_substitute_holiday(year, month, day)").call(year, date.month, date.mday)
+date = Holidays::Factory::Definition.custom_methods_repository.find("jp_mountain_holiday(year)").call(year)
+Holidays::Factory::Definition.custom_methods_repository.find("jp_substitute_holiday(year, month, day)").call(year, date.month, date.mday)
 },
 
 "jp_respect_for_aged_holiday_substitute(year)" => Proc.new { |year|
-Holidays::DefinitionFactory.custom_methods_repository.find("jp_substitute_holiday(year, month, day)").call(year, 9, Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 9, 3, 1))
+Holidays::Factory::Definition.custom_methods_repository.find("jp_substitute_holiday(year, month, day)").call(year, 9, Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 9, 3, 1))
 },
 
 "jp_substitute_holiday(year, month, day)" => Proc.new { |year, month, day|
 date = Date.civil(year, month, day)
-date.wday == 0 ? (Holidays::DefinitionFactory.custom_methods_repository.find("jp_next_weekday(date)").call(date+1)) : nil
+date.wday == 0 ? (Holidays::Factory::Definition.custom_methods_repository.find("jp_next_weekday(date)").call(date+1)) : nil
 },
 
 "jp_next_weekday(date)" => Proc.new { |date|
 is_holiday = Holidays::JP.holidays_by_month[date.month].any? do |holiday|
   holiday[:mday] == date.day
 end
-date.wday == 0 || is_holiday ? (Holidays::DefinitionFactory.custom_methods_repository.find("jp_next_weekday(date)").call(date+1)) : date
+date.wday == 0 || is_holiday ? (Holidays::Factory::Definition.custom_methods_repository.find("jp_next_weekday(date)").call(date+1)) : date
 },
 
 
