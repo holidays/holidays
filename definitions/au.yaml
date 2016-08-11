@@ -169,8 +169,11 @@ methods:
   afl_grand_final:
     arguments: year
     source: |
-      if year == 2015
+      case year
+      when 2015
         Date.civil(2015, 10, 2)
+      when 2016
+        Date.civil(2017, 9, 30)
       end
   qld_queens_bday_october:
     # http://www.justice.qld.gov.au/fair-and-safe-work/industrial-relations/public-holidays/dates
@@ -312,7 +315,7 @@ tests: |
     assert_equal 'Melbourne Cup Day', Holidays.on(Date.civil(2015,11,3), :au_vic_melbourne)[0][:name]
 
     assert_equal 'Friday before the AFL Grand Final', Date.civil(2015,10,2).holidays(:au_vic)[0][:name]
-    assert_nil Date.civil(2016,10,2).holidays(:au_vic)[0]
+    assert_equal 'Friday before the AFL Grand Final', Date.civil(2016,9, 30).holidays(:au_vic)[0][:name]
 
     assert_equal "May Public Holiday", Date.civil(2005, 5, 16).holidays(:au_sa)[0][:name]
     assert_equal [], Date.civil(2014, 5, 19).holidays(:au_sa)

@@ -63,8 +63,11 @@ module Holidays
     def self.custom_methods
       {
         "afl_grand_final(year)" => Proc.new { |year|
-if year == 2015
+case year
+when 2015
   Date.civil(2015, 10, 2)
+when 2016
+  Date.civil(2017, 9, 30)
 end
 },
 
