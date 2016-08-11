@@ -1,0 +1,51 @@
+# Malaysia holiday definitions for the Holidays gem!
+
+# Days not included in the definitions (yet):
+# Vesak Day (falls on the first full moon in May)
+# Lunar New Year (falls on the first day of the Lunar Calendar)
+# Hari Raya Puasa and Hari Raya Haji (based on moon sightings, Islamic Calendar)
+# Deepavali (15th Day of September or October, based on the Hindu Calendar)
+
+# Source:
+# http://publicholidays.com.my/
+
+months:
+  1:
+  - name: New Year's Day
+    regions: [my]
+    mday: 1
+    observed: to_weekday_if_weekend(date)
+  5:
+  - name: Labour Day
+    regions: [my]
+    mday: 1
+  6:
+  - name: Agong's Birthday
+    regions: [my]
+    mday: 4
+    observed: to_weekday_if_weekend(date)
+  8:
+  - name: Independence Day
+    regions: [my]
+    mday: 31
+    observed: to_weekday_if_weekend(date)
+  9:
+  - name: Malaysia Day
+    regions: [my]
+    mday: 16
+    observed: to_weekday_if_weekend(date)
+  12:
+  - name: Christmas Day
+    regions: [my]
+    mday: 25
+    observed: to_weekday_if_weekend(date)
+
+tests: |
+    {Date.civil(2016,1,1) => "New Year's Day",
+     Date.civil(2016,5,1) => 'Labour Day',
+     Date.civil(2016,6,4) => "Agong's Birthday",
+     Date.civil(2016,8,31) => 'Independence Day',
+     Date.civil(2016,9,16) => 'Malaysia Day',
+     Date.civil(2016,12,25) => 'Christmas Day'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :my, :informal)[0] || {})[:name]
+    end
