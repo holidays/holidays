@@ -1,5 +1,5 @@
 # encoding: utf-8
-require File.expand_path(File.dirname(__FILE__)) + '/test_helper'
+require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 
 require "#{Holidays::DEFINITIONS_PATH}/ca"
 
@@ -7,8 +7,6 @@ require "#{Holidays::DEFINITIONS_PATH}/ca"
 # defs aren't duplicated.
 require "#{Holidays::DEFINITIONS_PATH}/north_america"
 
-# These are effectively integration tests. We plan on making this explicit somehow
-# in the future.
 class HolidaysTests < Test::Unit::TestCase
   def setup
     @date = Date.civil(2008,1,1)
@@ -142,15 +140,15 @@ class HolidaysTests < Test::Unit::TestCase
     assert_equal 10, holidays.length
 
     # Must have options (Regions)
-    assert_raises ArgumentError do 
+    assert_raises ArgumentError do
       Holidays.year_holidays([], Date.civil(2016, 2, 23))
-    end 
+    end
 
-    # Options must be in the form of an array.  
-    assert_raises ArgumentError do 
+    # Options must be in the form of an array.
+    assert_raises ArgumentError do
       Holidays.year_holidays(:ca_on, Date.civil(2016, 2, 23))
-    end 
-  end 
+    end
+  end
 
   def test_year_holidays_with_specified_year
     # Should return all 12 holidays for 2016 in Ontario, Canada
@@ -160,20 +158,35 @@ class HolidaysTests < Test::Unit::TestCase
     # Should return all 12 holidays for 2016 in Australia
     holidays = Holidays.year_holidays([:au], Date.civil(2016, 1, 1))
     assert_equal 5, holidays.length
-  end 
+  end
 
-  def test_year_holidays_without_specified_year 
+  def test_year_holidays_without_specified_year
     # Gets holidays for current year from today's date
     holidays = Holidays.year_holidays([:ca_on])
     assert_equal holidays.first[:date].year, Date.today.year
-  end 
+  end
 
   def test_year_holidays_feb_29_on_non_leap_year
-    # Should throw argument error for invalid date
-    assert_raises ArgumentError do 
+    assert_raises ArgumentError do
       Holidays.year_holidays([:ca_on], Date.civil(2015, 2, 29))
     end
-  end 
+
+    assert_raises ArgumentError do
+      Holidays.year_holidays([:ca_on], Date.civil(2019, 2, 29))
+    end
+
+    assert_raises ArgumentError do
+      Holidays.year_holidays([:ca_on], Date.civil(2021, 2, 29))
+    end
+
+    assert_raises ArgumentError do
+      Holidays.year_holidays([:us], Date.civil(2023, 2, 29))
+    end
+
+    assert_raises ArgumentError do
+      Holidays.year_holidays([:ca_on], Date.civil(2025, 2, 29))
+    end
+  end
 
   def test_year_holidays_random_years
     # Should be 1 less holiday, as Family day didn't exist in Ontario in 1990
@@ -189,7 +202,10 @@ class HolidaysTests < Test::Unit::TestCase
 
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2050, 1, 1))
     assert_equal 12, holidays.length
-  end 
+
+    holidays = Holidays.year_holidays([:jp], Date.civil(2070, 1, 1))
+    assert_equal 18, holidays.length
+  end
 
   def test_sub_regions
     # Should return Victoria Day.
@@ -247,8 +263,6 @@ class HolidaysTests < Test::Unit::TestCase
     }
   end
 
-  #FIXME - I am not a huge fan of this test as it is written. It depends on the definitions not changing.
-  #        I think that this is fine for an integration test but I think it should be labeled as such.
   def test_caching
     start_date = Date.civil(2008, 3, 21)
     end_date = Date.civil(2008, 3, 25)

@@ -30,11 +30,9 @@ module Holidays
 
         private
 
-        attr_reader :validator
-
         def validate!(methods)
           raise ArgumentError unless methods.all? do |name, pieces|
-            validator.valid?(
+            @validator.valid?(
               {
                 :name => name,
                 :arguments => pieces["arguments"],

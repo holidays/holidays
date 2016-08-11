@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__)) + '/test_helper'
+require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 
 class MultipleRegionsTests < Test::Unit::TestCase
   def setup
@@ -19,11 +19,25 @@ class MultipleRegionsTests < Test::Unit::TestCase
   def test_load_subregion
     holidays = Holidays.on(Date.civil(2014, 1, 1), :de_bb)
     assert holidays.any? { |h| h[:name] == 'Neujahrstag' }
+
+    holidays = Holidays.on(Date.civil(2020, 1, 1), :de_bb)
+    assert holidays.any? { |h| h[:name] == 'Neujahrstag' }
+
+    holidays = Holidays.on(Date.civil(2027, 1, 1), :de_bb)
+    assert holidays.any? { |h| h[:name] == 'Neujahrstag' }
   end
 
   def test_unknown_region_raises_exception
     assert_raise Holidays::UnknownRegionError do
       Holidays.on(Date.civil(2014, 1, 1), :something_we_do_not_recognize)
+    end
+
+    assert_raise Holidays::UnknownRegionError do
+      Holidays.on(Date.civil(2020, 1, 1), :something_we_do_not_recognize)
+    end
+
+    assert_raise Holidays::UnknownRegionError do
+      Holidays.on(Date.civil(2030, 1, 1), :something_we_do_not_recognize)
     end
   end
 

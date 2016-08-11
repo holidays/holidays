@@ -14,8 +14,8 @@ Here are the steps to take once you have a good idea on what you want to change:
 
 * Fork the repository
 * Edit desired definition YAML file(s) located under `definitions/`. If you are adding a new region be sure to update `definitions/index.yaml` as well
-* Run `bundle exec rake generate` to generate updated final definitions (they will be located under `lib/generated_definitions/` and `test/defs/`)
-* Run `bundle exec rake test` to ensure your changes did not introduce errors
+* Run `make generate` to generate updated final definitions (they will be located under `lib/generated_definitions/` and `test/defs/`)
+* Run `make test` to ensure your changes did not introduce errors
 * Open a PR with *all* of these changes. You *MUST* include the generated definition files and tests in your PR. There is no automatic process to generate definitions at this time
 
 Including documentation with your updates is very much appreciated. A simple Wikipedia entry or government link in the comments alongside your changes would be perfect.
@@ -36,6 +36,6 @@ Don't worry about versioning, we'll handle it on our end.
 
 We have included a few handy tasks to help you troubleshoot and test:
 
-* `rake test` - runs the entire suite
-* `rake test_region <region>` - runs the tests for just that region. Make sure to run `rake generate` after updating your YAML before running this!
-* `rake console` - launches an IRB session with the 'holidays' gem loaded for quick testing
+* `make test` - runs the entire suite
+* `make test_region <region>` - runs the tests for just that region. Make sure to run `make generate` after updating your YAML before running this!
+* `make console` - launches an IRB session with the 'holidays' gem loaded for quick testing

@@ -30,7 +30,7 @@ module Holidays
           files.each do |file|
             definition_file = YAML.load_file(file)
 
-            custom_methods = custom_method_parser.call(definition_file['methods'])
+            custom_methods = @custom_method_parser.call(definition_file['methods'])
 
             regions, rules_by_month = parse_month_definitions(definition_file['months'], custom_methods)
 
@@ -61,7 +61,7 @@ module Holidays
           # Build the custom methods string
           custom_method_string = ''
           custom_methods.each do |key, code|
-            custom_method_string << custom_method_source_decorator.call(code) + ",\n\n"
+            custom_method_string << @custom_method_source_decorator.call(code) + ",\n\n"
           end
 
           module_src = generate_module_src(module_name, files, regions, month_strings, custom_method_string)
@@ -71,8 +71,6 @@ module Holidays
         end
 
         private
-
-        attr_reader :custom_method_parser, :custom_method_source_decorator, :custom_methods_repository
 
         #FIXME This should be a 'month_definitions_parser' like the above parser
         def parse_month_definitions(month_definitions, parsed_custom_methods)
@@ -220,7 +218,7 @@ module Holidays
         # What we should do is ensure that all custom methods are loaded into the repo as soon as they are parsed
         # so we only have one place to look.
         def get_function_arguments(function_id, parsed_custom_methods)
-          if method = custom_methods_repository.find(function_id)
+          if method = @custom_methods_repository.find(function_id)
             method.parameters.collect { |arg| arg[1] }
           elsif method = parsed_custom_methods[function_id]
             method.arguments.collect { |arg| arg.to_sym }

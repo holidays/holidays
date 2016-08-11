@@ -24,8 +24,6 @@ module Holidays
 
         private
 
-        attr_reader :regions_repo, :region_validator, :definition_merger
-
         # Check regions against list of supported regions and return an array of
         # symbols.
         #
@@ -43,7 +41,7 @@ module Holidays
           regions.delete_if do |r|
             if r.to_s =~ /_$/
               load_containing_region(r.to_s)
-              regions << regions_repo.search(r.to_s)
+              regions << @regions_repo.search(r.to_s)
               true
             end
           end
@@ -53,7 +51,7 @@ module Holidays
           load_definition_data("north_america") if regions.include?(:us) # special case for north_america/US cross-linking
 
           regions.each do |region|
-            unless region == :any || regions_repo.exists?(region)
+            unless region == :any || @regions_repo.exists?(region)
               begin
                 load_definition_data(region.to_s)
               rescue NameError => e
@@ -73,7 +71,7 @@ module Holidays
 
         def validate!(regions)
           regions.each do |r|
-            raise UnknownRegionError unless region_validator.valid?(r)
+            raise UnknownRegionError unless @region_validator.valid?(r)
           end
         end
 
@@ -82,7 +80,7 @@ module Holidays
         def load_containing_region(sub_reg)
           prefix = sub_reg.split('_').first
 
-          return if regions_repo.exists?(prefix.to_sym)
+          return if @regions_repo.exists?(prefix.to_sym)
 
           begin
             load_definition_data(prefix)
@@ -94,7 +92,7 @@ module Holidays
         def load_definition_data(region)
           target_region_module = Module.const_get("Holidays").const_get(region.upcase)
 
-          definition_merger.call(
+          @definition_merger.call(
             target_region_module.defined_regions,
             target_region_module.holidays_by_month,
             target_region_module.custom_methods,

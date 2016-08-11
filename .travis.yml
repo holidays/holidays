@@ -3,11 +3,14 @@ language: ruby
 cache:
   bundler: true
 
+sudo: false
+
 before_install:
   - bundle --version
   - gem --version
 
-sudo: false
+script:
+  - make test
 
 notifications:
   email:
