@@ -107,7 +107,7 @@ Multiple files can also be passed:
 
     Holidays.load_custom('/home/user/holidays/custom_holidays1.yaml', '/home/user/holidays/custom_holidays2.yaml')
 
-### Extending Ruby's Date class
+### Extending Ruby's Date and Time classes
 
 To extend the 'Date' class:
 
@@ -136,10 +136,22 @@ Or lookup Canada Day in different regions:
     d.holiday?(:fr) # France
     => false
 
+Or return the new date based on the options:
+
+    d = Date.civil(2008,7,1)
+    d.change(:year => 2016, :month => 1, :day => 1)
+    => #<Date: 2016-01-01 ((2457389j,0s,0n),+0s,2299161j)>
+
 Or you can calculate the day of the month:
 
     Date.calculate_mday(2015, 4, :first, 2)
     => 7
+
+Or find end of month for given date (requires 'Time' extensions as well):
+
+    d = Date.civil(2016,8,1)
+    d.end_of_month
+    => #<Date: 2016-08-31 ((2457632j,0s,0n),+0s,2299161j)>
 
 ### Caching Holiday Lookups
 
