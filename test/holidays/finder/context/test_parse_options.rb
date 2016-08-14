@@ -28,30 +28,30 @@ class ParseOptionsTests < Test::Unit::TestCase
 
   def test_returns_observed_true_if_options_contains_observed_flag
     @regions_repo.expects(:exists?).returns(false)
-    regions, observed, informal = @subject.call([:ca, :observed])
+    observed = @subject.call([:ca, :observed])[1]
     assert_equal(true, observed)
   end
 
   def test_returns_observed_false_if_options_contains_observed_flag
     @regions_repo.expects(:exists?).returns(false)
-    regions, observed, informal = @subject.call([:ca])
+    observed = @subject.call([:ca])[1]
     assert_equal(false, observed)
   end
 
   def test_returns_informal_true_if_options_contains_informal_flag
     @regions_repo.expects(:exists?).returns(false)
-    regions, observed, informal = @subject.call([:ca, :informal])
+    informal = @subject.call([:ca, :informal])[2]
     assert_equal(true, informal)
   end
 
   def test_returns_informal_false_if_options_contains_informal_flag
     @regions_repo.expects(:exists?).returns(false)
-    regions, observed, informal = @subject.call([:ca])
+    informal = @subject.call([:ca])[2]
     assert_equal(false, informal)
   end
 
   def test_returns_any_if_no_regions_are_provided
-    regions, observed, informal = @subject.call(:informal)
+    regions = @subject.call(:informal)[0]
     assert_equal([:any], regions)
   end
 
@@ -60,7 +60,7 @@ class ParseOptionsTests < Test::Unit::TestCase
     @regions_repo.expects(:exists?).with(:ch_zh).returns(true)
     @regions_repo.expects(:search).with('ch_').returns([:ch_zh])
 
-    regions, observed, informal = @subject.call([:ch_])
+    regions = @subject.call([:ch_])[0]
     assert_equal(false, regions.include?(:ch_))
   end
 

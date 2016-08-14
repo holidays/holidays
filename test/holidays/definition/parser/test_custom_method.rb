@@ -63,7 +63,7 @@ class ParserCustomMethodTests < Test::Unit::TestCase
     @validator.expects(:valid?).with({:name => "custom_method", :arguments => "year", :source => "d = Date.civil(year, 1, 1)\nd + 2\n"}).returns(false)
 
     assert_raises ArgumentError do
-      result = @parser.call(input)
+      @parser.call(input)
     end
   end
 
@@ -73,7 +73,7 @@ class ParserCustomMethodTests < Test::Unit::TestCase
     @validator.expects(:valid?).with({:name => "second_method", :arguments => "month", :source => "source"}).returns(false)
 
     assert_raises ArgumentError do
-      result = @parser.call(input)
+      @parser.call(input)
     end
   end
 end

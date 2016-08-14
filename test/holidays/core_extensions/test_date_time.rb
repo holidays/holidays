@@ -7,16 +7,16 @@ class Date
   include Holidays::CoreExtensions::Date
 end
 
-class Time 
+class Time
   include Holidays::CoreExtensions::Time
-end 
+end
 
 class CoreExtensionDateTimeTests < Test::Unit::TestCase
   def setup
     @date = Date.civil(2008,1,1)
   end
 
-  def test_change_method 
+  def test_change_method
     actual = @date.change(day: 5)
     assert_equal Date.civil(2008,1,5), actual
 
@@ -28,7 +28,7 @@ class CoreExtensionDateTimeTests < Test::Unit::TestCase
 
     actual = @date.change(year: 2015, month: 5, day: 3)
     assert_equal Date.civil(2015,5,3), actual
-  end 
+  end
 
   def test_end_of_month_method
     # Works for month with 31 days
@@ -41,7 +41,7 @@ class CoreExtensionDateTimeTests < Test::Unit::TestCase
 
     # Works for leap year
     actual = Date.civil(2016,2,1).end_of_month
-    assert_equal = Date.civil(2016,2,29), actual
+    assert_equal Date.civil(2016,2,29), actual
   end
 
   def test_days_in_month_method
@@ -56,5 +56,5 @@ class CoreExtensionDateTimeTests < Test::Unit::TestCase
     # Works for leap year
     actual = Time.days_in_month(2, 2016)
     assert_equal 29, actual
-  end    
-end 
+  end
+end

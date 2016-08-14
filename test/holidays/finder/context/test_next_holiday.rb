@@ -56,7 +56,7 @@ class NextHolidayTests < Test::Unit::TestCase
 
   def test_returns_error_if_from_date_is_missing
     assert_raise ArgumentError do
-      @subject.call(@holidays_count, nil, @options)
+      @subject.call(@holiday_count, nil, @options)
     end
   end
 

@@ -12,13 +12,11 @@ module Holidays
           region = find_wildcard_base(r)
 
           (region == :any ||
-           regions_repo.exists?(region) ||
+           @regions_repo.exists?(region) ||
            region_in_static_definitions?(region))
         end
 
         private
-
-        attr_reader :regions_repo
 
         # Ex: :gb_ transformed to :gb
         def find_wildcard_base(region)

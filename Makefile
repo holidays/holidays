@@ -13,7 +13,7 @@ console:
 	bundle exec rake console
 
 test_region:
-	bundle exec rake test_region
+	bundle exec rake test_region $(REGION)
 
 build:
 	bundle exec gem build holidays.gemspec

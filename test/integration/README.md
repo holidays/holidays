@@ -6,4 +6,4 @@ behind these changes could still be good but since the defintions changed we cou
 
 These are not unit tests. This is not testing whether specific internal code is working. These are
 tests from the consumer perspective. You must recognize that this could fail because of code
-changes unrelated ot definition changes.
+changes unrelated to definition changes.

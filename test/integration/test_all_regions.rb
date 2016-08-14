@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 
-class MultipleRegionsTests < Test::Unit::TestCase
+class AllRegionsTests < Test::Unit::TestCase
   def setup
     Holidays::LoadAllDefinitions.call
   end
