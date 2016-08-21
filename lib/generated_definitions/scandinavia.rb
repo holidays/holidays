@@ -125,7 +125,7 @@ module Holidays
 date = Date.civil(year,4,18)
 if date.wday < 4
   date += (4 - date.wday)
-else date
+else
   date += (11 - date.wday)
 end
 date

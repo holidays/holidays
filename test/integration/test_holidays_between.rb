@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__)) + '/test_helper'
+require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 
 require "#{Holidays::DEFINITIONS_PATH}/ca"
 
@@ -10,7 +10,7 @@ require "#{Holidays::DEFINITIONS_PATH}/ca"
 # and don't want to bite off more than I can chew.
 require "#{Holidays::DEFINITIONS_PATH}/north_america"
 
-class HolidaysTests < Test::Unit::TestCase
+class HolidaysBetweenTests < Test::Unit::TestCase
   def setup
     @date = Date.civil(2008,1,1)
     @subject = Holidays.method(:between)

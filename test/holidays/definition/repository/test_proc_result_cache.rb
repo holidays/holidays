@@ -76,7 +76,7 @@ class ProcResultCacheRepoTests < Test::Unit::TestCase
       @subject.lookup(function, function_argument)
     end
 
-    funtion_argument = Proc.new { |arg1| "arg1" + "something"}
+    function_argument = Proc.new { |arg1| "arg1" + "something"}
     assert_raise ArgumentError do
       @subject.lookup(function, function_argument)
     end

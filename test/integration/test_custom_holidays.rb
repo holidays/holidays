@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__)) + '/test_helper'
+require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 
 class CustomHolidaysTest < Test::Unit::TestCase
 
@@ -7,7 +7,7 @@ class CustomHolidaysTest < Test::Unit::TestCase
       Holidays.on(Date.civil(2013,6,20), :custom_single_file)
     end
 
-    loaded_holidays = Holidays.load_custom('test/data/test_single_custom_holiday_defs.yaml')
+    Holidays.load_custom('test/data/test_single_custom_holiday_defs.yaml')
 
     assert_not_equal [], Holidays.on(Date.civil(2013,6,20), :custom_single_file)
   end

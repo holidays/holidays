@@ -65,7 +65,7 @@ module Holidays
           elsif result.is_a?(Integer)
             begin
               result = Date.civil(year, month, result)
-            rescue ArgumentError => e
+            rescue ArgumentError
               raise Holidays::InvalidFunctionResponse.new("invalid day response from custom method call resulting in invalid date. Result: '#{result}'")
             end
           elsif result.nil?
