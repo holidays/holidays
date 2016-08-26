@@ -55,7 +55,7 @@ module Holidays
       9 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:ca]}],
       10 => [{:wday => 1, :week => 2, :name => "Thanksgiving", :regions => [:ca]},
             {:mday => 31, :type => :informal, :name => "Halloween", :regions => [:us, :ca]}],
-      11 => [{:mday => 11, :name => "Remembrance Day", :regions => [:ca]}],
+      11 => [{:mday => 11, :name => "Remembrance Day", :regions => [:ca_ab, :ca_sk, :ca_bc, :ca_pe, :ca_nf, :ca_nt, :ca_nu, :ca_nb, :ca_yk]}],
       12 => [{:mday => 25, :name => "Christmas Day", :regions => [:ca]},
             {:mday => 26, :name => "Boxing Day", :regions => [:ca]}],
       4 => [{:mday => 1, :type => :informal, :name => "April Fool's Day", :regions => [:us, :ca]},
