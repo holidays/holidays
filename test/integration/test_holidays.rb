@@ -135,9 +135,9 @@ class HolidaysTests < Test::Unit::TestCase
   end
 
   def test_year_holidays
-    # Should return 10 holidays from February 23 to December 31
+    # Should return 9 holidays from February 23 to December 31
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2016, 2, 23))
-    assert_equal 10, holidays.length
+    assert_equal 9, holidays.length
 
     # Must have options (Regions)
     assert_raises ArgumentError do
@@ -151,11 +151,11 @@ class HolidaysTests < Test::Unit::TestCase
   end
 
   def test_year_holidays_with_specified_year
-    # Should return all 12 holidays for 2016 in Ontario, Canada
+    # Should return all 11 holidays for 2016 in Ontario, Canada
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2016, 1, 1))
-    assert_equal 12, holidays.length
+    assert_equal 11, holidays.length
 
-    # Should return all 12 holidays for 2016 in Australia
+    # Should return all 5 holidays for 2016 in Australia
     holidays = Holidays.year_holidays([:au], Date.civil(2016, 1, 1))
     assert_equal 5, holidays.length
   end
@@ -191,17 +191,17 @@ class HolidaysTests < Test::Unit::TestCase
   def test_year_holidays_random_years
     # Should be 1 less holiday, as Family day didn't exist in Ontario in 1990
     holidays = Holidays.year_holidays([:ca_on], Date.civil(1990, 1, 1))
-    assert_equal 11, holidays.length
+    assert_equal 10, holidays.length
 
     # Family day still didn't exist in 2000
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2000, 1, 1))
-    assert_equal 11, holidays.length
+    assert_equal 10, holidays.length
 
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2020, 1, 1))
-    assert_equal 12, holidays.length
+    assert_equal 11, holidays.length
 
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2050, 1, 1))
-    assert_equal 12, holidays.length
+    assert_equal 11, holidays.length
 
     holidays = Holidays.year_holidays([:jp], Date.civil(2070, 1, 1))
     assert_equal 18, holidays.length
