@@ -1,0 +1,80 @@
+# Hong Kong holiday definitions for the Holidays gem!
+
+# Days not included in the definitions (yet):
+# Lunar New Year’s Day
+# The second day of Lunar New Year
+# The third day of Lunar New Year
+# Ching Ming Festival
+# The Birthday of the Buddha
+# Tuen Ng Festival
+# Chinese Mid-Autumn Festival
+# Chung Yeung Festival
+
+# Source:
+# http://www.gov.hk/en/about/abouthk/holiday/
+
+months:
+  0:
+  - name: Good Friday
+    regions: [hk]
+    function: easter(year)
+    function_modifier: -2
+  - name: The day following Good Friday
+    regions: [hk]
+    function: easter(year)
+    function_modifier: -1
+  - name: Easter Monday
+    regions: [hk]
+    function: easter(year)
+    function_modifier: 1
+  1:
+  - name: New Year's Day
+    regions: [hk]
+    mday: 1
+    observed: to_monday_if_sunday(date)
+  5:
+  - name: Labour Day
+    regions: [hk]
+    mday: 1
+    observed: to_monday_if_sunday(date)
+  7:
+  - name: Hong Kong Special Administrative Region Establishment Day
+    regions: [hk]
+    mday: 1
+    observed: to_monday_if_sunday(date)
+  10:
+  - name: National Day
+    regions: [hk]
+    mday: 1
+    observed: to_monday_if_sunday(date)
+  12:
+  - name: Christmas Day
+    regions: [hk]
+    mday: 25
+    observed: to_monday_if_weekend(date)
+  - name: Boxing Day
+    regions: [hk]
+    mday: 26
+    observed: to_weekday_if_boxing_weekend(date)
+
+tests: |
+    {Date.civil(2016,1,1) => 'New Year\'s Day',
+     Date.civil(2016,3,25) => 'Good Friday',
+     Date.civil(2016,3,26) => 'The day following Good Friday',
+     Date.civil(2016,3,28) => 'Easter Monday',
+     Date.civil(2016,5,2) => 'Labour Day',
+     Date.civil(2016,7,1) => 'Hong Kong Special Administrative Region Establishment Day',
+     Date.civil(2016,10,1) => 'National Day',
+     Date.civil(2016,12,26) => 'Christmas Day',
+     Date.civil(2016,12,27) => 'Boxing Day',
+     Date.civil(2017,1,2) => 'New Year\'s Day',
+     Date.civil(2017,4,14) => 'Good Friday',
+     Date.civil(2017,4,15) => 'The day following Good Friday',
+     Date.civil(2017,4,17) => 'Easter Monday',
+     Date.civil(2017,5,1) => 'Labour Day',
+     Date.civil(2017,7,1) => 'Hong Kong Special Administrative Region Establishment Day',
+     Date.civil(2017,10,2) => 'National Day',
+     Date.civil(2017,12,25) => 'Christmas Day',
+     Date.civil(2017,12,26) => 'Boxing Day'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :hk, :observed)[0] || {})[:name]
+    end

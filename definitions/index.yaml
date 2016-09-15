@@ -24,6 +24,7 @@ defs:
   FR: ['fr.yaml']
   GB: ['gb.yaml']
   HR: ['hr.yaml']
+  HK: ['hk.yaml']
   HU: ['hu.yaml']
   IE: ['ie.yaml']
   IS: ['is.yaml']
