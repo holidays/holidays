@@ -8,6 +8,9 @@ class HkDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_hk
 {Date.civil(2016,1,1) => 'New Year\'s Day',
+ Date.civil(2016,2,8) => 'Lunar New Year\'s Day',
+ Date.civil(2016,2,9) => 'The second day of Lunar New Year',
+ Date.civil(2016,2,10) => 'The third day of Lunar New Year',
  Date.civil(2016,3,25) => 'Good Friday',
  Date.civil(2016,3,26) => 'The day following Good Friday',
  Date.civil(2016,3,28) => 'Easter Monday',
@@ -17,6 +20,9 @@ class HkDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2016,12,26) => 'Christmas Day',
  Date.civil(2016,12,27) => 'Boxing Day',
  Date.civil(2017,1,2) => 'New Year\'s Day',
+ Date.civil(2017,1,28) => 'Lunar New Year\'s Day',
+ Date.civil(2017,1,30) => 'The second day of Lunar New Year',
+ Date.civil(2017,1,31) => 'The third day of Lunar New Year',
  Date.civil(2017,4,14) => 'Good Friday',
  Date.civil(2017,4,15) => 'The day following Good Friday',
  Date.civil(2017,4,17) => 'Easter Monday',
