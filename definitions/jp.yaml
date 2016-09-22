@@ -119,6 +119,8 @@ months:
     function: jp_respect_for_aged_holiday_substitute(year)
   - name: 国民の休日
     regions: [jp]
+    year_ranges:
+      - after: 2003
     function: jp_citizens_holiday(year)
   - name: 秋分の日
     regions: [jp]
@@ -218,7 +220,6 @@ methods:
   jp_citizens_holiday:
     arguments: year
     source: |
-      year < 2003 and return nil
       ncd = Holidays::Factory::Definition.custom_methods_repository.find("jp_national_culture_day(year)").call(year)
       if ncd.wday == 3
         ncd - 1
@@ -228,7 +229,6 @@ methods:
   jp_mountain_holiday:
     arguments: year
     source: |
-      return nil if year < 2016
       Date.civil(year, 8, 11)
   jp_mountain_holiday_substitute:
     arguments: year
@@ -314,3 +314,8 @@ tests: |
 
   # before 2016, there is no mountain holiday.
   assert_nil Holidays.on(Date.civil(2015,8,11), :jp)[0]
+
+  # before 2003, there is no citizens holiday.
+  # [note] citizens holiday requires that jp_national_culture_day is wednesday.
+  #        Before 2003, the closest past year that mathches above condition is 1998.
+  assert_nil Holidays.on(Date.civil(1998,9,22), :jp)[0]
