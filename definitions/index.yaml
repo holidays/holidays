@@ -28,6 +28,7 @@ defs:
   IE: ['ie.yaml']
   IS: ['is.yaml']
   IT: ['it.yaml']
+  KR: ['kr.yaml']
   LI: ['li.yaml']
   LT: ['lt.yaml']
   MA: ['ma.yaml']
