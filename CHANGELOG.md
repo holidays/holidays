@@ -1,5 +1,14 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 5.0.0
+
+* Remove support for jruby 1.7 (this is the main reason for the major semver bump)
+* Remove support for ruby 2.0 (since it is no longer being supported by the core ruby team)
+* Add back the lazy loading of regions (this was removed in the 4.0.0 bump) instead of loading upon require (this should have 
+  no outward repercussions for users)
+* Move definitions into their own repository and add as submodule. This will allow for more flexibility for tools written
+  in other languages.
+
 ## 4.7.0
 
 * Fix issue-225 (`LocalJumpError` for certain `jp` definition combinations) (https://github.com/ttwo32)

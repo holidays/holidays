@@ -28,21 +28,21 @@ class AllRegionsTests < Test::Unit::TestCase
   end
 
   def test_unknown_region_raises_exception
-    assert_raise Holidays::UnknownRegionError do
+    assert_raise Holidays::InvalidRegion do
       Holidays.on(Date.civil(2014, 1, 1), :something_we_do_not_recognize)
     end
 
-    assert_raise Holidays::UnknownRegionError do
+    assert_raise Holidays::InvalidRegion do
       Holidays.on(Date.civil(2020, 1, 1), :something_we_do_not_recognize)
     end
 
-    assert_raise Holidays::UnknownRegionError do
+    assert_raise Holidays::InvalidRegion do
       Holidays.on(Date.civil(2030, 1, 1), :something_we_do_not_recognize)
     end
   end
 
   def test_malicious_load_attempt_raises_exception
-    assert_raise Holidays::UnknownRegionError do
+    assert_raise Holidays::InvalidRegion do
       Holidays.between(Date.civil(2014, 1, 1), Date.civil(2016, 1, 1), '../../../../../../../../../../../../tmp/profile_pic.jpg')
     end
   end

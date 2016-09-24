@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class CustomHolidaysTest < Test::Unit::TestCase
 
   def test_custom_region_present_after_single_file_parsing
-    assert_raises Holidays::UnknownRegionError do
+    assert_raises Holidays::InvalidRegion do
       Holidays.on(Date.civil(2013,6,20), :custom_single_file)
     end
 
@@ -19,15 +19,15 @@ class CustomHolidaysTest < Test::Unit::TestCase
   end
 
   def test_custom_holidays_present_after_multiple_file_parsing
-    assert_raises Holidays::UnknownRegionError do
+    assert_raises Holidays::InvalidRegion do
       Holidays.on(Date.civil(2013, 10,5), :custom_multiple_files)
     end
 
-    assert_raises Holidays::UnknownRegionError do
+    assert_raises Holidays::InvalidRegion do
       Holidays.on(Date.civil(2013,3,1), :custom_multiple_files)
     end
 
-    assert_raises Holidays::UnknownRegionError do
+    assert_raises Holidays::InvalidRegion do
       Holidays.on(Date.civil(2013,3,1), :custom_multiple_files_govt)
     end
 

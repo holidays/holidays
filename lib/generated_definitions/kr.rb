@@ -101,7 +101,7 @@ month_day = case year
     [2, 19]
   when 1920, 1985
     [2, 20]
-end 
+end
 Date.civil(year, month_day[0], month_day[1])
 },
 
@@ -149,7 +149,7 @@ month_day = case year
     [5, 19]
   when 1934, 1953, 1972, 1983, 2029, 2046, 2048
     [5, 20]
-  when 1915, 1980, 1991, 2010 
+  when 1915, 1980, 1991, 2010
     [5, 21]
   when 1904, 1942, 1961, 1999, 2018, 2037
     [5, 22]
@@ -169,7 +169,7 @@ month_day = case year
     [5, 29]
   when 1906, 2001, 2020
     [5, 30]
-end 
+end
 Date.civil(year, month_day[0], month_day[1])
 },
 
@@ -237,7 +237,7 @@ month_day = case year
     [10, 8]
   when 2011
     [10, 9]
-end 
+end
 Date.civil(year, month_day[0], month_day[1])
 },
 

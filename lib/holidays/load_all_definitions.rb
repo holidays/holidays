@@ -2,17 +2,6 @@ module Holidays
   class LoadAllDefinitions
     class << self
       def call
-        path = File.expand_path(File.dirname(__FILE__)) + "/../#{Holidays::DEFINITIONS_PATH}/"
-
-        Dir.foreach(path) do |item|
-          next if item == '.' or item == '..'
-
-          target = path+item
-          next if File.extname(target) != '.rb'
-
-          require target
-        end
-
         #FIXME I need a better way to do this. I'm thinking of putting these 'common' methods
         # into some kind of definition file so it can be loaded automatically but I'm afraid
         # of making that big of a breaking API change since these are public. For the time

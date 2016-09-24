@@ -54,7 +54,7 @@ module Holidays
             unless region == :any || @regions_repo.exists?(region)
               begin
                 load_definition_data(region.to_s)
-              rescue NameError => e
+              rescue NameError, LoadError => e
                 # This could be a sub region that does not have any holiday
                 # definitions of its own; try to load the containing region instead.
                 if region.to_s =~ /_/
@@ -71,7 +71,7 @@ module Holidays
 
         def validate!(regions)
           regions.each do |r|
-            raise UnknownRegionError unless @region_validator.valid?(r)
+            raise InvalidRegion unless @region_validator.valid?(r)
           end
         end
 
@@ -84,12 +84,17 @@ module Holidays
 
           begin
             load_definition_data(prefix)
-          rescue NameError => e
+          rescue NameError, LoadError => e
             raise UnknownRegionError.new(e), "Could not load region prefix: #{prefix.to_s}, original subregion: #{sub_reg.to_s}"
           end
         end
 
         def load_definition_data(region)
+          # Lazy loading of definition files. We verify the region doesn't
+          # contain malicious stuff in the initial validation.
+          region_definition_file = "#{DEFINITIONS_PATH}/#{region}"
+          require region_definition_file
+
           target_region_module = Module.const_get("Holidays").const_get(region.upcase)
 
           @definition_merger.call(

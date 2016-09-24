@@ -67,8 +67,16 @@ class ParseOptionsTests < Test::Unit::TestCase
   def test_raises_error_if_regions_are_invalid
     @region_validator.stubs(:valid?).returns(false)
 
-    assert_raise Holidays::UnknownRegionError do
+    assert_raise Holidays::InvalidRegion do
       @subject.call([:unknown_region])
+    end
+  end
+
+  def test_raises_error_if_regions_contain_malicious_directory_changes
+    @region_validator.stubs(:valid?).returns(false)
+
+    assert_raise Holidays::InvalidRegion do
+      @subject.call(["../../test"])
     end
   end
 end
