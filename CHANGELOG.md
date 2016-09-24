@@ -1,5 +1,10 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 4.7.0
+
+* Fix issue-225 (`LocalJumpError` for certain `jp` definition combinations) (https://github.com/ttwo32)
+* Add Korean Lunar holidays (https://github.com/jonathanpike)
+
 ## 4.6.0
 
 * Add holidays for 'Luxembourg' (https://github.com/dunyakirkali)
