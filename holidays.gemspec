@@ -19,7 +19,7 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = '~> 2.0'
   gem.add_development_dependency 'bundler'
   gem.add_development_dependency 'rake'
-  gem.add_development_dependency 'coveralls', '= 0.8.11'
+  gem.add_development_dependency 'coveralls'
   gem.add_development_dependency 'test-unit'
   gem.add_development_dependency 'mocha', '~>1.0'
   gem.add_development_dependency 'pry', '~>0.10'
