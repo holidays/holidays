@@ -47,4 +47,8 @@ class RegionValidatorTests < Test::Unit::TestCase
   def test_returns_false_if_wildcard_region_is_invalid
     assert_equal(false, @subject.valid?(:somethingweird_))
   end
+
+  def test_returns_false_if_malicious_region_is_given
+    assert_equal(false, @subject.valid?(:"../../../test"))
+  end
 end

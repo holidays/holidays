@@ -1,4 +1,4 @@
-env: JRUBY_OPTS=--debug 
+env: JRUBY_OPTS=--debug
 language: ruby
 
 cache:
@@ -18,11 +18,8 @@ notifications:
     holidaysgem@gmail.com
 
 rvm:
-  - 2.0.0
   - 2.1.0
   - 2.2.0
   - 2.3.0
-  - jruby-1.7.20
   - jruby-9.0.5.0
-  - jruby
   - ruby-head
