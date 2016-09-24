@@ -6,25 +6,31 @@ There are multiple ways to help! We rely on users around the world to help keep 
 
 Please read our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing. Everyone interacting with this project (or associated projects) is expected to abide by its terms.
 
+## General note
+
+The definitions for this project are housed in a submodule. Please make sure to run `git clone --recursive git@github.com/holidays/holidays`
+or, if you forgot to do so, run `make update_defs` so that all of the submodule data is pulled down.
+
 ## For definition updates
 
-Our definitions are written in YAML. You can find a complete guide to our format in the [definitions README](definitions/README.md). We take the YAML definitions and generate final ruby classes that are loaded at runtime for fast calculations.
+Our definitions are written in YAML. They are housed in a [separate repository](https://github.com/holidays/definitions) so
+that they can be used by tools written in other languages. You can find a complete guide to our format in the
+[definitions SYNTAX guide](https://github.com/holidays/definitions/SYNTAX.md).
 
-Here are the steps to take once you have a good idea on what you want to change:
+In this ruby project we take the YAML definitions and generate final ruby classes that are loaded at runtime for fast
+calculations.
 
-* Fork the repository
-* Edit desired definition YAML file(s) located under `definitions/`. If you are adding a new region be sure to update `definitions/index.yaml` as well
-* Run `make generate` to generate updated final definitions (they will be located under `lib/generated_definitions/` and `test/defs/`)
-* Run `make test` to ensure your changes did not introduce errors
-* Open a PR with *all* of these changes. You *MUST* include the generated definition files and tests in your PR. There is no automatic process to generate definitions at this time
+Once you have a good idea on what you want to change, please see the [contributing guide](https://github.com/holidays/definitions/CONTRIBUTING.md) in the `definitions` repository.
 
-Including documentation with your updates is very much appreciated. A simple Wikipedia entry or government link in the comments alongside your changes would be perfect.
+*NOTICE* - this whole submodule-definitions-thing is brand-new. If you are confused or run into issues please open an issue.
+The maintainers will respond immediately to help you out. :)
 
-Lastly, note that there are many 'meta' regions. For example, there are regions for Europe, Scandinavia, and North America. If your new region(s) falls into these areas consider adding them. You can find these 'meta' regions in `definitions/index.yaml`.
+Once that PR is accepted the maintainers of this project will be responsible for generating the updated definitions and
+releasing a new gem. Don't worry about versioning, we'll take care of it!
 
 ## For non-definition functionality
 
-* Fork the repository
+* Fork this repository
 * Make your changes
 * Create a PR pointing back to `master`
 
@@ -37,5 +43,6 @@ Don't worry about versioning, we'll handle it on our end.
 We have included a few handy tasks to help you troubleshoot and test:
 
 * `make test` - runs the entire suite
-* `REGION=<region> make test_region` - runs the tests for just that region. Make sure to run `make generate` after updating your YAML before running this!
+* `REGION=<region> make test_region` - runs the tests for just that region
 * `make console` - launches an IRB session with the 'holidays' gem loaded for quick testing
+* `make update_defs` - this will run the appropriate git submodule commands to pull the latest definitions
