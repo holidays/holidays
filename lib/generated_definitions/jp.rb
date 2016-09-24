@@ -40,7 +40,7 @@ module Holidays
             {:function => "jp_mountain_holiday_substitute(year)", :function_arguments => [:year],  :year_ranges => [{:after => 2016}],:name => "振替休日", :regions => [:jp]}],
       9 => [{:wday => 1, :week => 3, :name => "敬老の日", :regions => [:jp]},
             {:function => "jp_respect_for_aged_holiday_substitute(year)", :function_arguments => [:year], :name => "振替休日", :regions => [:jp]},
-            {:function => "jp_citizens_holiday(year)", :function_arguments => [:year], :name => "国民の休日", :regions => [:jp]},
+            {:function => "jp_citizens_holiday(year)", :function_arguments => [:year],  :year_ranges => [{:after => 2003}],:name => "国民の休日", :regions => [:jp]},
             {:function => "jp_national_culture_day(year)", :function_arguments => [:year], :name => "秋分の日", :regions => [:jp]},
             {:function => "jp_national_culture_day_substitute(year)", :function_arguments => [:year], :name => "振替休日", :regions => [:jp]}],
       10 => [{:wday => 1, :week => 2, :name => "体育の日", :regions => [:jp]},
@@ -113,7 +113,6 @@ Holidays::Factory::Definition.custom_methods_repository.find("jp_substitute_holi
 },
 
 "jp_citizens_holiday(year)" => Proc.new { |year|
-year < 2003 and return nil
 ncd = Holidays::Factory::Definition.custom_methods_repository.find("jp_national_culture_day(year)").call(year)
 if ncd.wday == 3
   ncd - 1
@@ -123,7 +122,6 @@ end
 },
 
 "jp_mountain_holiday(year)" => Proc.new { |year|
-return nil if year < 2016
 Date.civil(year, 8, 11)
 },
 

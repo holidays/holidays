@@ -69,5 +69,9 @@ end
 # before 2016, there is no mountain holiday.
 assert_nil Holidays.on(Date.civil(2015,8,11), :jp)[0]
 
+# before 2003, there is no citizens holiday.
+# [note] citizens holiday requires that jp_national_culture_day is wednesday.
+#        Before 2003, the closest past year that mathches above condition is 1998.
+assert_nil Holidays.on(Date.civil(1998,9,22), :jp)[0]
   end
 end
