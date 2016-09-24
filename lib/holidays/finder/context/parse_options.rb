@@ -60,7 +60,7 @@ module Holidays
                 if region.to_s =~ /_/
                   load_containing_region(region.to_s)
                 else
-                  raise UnknownRegion.new(e), "Could not load #{region.to_s}"
+                  raise UnknownRegionError.new(e), "Could not load #{region.to_s}"
                 end
               end
             end

@@ -10,7 +10,7 @@ class KrDefinitionTests < Test::Unit::TestCase  # :nodoc:
 {Date.civil(2016,2,8) => "Korean New Year",
  Date.civil(2016,5,14) => "Buddah\'s Birthday",
  Date.civil(2016,9,12) => "Korean Thanksgiving",
- Date.civil(2016,1,1) => "New Year\'s Day", 
+ Date.civil(2016,1,1) => "New Year\'s Day",
  Date.civil(2016,3,1) => "Independence Movement Day",
  Date.civil(2016,5,5) => "Children\'s Day",
  Date.civil(2016,6,6) => "Memorial Day",
