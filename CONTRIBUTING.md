@@ -25,6 +25,9 @@ Once you have a good idea on what you want to change, please see the [contributi
 *NOTICE* - this whole submodule-definitions-thing is brand-new. If you are confused or run into issues please open an issue.
 The maintainers will respond immediately to help you out. :)
 
+The idea is that if the validation passes on the other repo then you shouldn't have to worry about generating and testing
+here. We'll see how that goes!
+
 Once that PR is accepted the maintainers of this project will be responsible for generating the updated definitions and
 releasing a new gem. Don't worry about versioning, we'll take care of it!
 
