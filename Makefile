@@ -16,10 +16,10 @@ test_region:
 	bundle exec rake test_region $(REGION)
 
 build: clean
-	bundle exec gem build $(GEM)
+	bundle exec gem build holidays.gemspec
 
 push:
-	bundle exec gem push holidays.gemspec
+	bundle exec gem push $(GEM)
 
 update_defs:
 	git submodule update --init --remote --recursive
