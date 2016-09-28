@@ -16,30 +16,9 @@ class CaDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2008,9,1) => 'Labour Day',
  Date.civil(2008,10,13) => 'Thanksgiving',
  Date.civil(2008,12,25) => 'Christmas Day',
- }.each do |date, name|
+ Date.civil(2008,12,26) => 'Boxing Day'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :ca, :informal)[0] || {})[:name]
 end
-
-#Boxing Day in Ontario only
-[
-  :ca_bc,
-  :ca_sk,
-  :ca_mb,
-  :ca_ab,
-  :ca_qc,
-  :ca_ns,
-  :ca_pe,
-  :ca_yk,
-  :ca_nt,
-  :ca_nf,
-  :ca_nu,
-  :ca_nb
-].each do |region|
-  date = Date.civil(2008,12,26)
-  assert_empty Holidays.on(date, region, :informal)
-end
-
-assert_equal 'Boxing Day', (Holidays.on(Date.civil(2008,12,26), :ca_on, :informal)[0] || {})[:name]
 
 # Family Day in Alberta - Should only be active on 1990 or later
 [
@@ -172,7 +151,7 @@ end
   :ca_sk,
   :ca_bc,
   :ca_pe,
-  :ca_nf,
+  :ca_nl,
   :ca_nt,
   :ca_nu,
   :ca_nb,

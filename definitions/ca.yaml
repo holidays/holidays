@@ -66,11 +66,11 @@ months:
     week: 3
   3:
   - name: St. Patrick's Day
-    regions: [ca_nf]
+    regions: [ca_nl]
     mday: 17
   3:
   - name: St. George's Day
-    regions: [ca_nf]
+    regions: [ca_nl]
     mday: 23
   5:
   - name: Victoria Day
@@ -81,7 +81,7 @@ months:
     function: ca_victoria_day(year)
   6:
   - name: Discovery Day
-    regions: [ca_nf]
+    regions: [ca_nl]
     mday: 24
   - name: Fête Nationale
     regions: [ca_qc]
@@ -95,7 +95,7 @@ months:
     mday: 1
     observed: to_monday_if_sunday(date)
   - name: Orangemen's Day
-    regions: [ca_nf]
+    regions: [ca_nl]
     mday: 12
   - name: Nunavut Day
     regions: [ca_nu]
@@ -141,7 +141,7 @@ months:
     wday: 1
   11:
   - name: Remembrance Day
-    regions: [ ca_ab, ca_sk, ca_bc, ca_pe, ca_nf, ca_nt, ca_nu, ca_nb, ca_yk]
+    regions: [ ca_ab, ca_sk, ca_bc, ca_pe, ca_nl, ca_nt, ca_nu, ca_nb, ca_yk]
     mday: 11
   12:
   - name: Christmas Day
@@ -307,7 +307,7 @@ tests: |
       :ca_sk,
       :ca_bc,
       :ca_pe,
-      :ca_nf,
+      :ca_nl,
       :ca_nt,
       :ca_nu,
       :ca_nb,

@@ -151,7 +151,7 @@ end
   :ca_sk,
   :ca_bc,
   :ca_pe,
-  :ca_nf,
+  :ca_nl,
   :ca_nt,
   :ca_nu,
   :ca_nb,
