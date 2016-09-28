@@ -87,7 +87,7 @@ module Holidays
             {:wday => 4, :week => 4, :name => "Thanksgiving", :regions => [:us]},
             {:function => "day_after_thanksgiving(year)", :function_arguments => [:year], :name => "Day after Thanksgiving", :regions => [:us_ca]}],
       12 => [{:mday => 25, :name => "Christmas Day", :regions => [:ca]},
-            {:mday => 26, :name => "Boxing Day", :regions => [:ca]},
+            {:mday => 26, :name => "Boxing Day", :regions => [:ca_on]},
             {:mday => 12, :type => :informal, :name => "Día de la Virgen de Guadalupe", :regions => [:mx]},
             {:mday => 24, :type => :informal, :name => "Nochebuena", :regions => [:mx]},
             {:mday => 25, :name => "Navidad", :regions => [:mx]},

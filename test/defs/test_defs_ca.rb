@@ -15,8 +15,7 @@ class CaDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2008,7,1) => 'Canada Day',
  Date.civil(2008,9,1) => 'Labour Day',
  Date.civil(2008,10,13) => 'Thanksgiving',
- Date.civil(2008,12,25) => 'Christmas Day',
- Date.civil(2008,12,26) => 'Boxing Day'}.each do |date, name|
+ Date.civil(2008,12,25) => 'Christmas Day'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :ca, :informal)[0] || {})[:name]
 end
 
@@ -159,6 +158,8 @@ end
 ].each do |province|
   assert_equal "Remembrance Day", Holidays.on(Date.civil(2016,11,11), province)[0][:name]
 end
+
+assert_equal "Boxing Day", Holidays.on(Date.civil(2008, 12, 26), :ca_on)[0][:name]
 
 
 {Date.civil(2013,2,2) => 'Groundhog Day',
