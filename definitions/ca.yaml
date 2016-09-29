@@ -10,21 +10,10 @@ months:
     regions: [ca]
     function: easter(year)
     function_modifier: -2
-  - name: Easter Sunday
-    regions: [ca]
-    function: easter(year)
-  - name: Easter Monday
-    regions: [ca]
-    function: easter(year)
-    function_modifier: 1
-    type: informal
   1:
   - name: New Year's Day
     regions: [ca]
     mday: 1
-  - name: New Year's
-    regions: [ca_qc]
-    mday: 2
   2:
   - name: Family Day
     regions: [ca_ab]
@@ -64,14 +53,6 @@ months:
     regions: [ca_pe]
     wday: 1
     week: 3
-  3:
-  - name: St. Patrick's Day
-    regions: [ca_nl]
-    mday: 17
-  3:
-  - name: St. George's Day
-    regions: [ca_nl]
-    mday: 23
   5:
   - name: Victoria Day
     regions: [ca]
@@ -80,12 +61,10 @@ months:
     regions: [ca_qc]
     function: ca_victoria_day(year)
   6:
-  - name: Discovery Day
-    regions: [ca_nl]
-    mday: 24
   - name: Fête Nationale
     regions: [ca_qc]
     mday: 24
+    observed: to_monday_if_sunday(date)
   - name: National Aboriginal Day
     regions: [ca_nt]
     mday: 21
@@ -94,9 +73,6 @@ months:
     regions: [ca]
     mday: 1
     observed: to_monday_if_sunday(date)
-  - name: Orangemen's Day
-    regions: [ca_nl]
-    mday: 12
   - name: Nunavut Day
     regions: [ca_nu]
     mday: 9
@@ -109,17 +85,9 @@ months:
     week: 1
     regions: [ca_sk]
     wday: 1
-  - name: Heritage Day
-    week: 1
-    regions: [ca_ab]
-    wday: 1
-  - name: Natal Day
-    week: 1
-    regions: [ca_ns]
-    wday: 1
   - name: Civic Holiday
     week: 1
-    regions: [ca_on, ca_nt, ca_nu, ca_pe] # Appears to be a holiday in Ontario by convention
+    regions: [ca_nt, ca_nu]
     wday: 1
   - name: New Brunswick Day
     week: 1
@@ -141,7 +109,7 @@ months:
     wday: 1
   11:
   - name: Remembrance Day
-    regions: [ ca_ab, ca_sk, ca_bc, ca_pe, ca_nl, ca_nt, ca_nu, ca_nb, ca_yk]
+    regions: [ ca_ab, ca_sk, ca_bc, ca_pe, ca_nl, ca_nt, ca_nu, ca_nb, ca_yk ]
     mday: 11
   12:
   - name: Christmas Day
@@ -165,14 +133,12 @@ methods:
 tests: |
     {Date.civil(2008,1,1) => 'New Year\'s Day',
      Date.civil(2008,3,21) => 'Good Friday',
-     Date.civil(2013,3,31) => 'Easter Sunday',
-     Date.civil(2008,3,24) => 'Easter Monday',
      Date.civil(2008,5,19) => 'Victoria Day',
      Date.civil(2008,7,1) => 'Canada Day',
      Date.civil(2008,9,1) => 'Labour Day',
      Date.civil(2008,10,13) => 'Thanksgiving',
      Date.civil(2008,12,25) => 'Christmas Day'}.each do |date, name|
-      assert_equal name, (Holidays.on(date, :ca, :informal)[0] || {})[:name]
+      assert_equal name, (Holidays.on(date, :ca)[0] || {})[:name]
     end
 
     # Family Day in Alberta - Should only be active on 1990 or later
@@ -288,12 +254,8 @@ tests: |
     [Date.civil(2013,8,5), Date.civil(2014,8,4), Date.civil(2015,8,3)].each do |date|
       { :ca_bc => 'BC Day',
         :ca_sk => 'Saskatchewan Day',
-        :ca_ab => 'Heritage Day',
-        :ca_ns => 'Natal Day',
-        :ca_on => 'Civic Holiday',
         :ca_nt => 'Civic Holiday',
         :ca_nu => 'Civic Holiday',
-        :ca_pe => 'Civic Holiday',
         :ca_nb => 'New Brunswick Day' }.each do |region, name|
         assert_equal name, Holidays.on(date, region)[0][:name]
       end
