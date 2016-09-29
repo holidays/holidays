@@ -9,37 +9,13 @@ class CaDefinitionTests < Test::Unit::TestCase  # :nodoc:
   def test_ca
 {Date.civil(2008,1,1) => 'New Year\'s Day',
  Date.civil(2008,3,21) => 'Good Friday',
- Date.civil(2013,3,31) => 'Easter Sunday',
- Date.civil(2008,3,24) => 'Easter Monday',
  Date.civil(2008,5,19) => 'Victoria Day',
  Date.civil(2008,7,1) => 'Canada Day',
  Date.civil(2008,9,1) => 'Labour Day',
  Date.civil(2008,10,13) => 'Thanksgiving',
- Date.civil(2008,12,25) => 'Christmas Day',
- }.each do |date, name|
-  assert_equal name, (Holidays.on(date, :ca, :informal)[0] || {})[:name]
+ Date.civil(2008,12,25) => 'Christmas Day'}.each do |date, name|
+  assert_equal name, (Holidays.on(date, :ca)[0] || {})[:name]
 end
-
-#Boxing Day in Ontario only
-[
-  :ca_bc,
-  :ca_sk,
-  :ca_mb,
-  :ca_ab,
-  :ca_qc,
-  :ca_ns,
-  :ca_pe,
-  :ca_yk,
-  :ca_nt,
-  :ca_nf,
-  :ca_nu,
-  :ca_nb
-].each do |region|
-  date = Date.civil(2008,12,26)
-  assert_empty Holidays.on(date, region, :informal)
-end
-
-assert_equal 'Boxing Day', (Holidays.on(Date.civil(2008,12,26), :ca_on, :informal)[0] || {})[:name]
 
 # Family Day in Alberta - Should only be active on 1990 or later
 [
@@ -154,12 +130,8 @@ end
 [Date.civil(2013,8,5), Date.civil(2014,8,4), Date.civil(2015,8,3)].each do |date|
   { :ca_bc => 'BC Day',
     :ca_sk => 'Saskatchewan Day',
-    :ca_ab => 'Heritage Day',
-    :ca_ns => 'Natal Day',
-    :ca_on => 'Civic Holiday',
     :ca_nt => 'Civic Holiday',
     :ca_nu => 'Civic Holiday',
-    :ca_pe => 'Civic Holiday',
     :ca_nb => 'New Brunswick Day' }.each do |region, name|
     assert_equal name, Holidays.on(date, region)[0][:name]
   end
@@ -172,7 +144,7 @@ end
   :ca_sk,
   :ca_bc,
   :ca_pe,
-  :ca_nf,
+  :ca_nl,
   :ca_nt,
   :ca_nu,
   :ca_nb,
@@ -180,6 +152,8 @@ end
 ].each do |province|
   assert_equal "Remembrance Day", Holidays.on(Date.civil(2016,11,11), province)[0][:name]
 end
+
+assert_equal "Boxing Day", Holidays.on(Date.civil(2008, 12, 26), :ca_on)[0][:name]
 
 
 {Date.civil(2013,2,2) => 'Groundhog Day',

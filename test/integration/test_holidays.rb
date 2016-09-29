@@ -135,9 +135,9 @@ class HolidaysTests < Test::Unit::TestCase
   end
 
   def test_year_holidays
-    # Should return 9 holidays from February 23 to December 31
+    # Should return 7 holidays from February 23 to December 31
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2016, 2, 23))
-    assert_equal 9, holidays.length
+    assert_equal 7, holidays.length
 
     # Must have options (Regions)
     assert_raises ArgumentError do
@@ -151,9 +151,9 @@ class HolidaysTests < Test::Unit::TestCase
   end
 
   def test_year_holidays_with_specified_year
-    # Should return all 11 holidays for 2016 in Ontario, Canada
+    # Should return all 9 holidays for 2016 in Ontario, Canada
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2016, 1, 1))
-    assert_equal 11, holidays.length
+    assert_equal 9, holidays.length
 
     # Should return all 5 holidays for 2016 in Australia
     holidays = Holidays.year_holidays([:au], Date.civil(2016, 1, 1))
@@ -191,17 +191,17 @@ class HolidaysTests < Test::Unit::TestCase
   def test_year_holidays_random_years
     # Should be 1 less holiday, as Family day didn't exist in Ontario in 1990
     holidays = Holidays.year_holidays([:ca_on], Date.civil(1990, 1, 1))
-    assert_equal 10, holidays.length
+    assert_equal 8, holidays.length
 
     # Family day still didn't exist in 2000
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2000, 1, 1))
-    assert_equal 10, holidays.length
+    assert_equal 8, holidays.length
 
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2020, 1, 1))
-    assert_equal 11, holidays.length
+    assert_equal 9, holidays.length
 
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2050, 1, 1))
-    assert_equal 11, holidays.length
+    assert_equal 9, holidays.length
 
     holidays = Holidays.year_holidays([:jp], Date.civil(2070, 1, 1))
     assert_equal 18, holidays.length
@@ -245,11 +245,6 @@ class HolidaysTests < Test::Unit::TestCase
      Date.civil(2008,3,21), Date.civil(2035,3,23)].each do |date|
       assert_equal 'Good Friday', Holidays.on(date, :ca)[0][:name]
     end
-
-    [Date.civil(1800,4,14), Date.civil(1899,4,3), Date.civil(1900,4,16),
-     Date.civil(2008,3,24), Date.civil(2035,3,26)].each do |date|
-      assert_equal 'Easter Monday', Holidays.on(date, :ca_qc, :informal)[0][:name]
-    end
   end
 
   def test_sorting
@@ -264,18 +259,18 @@ class HolidaysTests < Test::Unit::TestCase
   end
 
   def test_caching
-    start_date = Date.civil(2008, 3, 21)
-    end_date = Date.civil(2008, 3, 25)
+    start_date = Date.civil(2008, 12, 24)
+    end_date = Date.civil(2009, 1, 2)
     cache_data = Holidays.between(start_date, end_date, :ca, :informal)
     options = [:ca, :informal]
 
     Holidays::Factory::Definition.cache_repository.expects(:cache_between).with(start_date, end_date, cache_data, options)
 
-    Holidays.cache_between(Date.civil(2008,3,21), Date.civil(2008,3,25), :ca, :informal)
+    Holidays.cache_between(Date.civil(2008,12,24), Date.civil(2009,1,2), :ca, :informal)
 
     # Test that cache has been set and it returns the same as before
-    assert_equal 1, Holidays.on(Date.civil(2008, 3, 21), :ca, :informal).length
-    assert_equal 1, Holidays.on(Date.civil(2008, 3, 24), :ca, :informal).length
+    assert_equal 1, Holidays.on(Date.civil(2008, 12, 25), :ca, :informal).length
+    assert_equal 1, Holidays.on(Date.civil(2009, 1, 1), :ca, :informal).length
 
     # Test that correct results are returned outside the cache range, and with no caching
     assert_equal 1, Holidays.on(Date.civil(2035,1,1), :ca, :informal).length
