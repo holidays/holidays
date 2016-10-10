@@ -281,4 +281,9 @@ class HolidaysTests < Test::Unit::TestCase
     assert_equal 1, Holidays.on(Date.civil(2035,1,1), :ca, :informal).length
     assert_equal 1, Holidays.on(Date.civil(2035,1,1), :us).length
   end
+
+  def test_load_all
+    Holidays.load_all
+    assert_equal 294, Holidays.available_regions.count
+  end
 end

@@ -1,5 +1,9 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 5.1.0
+
+* Add `load_all` method to `Holidays` namespace to preload all definitions (i.e. no lazy loading)
+
 ## 5.0.0
 
 * Remove support for jruby 1.7 (this is the main reason for the major semver bump)
