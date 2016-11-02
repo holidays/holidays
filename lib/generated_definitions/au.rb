@@ -50,7 +50,8 @@ module Holidays
             {:function => "hobart_show_day(year)", :function_arguments => [:year], :name => "Royal Hobart Show", :regions => [:au_tas_south]}],
       11 => [{:function => "g20_day_2014_only(year)", :function_arguments => [:year], :name => "G20 Day", :regions => [:au_qld_brisbane]},
             {:wday => 1, :week => 1, :name => "Recreation Day", :regions => [:au_tas_north]},
-            {:wday => 2, :week => 1, :name => "Melbourne Cup Day", :regions => [:au_vic_melbourne]}],
+            {:function => "melbourne_cup_day_melbourne_only(year)", :function_arguments => [:year], :name => "Melbourne Cup Day", :regions => [:au_vic_melbourne]},
+            {:function => "melbourne_cup_day_all_vic(year)", :function_arguments => [:year], :name => "Melbourne Cup Day", :regions => [:au_vic, :au_vic_melbourne]}],
       12 => [{:mday => 25, :observed => "to_tuesday_if_sunday_or_monday_if_saturday(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:au_qld, :au_nsw, :au_act, :au_tas, :au_wa]},
             {:mday => 25, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:au_sa]},
             {:function => "xmas_to_weekday_if_weekend(year)", :function_arguments => [:year], :name => "Christmas Day", :regions => [:au_vic, :au_nt]},
@@ -62,7 +63,19 @@ module Holidays
 
     def self.custom_methods
       {
-        "afl_grand_final(year)" => Proc.new { |year|
+        "melbourne_cup_day_melbourne_only(year)" => Proc.new { |year|
+if year <= 2015
+  Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 11, :first, :tuesday)
+end
+},
+
+"melbourne_cup_day_all_vic(year)" => Proc.new { |year|
+if year >= 2016
+  Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 11, :first, :tuesday)
+end
+},
+
+"afl_grand_final(year)" => Proc.new { |year|
 case year
 when 2015
   Date.civil(2015, 10, 2)

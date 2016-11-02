@@ -74,6 +74,11 @@ assert_nil Date.civil(2015,11,3).holidays(:au_vic)[0]
 assert_equal 'Melbourne Cup Day', Holidays.on(Date.civil(2014,11,4), :au_vic_melbourne)[0][:name]
 assert_equal 'Melbourne Cup Day', Holidays.on(Date.civil(2015,11,3), :au_vic_melbourne)[0][:name]
 
+assert_equal 'Melbourne Cup Day', Holidays.on(Date.civil(2016,11,1), :au_vic)[0][:name]
+assert_equal 'Melbourne Cup Day', Holidays.on(Date.civil(2017,11,7), :au_vic)[0][:name]
+assert_equal 'Melbourne Cup Day', Holidays.on(Date.civil(2016,11,1), :au_vic_melbourne)[0][:name]
+assert_equal 'Melbourne Cup Day', Holidays.on(Date.civil(2017,11,7), :au_vic_melbourne)[0][:name]
+
 assert_equal 'Friday before the AFL Grand Final', Date.civil(2015,10,2).holidays(:au_vic)[0][:name]
 assert_equal 'Friday before the AFL Grand Final', Date.civil(2016,9, 30).holidays(:au_vic)[0][:name]
 
