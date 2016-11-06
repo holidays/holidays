@@ -3,6 +3,7 @@
 ## 5.1.0
 
 * Add `load_all` method to `Holidays` namespace to preload all definitions (i.e. no lazy loading)
+* Fix issue-234: correctly load available regions so there is no error on `Holidays.available_regions` call
 
 ## 5.0.0
 
