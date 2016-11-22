@@ -155,9 +155,9 @@ class HolidaysTests < Test::Unit::TestCase
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2016, 1, 1))
     assert_equal 11, holidays.length
 
-    # Should return all 5 holidays for 2016 in Australia
+    # Should return all 7 holidays for 2016 in Australia
     holidays = Holidays.year_holidays([:au], Date.civil(2016, 1, 1))
-    assert_equal 5, holidays.length
+    assert_equal 7, holidays.length
   end
 
   def test_year_holidays_without_specified_year

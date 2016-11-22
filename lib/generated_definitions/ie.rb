@@ -26,21 +26,13 @@ module Holidays
       8 => [{:wday => 1, :week => 1, :name => "August Bank Holiday", :regions => [:ie]}],
       10 => [{:wday => 1, :week => -1, :name => "October Bank Holiday", :regions => [:ie]}],
       12 => [{:mday => 25, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:ie]},
-            {:mday => 26, :observed => "ie_st_stephens_day(date)", :observed_arguments => [:date], :name => "St. Stephen's Day", :regions => [:ie]}]
+            {:mday => 26, :observed => "to_weekday_if_boxing_weekend(date)", :observed_arguments => [:date], :name => "St. Stephen's Day", :regions => [:ie]}]
       }
     end
 
     def self.custom_methods
       {
-        "ie_st_stephens_day(date)" => Proc.new { |date|
-case date.wday
-when 6, 0 then date + 2
-when 1 then date + 1
-else date
-end
-},
-
-
+        
       }
     end
   end
