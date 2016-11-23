@@ -351,7 +351,7 @@ module Holidays
             {:mday => 25, :name => "Karácsony", :regions => [:hu]},
             {:mday => 26, :name => "Karácsony", :regions => [:hu]},
             {:mday => 25, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:ie]},
-            {:mday => 26, :observed => "ie_st_stephens_day(date)", :observed_arguments => [:date], :name => "St. Stephen's Day", :regions => [:ie]},
+            {:mday => 26, :observed => "to_weekday_if_boxing_weekend(date)", :observed_arguments => [:date], :name => "St. Stephen's Day", :regions => [:ie]},
             {:mday => 24, :name => "Jól", :regions => [:is]},
             {:mday => 25, :name => "Jól", :regions => [:is]},
             {:mday => 26, :name => "Jól", :regions => [:is]},
@@ -521,14 +521,6 @@ else
   date -= (date.wday + 4)
 end
 date
-},
-
-"ie_st_stephens_day(date)" => Proc.new { |date|
-case date.wday
-when 6, 0 then date + 2
-when 1 then date + 1
-else date
-end
 },
 
 "is_sumardagurinn_fyrsti(year)" => Proc.new { |year|

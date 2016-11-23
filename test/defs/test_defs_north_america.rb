@@ -157,7 +157,34 @@ end
   :ca_nb,
   :ca_yk
 ].each do |province|
+  # Remembrance Day observed
+  [Date.civil(2010, 11, 11), Date.civil(2012, 11, 12), Date.civil(2017, 11, 13)].each do |date|
+    assert_equal 'Remembrance Day', Holidays.on(date, province, :observed)[0][:name]
+  end
+
+  # Remembrance Day
   assert_equal "Remembrance Day", Holidays.on(Date.civil(2016,11,11), province)[0][:name]
+end
+
+# New years observed date
+[Date.civil(2011, 1, 3), Date.civil(2012, 1, 2), Date.civil(2016, 1, 1)].each do |date|
+  assert_equal 'New Year\'s Day', Holidays.on(date, :ca, :observed)[0][:name]
+end
+
+# Canada Day observed date
+[Date.civil(2011, 7, 1), Date.civil(2012, 7, 2), Date.civil(2017, 7, 3)].each do |date|
+  assert_equal 'Canada Day', Holidays.on(date, :ca, :observed)[0][:name]
+end
+
+# Christmas observed date
+[Date.civil(2010, 12, 27), Date.civil(2012, 12, 25), Date.civil(2016, 12, 26)].each do |date|
+  assert_equal 'Christmas Day', Holidays.on(date, :ca, :observed)[0][:name]
+end
+
+# Boxing Day observed date
+[Date.civil(2010, 12, 28), Date.civil(2012, 12, 26), Date.civil(2016, 12, 27),
+ Date.civil(2015, 12, 28)].each do |date|
+  assert_equal 'Boxing Day', Holidays.on(date, :ca, :observed)[0][:name]
 end
 
 

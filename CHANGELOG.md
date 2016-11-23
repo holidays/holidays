@@ -1,5 +1,13 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 5.2.0
+
+* Point to latest (v1.2.0 of definitions)
+** updates `jp` defs to fix 'Foundation Day' name
+** Fix `ca` defs for observed holidays
+** Update `au` defs to have Christmas and Boxing Day for all of Australia instead of just individual territories
+** Update `ie` defs to consolidate St Stephen's Day to use common method instead of custom method
+
 ## 5.1.0
 
 * Add `load_all` method to `Holidays` namespace to preload all definitions (i.e. no lazy loading)
