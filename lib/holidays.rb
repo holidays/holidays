@@ -29,7 +29,7 @@ module Holidays
     end
 
     def on(date, *options)
-      between(date, date, options)
+      between(date, date, *options)
     end
 
     def between(start_date, end_date, *options)

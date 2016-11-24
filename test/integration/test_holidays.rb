@@ -269,17 +269,17 @@ class HolidaysTests < Test::Unit::TestCase
     cache_data = Holidays.between(start_date, end_date, :ca, :informal)
     options = [:ca, :informal]
 
-    Holidays::Factory::Definition.cache_repository.expects(:cache_between).with(start_date, end_date, cache_data, options)
-
     Holidays.cache_between(Date.civil(2008,3,21), Date.civil(2008,3,25), :ca, :informal)
-
-    # Test that cache has been set and it returns the same as before
-    assert_equal 1, Holidays.on(Date.civil(2008, 3, 21), :ca, :informal).length
-    assert_equal 1, Holidays.on(Date.civil(2008, 3, 24), :ca, :informal).length
 
     # Test that correct results are returned outside the cache range, and with no caching
     assert_equal 1, Holidays.on(Date.civil(2035,1,1), :ca, :informal).length
     assert_equal 1, Holidays.on(Date.civil(2035,1,1), :us).length
+
+    Holidays::Factory::Finder.expects(:between).never # Make sure cache is hit for two next call
+
+    # Test that cache has been set and it returns the same as before
+    assert_equal 1, Holidays.on(Date.civil(2008, 3, 21), :ca, :informal).length
+    assert_equal 1, Holidays.on(Date.civil(2008, 3, 24), :ca, :informal).length
   end
 
   def test_load_all
