@@ -153,6 +153,15 @@ Or find end of month for given date (requires 'Time' extensions as well):
     d.end_of_month
     => #<Date: 2016-08-31 ((2457632j,0s,0n),+0s,2299161j)>
 
+
+### Caching Holiday Lookups
+
+If you are checking holidays regularly you can cache your results for improved performance. Run this before looking up a holiday (eg. in an initializer):
+
+    Holidays.cache_between(Time.now, 2.years.from_now, :ca, :us, :observed)
+
+Holidays for the regions specified within the dates specified will be pre-calculated and stored in-memory. Future lookups will be much faster.
+
 ### How to contribute
 
 See our [contribution guidelines](CONTRIBUTING.md) for information on how to help out!
