@@ -1,5 +1,9 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 5.3.0
+
+* Fix `ca` province/territory codes for 'Newfoundland and Labrador' and 'Yukon' (thanks to https://github.com/slucaskim)
+
 ## 5.2.1
 
 * Fix caching (i.e. calls to `cache_between`) to...you know, actually cache correctly and give
