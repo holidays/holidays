@@ -1,5 +1,10 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 5.2.1
+
+* Fix caching (i.e. calls to `cache_between`) to...you know, actually cache correctly and give
+  performance improvements. Thanks to https://github.com/AnotherJoSmith for the fix!
+
 ## 5.2.0
 
 * Point to latest (v1.2.0 of definitions)
