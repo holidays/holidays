@@ -59,7 +59,7 @@ end
 
 [:de,
  :de_bw, :de_by, :de_bb, :de_he, :de_mv,
- :de_now, :de_rp, :de_sl, :de_sn, :de_st, :de_th].each do |r|
+ :de_nw, :de_rp, :de_sl, :de_sn, :de_st, :de_th].each do |r|
   assert_equal [], Holidays.on(Date.civil(2015,8,8), r), "Friedensfest is not a holiday in #{r}"
 end
 
