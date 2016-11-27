@@ -151,11 +151,11 @@ end
   :ca_sk,
   :ca_bc,
   :ca_pe,
-  :ca_nf,
+  :ca_nl,
   :ca_nt,
   :ca_nu,
   :ca_nb,
-  :ca_yk
+  :ca_yt
 ].each do |province|
   # Remembrance Day observed
   [Date.civil(2010, 11, 11), Date.civil(2012, 11, 12), Date.civil(2017, 11, 13)].each do |date|

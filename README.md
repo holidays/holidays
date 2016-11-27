@@ -18,6 +18,9 @@ This gem follows [semantic versioning](http://semver.org/). The only methods cov
 `Holidays` namespace specifically. Anything that is not a method off of `Holidays` or the core extension is not covered by
 semver. Please take this into account when relying on this gem as a dependency.
 
+Also note that we consider definition changes as 'minor' bumps, meaning they are backwards compatible with your code
+but might give different holiday results! Please note this when relying on this gem.
+
 ## Time zones
 
 Time zones are ignored.  This library assumes that all dates are within the same time zone.
