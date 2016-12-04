@@ -23,11 +23,11 @@ class DeDefinitionTests < Test::Unit::TestCase  # :nodoc:
   assert_equal name, (Holidays.on(date, :de, :informal)[0] || {})[:name], "Failed on '#{name}' for date '#{date}'"
 end
 
-[:de_bw, :de_by, :de_by_aux, :de_st, :de_].each do |r|
+[:de_bw, :de_by, :de_st, :de_].each do |r|
   assert_equal 'Heilige Drei Könige', Holidays.on(Date.civil(2009,1,6), r)[0][:name]
 end
 
-[:de_bw, :de_by, :de_by_aux, :de_he, :de_nw, :de_rp, :de_sl, :de_].each do |r|
+[:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_].each do |r|
   assert_equal 'Fronleichnam', Holidays.on(Date.civil(2009,6,11), r)[0][:name]
 end
 
@@ -49,7 +49,7 @@ assert_equal 'Reformationstag', Holidays.on(Date.civil(2017,10,31), :de)[0][:nam
 assert_equal [], Holidays.on(Date.civil(2016,10,31), :de), "Reformationstag is not a holiday in 2016 in whole Germany"
 assert_equal [], Holidays.on(Date.civil(2018,10,31), :de), "Reformationstag is not a holiday in 2018 in whole Germany"
 
-[:de_bw, :de_by, :de_by_aux, :de_nw, :de_rp, :de_sl, :de_].each do |r|
+[:de_bw, :de_by, :de_nw, :de_rp, :de_sl, :de_].each do |r|
   assert_equal 'Allerheiligen', Holidays.on(Date.civil(2009,11,1), r)[0][:name]
 end
 
@@ -74,7 +74,7 @@ assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2006,11,22), :de_sn)[0][
 assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2009,11,18), :de_sn)[0][:name]
 
 # Carnival
-[:de_bw, :de_by, :de_by_aux, :de_he, :de_nw, :de_rp, :de_sl, :de_sn].each do |r|
+[:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn].each do |r|
   assert_equal 'Weiberfastnacht', Holidays.on(Date.civil(2016,2,4),r,:informal)[0][:name]
   assert_equal 'Rosenmontag', Holidays.on(Date.civil(2016,2,8),r,:informal)[0][:name]
   assert_equal 'Aschermittwoch', Holidays.on(Date.civil(2016,2,10),r,:informal)[0][:name]
