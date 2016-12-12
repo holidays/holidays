@@ -129,13 +129,19 @@ assert_equal "Christmas Day", Date.civil(2016, 12, 25).holidays(:au_sa)[0][:name
 assert_equal "Christmas Day", Date.civil(2016, 12, 26).holidays(:au_sa, :observed)[0][:name]
 assert_equal "Boxing Day", Date.civil(2016, 12, 27).holidays(:au_sa)[0][:name]
 
-# CHRISTMAS DAY - Victoria and NT don't observe 25th if weekend - xmas is on the 27th
-assert_nil Date.civil(2016, 12, 25).holidays(:au_vic)[0]
-assert_nil Date.civil(2016, 12, 25).holidays(:au_nt)[0]
+# CHRISTMAS DAY - Victoria and NT now observe both 25th and 27th if weekend
+assert_equal "Christmas Day", Date.civil(2016, 12, 25).holidays(:au_vic)[0][:name]
+assert_equal "Christmas Day", Date.civil(2016, 12, 25).holidays(:au_nt)[0][:name]
 assert_equal "Boxing Day", Date.civil(2016, 12, 26).holidays(:au_vic)[0][:name]
 assert_equal "Boxing Day", Date.civil(2016, 12, 26).holidays(:au_nt)[0][:name]
-assert_equal "Christmas Day", Date.civil(2016, 12, 27).holidays(:au_vic)[0][:name]
-assert_equal "Christmas Day", Date.civil(2016, 12, 27).holidays(:au_nt)[0][:name]
+assert_equal "Christmas Day", Date.civil(2016, 12, 27).holidays(:au_vic, :observed)[0][:name]
+assert_equal "Christmas Day", Date.civil(2016, 12, 27).holidays(:au_nt, :observed)[0][:name]
 
+# NEW YEAR'S DAY - observed on both 1st and 2nd of Jan for 2017
+regions = [:au_qld, :au_nsw, :au_act, :au_vic, :au_tas, :au_sa, :au_wa, :au_nt]
+regions.each do |r|
+  assert_equal "New Year's Day", Date.civil(2017, 1, 1).holidays(r)[0][:name]
+  assert_equal "New Year's Day", Date.civil(2017, 1, 2).holidays(r, :observed)[0][:name]
+end
   end
 end
