@@ -15,12 +15,12 @@ or, if you forgot to do so, run `make update_defs` so that all of the submodule 
 
 Our definitions are written in YAML. They are housed in a [separate repository](https://github.com/holidays/definitions) so
 that they can be used by tools written in other languages. You can find a complete guide to our format in the
-[definitions SYNTAX guide](https://github.com/holidays/definitions/SYNTAX.md).
+[definitions SYNTAX guide](https://github.com/holidays/definitions/blob/master/SYNTAX.md).
 
 In this ruby project we take the YAML definitions and generate final ruby classes that are loaded at runtime for fast
 calculations.
 
-Once you have a good idea on what you want to change, please see the [contributing guide](https://github.com/holidays/definitions/CONTRIBUTING.md) in the `definitions` repository.
+Once you have a good idea on what you want to change, please see the [contributing guide](https://github.com/holidays/definitions/blob/master/CONTRIBUTING.md) in the `definitions` repository.
 
 *NOTICE* - this whole submodule-definitions-thing is brand-new. If you are confused or run into issues please open an issue.
 The maintainers will respond immediately to help you out. :)
