@@ -9,7 +9,7 @@ class JpDefinitionTests < Test::Unit::TestCase  # :nodoc:
   def test_jp
 {Date.civil(2008,1,1) => '元日',
  Date.civil(2010,1,11) => '成人の日',
- Date.civil(2008,2,11) => '建国記念日',
+ Date.civil(2008,2,11) => '建国記念の日',
  Date.civil(2008,4,29) => '昭和の日',
  Date.civil(2008,5,3) => '憲法記念日',
  Date.civil(2008,5,5) => 'こどもの日',

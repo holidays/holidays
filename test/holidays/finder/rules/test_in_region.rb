@@ -19,6 +19,10 @@ class FinderRulesInRegionTests < Test::Unit::TestCase
   def test_returns_true_if_subregion_matches_parent
     assert_equal(true, @subject.call([:test_sub], @available))
   end
+  
+  def test_returns_true_if_subregion_matches_grandparent
+    assert_equal(true, @subject.call([:test_sub_sub], @available))
+  end
 
   def test_returns_true_if_subregion_is_in_available
     assert_equal(true, @subject.call([:test_sub], [:test, :test_sub]))
