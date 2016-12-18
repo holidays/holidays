@@ -66,7 +66,9 @@ case year
 when 2015
   Date.civil(2015, 10, 2)
 when 2016
-  Date.civil(2017, 9, 30)
+  Date.civil(2016, 9, 30)
+when 2017
+  Date.civil(2017, 9, 29)
 end
 },
 
