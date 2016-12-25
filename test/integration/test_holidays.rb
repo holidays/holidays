@@ -264,22 +264,25 @@ class HolidaysTests < Test::Unit::TestCase
   end
 
   def test_caching
-    start_date = Date.civil(2008, 3, 21)
-    end_date = Date.civil(2008, 3, 25)
-    cache_data = Holidays.between(start_date, end_date, :ca, :informal)
-    options = [:ca, :informal]
+    good_friday = Date.civil(2008, 3, 21)
+    easter_monday = Date.civil(2008, 3, 24)
+    cache_end_date = Date.civil(2008, 3, 25)
 
-    Holidays.cache_between(Date.civil(2008,3,21), Date.civil(2008,3,25), :ca, :informal)
+    Holidays.cache_between(good_friday, cache_end_date, :ca, :informal)
 
-    # Test that correct results are returned outside the cache range, and with no caching
-    assert_equal 1, Holidays.on(Date.civil(2035,1,1), :ca, :informal).length
-    assert_equal 1, Holidays.on(Date.civil(2035,1,1), :us).length
+    # Test that correct results are returned outside the
+    # cache range, and with no caching
+    assert_equal 1, Holidays.on(Date.civil(2035, 1, 1), :ca, :informal).length
+    assert_equal 1, Holidays.on(Date.civil(2035, 1, 1), :us).length
 
-    Holidays::Factory::Finder.expects(:between).never # Make sure cache is hit for two next call
+    # Make sure cache is hit for all successive calls
+    Holidays::Factory::Finder.expects(:between).never
 
     # Test that cache has been set and it returns the same as before
-    assert_equal 1, Holidays.on(Date.civil(2008, 3, 21), :ca, :informal).length
-    assert_equal 1, Holidays.on(Date.civil(2008, 3, 24), :ca, :informal).length
+    assert_equal 1, Holidays.on(good_friday, :ca, :informal).length
+    assert_equal 1, Holidays.on(easter_monday, :ca, :informal).length
+    assert_equal 1, easter_monday.holidays(:ca, :informal).length
+    assert_equal true, easter_monday.holiday?(:ca, :informal)
   end
 
   def test_load_all
