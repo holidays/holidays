@@ -162,8 +162,14 @@ class HolidaysTests < Test::Unit::TestCase
 
   def test_year_holidays_without_specified_year
     # Gets holidays for current year from today's date
-    holidays = Holidays.year_holidays([:ca_on])
+    holidays = Holidays.year_holidays([:de])
     assert_equal holidays.first[:date].year, Date.today.year
+  end
+
+  def test_year_holidays_empty
+    # if remain holidays is nothing , method will return empty.
+    holidays = Holidays.year_holidays([:ca_on], Date.civil(2016, 12, 27))
+    assert_empty holidays
   end
 
   def test_year_holidays_feb_29_on_non_leap_year
@@ -287,6 +293,6 @@ class HolidaysTests < Test::Unit::TestCase
 
   def test_load_all
     Holidays.load_all
-    assert_equal 294, Holidays.available_regions.count
+    assert_equal 295, Holidays.available_regions.count
   end
 end

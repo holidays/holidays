@@ -27,7 +27,7 @@ end
   assert_equal 'Heilige Drei Könige', Holidays.on(Date.civil(2009,1,6), r)[0][:name]
 end
 
-[:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_].each do |r|
+[:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_sorbian, :de_th_eichsfeld, :de_].each do |r|
   assert_equal 'Fronleichnam', Holidays.on(Date.civil(2009,6,11), r)[0][:name]
 end
 
@@ -53,7 +53,7 @@ assert_equal [], Holidays.on(Date.civil(2018,10,31), :de), "Reformationstag is n
   assert_equal 'Allerheiligen', Holidays.on(Date.civil(2009,11,1), r)[0][:name]
 end
 
-[:de_by_aux].each do |r|
+[:de_by_augsburg].each do |r|
   assert_equal 'Friedensfest', Holidays.on(Date.civil(2015,8,8),r)[0][:name]
 end
 
