@@ -19,7 +19,6 @@ module Holidays
           "to_weekday_if_weekend(date)" => weekend_modifier.method(:to_weekday_if_weekend).to_proc,
           "calculate_day_of_month(year, month, day, wday)" => day_of_month_calculator.method(:call).to_proc,
           "to_weekday_if_boxing_weekend_from_year_or_to_tuesday_if_monday(year)" => weekend_modifier.method(:to_weekday_if_boxing_weekend_from_year_or_to_tuesday_if_monday).to_proc,
-          "xmas_to_weekday_if_weekend(year)" => weekend_modifier.method(:xmas_to_weekday_if_weekend).to_proc,
           "to_tuesday_if_sunday_or_monday_if_saturday(date)" => weekend_modifier.method(:to_tuesday_if_sunday_or_monday_if_saturday).to_proc,
         }
 
