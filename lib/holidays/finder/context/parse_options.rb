@@ -92,7 +92,7 @@ module Holidays
         def load_definition_data(region)
           # Lazy loading of definition files. We verify the region doesn't
           # contain malicious stuff in the initial validation.
-          region_definition_file = "#{DEFINITIONS_PATH}/#{region}"
+          region_definition_file = "#{FULL_DEFINITIONS_PATH}/#{region}"
           require region_definition_file
 
           target_region_module = Module.const_get("Holidays").const_get(region.upcase)
