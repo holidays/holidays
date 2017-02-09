@@ -139,10 +139,16 @@ assert_equal "Christmas Day", Date.civil(2016, 12, 27).holidays(:au_vic, :observ
 assert_equal "Christmas Day", Date.civil(2016, 12, 27).holidays(:au_nt, :observed)[0][:name]
 
 # NEW YEAR'S DAY - observed on both 1st and 2nd of Jan for 2017
-regions = [:au_qld, :au_nsw, :au_act, :au_vic, :au_tas, :au_sa, :au_wa, :au_nt]
+regions = [:au_qld, :au_nsw, :au_act, :au_vic, :au_sa, :au_wa, :au_nt]
 regions.each do |r|
   assert_equal "New Year's Day", Date.civil(2017, 1, 1).holidays(r)[0][:name]
   assert_equal "New Year's Day", Date.civil(2017, 1, 2).holidays(r, :observed)[0][:name]
 end
+# Tasmania is different
+assert_equal [], Date.civil(2017,1,1).holidays(:au_tas)
+assert_equal "New Year's Day", Date.civil(2017, 1, 2).holidays(:au_tas)[0][:name]
+
+#QLD now celebrates Easter Sunday
+assert_equal "Easter Sunday", Date.civil(2017, 4, 16).holidays(:au_qld)[0][:name]
   end
 end
