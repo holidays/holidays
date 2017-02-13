@@ -14,14 +14,14 @@ module Holidays
         end
 
         def find(start_date, end_date, options)
-          if in_cache_range?(start_date, end_date, options)
-            if start_date == end_date
-              @cache[options].fetch(start_date, [])
-            else
-              @cache[options].select do |date, holidays|
-                date >= start_date && date <= end_date
-              end.flat_map { |date, holidays| holidays }
-            end
+          return nil unless in_cache_range?(start_date, end_date, options)
+          
+          if start_date == end_date
+            @cache[options].fetch(start_date, [])
+          else
+            @cache[options].select do |date, holidays|
+              date >= start_date && date <= end_date
+            end.flat_map { |date, holidays| holidays }
           end
         end
 

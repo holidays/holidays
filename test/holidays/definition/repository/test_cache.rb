@@ -21,6 +21,17 @@ class CacheRepoTests < Test::Unit::TestCase
     assert_equal(cache_data, @subject.find(start_date, end_date, options))
   end
 
+  def test_cache_returns_empty_array_no_holidays_are_found
+    start_date = Date.civil(2015, 1, 1)
+    end_date = Date.civil(2015, 7, 1)
+    cache_data = [{:date=>Date.civil(2015, 1, 1), :name=>"New Year's Day", :regions=>[:us]}]
+    options = :us
+
+    @subject.cache_between(start_date, end_date, cache_data, options)
+
+    assert_empty(@subject.find(Date.civil(2015, 1, 2), Date.civil(2015, 1, 2), options))
+  end
+
   def test_find_returns_correct_cache_data_for_a_period
     start_date = Date.civil(2015, 1, 1)
     end_date = Date.civil(2015, 7, 1)
