@@ -18,6 +18,7 @@ class CacheRepoTests < Test::Unit::TestCase
 
     @subject.cache_between(start_date, end_date, cache_data, options)
 
+    assert_equal(cache_data, @subject.find(start_date, start_date, options))
     assert_equal(cache_data, @subject.find(start_date, end_date, options))
   end
 
@@ -30,37 +31,30 @@ class CacheRepoTests < Test::Unit::TestCase
     @subject.cache_between(start_date, end_date, cache_data, options)
 
     assert_empty(@subject.find(Date.civil(2015, 1, 2), Date.civil(2015, 1, 2), options))
+    assert_empty(@subject.find(Date.civil(2015, 1, 2), Date.civil(2015, 1, 3), options))
   end
 
-  def test_find_returns_correct_cache_data_for_a_period
+  def test_cache_returns_empty_array_when_cache_is_empty
     start_date = Date.civil(2015, 1, 1)
     end_date = Date.civil(2015, 7, 1)
-    cache_data = [{:date=>Date.civil(2015, 1, 1), :name=>"New Year's Day", :regions=>[:us]}]
+    cache_data = []
     options = :us
 
     @subject.cache_between(start_date, end_date, cache_data, options)
 
-    assert_equal(cache_data, @subject.find(start_date, end_date, options))
+    assert_empty(@subject.find(Date.civil(2015, 1, 2), Date.civil(2015, 1, 2), options))
+    assert_empty(@subject.find(Date.civil(2015, 1, 2), Date.civil(2015, 1, 3), options))
   end
 
   def test_find_returns_correct_cache_data
     start_date = Date.civil(2015, 1, 1)
-    end_date = Date.civil(2015, 1, 1)
-    cache_data = [{:date=>Date.civil(2015, 1, 1), :name=>"New Year's Day", :regions=>[:us]}]
-    options = :us
-    @subject.cache_between(start_date, end_date, cache_data, options)
-
-    assert_equal(cache_data, @subject.find(start_date, end_date, options))
-  end
-
-  def test_find_returns_nil_if_no_match_is_found_for_a_period
-    start_date = Date.civil(2015, 1, 1)
     end_date = Date.civil(2015, 7, 1)
     cache_data = [{:date=>Date.civil(2015, 1, 1), :name=>"New Year's Day", :regions=>[:us]}]
     options = :us
     @subject.cache_between(start_date, end_date, cache_data, options)
 
-    assert_nil(@subject.find(Date.civil(2015, 7, 1), Date.civil(2015, 12, 1), options))
+    assert_equal(cache_data, @subject.find(start_date, start_date, options))
+    assert_equal(cache_data, @subject.find(start_date, end_date, options))
   end
 
   def test_find_returns_nil_if_no_match_is_found
@@ -70,6 +64,7 @@ class CacheRepoTests < Test::Unit::TestCase
     options = :us
     @subject.cache_between(start_date, end_date, cache_data, options)
 
+    assert_nil(@subject.find(Date.civil(2015, 7, 1), Date.civil(2015, 12, 1), options))
     assert_nil(@subject.find(Date.civil(2015, 7, 1), Date.civil(2015, 12, 1), options))
   end
 
