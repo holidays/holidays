@@ -10,11 +10,7 @@ module Holidays
           raise ArgumentError unless cache_data
 
           @cache_range[options] = start_date..end_date
-          @cache[options] = cache_data.each_with_object({}) do |holiday, cache|
-            date = holiday[:date]
-            holidays = cache.fetch(:holidays, [])
-            cache[date] = holidays + [holiday]
-          end
+          @cache[options] = cache_data.group_by { |holiday| holiday[:date] }
         end
 
         def find(start_date, end_date, options)
