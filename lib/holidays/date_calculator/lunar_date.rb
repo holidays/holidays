@@ -25,7 +25,7 @@ module Holidays
           days += lunardays_for_type(year_info[year_diff][month])[1]
         end
 
-        solar_date = SOLAR_START_DATE + days
+        SOLAR_START_DATE + days
       end
 
       def to_s
