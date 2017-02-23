@@ -57,6 +57,4 @@ class LunarHolidaysCalculatorTests < Test::Unit::TestCase
     assert_equal '2022-09-10', @subject.to_solar(2022,8,15).to_s
     assert_equal '2025-10-06', @subject.to_solar(2025,8,15).to_s
   end
-  
-
 end
