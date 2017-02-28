@@ -18,10 +18,10 @@ module Holidays
 
     def self.holidays_by_month
       {
-              1 => [{:mday => 1, :name => "New Year", :regions => [:vi]}],
-      4 => [{:mday => 30, :name => "Liberation Day", :regions => [:vi]}],
-      5 => [{:mday => 1, :name => "International Workers' Day", :regions => [:vi]}],
-      9 => [{:mday => 2, :name => "National Day", :regions => [:vi]}]
+              1 => [{:mday => 1, :name => "Tết dương lịch", :regions => [:vi]}],
+      4 => [{:mday => 30, :name => "Ngày Giải phóng miền Nam, thống nhất đất nước", :regions => [:vi]}],
+      5 => [{:mday => 1, :name => "Ngày Quốc tế Lao động", :regions => [:vi]}],
+      9 => [{:mday => 2, :name => "Quốc khánh", :regions => [:vi]}]
       }
     end
 
