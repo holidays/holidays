@@ -5,7 +5,7 @@ module Holidays
     class LunarDate
       attr_accessor :year, :month, :day, :is_leap_month
 
-      def self.to_solar(year, month, day, is_leap_month = false, calendar_symbol = :ko)
+      def to_solar(year, month, day, is_leap_month = false, calendar_symbol = :ko)
         days = 0
         year_diff = year - 1900
         year_info = CALENDAR_YEAR_INFO_MAP[calendar_symbol]
@@ -24,6 +24,10 @@ module Holidays
         SOLAR_START_DATE + days
       end
 
+      def lunardays_for_type(month_type)
+        LUNARDAYS_FOR_MONTHTYPE[month_type]
+      end
+      
       def to_s
         format('%4d%02d%02d', year, month, day)
       end
@@ -198,14 +202,6 @@ module Holidays
       }.freeze
 
       SOLAR_START_DATE = Date.new(1900, 1, 31).freeze
-
-      class << self
-        private
-
-        def lunardays_for_type(month_type)
-          LUNARDAYS_FOR_MONTHTYPE[month_type]
-        end
-      end
     end
   end 
 end
