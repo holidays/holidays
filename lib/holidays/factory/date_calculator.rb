@@ -26,7 +26,7 @@ module Holidays
 
       class << self
         def lunar_date 
-          Holidays::DateCalculator::LunarDate
+          Holidays::DateCalculator::LunarDate.new
         end
 
         def weekend_modifier
