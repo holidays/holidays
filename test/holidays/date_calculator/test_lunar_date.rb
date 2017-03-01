@@ -4,7 +4,7 @@ require 'holidays/date_calculator/lunar_date.rb'
 
 class LunarHolidaysCalculatorTests < Test::Unit::TestCase
   def setup
-    @subject = Holidays::DateCalculator::LunarDate
+    @subject = Holidays::DateCalculator::LunarDate.new
   end
 
   def test_korean_new_year_returns_expected_results

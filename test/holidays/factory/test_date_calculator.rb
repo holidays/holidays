@@ -26,7 +26,7 @@ class DateCalculatorFactoryTests < Test::Unit::TestCase
   end
 
   def test_lunar_date
-    # Holidays::DateCalculator::LunarDate is not instantiated by lunar_date
+    assert @subject.lunar_date.is_a?(Holidays::DateCalculator::LunarDate)
     assert @subject.lunar_date.respond_to?('to_solar')
   end
 end
