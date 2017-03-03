@@ -92,7 +92,7 @@ module Holidays
       {
         "christmas_eve_holiday(date)" => Proc.new { |date|
 beginning_of_month = Date.civil(date.year, date.month, 1)
-(date.saturday? || date.sunday?) ? date.downto(beginning_of_month).find {|date| date if date.wday == 5} : date
+(date.saturday? || date.sunday?) ? date.downto(beginning_of_month).find {|d| d if d.wday == 5} : date
 },
 
 "rosh_hashanah(year)" => Proc.new { |year|

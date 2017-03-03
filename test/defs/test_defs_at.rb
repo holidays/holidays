@@ -7,18 +7,21 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class AtDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_at
-{Date.civil(2009,1,1) => 'Neujahrstag',
- Date.civil(2009,4,13) => 'Ostermontag',
- Date.civil(2009,5,1) => 'Staatsfeiertag',
- Date.civil(2009,5,21) => 'Christi Himmelfahrt',
- Date.civil(2009,6,1) => 'Pfingstmontag',
- Date.civil(2009,10,26) => 'Nationalfeiertag',
- Date.civil(2009,12,25) => '1. Weihnachtstag',
- Date.civil(2009,12,26) => '2. Weihnachtstag'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :at, :informal)[0] || {})[:name]
-end
+    assert_equal "Neujahrstag", (Holidays.on(Date.civil(2009, 1, 1), [:at], [:informal])[0] || {})[:name]
 
-assert_equal [], Holidays.on(Date.civil(2010,5,8), :at), '2010-05-08 is not a holiday in Austria'
+    assert_equal "Ostermontag", (Holidays.on(Date.civil(2009, 4, 13), [:at], [:informal])[0] || {})[:name]
+
+    assert_equal "Christi Himmelfahrt", (Holidays.on(Date.civil(2009, 5, 21), [:at], [:informal])[0] || {})[:name]
+
+    assert_equal "Pfingstmontag", (Holidays.on(Date.civil(2009, 6, 1), [:at], [:informal])[0] || {})[:name]
+
+    assert_equal "Nationalfeiertag", (Holidays.on(Date.civil(2009, 10, 26), [:at], [:informal])[0] || {})[:name]
+
+    assert_equal "1. Weihnachtstag", (Holidays.on(Date.civil(2009, 12, 25), [:at], [:informal])[0] || {})[:name]
+
+    assert_equal "2. Weihnachtstag", (Holidays.on(Date.civil(2009, 12, 26), [:at], [:informal])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2010, 5, 8), [:at])[0] || {})[:name]
 
   end
 end

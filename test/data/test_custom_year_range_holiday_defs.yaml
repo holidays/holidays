@@ -26,3 +26,10 @@ months:
     year_ranges:
       - before: 2015
       - after: 2017
+
+tests:
+  - given:
+      date: '2017-01-01'
+      regions: [custom_year_range_file]
+    expect:
+      name: "after_year"

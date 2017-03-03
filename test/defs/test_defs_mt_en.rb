@@ -7,26 +7,35 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class Mt_enDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_mt_en
-{ Date.civil(2017, 1, 1) => "New Year's Day",
-  Date.civil(2017, 2, 10) => "Feast of Saint Paul's Shipwreck in Malta",
-  Date.civil(2017, 3, 19) => 'Feast of Saint Joseph',
-  Date.civil(2017, 3, 31) => 'Freedom Day',
-  Date.civil(2017, 5, 1) => "Worker's Day",
-  Date.civil(2017, 6, 7) => 'Sette Giugno',
-  Date.civil(2017, 6, 29) => 'Feast of Saint Peter & Saint Paul',
-  Date.civil(2017, 8, 15) => 'Feast of the Assumption of Our Lady',
-  Date.civil(2017, 9, 8) => 'Victory Day',
-  Date.civil(2017, 9, 21) => 'Independence Day',
-  Date.civil(2017, 12, 8) => 'Feast of the Immaculate Conception',
-  Date.civil(2017, 12, 13) => 'Republic Day',
-  Date.civil(2017, 12, 25) => 'Christmas Day',
-}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :mt_en)[0] || {})[:name]
-end
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2017, 1, 1), [:mt_en])[0] || {})[:name]
 
-[Date.civil(2017, 4, 14), Date.civil(2018, 3, 30), Date.civil(2019, 4, 19)].each do |date|
-  assert_equal 'Good Friday', Holidays.on(date, :mt_en)[0][:name]
-end
+    assert_equal "Feast of Saint Paul's Shipwreck in Malta", (Holidays.on(Date.civil(2017, 2, 10), [:mt_en])[0] || {})[:name]
+
+    assert_equal "Feast of Saint Joseph", (Holidays.on(Date.civil(2017, 3, 19), [:mt_en])[0] || {})[:name]
+
+    assert_equal "Freedom Day", (Holidays.on(Date.civil(2017, 3, 31), [:mt_en])[0] || {})[:name]
+
+    assert_equal "Worker's Day", (Holidays.on(Date.civil(2017, 5, 1), [:mt_en])[0] || {})[:name]
+
+    assert_equal "Sette Giugno", (Holidays.on(Date.civil(2017, 6, 7), [:mt_en])[0] || {})[:name]
+
+    assert_equal "Feast of Saint Peter & Saint Paul", (Holidays.on(Date.civil(2017, 6, 29), [:mt_en])[0] || {})[:name]
+
+    assert_equal "Feast of the Assumption of Our Lady", (Holidays.on(Date.civil(2017, 8, 15), [:mt_en])[0] || {})[:name]
+
+    assert_equal "Victory Day", (Holidays.on(Date.civil(2017, 9, 8), [:mt_en])[0] || {})[:name]
+
+    assert_equal "Independence Day", (Holidays.on(Date.civil(2017, 9, 21), [:mt_en])[0] || {})[:name]
+
+    assert_equal "Feast of the Immaculate Conception", (Holidays.on(Date.civil(2017, 12, 8), [:mt_en])[0] || {})[:name]
+
+    assert_equal "Republic Day", (Holidays.on(Date.civil(2017, 12, 13), [:mt_en])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2017, 12, 25), [:mt_en])[0] || {})[:name]
+
+    assert_equal "Good Friday", (Holidays.on(Date.civil(2017, 4, 14), [:mt_en])[0] || {})[:name]
+assert_equal "Good Friday", (Holidays.on(Date.civil(2018, 3, 30), [:mt_en])[0] || {})[:name]
+assert_equal "Good Friday", (Holidays.on(Date.civil(2019, 4, 19), [:mt_en])[0] || {})[:name]
 
   end
 end

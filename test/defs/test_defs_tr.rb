@@ -7,38 +7,45 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class TrDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_tr
-{ Date.civil(2017, 1, 1) => 'Yılbaşı',
-  Date.civil(2017, 4, 23) => 'Ulusal Egemenlik ve Çocuk Bayramı',
-  Date.civil(2017, 5, 1) => 'Emek ve Dayanışma Günü',
-  Date.civil(2017, 5, 19) => "Atatürk'ü Anma Gençlik ve Spor Bayramı",
-  Date.civil(2017, 8, 30) => 'Zafer Bayramı',
-  Date.civil(2017, 10, 29) => 'Cumhuriyet Bayramı'
-}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :tr)[0] || {})[:name]
-end
+    assert_equal "Yılbaşı", (Holidays.on(Date.civil(2017, 1, 1), [:tr])[0] || {})[:name]
 
-[Date.civil(2017, 6, 25), Date.civil(2018, 6, 15), Date.civil(2019, 6, 4)].each do |date|
-  assert_equal 'Ramazan Bayramı', Holidays.on(date, :tr)[0][:name]
-end
-[Date.civil(2017, 6, 26), Date.civil(2018, 6, 16), Date.civil(2019, 6, 5)].each do |date|
-  assert_equal 'Ramazan Bayramı (ikinci tatil)', Holidays.on(date, :tr)[0][:name]
-end
-[Date.civil(2017, 6, 27), Date.civil(2018, 6, 17), Date.civil(2019, 6, 6)].each do |date|
-  assert_equal 'Ramazan Bayramı (üçüncü tatil)', Holidays.on(date, :tr)[0][:name]
-end
+    assert_equal "Ulusal Egemenlik ve Çocuk Bayramı", (Holidays.on(Date.civil(2017, 4, 23), [:tr])[0] || {})[:name]
 
-[Date.civil(2017, 9, 1), Date.civil(2018, 8, 21), Date.civil(2019, 8, 11)].each do |date|
-  assert_equal 'Kurban Bayramı', Holidays.on(date, :tr)[0][:name]
-end
-[Date.civil(2017, 9, 2), Date.civil(2018, 8, 22), Date.civil(2019, 8, 12)].each do |date|
-  assert_equal 'Kurban Bayramı (ikinci tatil)', Holidays.on(date, :tr)[0][:name]
-end
-[Date.civil(2017, 9, 3), Date.civil(2018, 8, 23), Date.civil(2019, 8, 13)].each do |date|
-  assert_equal 'Kurban Bayramı (üçüncü tatil)', Holidays.on(date, :tr)[0][:name]
-end
-[Date.civil(2017, 9, 4), Date.civil(2018, 8, 24), Date.civil(2019, 8, 14)].each do |date|
-  assert_equal 'Kurban Bayramı (dördüncü tatil)', Holidays.on(date, :tr)[0][:name]
-end
+    assert_equal "Emek ve Dayanışma Günü", (Holidays.on(Date.civil(2017, 5, 1), [:tr])[0] || {})[:name]
+
+    assert_equal "Atatürk'ü Anma Gençlik ve Spor Bayramı", (Holidays.on(Date.civil(2017, 5, 19), [:tr])[0] || {})[:name]
+
+    assert_equal "Zafer Bayramı", (Holidays.on(Date.civil(2017, 8, 30), [:tr])[0] || {})[:name]
+
+    assert_equal "Cumhuriyet Bayramı", (Holidays.on(Date.civil(2017, 10, 29), [:tr])[0] || {})[:name]
+
+    assert_equal "Ramazan Bayramı", (Holidays.on(Date.civil(2017, 6, 25), [:tr])[0] || {})[:name]
+assert_equal "Ramazan Bayramı", (Holidays.on(Date.civil(2018, 6, 15), [:tr])[0] || {})[:name]
+assert_equal "Ramazan Bayramı", (Holidays.on(Date.civil(2019, 6, 4), [:tr])[0] || {})[:name]
+
+    assert_equal "Ramazan Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2017, 6, 26), [:tr])[0] || {})[:name]
+assert_equal "Ramazan Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2018, 6, 16), [:tr])[0] || {})[:name]
+assert_equal "Ramazan Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2019, 6, 5), [:tr])[0] || {})[:name]
+
+    assert_equal "Ramazan Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2017, 6, 27), [:tr])[0] || {})[:name]
+assert_equal "Ramazan Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2018, 6, 17), [:tr])[0] || {})[:name]
+assert_equal "Ramazan Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2019, 6, 6), [:tr])[0] || {})[:name]
+
+    assert_equal "Kurban Bayramı", (Holidays.on(Date.civil(2017, 9, 1), [:tr])[0] || {})[:name]
+assert_equal "Kurban Bayramı", (Holidays.on(Date.civil(2018, 8, 21), [:tr])[0] || {})[:name]
+assert_equal "Kurban Bayramı", (Holidays.on(Date.civil(2019, 8, 11), [:tr])[0] || {})[:name]
+
+    assert_equal "Kurban Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2017, 9, 2), [:tr])[0] || {})[:name]
+assert_equal "Kurban Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2018, 8, 22), [:tr])[0] || {})[:name]
+assert_equal "Kurban Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2019, 8, 12), [:tr])[0] || {})[:name]
+
+    assert_equal "Kurban Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2017, 9, 3), [:tr])[0] || {})[:name]
+assert_equal "Kurban Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2018, 8, 23), [:tr])[0] || {})[:name]
+assert_equal "Kurban Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2019, 8, 13), [:tr])[0] || {})[:name]
+
+    assert_equal "Kurban Bayramı (dördüncü tatil)", (Holidays.on(Date.civil(2017, 9, 4), [:tr])[0] || {})[:name]
+assert_equal "Kurban Bayramı (dördüncü tatil)", (Holidays.on(Date.civil(2018, 8, 24), [:tr])[0] || {})[:name]
+assert_equal "Kurban Bayramı (dördüncü tatil)", (Holidays.on(Date.civil(2019, 8, 14), [:tr])[0] || {})[:name]
 
   end
 end

@@ -7,23 +7,35 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class ElDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_el
-{Date.civil(2011,1,1) => 'Πρωτοχρονιά',
- Date.civil(2011,1,6) => 'Θεοφάνεια',
- Date.civil(2011,4,22) => 'Μεγάλη Παρασκευή',
- Date.civil(1970,4,25) => 'Μεγάλο Σάββατο',
- Date.civil(1985,4,14) => 'Κυριακή του Πάσχα',
- Date.civil(2011,4,24) => 'Κυριακή του Πάσχα',
- Date.civil(2027,5,2) => 'Κυριακή του Πάσχα',
- Date.civil(2046,4,30) => 'Δευτέρα του Πάσχα',
- Date.civil(2011,5,1) => 'Πρωτομαγιά',
- Date.civil(2011,6,13) => 'Αγίου Πνεύματος',
- Date.civil(2012,6,4) => 'Αγίου Πνεύματος',
- Date.civil(2011,3,7) => 'Καθαρά Δευτέρα',
- Date.civil(2012,2,27) => 'Καθαρά Δευτέρα',
- Date.civil(2011,12,25) => 'Χριστούγεννα',
- Date.civil(2011,12,26) => 'Δεύτερη ημέρα των Χριστουγέννων'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :el, :informal)[0] || {})[:name]
-end
+    assert_equal "Πρωτοχρονιά", (Holidays.on(Date.civil(2011, 1, 1), [:el], [:informal])[0] || {})[:name]
+
+    assert_equal "Θεοφάνεια", (Holidays.on(Date.civil(2011, 1, 6), [:el], [:informal])[0] || {})[:name]
+
+    assert_equal "Μεγάλη Παρασκευή", (Holidays.on(Date.civil(2011, 4, 22), [:el], [:informal])[0] || {})[:name]
+
+    assert_equal "Μεγάλο Σάββατο", (Holidays.on(Date.civil(1970, 4, 25), [:el], [:informal])[0] || {})[:name]
+
+    assert_equal "Κυριακή του Πάσχα", (Holidays.on(Date.civil(1985, 4, 14), [:el], [:informal])[0] || {})[:name]
+
+    assert_equal "Κυριακή του Πάσχα", (Holidays.on(Date.civil(2011, 4, 24), [:el], [:informal])[0] || {})[:name]
+
+    assert_equal "Κυριακή του Πάσχα", (Holidays.on(Date.civil(2027, 5, 2), [:el], [:informal])[0] || {})[:name]
+
+    assert_equal "Δευτέρα του Πάσχα", (Holidays.on(Date.civil(2046, 4, 30), [:el], [:informal])[0] || {})[:name]
+
+    assert_equal "Πρωτομαγιά", (Holidays.on(Date.civil(2011, 5, 1), [:el], [:informal])[0] || {})[:name]
+
+    assert_equal "Αγίου Πνεύματος", (Holidays.on(Date.civil(2011, 6, 13), [:el], [:informal])[0] || {})[:name]
+
+    assert_equal "Αγίου Πνεύματος", (Holidays.on(Date.civil(2012, 6, 4), [:el], [:informal])[0] || {})[:name]
+
+    assert_equal "Καθαρά Δευτέρα", (Holidays.on(Date.civil(2011, 3, 7), [:el], [:informal])[0] || {})[:name]
+
+    assert_equal "Καθαρά Δευτέρα", (Holidays.on(Date.civil(2012, 2, 27), [:el], [:informal])[0] || {})[:name]
+
+    assert_equal "Χριστούγεννα", (Holidays.on(Date.civil(2011, 12, 25), [:el], [:informal])[0] || {})[:name]
+
+    assert_equal "Δεύτερη ημέρα των Χριστουγέννων", (Holidays.on(Date.civil(2011, 12, 26), [:el], [:informal])[0] || {})[:name]
 
   end
 end

@@ -7,16 +7,21 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class TnDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_tn
-{Date.civil(2016,1,1)   => "Jour de l'an",
- Date.civil(2016,1,14)  => "Fête de la Révolution et de la Jeunesse",
- Date.civil(2016,3,20)  => "Fête de l'Indépendance",
- Date.civil(2016,4,9)   => "Journée des Martyrs",
- Date.civil(2016,5,1)   => "Fête du travail",
- Date.civil(2016,7,25)  => "Fête de la République",
- Date.civil(2016,8,13)  => "Fête de la Femme et de la Famille",
- Date.civil(2016,10,15) => "Fête de l'Évacuation" }.each do |date, name|
-  assert_equal name, (Holidays.on(date, :tn)[0] || {})[:name]
-end
+    assert_equal "Jour de l'an", (Holidays.on(Date.civil(2016, 1, 1), [:tn])[0] || {})[:name]
+
+    assert_equal "Fête de la Révolution et de la Jeunesse", (Holidays.on(Date.civil(2016, 1, 14), [:tn])[0] || {})[:name]
+
+    assert_equal "Fête de l'Indépendance", (Holidays.on(Date.civil(2016, 3, 20), [:tn])[0] || {})[:name]
+
+    assert_equal "Journée des Martyrs", (Holidays.on(Date.civil(2016, 4, 9), [:tn])[0] || {})[:name]
+
+    assert_equal "Fête du travail", (Holidays.on(Date.civil(2016, 5, 1), [:tn])[0] || {})[:name]
+
+    assert_equal "Fête de la République", (Holidays.on(Date.civil(2016, 7, 25), [:tn])[0] || {})[:name]
+
+    assert_equal "Fête de la Femme et de la Famille", (Holidays.on(Date.civil(2016, 8, 13), [:tn])[0] || {})[:name]
+
+    assert_equal "Fête de l'Évacuation", (Holidays.on(Date.civil(2016, 10, 15), [:tn])[0] || {})[:name]
 
   end
 end

@@ -7,33 +7,55 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class ClDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_cl
-{Date.civil(2014,1,1) => 'Año Nuevo',
- Date.civil(2011,4,22) => 'Viernes Santo',
- Date.civil(2011,4,23) => 'Sábado Santo',
- Date.civil(2012,4,6) => 'Viernes Santo',
- Date.civil(2012,4,7) => 'Sábado Santo',
- Date.civil(2013,3,29) => 'Viernes Santo',
- Date.civil(2013,3,30) => 'Sábado Santo',
- Date.civil(2014,4,18) => 'Viernes Santo',
- Date.civil(2014,4,19) => 'Sábado Santo',
- Date.civil(2015,4,3) => 'Viernes Santo',
- Date.civil(2015,4,4) => 'Sábado Santo',
- Date.civil(2016,3,25) => 'Viernes Santo',
- Date.civil(2016,3,26) => 'Sábado Santo',
- Date.civil(2014,5,1) => 'Día del Trabajo',
- Date.civil(2014,5,21) => "Día de las Glorias Navales",
- Date.civil(2014,6,29) => "San Pedro y San Pablo",
- Date.civil(2014,7,16) => "Día de la Virgen del Carmen",
- Date.civil(2014,8,15) => "Asunción de la Virgen",
- Date.civil(2014,9,18) => "Independencia Nacional",
- Date.civil(2014,9,19) => "Día de las Glorias del Ejército",
- Date.civil(2014,10,12) => "Encuentro de Dos Mundos",
- Date.civil(2014,10,31) => "Día de las Iglesias Evangélicas y Protestantes",
- Date.civil(2014,11,1) => "Día de Todos los Santos",
- Date.civil(2014,12,8) => 'Inmaculada Concepción de María',
- Date.civil(2014,12,25) => 'Navidad'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :cl, :informal)[0] || {})[:name]
-end
+    assert_equal "Año Nuevo", (Holidays.on(Date.civil(2014, 1, 1), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Viernes Santo", (Holidays.on(Date.civil(2011, 4, 22), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Sábado Santo", (Holidays.on(Date.civil(2011, 4, 23), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Viernes Santo", (Holidays.on(Date.civil(2012, 4, 6), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Sábado Santo", (Holidays.on(Date.civil(2012, 4, 7), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Viernes Santo", (Holidays.on(Date.civil(2013, 3, 29), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Sábado Santo", (Holidays.on(Date.civil(2013, 3, 30), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Viernes Santo", (Holidays.on(Date.civil(2014, 4, 18), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Sábado Santo", (Holidays.on(Date.civil(2014, 4, 19), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Viernes Santo", (Holidays.on(Date.civil(2015, 4, 3), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Sábado Santo", (Holidays.on(Date.civil(2015, 4, 4), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Viernes Santo", (Holidays.on(Date.civil(2016, 3, 25), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Sábado Santo", (Holidays.on(Date.civil(2016, 3, 26), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Día del Trabajo", (Holidays.on(Date.civil(2014, 5, 1), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de las Glorias Navales", (Holidays.on(Date.civil(2014, 5, 21), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "San Pedro y San Pablo", (Holidays.on(Date.civil(2014, 6, 29), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de la Virgen del Carmen", (Holidays.on(Date.civil(2014, 7, 16), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Asunción de la Virgen", (Holidays.on(Date.civil(2014, 8, 15), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Independencia Nacional", (Holidays.on(Date.civil(2014, 9, 18), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de las Glorias del Ejército", (Holidays.on(Date.civil(2014, 9, 19), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Encuentro de Dos Mundos", (Holidays.on(Date.civil(2014, 10, 12), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de las Iglesias Evangélicas y Protestantes", (Holidays.on(Date.civil(2014, 10, 31), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de Todos los Santos", (Holidays.on(Date.civil(2014, 11, 1), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Inmaculada Concepción de María", (Holidays.on(Date.civil(2014, 12, 8), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Navidad", (Holidays.on(Date.civil(2014, 12, 25), [:cl], [:informal])[0] || {})[:name]
 
   end
 end

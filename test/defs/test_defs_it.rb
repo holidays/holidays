@@ -7,20 +7,29 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class ItDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_it
-{Date.civil(2007,1,1) => 'Capodanno',
- Date.civil(2007,1,6) => 'Epifania',
- Date.civil(2007,4,8) => 'Pasqua',
- Date.civil(2007,4,9) => 'Lunedì dell\'Angelo',
- Date.civil(2007,4,25) => 'Festa della Liberazione',
- Date.civil(2007,5,1) => 'Festa dei Lavoratori',
- Date.civil(2007,6,2) => 'Festa della Repubblica',
- Date.civil(2007,8,15) => 'Assunzione',
- Date.civil(2007,11,1) => 'Ognissanti',
- Date.civil(2007,12,8) => 'Immacolata Concezione',
- Date.civil(2007,12,25) => 'Natale',
- Date.civil(2007,12,26) => 'Santo Stefano'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :it, :informal)[0] || {})[:name]
-end
+    assert_equal "Capodanno", (Holidays.on(Date.civil(2007, 1, 1), [:it], [:informal])[0] || {})[:name]
+
+    assert_equal "Epifania", (Holidays.on(Date.civil(2007, 1, 6), [:it], [:informal])[0] || {})[:name]
+
+    assert_equal "Pasqua", (Holidays.on(Date.civil(2007, 4, 8), [:it], [:informal])[0] || {})[:name]
+
+    assert_equal "Lunedì dell'Angelo", (Holidays.on(Date.civil(2007, 4, 9), [:it], [:informal])[0] || {})[:name]
+
+    assert_equal "Festa della Liberazione", (Holidays.on(Date.civil(2007, 4, 25), [:it], [:informal])[0] || {})[:name]
+
+    assert_equal "Festa dei Lavoratori", (Holidays.on(Date.civil(2007, 5, 1), [:it], [:informal])[0] || {})[:name]
+
+    assert_equal "Festa della Repubblica", (Holidays.on(Date.civil(2007, 6, 2), [:it], [:informal])[0] || {})[:name]
+
+    assert_equal "Assunzione", (Holidays.on(Date.civil(2007, 8, 15), [:it], [:informal])[0] || {})[:name]
+
+    assert_equal "Ognissanti", (Holidays.on(Date.civil(2007, 11, 1), [:it], [:informal])[0] || {})[:name]
+
+    assert_equal "Immacolata Concezione", (Holidays.on(Date.civil(2007, 12, 8), [:it], [:informal])[0] || {})[:name]
+
+    assert_equal "Natale", (Holidays.on(Date.civil(2007, 12, 25), [:it], [:informal])[0] || {})[:name]
+
+    assert_equal "Santo Stefano", (Holidays.on(Date.civil(2007, 12, 26), [:it], [:informal])[0] || {})[:name]
 
   end
 end

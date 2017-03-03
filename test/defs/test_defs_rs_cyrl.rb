@@ -7,33 +7,40 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class Rs_cyrlDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_rs_cyrl
-{ Date.civil(2017, 1, 1) => 'Нова Година',
-  Date.civil(2017, 1, 2) => 'Нова Година',
-  Date.civil(2017, 1, 7) => 'Божић',
-  Date.civil(2017, 1, 27) => 'Свети Сава (Савиндан)',
-  Date.civil(2017, 2, 15) => 'Дан државности Србије',
-  Date.civil(2017, 2, 16) => 'Дан државности Србије',
-  Date.civil(2017, 5, 1) => 'Празник рада',
-  Date.civil(2017, 5, 2) => 'Празник рада',
-  Date.civil(2017, 5, 9) => 'Дан победе над фашизмом',
-  Date.civil(2017, 6, 28) => 'Видовдан',
-  Date.civil(2017, 11, 11) => 'Дан примирја'
-}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :rs_cyrl)[0] || {})[:name]
-end
+    assert_equal "Нова Година", (Holidays.on(Date.civil(2017, 1, 1), [:rs_cyrl])[0] || {})[:name]
+assert_equal "Нова Година", (Holidays.on(Date.civil(2017, 1, 2), [:rs_cyrl])[0] || {})[:name]
 
-[Date.civil(2017, 4, 14), Date.civil(2018, 4, 6), Date.civil(2019, 4, 26)].each do |date|
-  assert_equal 'Велики петак', Holidays.on(date, :rs_cyrl)[0][:name]
-end
-[Date.civil(2017, 4, 15), Date.civil(2018, 4, 7), Date.civil(2019, 4, 27)].each do |date|
-  assert_equal 'Велика Субота', Holidays.on(date, :rs_cyrl)[0][:name]
-end
-[Date.civil(2017, 4, 16), Date.civil(2018, 4, 8), Date.civil(2019, 4, 28)].each do |date|
-  assert_equal 'Васкрс', Holidays.on(date, :rs_cyrl)[0][:name]
-end
-[Date.civil(2017, 4, 17), Date.civil(2018, 4, 9), Date.civil(2019, 4, 29)].each do |date|
-  assert_equal 'Васкрсни понедељак', Holidays.on(date, :rs_cyrl)[0][:name]
-end
+    assert_equal "Божић", (Holidays.on(Date.civil(2017, 1, 7), [:rs_cyrl])[0] || {})[:name]
+
+    assert_equal "Свети Сава (Савиндан)", (Holidays.on(Date.civil(2017, 1, 27), [:rs_cyrl])[0] || {})[:name]
+
+    assert_equal "Дан државности Србије", (Holidays.on(Date.civil(2017, 2, 15), [:rs_cyrl])[0] || {})[:name]
+assert_equal "Дан државности Србије", (Holidays.on(Date.civil(2017, 2, 16), [:rs_cyrl])[0] || {})[:name]
+
+    assert_equal "Празник рада", (Holidays.on(Date.civil(2017, 5, 1), [:rs_cyrl])[0] || {})[:name]
+assert_equal "Празник рада", (Holidays.on(Date.civil(2017, 5, 2), [:rs_cyrl])[0] || {})[:name]
+
+    assert_equal "Дан победе над фашизмом", (Holidays.on(Date.civil(2017, 5, 9), [:rs_cyrl])[0] || {})[:name]
+
+    assert_equal "Видовдан", (Holidays.on(Date.civil(2017, 6, 28), [:rs_cyrl])[0] || {})[:name]
+
+    assert_equal "Дан примирја", (Holidays.on(Date.civil(2017, 11, 11), [:rs_cyrl])[0] || {})[:name]
+
+    assert_equal "Велики петак", (Holidays.on(Date.civil(2017, 4, 14), [:rs_cyrl])[0] || {})[:name]
+assert_equal "Велики петак", (Holidays.on(Date.civil(2018, 4, 6), [:rs_cyrl])[0] || {})[:name]
+assert_equal "Велики петак", (Holidays.on(Date.civil(2019, 4, 26), [:rs_cyrl])[0] || {})[:name]
+
+    assert_equal "Велика Субота", (Holidays.on(Date.civil(2017, 4, 15), [:rs_cyrl])[0] || {})[:name]
+assert_equal "Велика Субота", (Holidays.on(Date.civil(2018, 4, 7), [:rs_cyrl])[0] || {})[:name]
+assert_equal "Велика Субота", (Holidays.on(Date.civil(2019, 4, 27), [:rs_cyrl])[0] || {})[:name]
+
+    assert_equal "Васкрс", (Holidays.on(Date.civil(2017, 4, 16), [:rs_cyrl])[0] || {})[:name]
+assert_equal "Васкрс", (Holidays.on(Date.civil(2018, 4, 8), [:rs_cyrl])[0] || {})[:name]
+assert_equal "Васкрс", (Holidays.on(Date.civil(2019, 4, 28), [:rs_cyrl])[0] || {})[:name]
+
+    assert_equal "Васкрсни понедељак", (Holidays.on(Date.civil(2017, 4, 17), [:rs_cyrl])[0] || {})[:name]
+assert_equal "Васкрсни понедељак", (Holidays.on(Date.civil(2018, 4, 9), [:rs_cyrl])[0] || {})[:name]
+assert_equal "Васкрсни понедељак", (Holidays.on(Date.civil(2019, 4, 29), [:rs_cyrl])[0] || {})[:name]
 
   end
 end

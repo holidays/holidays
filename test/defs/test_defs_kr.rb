@@ -7,23 +7,31 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class KrDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_kr
-{Date.civil(2016,2,8) => "설날",
- Date.civil(2017,1,29) => "설날 연휴",
- Date.civil(2016,5,14) => "석가탄신일",
- Date.civil(2016,9,15) => "추석",
- Date.civil(2016,1,1) => "신정",
- Date.civil(2016,3,1) => "3·1절",
- Date.civil(2016,5,5) => "어린이날",
- Date.civil(2016,6,6) => "현충일",
- Date.civil(2016,7,17) => "제헌절",
- Date.civil(2016,8,15) => "광복절",
- Date.civil(2016,10,3) => "개천절",
- Date.civil(2016,10,9) => "한글날",
- Date.civil(2016,12,25) => "크리스마스",
- Date.civil(2017,1,28) => "설날"
-}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :kr, :informal)[0] || {})[:name]
-end
+    assert_equal "설날", (Holidays.on(Date.civil(2016, 2, 8), [:kr], [:informal])[0] || {})[:name]
+
+    assert_equal "설날 연휴", (Holidays.on(Date.civil(2017, 1, 29), [:kr], [:informal])[0] || {})[:name]
+
+    assert_equal "석가탄신일", (Holidays.on(Date.civil(2016, 5, 14), [:kr], [:informal])[0] || {})[:name]
+
+    assert_equal "추석", (Holidays.on(Date.civil(2016, 9, 15), [:kr], [:informal])[0] || {})[:name]
+
+    assert_equal "3·1절", (Holidays.on(Date.civil(2016, 3, 1), [:kr], [:informal])[0] || {})[:name]
+
+    assert_equal "어린이날", (Holidays.on(Date.civil(2016, 5, 5), [:kr], [:informal])[0] || {})[:name]
+
+    assert_equal "현충일", (Holidays.on(Date.civil(2016, 6, 6), [:kr], [:informal])[0] || {})[:name]
+
+    assert_equal "제헌절", (Holidays.on(Date.civil(2016, 7, 17), [:kr], [:informal])[0] || {})[:name]
+
+    assert_equal "광복절", (Holidays.on(Date.civil(2016, 8, 15), [:kr], [:informal])[0] || {})[:name]
+
+    assert_equal "개천절", (Holidays.on(Date.civil(2016, 10, 3), [:kr], [:informal])[0] || {})[:name]
+
+    assert_equal "한글날", (Holidays.on(Date.civil(2016, 10, 9), [:kr], [:informal])[0] || {})[:name]
+
+    assert_equal "크리스마스", (Holidays.on(Date.civil(2016, 12, 25), [:kr], [:informal])[0] || {})[:name]
+
+    assert_equal "설날", (Holidays.on(Date.civil(2017, 1, 28), [:kr], [:informal])[0] || {})[:name]
 
   end
 end

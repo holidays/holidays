@@ -7,21 +7,31 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class CzDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_cz
-{Date.civil(2010,1,1) => 'Den obnovy samostatného českého státu',
- Date.civil(2016,3,25) => 'Velký pátek',
- Date.civil(2010,4,5) => 'Velikonoční pondělí',
- Date.civil(2010,5,1) => 'Svátek práce',
- Date.civil(2010,5,8) => 'Den vítězství',
- Date.civil(2010,7,5) => 'Den slovanských věrozvěstů Cyrila a Metoděje',
- Date.civil(2010,7,6) => 'Den upálení mistra Jana Husa',
- Date.civil(2010,9,28) => 'Den české státnosti',
- Date.civil(2010,10,28) => 'Den vzniku samostatného československého státu',
- Date.civil(2010,11,17) => 'Den boje za svobodu a demokracii',
- Date.civil(2010,12,24) => 'Štědrý den',
- Date.civil(2010,12,25) => '1. svátek vánoční',
- Date.civil(2010,12,26) => '2. svátek vánoční'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :cz, :informal)[0] || {})[:name]
-end
+    assert_equal "Den obnovy samostatného českého státu", (Holidays.on(Date.civil(2010, 1, 1), [:cz], [:informal])[0] || {})[:name]
+
+    assert_equal "Velký pátek", (Holidays.on(Date.civil(2016, 3, 25), [:cz], [:informal])[0] || {})[:name]
+
+    assert_equal "Velikonoční pondělí", (Holidays.on(Date.civil(2010, 4, 5), [:cz], [:informal])[0] || {})[:name]
+
+    assert_equal "Svátek práce", (Holidays.on(Date.civil(2010, 5, 1), [:cz], [:informal])[0] || {})[:name]
+
+    assert_equal "Den vítězství", (Holidays.on(Date.civil(2010, 5, 8), [:cz], [:informal])[0] || {})[:name]
+
+    assert_equal "Den slovanských věrozvěstů Cyrila a Metoděje", (Holidays.on(Date.civil(2010, 7, 5), [:cz], [:informal])[0] || {})[:name]
+
+    assert_equal "Den upálení mistra Jana Husa", (Holidays.on(Date.civil(2010, 7, 6), [:cz], [:informal])[0] || {})[:name]
+
+    assert_equal "Den české státnosti", (Holidays.on(Date.civil(2010, 9, 28), [:cz], [:informal])[0] || {})[:name]
+
+    assert_equal "Den vzniku samostatného československého státu", (Holidays.on(Date.civil(2010, 10, 28), [:cz], [:informal])[0] || {})[:name]
+
+    assert_equal "Den boje za svobodu a demokracii", (Holidays.on(Date.civil(2010, 11, 17), [:cz], [:informal])[0] || {})[:name]
+
+    assert_equal "Štědrý den", (Holidays.on(Date.civil(2010, 12, 24), [:cz], [:informal])[0] || {})[:name]
+
+    assert_equal "1. svátek vánoční", (Holidays.on(Date.civil(2010, 12, 25), [:cz], [:informal])[0] || {})[:name]
+
+    assert_equal "2. svátek vánoční", (Holidays.on(Date.civil(2010, 12, 26), [:cz], [:informal])[0] || {})[:name]
 
   end
 end

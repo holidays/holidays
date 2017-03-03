@@ -3,7 +3,10 @@ months:
   - name: Company Founding
     regions: [custom_single_file]
     mday: 20
-tests: |
-    {Date.civil(2013,6,20) => 'Company Founding'}.each do |date, name|
-      assert_equal name, (Holidays.on(date, :custom_single_file)[0] || {})[:name]
-    end
+
+tests:
+  - given:
+      date: '2013-06-20'
+      regions: [custom_single_file]
+    expect:
+      name: "Company Founding"

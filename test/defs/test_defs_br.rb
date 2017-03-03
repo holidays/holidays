@@ -7,25 +7,39 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class BrDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_br
-{Date.civil(2008,1,1) => 'Dia da Confraternização Universal',
- Date.civil(2005,2,8) => 'Carnaval',
- Date.civil(2006,2,28) => 'Carnaval',
- Date.civil(2007,2,20) => 'Carnaval',
- Date.civil(2008,2,5) => 'Carnaval',
- Date.civil(2008,3,21) => 'Sexta-feira Santa',
- Date.civil(2008,3,23) => 'Páscoa',
- Date.civil(2008,4,21) => 'Dia de Tiradentes',
- Date.civil(2008,5,1) => 'Dia do Trabalho',
- Date.civil(2005,5,26) => 'Corpus Christi',
- Date.civil(2007,6,7) => 'Corpus Christi',
- Date.civil(2008,5,22) => 'Corpus Christi',
- Date.civil(2008,9,7) => 'Proclamação da Independência',
- Date.civil(2008,10,12) => 'Dia de Nossa Senhora Aparecida',
- Date.civil(2008,11,2) => 'Dia de Finados',
- Date.civil(2008,11,15) => 'Proclamação da República',
- Date.civil(2008,12,25) => 'Natal'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :br, :informal)[0] || {})[:name]
-end
+    assert_equal "Dia da Confraternização Universal", (Holidays.on(Date.civil(2008, 1, 1), [:br], [:informal])[0] || {})[:name]
+
+    assert_equal "Carnaval", (Holidays.on(Date.civil(2005, 2, 8), [:br], [:informal])[0] || {})[:name]
+
+    assert_equal "Carnaval", (Holidays.on(Date.civil(2006, 2, 28), [:br], [:informal])[0] || {})[:name]
+
+    assert_equal "Carnaval", (Holidays.on(Date.civil(2007, 2, 20), [:br], [:informal])[0] || {})[:name]
+
+    assert_equal "Carnaval", (Holidays.on(Date.civil(2008, 2, 5), [:br], [:informal])[0] || {})[:name]
+
+    assert_equal "Sexta-feira Santa", (Holidays.on(Date.civil(2008, 3, 21), [:br], [:informal])[0] || {})[:name]
+
+    assert_equal "Páscoa", (Holidays.on(Date.civil(2008, 3, 23), [:br], [:informal])[0] || {})[:name]
+
+    assert_equal "Dia de Tiradentes", (Holidays.on(Date.civil(2008, 4, 21), [:br], [:informal])[0] || {})[:name]
+
+    assert_equal "Dia do Trabalho", (Holidays.on(Date.civil(2008, 5, 1), [:br], [:informal])[0] || {})[:name]
+
+    assert_equal "Corpus Christi", (Holidays.on(Date.civil(2005, 5, 26), [:br], [:informal])[0] || {})[:name]
+
+    assert_equal "Corpus Christi", (Holidays.on(Date.civil(2007, 6, 7), [:br], [:informal])[0] || {})[:name]
+
+    assert_equal "Corpus Christi", (Holidays.on(Date.civil(2008, 5, 22), [:br], [:informal])[0] || {})[:name]
+
+    assert_equal "Proclamação da Independência", (Holidays.on(Date.civil(2008, 9, 7), [:br], [:informal])[0] || {})[:name]
+
+    assert_equal "Dia de Nossa Senhora Aparecida", (Holidays.on(Date.civil(2008, 10, 12), [:br], [:informal])[0] || {})[:name]
+
+    assert_equal "Dia de Finados", (Holidays.on(Date.civil(2008, 11, 2), [:br], [:informal])[0] || {})[:name]
+
+    assert_equal "Proclamação da República", (Holidays.on(Date.civil(2008, 11, 15), [:br], [:informal])[0] || {})[:name]
+
+    assert_equal "Natal", (Holidays.on(Date.civil(2008, 12, 25), [:br], [:informal])[0] || {})[:name]
 
   end
 end

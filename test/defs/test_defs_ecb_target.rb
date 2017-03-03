@@ -7,17 +7,21 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class Ecb_targetDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_ecb_target
-{Date.civil(2013,1,1) => 'New Year\'s Day',
- Date.civil(2013,5,1) => 'Labour Day',
- Date.civil(2013,3,29) => 'Good Friday',
- Date.civil(2013,4,1) => 'Easter Monday',
- Date.civil(2013,12,25) => 'Christmas Day',
- Date.civil(2013,12,26) => 'Christmas Holiday'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :ecb_target)[0] || {})[:name]
-end
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2013, 1, 1), [:ecb_target])[0] || {})[:name]
 
-assert_equal 'Good Friday', Holidays.on(Date.civil(2013,3,29), :ecb_target)[0][:name]
-assert_equal 'Easter Monday', Holidays.on(Date.civil(2013,4,1), :ecb_target)[0][:name]
+    assert_equal "Labour Day", (Holidays.on(Date.civil(2013, 5, 1), [:ecb_target])[0] || {})[:name]
+
+    assert_equal "Good Friday", (Holidays.on(Date.civil(2013, 3, 29), [:ecb_target])[0] || {})[:name]
+
+    assert_equal "Easter Monday", (Holidays.on(Date.civil(2013, 4, 1), [:ecb_target])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2013, 12, 25), [:ecb_target])[0] || {})[:name]
+
+    assert_equal "Christmas Holiday", (Holidays.on(Date.civil(2013, 12, 26), [:ecb_target])[0] || {})[:name]
+
+    assert_equal "Good Friday", (Holidays.on(Date.civil(2013, 3, 29), [:ecb_target])[0] || {})[:name]
+
+    assert_equal "Easter Monday", (Holidays.on(Date.civil(2013, 4, 1), [:ecb_target])[0] || {})[:name]
 
   end
 end

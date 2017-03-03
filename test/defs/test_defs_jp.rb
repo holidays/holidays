@@ -7,72 +7,125 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class JpDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_jp
-{Date.civil(2008,1,1) => '元日',
- Date.civil(2010,1,11) => '成人の日',
- Date.civil(2008,2,11) => '建国記念の日',
- Date.civil(2008,4,29) => '昭和の日',
- Date.civil(2008,5,3) => '憲法記念日',
- Date.civil(2008,5,5) => 'こどもの日',
- Date.civil(2010,7,19) => '海の日',
- Date.civil(2010,9,20) => '敬老の日',
- Date.civil(2010,10,11) => '体育の日',
- Date.civil(2008,11,3) => '文化の日',
- Date.civil(2008,11,23) => '勤労感謝の日',
- Date.civil(2008,12,23) => '天皇誕生日',
- Date.civil(2010,3,22) => '振替休日',
- Date.civil(2008,11,24) => '振替休日',
- Date.civil(2012,1,2) => '振替休日',
- Date.civil(2013,5,6) => '振替休日',
- Date.civil(2014,5,6) => '振替休日',
- Date.civil(2015,5,6) => '振替休日',
- Date.civil(2019,8,12) => '振替休日'
-}.each do |date, name|
-   assert_equal name, (Holidays.on(date, :jp, :informal)[0] || {})[:name]
-end
+    assert_equal "元日", (Holidays.on(Date.civil(2008, 1, 1), [:jp], [:informal])[0] || {})[:name]
 
-# vernal equinox day
-[Date.civil(2004,3,20), Date.civil(2005,3,20), Date.civil(2006,3,21),
- Date.civil(2007,3,21), Date.civil(2008,3,20), Date.civil(2009,3,20),
- Date.civil(2010,3,21)].each do |date|
-  assert_equal '春分の日', Holidays.on(date, :jp)[0][:name]
-end
+    assert_equal "成人の日", (Holidays.on(Date.civil(2010, 1, 11), [:jp], [:informal])[0] || {})[:name]
 
-# national culture day
-[Date.civil(2004,9,23), Date.civil(2005,9,23), Date.civil(2006,9,23),
- Date.civil(2007,9,23), Date.civil(2008,9,23), Date.civil(2009,9,23),
- Date.civil(2010,9,23), Date.civil(2011,9,23), Date.civil(2012,9,22),
- Date.civil(2013,9,23)].each do |date|
-  assert_equal '秋分の日', Holidays.on(date, :jp)[0][:name]
-end
+    assert_equal "建国記念の日", (Holidays.on(Date.civil(2008, 2, 11), [:jp], [:informal])[0] || {})[:name]
 
-# citizens holiday
-[Date.civil(2032,9,21), Date.civil(2049,9,21), Date.civil(2009,9,22),
- Date.civil(2015,9,22), Date.civil(2026,9,22)].each do |date|
-  assert_equal '国民の休日', Holidays.on(date, :jp)[0][:name]
-end
+    assert_equal "昭和の日", (Holidays.on(Date.civil(2008, 4, 29), [:jp], [:informal])[0] || {})[:name]
 
-# marine day since 1996
-[Date.civil(1996, 7, 20), Date.civil(2002, 7, 20), Date.civil(2003, 7, 21),
- Date.civil(2004, 7, 19), Date.civil(2005, 7, 18), Date.civil(2006, 7, 17),
- Date.civil(2007, 7, 16), Date.civil(2009, 7, 20), Date.civil(2013, 7, 15),
- Date.civil(2014, 7, 21)].each do |date|
-  assert_equal '海の日', Holidays.on(date, :jp)[0][:name]
-end
+    assert_equal "憲法記念日", (Holidays.on(Date.civil(2008, 5, 3), [:jp], [:informal])[0] || {})[:name]
 
-# mountain holiday start since 2016
-[Date.civil(2016,8,11), Date.civil(2017,8,11),Date.civil(2018,8,11),
- Date.civil(2019,8,11), Date.civil(2020,8,11),Date.civil(2021,8,11),
- Date.civil(2022,8,11)].each do |date|
-  assert_equal '山の日', Holidays.on(date, :jp)[0][:name]
-end
+    assert_equal "こどもの日", (Holidays.on(Date.civil(2008, 5, 5), [:jp], [:informal])[0] || {})[:name]
 
-# before 2016, there is no mountain holiday.
-assert_nil Holidays.on(Date.civil(2015,8,11), :jp)[0]
+    assert_equal "海の日", (Holidays.on(Date.civil(2010, 7, 19), [:jp], [:informal])[0] || {})[:name]
 
-# before 2003, there is no citizens holiday.
-# [note] citizens holiday requires that jp_national_culture_day is wednesday.
-#        Before 2003, the closest past year that mathches above condition is 1998.
-assert_nil Holidays.on(Date.civil(1998,9,22), :jp)[0]
+    assert_equal "敬老の日", (Holidays.on(Date.civil(2010, 9, 20), [:jp], [:informal])[0] || {})[:name]
+
+    assert_equal "体育の日", (Holidays.on(Date.civil(2010, 10, 11), [:jp], [:informal])[0] || {})[:name]
+
+    assert_equal "文化の日", (Holidays.on(Date.civil(2008, 11, 3), [:jp], [:informal])[0] || {})[:name]
+
+    assert_equal "勤労感謝の日", (Holidays.on(Date.civil(2008, 11, 23), [:jp], [:informal])[0] || {})[:name]
+
+    assert_equal "天皇誕生日", (Holidays.on(Date.civil(2008, 12, 23), [:jp], [:informal])[0] || {})[:name]
+
+    assert_equal "振替休日", (Holidays.on(Date.civil(2010, 3, 22), [:jp], [:informal])[0] || {})[:name]
+
+    assert_equal "振替休日", (Holidays.on(Date.civil(2008, 11, 24), [:jp], [:informal])[0] || {})[:name]
+
+    assert_equal "振替休日", (Holidays.on(Date.civil(2012, 1, 2), [:jp], [:informal])[0] || {})[:name]
+
+    assert_equal "振替休日", (Holidays.on(Date.civil(2013, 5, 6), [:jp], [:informal])[0] || {})[:name]
+
+    assert_equal "振替休日", (Holidays.on(Date.civil(2014, 5, 6), [:jp], [:informal])[0] || {})[:name]
+
+    assert_equal "振替休日", (Holidays.on(Date.civil(2015, 5, 6), [:jp], [:informal])[0] || {})[:name]
+
+    assert_equal "振替休日", (Holidays.on(Date.civil(2019, 8, 12), [:jp], [:informal])[0] || {})[:name]
+
+    assert_equal "春分の日", (Holidays.on(Date.civil(2004, 3, 20), [:jp])[0] || {})[:name]
+
+    assert_equal "春分の日", (Holidays.on(Date.civil(2005, 3, 20), [:jp])[0] || {})[:name]
+
+    assert_equal "春分の日", (Holidays.on(Date.civil(2006, 3, 21), [:jp])[0] || {})[:name]
+
+    assert_equal "春分の日", (Holidays.on(Date.civil(2007, 3, 21), [:jp])[0] || {})[:name]
+
+    assert_equal "春分の日", (Holidays.on(Date.civil(2008, 3, 20), [:jp])[0] || {})[:name]
+
+    assert_equal "春分の日", (Holidays.on(Date.civil(2009, 3, 20), [:jp])[0] || {})[:name]
+
+    assert_equal "春分の日", (Holidays.on(Date.civil(2010, 3, 21), [:jp])[0] || {})[:name]
+
+    assert_equal "秋分の日", (Holidays.on(Date.civil(2004, 9, 23), [:jp])[0] || {})[:name]
+
+    assert_equal "秋分の日", (Holidays.on(Date.civil(2005, 9, 23), [:jp])[0] || {})[:name]
+
+    assert_equal "秋分の日", (Holidays.on(Date.civil(2006, 9, 23), [:jp])[0] || {})[:name]
+
+    assert_equal "秋分の日", (Holidays.on(Date.civil(2007, 9, 23), [:jp])[0] || {})[:name]
+
+    assert_equal "秋分の日", (Holidays.on(Date.civil(2008, 9, 23), [:jp])[0] || {})[:name]
+
+    assert_equal "秋分の日", (Holidays.on(Date.civil(2009, 9, 23), [:jp])[0] || {})[:name]
+
+    assert_equal "秋分の日", (Holidays.on(Date.civil(2010, 9, 23), [:jp])[0] || {})[:name]
+
+    assert_equal "秋分の日", (Holidays.on(Date.civil(2011, 9, 23), [:jp])[0] || {})[:name]
+
+    assert_equal "秋分の日", (Holidays.on(Date.civil(2012, 9, 22), [:jp])[0] || {})[:name]
+
+    assert_equal "秋分の日", (Holidays.on(Date.civil(2013, 9, 23), [:jp])[0] || {})[:name]
+
+    assert_equal "国民の休日", (Holidays.on(Date.civil(2032, 9, 21), [:jp])[0] || {})[:name]
+
+    assert_equal "国民の休日", (Holidays.on(Date.civil(2049, 9, 21), [:jp])[0] || {})[:name]
+
+    assert_equal "国民の休日", (Holidays.on(Date.civil(2009, 9, 22), [:jp])[0] || {})[:name]
+
+    assert_equal "国民の休日", (Holidays.on(Date.civil(2015, 9, 22), [:jp])[0] || {})[:name]
+
+    assert_equal "国民の休日", (Holidays.on(Date.civil(2026, 9, 22), [:jp])[0] || {})[:name]
+
+    assert_equal "海の日", (Holidays.on(Date.civil(1996, 7, 20), [:jp])[0] || {})[:name]
+
+    assert_equal "海の日", (Holidays.on(Date.civil(2002, 7, 20), [:jp])[0] || {})[:name]
+
+    assert_equal "海の日", (Holidays.on(Date.civil(2003, 7, 21), [:jp])[0] || {})[:name]
+
+    assert_equal "海の日", (Holidays.on(Date.civil(2004, 7, 19), [:jp])[0] || {})[:name]
+
+    assert_equal "海の日", (Holidays.on(Date.civil(2005, 7, 18), [:jp])[0] || {})[:name]
+
+    assert_equal "海の日", (Holidays.on(Date.civil(2006, 7, 17), [:jp])[0] || {})[:name]
+
+    assert_equal "海の日", (Holidays.on(Date.civil(2007, 7, 16), [:jp])[0] || {})[:name]
+
+    assert_equal "海の日", (Holidays.on(Date.civil(2009, 7, 20), [:jp])[0] || {})[:name]
+
+    assert_equal "海の日", (Holidays.on(Date.civil(2013, 7, 15), [:jp])[0] || {})[:name]
+
+    assert_equal "海の日", (Holidays.on(Date.civil(2014, 7, 21), [:jp])[0] || {})[:name]
+
+    assert_equal "山の日", (Holidays.on(Date.civil(2016, 8, 11), [:jp])[0] || {})[:name]
+
+    assert_equal "山の日", (Holidays.on(Date.civil(2017, 8, 11), [:jp])[0] || {})[:name]
+
+    assert_equal "山の日", (Holidays.on(Date.civil(2018, 8, 11), [:jp])[0] || {})[:name]
+
+    assert_equal "山の日", (Holidays.on(Date.civil(2019, 8, 11), [:jp])[0] || {})[:name]
+
+    assert_equal "山の日", (Holidays.on(Date.civil(2020, 8, 11), [:jp])[0] || {})[:name]
+
+    assert_equal "山の日", (Holidays.on(Date.civil(2021, 8, 11), [:jp])[0] || {})[:name]
+
+    assert_equal "山の日", (Holidays.on(Date.civil(2022, 8, 11), [:jp])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2015, 8, 11), [:jp])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(1998, 9, 22), [:jp])[0] || {})[:name]
 
   end
 end
