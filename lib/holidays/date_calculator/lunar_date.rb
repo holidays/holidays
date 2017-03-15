@@ -34,30 +34,6 @@ module Holidays
 
       private
 
-      # Given the region, CALENDAR_YEAR_INFO_MAP looks up the date 
-      # table and uses it in the calculation
-      CALENDAR_YEAR_INFO_MAP = {
-        ko: KOREAN_LUNAR_YEAR_INFO,
-        vi: VIETNAMESE_LUNAR_YEAR_INFO
-      }.freeze
-
-      # Provides number of days per lunar month type.  Lunar months 
-      # can be either 29 or 30 days long (29.5 days, rounded up or down). 
-      # Keys 3 - 6 provide data for intercalary (leap month) occurrences. 
-      # Format: [TOTAL, NORMAL, LEAP]
-      LUNARDAYS_FOR_MONTHTYPE = {
-        1 => [29, 29, 0],
-        2 => [30, 30, 0],
-        3 => [58, 29, 29],
-        4 => [59, 30, 29],
-        5 => [59, 29, 30],
-        6 => [60, 30, 30]
-      }.freeze
-
-      # Provides the reference point for the Gregorian calendar and is
-      # used in all calculations
-      SOLAR_START_DATE = Date.new(1900, 1, 31).freeze
-     
       VIETNAMESE_LUNAR_YEAR_INFO = [
         [384, 1, 2, 1, 1, 2, 1, 2, 4, 2, 2, 1, 2].freeze,
         [354, 1, 2, 1, 1, 2, 1, 2, 1, 2, 2, 2, 1].freeze,
@@ -365,6 +341,31 @@ module Holidays
       ].freeze
 
       MAX_YEAR_NUMBER = 150
+
+      # Given the region, CALENDAR_YEAR_INFO_MAP looks up the date 
+      # table and uses it in the calculation
+      CALENDAR_YEAR_INFO_MAP = {
+        ko: KOREAN_LUNAR_YEAR_INFO,
+        vi: VIETNAMESE_LUNAR_YEAR_INFO
+      }.freeze
+
+      # Provides number of days per lunar month type.  Lunar months 
+      # can be either 29 or 30 days long (29.5 days, rounded up or down). 
+      # Keys 3 - 6 provide data for intercalary (leap month) occurrences. 
+      # Format: [TOTAL, NORMAL, LEAP]
+      LUNARDAYS_FOR_MONTHTYPE = {
+        1 => [29, 29, 0],
+        2 => [30, 30, 0],
+        3 => [58, 29, 29],
+        4 => [59, 30, 29],
+        5 => [59, 29, 30],
+        6 => [60, 30, 30]
+      }.freeze
+
+      # Provides the reference point for the Gregorian calendar and is
+      # used in all calculations
+      SOLAR_START_DATE = Date.new(1900, 1, 31).freeze
+     
     end
   end 
 end
