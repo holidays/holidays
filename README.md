@@ -12,14 +12,14 @@ To install the gem from RubyGems:
 
     gem install holidays
 
-The Holidays gem is tested on Ruby 2.0.0, 2.1.0, 2.2.0, 2.3.0 and JRuby.
+The Holidays gem is tested on Ruby 2.1.0, 2.2.0, 2.3.0, 2.4.0 and JRuby.
 
 This gem follows [semantic versioning](http://semver.org/). The only methods covered by this guarantee are under the
 `Holidays` namespace specifically. Anything that is not a method off of `Holidays` or the core extension is not covered by
 semver. Please take this into account when relying on this gem as a dependency.
 
 Also note that we consider definition changes as 'minor' bumps, meaning they are backwards compatible with your code
-but might give different holiday results! Please note this when relying on this gem.
+but might give different holiday results!
 
 ## Time zones
 
@@ -156,7 +156,6 @@ Or find end of month for given date (requires 'Time' extensions as well):
     d.end_of_month
     => #<Date: 2016-08-31 ((2457632j,0s,0n),+0s,2299161j)>
 
-
 ### Caching Holiday Lookups
 
 If you are checking holidays regularly you can cache your results for improved performance. Run this before looking up a holiday (eg. in an initializer):
@@ -171,8 +170,9 @@ See our [contribution guidelines](CONTRIBUTING.md) for information on how to hel
 
 ### Credits and code
 
-* Started by [Alex Dunae](http://dunae.ca) (e-mail 'code' at the same domain), 2007-12
-* Maintained by [Hana Wang](https://github.com/hahahana), 2013
-* Maintained by [Phil Trimble](https://github.com/ptrimble), 2014-present
+* Started by [@alexdunae](http://github.com/alexdunae) 2007-2012
+* Maintained by [@hahahana](https://github.com/hahahana), 2013
+* Maintained by [@ppeble](https://github.com/ppeble), 2014-present
+* Maintained by [@ttwo32](https://github.com/ttwo32), 2016-present
 
 Plus all of these [wonderful contributors!](https://github.com/holidays/holidays/contributors)
