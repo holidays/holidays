@@ -3,7 +3,7 @@ module Holidays
     # Copied from https://github.com/sunsidew/ruby_lunardate
     # Graciously allowed by JeeWoong Yang (https://github.com/sunsidew)
     class LunarDate
-      attr_accessor :year, :month, :day, :is_leap_month
+      attr_accessor :year, :month, :day
 
       def to_solar(year, month, day, calendar_symbol)
         days = 0
@@ -345,7 +345,7 @@ module Holidays
       # Given the region, CALENDAR_YEAR_INFO_MAP looks up the date 
       # table and uses it in the calculation
       CALENDAR_YEAR_INFO_MAP = {
-        ko: KOREAN_LUNAR_YEAR_INFO,
+        kr: KOREAN_LUNAR_YEAR_INFO,
         vi: VIETNAMESE_LUNAR_YEAR_INFO
       }.freeze
 
