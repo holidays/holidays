@@ -12,8 +12,8 @@ module Holidays
           region = find_wildcard_base(r)
 
           (region == :any ||
-           @regions_repo.exists?(region) ||
-           region_in_static_definitions?(region))
+           @regions_repo.loaded?(region) ||
+           @regions_repo.all_generated.include?(region))
         end
 
         private
@@ -29,13 +29,6 @@ module Holidays
           end
 
           base.to_sym
-        end
-
-        def region_in_static_definitions?(region)
-          static_regions_definition = "#{DEFINITIONS_PATH}/REGIONS.rb"
-          require static_regions_definition
-
-          Holidays::REGIONS.include?(region)
         end
       end
     end

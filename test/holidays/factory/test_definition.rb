@@ -50,4 +50,13 @@ class DefinitionFactoryTests < Test::Unit::TestCase
   def test_function_processor
     assert Holidays::Factory::Definition.function_processor.is_a?(Holidays::Definition::Context::FunctionProcessor)
   end
+
+  def test_regions_generator
+    assert Holidays::Factory::Definition.regions_generator.is_a?(Holidays::Definition::Generator::Regions)
+  end
+
+  def test_definitions_loader
+    assert Holidays::Factory::Definition.loader.is_a?(Holidays::Definition::Context::Load)
+  end
+
 end

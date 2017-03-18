@@ -39,5 +39,4 @@ class CustomYearRangeHolidaysTest < Test::Unit::TestCase
     assert_equal [], Holidays.on(Date.civil(2016,6,5), :custom_year_range_file)
     assert_not_equal [], Holidays.on(Date.civil(2017,6,5), :custom_year_range_file)
   end
-
 end

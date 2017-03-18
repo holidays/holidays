@@ -1,8 +1,10 @@
 require 'holidays/definition/context/generator'
 require 'holidays/definition/context/merger'
 require 'holidays/definition/context/function_processor'
+require 'holidays/definition/context/load'
 require 'holidays/definition/decorator/custom_method_proc'
 require 'holidays/definition/decorator/custom_method_source'
+require 'holidays/definition/generator/regions'
 require 'holidays/definition/parser/custom_method'
 require 'holidays/definition/repository/holidays_by_month'
 require 'holidays/definition/repository/regions'
@@ -76,7 +78,10 @@ module Holidays
         end
 
         def regions_repository
-          @regions_repo ||= Holidays::Definition::Repository::Regions.new
+          @regions_repo ||= Holidays::Definition::Repository::Regions.new(
+            Holidays::REGIONS,
+            Holidays::PARENT_REGION_LOOKUP,
+          )
         end
 
         def cache_repository
@@ -89,6 +94,17 @@ module Holidays
 
         def custom_methods_repository
           @custom_methods_repository ||= Holidays::Definition::Repository::CustomMethods.new
+        end
+
+        def regions_generator
+          Holidays::Definition::Generator::Regions.new
+        end
+
+        def loader
+          Holidays::Definition::Context::Load.new(
+            merger,
+            Holidays::FULL_DEFINITIONS_PATH,
+          )
         end
       end
     end

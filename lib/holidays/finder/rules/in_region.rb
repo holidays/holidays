@@ -11,7 +11,7 @@ module Holidays
             requested = requested.collect do |r|
               if r.to_s =~ /_/
                 chunks = r.to_s.split('_')
-                
+
                 chunks.length.downto(1).map do |num|
                   chunks[0..-num].join('_').to_sym
                 end
