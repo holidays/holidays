@@ -6,7 +6,7 @@ module Holidays
       def parse_options
         Option::Context::ParseOptions.new(
           DefinitionFactory.regions_repository,
-          DefinitionFactory.region_validator,
+          DefinitionFactory.region_validator
         )
       end
     end
