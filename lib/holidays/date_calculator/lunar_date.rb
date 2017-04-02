@@ -5,10 +5,10 @@ module Holidays
     class LunarDate
       attr_accessor :year, :month, :day
 
-      def to_solar(year, month, day, calendar_symbol)
+      def to_solar(year, month, day, region)
         days = 0
         year_diff = year - 1900
-        year_info = CALENDAR_YEAR_INFO_MAP[calendar_symbol]
+        year_info = CALENDAR_YEAR_INFO_MAP[region]
 
         year_diff.times do |year_idx|
           days += year_info[year_idx][0]
