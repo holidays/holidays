@@ -4,12 +4,6 @@ module Holidays
   #
   # Definitions loaded: definitions/ch.yaml
   #
-  # To use the definitions in this file, load it right after you load the
-  # Holiday gem:
-  #
-  #   require 'holidays'
-  #   require 'generated_definitions/ch'
-  #
   # All the definitions are available at https://github.com/holidays/holidays
   module CH # :nodoc:
     def self.defined_regions

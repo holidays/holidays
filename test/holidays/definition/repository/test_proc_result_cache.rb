@@ -40,6 +40,13 @@ class ProcResultCacheRepoTests < Test::Unit::TestCase
     assert_equal(Date.civil(2015, 1, 31), @subject.lookup(function, function_argument))
   end
 
+  def test_lookup_accepts_symbol_as_function_argument
+    function = lambda { |symbol| symbol }
+    function_argument = :test
+
+    assert_equal(:test, @subject.lookup(function, function_argument))
+  end
+
   def test_accepts_multiple_arguments_for_functions
     function = lambda { |year, month, day| Date.civil(year, month, day) + 1 }
     year = 2016

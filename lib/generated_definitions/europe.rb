@@ -4,12 +4,6 @@ module Holidays
   #
   # Definitions loaded: definitions/at.yaml, definitions/be_fr.yaml, definitions/be_nl.yaml, definitions/ch.yaml, definitions/cz.yaml, definitions/dk.yaml, definitions/de.yaml, definitions/el.yaml, definitions/es.yaml, definitions/fr.yaml, definitions/gb.yaml, definitions/hr.yaml, definitions/hu.yaml, definitions/ie.yaml, definitions/is.yaml, definitions/it.yaml, definitions/li.yaml, definitions/lt.yaml, definitions/nl.yaml, definitions/no.yaml, definitions/pl.yaml, definitions/pt.yaml, definitions/ro.yaml, definitions/sk.yaml, definitions/si.yaml, definitions/bg.yaml
   #
-  # To use the definitions in this file, load it right after you load the
-  # Holiday gem:
-  #
-  #   require 'holidays'
-  #   require 'generated_definitions/europe'
-  #
   # All the definitions are available at https://github.com/holidays/holidays
   module EUROPE # :nodoc:
     def self.defined_regions

@@ -4,12 +4,6 @@ module Holidays
   #
   # Definitions loaded: definitions/nyse.yaml
   #
-  # To use the definitions in this file, load it right after you load the
-  # Holiday gem:
-  #
-  #   require 'holidays'
-  #   require 'generated_definitions/nyse'
-  #
   # All the definitions are available at https://github.com/holidays/holidays
   module NYSE # :nodoc:
     def self.defined_regions
@@ -19,7 +13,7 @@ module Holidays
     def self.holidays_by_month
       {
               0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:nyse]}],
-      1 => [{:mday => 1, :name => "New Year's Day", :regions => [:nyse]},
+      1 => [{:mday => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:nyse]},
             {:wday => 1, :week => 3, :name => "Martin Luther King, Jr. Day", :regions => [:nyse]}],
       2 => [{:wday => 1, :week => 3, :name => "Presidents' Day", :regions => [:nyse]}],
       5 => [{:wday => 1, :week => -1, :name => "Memorial Day", :regions => [:nyse]}],

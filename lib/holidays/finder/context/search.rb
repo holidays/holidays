@@ -26,7 +26,7 @@ module Holidays
 
                 if h[:function]
                   result = @custom_method_processor.call(
-                    year, month, h[:mday],
+                    build_custom_method_input(year, month, h[:mday], regions),
                     h[:function], h[:function_arguments], h[:function_modifier],
                   )
 
@@ -47,7 +47,7 @@ module Holidays
 
                 if observed_set?(options) && h[:observed]
                   date = @custom_method_processor.call(
-                    date.year, date.month, date.day,
+                    build_custom_method_input(date.year, date.month, date.day, regions),
                     h[:observed],
                     [:date],
                   )
@@ -81,6 +81,15 @@ module Holidays
 
         def observed_set?(options)
           options && options.include?(:observed) == true
+        end
+
+        def build_custom_method_input(year, month, day, regions)
+          {
+            year: year,
+            month: month,
+            day: day,
+            region: regions.first, #FIXME This isn't ideal but will work for our current use case...
+          }
         end
       end
     end

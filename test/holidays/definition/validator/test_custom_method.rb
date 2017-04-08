@@ -37,6 +37,11 @@ class CustomMethodValidatorTests < Test::Unit::TestCase
     assert @subject.valid?(m)
   end
 
+  def test_valid_returns_true_with_region_argument
+    m = {:name => "good_method", :arguments => "region", :source => "source"}
+    assert @subject.valid?(m)
+  end
+
   def test_valid_returns_true_multiple_arguments_with_whitespace
     m = {:name => "good_method", :arguments => "year        ,          month", :source => "source"}
     assert @subject.valid?(m)

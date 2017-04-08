@@ -4,16 +4,10 @@ module Holidays
   #
   # Definitions loaded: definitions/au.yaml
   #
-  # To use the definitions in this file, load it right after you load the
-  # Holiday gem:
-  #
-  #   require 'holidays'
-  #   require 'generated_definitions/au'
-  #
   # All the definitions are available at https://github.com/holidays/holidays
   module AU # :nodoc:
     def self.defined_regions
-      [:au, :au_nsw, :au_vic, :au_qld, :au_nt, :au_act, :au_sa, :au_tas_south, :au_wa, :au_tas, :au_qld_cairns, :au_qld_brisbane, :au_tas_north, :au_vic_melbourne]
+      [:au, :au_nsw, :au_vic, :au_qld, :au_nt, :au_act, :au_sa, :au_wa, :au_tas, :au_tas_south, :au_qld_cairns, :au_qld_brisbane, :au_tas_north, :au_vic_melbourne]
     end
 
     def self.holidays_by_month
@@ -21,14 +15,17 @@ module Holidays
               0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:au]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -1, :name => "Easter Saturday", :regions => [:au_nsw, :au_vic, :au_qld, :au_nt, :au_act, :au_sa]},
             {:function => "easter(year)", :function_arguments => [:year], :name => "Easter Sunday", :regions => [:au_nsw, :au_vic]},
+            {:function => "easter(year)", :function_arguments => [:year],  :year_ranges => [{:after => 2017}],:name => "Easter Sunday", :regions => [:au_qld]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:au]}],
-      1 => [{:mday => 1, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:au]},
+      1 => [{:mday => 1, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:au, :au_nsw, :au_vic, :au_act, :au_sa, :au_wa, :au_nt, :au_qld]},
+            {:mday => 1, :function => "to_monday_if_weekend(date)", :function_arguments => [:date], :name => "New Year's Day", :regions => [:au_tas]},
             {:mday => 26, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Australia Day", :regions => [:au]}],
       2 => [{:wday => 1, :week => 2, :name => "Royal Hobart Regatta", :regions => [:au_tas_south]}],
       3 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:au_wa]},
             {:wday => 1, :week => 2, :name => "Eight Hours Day", :regions => [:au_tas]},
             {:wday => 1, :week => 2, :name => "Labour Day", :regions => [:au_vic]},
-            {:function => "march_pub_hol_sa(year)", :function_arguments => [:year], :name => "March Public Holiday", :regions => [:au_sa]}],
+            {:function => "march_pub_hol_sa(year)", :function_arguments => [:year], :name => "March Public Holiday", :regions => [:au_sa]},
+            {:wday => 1, :week => 2, :name => "Canberra Day", :regions => [:au_act]}],
       4 => [{:mday => 25, :name => "ANZAC Day", :regions => [:au]},
             {:mday => 25, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "ANZAC Day", :regions => [:au_nsw, :au_vic, :au_qld, :au_nt, :au_act, :au_sa, :au_tas]},
             {:mday => 25, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "ANZAC Day", :regions => [:au_wa]}],

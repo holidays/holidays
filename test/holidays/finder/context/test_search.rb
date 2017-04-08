@@ -85,9 +85,7 @@ class FinderSearchTests < Test::Unit::TestCase
 
     returned_date = Date.civil(2015, 3, 10)
     @custom_method_processor.expects(:call).with(
-      2015,
-      1,
-      1,
+      {:year => 2015, :month => 1, :day => 1, :region => :us},
       "func-id",
       [:year],
       1,
@@ -109,9 +107,7 @@ class FinderSearchTests < Test::Unit::TestCase
     @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns([:mday => 1, :name => "Test", :regions=> @regions, :function => "func-id", :function_arguments => [:year], :function_modifier => 1])
 
     @custom_method_processor.expects(:call).with(
-      2015,
-      1,
-      1,
+      {:year => 2015, :month => 1, :day => 1, :region => :us},
       "func-id",
       [:year],
       1,
@@ -171,9 +167,7 @@ class FinderSearchTests < Test::Unit::TestCase
     @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns([:mday => 8, :name => "Test", :type => :observed, :observed => "SOME_OBSERVED_FUNC_ID", :regions=>@regions])
 
     @custom_method_processor.expects(:call).with(
-      2015,
-      1,
-      8,
+      {:year => 2015, :month => 1, :day => 8, :region => :us},
       "SOME_OBSERVED_FUNC_ID",
       [:date],
     ).returns(Date.civil(2015, 10, 1))

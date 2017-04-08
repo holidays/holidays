@@ -27,7 +27,7 @@ module Holidays
       def lunardays_for_type(month_type)
         LUNARDAYS_FOR_MONTHTYPE[month_type]
       end
-      
+
       def to_s
         format('%4d%02d%02d', year, month, day)
       end
@@ -365,7 +365,7 @@ module Holidays
       # Provides the reference point for the Gregorian calendar and is
       # used in all calculations
       SOLAR_START_DATE = Date.new(1900, 1, 31).freeze
-     
+
     end
-  end 
+  end
 end

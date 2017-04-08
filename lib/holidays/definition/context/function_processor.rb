@@ -9,54 +9,59 @@ module Holidays
           @proc_result_cache_repo = proc_result_cache_repo
         end
 
-        def call(year, month, day, func_id, desired_func_args, func_modifier = nil)
-          validate!(year, month, day, func_id, desired_func_args)
+        def call(input, func_id, desired_func_args, func_modifier = nil)
+          validate!(input, func_id, desired_func_args)
 
           function = @custom_methods_repo.find(func_id)
           raise Holidays::FunctionNotFound.new("Unable to find function with id '#{func_id}'") if function.nil?
 
-          calculate(year, month, function, parse_arguments(year, month, day, desired_func_args), func_modifier)
+          calculate(input, function, parse_arguments(input, desired_func_args), func_modifier)
         end
 
         private
 
-        VALID_ARGUMENTS = [:year, :month, :day, :date]
+        VALID_ARGUMENTS = [:year, :month, :day, :date, :region]
 
-        def validate!(year, month, day, func_id, desired_func_args)
+        def validate!(input, func_id, desired_func_args)
           raise ArgumentError if desired_func_args.nil? || desired_func_args.empty?
 
           desired_func_args.each do |name|
             raise ArgumentError unless VALID_ARGUMENTS.include?(name)
           end
 
-          raise ArgumentError if desired_func_args.include?(:year) && !year.is_a?(Integer)
-          raise ArgumentError if desired_func_args.include?(:month) && (month < 0 || month > 12)
-          raise ArgumentError if desired_func_args.include?(:day) && (day < 1 || day > 31)
+          raise ArgumentError if desired_func_args.include?(:year) && !input[:year].is_a?(Integer)
+          raise ArgumentError if desired_func_args.include?(:month) && (input[:month] < 0 || input[:month] > 12)
+          raise ArgumentError if desired_func_args.include?(:day) && (input[:day] < 1 || input[:day] > 31)
+          raise ArgumentError if desired_func_args.include?(:region) && !input[:region].is_a?(Symbol)
         end
 
-        def parse_arguments(year, month, day, target_args)
+        def parse_arguments(input, target_args)
           args = []
 
           if target_args.include?(:year)
-            args << year
+            args << input[:year]
           end
 
           if target_args.include?(:month)
-            args << month
+            args << input[:month]
           end
 
           if target_args.include?(:day)
-            args << day
+            args << input[:day]
           end
 
           if target_args.include?(:date)
-            args << Date.civil(year, month, day)
+            args << Date.civil(input[:year], input[:month], input[:day])
+          end
+
+          if target_args.include?(:region)
+            args << input[:region]
           end
 
           args
         end
 
-        def calculate(year, month, id, args, modifier)
+        def calculate(input, id, args, modifier)
           result = @proc_result_cache_repo.lookup(id, *args)
           if result.kind_of?(Date)
             if modifier
@@ -64,7 +69,7 @@ module Holidays
             end
           elsif result.is_a?(Integer)
             begin
-              result = Date.civil(year, month, result)
+              result = Date.civil(input[:year], input[:month], result)
             rescue ArgumentError
               raise Holidays::InvalidFunctionResponse.new("invalid day response from custom method call resulting in invalid date. Result: '#{result}'")
             end

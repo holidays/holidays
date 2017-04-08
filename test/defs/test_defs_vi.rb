@@ -7,10 +7,12 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class ViDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_vi
-{Date.civil(2014,1,1) => 'New Year',
- Date.civil(2014,4,30) => 'Liberation Day',
- Date.civil(2014,5,1) => "International Workers' Day",
- Date.civil(2014,9,2) => 'National Day'}.each do |date, name|
+{Date.civil(2014,1,1) => 'Tết dương lịch',
+ Date.civil(2014,4,30) => 'Ngày Giải phóng miền Nam, thống nhất đất nước',
+ Date.civil(2014,5,1) => "Ngày Quốc tế Lao động",
+ Date.civil(2014,9,2) => 'Quốc khánh',
+ Date.civil(2017,4,6) => "Giỗ tổ Hùng Vương",
+ Date.civil(2018,3,27) => "Giỗ tổ Hùng Vương"}.each do |date, name|
   assert_equal name, (Holidays.on(date, :vi)[0] || {})[:name]
 end
 
