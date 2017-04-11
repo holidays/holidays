@@ -21,7 +21,7 @@ module Holidays
               0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:au]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -1, :name => "Easter Saturday", :regions => [:au_nsw, :au_vic, :au_qld, :au_nt, :au_act, :au_sa]},
             {:function => "easter(year)", :function_arguments => [:year], :name => "Easter Sunday", :regions => [:au_nsw, :au_vic]},
-            {:function => "easter(year)", :function_arguments => [:year],  :year_ranges => [{:after => 2017}],:name => "Easter Sunday", :regions => [:au_qld]},
+            {:function => "easter(year)", :function_arguments => [:year],  :year_ranges => [{:after => 2017}],:name => "Easter Sunday", :regions => [:au_qld, :au_act]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:au]}],
       1 => [{:mday => 1, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:au_nsw, :au_vic, :au_act, :au_sa, :au_wa, :au_nt, :au_qld]},
             {:mday => 1, :function => "to_monday_if_weekend(date)", :function_arguments => [:date], :name => "New Year's Day", :regions => [:au_tas]},
