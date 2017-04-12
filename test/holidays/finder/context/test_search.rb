@@ -15,13 +15,6 @@ class FinderSearchTests < Test::Unit::TestCase
     @custom_method_repo = mock()
     @proc_cache_repo = mock()
 
-    @subject = Holidays::Finder::Context::Search.new(
-      @holidays_by_month_repo,
-      @custom_method_processor,
-      @day_of_month_calculator,
-      @rules,
-    )
-
     @start_date = Date.civil(2015, 1, 1)
     @end_date = Date.civil(2015, 1, 1)
     @dates_driver = {2015 => [1]}
@@ -31,6 +24,13 @@ class FinderSearchTests < Test::Unit::TestCase
     @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns([:mday => 1, :name => "Test", :regions=>@regions])
     @in_region_rule.expects(:call).at_most_once.returns(true)
     @year_range_rule.expects(:call).at_most_once.returns(false)
+
+    @subject = Holidays::Finder::Context::Search.new(
+      @holidays_by_month_repo,
+      @custom_method_processor,
+      @day_of_month_calculator,
+      @rules,
+    )
   end
 
   def test_raises_error_if_dates_driver_is_empty
@@ -191,6 +191,41 @@ class FinderSearchTests < Test::Unit::TestCase
         :name => "Test",
         :regions => [:us],
       }],
+      @subject.call(@dates_driver, @regions, @options)
+    )
+  end
+
+  # This is a specific scenario but it COULD happen in our current flow. The goal: any date
+  # manipulation that occurs for a specific holiday should have no impact on other holidays.
+  def test_returns_expected_result_if_custom_method_modifies_month_when_multiple_holidays_found
+    @in_region_rule.expects(:call).twice.returns(true)
+    @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns(
+      [
+        {:mday => 14, :name => "Test", :function => "func-id", :function_arguments => [:year], :regions => @regions},
+        {:mday => 14, :name => "Test2", :regions => @regions},
+      ]
+    )
+
+    @custom_method_processor.expects(:call).with(
+      {:year => 2015, :month => 1, :day => 14, :region => :us},
+      "func-id",
+      [:year],
+      nil,
+    ).returns(Date.civil(2015, 3, 14))
+
+    assert_equal(
+      [
+        {
+          :date => Date.civil(2015, 3, 14),
+          :name => "Test",
+          :regions => [:us],
+        },
+        {
+          :date => Date.civil(2015, 1, 14),
+          :name => "Test2",
+          :regions => [:us],
+        }
+      ],
       @subject.call(@dates_driver, @regions, @options)
     )
   end
