@@ -54,7 +54,10 @@ namespace :generate do
     # create a dir for the generated tests
     FileUtils.mkdir_p(DEFINITION_TESTS_PATH)
 
-    all_regions = []
+    #TODO This entire section should be moved into '/lib/holidays/definition'. I don't think such an
+    # important part of the gem should be left in the Rakefile and without unit tests. There's no
+    # reason we can't move it.
+    all_regions = {}
 
     def_index['defs'].each do |region, files|
       puts "Building #{region} definition module:"
@@ -72,7 +75,7 @@ namespace :generate do
         end
       end
 
-      all_regions << regions
+      all_regions[region.downcase.to_sym] = regions
 
       puts "Done.\n\n"
     end
@@ -80,12 +83,7 @@ namespace :generate do
     puts "Building regions master file for later validation:"
 
     File.open("lib/#{Holidays::DEFINITIONS_PATH}/REGIONS.rb","w") do |file|
-      file.puts <<-EOR
-# encoding: utf-8
-module Holidays
-  REGIONS = [:#{all_regions.join(', :')}]
-end
-  EOR
+      file.puts Holidays::Factory::Definition.regions_generator.call(all_regions)
     end
 
     puts "Done.\n\n"
@@ -94,6 +92,7 @@ end
   desc 'Build the definition manifest'
   task :manifest do
     File.open("lib/#{Holidays::DEFINITIONS_PATH}/MANIFEST","w") do |file|
+      #TODO Generating the file source should be done interally, in the /lib dir, not in the Rakefile
       file.puts <<-EOH
 ==== Regional definitions
 The following definition files are included in this installation:

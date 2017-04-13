@@ -64,6 +64,8 @@ module Holidays
         private
 
         def validate!(dates_driver)
+          #FIXME This should give some kind of error message that indicates the
+          #      problem.
           raise ArgumentError if dates_driver.nil? || dates_driver.empty?
 
           dates_driver.each do |year, months|

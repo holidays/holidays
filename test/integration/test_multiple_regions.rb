@@ -14,7 +14,6 @@ class MultipleRegionsTests < Test::Unit::TestCase
     h = Holidays.on(Date.civil(2008,5,9), :gb_)
     assert_equal 'Liberation Day', (h[0] || {})[:name]
 
-
     h = Holidays.on(Date.civil(2008,5,9), :je)
     assert_equal 'Liberation Day', h[0][:name]
 

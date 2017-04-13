@@ -2,10 +2,10 @@ module Holidays
   module Finder
     module Context
       class ParseOptions
-        def initialize(regions_repo, region_validator, definition_merger)
+        def initialize(regions_repo, region_validator, definition_loader)
           @regions_repo = regions_repo
           @region_validator = region_validator
-          @definition_merger = definition_merger
+          @definition_loader = definition_loader
         end
 
         # Returns [(arr)regions, (bool)observed, (bool)informal]
@@ -31,42 +31,57 @@ module Holidays
         # of its available sub regions.
         def parse_regions!(regions)
           regions = [regions] unless regions.kind_of?(Array)
-          return [:any] if regions.empty?
 
-          regions = regions.collect { |r| r.to_sym }
+          if regions.empty?
+            regions = [:any]
+          else
+            regions = regions.collect { |r| r.to_sym }
+          end
 
           validate!(regions)
 
-          # Found sub region wild-card
-          regions.delete_if do |r|
-            if r.to_s =~ /_$/
-              load_containing_region(r.to_s)
-              regions << @regions_repo.search(r.to_s)
-              true
+          loaded_regions = []
+
+          #FIXME I don't know what this means or why we have it! I'm reluctant to remove it
+          # at this time without understanding more. -PP 2017/3/29
+          #
+          # special case for north_america/US cross-linking
+          load_region!(:north_america) if regions.include?(:us)
+
+          if regions.include?(:any)
+            @regions_repo.all_generated.each do |r|
+              if @regions_repo.loaded?(r)
+                loaded_regions << r
+                next
+              end
+
+              target = @regions_repo.parent_region_lookup(r)
+              load_region!(target)
+
+              loaded_regions << r
             end
-          end
+          else
+            regions.each do |r|
+              if is_wildcard?(r)
+                loaded_regions << load_wildcard_parent!(r)
+              else
+                parent = @regions_repo.parent_region_lookup(r)
 
-          regions.flatten!
+                target = parent || r
 
-          load_definition_data("north_america") if regions.include?(:us) # special case for north_america/US cross-linking
-
-          regions.each do |region|
-            unless region == :any || @regions_repo.exists?(region)
-              begin
-                load_definition_data(region.to_s)
-              rescue NameError, LoadError => e
-                # This could be a sub region that does not have any holiday
-                # definitions of its own; try to load the containing region instead.
-                if region.to_s =~ /_/
-                  load_containing_region(region.to_s)
-                else
-                  raise UnknownRegionError.new(e), "Could not load #{region.to_s}"
+                if @regions_repo.loaded?(target)
+                  loaded_regions << r
+                  next
                 end
+
+                load_region!(target)
+
+                loaded_regions << r
               end
             end
           end
 
-          regions
+          loaded_regions.flatten.compact.uniq
         end
 
         def validate!(regions)
@@ -75,33 +90,19 @@ module Holidays
           end
         end
 
-        # Derive the containing region from a sub region wild-card or a sub region
-        # and load its definition. (Common code factored out from parse_regions)
-        def load_containing_region(sub_reg)
-          prefix = sub_reg.split('_').first
-
-          return if @regions_repo.exists?(prefix.to_sym)
-
-          begin
-            load_definition_data(prefix)
-          rescue NameError, LoadError => e
-            raise UnknownRegionError.new(e), "Could not load region prefix: #{prefix.to_s}, original subregion: #{sub_reg.to_s}"
-          end
+        def is_wildcard?(r)
+          r.to_s =~ /_$/
         end
 
-        def load_definition_data(region)
-          # Lazy loading of definition files. We verify the region doesn't
-          # contain malicious stuff in the initial validation.
-          region_definition_file = "#{FULL_DEFINITIONS_PATH}/#{region}"
-          require region_definition_file
+        def load_wildcard_parent!(wildcard_region)
+          prefix = wildcard_region.to_s.split('_').first.to_sym
+          load_region!(prefix)
+        end
 
-          target_region_module = Module.const_get("Holidays").const_get(region.upcase)
-
-          @definition_merger.call(
-            target_region_module.defined_regions,
-            target_region_module.holidays_by_month,
-            target_region_module.custom_methods,
-          )
+        def load_region!(r)
+          @definition_loader.call(r)
+        rescue NameError, LoadError => e
+          raise UnknownRegionError.new(e), "Could not load region: #{r}"
         end
       end
     end
