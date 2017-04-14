@@ -29,7 +29,7 @@ module Holidays
 
                 if h[:function]
                   result = @custom_method_processor.call(
-                    build_custom_method_input(year, current_month, current_day, regions),
+                    build_custom_method_input(year, current_month, current_day, h[:regions]),
                     h[:function], h[:function_arguments], h[:function_modifier],
                   )
 
