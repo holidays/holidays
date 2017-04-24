@@ -1,5 +1,20 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 5.5.0
+
+* Fix [#251](https://github.com/holidays/holidays/issues/251): `load_custom` would override all other definitions
+* Fix [#266](https://github.com/holidays/holidays/issues/266): `:any` does not return expected results
+* Fix [#265](https://github.com/holidays/holidays/issues/265): Jersey/je not loaded as expected when pulling `:gb`
+* Add lunar date calculations, which are used in `:kr` and `:vi` definitions (thanks to https://github.com/jonathanpike)
+* Improve cache performance (thanks to https://github.com/mzruya)
+* Remove incorrect comments in definition generation (thanks to https://github.com/morrme)
+* Fix bug related to definition functions inadvertently affecting subsequent date calculations
+* Point to latest version (1.5.0) of definitions, which includes:
+  * Add Vietnamese holidays
+  * Updates Australian holidays
+  * Updates Korean holidays to use native language and fancy lunar date calculations
+  * Fix NYSE definitions to correctly calculate observed "New Year's Day"
+
 ## 5.4.0
 
 * Add support for ruby 2.4.0 (added it to the required tests in Travis CI)

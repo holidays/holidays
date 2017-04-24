@@ -4,12 +4,6 @@ module Holidays
   #
   # Definitions loaded: definitions/ecb_target.yaml
   #
-  # To use the definitions in this file, load it right after you load the
-  # Holiday gem:
-  #
-  #   require 'holidays'
-  #   require 'generated_definitions/ecb_target'
-  #
   # All the definitions are available at https://github.com/holidays/holidays
   module ECB_TARGET # :nodoc:
     def self.defined_regions

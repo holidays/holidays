@@ -19,5 +19,10 @@ class NyseDefinitionTests < Test::Unit::TestCase  # :nodoc:
   assert_equal name, (Holidays.on(date, :nyse)[0] || {})[:name]
 end
 
+# Test observed New Year
+[Date.civil(2017,1,2), Date.civil(2012,1,2), Date.civil(2011,1,1), Date.civil(2006,1,2)].each do |date|
+  assert_equal 'New Year\'s Day', (Holidays.on(date, :nyse, :observed)[0] || {})[:name]
+end
+
   end
 end

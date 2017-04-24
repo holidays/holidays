@@ -4,12 +4,6 @@ module Holidays
   #
   # Definitions loaded: definitions/ca.yaml, definitions/mx.yaml, definitions/us.yaml, definitions/north_america_informal.yaml
   #
-  # To use the definitions in this file, load it right after you load the
-  # Holiday gem:
-  #
-  #   require 'holidays'
-  #   require 'generated_definitions/north_america'
-  #
   # All the definitions are available at https://github.com/holidays/holidays
   module NORTH_AMERICA # :nodoc:
     def self.defined_regions

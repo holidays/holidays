@@ -38,7 +38,7 @@ module Holidays
         def validate!(function, function_arguments)
           raise ArgumentError.new("function must be a proc") unless function.is_a?(Proc)
           function_arguments.each do |arg|
-            raise ArgumentError.new("function arguments '#{function_arguments}' must contain either integers or dates") unless arg.is_a?(Integer) || arg.is_a?(Date)
+            raise ArgumentError.new("function arguments '#{function_arguments}' must contain either integers or dates") unless arg.is_a?(Integer) || arg.is_a?(Date) || arg.is_a?(Symbol)
           end
         end
 
