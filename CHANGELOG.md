@@ -1,5 +1,9 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 5.5.1
+
+* Update to v1.5.1 definitions, which includes bugfix in `fedex` custom method
+
 ## 5.5.0
 
 * Fix [#251](https://github.com/holidays/holidays/issues/251): `load_custom` would override all other definitions
