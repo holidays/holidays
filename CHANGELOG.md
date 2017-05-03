@@ -1,5 +1,9 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 5.6.0
+
+* Update to v1.6.1 definitions, which includes updates for the `:ca` region (and subregions)
+
 ## 5.5.1
 
 * Update to v1.5.1 definitions, which includes bugfix in `fedex` custom method
