@@ -90,9 +90,9 @@ class HolidaysTests < Test::Unit::TestCase
   end
 
   def test_any_region
-    # Should return Victoria Day.
+    # Should return nothing(Victoria Day is not celebrated :ca wide anymore)
     holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca)
-    assert_equal 1, holidays.length
+    assert_equal 0, holidays.length
 
     # Should return Victoria Day and National Patriotes Day.
     #
@@ -110,7 +110,7 @@ class HolidaysTests < Test::Unit::TestCase
     # Should return Victoria Day.
     holidays = Holidays.next_holidays(1, [:ca], Date.civil(2008,5,1))
     assert_equal 1, holidays.length
-    assert_equal ['2008-05-19','Victoria Day'] , [holidays.first[:date].to_s, holidays.first[:name].to_s]
+    assert_equal ['2008-07-01','Canada Day'] , [holidays.first[:date].to_s, holidays.first[:name].to_s]
 
     # Should return 2 holidays.
     holidays = Holidays.next_holidays(2, [:ca], Date.civil(2008,5,1))
@@ -135,9 +135,9 @@ class HolidaysTests < Test::Unit::TestCase
   end
 
   def test_year_holidays
-    # Should return 9 holidays from February 23 to December 31
+    # Should return 7 holidays from February 23 to December 31
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2016, 2, 23))
-    assert_equal 9, holidays.length
+    assert_equal 7, holidays.length
 
     # Must have options (Regions)
     assert_raises ArgumentError do
@@ -153,7 +153,7 @@ class HolidaysTests < Test::Unit::TestCase
   def test_year_holidays_with_specified_year
     # Should return all 11 holidays for 2016 in Ontario, Canada
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2016, 1, 1))
-    assert_equal 11, holidays.length
+    assert_equal 9, holidays.length
 
     # Should return all 5 holidays for 2016 in Australia
     holidays = Holidays.year_holidays([:au], Date.civil(2016, 1, 1))
@@ -197,30 +197,30 @@ class HolidaysTests < Test::Unit::TestCase
   def test_year_holidays_random_years
     # Should be 1 less holiday, as Family day didn't exist in Ontario in 1990
     holidays = Holidays.year_holidays([:ca_on], Date.civil(1990, 1, 1))
-    assert_equal 10, holidays.length
+    assert_equal 8, holidays.length
 
     # Family day still didn't exist in 2000
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2000, 1, 1))
-    assert_equal 10, holidays.length
+    assert_equal 8, holidays.length
 
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2020, 1, 1))
-    assert_equal 11, holidays.length
+    assert_equal 9, holidays.length
 
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2050, 1, 1))
-    assert_equal 11, holidays.length
+    assert_equal 9, holidays.length
 
     holidays = Holidays.year_holidays([:jp], Date.civil(2070, 1, 1))
     assert_equal 18, holidays.length
   end
 
   def test_sub_regions
-    # Should return Victoria Day.
+    # Should return nothing (Victoria Day is no longer :ca wide)
     holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca)
-    assert_equal 1, holidays.length
+    assert_equal 0, holidays.length
 
-    ## Should return Victoria Da and National Patriotes Day.
+    ## Should return National Patriotes Day.
     holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca_qc)
-    assert_equal 2, holidays.length
+    assert_equal 1, holidays.length
 
     # Should return Victoria Day and National Patriotes Day.
     holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca_)
@@ -229,21 +229,24 @@ class HolidaysTests < Test::Unit::TestCase
 
   def test_sub_regions_holiday_next
     # Should return Victoria Day.
-    holidays = Holidays.next_holidays(2, [:ca], Date.civil(2008,5,1))
+    holidays = Holidays.next_holidays(2, [:ca_bc], Date.civil(2008,5,1))
     assert_equal 2, holidays.length
     assert_equal ['2008-05-19','Victoria Day'] , [holidays.first[:date].to_s, holidays.first[:name].to_s]
 
     # Should return Victoria Da and National Patriotes Day.
     holidays = Holidays.next_holidays(2, [:ca_qc], Date.civil(2008,5,1))
     assert_equal 2, holidays.length
-    assert_equal ['2008-05-19','Victoria Day'] , [holidays.first[:date].to_s, holidays.first[:name].to_s]
-    assert_equal ['2008-05-19','National Patriotes Day'] , [holidays.last[:date].to_s, holidays.last[:name].to_s]
+    assert_equal ['2008-06-24','Fête Nationale'] , [holidays.last[:date].to_s, holidays.last[:name].to_s]
 
     # Should return Victoria Day and National Patriotes Day.
     holidays = Holidays.next_holidays(2, [:ca_], Date.civil(2008,5,1))
     assert_equal 2, holidays.length
-    assert_equal ['2008-05-19','Victoria Day'] , [holidays.first[:date].to_s, holidays.first[:name].to_s]
-    assert_equal ['2008-05-19','National Patriotes Day'] , [holidays.last[:date].to_s, holidays.last[:name].to_s]
+
+    # Aparently something in jruby doesn't sort the same way as other rubies so....we'll just do it ourselves so
+    # we don't flap.
+    sorted_holidays = holidays.sort_by { |h| h[:name] }
+    assert_equal ['2008-05-19','National Patriotes Day'] , [sorted_holidays.first[:date].to_s, sorted_holidays.first[:name].to_s]
+    assert_equal ['2008-05-19','Victoria Day'] , [sorted_holidays.last[:date].to_s, sorted_holidays.last[:name].to_s]
   end
 
   def test_easter_lambda

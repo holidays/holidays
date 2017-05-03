@@ -11,12 +11,9 @@ class North_americaDefinitionTests < Test::Unit::TestCase  # :nodoc:
  Date.civil(2008,3,21) => 'Good Friday',
  Date.civil(2013,3,31) => 'Easter Sunday',
  Date.civil(2008,3,24) => 'Easter Monday',
- Date.civil(2008,5,19) => 'Victoria Day',
  Date.civil(2008,7,1) => 'Canada Day',
  Date.civil(2008,9,1) => 'Labour Day',
- Date.civil(2008,10,13) => 'Thanksgiving',
- Date.civil(2008,12,25) => 'Christmas Day',
- Date.civil(2008,12,26) => 'Boxing Day'}.each do |date, name|
+ Date.civil(2008,12,25) => 'Christmas Day'}.each do |date, name|
   assert_equal name, (Holidays.on(date, :ca, :informal)[0] || {})[:name]
 end
 
@@ -123,25 +120,35 @@ end
   assert_equal 'Islander Day', Holidays.on(date, :ca_pe)[0][:name]
 end
 
+
 # Victoria Day
-[Date.civil(2004,5,24), Date.civil(2005,5,23), Date.civil(2006,5,22),
- Date.civil(2007,5,21), Date.civil(2008,5,19)].each do |date|
-  assert_equal 'Victoria Day', Holidays.on(date, :ca)[0][:name]
+[:ca_ab, :ca_bc, :ca_mb, :ca_nt, :ca_nu, :ca_on, :ca_sk, :ca_yt].each do |r|
+  [
+    Date.civil(2004,5,24), Date.civil(2005,5,23), Date.civil(2006,5,22),
+    Date.civil(2007,5,21), Date.civil(2008,5,19)
+  ].each do |date|
+    assert_equal 'Victoria Day', Holidays.on(date, r)[0][:name]
+  end
 end
 
 # First Monday in August
 [Date.civil(2013,8,5), Date.civil(2014,8,4), Date.civil(2015,8,3)].each do |date|
-  { :ca_bc => 'BC Day',
+  { :ca_bc => 'B.C. Day',
     :ca_sk => 'Saskatchewan Day',
     :ca_ab => 'Heritage Day',
     :ca_ns => 'Natal Day',
-    :ca_on => 'Civic Holiday',
     :ca_nt => 'Civic Holiday',
     :ca_nu => 'Civic Holiday',
     :ca_pe => 'Civic Holiday',
-    :ca_nb => 'New Brunswick Day' }.each do |region, name|
+    :ca_nb => 'New Brunswick Day'
+  }.each do |region, name|
     assert_equal name, Holidays.on(date, region)[0][:name]
   end
+end
+
+# Civic Holiday is only by convention in :ca_on
+[Date.civil(2013,8,5), Date.civil(2014,8,4), Date.civil(2015,8,3)].each do |date|
+  assert_equal 'Civic Holiday', Holidays.on(date, :ca_on, :informal)[0][:name]
 end
 
 # Remembrance Day in all Canadian provinces
@@ -184,7 +191,7 @@ end
 # Boxing Day observed date
 [Date.civil(2010, 12, 28), Date.civil(2012, 12, 26), Date.civil(2016, 12, 27),
  Date.civil(2015, 12, 28)].each do |date|
-  assert_equal 'Boxing Day', Holidays.on(date, :ca, :observed)[0][:name]
+  assert_equal 'Boxing Day', Holidays.on(date, :ca_on, :observed)[0][:name]
 end
 
 
