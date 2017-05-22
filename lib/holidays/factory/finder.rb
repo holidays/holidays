@@ -48,7 +48,7 @@ module Holidays
           Holidays::Finder::Context::ParseOptions.new(
             Factory::Definition.regions_repository,
             Factory::Definition.region_validator,
-            Factory::Definition.merger,
+            Factory::Definition.loader,
           )
         end
 

@@ -4,12 +4,6 @@ module Holidays
   #
   # Definitions loaded: definitions/ma.yaml
   #
-  # To use the definitions in this file, load it right after you load the
-  # Holiday gem:
-  #
-  #   require 'holidays'
-  #   require 'generated_definitions/ma'
-  #
   # All the definitions are available at https://github.com/holidays/holidays
   module MA # :nodoc:
     def self.defined_regions

@@ -80,7 +80,6 @@ module Holidays
     end
 
     def available_regions
-      require "#{DEFINITIONS_PATH}/REGIONS"
       Holidays::REGIONS
     end
 

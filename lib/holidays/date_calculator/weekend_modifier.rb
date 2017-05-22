@@ -17,13 +17,6 @@ module Holidays
         to_next_weekday(date)
       end
 
-      # if Christmas falls on a Sunday, move it to the next Tuesday (Boxing Day will go on Monday)
-      # if Christmas falls on a Saturday, move it to the next Monday (Boxing Day will be Sunday and potentially Tuesday)
-      # used as a callback function, if xmas is not observed on the 25th
-      def xmas_to_weekday_if_weekend(year)
-        to_tuesday_if_sunday_or_monday_if_saturday(Date.civil(year, 12, 25))
-      end
-
       # Move Boxing Day if it falls on a weekend, leaving room for Christmas.
       # Used as a callback function.
       def to_weekday_if_boxing_weekend(date)

@@ -1,5 +1,41 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 5.6.0
+
+* Update to v1.6.1 definitions, which includes updates for the `:ca` region (and subregions)
+
+## 5.5.1
+
+* Update to v1.5.1 definitions, which includes bugfix in `fedex` custom method
+
+## 5.5.0
+
+* Fix [#251](https://github.com/holidays/holidays/issues/251): `load_custom` would override all other definitions
+* Fix [#266](https://github.com/holidays/holidays/issues/266): `:any` does not return expected results
+* Fix [#265](https://github.com/holidays/holidays/issues/265): Jersey/je not loaded as expected when pulling `:gb`
+* Add lunar date calculations, which are used in `:kr` and `:vi` definitions (thanks to https://github.com/jonathanpike)
+* Improve cache performance (thanks to https://github.com/mzruya)
+* Remove incorrect comments in definition generation (thanks to https://github.com/morrme)
+* Fix bug related to definition functions inadvertently affecting subsequent date calculations
+* Point to latest version (1.5.0) of definitions, which includes:
+  * Add Vietnamese holidays
+  * Updates Australian holidays
+  * Updates Korean holidays to use native language and fancy lunar date calculations
+  * Fix NYSE definitions to correctly calculate observed "New Year's Day"
+
+## 5.4.0
+
+* Add support for ruby 2.4.0 (added it to the required tests in Travis CI)
+* Fix issue [#250](https://github.com/holidays/holidays/issues/250), which was that subregions were 'lost' if there was more than one underscore in it (thanks to https://github.com/chinito)
+* Fix caching when using Date extensions (thanks to https://github.com/alexgerstein)
+* Remove unused weekend date calculator method (thanks to https://github.com/ttwo32)
+* Use FULL_DEFINITIONS_PATH when loading definitions to avoid NameErrors when iterating whole LOAD_PATH (thanks to https://github.com/burke)
+* Point to latest version (1.3.0) of definitions, which includes:
+  * Add Tunisian (tn) holidays (thanks to https://github.com/achr3f)
+  * Corrects various Australian holidays
+  * Update certain German regions for accuracy
+  * Change 'yk' to 'yt'
+
 ## 5.3.0
 
 * Fix `ca` province/territory codes for 'Newfoundland and Labrador' and 'Yukon' (thanks to https://github.com/slucaskim)
@@ -12,10 +48,10 @@
 ## 5.2.0
 
 * Point to latest (v1.2.0 of definitions)
-** updates `jp` defs to fix 'Foundation Day' name
-** Fix `ca` defs for observed holidays
-** Update `au` defs to have Christmas and Boxing Day for all of Australia instead of just individual territories
-** Update `ie` defs to consolidate St Stephen's Day to use common method instead of custom method
+  * updates `jp` defs to fix 'Foundation Day' name
+  * Fix `ca` defs for observed holidays
+  * Update `au` defs to have Christmas and Boxing Day for all of Australia instead of just individual territories
+  * Update `ie` defs to consolidate St Stephen's Day to use common method instead of custom method
 
 ## 5.1.0
 
@@ -26,10 +62,11 @@
 
 * Remove support for jruby 1.7 (this is the main reason for the major semver bump)
 * Remove support for ruby 2.0 (since it is no longer being supported by the core ruby team)
-* Add back the lazy loading of regions (this was removed in the 4.0.0 bump) instead of loading upon require (this should have 
+* Add back the lazy loading of regions (this was removed in the 4.0.0 bump) instead of loading upon require (this should have
   no outward repercussions for users)
 * Move definitions into their own repository and add as submodule. This will allow for more flexibility for tools written
   in other languages.
+* Rename `DateCalculatorFactory` to `Factory::DateCalculator`
 
 ## 4.7.0
 

@@ -4,12 +4,6 @@ module Holidays
   #
   # Definitions loaded: definitions/fedex.yaml
   #
-  # To use the definitions in this file, load it right after you load the
-  # Holiday gem:
-  #
-  #   require 'holidays'
-  #   require 'generated_definitions/fedex'
-  #
   # All the definitions are available at https://github.com/holidays/holidays
   module FEDEX # :nodoc:
     def self.defined_regions
@@ -32,7 +26,7 @@ module Holidays
     def self.custom_methods
       {
         "day_after_thanksgiving(year)" => Proc.new { |year|
-Holidays::DateCalculatorFactory.day_of_month_calculator.call(year, 11, 4, 4) + 1
+Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 11, 4, 4) + 1
 },
 
 

@@ -3,7 +3,7 @@ default: test
 setup: update_defs
 	bundle install
 
-generate: update_defs
+generate:
 	bundle exec rake generate
 
 test:

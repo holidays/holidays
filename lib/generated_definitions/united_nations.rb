@@ -4,12 +4,6 @@ module Holidays
   #
   # Definitions loaded: definitions/united_nations.yaml
   #
-  # To use the definitions in this file, load it right after you load the
-  # Holiday gem:
-  #
-  #   require 'holidays'
-  #   require 'generated_definitions/united_nations'
-  #
   # All the definitions are available at https://github.com/holidays/holidays
   module UNITED_NATIONS # :nodoc:
     def self.defined_regions

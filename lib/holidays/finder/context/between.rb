@@ -15,6 +15,9 @@ module Holidays
           dates_driver = @dates_driver_builder.call(start_date, end_date)
 
           holidays = []
+
+          #FIXME Why are we calling the options_parser to convert the observed/informal
+          # symbols to bool and then...converting them back? O_o
           opts = gather_options(observed, informal)
 
           holidays = @definition_search.call(dates_driver, regions, opts)

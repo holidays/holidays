@@ -15,7 +15,7 @@ module Holidays
       #
       # Also available via Holidays#on.
       def holidays(*options)
-        Holidays.on(self, options)
+        Holidays.on(self, *options)
       end
 
       # Check if the current date is a holiday.
@@ -25,7 +25,7 @@ module Holidays
       #   Date.civil('2008-01-01').holiday?(:ca)
       #   => true
       def holiday?(*options)
-        holidays = self.holidays(options)
+        holidays = self.holidays(*options)
         holidays && !holidays.empty?
       end
 

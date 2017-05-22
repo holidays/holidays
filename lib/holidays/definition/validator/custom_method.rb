@@ -2,7 +2,7 @@ module Holidays
   module Definition
     module Validator
       class CustomMethod
-        VALID_ARGUMENTS = ["date", "year", "month", "day"]
+        VALID_ARGUMENTS = ["date", "year", "month", "day", "region"]
 
         def valid?(m)
           valid_name?(m[:name]) &&
