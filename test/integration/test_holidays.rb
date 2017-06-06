@@ -296,6 +296,6 @@ class HolidaysTests < Test::Unit::TestCase
 
   def test_load_all
     Holidays.load_all
-    assert_equal 170, Holidays.available_regions.count
+    assert_equal 171, Holidays.available_regions.count
   end
 end
