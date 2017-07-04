@@ -12,18 +12,18 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :type => :informal, :name => "Suur reede", :regions => [:ee]},
-            {:function => "easter(year)", :function_arguments => [:year], :type => :informal, :name => "Ülestõusmispühade 1. püha", :regions => [:ee]},
-            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Nelipühade 1. püha", :regions => [:ee]}],
-      1 => [{:mday => 1, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Uusaasta", :regions => [:ee]}],
-      2 => [{:mday => 24, :name => "Iseseisvuspäev", :regions => [:ee]}],
-      5 => [{:wday => 1, :week => 1, :name => "Kevadpüha", :regions => [:ee]}],
-      6 => [{:mday => 23, :name => "Võidupüha ja jaanilaupäev", :regions => [:ee]},
-            {:mday => 24, :name => "Jaanipäev", :regions => [:ee]}],
-      8 => [{:mday => 20, :name => "Taasiseseisvumispäev", :regions => [:ee]}],
-      12 => [{:mday => 24, :name => "Jõululaupäev", :regions => [:ee]},
-            {:mday => 25, :name => "Esimene jõulupüha", :regions => [:ee]},
-            {:mday => 26, :name => "Teine jõulupüha", :regions => [:ee]}]
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "suur reede", :regions => [:ee]},
+            {:function => "easter(year)", :function_arguments => [:year], :name => "ülestõusmispühade 1. püha", :regions => [:ee]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "nelipühade 1. püha", :regions => [:ee]}],
+      1 => [{:mday => 1, :name => "uusaasta", :regions => [:ee]}],
+      2 => [{:mday => 24, :name => "iseseisvuspäev", :regions => [:ee]}],
+      5 => [{:mday => 1, :name => "kevadpüha", :regions => [:ee]}],
+      6 => [{:mday => 23, :name => "võidupüha ja jaanilaupäev", :regions => [:ee]},
+            {:mday => 24, :name => "jaanipäev", :regions => [:ee]}],
+      8 => [{:mday => 20, :name => "taasiseseisvumispäev", :regions => [:ee]}],
+      12 => [{:mday => 24, :name => "jõululaupäev", :regions => [:ee]},
+            {:mday => 25, :name => "esimene jõulupüha", :regions => [:ee]},
+            {:mday => 26, :name => "teine jõulupüha", :regions => [:ee]}]
       }
     end
 

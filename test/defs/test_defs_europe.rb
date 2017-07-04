@@ -120,78 +120,80 @@ end
 end
 
 
-{Date.civil(2009,1,1) => 'Neujahrstag',
- Date.civil(2009,4,10) => 'Karfreitag',
- Date.civil(2009,4,12) => 'Ostersonntag',
- Date.civil(2009,4,13) => 'Ostermontag',
- Date.civil(2009,5,1) => 'Tag der Arbeit',
- Date.civil(2009,5,21) => 'Christi Himmelfahrt',
- Date.civil(2009,5,31) => 'Pfingstsonntag',
- Date.civil(2009,6,1) => 'Pfingstmontag',
- Date.civil(2009,10,3) => 'Tag der Deutschen Einheit',
- Date.civil(2009,12,24) => 'Heilig Abend',
- Date.civil(2009,12,25) => '1. Weihnachtstag',
- Date.civil(2009,12,26) => '2. Weihnachtstag',
- Date.civil(2009,12,31) => 'Silvester'}.each do |date, name|
+{ Date.civil(2009, 1, 1) => 'Neujahrstag',
+  Date.civil(2009, 4, 10) => 'Karfreitag',
+  Date.civil(2009, 4, 12) => 'Ostersonntag',
+  Date.civil(2009, 4, 13) => 'Ostermontag',
+  Date.civil(2009, 5, 1) => 'Tag der Arbeit',
+  Date.civil(2009, 5, 21) => 'Christi Himmelfahrt',
+  Date.civil(2009, 5, 31) => 'Pfingstsonntag',
+  Date.civil(2009, 6, 1) => 'Pfingstmontag',
+  Date.civil(2009, 10, 3) => 'Tag der Deutschen Einheit',
+  Date.civil(2009, 12, 24) => 'Heilig Abend',
+  Date.civil(2009, 12, 25) => '1. Weihnachtstag',
+  Date.civil(2009, 12, 26) => '2. Weihnachtstag',
+  Date.civil(2009, 12, 31) => 'Silvester' }.each do |date, name|
   assert_equal name, (Holidays.on(date, :de, :informal)[0] || {})[:name], "Failed on '#{name}' for date '#{date}'"
 end
 
 [:de_bw, :de_by, :de_st, :de_].each do |r|
-  assert_equal 'Heilige Drei Könige', Holidays.on(Date.civil(2009,1,6), r)[0][:name]
+  assert_equal 'Heilige Drei Könige', Holidays.on(Date.civil(2009, 1, 6), r)[0][:name]
 end
 
-[:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_sorbian, :de_th_eichsfeld, :de_].each do |r|
-  assert_equal 'Fronleichnam', Holidays.on(Date.civil(2009,6,11), r)[0][:name]
+assert_equal [],Holidays.on(Date.civil(2017, 6, 15), [:de_th, :de_sn])
+[:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_sorbian, :de_th_cath].each do |r|
+  assert_equal 'Fronleichnam', Holidays.on(Date.civil(2017, 6, 15), r)[0][:name]
 end
 
-[:de_by, :de_sl, :de_].each do |r|
-  assert_equal 'Mariä Himmelfahrt', Holidays.on(Date.civil(2009,8,15), r)[0][:name]
+assert_equal [], Holidays.on(Date.civil(2017, 8, 15), [:de_by, :de_sn])
+[:de_by_cath, :de_by_augsburg, :de_sl].each do |r|
+  assert_equal 'Mariä Himmelfahrt', Holidays.on(Date.civil(2017, 8, 15), r)[0][:name]
 end
 
-[:de_bb, :de_mv, :de_sn, :de_st, :de_th, :de_].each do |r|
-  assert_equal 'Reformationstag', Holidays.on(Date.civil(2009,10,31), r)[0][:name]
+[:de_sh, :de_ni, :de_hh, :de_hb, :de_be, :de_bb, :de_mv, :de_sn, :de_st, :de_th, :de_].each do |r|
+  assert_equal 'Reformationstag', Holidays.on(Date.civil(2017, 10, 31), r)[0][:name]
 end
 
 # Free day in schools
 [:de_bw].each do |r|
-  assert_equal 'Reformationstag', Holidays.on(Date.civil(2009,10,31), r, :informal)[0][:name]
+  assert_equal 'Reformationstag', Holidays.on(Date.civil(2009, 10, 31), r, :informal)[0][:name]
 end
 
 # 500 years reformation in 2017
-assert_equal 'Reformationstag', Holidays.on(Date.civil(2017,10,31), :de)[0][:name]
-assert_equal [], Holidays.on(Date.civil(2016,10,31), :de), "Reformationstag is not a holiday in 2016 in whole Germany"
-assert_equal [], Holidays.on(Date.civil(2018,10,31), :de), "Reformationstag is not a holiday in 2018 in whole Germany"
+assert_equal 'Reformationstag', Holidays.on(Date.civil(2017, 10, 31), :de)[0][:name]
+assert_equal [], Holidays.on(Date.civil(2016, 10, 31), :de), "Reformationstag is not a holiday in 2016 in whole Germany"
+assert_equal [], Holidays.on(Date.civil(2018, 10, 31), :de), "Reformationstag is not a holiday in 2018 in whole Germany"
 
 [:de_bw, :de_by, :de_nw, :de_rp, :de_sl, :de_].each do |r|
-  assert_equal 'Allerheiligen', Holidays.on(Date.civil(2009,11,1), r)[0][:name]
+  assert_equal 'Allerheiligen', Holidays.on(Date.civil(2009, 11, 1), r)[0][:name]
 end
 
 [:de_by_augsburg].each do |r|
-  assert_equal 'Friedensfest', Holidays.on(Date.civil(2015,8,8),r)[0][:name]
+  assert_equal 'Friedensfest', Holidays.on(Date.civil(2015, 8, 8), r)[0][:name]
 end
 
 [:de,
  :de_bw, :de_by, :de_bb, :de_he, :de_mv,
  :de_nw, :de_rp, :de_sl, :de_sn, :de_st, :de_th].each do |r|
-  assert_equal [], Holidays.on(Date.civil(2015,8,8), r), "Friedensfest is not a holiday in #{r}"
+  assert_equal [], Holidays.on(Date.civil(2015, 8, 8), r), "Friedensfest is not a holiday in #{r}"
 end
 
-assert_equal [], Holidays.on(Date.civil(2010,5,8), :de), '2010-05-08 is not a holiday in Germany'
+assert_equal [], Holidays.on(Date.civil(2010, 5, 8), :de), '2010-05-08 is not a holiday in Germany'
 
-assert_equal [], Holidays.on(Date.civil(2010,8,8), :de), '2010-08-08 is not a holiday in Germany'
+assert_equal [], Holidays.on(Date.civil(2010, 8, 8), :de), '2010-08-08 is not a holiday in Germany'
 
 # Repentance Day
-assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2004,11,17), :de_sn)[0][:name]
-assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2005,11,16), :de_sn)[0][:name]
-assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2006,11,22), :de_sn)[0][:name]
-assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2009,11,18), :de_sn)[0][:name]
+assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2004, 11, 17), :de_sn)[0][:name]
+assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2005, 11, 16), :de_sn)[0][:name]
+assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2006, 11, 22), :de_sn)[0][:name]
+assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2009, 11, 18), :de_sn)[0][:name]
 
 # Carnival
 [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn].each do |r|
-  assert_equal 'Weiberfastnacht', Holidays.on(Date.civil(2016,2,4),r,:informal)[0][:name]
-  assert_equal 'Rosenmontag', Holidays.on(Date.civil(2016,2,8),r,:informal)[0][:name]
-  assert_equal 'Aschermittwoch', Holidays.on(Date.civil(2016,2,10),r,:informal)[0][:name]
- end
+  assert_equal 'Weiberfastnacht', Holidays.on(Date.civil(2016, 2, 4), r, :informal)[0][:name]
+  assert_equal 'Rosenmontag', Holidays.on(Date.civil(2016, 2, 8), r, :informal)[0][:name]
+  assert_equal 'Aschermittwoch', Holidays.on(Date.civil(2016, 2, 10), r, :informal)[0][:name]
+end
 
 
 {Date.civil(2011,1,1) => 'Πρωτοχρονιά',
@@ -276,24 +278,32 @@ assert_equal 'Día de Extremadura', Holidays.on(Date.civil(2009,9,8), :es_ex)[0]
 assert_equal 'Fiesta Nacional de Cataluña', Holidays.on(Date.civil(2009,9,11), :es_ct)[0][:name]
 
 
-{Date.civil(2007,1,1) => 'Jour de l\'an',
- Date.civil(2007,4,9) => 'Lundi de Pâques',
- Date.civil(2007,5,1) => 'Fête du travail',
- Date.civil(2007,5,8) => 'Victoire 1945',
- Date.civil(2007,5,17) => 'Ascension',
- Date.civil(2007,5,28) => 'Lundi de Pentecôte',
- Date.civil(2007,7,14) => 'Fête nationale',
- Date.civil(2007,8,15) => 'Assomption',
- Date.civil(2007,11,1) => 'Toussaint',
- Date.civil(2007,11,11) => 'Armistice 1918',
- Date.civil(2007,12,25) => 'Noël'}.each do |date, name|
+{ Date.civil(2007, 1, 1) => 'Jour de l\'an',
+  Date.civil(2007, 4, 9) => 'Lundi de Pâques',
+  Date.civil(2007, 5, 1) => 'Fête du travail',
+  Date.civil(2007, 5, 8) => 'Victoire 1945',
+  Date.civil(2007, 5, 17) => 'Ascension',
+  Date.civil(2007, 5, 28) => 'Lundi de Pentecôte',
+  Date.civil(2007, 7, 14) => 'Fête nationale',
+  Date.civil(2007, 8, 15) => 'Assomption',
+  Date.civil(2007, 11, 1) => 'Toussaint',
+  Date.civil(2007, 11, 11) => 'Armistice 1918',
+  Date.civil(2007, 12, 25) => 'Noël' }.each do |date, name|
   assert_equal name, (Holidays.on(date, :fr)[0] || {})[:name]
 end
-{Date.civil(2007,4,8) => 'Pâques',
- Date.civil(2007,5,27) => 'Pentecôte'}.each do |date, name|
+{ Date.civil(2007, 4, 8) => 'Pâques',
+  Date.civil(2007, 5, 27) => 'Pentecôte' }.each do |date, name|
   assert_nil (Holidays.on(date, :fr)[0] || {})[:name]
   assert_equal name, (Holidays.on(date, :fr, :informal)[0] || {})[:name]
 end
+
+[Date.civil(2017, 4, 14), Date.civil(2018, 3, 30), Date.civil(2019, 4, 19)].each do |date|
+  assert_nil (Holidays.on(date, :fr)[0] || {})[:name]
+  assert_equal 'Vendredi saint', Holidays.on(date, [:fr_a, :fr_m])[0][:name]
+end
+
+assert_nil Holidays.on(Date.civil(2017, 12, 26), [:fr])[0] || {}[:name]
+assert_equal 'Saint-Étienne', Holidays.on(Date.civil(2017, 12, 26), [:fr_a, :fr_m])[0][:name]
 
 
 {Date.civil(2008,3,21) => 'Good Friday',
@@ -685,26 +695,32 @@ end
   assert_equal 'Święto Wojska Polskiego', (Holidays.on(Date.civil(2011,8,15), :pl)[1] || {})[:name]
 
 
-{Date.civil(2008,1,1) => 'Ano Novo',
- Date.civil(2005,2,8) => 'Carnaval',
- Date.civil(2006,2,28) => 'Carnaval',
- Date.civil(2007,2,20) => 'Carnaval',
- Date.civil(2008,2,5) => 'Carnaval',
- Date.civil(2008,3,21) => 'Sexta-feira Santa',
- Date.civil(2008,3,23) => 'Páscoa',
- Date.civil(2016,3,27) => 'Páscoa',
- Date.civil(2008,4,25) => 'Dia da Liberdade',
- Date.civil(2008,5,1) => 'Dia do Trabalhador',
- Date.civil(2016,5,26) => 'Corpo de Deus',
- Date.civil(2008,6,10) => 'Dia de Portugal',
- Date.civil(2008,8,15) => 'Assunção de Nossa Senhora',
- Date.civil(2008,10,5) => 'Dia da República',
- Date.civil(2008,11,1) => 'Dia de Todos-os-Santos',
- Date.civil(2008,12,1) => 'Restauração da Independência',
- Date.civil(2008,12,8) => 'Imaculada Conceição',
- Date.civil(2008,12,25) => 'Natal'}.each do |date, name|
+{ Date.civil(2008, 1, 1) => 'Ano Novo',
+  Date.civil(2005, 2, 8) => 'Carnaval',
+  Date.civil(2006, 2, 28) => 'Carnaval',
+  Date.civil(2007, 2, 20) => 'Carnaval',
+  Date.civil(2008, 2, 5) => 'Carnaval',
+  Date.civil(2008, 3, 21) => 'Sexta-feira Santa',
+  Date.civil(2008, 3, 23) => 'Páscoa',
+  Date.civil(2016, 3, 27) => 'Páscoa',
+  Date.civil(2008, 4, 25) => 'Dia da Liberdade',
+  Date.civil(2008, 5, 1) => 'Dia do Trabalhador',
+  Date.civil(2016, 5, 26) => 'Corpo de Deus',
+  Date.civil(2008, 6, 10) => 'Dia de Portugal',
+  Date.civil(2008, 8, 15) => 'Assunção de Nossa Senhora',
+  Date.civil(2008, 10, 5) => 'Dia da República',
+  Date.civil(2008, 11, 1) => 'Dia de Todos-os-Santos',
+  Date.civil(2008, 12, 1) => 'Restauração da Independência',
+  Date.civil(2008, 12, 8) => 'Imaculada Conceição',
+  Date.civil(2008, 12, 25) => 'Natal' }.each do |date, name|
   assert_equal name, (Holidays.on(date, :pt, :informal)[0] || {})[:name]
 end
+
+assert_nil Holidays.on(Date.civil(2017, 6, 13), [:pt])[0] || {}[:name]
+assert_equal 'Dia de Santo António', Holidays.on(Date.civil(2017, 6, 13), [:pt_li])[0][:name]
+
+assert_nil Holidays.on(Date.civil(2017, 6, 24), [:pt])[0] || {}[:name]
+assert_equal 'Dia de São João', Holidays.on(Date.civil(2017, 6, 24), [:pt_po])[0][:name]
 
 
 {

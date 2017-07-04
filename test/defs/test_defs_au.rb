@@ -98,7 +98,7 @@ assert_equal "Boxing Day", Date.civil(2015, 12, 28).holidays(:au_qld, :observed)
 
 # BOXING DAY - SA gets monday only. same for TAS and NT.
 assert_nil Date.civil(2015, 12, 26).holidays(:au_sa)[0]
-assert_equal "Boxing Day", Date.civil(2015, 12, 28).holidays(:au_sa)[0][:name]
+assert_equal "Proclamation Day", Date.civil(2015, 12, 28).holidays(:au_sa)[0][:name]
 assert_nil Date.civil(2015, 12, 26).holidays(:au_tas)[0]
 assert_equal "Boxing Day", Date.civil(2015, 12, 28).holidays(:au_tas)[0][:name]
 assert_nil Date.civil(2015, 12, 26).holidays(:au_nt)[0]
@@ -128,7 +128,7 @@ assert_equal "Christmas Day", Date.civil(2016, 12, 27).holidays(:au_wa, :observe
 # CHRISTMAS DAY - SA observes on 26th if 25th is a Sunday (Boxing Day goes to 27th)
 assert_equal "Christmas Day", Date.civil(2016, 12, 25).holidays(:au_sa)[0][:name]
 assert_equal "Christmas Day", Date.civil(2016, 12, 26).holidays(:au_sa, :observed)[0][:name]
-assert_equal "Boxing Day", Date.civil(2016, 12, 27).holidays(:au_sa)[0][:name]
+assert_equal "Proclamation Day", Date.civil(2016, 12, 27).holidays(:au_sa)[0][:name]
 
 # CHRISTMAS DAY - Victoria and NT now observe both 25th and 27th if weekend
 assert_equal "Christmas Day", Date.civil(2016, 12, 25).holidays(:au_vic)[0][:name]

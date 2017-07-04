@@ -7,12 +7,13 @@ module Holidays
   # All the definitions are available at https://github.com/holidays/holidays
   module FR # :nodoc:
     def self.defined_regions
-      [:fr]
+      [:fr_a, :fr_m, :fr]
     end
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :function_arguments => [:year], :type => :informal, :name => "Pâques", :regions => [:fr]},
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Vendredi saint", :regions => [:fr_a, :fr_m]},
+            {:function => "easter(year)", :function_arguments => [:year], :type => :informal, :name => "Pâques", :regions => [:fr]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Lundi de Pâques", :regions => [:fr]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Ascension", :regions => [:fr]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :type => :informal, :name => "Pentecôte", :regions => [:fr]},
@@ -24,7 +25,8 @@ module Holidays
       8 => [{:mday => 15, :name => "Assomption", :regions => [:fr]}],
       11 => [{:mday => 1, :name => "Toussaint", :regions => [:fr]},
             {:mday => 11, :name => "Armistice 1918", :regions => [:fr]}],
-      12 => [{:mday => 25, :name => "Noël", :regions => [:fr]}]
+      12 => [{:mday => 25, :name => "Noël", :regions => [:fr]},
+            {:mday => 26, :name => "Saint-Étienne", :regions => [:fr_a, :fr_m]}]
       }
     end
 
