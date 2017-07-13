@@ -7,7 +7,7 @@ module Holidays
   # All the definitions are available at https://github.com/holidays/holidays
   module DE # :nodoc:
     def self.defined_regions
-      [:de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_sorbian, :de_th_eichsfeld, :de_sn, :de_st, :de_by_augsburg, :de_bb, :de_mv, :de_th]
+      [:de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_sorbian, :de_th_cath, :de_sn, :de_st, :de_by_cath, :de_by_augsburg, :de_sh, :de_ni, :de_hh, :de_hb, :de_be, :de_bb, :de_mv, :de_th]
     end
 
     def self.holidays_by_month
@@ -18,17 +18,17 @@ module Holidays
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Christi Himmelfahrt", :regions => [:de]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :type => :informal, :name => "Pfingstsonntag", :regions => [:de]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Pfingstmontag", :regions => [:de]},
-            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 60, :name => "Fronleichnam", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_sorbian, :de_th_eichsfeld]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 60, :name => "Fronleichnam", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_sorbian, :de_th_cath]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -52, :type => :informal, :name => "Weiberfastnacht", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -48, :type => :informal, :name => "Rosenmontag", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -46, :type => :informal, :name => "Aschermittwoch", :regions => [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn]}],
       1 => [{:mday => 1, :name => "Neujahrstag", :regions => [:de]},
             {:mday => 6, :name => "Heilige Drei Könige", :regions => [:de_bw, :de_by, :de_st]}],
       5 => [{:mday => 1, :name => "Tag der Arbeit", :regions => [:de]}],
-      8 => [{:mday => 15, :name => "Mariä Himmelfahrt", :regions => [:de_by, :de_sl]},
+      8 => [{:mday => 15, :name => "Mariä Himmelfahrt", :regions => [:de_by_cath, :de_by_augsburg, :de_sl]},
             {:mday => 8, :name => "Friedensfest", :regions => [:de_by_augsburg]}],
       10 => [{:mday => 3, :name => "Tag der Deutschen Einheit", :regions => [:de]},
-            {:mday => 31, :name => "Reformationstag", :regions => [:de_bb, :de_mv, :de_sn, :de_st, :de_th]},
+            {:mday => 31, :name => "Reformationstag", :regions => [:de_sh, :de_ni, :de_hh, :de_hb, :de_be, :de_bb, :de_mv, :de_sn, :de_st, :de_th]},
             {:mday => 31, :type => :informal, :name => "Reformationstag", :regions => [:de_bw]},
             {:mday => 31,  :year_ranges => [{:limited => [2017]}],:name => "Reformationstag", :regions => [:de]}],
       11 => [{:mday => 1, :name => "Allerheiligen", :regions => [:de_bw, :de_by, :de_nw, :de_rp, :de_sl]},
