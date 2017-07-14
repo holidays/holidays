@@ -1,5 +1,12 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 5.7.0
+
+* Update to [v1.7.1 definitions](https://github.com/holidays/definitions/releases/tag/v1.7.1). Please see the
+  definitions repository for the list of changes.
+* Remove 'coveralls'. We never looked at the reports. We will we simplecov to enforce test coverage. It will
+  start off being set to require 99% and above.
+
 ## 5.6.0
 
 * Update to v1.6.1 definitions, which includes updates for the `:ca` region (and subregions)
