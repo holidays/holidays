@@ -31,6 +31,8 @@ assert_equal "Ramazan Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2019, 6,
 assert_equal "Ramazan Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2018, 6, 17), [:tr])[0] || {})[:name]
 assert_equal "Ramazan Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2019, 6, 6), [:tr])[0] || {})[:name]
 
+    assert_equal "Demokrasi ve Milli Birlik Günü", (Holidays.on(Date.civil(2017, 7, 15), [:tr])[0] || {})[:name]
+
     assert_equal "Kurban Bayramı", (Holidays.on(Date.civil(2017, 9, 1), [:tr])[0] || {})[:name]
 assert_equal "Kurban Bayramı", (Holidays.on(Date.civil(2018, 8, 21), [:tr])[0] || {})[:name]
 assert_equal "Kurban Bayramı", (Holidays.on(Date.civil(2019, 8, 11), [:tr])[0] || {})[:name]
