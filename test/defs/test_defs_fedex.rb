@@ -7,18 +7,25 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class FedexDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_fedex
-{Date.civil(2015,1,1) => 'New Year\'s Day',
- Date.civil(2015,5,25) => 'Memorial Day',
- Date.civil(2015,7,4) => 'Independence Day',
- Date.civil(2015,9,7) => 'Labor Day',
- Date.civil(2015,11,26) => 'Thanksgiving',
- Date.civil(2015,11,27) => 'Day After Thanksgiving',
- Date.civil(2013,11,28) => 'Thanksgiving',
- Date.civil(2013,11,29) => 'Day After Thanksgiving',
- Date.civil(2015,12,25) => 'Christmas Day',
- Date.civil(2015,12,31) => 'New Year\'s Eve',}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :ups)[0] || {})[:name]
-end
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2015, 1, 1), [:ups])[0] || {})[:name]
+
+    assert_equal "Memorial Day", (Holidays.on(Date.civil(2015, 5, 25), [:ups])[0] || {})[:name]
+
+    assert_equal "Independence Day", (Holidays.on(Date.civil(2015, 7, 4), [:ups])[0] || {})[:name]
+
+    assert_equal "Labor Day", (Holidays.on(Date.civil(2015, 9, 7), [:ups])[0] || {})[:name]
+
+    assert_equal "Thanksgiving", (Holidays.on(Date.civil(2015, 11, 26), [:ups])[0] || {})[:name]
+
+    assert_equal "Day After Thanksgiving", (Holidays.on(Date.civil(2015, 11, 27), [:ups])[0] || {})[:name]
+
+    assert_equal "Thanksgiving", (Holidays.on(Date.civil(2013, 11, 28), [:ups])[0] || {})[:name]
+
+    assert_equal "Day After Thanksgiving", (Holidays.on(Date.civil(2013, 11, 29), [:ups])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2015, 12, 25), [:ups])[0] || {})[:name]
+
+    assert_equal "New Year's Eve", (Holidays.on(Date.civil(2015, 12, 31), [:ups])[0] || {})[:name]
 
   end
 end

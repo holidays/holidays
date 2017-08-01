@@ -7,26 +7,41 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class PeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_pe
-{Date.civil(2016,1,1) => 'Año Nuevo',
- Date.civil(2016,1,6) => 'Día de los Reyes Magos',
- Date.civil(2016,3,24) => 'Jueves Santo',
- Date.civil(2016,3,25) => 'Viernes Santo',
- Date.civil(2016,3,27) => 'Pascua',
- Date.civil(2016,5,1) => 'Día del Trabajador',
- Date.civil(2016,5,8) => 'Día de la Madre',
- Date.civil(2016,6,7) => 'Día de la Bandera',
- Date.civil(2016,6,19) => 'Día del Padre',
- Date.civil(2016,6,29) => 'San Pablo y San Pedro',
- Date.civil(2016,7,28) => 'Primer Día de la Independencia',
- Date.civil(2016,7,29) => 'Segundo Día de la Independencia',
- Date.civil(2016,8,30) => 'Santa Rosa de Lima',
- Date.civil(2016,9,24) => 'Día de las Fuerzas Armadas',
- Date.civil(2016,10,8) => 'Batalla de Angamos',
- Date.civil(2016,11,1) => 'Todos los Santos',
- Date.civil(2016,12,8) => 'Inmaculada Concepción',
- Date.civil(2016,12,25) => 'Navidad del Señor'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :pe, :informal)[0] || {})[:name]
-end
+    assert_equal "Año Nuevo", (Holidays.on(Date.civil(2016, 1, 1), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de los Reyes Magos", (Holidays.on(Date.civil(2016, 1, 6), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Jueves Santo", (Holidays.on(Date.civil(2016, 3, 24), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Viernes Santo", (Holidays.on(Date.civil(2016, 3, 25), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Pascua", (Holidays.on(Date.civil(2016, 3, 27), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Día del Trabajador", (Holidays.on(Date.civil(2016, 5, 1), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de la Madre", (Holidays.on(Date.civil(2016, 5, 8), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de la Bandera", (Holidays.on(Date.civil(2016, 6, 7), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Día del Padre", (Holidays.on(Date.civil(2016, 6, 19), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "San Pablo y San Pedro", (Holidays.on(Date.civil(2016, 6, 29), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Primer Día de la Independencia", (Holidays.on(Date.civil(2016, 7, 28), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Segundo Día de la Independencia", (Holidays.on(Date.civil(2016, 7, 29), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Santa Rosa de Lima", (Holidays.on(Date.civil(2016, 8, 30), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de las Fuerzas Armadas", (Holidays.on(Date.civil(2016, 9, 24), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Batalla de Angamos", (Holidays.on(Date.civil(2016, 10, 8), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Todos los Santos", (Holidays.on(Date.civil(2016, 11, 1), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Inmaculada Concepción", (Holidays.on(Date.civil(2016, 12, 8), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Navidad del Señor", (Holidays.on(Date.civil(2016, 12, 25), [:pe], [:informal])[0] || {})[:name]
 
   end
 end

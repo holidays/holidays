@@ -7,67 +7,129 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class EsDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_es
-{Date.civil(2009,1,1) => 'Año Nuevo',
- Date.civil(2009,1,6) => 'Día de Reyes',
- Date.civil(2009,4,10) => 'Viernes Santo',
- Date.civil(2009,5,1) => 'Día del Trabajador',
- Date.civil(2009,8,15) => 'Asunción',
- Date.civil(2009,10,12) => 'Día de la Hispanidad',
- Date.civil(2009,11,1) => 'Todos los Santos',
- Date.civil(2009,12,6) => 'Día de la Constitución',
- Date.civil(2009,12,8) => 'Inmaculada Concepción',
- Date.civil(2009,12,25) => 'Navidad del Señor'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :es, :informal)[0] || {})[:name]
-end
+    assert_equal "Año Nuevo", (Holidays.on(Date.civil(2009, 1, 1), [:es], [:informal])[0] || {})[:name]
 
-[:es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex, :es_].each do |r|
-  assert_equal 'Jueves Santo', Holidays.on(Date.civil(2009,4,9), r)[0][:name]
-end
-[:es_pv, :es_ct, :es_na, :es_v, :es_vc, :es_].each do |r|
-  assert_equal 'Lunes de Pascua', Holidays.on(Date.civil(2009,4,13), r)[0][:name]
-end
+    assert_equal "Día de Reyes", (Holidays.on(Date.civil(2009, 1, 6), [:es], [:informal])[0] || {})[:name]
 
-assert_equal 'Jueves Santo', Holidays.on(Date.civil(2009,4,9), :es_an)[0][:name]
+    assert_equal "Viernes Santo", (Holidays.on(Date.civil(2009, 4, 10), [:es], [:informal])[0] || {})[:name]
 
-[:es_v, :es_vc, :es_cm, :es_mu, :es_m, :es_].each do |r|
-  assert_equal 'San José', Holidays.on(Date.civil(2009,3,19), r)[0][:name]
-end
+    assert_equal "Día del Trabajador", (Holidays.on(Date.civil(2009, 5, 1), [:es], [:informal])[0] || {})[:name]
 
-[:es_cl].each do |r|
-  assert_equal 'Día de Castilla y León', Holidays.on(Date.civil(2009,4,23), r)[0][:name]
-end
+    assert_equal "Asunción", (Holidays.on(Date.civil(2009, 8, 15), [:es], [:informal])[0] || {})[:name]
 
-[:es_ar].each do |r|
-  assert_equal 'San Jorge, Día de Aragón', Holidays.on(Date.civil(2009,4,23), r)[0][:name]
-end
+    assert_equal "Día de la Hispanidad", (Holidays.on(Date.civil(2009, 10, 12), [:es], [:informal])[0] || {})[:name]
 
-[:es_].each do |r|
-  assert_equal 'Día de Castilla y León', Holidays.on(Date.civil(2009,4,23), r)[0][:name]
-  assert_equal 'San Jorge, Día de Aragón', Holidays.on(Date.civil(2009,4,23), r)[1][:name]
-end
+    assert_equal "Todos los Santos", (Holidays.on(Date.civil(2009, 11, 1), [:es], [:informal])[0] || {})[:name]
 
-[:es_vc, :es_v, :es_].each do |r|
-  assert_equal 'Día de Valencia', Holidays.on(Date.civil(2009,10,9), r)[0][:name]
-end
+    assert_equal "Día de la Constitución", (Holidays.on(Date.civil(2009, 12, 6), [:es], [:informal])[0] || {})[:name]
 
-[:es_ib, :es_ct, :es_].each do |r|
-  assert_equal 'San Esteban', Holidays.on(Date.civil(2009,12,26), r)[0][:name]
-end
+    assert_equal "Inmaculada Concepción", (Holidays.on(Date.civil(2009, 12, 8), [:es], [:informal])[0] || {})[:name]
 
-assert_equal 'Año Nuevo', Holidays.on(Date.civil(2012,1,1), :es)[0][:name]
-assert_equal 'Año Nuevo', Holidays.on(Date.civil(2012,1,2), :es, :observed)[0][:name]
-assert_equal 'Día de Andalucía', Holidays.on(Date.civil(2009,2,28), :es_an)[0][:name]
-assert_equal 'Día de las Islas Baleares', Holidays.on(Date.civil(2009,3,1), :es_ib)[0][:name]
-assert_equal 'Fiesta de la Comunidad', Holidays.on(Date.civil(2006,5,2), :es_m)[0][:name]
-assert_equal 'Día de las Canarias', Holidays.on(Date.civil(2006,5,30), :es_cn)[0][:name]
-assert_equal 'Día de la Región Castilla-La Mancha', Holidays.on(Date.civil(2009,5,31), :es_cm)[0][:name]
-assert_equal 'Día de la Región de Murcia', Holidays.on(Date.civil(2009,6,9), :es_mu)[0][:name]
-assert_equal 'Día de La Rioja', Holidays.on(Date.civil(2009,6,9), :es_lo)[0][:name]
-assert_equal 'Santiago Apostol', Holidays.on(Date.civil(2009,7,23), :es_ga)[0][:name]
-assert_equal 'Día de Ceuta', Holidays.on(Date.civil(2009,9,2), :es_ce)[0][:name]
-assert_equal 'Día de Asturias', Holidays.on(Date.civil(2009,9,8), :es_o)[0][:name]
-assert_equal 'Día de Extremadura', Holidays.on(Date.civil(2009,9,8), :es_ex)[0][:name]
-assert_equal 'Fiesta Nacional de Cataluña', Holidays.on(Date.civil(2009,9,11), :es_ct)[0][:name]
+    assert_equal "Navidad del Señor", (Holidays.on(Date.civil(2009, 12, 25), [:es], [:informal])[0] || {})[:name]
+
+    assert_equal "Jueves Santo", (Holidays.on(Date.civil(2009, 4, 9), [:es_pv], [:informal])[0] || {})[:name]
+
+    assert_equal "Jueves Santo", (Holidays.on(Date.civil(2009, 4, 9), [:es_na], [:informal])[0] || {})[:name]
+
+    assert_equal "Jueves Santo", (Holidays.on(Date.civil(2009, 4, 9), [:es_an], [:informal])[0] || {})[:name]
+
+    assert_equal "Jueves Santo", (Holidays.on(Date.civil(2009, 4, 9), [:es_ib], [:informal])[0] || {})[:name]
+
+    assert_equal "Jueves Santo", (Holidays.on(Date.civil(2009, 4, 9), [:es_cm], [:informal])[0] || {})[:name]
+
+    assert_equal "Jueves Santo", (Holidays.on(Date.civil(2009, 4, 9), [:es_mu], [:informal])[0] || {})[:name]
+
+    assert_equal "Jueves Santo", (Holidays.on(Date.civil(2009, 4, 9), [:es_m], [:informal])[0] || {})[:name]
+
+    assert_equal "Jueves Santo", (Holidays.on(Date.civil(2009, 4, 9), [:es_ar], [:informal])[0] || {})[:name]
+
+    assert_equal "Jueves Santo", (Holidays.on(Date.civil(2009, 4, 9), [:es_cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Jueves Santo", (Holidays.on(Date.civil(2009, 4, 9), [:es_cn], [:informal])[0] || {})[:name]
+
+    assert_equal "Jueves Santo", (Holidays.on(Date.civil(2009, 4, 9), [:es_lo], [:informal])[0] || {})[:name]
+
+    assert_equal "Jueves Santo", (Holidays.on(Date.civil(2009, 4, 9), [:es_ga], [:informal])[0] || {})[:name]
+
+    assert_equal "Jueves Santo", (Holidays.on(Date.civil(2009, 4, 9), [:es_ce], [:informal])[0] || {})[:name]
+
+    assert_equal "Jueves Santo", (Holidays.on(Date.civil(2009, 4, 9), [:es_o], [:informal])[0] || {})[:name]
+
+    assert_equal "Jueves Santo", (Holidays.on(Date.civil(2009, 4, 9), [:es_ex], [:informal])[0] || {})[:name]
+
+    assert_equal "Jueves Santo", (Holidays.on(Date.civil(2009, 4, 9), [:es_], [:informal])[0] || {})[:name]
+
+    assert_equal "Lunes de Pascua", (Holidays.on(Date.civil(2009, 4, 13), [:es_pv])[0] || {})[:name]
+
+    assert_equal "Lunes de Pascua", (Holidays.on(Date.civil(2009, 4, 13), [:es_ct])[0] || {})[:name]
+
+    assert_equal "Lunes de Pascua", (Holidays.on(Date.civil(2009, 4, 13), [:es_na])[0] || {})[:name]
+
+    assert_equal "Lunes de Pascua", (Holidays.on(Date.civil(2009, 4, 13), [:es_v])[0] || {})[:name]
+
+    assert_equal "Lunes de Pascua", (Holidays.on(Date.civil(2009, 4, 13), [:es_vc])[0] || {})[:name]
+
+    assert_equal "Lunes de Pascua", (Holidays.on(Date.civil(2009, 4, 13), [:es_])[0] || {})[:name]
+
+    assert_equal "Jueves Santo", (Holidays.on(Date.civil(2009, 4, 9), [:es_an])[0] || {})[:name]
+
+    assert_equal "San José", (Holidays.on(Date.civil(2009, 3, 19), [:es_v])[0] || {})[:name]
+
+    assert_equal "San José", (Holidays.on(Date.civil(2009, 3, 19), [:es_vc])[0] || {})[:name]
+
+    assert_equal "San José", (Holidays.on(Date.civil(2009, 3, 19), [:es_cm])[0] || {})[:name]
+
+    assert_equal "San José", (Holidays.on(Date.civil(2009, 3, 19), [:es_mu])[0] || {})[:name]
+
+    assert_equal "San José", (Holidays.on(Date.civil(2009, 3, 19), [:es_m])[0] || {})[:name]
+
+    assert_equal "San José", (Holidays.on(Date.civil(2009, 3, 19), [:es_])[0] || {})[:name]
+
+    assert_equal "Día de Castilla y León", (Holidays.on(Date.civil(2009, 4, 23), [:es_cl])[0] || {})[:name]
+
+    assert_equal "San Jorge, Día de Aragón", (Holidays.on(Date.civil(2009, 4, 23), [:es_ar])[0] || {})[:name]
+
+    assert_equal "Día de Castilla y León", (Holidays.on(Date.civil(2009, 4, 23), [:es_])[0] || {})[:name]
+
+    assert_equal "Día de Valencia", (Holidays.on(Date.civil(2009, 10, 9), [:es_vc])[0] || {})[:name]
+
+    assert_equal "Día de Valencia", (Holidays.on(Date.civil(2009, 10, 9), [:es_v])[0] || {})[:name]
+
+    assert_equal "Día de Valencia", (Holidays.on(Date.civil(2009, 10, 9), [:es_])[0] || {})[:name]
+
+    assert_equal "San Esteban", (Holidays.on(Date.civil(2009, 12, 26), [:es_ib])[0] || {})[:name]
+
+    assert_equal "San Esteban", (Holidays.on(Date.civil(2009, 12, 26), [:es_ct])[0] || {})[:name]
+
+    assert_equal "San Esteban", (Holidays.on(Date.civil(2009, 12, 26), [:es_])[0] || {})[:name]
+
+    assert_equal "Año Nuevo", (Holidays.on(Date.civil(2012, 1, 1), [:es])[0] || {})[:name]
+
+    assert_equal "Año Nuevo", (Holidays.on(Date.civil(2012, 1, 2), [:es], [:observed])[0] || {})[:name]
+
+    assert_equal "Día de Andalucía", (Holidays.on(Date.civil(2009, 2, 28), [:es_an])[0] || {})[:name]
+
+    assert_equal "Día de las Islas Baleares", (Holidays.on(Date.civil(2009, 3, 1), [:es_ib])[0] || {})[:name]
+
+    assert_equal "Fiesta de la Comunidad", (Holidays.on(Date.civil(2006, 5, 2), [:es_m])[0] || {})[:name]
+
+    assert_equal "Día de las Canarias", (Holidays.on(Date.civil(2006, 5, 30), [:es_cn])[0] || {})[:name]
+
+    assert_equal "Día de la Región Castilla-La Mancha", (Holidays.on(Date.civil(2009, 5, 31), [:es_cm])[0] || {})[:name]
+
+    assert_equal "Día de la Región de Murcia", (Holidays.on(Date.civil(2009, 6, 9), [:es_mu])[0] || {})[:name]
+
+    assert_equal "Día de La Rioja", (Holidays.on(Date.civil(2009, 6, 9), [:es_lo])[0] || {})[:name]
+
+    assert_equal "Santiago Apostol", (Holidays.on(Date.civil(2009, 7, 23), [:es_ga])[0] || {})[:name]
+
+    assert_equal "Día de Ceuta", (Holidays.on(Date.civil(2009, 9, 2), [:es_ce])[0] || {})[:name]
+
+    assert_equal "Día de Asturias", (Holidays.on(Date.civil(2009, 9, 8), [:es_o])[0] || {})[:name]
+
+    assert_equal "Día de Extremadura", (Holidays.on(Date.civil(2009, 9, 8), [:es_ex])[0] || {})[:name]
+
+    assert_equal "Fiesta Nacional de Cataluña", (Holidays.on(Date.civil(2009, 9, 11), [:es_ct])[0] || {})[:name]
 
   end
 end

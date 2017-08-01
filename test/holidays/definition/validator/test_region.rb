@@ -46,4 +46,9 @@ class RegionValidatorTests < Test::Unit::TestCase
   def test_returns_false_if_malicious_region_is_given
     assert_equal(false, @subject.valid?(:"../../../test"))
   end
+
+  def test_returns_true_with_multiple_underscores
+    @regions_repo.expects(:loaded?).with(:some_test_region).returns(true)
+    assert(@subject.valid?(:some_test_region))
+  end
 end

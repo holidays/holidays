@@ -7,25 +7,39 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class HrDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_hr
-{Date.civil(2012,1,1) => 'Nova godina',
- Date.civil(2012,1,6) => 'Sveta tri kralja',
- Date.civil(2012,5,1) => 'Međunarodni praznik rada',
- Date.civil(2012,6,22) => 'Dan antifašističke borbe',
- Date.civil(2012,6,25) => 'Dan državnosti',
- Date.civil(2012,8,5) => 'Dan pobjede i domovinske zahvalnosti i dan hrvatskih branitelja',
- Date.civil(2012,8,15) => 'Velika Gospa',
- Date.civil(2012,10,8) => 'Dan neovisnosti',
- Date.civil(2012,11,1) => 'Dan svih svetih',
- Date.civil(2012,12,25) => 'Božić',
- Date.civil(2012,12,26) => 'Sveti Stjepan'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :hr, :informal)[0] || {})[:name]
-end
+    assert_equal "Nova godina", (Holidays.on(Date.civil(2012, 1, 1), [:hr], [:informal])[0] || {})[:name]
 
-# Tijelovo
-[Date.civil(2008,5,22), Date.civil(2009,6,11), Date.civil(2010,6,3),
- Date.civil(2012,6,7), Date.civil(2013,5,30), Date.civil(2014,6,19)].each do |date|
-  assert_equal 'Tijelovo', Holidays.on(date, :hr)[0][:name]
-end
+    assert_equal "Sveta tri kralja", (Holidays.on(Date.civil(2012, 1, 6), [:hr], [:informal])[0] || {})[:name]
+
+    assert_equal "Međunarodni praznik rada", (Holidays.on(Date.civil(2012, 5, 1), [:hr], [:informal])[0] || {})[:name]
+
+    assert_equal "Dan antifašističke borbe", (Holidays.on(Date.civil(2012, 6, 22), [:hr], [:informal])[0] || {})[:name]
+
+    assert_equal "Dan državnosti", (Holidays.on(Date.civil(2012, 6, 25), [:hr], [:informal])[0] || {})[:name]
+
+    assert_equal "Dan pobjede i domovinske zahvalnosti i dan hrvatskih branitelja", (Holidays.on(Date.civil(2012, 8, 5), [:hr], [:informal])[0] || {})[:name]
+
+    assert_equal "Velika Gospa", (Holidays.on(Date.civil(2012, 8, 15), [:hr], [:informal])[0] || {})[:name]
+
+    assert_equal "Dan neovisnosti", (Holidays.on(Date.civil(2012, 10, 8), [:hr], [:informal])[0] || {})[:name]
+
+    assert_equal "Dan svih svetih", (Holidays.on(Date.civil(2012, 11, 1), [:hr], [:informal])[0] || {})[:name]
+
+    assert_equal "Božić", (Holidays.on(Date.civil(2012, 12, 25), [:hr], [:informal])[0] || {})[:name]
+
+    assert_equal "Sveti Stjepan", (Holidays.on(Date.civil(2012, 12, 26), [:hr], [:informal])[0] || {})[:name]
+
+    assert_equal "Tijelovo", (Holidays.on(Date.civil(2008, 5, 22), [:hr])[0] || {})[:name]
+
+    assert_equal "Tijelovo", (Holidays.on(Date.civil(2009, 6, 11), [:hr])[0] || {})[:name]
+
+    assert_equal "Tijelovo", (Holidays.on(Date.civil(2010, 6, 3), [:hr])[0] || {})[:name]
+
+    assert_equal "Tijelovo", (Holidays.on(Date.civil(2012, 6, 7), [:hr])[0] || {})[:name]
+
+    assert_equal "Tijelovo", (Holidays.on(Date.civil(2013, 5, 30), [:hr])[0] || {})[:name]
+
+    assert_equal "Tijelovo", (Holidays.on(Date.civil(2014, 6, 19), [:hr])[0] || {})[:name]
 
   end
 end

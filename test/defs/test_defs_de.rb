@@ -7,80 +7,71 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class DeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_de
-{ Date.civil(2009, 1, 1) => 'Neujahrstag',
-  Date.civil(2009, 4, 10) => 'Karfreitag',
-  Date.civil(2009, 4, 12) => 'Ostersonntag',
-  Date.civil(2009, 4, 13) => 'Ostermontag',
-  Date.civil(2009, 5, 1) => 'Tag der Arbeit',
-  Date.civil(2009, 5, 21) => 'Christi Himmelfahrt',
-  Date.civil(2009, 5, 31) => 'Pfingstsonntag',
-  Date.civil(2009, 6, 1) => 'Pfingstmontag',
-  Date.civil(2009, 10, 3) => 'Tag der Deutschen Einheit',
-  Date.civil(2009, 12, 24) => 'Heilig Abend',
-  Date.civil(2009, 12, 25) => '1. Weihnachtstag',
-  Date.civil(2009, 12, 26) => '2. Weihnachtstag',
-  Date.civil(2009, 12, 31) => 'Silvester' }.each do |date, name|
-  assert_equal name, (Holidays.on(date, :de, :informal)[0] || {})[:name], "Failed on '#{name}' for date '#{date}'"
-end
+    assert_equal "Neujahrstag", (Holidays.on(Date.civil(2009, 1, 1), [:de], [:informal])[0] || {})[:name]
 
-[:de_bw, :de_by, :de_st, :de_].each do |r|
-  assert_equal 'Heilige Drei Könige', Holidays.on(Date.civil(2009, 1, 6), r)[0][:name]
-end
+    assert_equal "Karfreitag", (Holidays.on(Date.civil(2009, 4, 10), [:de], [:informal])[0] || {})[:name]
 
-assert_equal [],Holidays.on(Date.civil(2017, 6, 15), [:de_th, :de_sn])
-[:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_sorbian, :de_th_cath].each do |r|
-  assert_equal 'Fronleichnam', Holidays.on(Date.civil(2017, 6, 15), r)[0][:name]
-end
+    assert_equal "Ostersonntag", (Holidays.on(Date.civil(2009, 4, 12), [:de], [:informal])[0] || {})[:name]
 
-assert_equal [], Holidays.on(Date.civil(2017, 8, 15), [:de_by, :de_sn])
-[:de_by_cath, :de_by_augsburg, :de_sl].each do |r|
-  assert_equal 'Mariä Himmelfahrt', Holidays.on(Date.civil(2017, 8, 15), r)[0][:name]
-end
+    assert_equal "Ostermontag", (Holidays.on(Date.civil(2009, 4, 13), [:de], [:informal])[0] || {})[:name]
 
-[:de_sh, :de_ni, :de_hh, :de_hb, :de_be, :de_bb, :de_mv, :de_sn, :de_st, :de_th, :de_].each do |r|
-  assert_equal 'Reformationstag', Holidays.on(Date.civil(2017, 10, 31), r)[0][:name]
-end
+    assert_equal "Tag der Arbeit", (Holidays.on(Date.civil(2009, 5, 1), [:de], [:informal])[0] || {})[:name]
 
-# Free day in schools
-[:de_bw].each do |r|
-  assert_equal 'Reformationstag', Holidays.on(Date.civil(2009, 10, 31), r, :informal)[0][:name]
-end
+    assert_equal "Christi Himmelfahrt", (Holidays.on(Date.civil(2009, 5, 21), [:de], [:informal])[0] || {})[:name]
 
-# 500 years reformation in 2017
-assert_equal 'Reformationstag', Holidays.on(Date.civil(2017, 10, 31), :de)[0][:name]
-assert_equal [], Holidays.on(Date.civil(2016, 10, 31), :de), "Reformationstag is not a holiday in 2016 in whole Germany"
-assert_equal [], Holidays.on(Date.civil(2018, 10, 31), :de), "Reformationstag is not a holiday in 2018 in whole Germany"
+    assert_equal "Pfingstsonntag", (Holidays.on(Date.civil(2009, 5, 31), [:de], [:informal])[0] || {})[:name]
 
-[:de_bw, :de_by, :de_nw, :de_rp, :de_sl, :de_].each do |r|
-  assert_equal 'Allerheiligen', Holidays.on(Date.civil(2009, 11, 1), r)[0][:name]
-end
+    assert_equal "Pfingstmontag", (Holidays.on(Date.civil(2009, 6, 1), [:de], [:informal])[0] || {})[:name]
 
-[:de_by_augsburg].each do |r|
-  assert_equal 'Friedensfest', Holidays.on(Date.civil(2015, 8, 8), r)[0][:name]
-end
+    assert_equal "Tag der Deutschen Einheit", (Holidays.on(Date.civil(2009, 10, 3), [:de], [:informal])[0] || {})[:name]
 
-[:de,
- :de_bw, :de_by, :de_bb, :de_he, :de_mv,
- :de_nw, :de_rp, :de_sl, :de_sn, :de_st, :de_th].each do |r|
-  assert_equal [], Holidays.on(Date.civil(2015, 8, 8), r), "Friedensfest is not a holiday in #{r}"
-end
+    assert_equal "Heilig Abend", (Holidays.on(Date.civil(2009, 12, 24), [:de], [:informal])[0] || {})[:name]
 
-assert_equal [], Holidays.on(Date.civil(2010, 5, 8), :de), '2010-05-08 is not a holiday in Germany'
+    assert_equal "1. Weihnachtstag", (Holidays.on(Date.civil(2009, 12, 25), [:de], [:informal])[0] || {})[:name]
 
-assert_equal [], Holidays.on(Date.civil(2010, 8, 8), :de), '2010-08-08 is not a holiday in Germany'
+    assert_equal "2. Weihnachtstag", (Holidays.on(Date.civil(2009, 12, 26), [:de], [:informal])[0] || {})[:name]
 
-# Repentance Day
-assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2004, 11, 17), :de_sn)[0][:name]
-assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2005, 11, 16), :de_sn)[0][:name]
-assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2006, 11, 22), :de_sn)[0][:name]
-assert_equal 'Buß- und Bettag', Holidays.on(Date.civil(2009, 11, 18), :de_sn)[0][:name]
+    assert_equal "Silvester", (Holidays.on(Date.civil(2009, 12, 31), [:de], [:informal])[0] || {})[:name]
 
-# Carnival
-[:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn].each do |r|
-  assert_equal 'Weiberfastnacht', Holidays.on(Date.civil(2016, 2, 4), r, :informal)[0][:name]
-  assert_equal 'Rosenmontag', Holidays.on(Date.civil(2016, 2, 8), r, :informal)[0][:name]
-  assert_equal 'Aschermittwoch', Holidays.on(Date.civil(2016, 2, 10), r, :informal)[0][:name]
-end
+    assert_equal "Heilige Drei Könige", (Holidays.on(Date.civil(2009, 1, 6), [:de_bw, :de_by, :de_st, :de_])[0] || {})[:name]
+
+    assert_equal "Fronleichnam", (Holidays.on(Date.civil(2009, 6, 11), [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_sorbian, :de_th_cath])[0] || {})[:name]
+
+    assert_equal "Mariä Himmelfahrt", (Holidays.on(Date.civil(2009, 8, 15), [:de_by, :de_sl, :de_])[0] || {})[:name]
+
+    assert_equal "Reformationstag", (Holidays.on(Date.civil(2009, 10, 31), [:de_bb, :de_mv, :de_sn, :de_st, :de_th, :de_])[0] || {})[:name]
+
+    assert_equal "Reformationstag", (Holidays.on(Date.civil(2009, 10, 31), [:de_bw], [:informal])[0] || {})[:name]
+
+    assert_equal "Reformationstag", (Holidays.on(Date.civil(2017, 10, 31), [:de])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2016, 10, 31), [:de])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2018, 10, 31), [:de])[0] || {})[:name]
+
+    assert_equal "Allerheiligen", (Holidays.on(Date.civil(2009, 11, 1), [:de_bw, :de_by, :de_nw, :de_rp, :de_sl, :de_])[0] || {})[:name]
+
+    assert_equal "Friedensfest", (Holidays.on(Date.civil(2015, 8, 8), [:de_by_augsburg])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2015, 8, 8), [:de, :de_bw, :de_by, :de_bb, :de_he, :de_mv, :de_nw, :de_rp, :de_sl, :de_sn, :de_st, :de_th])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2010, 5, 8), [:de])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2010, 8, 8), [:de])[0] || {})[:name]
+
+    assert_equal "Buß- und Bettag", (Holidays.on(Date.civil(2004, 11, 17), [:de_sn])[0] || {})[:name]
+
+    assert_equal "Buß- und Bettag", (Holidays.on(Date.civil(2005, 11, 16), [:de_sn])[0] || {})[:name]
+
+    assert_equal "Buß- und Bettag", (Holidays.on(Date.civil(2006, 11, 22), [:de_sn])[0] || {})[:name]
+
+    assert_equal "Buß- und Bettag", (Holidays.on(Date.civil(2009, 11, 18), [:de_sn])[0] || {})[:name]
+
+    assert_equal "Weiberfastnacht", (Holidays.on(Date.civil(2016, 2, 4), [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn], [:informal])[0] || {})[:name]
+
+    assert_equal "Rosenmontag", (Holidays.on(Date.civil(2016, 2, 8), [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn], [:informal])[0] || {})[:name]
+
+    assert_equal "Aschermittwoch", (Holidays.on(Date.civil(2016, 2, 10), [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn], [:informal])[0] || {})[:name]
 
   end
 end

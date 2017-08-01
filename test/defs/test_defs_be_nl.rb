@@ -7,20 +7,29 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class Be_nlDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_be_nl
-{Date.civil(2007,1,1) => 'Nieuwjaar',
- Date.civil(2007,4,8) => 'Pasen',
- Date.civil(2007,4,9) => 'Paasmaandag',
- Date.civil(2007,5,1) => 'Feest van de Arbeid',
- Date.civil(2007,5,17) => 'O.H. Hemelvaart',
- Date.civil(2007,5,27) => 'Pinksteren',
- Date.civil(2007,5,28) => 'Pinkstermaandag',
- Date.civil(2007,7,21) => 'Nationale Feestdag',
- Date.civil(2007,8,15) => 'O.L.V. Hemelvaart',
- Date.civil(2007,11,1) => 'Allerheiligen',
- Date.civil(2007,11,11) => 'Wapenstilstand 1918',
- Date.civil(2007,12,25) => 'Kerstmis'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :be_nl, :informal)[0] || {})[:name]
-end
+    assert_equal "Nieuwjaar", (Holidays.on(Date.civil(2007, 1, 1), [:be_nl], [:informal])[0] || {})[:name]
+
+    assert_equal "Pasen", (Holidays.on(Date.civil(2007, 4, 8), [:be_nl], [:informal])[0] || {})[:name]
+
+    assert_equal "Paasmaandag", (Holidays.on(Date.civil(2007, 4, 9), [:be_nl], [:informal])[0] || {})[:name]
+
+    assert_equal "Feest van de Arbeid", (Holidays.on(Date.civil(2007, 5, 1), [:be_nl], [:informal])[0] || {})[:name]
+
+    assert_equal "O.H. Hemelvaart", (Holidays.on(Date.civil(2007, 5, 17), [:be_nl], [:informal])[0] || {})[:name]
+
+    assert_equal "Pinksteren", (Holidays.on(Date.civil(2007, 5, 27), [:be_nl], [:informal])[0] || {})[:name]
+
+    assert_equal "Pinkstermaandag", (Holidays.on(Date.civil(2007, 5, 28), [:be_nl], [:informal])[0] || {})[:name]
+
+    assert_equal "Nationale Feestdag", (Holidays.on(Date.civil(2007, 7, 21), [:be_nl], [:informal])[0] || {})[:name]
+
+    assert_equal "O.L.V. Hemelvaart", (Holidays.on(Date.civil(2007, 8, 15), [:be_nl], [:informal])[0] || {})[:name]
+
+    assert_equal "Allerheiligen", (Holidays.on(Date.civil(2007, 11, 1), [:be_nl], [:informal])[0] || {})[:name]
+
+    assert_equal "Wapenstilstand 1918", (Holidays.on(Date.civil(2007, 11, 11), [:be_nl], [:informal])[0] || {})[:name]
+
+    assert_equal "Kerstmis", (Holidays.on(Date.civil(2007, 12, 25), [:be_nl], [:informal])[0] || {})[:name]
 
   end
 end

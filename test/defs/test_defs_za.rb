@@ -7,20 +7,29 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class ZaDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_za
-{Date.civil(2007,1,1) => 'New Year\'s Day',
- Date.civil(2007,3,21) => 'Human Rights Day',
- Date.civil(2007,4,6) => 'Good Friday',
- Date.civil(2007,4,9) => 'Family Day',
- Date.civil(2007,4,27) => 'Freedom Day',
- Date.civil(2007,5,1) => 'Workers Day',
- Date.civil(2007,6,16) => 'Youth Day',
- Date.civil(2007,8,9) => 'National Women\'s Day',
- Date.civil(2007,9,24) => 'Heritage Day',
- Date.civil(2007,12,16) => 'Day of Reconciliation',
- Date.civil(2007,12,25) => 'Christmas Day',
- Date.civil(2007,12,26) => 'Day of Goodwill'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :za, :informal)[0] || {})[:name]
-end
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2007, 1, 1), [:za], [:informal])[0] || {})[:name]
+
+    assert_equal "Human Rights Day", (Holidays.on(Date.civil(2007, 3, 21), [:za], [:informal])[0] || {})[:name]
+
+    assert_equal "Good Friday", (Holidays.on(Date.civil(2007, 4, 6), [:za], [:informal])[0] || {})[:name]
+
+    assert_equal "Family Day", (Holidays.on(Date.civil(2007, 4, 9), [:za], [:informal])[0] || {})[:name]
+
+    assert_equal "Freedom Day", (Holidays.on(Date.civil(2007, 4, 27), [:za], [:informal])[0] || {})[:name]
+
+    assert_equal "Workers Day", (Holidays.on(Date.civil(2007, 5, 1), [:za], [:informal])[0] || {})[:name]
+
+    assert_equal "Youth Day", (Holidays.on(Date.civil(2007, 6, 16), [:za], [:informal])[0] || {})[:name]
+
+    assert_equal "National Women's Day", (Holidays.on(Date.civil(2007, 8, 9), [:za], [:informal])[0] || {})[:name]
+
+    assert_equal "Heritage Day", (Holidays.on(Date.civil(2007, 9, 24), [:za], [:informal])[0] || {})[:name]
+
+    assert_equal "Day of Reconciliation", (Holidays.on(Date.civil(2007, 12, 16), [:za], [:informal])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2007, 12, 25), [:za], [:informal])[0] || {})[:name]
+
+    assert_equal "Day of Goodwill", (Holidays.on(Date.civil(2007, 12, 26), [:za], [:informal])[0] || {})[:name]
 
   end
 end

@@ -7,6 +7,5 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class United_nationsDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_united_nations
-
   end
 end

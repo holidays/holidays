@@ -7,35 +7,47 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class GeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_ge
-{ Date.civil(2017, 1, 1) => 'ახალი წელი',
-  Date.civil(2017, 1, 2) => 'ბედობა',
-  Date.civil(2017, 1, 7) => 'ქრისტეშობა',
-  Date.civil(2017, 1, 19) => 'ნათლისღება',
-  Date.civil(2017, 3, 3) => 'დედის დღე',
-  Date.civil(2017, 3, 8) => 'ქალთა საერთაშორისო დღე',
-  Date.civil(2017, 4, 9) => 'ეროვნული ერთიანობის დღე',
-  Date.civil(2017, 5, 9) => 'ფაშიზმზე გამარჯვების დღე',
-  Date.civil(2017, 5, 12) => 'წმინდა მოციქულის ანდრია პირველწოდებულის საქართველოში შემოსვლის დღე',
-  Date.civil(2017, 5, 26) => 'დამოუკიდებლობის დღე',
-  Date.civil(2017, 8, 28) => 'მარიამობა',
-  Date.civil(2017, 10, 14) => 'სვეტიცხოვლობა',
-  Date.civil(2017, 11, 23) => 'გიორგობა'
-}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :ge)[0] || {})[:name]
-end
+    assert_equal "ახალი წელი", (Holidays.on(Date.civil(2017, 1, 1), [:ge])[0] || {})[:name]
 
-[Date.civil(2017, 4, 14), Date.civil(2018, 4, 6), Date.civil(2019, 4, 26)].each do |date|
-  assert_equal 'დიდი პარასკევი', Holidays.on(date, :ge)[0][:name]
-end
-[Date.civil(2017, 4, 15), Date.civil(2018, 4, 7), Date.civil(2019, 4, 27)].each do |date|
-  assert_equal 'დიდი შაბათი', Holidays.on(date, :ge)[0][:name]
-end
-[Date.civil(2017, 4, 16), Date.civil(2018, 4, 8), Date.civil(2019, 4, 28)].each do |date|
-  assert_equal 'ბრწყინვალე აღდგომის დღე', Holidays.on(date, :ge)[0][:name]
-end
-[Date.civil(2017, 4, 17), Date.civil(2018, 4, 9), Date.civil(2019, 4, 29)].each do |date|
-  assert_equal 'მიცვალებულთა', Holidays.on(date, :ge)[0][:name]
-end
+    assert_equal "ბედობა", (Holidays.on(Date.civil(2017, 1, 2), [:ge])[0] || {})[:name]
+
+    assert_equal "ქრისტეშობა", (Holidays.on(Date.civil(2017, 1, 7), [:ge])[0] || {})[:name]
+
+    assert_equal "ნათლისღება", (Holidays.on(Date.civil(2017, 1, 19), [:ge])[0] || {})[:name]
+
+    assert_equal "დედის დღე", (Holidays.on(Date.civil(2017, 3, 3), [:ge])[0] || {})[:name]
+
+    assert_equal "ქალთა საერთაშორისო დღე", (Holidays.on(Date.civil(2017, 3, 8), [:ge])[0] || {})[:name]
+
+    assert_equal "ეროვნული ერთიანობის დღე", (Holidays.on(Date.civil(2017, 4, 9), [:ge])[0] || {})[:name]
+
+    assert_equal "ფაშიზმზე გამარჯვების დღე", (Holidays.on(Date.civil(2017, 5, 9), [:ge])[0] || {})[:name]
+
+    assert_equal "წმინდა მოციქულის ანდრია პირველწოდებულის საქართველოში შემოსვლის დღე", (Holidays.on(Date.civil(2017, 5, 12), [:ge])[0] || {})[:name]
+
+    assert_equal "დამოუკიდებლობის დღე", (Holidays.on(Date.civil(2017, 5, 26), [:ge])[0] || {})[:name]
+
+    assert_equal "მარიამობა", (Holidays.on(Date.civil(2017, 8, 28), [:ge])[0] || {})[:name]
+
+    assert_equal "სვეტიცხოვლობა", (Holidays.on(Date.civil(2017, 10, 14), [:ge])[0] || {})[:name]
+
+    assert_equal "გიორგობა", (Holidays.on(Date.civil(2017, 11, 23), [:ge])[0] || {})[:name]
+
+    assert_equal "დიდი პარასკევი", (Holidays.on(Date.civil(2017, 4, 14), [:ge])[0] || {})[:name]
+assert_equal "დიდი პარასკევი", (Holidays.on(Date.civil(2018, 4, 6), [:ge])[0] || {})[:name]
+assert_equal "დიდი პარასკევი", (Holidays.on(Date.civil(2019, 4, 26), [:ge])[0] || {})[:name]
+
+    assert_equal "დიდი შაბათი", (Holidays.on(Date.civil(2017, 4, 15), [:ge])[0] || {})[:name]
+assert_equal "დიდი შაბათი", (Holidays.on(Date.civil(2018, 4, 7), [:ge])[0] || {})[:name]
+assert_equal "დიდი შაბათი", (Holidays.on(Date.civil(2019, 4, 27), [:ge])[0] || {})[:name]
+
+    assert_equal "ბრწყინვალე აღდგომის დღე", (Holidays.on(Date.civil(2017, 4, 16), [:ge])[0] || {})[:name]
+assert_equal "ბრწყინვალე აღდგომის დღე", (Holidays.on(Date.civil(2018, 4, 8), [:ge])[0] || {})[:name]
+assert_equal "ბრწყინვალე აღდგომის დღე", (Holidays.on(Date.civil(2019, 4, 28), [:ge])[0] || {})[:name]
+
+    assert_equal "მიცვალებულთა", (Holidays.on(Date.civil(2017, 4, 17), [:ge])[0] || {})[:name]
+assert_equal "მიცვალებულთა", (Holidays.on(Date.civil(2018, 4, 9), [:ge])[0] || {})[:name]
+assert_equal "მიცვალებულთა", (Holidays.on(Date.civil(2019, 4, 29), [:ge])[0] || {})[:name]
 
   end
 end

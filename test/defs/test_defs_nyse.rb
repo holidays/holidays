@@ -7,22 +7,33 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class NyseDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_nyse
-{Date.civil(2008,1,1) => 'New Year\'s Day',
- Date.civil(2008,1,21) => 'Martin Luther King, Jr. Day',
- Date.civil(2008,2,18) => 'Presidents\' Day',
- Date.civil(2008,3,21) => 'Good Friday',
- Date.civil(2008,5,26) => 'Memorial Day',
- Date.civil(2008,7,4) => 'Independence Day',
- Date.civil(2008,9,1) => 'Labor Day',
- Date.civil(2008,11,27) => 'Thanksgiving',
- Date.civil(2008,12,25) => 'Christmas Day'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :nyse)[0] || {})[:name]
-end
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2008, 1, 1), [:nyse])[0] || {})[:name]
 
-# Test observed New Year
-[Date.civil(2017,1,2), Date.civil(2012,1,2), Date.civil(2011,1,1), Date.civil(2006,1,2)].each do |date|
-  assert_equal 'New Year\'s Day', (Holidays.on(date, :nyse, :observed)[0] || {})[:name]
-end
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2017, 1, 2), [:nyse], [:observed])[0] || {})[:name]
+assert_equal "New Year's Day", (Holidays.on(Date.civil(2012, 1, 2), [:nyse], [:observed])[0] || {})[:name]
+assert_equal "New Year's Day", (Holidays.on(Date.civil(2011, 1, 1), [:nyse], [:observed])[0] || {})[:name]
+assert_equal "New Year's Day", (Holidays.on(Date.civil(2006, 1, 2), [:nyse], [:observed])[0] || {})[:name]
+
+    assert_equal "Martin Luther King, Jr. Day", (Holidays.on(Date.civil(2008, 1, 21), [:nyse])[0] || {})[:name]
+
+    assert_equal "Presidents' Day", (Holidays.on(Date.civil(2008, 2, 18), [:nyse])[0] || {})[:name]
+
+    assert_equal "Good Friday", (Holidays.on(Date.civil(2008, 3, 21), [:nyse])[0] || {})[:name]
+
+    assert_equal "Memorial Day", (Holidays.on(Date.civil(2008, 5, 26), [:nyse])[0] || {})[:name]
+
+    assert_equal "Independence Day", (Holidays.on(Date.civil(2008, 7, 4), [:nyse])[0] || {})[:name]
+
+    assert_equal "Labor Day", (Holidays.on(Date.civil(2008, 9, 1), [:nyse])[0] || {})[:name]
+
+    assert_equal "Thanksgiving", (Holidays.on(Date.civil(2008, 11, 27), [:nyse])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2008, 12, 25), [:nyse])[0] || {})[:name]
+
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2017, 1, 2), [:nyse], [:observed])[0] || {})[:name]
+assert_equal "New Year's Day", (Holidays.on(Date.civil(2012, 1, 2), [:nyse], [:observed])[0] || {})[:name]
+assert_equal "New Year's Day", (Holidays.on(Date.civil(2011, 1, 1), [:nyse], [:observed])[0] || {})[:name]
+assert_equal "New Year's Day", (Holidays.on(Date.civil(2006, 1, 2), [:nyse], [:observed])[0] || {})[:name]
 
   end
 end

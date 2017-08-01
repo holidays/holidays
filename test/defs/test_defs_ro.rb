@@ -7,30 +7,45 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class RoDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_ro
-{
- Date.civil(1961,4,9) => 'Paștele - duminică',
- Date.civil(1961,4,10) => 'Paștele - luni',
- Date.civil(2013,5,5) => 'Paștele - duminică',
- Date.civil(2013,5,6) => 'Paștele - luni',
- Date.civil(2027,5,2) => 'Paștele - duminică',
- Date.civil(2027,5,3) => 'Paștele - luni',
- Date.civil(2012,6,4) => 'Rusaliile - 51',
- Date.civil(2013,6,23) => 'Rusaliile - 50',
- Date.civil(2013,6,24) => 'Rusaliile - 51',
- Date.civil(1986,6,22) => 'Rusaliile - 50',
- Date.civil(1986,6,23) => 'Rusaliile - 51',
- Date.civil(2009,1,1) => 'Anul nou',
- Date.civil(2014,1,2) => 'Anul nou',
- Date.civil(2009,5,1) => 'Ziua muncii',
- Date.civil(2012,8,15) => 'Adormirea Maicii Domnului',
- Date.civil(2013,11,30) => 'Sfântul Apostol Andrei',
- Date.civil(2013,12,1) => 'Ziua Națională',
- Date.civil(2013,12,25) => 'Sărbătoarea Nașterii Domnului',
- Date.civil(2013,12,26) => 'Sărbătoarea Nașterii Domnului'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :ro, :informal)[0] || {})[:name]
- end
+    assert_equal "Paștele - duminică", (Holidays.on(Date.civil(1961, 4, 9), [:ro], [:informal])[0] || {})[:name]
 
- assert_equal [], Holidays.on(Date.civil(2013,7,23), :ro), '2013-07-23 is not a holiday in Romania'
+    assert_equal "Paștele - luni", (Holidays.on(Date.civil(1961, 4, 10), [:ro], [:informal])[0] || {})[:name]
+
+    assert_equal "Paștele - duminică", (Holidays.on(Date.civil(2013, 5, 5), [:ro], [:informal])[0] || {})[:name]
+
+    assert_equal "Paștele - luni", (Holidays.on(Date.civil(2013, 5, 6), [:ro], [:informal])[0] || {})[:name]
+
+    assert_equal "Paștele - duminică", (Holidays.on(Date.civil(2027, 5, 2), [:ro], [:informal])[0] || {})[:name]
+
+    assert_equal "Paștele - luni", (Holidays.on(Date.civil(2027, 5, 3), [:ro], [:informal])[0] || {})[:name]
+
+    assert_equal "Rusaliile - 51", (Holidays.on(Date.civil(2012, 6, 4), [:ro], [:informal])[0] || {})[:name]
+
+    assert_equal "Rusaliile - 50", (Holidays.on(Date.civil(2013, 6, 23), [:ro], [:informal])[0] || {})[:name]
+
+    assert_equal "Rusaliile - 51", (Holidays.on(Date.civil(2013, 6, 24), [:ro], [:informal])[0] || {})[:name]
+
+    assert_equal "Rusaliile - 50", (Holidays.on(Date.civil(1986, 6, 22), [:ro], [:informal])[0] || {})[:name]
+
+    assert_equal "Rusaliile - 51", (Holidays.on(Date.civil(1986, 6, 23), [:ro], [:informal])[0] || {})[:name]
+
+    assert_equal "Anul nou", (Holidays.on(Date.civil(2009, 1, 1), [:ro], [:informal])[0] || {})[:name]
+
+    assert_equal "Anul nou", (Holidays.on(Date.civil(2014, 1, 2), [:ro], [:informal])[0] || {})[:name]
+
+    assert_equal "Ziua muncii", (Holidays.on(Date.civil(2009, 5, 1), [:ro], [:informal])[0] || {})[:name]
+
+    assert_equal "Adormirea Maicii Domnului", (Holidays.on(Date.civil(2012, 8, 15), [:ro], [:informal])[0] || {})[:name]
+
+    assert_equal "Sfântul Apostol Andrei", (Holidays.on(Date.civil(2013, 11, 30), [:ro], [:informal])[0] || {})[:name]
+
+    assert_equal "Ziua Națională", (Holidays.on(Date.civil(2013, 12, 1), [:ro], [:informal])[0] || {})[:name]
+
+    assert_equal "Sărbătoarea Nașterii Domnului", (Holidays.on(Date.civil(2013, 12, 25), [:ro], [:informal])[0] || {})[:name]
+
+    assert_equal "Sărbătoarea Nașterii Domnului", (Holidays.on(Date.civil(2013, 12, 26), [:ro], [:informal])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2013, 7, 23), [:ro])[0] || {})[:name]
 
   end
 end

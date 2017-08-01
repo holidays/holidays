@@ -7,23 +7,33 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class HuDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_hu
-{Date.civil(2012,1,1) => 'Újév',
- Date.civil(2011,1,1) => 'Újév',
- Date.civil(2012,3,15) => '1848/49-es forradalom és szabadságharc ünnepe',
- Date.civil(2011,4,25) => 'Húsvét hétfő',
- Date.civil(2012,4,9) => 'Húsvét hétfő',
- Date.civil(2012,5,1) => 'A munka ünnepe',
- Date.civil(2011,6,13) => 'Pünkösd hétfő',
- Date.civil(2012,5,28) => 'Pünkösd hétfő',
- Date.civil(2012,8,20) => 'Az államalapítás ünnepe',
- Date.civil(2012,10,23) => '1956-os forradalom és szabadságharc ünnepe',
- Date.civil(2012,11,1) => 'Mindenszentek',
- Date.civil(2012,12,25) => 'Karácsony',
- Date.civil(2012,12,26) => 'Karácsony',}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :hu, :informal)[0] || {})[:name]
-end
+    assert_equal "Újév", (Holidays.on(Date.civil(2012, 1, 1), [:hu], [:informal])[0] || {})[:name]
 
-assert_equal [], Holidays.on(Date.civil(2012,3,14), :hu), '2012-03-14 is not a holiday in Hungary'
+    assert_equal "Újév", (Holidays.on(Date.civil(2011, 1, 1), [:hu], [:informal])[0] || {})[:name]
+
+    assert_equal "1848/49-es forradalom és szabadságharc ünnepe", (Holidays.on(Date.civil(2012, 3, 15), [:hu], [:informal])[0] || {})[:name]
+
+    assert_equal "Húsvét hétfő", (Holidays.on(Date.civil(2011, 4, 25), [:hu], [:informal])[0] || {})[:name]
+
+    assert_equal "Húsvét hétfő", (Holidays.on(Date.civil(2012, 4, 9), [:hu], [:informal])[0] || {})[:name]
+
+    assert_equal "A munka ünnepe", (Holidays.on(Date.civil(2012, 5, 1), [:hu], [:informal])[0] || {})[:name]
+
+    assert_equal "Pünkösd hétfő", (Holidays.on(Date.civil(2011, 6, 13), [:hu], [:informal])[0] || {})[:name]
+
+    assert_equal "Pünkösd hétfő", (Holidays.on(Date.civil(2012, 5, 28), [:hu], [:informal])[0] || {})[:name]
+
+    assert_equal "Az államalapítás ünnepe", (Holidays.on(Date.civil(2012, 8, 20), [:hu], [:informal])[0] || {})[:name]
+
+    assert_equal "1956-os forradalom és szabadságharc ünnepe", (Holidays.on(Date.civil(2012, 10, 23), [:hu], [:informal])[0] || {})[:name]
+
+    assert_equal "Mindenszentek", (Holidays.on(Date.civil(2012, 11, 1), [:hu], [:informal])[0] || {})[:name]
+
+    assert_equal "Karácsony", (Holidays.on(Date.civil(2012, 12, 25), [:hu], [:informal])[0] || {})[:name]
+
+    assert_equal "Karácsony", (Holidays.on(Date.civil(2012, 12, 26), [:hu], [:informal])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2012, 3, 14), [:hu])[0] || {})[:name]
 
   end
 end
