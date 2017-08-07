@@ -15,9 +15,9 @@ module Holidays
               1 => [{:mday => 1, :name => "New Year's Day", :regions => [:my]}],
       5 => [{:mday => 1, :name => "Labour Day", :regions => [:my]}],
       6 => [{:function => "agong_birthday_june(year)", :function_arguments => [:year], :name => "Agong's Birthday", :regions => [:my]}],
-      7 => [{:function => "agong_birthday_july(year)", :function_arguments => [:year], :name => "Agong's Birthday", :regions => [:my]}],
       8 => [{:mday => 31, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Independence Day", :regions => [:my]}],
-      9 => [{:mday => 16, :name => "Malaysia Day", :regions => [:my]}],
+      9 => [{:function => "agong_birthday_september(year)", :function_arguments => [:year], :name => "Agong's Birthday", :regions => [:my]},
+            {:mday => 16, :name => "Malaysia Day", :regions => [:my]}],
       12 => [{:mday => 25, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:my]}]
       }
     end
@@ -32,9 +32,9 @@ else
 end
 },
 
-"agong_birthday_july(year)" => Proc.new { |year|
+"agong_birthday_september(year)" => Proc.new { |year|
 if year >= 2017
-  Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 7, :last, :saturday)
+  Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 9, :second, :saturday)
 else
   nil
 end
