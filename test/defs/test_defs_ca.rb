@@ -111,7 +111,7 @@ assert_equal "Victoria Day", (Holidays.on(Date.civil(2008, 5, 19), [:ca_ab, :ca_
 
     assert_equal "Saskatchewan Day", (Holidays.on(Date.civil(2013, 8, 5), [:ca_sk])[0] || {})[:name]
 
-    assert_equal "Heritage Day", (Holidays.on(Date.civil(2013, 8, 5), [:ca_ab])[0] || {})[:name]
+    assert_equal "Heritage Day", (Holidays.on(Date.civil(2013, 8, 5), [:ca_ab], [:informal])[0] || {})[:name]
 
     assert_equal "Natal Day", (Holidays.on(Date.civil(2013, 8, 5), [:ca_ns])[0] || {})[:name]
 
@@ -131,7 +131,7 @@ assert_equal "Civic Holiday", (Holidays.on(Date.civil(2015, 8, 3), [:ca_on], [:i
 
     assert_equal "Saskatchewan Day", (Holidays.on(Date.civil(2014, 8, 4), [:ca_sk])[0] || {})[:name]
 
-    assert_equal "Heritage Day", (Holidays.on(Date.civil(2014, 8, 4), [:ca_ab])[0] || {})[:name]
+    assert_equal "Heritage Day", (Holidays.on(Date.civil(2014, 8, 4), [:ca_ab], [:informal])[0] || {})[:name]
 
     assert_equal "Natal Day", (Holidays.on(Date.civil(2014, 8, 4), [:ca_ns])[0] || {})[:name]
 
@@ -147,7 +147,7 @@ assert_equal "Civic Holiday", (Holidays.on(Date.civil(2015, 8, 3), [:ca_on], [:i
 
     assert_equal "Saskatchewan Day", (Holidays.on(Date.civil(2015, 8, 3), [:ca_sk])[0] || {})[:name]
 
-    assert_equal "Heritage Day", (Holidays.on(Date.civil(2015, 8, 3), [:ca_ab])[0] || {})[:name]
+    assert_equal "Heritage Day", (Holidays.on(Date.civil(2015, 8, 3), [:ca_ab], [:informal])[0] || {})[:name]
 
     assert_equal "Natal Day", (Holidays.on(Date.civil(2015, 8, 3), [:ca_ns])[0] || {})[:name]
 

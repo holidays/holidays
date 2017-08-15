@@ -37,7 +37,13 @@ class ClDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Día de las Glorias Navales", (Holidays.on(Date.civil(2014, 5, 21), [:cl], [:informal])[0] || {})[:name]
 
-    assert_equal "San Pedro y San Pablo", (Holidays.on(Date.civil(2014, 6, 29), [:cl], [:informal])[0] || {})[:name]
+    assert_equal "San Pedro y San Pablo", (Holidays.on(Date.civil(1999, 6, 29), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "San Pedro y San Pablo", (Holidays.on(Date.civil(2000, 6, 26), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "San Pedro y San Pablo", (Holidays.on(Date.civil(2017, 6, 26), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "San Pedro y San Pablo", (Holidays.on(Date.civil(2018, 7, 2), [:cl], [:informal])[0] || {})[:name]
 
     assert_equal "Día de la Virgen del Carmen", (Holidays.on(Date.civil(2014, 7, 16), [:cl], [:informal])[0] || {})[:name]
 
@@ -47,9 +53,11 @@ class ClDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Día de las Glorias del Ejército", (Holidays.on(Date.civil(2014, 9, 19), [:cl], [:informal])[0] || {})[:name]
 
-    assert_equal "Encuentro de Dos Mundos", (Holidays.on(Date.civil(2014, 10, 12), [:cl], [:informal])[0] || {})[:name]
+    assert_equal "Encuentro de Dos Mundos", (Holidays.on(Date.civil(1999, 10, 12), [:cl], [:informal])[0] || {})[:name]
 
-    assert_equal "Día de las Iglesias Evangélicas y Protestantes", (Holidays.on(Date.civil(2014, 10, 31), [:cl], [:informal])[0] || {})[:name]
+    assert_equal "Encuentro de Dos Mundos", (Holidays.on(Date.civil(2017, 10, 9), [:cl], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de las Iglesias Evangélicas y Protestantes", (Holidays.on(Date.civil(2017, 10, 27), [:cl], [:informal])[0] || {})[:name]
 
     assert_equal "Día de Todos los Santos", (Holidays.on(Date.civil(2014, 11, 1), [:cl], [:informal])[0] || {})[:name]
 

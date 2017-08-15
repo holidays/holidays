@@ -1,5 +1,10 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 6.1.0
+
+* Update to [v2.1.1 definitions](https://github.com/holidays/definitions/releases/tag/v2.1.1). Please see the changelog for
+  the definitions for details.
+
 ## 6.0.0
 
 * Remove support for ruby 2.1.0 since it is [no longer officially supported](https://www.ruby-lang.org/en/news/2017/04/01/support-of-ruby-2-1-has-ended/). This is the cause of the major

@@ -41,7 +41,7 @@ module Holidays
             {:mday => 9, :name => "Nunavut Day", :regions => [:ca_nu]}],
       8 => [{:wday => 1, :week => 1, :name => "B.C. Day", :regions => [:ca_bc]},
             {:wday => 1, :week => 1, :name => "Saskatchewan Day", :regions => [:ca_sk]},
-            {:wday => 1, :week => 1, :name => "Heritage Day", :regions => [:ca_ab]},
+            {:wday => 1, :week => 1, :type => :informal, :name => "Heritage Day", :regions => [:ca_ab]},
             {:wday => 1, :week => 1, :name => "Natal Day", :regions => [:ca_ns]},
             {:wday => 1, :week => 1, :name => "Civic Holiday", :regions => [:ca_nt, :ca_nu, :ca_pe]},
             {:wday => 1, :week => 1, :type => :informal, :name => "Civic Holiday", :regions => [:ca_on]},
