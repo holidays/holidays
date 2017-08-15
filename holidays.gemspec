@@ -12,16 +12,16 @@ Gem::Specification.new do |gem|
   gem.homepage      = 'https://github.com/holidays/holidays'
   gem.description   = %q(A collection of Ruby methods to deal with statutory and other holidays. You deserve a holiday!)
   gem.summary       = %q(A collection of Ruby methods to deal with statutory and other holidays.)
-  gem.files         = `git ls-files`.split("\n") - ['.gitignore', '.travis.yml', '.coveralls.yml']
+  gem.files         = `git ls-files`.split("\n") - ['.gitignore', '.travis.yml']
   gem.test_files    = gem.files.grep(/^test/)
   gem.require_paths = ['lib']
   gem.licenses      = ['MIT']
-  gem.required_ruby_version = '~> 2.1'
-  gem.add_development_dependency 'bundler'
-  gem.add_development_dependency 'rake'
-  gem.add_development_dependency 'simplecov'
-  gem.add_development_dependency 'simplecov-rcov'
-  gem.add_development_dependency 'test-unit'
-  gem.add_development_dependency 'mocha', '~>1.0'
-  gem.add_development_dependency 'pry', '~>0.10'
+  gem.required_ruby_version = '~> 2.2'
+  gem.add_development_dependency 'bundler', '~> 1.15'
+  gem.add_development_dependency 'rake', '~> 12.0'
+  gem.add_development_dependency 'simplecov', '~> 0.15'
+  gem.add_development_dependency 'simplecov-rcov', '~> 0.2'
+  gem.add_development_dependency 'test-unit', '~> 3.2'
+  gem.add_development_dependency 'mocha', '~> 1.0'
+  gem.add_development_dependency 'pry', '~> 0.10'
 end
