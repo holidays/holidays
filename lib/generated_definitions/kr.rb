@@ -20,12 +20,14 @@ module Holidays
       5 => [{:mday => 5, :name => "어린이날", :regions => [:kr]}],
       6 => [{:mday => 6, :name => "현충일", :regions => [:kr]}],
       7 => [{:mday => 17, :type => :informal, :name => "제헌절", :regions => [:kr]}],
-      8 => [{:mday => 15, :function => "lunar_to_solar(year, month, day, region)", :function_arguments => [:year, :month, :day, :region], :name => "추석", :regions => [:kr]},
+      8 => [{:mday => 14, :function => "lunar_to_solar(year, month, day, region)", :function_arguments => [:year, :month, :day, :region], :name => "추석 연휴", :regions => [:kr]},
+            {:mday => 15, :function => "lunar_to_solar(year, month, day, region)", :function_arguments => [:year, :month, :day, :region], :name => "추석", :regions => [:kr]},
+            {:mday => 16, :function => "lunar_to_solar(year, month, day, region)", :function_arguments => [:year, :month, :day, :region], :name => "추석 연휴", :regions => [:kr]},
             {:mday => 15, :name => "광복절", :regions => [:kr]}],
       10 => [{:mday => 3, :name => "개천절", :regions => [:kr]},
             {:mday => 9, :name => "한글날", :regions => [:kr]}],
       12 => [{:mday => 25, :name => "크리스마스", :regions => [:kr]},
-            {:mday => 29, :function => "lunar_to_solar(year, month, day, region)", :function_arguments => [:year, :month, :day, :region], :name => "설날 연휴", :regions => [:kr]}]
+            {:mday => 30, :function => "lunar_to_solar(year, month, day, region)", :function_arguments => [:year, :month, :day, :region], :name => "설날 연휴", :regions => [:kr]}]
       }
     end
 
