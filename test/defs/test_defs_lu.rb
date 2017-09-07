@@ -7,18 +7,23 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class LuDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_lu
-{Date.civil(2008,1,1) => 'Neijoerschdag',
-Date.civil(2008,3,24) => 'Ouschterméindeg',
-Date.civil(2008,5,1) => 'Christi Himmelfaart', # Ascension, Easter+39
-Date.civil(2008,6,23) => 'Nationalfeierdag',
-Date.civil(2008,8,15) => 'Léiffrawëschdag',
-Date.civil(2008,11,1) => 'Allerhellgen',
-Date.civil(2008,12,25) => 'Chrëschtdag',
-Date.civil(2008,12,26) => 'Stiefesdag',
-Date.civil(2008,5,11) => 'Péngschtméindeg'
-}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :lu, :informal)[0] || {})[:name]
-end
+    assert_equal "Neijoerschdag", (Holidays.on(Date.civil(2008, 1, 1), [:lu], [:informal])[0] || {})[:name]
+
+    assert_equal "Ouschterméindeg", (Holidays.on(Date.civil(2008, 3, 24), [:lu], [:informal])[0] || {})[:name]
+
+    assert_equal "Christi Himmelfaart", (Holidays.on(Date.civil(2008, 5, 1), [:lu], [:informal])[0] || {})[:name]
+
+    assert_equal "Nationalfeierdag", (Holidays.on(Date.civil(2008, 6, 23), [:lu], [:informal])[0] || {})[:name]
+
+    assert_equal "Léiffrawëschdag", (Holidays.on(Date.civil(2008, 8, 15), [:lu], [:informal])[0] || {})[:name]
+
+    assert_equal "Allerhellgen", (Holidays.on(Date.civil(2008, 11, 1), [:lu], [:informal])[0] || {})[:name]
+
+    assert_equal "Chrëschtdag", (Holidays.on(Date.civil(2008, 12, 25), [:lu], [:informal])[0] || {})[:name]
+
+    assert_equal "Stiefesdag", (Holidays.on(Date.civil(2008, 12, 26), [:lu], [:informal])[0] || {})[:name]
+
+    assert_equal "Péngschtméindeg", (Holidays.on(Date.civil(2008, 5, 11), [:lu], [:informal])[0] || {})[:name]
 
   end
 end

@@ -7,33 +7,53 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class FiDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_fi
-{Date.civil(2008,1,1) => 'Uudenvuodenpäivä',
- Date.civil(2008,1,6) => 'Loppiainen',
- Date.civil(2008,3,21) => 'Pitkäperjantai',
- Date.civil(2008,3,23) => 'Pääsiäispäivä',
- Date.civil(2008,3,24) => '2. Pääsiäispäivä',
- Date.civil(2008,5,1) => 'Vappu',
- Date.civil(2008,5,1) => 'Helatorstai',
- Date.civil(2008,5,11) => 'Helluntaipäivä',
- Date.civil(2009,6,19) => 'Juhannusaatto',
- Date.civil(2010,6,25) => 'Juhannusaatto',
- Date.civil(2011,6,24) => 'Juhannusaatto',
- Date.civil(2012,6,22) => 'Juhannusaatto',
- Date.civil(2013,6,21) => 'Juhannusaatto',
- Date.civil(2005,6,25) => 'Juhannuspäivä',
- Date.civil(2006,6,24) => 'Juhannuspäivä',
- Date.civil(2007,6,23) => 'Juhannuspäivä',
- Date.civil(2008,6,21) => 'Juhannuspäivä',
- Date.civil(2005,11,5) => 'Pyhäinpäivä',
- Date.civil(2006,11,4) => 'Pyhäinpäivä',
- Date.civil(2007,11,3) => 'Pyhäinpäivä',
- Date.civil(2008,11,1) => 'Pyhäinpäivä',
- Date.civil(2008,12,6) => 'Itsenäisyyspäivä',
- Date.civil(2008,12,24) => 'Jouluaatto',
- Date.civil(2008,12,25) => 'Joulupäivä',
- Date.civil(2008,12,26) => 'Tapaninpäivä'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :fi, :informal)[0] || {})[:name]
-end
+    assert_equal "Uudenvuodenpäivä", (Holidays.on(Date.civil(2008, 1, 1), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "Loppiainen", (Holidays.on(Date.civil(2008, 1, 6), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "Pitkäperjantai", (Holidays.on(Date.civil(2008, 3, 21), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "Pääsiäispäivä", (Holidays.on(Date.civil(2008, 3, 23), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "2. Pääsiäispäivä", (Holidays.on(Date.civil(2008, 3, 24), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "Helatorstai", (Holidays.on(Date.civil(2008, 5, 1), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "Helluntaipäivä", (Holidays.on(Date.civil(2008, 5, 11), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "Juhannusaatto", (Holidays.on(Date.civil(2009, 6, 19), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "Juhannusaatto", (Holidays.on(Date.civil(2010, 6, 25), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "Juhannusaatto", (Holidays.on(Date.civil(2011, 6, 24), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "Juhannusaatto", (Holidays.on(Date.civil(2012, 6, 22), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "Juhannusaatto", (Holidays.on(Date.civil(2013, 6, 21), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "Juhannuspäivä", (Holidays.on(Date.civil(2005, 6, 25), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "Juhannuspäivä", (Holidays.on(Date.civil(2006, 6, 24), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "Juhannuspäivä", (Holidays.on(Date.civil(2007, 6, 23), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "Juhannuspäivä", (Holidays.on(Date.civil(2008, 6, 21), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "Pyhäinpäivä", (Holidays.on(Date.civil(2005, 11, 5), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "Pyhäinpäivä", (Holidays.on(Date.civil(2006, 11, 4), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "Pyhäinpäivä", (Holidays.on(Date.civil(2007, 11, 3), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "Pyhäinpäivä", (Holidays.on(Date.civil(2008, 11, 1), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "Itsenäisyyspäivä", (Holidays.on(Date.civil(2008, 12, 6), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "Jouluaatto", (Holidays.on(Date.civil(2008, 12, 24), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "Joulupäivä", (Holidays.on(Date.civil(2008, 12, 25), [:fi], [:informal])[0] || {})[:name]
+
+    assert_equal "Tapaninpäivä", (Holidays.on(Date.civil(2008, 12, 26), [:fi], [:informal])[0] || {})[:name]
 
   end
 end

@@ -1,4 +1,4 @@
-# Ruby Holidays Gem [![Build Status](https://travis-ci.org/holidays/holidays.svg?branch=master)](https://travis-ci.org/holidays/holidays) [![Coverage Status](https://coveralls.io/repos/github/holidays/holidays/badge.svg?branch=master)](https://coveralls.io/github/holidays/holidays?branch=master)
+# Ruby Holidays Gem [![Build Status](https://travis-ci.org/holidays/holidays.svg?branch=master)](https://travis-ci.org/holidays/holidays)
 
 A set of functions to deal with holidays in Ruby.
 
@@ -12,7 +12,7 @@ To install the gem from RubyGems:
 
     gem install holidays
 
-The Holidays gem is tested on Ruby 2.1.0, 2.2.0, 2.3.0, 2.4.0 and JRuby.
+The Holidays gem is tested on Ruby 2.2.0, 2.3.0, 2.4.0 and JRuby.
 
 This gem follows [semantic versioning](http://semver.org/). The only methods covered by this guarantee are under the
 `Holidays` namespace specifically. Anything that is not a method off of `Holidays` or the core extension is not covered by

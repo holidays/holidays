@@ -18,6 +18,7 @@ The following definition files are included in this installation:
 * generated_definitions/de
 * generated_definitions/dk
 * generated_definitions/ecb_target
+* generated_definitions/ee
 * generated_definitions/el
 * generated_definitions/es
 * generated_definitions/europe
@@ -26,6 +27,7 @@ The following definition files are included in this installation:
 * generated_definitions/fi
 * generated_definitions/fr
 * generated_definitions/gb
+* generated_definitions/ge
 * generated_definitions/hk
 * generated_definitions/hr
 * generated_definitions/hu
@@ -38,6 +40,8 @@ The following definition files are included in this installation:
 * generated_definitions/lt
 * generated_definitions/lu
 * generated_definitions/ma
+* generated_definitions/mt_en
+* generated_definitions/mt_mt
 * generated_definitions/mx
 * generated_definitions/my
 * generated_definitions/nerc
@@ -51,12 +55,16 @@ The following definition files are included in this installation:
 * generated_definitions/pl
 * generated_definitions/pt
 * generated_definitions/ro
+* generated_definitions/rs_cyrl
+* generated_definitions/rs_la
+* generated_definitions/ru
 * generated_definitions/scandinavia
 * generated_definitions/se
 * generated_definitions/sg
 * generated_definitions/si
 * generated_definitions/sk
 * generated_definitions/tn
+* generated_definitions/tr
 * generated_definitions/united_nations
 * generated_definitions/ups
 * generated_definitions/us

@@ -7,17 +7,23 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class CrDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_cr
-{Date.civil(2015,1,1) => 'Año Nuevo',
- Date.civil(2015,4,11) => 'Día de Juan Santamaría',
- Date.civil(2015,5,1) => 'Día del Trabajador',
- Date.civil(2015,7,25) => 'Día de la Anexión de Guanacaste',
- Date.civil(2015,8,2) => 'Día de la Virgen de los Angeles',
- Date.civil(2015,8,15) => 'Día de la Madre',
- Date.civil(2015,9,15) => 'Día de la Independencia',
- Date.civil(2015,10,12) => 'Día de las Culturas',
- Date.civil(2016,12,25) => 'Navidad'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :cr)[0] || {})[:name]
-end
+    assert_equal "Año Nuevo", (Holidays.on(Date.civil(2015, 1, 1), [:cr])[0] || {})[:name]
+
+    assert_equal "Día de Juan Santamaría", (Holidays.on(Date.civil(2015, 4, 11), [:cr])[0] || {})[:name]
+
+    assert_equal "Día del Trabajador", (Holidays.on(Date.civil(2015, 5, 1), [:cr])[0] || {})[:name]
+
+    assert_equal "Día de la Anexión de Guanacaste", (Holidays.on(Date.civil(2015, 7, 25), [:cr])[0] || {})[:name]
+
+    assert_equal "Día de la Virgen de los Angeles", (Holidays.on(Date.civil(2015, 8, 2), [:cr])[0] || {})[:name]
+
+    assert_equal "Día de la Madre", (Holidays.on(Date.civil(2015, 8, 15), [:cr])[0] || {})[:name]
+
+    assert_equal "Día de la Independencia", (Holidays.on(Date.civil(2015, 9, 15), [:cr])[0] || {})[:name]
+
+    assert_equal "Día de las Culturas", (Holidays.on(Date.civil(2015, 10, 12), [:cr])[0] || {})[:name]
+
+    assert_equal "Navidad", (Holidays.on(Date.civil(2016, 12, 25), [:cr])[0] || {})[:name]
 
   end
 end

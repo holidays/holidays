@@ -7,30 +7,41 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class MxDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_mx
-{Date.civil(2007,1,1) => 'Año nuevo',
- Date.civil(2007,2,5) => 'Día de la Constitución',
- Date.civil(2007,5,1) => 'Día del Trabajo',
- Date.civil(2007,5,5) => 'Cinco de Mayo',
- Date.civil(2007,9,16) => 'Día de la Independencia',
- Date.civil(2007,11,1) => 'Todos los Santos',
- Date.civil(2007,11,2) => 'Los Fieles Difuntos',
- Date.civil(2007,11,19) => 'Día de la Revolución',
- Date.civil(2007,12,25) => 'Navidad'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :mx, :informal)[0] || {})[:name]
-end
+    assert_equal "Año nuevo", (Holidays.on(Date.civil(2007, 1, 1), [:mx], [:informal])[0] || {})[:name]
 
+    assert_equal "Día de la Constitución", (Holidays.on(Date.civil(2007, 2, 5), [:mx], [:informal])[0] || {})[:name]
 
-{Date.civil(2013,2,2) => 'Groundhog Day',
- Date.civil(2013,2,14) => 'Valentine\'s Day',
- Date.civil(2013,3,17) => 'St. Patrick\'s Day',
- Date.civil(2013,4,1) => 'April Fool\'s Day',
- Date.civil(2013,4,22) => 'Earth Day',
- Date.civil(2013,5,12) => 'Mother\'s Day',
- Date.civil(2013,5,18) => 'Armed Forces Day',
- Date.civil(2013,6,16) => 'Father\'s Day',
- Date.civil(2013,10,31) => 'Halloween'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :us, :informal)[0] || {})[:name]
-end
+    assert_equal "Día del Trabajo", (Holidays.on(Date.civil(2007, 5, 1), [:mx], [:informal])[0] || {})[:name]
+
+    assert_equal "Cinco de Mayo", (Holidays.on(Date.civil(2007, 5, 5), [:mx], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de la Independencia", (Holidays.on(Date.civil(2007, 9, 16), [:mx], [:informal])[0] || {})[:name]
+
+    assert_equal "Todos los Santos", (Holidays.on(Date.civil(2007, 11, 1), [:mx], [:informal])[0] || {})[:name]
+
+    assert_equal "Los Fieles Difuntos", (Holidays.on(Date.civil(2007, 11, 2), [:mx], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de la Revolución", (Holidays.on(Date.civil(2007, 11, 19), [:mx], [:informal])[0] || {})[:name]
+
+    assert_equal "Navidad", (Holidays.on(Date.civil(2007, 12, 25), [:mx], [:informal])[0] || {})[:name]
+
+    assert_equal "Groundhog Day", (Holidays.on(Date.civil(2013, 2, 2), [:us], [:informal])[0] || {})[:name]
+
+    assert_equal "Valentine's Day", (Holidays.on(Date.civil(2013, 2, 14), [:us], [:informal])[0] || {})[:name]
+
+    assert_equal "St. Patrick's Day", (Holidays.on(Date.civil(2013, 3, 17), [:us], [:informal])[0] || {})[:name]
+
+    assert_equal "April Fool's Day", (Holidays.on(Date.civil(2013, 4, 1), [:us], [:informal])[0] || {})[:name]
+
+    assert_equal "Earth Day", (Holidays.on(Date.civil(2013, 4, 22), [:us], [:informal])[0] || {})[:name]
+
+    assert_equal "Mother's Day", (Holidays.on(Date.civil(2013, 5, 12), [:us], [:informal])[0] || {})[:name]
+
+    assert_equal "Armed Forces Day", (Holidays.on(Date.civil(2013, 5, 18), [:us], [:informal])[0] || {})[:name]
+
+    assert_equal "Father's Day", (Holidays.on(Date.civil(2013, 6, 16), [:us], [:informal])[0] || {})[:name]
+
+    assert_equal "Halloween", (Holidays.on(Date.civil(2013, 10, 31), [:us], [:informal])[0] || {})[:name]
 
   end
 end

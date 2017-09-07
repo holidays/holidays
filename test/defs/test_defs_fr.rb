@@ -7,24 +7,37 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class FrDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_fr
-{Date.civil(2007,1,1) => 'Jour de l\'an',
- Date.civil(2007,4,9) => 'Lundi de Pâques',
- Date.civil(2007,5,1) => 'Fête du travail',
- Date.civil(2007,5,8) => 'Victoire 1945',
- Date.civil(2007,5,17) => 'Ascension',
- Date.civil(2007,5,28) => 'Lundi de Pentecôte',
- Date.civil(2007,7,14) => 'Fête nationale',
- Date.civil(2007,8,15) => 'Assomption',
- Date.civil(2007,11,1) => 'Toussaint',
- Date.civil(2007,11,11) => 'Armistice 1918',
- Date.civil(2007,12,25) => 'Noël'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :fr)[0] || {})[:name]
-end
-{Date.civil(2007,4,8) => 'Pâques',
- Date.civil(2007,5,27) => 'Pentecôte'}.each do |date, name|
-  assert_nil (Holidays.on(date, :fr)[0] || {})[:name]
-  assert_equal name, (Holidays.on(date, :fr, :informal)[0] || {})[:name]
-end
+    assert_equal "Jour de l'an", (Holidays.on(Date.civil(2007, 1, 1), [:fr])[0] || {})[:name]
+
+    assert_equal "Lundi de Pâques", (Holidays.on(Date.civil(2007, 4, 9), [:fr])[0] || {})[:name]
+
+    assert_equal "Fête du travail", (Holidays.on(Date.civil(2007, 5, 1), [:fr])[0] || {})[:name]
+
+    assert_equal "Victoire 1945", (Holidays.on(Date.civil(2007, 5, 8), [:fr])[0] || {})[:name]
+
+    assert_equal "Ascension", (Holidays.on(Date.civil(2007, 5, 17), [:fr])[0] || {})[:name]
+
+    assert_equal "Lundi de Pentecôte", (Holidays.on(Date.civil(2007, 5, 28), [:fr])[0] || {})[:name]
+
+    assert_equal "Fête nationale", (Holidays.on(Date.civil(2007, 7, 14), [:fr])[0] || {})[:name]
+
+    assert_equal "Assomption", (Holidays.on(Date.civil(2007, 8, 15), [:fr])[0] || {})[:name]
+
+    assert_equal "Toussaint", (Holidays.on(Date.civil(2007, 11, 1), [:fr])[0] || {})[:name]
+
+    assert_equal "Armistice 1918", (Holidays.on(Date.civil(2007, 11, 11), [:fr])[0] || {})[:name]
+
+    assert_equal "Noël", (Holidays.on(Date.civil(2007, 12, 25), [:fr])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2007, 4, 8), [:fr])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2007, 5, 27), [:fr])[0] || {})[:name]
+
+    assert_equal "Pâques", (Holidays.on(Date.civil(2007, 4, 8), [:fr], [:informal])[0] || {})[:name]
+
+    assert_equal "Pentecôte", (Holidays.on(Date.civil(2007, 5, 27), [:fr], [:informal])[0] || {})[:name]
+
+    assert_equal "Saint-Étienne", (Holidays.on(Date.civil(2017, 12, 26), [:fr_a, :fr_m], [:informal])[0] || {})[:name]
 
   end
 end

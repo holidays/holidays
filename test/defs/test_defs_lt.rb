@@ -7,36 +7,57 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class LtDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_lt
-{Date.civil(2008,1,1) => 'Naujieji metai',
- Date.civil(2008,2,16) => 'Valstybės atkūrimo diena',
- Date.civil(2008,3,11) => 'Nepriklausomybės atkūrimo diena',
- Date.civil(2008,3,23) => 'Šv. Velykos',
- Date.civil(2008,3,24) => 'Antroji Velykų diena',
- Date.civil(2008,5,1) => 'Darbininkų diena',
- Date.civil(2008,6,24) => 'Joninės',
- Date.civil(2008,7,6) => 'Valstybės diena',
- Date.civil(2008,8,15) => 'Žolinė',
- Date.civil(2008,11,1) => 'Visų šventųjų diena',
- Date.civil(2008,12,24) => 'Šv. Kūčios',
- Date.civil(2008,12,25) => 'Šv. Kalėdos',
- Date.civil(2008,12,26) => 'Antroji Kalėdų diena'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :lt)[0] || {})[:name]
-end
-{Date.civil(2012,1,1) => 'Naujieji metai',
- Date.civil(2012,2,16) => 'Valstybės atkūrimo diena',
- Date.civil(2012,3,11) => 'Nepriklausomybės atkūrimo diena',
- Date.civil(2012,4,8) => 'Šv. Velykos',
- Date.civil(2012,4,9) => 'Antroji Velykų diena',
- Date.civil(2012,5,1) => 'Darbininkų diena',
- Date.civil(2012,6,24) => 'Joninės',
- Date.civil(2012,7,6) => 'Valstybės diena',
- Date.civil(2012,8,15) => 'Žolinė',
- Date.civil(2012,11,1) => 'Visų šventųjų diena',
- Date.civil(2012,12,24) => 'Šv. Kūčios',
- Date.civil(2012,12,25) => 'Šv. Kalėdos',
- Date.civil(2012,12,26) => 'Antroji Kalėdų diena'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :lt)[0] || {})[:name]
-end
+    assert_equal "Naujieji metai", (Holidays.on(Date.civil(2008, 1, 1), [:lt])[0] || {})[:name]
+
+    assert_equal "Valstybės atkūrimo diena", (Holidays.on(Date.civil(2008, 2, 16), [:lt])[0] || {})[:name]
+
+    assert_equal "Nepriklausomybės atkūrimo diena", (Holidays.on(Date.civil(2008, 3, 11), [:lt])[0] || {})[:name]
+
+    assert_equal "Šv. Velykos", (Holidays.on(Date.civil(2008, 3, 23), [:lt])[0] || {})[:name]
+
+    assert_equal "Antroji Velykų diena", (Holidays.on(Date.civil(2008, 3, 24), [:lt])[0] || {})[:name]
+
+    assert_equal "Darbininkų diena", (Holidays.on(Date.civil(2008, 5, 1), [:lt])[0] || {})[:name]
+
+    assert_equal "Joninės", (Holidays.on(Date.civil(2008, 6, 24), [:lt])[0] || {})[:name]
+
+    assert_equal "Valstybės diena", (Holidays.on(Date.civil(2008, 7, 6), [:lt])[0] || {})[:name]
+
+    assert_equal "Žolinė", (Holidays.on(Date.civil(2008, 8, 15), [:lt])[0] || {})[:name]
+
+    assert_equal "Visų šventųjų diena", (Holidays.on(Date.civil(2008, 11, 1), [:lt])[0] || {})[:name]
+
+    assert_equal "Šv. Kūčios", (Holidays.on(Date.civil(2008, 12, 24), [:lt])[0] || {})[:name]
+
+    assert_equal "Šv. Kalėdos", (Holidays.on(Date.civil(2008, 12, 25), [:lt])[0] || {})[:name]
+
+    assert_equal "Antroji Kalėdų diena", (Holidays.on(Date.civil(2008, 12, 26), [:lt])[0] || {})[:name]
+
+    assert_equal "Naujieji metai", (Holidays.on(Date.civil(2012, 1, 1), [:lt])[0] || {})[:name]
+
+    assert_equal "Valstybės atkūrimo diena", (Holidays.on(Date.civil(2012, 2, 16), [:lt])[0] || {})[:name]
+
+    assert_equal "Nepriklausomybės atkūrimo diena", (Holidays.on(Date.civil(2012, 3, 11), [:lt])[0] || {})[:name]
+
+    assert_equal "Šv. Velykos", (Holidays.on(Date.civil(2012, 4, 8), [:lt])[0] || {})[:name]
+
+    assert_equal "Antroji Velykų diena", (Holidays.on(Date.civil(2012, 4, 9), [:lt])[0] || {})[:name]
+
+    assert_equal "Darbininkų diena", (Holidays.on(Date.civil(2012, 5, 1), [:lt])[0] || {})[:name]
+
+    assert_equal "Joninės", (Holidays.on(Date.civil(2012, 6, 24), [:lt])[0] || {})[:name]
+
+    assert_equal "Valstybės diena", (Holidays.on(Date.civil(2012, 7, 6), [:lt])[0] || {})[:name]
+
+    assert_equal "Žolinė", (Holidays.on(Date.civil(2012, 8, 15), [:lt])[0] || {})[:name]
+
+    assert_equal "Visų šventųjų diena", (Holidays.on(Date.civil(2012, 11, 1), [:lt])[0] || {})[:name]
+
+    assert_equal "Šv. Kūčios", (Holidays.on(Date.civil(2012, 12, 24), [:lt])[0] || {})[:name]
+
+    assert_equal "Šv. Kalėdos", (Holidays.on(Date.civil(2012, 12, 25), [:lt])[0] || {})[:name]
+
+    assert_equal "Antroji Kalėdų diena", (Holidays.on(Date.civil(2012, 12, 26), [:lt])[0] || {})[:name]
 
   end
 end

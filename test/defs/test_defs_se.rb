@@ -7,34 +7,53 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class SeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_se
-{Date.civil(2008,1,1) => 'Nyårsdagen',
- Date.civil(2008,1,6) => 'Trettondedag jul',
- Date.civil(2008,3,21) => 'Långfredagen',
- Date.civil(2008,3,22) => 'Påskafton',
- Date.civil(2008,3,23) => 'Påskdagen',
- Date.civil(2008,3,24) => 'Annandag påsk',
- Date.civil(2008,5,1) => 'Första maj',
- Date.civil(2008,5,1) => 'Kristi himmelsfärdsdag',
- Date.civil(2008,5,11) => 'Pingstdagen',
- Date.civil(2008,6,6) => 'Nationaldagen',
- Date.civil(2005,6,25) => 'Midsommardagen',
- Date.civil(2006,6,24) => 'Midsommardagen',
- Date.civil(2006,6,23) => 'Midsommarafton',
- Date.civil(2007,6,23) => 'Midsommardagen',
- Date.civil(2007,6,22) => 'Midsommarafton',
- Date.civil(2008,6,21) => 'Midsommardagen',
- Date.civil(2008,6,20) => 'Midsommarafton',
- Date.civil(2005,11,5) => 'Alla helgons dag',
- Date.civil(2006,11,4) => 'Alla helgons dag',
- Date.civil(2007,11,3) => 'Alla helgons dag',
- Date.civil(2008,11,1) => 'Alla helgons dag',
- Date.civil(2008,12,24) => 'Julafton',
- Date.civil(2008,12,25) => 'Juldagen',
- Date.civil(2008,12,26) => 'Annandag jul',
- Date.civil(2008,12,31) => 'Nyårsafton'
- }.each do |date, name|
-  assert_equal name, (Holidays.on(date, :se, :informal)[0] || {})[:name]
-end
+    assert_equal "Nyårsdagen", (Holidays.on(Date.civil(2008, 1, 1), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Trettondedag jul", (Holidays.on(Date.civil(2008, 1, 6), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Långfredagen", (Holidays.on(Date.civil(2008, 3, 21), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Påskafton", (Holidays.on(Date.civil(2008, 3, 22), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Påskdagen", (Holidays.on(Date.civil(2008, 3, 23), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Annandag påsk", (Holidays.on(Date.civil(2008, 3, 24), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Kristi himmelsfärdsdag", (Holidays.on(Date.civil(2008, 5, 1), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Pingstdagen", (Holidays.on(Date.civil(2008, 5, 11), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Nationaldagen", (Holidays.on(Date.civil(2008, 6, 6), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Midsommardagen", (Holidays.on(Date.civil(2005, 6, 25), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Midsommardagen", (Holidays.on(Date.civil(2006, 6, 24), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Midsommarafton", (Holidays.on(Date.civil(2006, 6, 23), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Midsommardagen", (Holidays.on(Date.civil(2007, 6, 23), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Midsommarafton", (Holidays.on(Date.civil(2007, 6, 22), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Midsommardagen", (Holidays.on(Date.civil(2008, 6, 21), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Midsommarafton", (Holidays.on(Date.civil(2008, 6, 20), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Alla helgons dag", (Holidays.on(Date.civil(2005, 11, 5), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Alla helgons dag", (Holidays.on(Date.civil(2006, 11, 4), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Alla helgons dag", (Holidays.on(Date.civil(2007, 11, 3), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Alla helgons dag", (Holidays.on(Date.civil(2008, 11, 1), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Julafton", (Holidays.on(Date.civil(2008, 12, 24), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Juldagen", (Holidays.on(Date.civil(2008, 12, 25), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Annandag jul", (Holidays.on(Date.civil(2008, 12, 26), [:se], [:informal])[0] || {})[:name]
+
+    assert_equal "Nyårsafton", (Holidays.on(Date.civil(2008, 12, 31), [:se], [:informal])[0] || {})[:name]
 
   end
 end

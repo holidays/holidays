@@ -7,25 +7,39 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class ArDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_ar
-{Date.civil(2016,1,1) => 'Año Nuevo',
- Date.civil(2016,2,8) => 'Carnaval',
- Date.civil(2016,2,9) => 'Carnaval',
- Date.civil(2016,3,24) => 'Día Nacional de la Memoria por la Verdad y la Justicia',
- Date.civil(2016,3,25) => 'Viernes Santo',
- Date.civil(2016,4,2) => 'Día del Veterano y de los Caídos en la Guerra de Malvinas',
- Date.civil(2016,5,1) => 'Día del Trabajador',
- Date.civil(2016,5,25) => 'Día de la Revolución de Mayo',
- Date.civil(2016,6,20) => 'Día de la Bandera',
- Date.civil(2016,7,8) => 'Feriado puente turístico',
- Date.civil(2016,7,9) => 'Día de la Independencia',
- Date.civil(2016,8,15) => 'Paso a la Inmortalidad del General José de San Martín',
- Date.civil(2016,10,12) => 'Día del Respeto a la Diversidad Cultural',
- Date.civil(2016,11,20) => 'Día de la Soberanía Nacional',
- Date.civil(2016,12,8) => 'Inmaculada Concepción de María',
- Date.civil(2016,12,9) => 'Feriado puente turístico',
- Date.civil(2016,12,25) => 'Navidad'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :ar, :informal)[0] || {})[:name]
-end
+    assert_equal "Año Nuevo", (Holidays.on(Date.civil(2016, 1, 1), [:ar], [:informal])[0] || {})[:name]
+
+    assert_equal "Carnaval", (Holidays.on(Date.civil(2016, 2, 8), [:ar], [:informal])[0] || {})[:name]
+
+    assert_equal "Carnaval", (Holidays.on(Date.civil(2016, 2, 9), [:ar], [:informal])[0] || {})[:name]
+
+    assert_equal "Día Nacional de la Memoria por la Verdad y la Justicia", (Holidays.on(Date.civil(2016, 3, 24), [:ar], [:informal])[0] || {})[:name]
+
+    assert_equal "Viernes Santo", (Holidays.on(Date.civil(2016, 3, 25), [:ar], [:informal])[0] || {})[:name]
+
+    assert_equal "Día del Veterano y de los Caídos en la Guerra de Malvinas", (Holidays.on(Date.civil(2016, 4, 2), [:ar], [:informal])[0] || {})[:name]
+
+    assert_equal "Día del Trabajador", (Holidays.on(Date.civil(2016, 5, 1), [:ar], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de la Revolución de Mayo", (Holidays.on(Date.civil(2016, 5, 25), [:ar], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de la Bandera", (Holidays.on(Date.civil(2016, 6, 20), [:ar], [:informal])[0] || {})[:name]
+
+    assert_equal "Feriado puente turístico", (Holidays.on(Date.civil(2016, 7, 8), [:ar], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de la Independencia", (Holidays.on(Date.civil(2016, 7, 9), [:ar], [:informal])[0] || {})[:name]
+
+    assert_equal "Paso a la Inmortalidad del General José de San Martín", (Holidays.on(Date.civil(2016, 8, 15), [:ar], [:informal])[0] || {})[:name]
+
+    assert_equal "Día del Respeto a la Diversidad Cultural", (Holidays.on(Date.civil(2016, 10, 12), [:ar], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de la Soberanía Nacional", (Holidays.on(Date.civil(2016, 11, 20), [:ar], [:informal])[0] || {})[:name]
+
+    assert_equal "Inmaculada Concepción de María", (Holidays.on(Date.civil(2016, 12, 8), [:ar], [:informal])[0] || {})[:name]
+
+    assert_equal "Feriado puente turístico", (Holidays.on(Date.civil(2016, 12, 9), [:ar], [:informal])[0] || {})[:name]
+
+    assert_equal "Navidad", (Holidays.on(Date.civil(2016, 12, 25), [:ar], [:informal])[0] || {})[:name]
 
   end
 end

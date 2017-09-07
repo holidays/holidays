@@ -7,29 +7,29 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class LiDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_li
-{Date.civil(2009,1,1) => 'Neujahrstag',
- Date.civil(2011,3,8) => 'Fasnachtsdienstag',
- Date.civil(2009,4,10) => 'Karfreitag',
- Date.civil(2009,4,12) => 'Ostern',
- Date.civil(2009,4,13) => 'Ostermontag',
- Date.civil(2009,5,21) => 'Auffahrt',
- Date.civil(2009,6,1) => 'Pfingstmontag',
- Date.civil(2009,12,25) => 'Weihnachten',
- Date.civil(2009,12,26) => 'Stefanstag'}.each do |date, name|
-  assert_equal name, Holidays.on(date, :li, :informal)[0][:name]
-end
+    assert_equal "Neujahrstag", (Holidays.on(Date.civil(2009, 1, 1), [:li], [:informal])[0] || {})[:name]
 
-[:li].each do |r|
-  assert_equal 'Fronleichnam', Holidays.on(Date.civil(2009,6,11), r)[0][:name]
-end
+    assert_equal "Fasnachtsdienstag", (Holidays.on(Date.civil(2011, 3, 8), [:li], [:informal])[0] || {})[:name]
 
-[:li].each do |r|
-  assert_equal 'Staatsfeiertag', Holidays.on(Date.civil(2009,8,15), r)[0][:name]
-end
+    assert_equal "Karfreitag", (Holidays.on(Date.civil(2009, 4, 10), [:li], [:informal])[0] || {})[:name]
 
-[:li].each do |r|
-  assert_equal 'Allerheiligen', Holidays.on(Date.civil(2009,11,1), r)[0][:name]
-end
+    assert_equal "Ostern", (Holidays.on(Date.civil(2009, 4, 12), [:li], [:informal])[0] || {})[:name]
+
+    assert_equal "Ostermontag", (Holidays.on(Date.civil(2009, 4, 13), [:li], [:informal])[0] || {})[:name]
+
+    assert_equal "Auffahrt", (Holidays.on(Date.civil(2009, 5, 21), [:li], [:informal])[0] || {})[:name]
+
+    assert_equal "Pfingstmontag", (Holidays.on(Date.civil(2009, 6, 1), [:li], [:informal])[0] || {})[:name]
+
+    assert_equal "Weihnachten", (Holidays.on(Date.civil(2009, 12, 25), [:li], [:informal])[0] || {})[:name]
+
+    assert_equal "Stefanstag", (Holidays.on(Date.civil(2009, 12, 26), [:li], [:informal])[0] || {})[:name]
+
+    assert_equal "Fronleichnam", (Holidays.on(Date.civil(2009, 6, 11), [:li])[0] || {})[:name]
+
+    assert_equal "Staatsfeiertag", (Holidays.on(Date.civil(2009, 8, 15), [:li])[0] || {})[:name]
+
+    assert_equal "Allerheiligen", (Holidays.on(Date.civil(2009, 11, 1), [:li])[0] || {})[:name]
 
   end
 end

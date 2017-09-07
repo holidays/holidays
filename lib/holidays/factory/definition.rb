@@ -4,8 +4,11 @@ require 'holidays/definition/context/function_processor'
 require 'holidays/definition/context/load'
 require 'holidays/definition/decorator/custom_method_proc'
 require 'holidays/definition/decorator/custom_method_source'
+require 'holidays/definition/decorator/test'
 require 'holidays/definition/generator/regions'
+require 'holidays/definition/generator/test'
 require 'holidays/definition/parser/custom_method'
+require 'holidays/definition/parser/test'
 require 'holidays/definition/repository/holidays_by_month'
 require 'holidays/definition/repository/regions'
 require 'holidays/definition/repository/cache'
@@ -13,6 +16,7 @@ require 'holidays/definition/repository/proc_result_cache'
 require 'holidays/definition/repository/custom_methods'
 require 'holidays/definition/validator/custom_method'
 require 'holidays/definition/validator/region'
+require 'holidays/definition/validator/test'
 
 module Holidays
   module Factory
@@ -23,6 +27,8 @@ module Holidays
             custom_method_parser,
             custom_method_source_decorator,
             custom_methods_repository,
+            test_parser,
+            test_generator,
           )
         end
 
@@ -31,6 +37,8 @@ module Holidays
             custom_method_parser,
             custom_method_source_decorator,
             custom_methods_repository,
+            test_parser,
+            test_generator,
           )
         end
 
@@ -104,6 +112,22 @@ module Holidays
           Holidays::Definition::Context::Load.new(
             merger,
             Holidays::FULL_DEFINITIONS_PATH,
+          )
+        end
+
+        def test_generator
+          Holidays::Definition::Generator::Test.new(
+            test_decorator,
+          )
+        end
+
+        def test_decorator
+          Holidays::Definition::Decorator::Test.new
+        end
+
+        def test_parser
+          Holidays::Definition::Parser::Test.new(
+            Holidays::Definition::Validator::Test.new,
           )
         end
       end

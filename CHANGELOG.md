@@ -1,5 +1,28 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 6.1.0
+
+* Update to [v2.1.1 definitions](https://github.com/holidays/definitions/releases/tag/v2.1.1). Please see the changelog for
+  the definitions for details.
+
+## 6.0.0
+
+* Remove support for ruby 2.1.0 since it is [no longer officially supported](https://www.ruby-lang.org/en/news/2017/04/01/support-of-ruby-2-1-has-ended/). This is the cause of the major
+  version bump.
+* Update to [v2.0.0 definitions](https://github.com/holidays/definitions/releases/tag/v2.0.0). This changes the format
+  of definition tests and requires the other changes.
+* Rewrite test generation logic to consume new YAML format.
+
+To be crystal clear: this version should not behave differently in terms of holiday results than v5.7.0 of the gem. Any
+differences are a bug that should be addressed.
+
+## 5.7.0
+
+* Update to [v1.7.1 definitions](https://github.com/holidays/definitions/releases/tag/v1.7.1). Please see the
+  definitions repository for the list of changes.
+* Remove 'coveralls'. We never looked at the reports. We will we simplecov to enforce test coverage. It will
+  start off being set to require 99% and above.
+
 ## 5.6.0
 
 * Update to v1.6.1 definitions, which includes updates for the `:ca` region (and subregions)

@@ -7,32 +7,53 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class HkDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_hk
-{Date.civil(2016,1,1) => 'New Year\'s Day',
- Date.civil(2016,2,8) => 'Lunar New Year\'s Day',
- Date.civil(2016,2,9) => 'The second day of Lunar New Year',
- Date.civil(2016,2,10) => 'The third day of Lunar New Year',
- Date.civil(2016,3,25) => 'Good Friday',
- Date.civil(2016,3,26) => 'The day following Good Friday',
- Date.civil(2016,3,28) => 'Easter Monday',
- Date.civil(2016,5,2) => 'Labour Day',
- Date.civil(2016,7,1) => 'Hong Kong Special Administrative Region Establishment Day',
- Date.civil(2016,10,1) => 'National Day',
- Date.civil(2016,12,26) => 'Christmas Day',
- Date.civil(2016,12,27) => 'Boxing Day',
- Date.civil(2017,1,2) => 'New Year\'s Day',
- Date.civil(2017,1,28) => 'Lunar New Year\'s Day',
- Date.civil(2017,1,30) => 'The second day of Lunar New Year',
- Date.civil(2017,1,31) => 'The third day of Lunar New Year',
- Date.civil(2017,4,14) => 'Good Friday',
- Date.civil(2017,4,15) => 'The day following Good Friday',
- Date.civil(2017,4,17) => 'Easter Monday',
- Date.civil(2017,5,1) => 'Labour Day',
- Date.civil(2017,7,1) => 'Hong Kong Special Administrative Region Establishment Day',
- Date.civil(2017,10,2) => 'National Day',
- Date.civil(2017,12,25) => 'Christmas Day',
- Date.civil(2017,12,26) => 'Boxing Day'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :hk, :observed)[0] || {})[:name]
-end
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2016, 1, 1), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "Lunar New Year's Day", (Holidays.on(Date.civil(2016, 2, 8), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "The second day of Lunar New Year", (Holidays.on(Date.civil(2016, 2, 9), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "The third day of Lunar New Year", (Holidays.on(Date.civil(2016, 2, 10), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "Good Friday", (Holidays.on(Date.civil(2016, 3, 25), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "The day following Good Friday", (Holidays.on(Date.civil(2016, 3, 26), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "Easter Monday", (Holidays.on(Date.civil(2016, 3, 28), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "Labour Day", (Holidays.on(Date.civil(2016, 5, 2), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "Hong Kong Special Administrative Region Establishment Day", (Holidays.on(Date.civil(2016, 7, 1), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "National Day", (Holidays.on(Date.civil(2016, 10, 1), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2016, 12, 26), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2016, 12, 27), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2017, 1, 2), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "Lunar New Year's Day", (Holidays.on(Date.civil(2017, 1, 28), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "The second day of Lunar New Year", (Holidays.on(Date.civil(2017, 1, 30), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "The third day of Lunar New Year", (Holidays.on(Date.civil(2017, 1, 31), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "Good Friday", (Holidays.on(Date.civil(2017, 4, 14), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "The day following Good Friday", (Holidays.on(Date.civil(2017, 4, 15), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "Easter Monday", (Holidays.on(Date.civil(2017, 4, 17), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "Labour Day", (Holidays.on(Date.civil(2017, 5, 1), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "Hong Kong Special Administrative Region Establishment Day", (Holidays.on(Date.civil(2017, 7, 1), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "National Day", (Holidays.on(Date.civil(2017, 10, 2), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2017, 12, 25), [:hk], [:observed])[0] || {})[:name]
+
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2017, 12, 26), [:hk], [:observed])[0] || {})[:name]
 
   end
 end

@@ -7,28 +7,45 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class IsDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_is
-{Date.civil(2007,1,1) => 'Nýársdagur',
- Date.civil(2007,1,6) => 'Þrettándinn',
- Date.civil(2007,1,19) => 'Bóndadagur',
- Date.civil(2007,2,18) => 'Konudagur',
- Date.civil(2007,4,5) => 'Skírdagur',
- Date.civil(2007,4,6) => 'Föstudaginn langi',
- Date.civil(2007,4,8) => 'Páskadagur',
- Date.civil(2007,4,9) => 'Annar í páskum',
- Date.civil(2007,4,19) => 'Sumardagurinn fyrsti',
- Date.civil(2007,5,1) => 'Verkalýðsdagurinn',
- Date.civil(2007,5,17) => 'Uppstigningardagur',
- Date.civil(2007,5,27) => 'Hvítasunnudagur',
- Date.civil(2007,5,28) => 'Annar í hvítasunnu',
- Date.civil(2007,6,3) => 'Sjómannadagurinn',
- Date.civil(2007,6,17) => 'Lýðveldisdagurinn',
- Date.civil(2007,8,6) => 'Frídagur verslunarmanna',
- Date.civil(2007,12,24) => 'Jól',
- Date.civil(2007,12,25) => 'Jól',
- Date.civil(2007,12,26) => 'Jól',
- Date.civil(2007,12,31) => 'Gamlárskvöld'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :is, :informal)[0] || {})[:name]
-end
+    assert_equal "Nýársdagur", (Holidays.on(Date.civil(2007, 1, 1), [:is], [:informal])[0] || {})[:name]
+
+    assert_equal "Þrettándinn", (Holidays.on(Date.civil(2007, 1, 6), [:is], [:informal])[0] || {})[:name]
+
+    assert_equal "Bóndadagur", (Holidays.on(Date.civil(2007, 1, 19), [:is], [:informal])[0] || {})[:name]
+
+    assert_equal "Konudagur", (Holidays.on(Date.civil(2007, 2, 18), [:is], [:informal])[0] || {})[:name]
+
+    assert_equal "Skírdagur", (Holidays.on(Date.civil(2007, 4, 5), [:is], [:informal])[0] || {})[:name]
+
+    assert_equal "Föstudaginn langi", (Holidays.on(Date.civil(2007, 4, 6), [:is], [:informal])[0] || {})[:name]
+
+    assert_equal "Páskadagur", (Holidays.on(Date.civil(2007, 4, 8), [:is], [:informal])[0] || {})[:name]
+
+    assert_equal "Annar í páskum", (Holidays.on(Date.civil(2007, 4, 9), [:is], [:informal])[0] || {})[:name]
+
+    assert_equal "Sumardagurinn fyrsti", (Holidays.on(Date.civil(2007, 4, 19), [:is], [:informal])[0] || {})[:name]
+
+    assert_equal "Verkalýðsdagurinn", (Holidays.on(Date.civil(2007, 5, 1), [:is], [:informal])[0] || {})[:name]
+
+    assert_equal "Uppstigningardagur", (Holidays.on(Date.civil(2007, 5, 17), [:is], [:informal])[0] || {})[:name]
+
+    assert_equal "Hvítasunnudagur", (Holidays.on(Date.civil(2007, 5, 27), [:is], [:informal])[0] || {})[:name]
+
+    assert_equal "Annar í hvítasunnu", (Holidays.on(Date.civil(2007, 5, 28), [:is], [:informal])[0] || {})[:name]
+
+    assert_equal "Sjómannadagurinn", (Holidays.on(Date.civil(2007, 6, 3), [:is], [:informal])[0] || {})[:name]
+
+    assert_equal "Lýðveldisdagurinn", (Holidays.on(Date.civil(2007, 6, 17), [:is], [:informal])[0] || {})[:name]
+
+    assert_equal "Frídagur verslunarmanna", (Holidays.on(Date.civil(2007, 8, 6), [:is], [:informal])[0] || {})[:name]
+
+    assert_equal "Jól", (Holidays.on(Date.civil(2007, 12, 24), [:is], [:informal])[0] || {})[:name]
+
+    assert_equal "Jól", (Holidays.on(Date.civil(2007, 12, 25), [:is], [:informal])[0] || {})[:name]
+
+    assert_equal "Jól", (Holidays.on(Date.civil(2007, 12, 26), [:is], [:informal])[0] || {})[:name]
+
+    assert_equal "Gamlárskvöld", (Holidays.on(Date.civil(2007, 12, 31), [:is], [:informal])[0] || {})[:name]
 
   end
 end

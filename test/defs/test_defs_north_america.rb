@@ -7,238 +7,580 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class North_americaDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_north_america
-{Date.civil(2008,1,1) => 'New Year\'s Day',
- Date.civil(2008,3,21) => 'Good Friday',
- Date.civil(2013,3,31) => 'Easter Sunday',
- Date.civil(2008,3,24) => 'Easter Monday',
- Date.civil(2008,7,1) => 'Canada Day',
- Date.civil(2008,9,1) => 'Labour Day',
- Date.civil(2008,12,25) => 'Christmas Day'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :ca, :informal)[0] || {})[:name]
-end
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2008, 1, 1), [:ca], [:informal])[0] || {})[:name]
 
-# Family Day in Alberta - Should only be active on 1990 or later
-[
-  Date.civil(1990,2,19),
-  Date.civil(2013,2,18),
-  Date.civil(2014,2,17),
-  Date.civil(2044,2,15),
-].each do |date|
-  assert_equal 'Family Day', Holidays.on(date, :ca_ab)[0][:name]
-end
+    assert_equal "Good Friday", (Holidays.on(Date.civil(2008, 3, 21), [:ca], [:informal])[0] || {})[:name]
 
-# Family Day in Alberta - should not be active before 1990
-[
-  Date.civil(1970,2,16),
-  Date.civil(1988,2,15),
-  Date.civil(1989,2,20),
-].each do |date|
-  assert_equal [], Holidays.on(date, :ca_ab)
-end
+    assert_equal "Easter Sunday", (Holidays.on(Date.civil(2013, 3, 31), [:ca], [:informal])[0] || {})[:name]
 
-# Family Day in Saskatchewan - Should only be active on 2007 or later
-[
-  Date.civil(2007,2,19),
-  Date.civil(2013,2,18),
-  Date.civil(2014,2,17),
-  Date.civil(2044,2,15),
-].each do |date|
-  assert_equal 'Family Day', Holidays.on(date, :ca_sk)[0][:name]
-end
+    assert_equal "Easter Monday", (Holidays.on(Date.civil(2008, 3, 24), [:ca], [:informal])[0] || {})[:name]
 
-# Family Day in Saskatchewan - should not be active before 2007
-[
-  Date.civil(1970,2,16),
-  Date.civil(1988,2,15),
-  Date.civil(1989,2,20),
-  Date.civil(2006,2,20),
-].each do |date|
-  assert_equal [], Holidays.on(date, :ca_sk)
-end
+    assert_equal "Canada Day", (Holidays.on(Date.civil(2008, 7, 1), [:ca], [:informal])[0] || {})[:name]
 
-# Family Day in Ontario - Should only be active on 2008 or later
-[
-  Date.civil(2008,2,18),
-  Date.civil(2013,2,18),
-  Date.civil(2014,2,17),
-  Date.civil(2044,2,15),
-].each do |date|
-  assert_equal 'Family Day', Holidays.on(date, :ca_on)[0][:name]
-end
+    assert_equal "Labour Day", (Holidays.on(Date.civil(2008, 9, 1), [:ca], [:informal])[0] || {})[:name]
 
-# Family Day in Ontario - should not be active before 2008
-[
-  Date.civil(1970,2,16),
-  Date.civil(1988,2,15),
-  Date.civil(1989,2,20),
-  Date.civil(2006,2,20),
-  Date.civil(2007,2,19),
-].each do |date|
-  assert_equal [], Holidays.on(date, :ca_on)
-end
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2008, 12, 25), [:ca], [:informal])[0] || {})[:name]
 
-# Family Day in BC - Should only be active on 2013 or later
-[
-  Date.civil(2013,2,11),
-  Date.civil(2014,2,10),
-  Date.civil(2044,2,8),
-].each do |date|
-  assert_equal 'Family Day', Holidays.on(date, :ca_bc)[0][:name]
-end
+    assert_equal "Family Day", (Holidays.on(Date.civil(1990, 2, 19), [:ca_ab])[0] || {})[:name]
 
-# Family Day in BC - should not be active before 2013
-[
-  Date.civil(2000,2,14),
-  Date.civil(2011,2,14),
-  Date.civil(2012,2,13),
-].each do |date|
-  assert_equal [], Holidays.on(date, :ca_bc)
-end
+    assert_equal "Family Day", (Holidays.on(Date.civil(2013, 2, 18), [:ca_ab])[0] || {})[:name]
 
-# Nova Scotia Heritage Day - should only be active on 2015 and later
-[
-  Date.civil(2015,2,16),
-  Date.civil(2016,2,15),
-  Date.civil(2017,2,20),
-  Date.civil(2044,2,15),
-].each do |date|
-  assert_equal 'Nova Scotia Heritage Day', Holidays.on(date, :ca_ns)[0][:name]
-end
+    assert_equal "Family Day", (Holidays.on(Date.civil(2014, 2, 17), [:ca_ab])[0] || {})[:name]
 
-# Nova Scotia Heritage Day - should not be active before 2015
-[
-  Date.civil(2000,2,21),
-  Date.civil(2012,2,20),
-  Date.civil(2013,2,18),
-  Date.civil(2014,2,17),
-].each do |date|
-  assert_equal [], Holidays.on(date, :ca_ns)
-end
+    assert_equal "Family Day", (Holidays.on(Date.civil(2044, 2, 15), [:ca_ab])[0] || {})[:name]
 
-# Islander Day in PE
-[ Date.civil(2013,2,18), Date.civil(2014,2,17) ].each do |date|
-  assert_equal 'Islander Day', Holidays.on(date, :ca_pe)[0][:name]
-end
+    assert_nil (Holidays.on(Date.civil(1970, 2, 16), [:ca_ab])[0] || {})[:name]
 
+    assert_nil (Holidays.on(Date.civil(1988, 2, 15), [:ca_ab])[0] || {})[:name]
 
-# Victoria Day
-[:ca_ab, :ca_bc, :ca_mb, :ca_nt, :ca_nu, :ca_on, :ca_sk, :ca_yt].each do |r|
-  [
-    Date.civil(2004,5,24), Date.civil(2005,5,23), Date.civil(2006,5,22),
-    Date.civil(2007,5,21), Date.civil(2008,5,19)
-  ].each do |date|
-    assert_equal 'Victoria Day', Holidays.on(date, r)[0][:name]
-  end
-end
+    assert_nil (Holidays.on(Date.civil(1989, 2, 20), [:ca_ab])[0] || {})[:name]
 
-# First Monday in August
-[Date.civil(2013,8,5), Date.civil(2014,8,4), Date.civil(2015,8,3)].each do |date|
-  { :ca_bc => 'B.C. Day',
-    :ca_sk => 'Saskatchewan Day',
-    :ca_ab => 'Heritage Day',
-    :ca_ns => 'Natal Day',
-    :ca_nt => 'Civic Holiday',
-    :ca_nu => 'Civic Holiday',
-    :ca_pe => 'Civic Holiday',
-    :ca_nb => 'New Brunswick Day'
-  }.each do |region, name|
-    assert_equal name, Holidays.on(date, region)[0][:name]
-  end
-end
+    assert_equal "Family Day", (Holidays.on(Date.civil(2007, 2, 19), [:ca_sk])[0] || {})[:name]
 
-# Civic Holiday is only by convention in :ca_on
-[Date.civil(2013,8,5), Date.civil(2014,8,4), Date.civil(2015,8,3)].each do |date|
-  assert_equal 'Civic Holiday', Holidays.on(date, :ca_on, :informal)[0][:name]
-end
+    assert_equal "Family Day", (Holidays.on(Date.civil(2013, 2, 18), [:ca_sk])[0] || {})[:name]
 
-# Remembrance Day in all Canadian provinces
-# except (Nova Scotia, Manitoba, Ontario, and Quebec)
-[
-  :ca_ab,
-  :ca_sk,
-  :ca_bc,
-  :ca_pe,
-  :ca_nl,
-  :ca_nt,
-  :ca_nu,
-  :ca_nb,
-  :ca_yt
-].each do |province|
-  # Remembrance Day observed
-  [Date.civil(2010, 11, 11), Date.civil(2012, 11, 12), Date.civil(2017, 11, 13)].each do |date|
-    assert_equal 'Remembrance Day', Holidays.on(date, province, :observed)[0][:name]
-  end
+    assert_equal "Family Day", (Holidays.on(Date.civil(2014, 2, 17), [:ca_sk])[0] || {})[:name]
 
-  # Remembrance Day
-  assert_equal "Remembrance Day", Holidays.on(Date.civil(2016,11,11), province)[0][:name]
-end
+    assert_equal "Family Day", (Holidays.on(Date.civil(2044, 2, 15), [:ca_sk])[0] || {})[:name]
 
-# New years observed date
-[Date.civil(2011, 1, 3), Date.civil(2012, 1, 2), Date.civil(2016, 1, 1)].each do |date|
-  assert_equal 'New Year\'s Day', Holidays.on(date, :ca, :observed)[0][:name]
-end
+    assert_nil (Holidays.on(Date.civil(1970, 2, 16), [:ca_sk])[0] || {})[:name]
 
-# Canada Day observed date
-[Date.civil(2011, 7, 1), Date.civil(2012, 7, 2), Date.civil(2017, 7, 3)].each do |date|
-  assert_equal 'Canada Day', Holidays.on(date, :ca, :observed)[0][:name]
-end
+    assert_nil (Holidays.on(Date.civil(1988, 2, 15), [:ca_sk])[0] || {})[:name]
 
-# Christmas observed date
-[Date.civil(2010, 12, 27), Date.civil(2012, 12, 25), Date.civil(2016, 12, 26)].each do |date|
-  assert_equal 'Christmas Day', Holidays.on(date, :ca, :observed)[0][:name]
-end
+    assert_nil (Holidays.on(Date.civil(1989, 2, 20), [:ca_sk])[0] || {})[:name]
 
-# Boxing Day observed date
-[Date.civil(2010, 12, 28), Date.civil(2012, 12, 26), Date.civil(2016, 12, 27),
- Date.civil(2015, 12, 28)].each do |date|
-  assert_equal 'Boxing Day', Holidays.on(date, :ca_on, :observed)[0][:name]
-end
+    assert_nil (Holidays.on(Date.civil(2006, 2, 20), [:ca_sk])[0] || {})[:name]
 
+    assert_equal "Family Day", (Holidays.on(Date.civil(2008, 2, 18), [:ca_on])[0] || {})[:name]
 
-{Date.civil(2007,1,1) => 'Año nuevo',
- Date.civil(2007,2,5) => 'Día de la Constitución',
- Date.civil(2007,5,1) => 'Día del Trabajo',
- Date.civil(2007,5,5) => 'Cinco de Mayo',
- Date.civil(2007,9,16) => 'Día de la Independencia',
- Date.civil(2007,11,1) => 'Todos los Santos',
- Date.civil(2007,11,2) => 'Los Fieles Difuntos',
- Date.civil(2007,11,19) => 'Día de la Revolución',
- Date.civil(2007,12,25) => 'Navidad'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :mx, :informal)[0] || {})[:name]
-end
+    assert_equal "Family Day", (Holidays.on(Date.civil(2013, 2, 18), [:ca_on])[0] || {})[:name]
 
+    assert_equal "Family Day", (Holidays.on(Date.civil(2014, 2, 17), [:ca_on])[0] || {})[:name]
 
-{Date.civil(2008,1,1) => 'New Year\'s Day',
- Date.civil(2008,1,21) => 'Martin Luther King, Jr. Day',
- Date.civil(2008,2,18) => 'Presidents\' Day',
- Date.civil(2008,5,26) => 'Memorial Day',
- Date.civil(2008,7,4) => 'Independence Day',
- Date.civil(2008,9,1) => 'Labor Day',
- Date.civil(2008,10,13) => 'Columbus Day',
- Date.civil(2008,11,11) => 'Veterans Day',
- Date.civil(2008,11,27) => 'Thanksgiving',
- Date.civil(2013,11,28) => 'Thanksgiving',
- Date.civil(2008,12,25) => 'Christmas Day'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :us)[0] || {})[:name]
-end
-{Date.civil(2008, 3, 31) => 'Cesar Chavez Day',
- Date.civil(2008, 11, 28) => 'Day after Thanksgiving',
- Date.civil(2013, 11, 29) => 'Day after Thanksgiving'}.each do |date, name|
- assert_equal name, (Holidays.on(date, :us, :us_ca)[0] || {})[:name]
-end
+    assert_equal "Family Day", (Holidays.on(Date.civil(2044, 2, 15), [:ca_on])[0] || {})[:name]
 
+    assert_nil (Holidays.on(Date.civil(1970, 2, 16), [:ca_on])[0] || {})[:name]
 
-{Date.civil(2013,2,2) => 'Groundhog Day',
- Date.civil(2013,2,14) => 'Valentine\'s Day',
- Date.civil(2013,3,17) => 'St. Patrick\'s Day',
- Date.civil(2013,4,1) => 'April Fool\'s Day',
- Date.civil(2013,4,22) => 'Earth Day',
- Date.civil(2013,5,12) => 'Mother\'s Day',
- Date.civil(2013,5,18) => 'Armed Forces Day',
- Date.civil(2013,6,16) => 'Father\'s Day',
- Date.civil(2013,10,31) => 'Halloween'}.each do |date, name|
-  assert_equal name, (Holidays.on(date, :us, :informal)[0] || {})[:name]
-end
+    assert_nil (Holidays.on(Date.civil(1988, 2, 15), [:ca_on])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(1989, 2, 20), [:ca_on])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2006, 2, 20), [:ca_on])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2007, 2, 19), [:ca_on])[0] || {})[:name]
+
+    assert_equal "Family Day", (Holidays.on(Date.civil(2013, 2, 11), [:ca_bc])[0] || {})[:name]
+
+    assert_equal "Family Day", (Holidays.on(Date.civil(2014, 2, 10), [:ca_bc])[0] || {})[:name]
+
+    assert_equal "Family Day", (Holidays.on(Date.civil(2044, 2, 8), [:ca_bc])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2000, 2, 14), [:ca_bc])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2011, 2, 14), [:ca_bc])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2012, 2, 13), [:ca_bc])[0] || {})[:name]
+
+    assert_equal "Nova Scotia Heritage Day", (Holidays.on(Date.civil(2015, 2, 16), [:ca_ns])[0] || {})[:name]
+
+    assert_equal "Nova Scotia Heritage Day", (Holidays.on(Date.civil(2016, 2, 15), [:ca_ns])[0] || {})[:name]
+
+    assert_equal "Nova Scotia Heritage Day", (Holidays.on(Date.civil(2017, 2, 20), [:ca_ns])[0] || {})[:name]
+
+    assert_equal "Nova Scotia Heritage Day", (Holidays.on(Date.civil(2044, 2, 15), [:ca_ns])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2000, 2, 21), [:ca_ns])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2012, 2, 20), [:ca_ns])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2013, 2, 18), [:ca_ns])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2014, 2, 17), [:ca_ns])[0] || {})[:name]
+
+    assert_equal "Islander Day", (Holidays.on(Date.civil(2013, 2, 18), [:ca_pe])[0] || {})[:name]
+
+    assert_equal "Islander Day", (Holidays.on(Date.civil(2014, 2, 17), [:ca_pe])[0] || {})[:name]
+
+    assert_equal "Victoria Day", (Holidays.on(Date.civil(2004, 5, 24), [:ca_ab, :ca_bc, :ca_mb, :ca_nt, :ca_nu, :ca_on, :ca_sk, :ca_yt])[0] || {})[:name]
+assert_equal "Victoria Day", (Holidays.on(Date.civil(2005, 5, 23), [:ca_ab, :ca_bc, :ca_mb, :ca_nt, :ca_nu, :ca_on, :ca_sk, :ca_yt])[0] || {})[:name]
+assert_equal "Victoria Day", (Holidays.on(Date.civil(2006, 5, 22), [:ca_ab, :ca_bc, :ca_mb, :ca_nt, :ca_nu, :ca_on, :ca_sk, :ca_yt])[0] || {})[:name]
+assert_equal "Victoria Day", (Holidays.on(Date.civil(2007, 5, 21), [:ca_ab, :ca_bc, :ca_mb, :ca_nt, :ca_nu, :ca_on, :ca_sk, :ca_yt])[0] || {})[:name]
+assert_equal "Victoria Day", (Holidays.on(Date.civil(2008, 5, 19), [:ca_ab, :ca_bc, :ca_mb, :ca_nt, :ca_nu, :ca_on, :ca_sk, :ca_yt])[0] || {})[:name]
+
+    assert_equal "B.C. Day", (Holidays.on(Date.civil(2013, 8, 5), [:ca_bc])[0] || {})[:name]
+
+    assert_equal "Saskatchewan Day", (Holidays.on(Date.civil(2013, 8, 5), [:ca_sk])[0] || {})[:name]
+
+    assert_equal "Heritage Day", (Holidays.on(Date.civil(2013, 8, 5), [:ca_ab], [:informal])[0] || {})[:name]
+
+    assert_equal "Natal Day", (Holidays.on(Date.civil(2013, 8, 5), [:ca_ns])[0] || {})[:name]
+
+    assert_equal "Civic Holiday", (Holidays.on(Date.civil(2013, 8, 5), [:ca_on], [:informal])[0] || {})[:name]
+assert_equal "Civic Holiday", (Holidays.on(Date.civil(2014, 8, 4), [:ca_on], [:informal])[0] || {})[:name]
+assert_equal "Civic Holiday", (Holidays.on(Date.civil(2015, 8, 3), [:ca_on], [:informal])[0] || {})[:name]
+
+    assert_equal "Civic Holiday", (Holidays.on(Date.civil(2013, 8, 5), [:ca_nt])[0] || {})[:name]
+
+    assert_equal "Civic Holiday", (Holidays.on(Date.civil(2013, 8, 5), [:ca_nu])[0] || {})[:name]
+
+    assert_equal "Civic Holiday", (Holidays.on(Date.civil(2013, 8, 5), [:ca_pe])[0] || {})[:name]
+
+    assert_equal "New Brunswick Day", (Holidays.on(Date.civil(2013, 8, 5), [:ca_nb])[0] || {})[:name]
+
+    assert_equal "B.C. Day", (Holidays.on(Date.civil(2014, 8, 4), [:ca_bc])[0] || {})[:name]
+
+    assert_equal "Saskatchewan Day", (Holidays.on(Date.civil(2014, 8, 4), [:ca_sk])[0] || {})[:name]
+
+    assert_equal "Heritage Day", (Holidays.on(Date.civil(2014, 8, 4), [:ca_ab], [:informal])[0] || {})[:name]
+
+    assert_equal "Natal Day", (Holidays.on(Date.civil(2014, 8, 4), [:ca_ns])[0] || {})[:name]
+
+    assert_equal "Civic Holiday", (Holidays.on(Date.civil(2014, 8, 4), [:ca_nt])[0] || {})[:name]
+
+    assert_equal "Civic Holiday", (Holidays.on(Date.civil(2014, 8, 4), [:ca_nu])[0] || {})[:name]
+
+    assert_equal "Civic Holiday", (Holidays.on(Date.civil(2014, 8, 4), [:ca_pe])[0] || {})[:name]
+
+    assert_equal "New Brunswick Day", (Holidays.on(Date.civil(2014, 8, 4), [:ca_nb])[0] || {})[:name]
+
+    assert_equal "B.C. Day", (Holidays.on(Date.civil(2015, 8, 3), [:ca_bc])[0] || {})[:name]
+
+    assert_equal "Saskatchewan Day", (Holidays.on(Date.civil(2015, 8, 3), [:ca_sk])[0] || {})[:name]
+
+    assert_equal "Heritage Day", (Holidays.on(Date.civil(2015, 8, 3), [:ca_ab], [:informal])[0] || {})[:name]
+
+    assert_equal "Natal Day", (Holidays.on(Date.civil(2015, 8, 3), [:ca_ns])[0] || {})[:name]
+
+    assert_equal "Civic Holiday", (Holidays.on(Date.civil(2015, 8, 3), [:ca_nt])[0] || {})[:name]
+
+    assert_equal "Civic Holiday", (Holidays.on(Date.civil(2015, 8, 3), [:ca_nu])[0] || {})[:name]
+
+    assert_equal "Civic Holiday", (Holidays.on(Date.civil(2015, 8, 3), [:ca_pe])[0] || {})[:name]
+
+    assert_equal "New Brunswick Day", (Holidays.on(Date.civil(2015, 8, 3), [:ca_nb])[0] || {})[:name]
+
+    assert_equal "Remembrance Day", (Holidays.on(Date.civil(2010, 11, 11), [:ca_ab, :ca_sk, :ca_bc, :ca_pe, :ca_nl, :ca_nt, :ca_nu, :ca_nb, :ca_yt], [:observed])[0] || {})[:name]
+assert_equal "Remembrance Day", (Holidays.on(Date.civil(2012, 11, 12), [:ca_ab, :ca_sk, :ca_bc, :ca_pe, :ca_nl, :ca_nt, :ca_nu, :ca_nb, :ca_yt], [:observed])[0] || {})[:name]
+assert_equal "Remembrance Day", (Holidays.on(Date.civil(2017, 11, 13), [:ca_ab, :ca_sk, :ca_bc, :ca_pe, :ca_nl, :ca_nt, :ca_nu, :ca_nb, :ca_yt], [:observed])[0] || {})[:name]
+
+    assert_equal "Remembrance Day", (Holidays.on(Date.civil(2016, 11, 11), [:ca_ab, :ca_sk, :ca_bc, :ca_pe, :ca_nl, :ca_nt, :ca_nu, :ca_nb, :ca_yt])[0] || {})[:name]
+
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2011, 1, 3), [:ca], [:observed])[0] || {})[:name]
+
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2012, 1, 2), [:ca], [:observed])[0] || {})[:name]
+
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2016, 1, 1), [:ca], [:observed])[0] || {})[:name]
+
+    assert_equal "Canada Day", (Holidays.on(Date.civil(2011, 7, 1), [:ca], [:observed])[0] || {})[:name]
+
+    assert_equal "Canada Day", (Holidays.on(Date.civil(2012, 7, 2), [:ca], [:observed])[0] || {})[:name]
+
+    assert_equal "Canada Day", (Holidays.on(Date.civil(2017, 7, 3), [:ca], [:observed])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2010, 12, 27), [:ca], [:observed])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2012, 12, 25), [:ca], [:observed])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2016, 12, 26), [:ca], [:observed])[0] || {})[:name]
+
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2010, 12, 28), [:ca_on], [:observed])[0] || {})[:name]
+assert_equal "Boxing Day", (Holidays.on(Date.civil(2012, 12, 26), [:ca_on], [:observed])[0] || {})[:name]
+assert_equal "Boxing Day", (Holidays.on(Date.civil(2015, 12, 28), [:ca_on], [:observed])[0] || {})[:name]
+assert_equal "Boxing Day", (Holidays.on(Date.civil(2016, 12, 27), [:ca_on], [:observed])[0] || {})[:name]
+
+    assert_equal "Año nuevo", (Holidays.on(Date.civil(2007, 1, 1), [:mx], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de la Constitución", (Holidays.on(Date.civil(2007, 2, 5), [:mx], [:informal])[0] || {})[:name]
+
+    assert_equal "Día del Trabajo", (Holidays.on(Date.civil(2007, 5, 1), [:mx], [:informal])[0] || {})[:name]
+
+    assert_equal "Cinco de Mayo", (Holidays.on(Date.civil(2007, 5, 5), [:mx], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de la Independencia", (Holidays.on(Date.civil(2007, 9, 16), [:mx], [:informal])[0] || {})[:name]
+
+    assert_equal "Todos los Santos", (Holidays.on(Date.civil(2007, 11, 1), [:mx], [:informal])[0] || {})[:name]
+
+    assert_equal "Los Fieles Difuntos", (Holidays.on(Date.civil(2007, 11, 2), [:mx], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de la Revolución", (Holidays.on(Date.civil(2007, 11, 19), [:mx], [:informal])[0] || {})[:name]
+
+    assert_equal "Navidad", (Holidays.on(Date.civil(2007, 12, 25), [:mx], [:informal])[0] || {})[:name]
+
+    assert_equal "Shrove Tuesday", (Holidays.on(Date.civil(2017, 2, 28), [:us_fl])[0] || {})[:name]
+assert_equal "Shrove Tuesday", (Holidays.on(Date.civil(2018, 2, 13), [:us_fl])[0] || {})[:name]
+assert_equal "Shrove Tuesday", (Holidays.on(Date.civil(2019, 3, 5), [:us_fl])[0] || {})[:name]
+
+    assert_equal "Mardi Gras Day", (Holidays.on(Date.civil(2017, 2, 28), [:us_la])[0] || {})[:name]
+assert_equal "Mardi Gras Day", (Holidays.on(Date.civil(2018, 2, 13), [:us_la])[0] || {})[:name]
+assert_equal "Mardi Gras Day", (Holidays.on(Date.civil(2019, 3, 5), [:us_la])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 2, 28), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2018, 2, 13), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2019, 3, 5), [:us])[0] || {})[:name]
+
+    assert_equal "Good Friday", (Holidays.on(Date.civil(2017, 4, 14), [:us_ct, :us_de, :us_gu, :us_hi, :us_in, :us_ky, :us_la, :us_nj, :us_nc, :us_nd, :us_pr, :us_tn])[0] || {})[:name]
+assert_equal "Good Friday", (Holidays.on(Date.civil(2018, 3, 30), [:us_ct, :us_de, :us_gu, :us_hi, :us_in, :us_ky, :us_la, :us_nj, :us_nc, :us_nd, :us_pr, :us_tn])[0] || {})[:name]
+assert_equal "Good Friday", (Holidays.on(Date.civil(2019, 4, 19), [:us_ct, :us_de, :us_gu, :us_hi, :us_in, :us_ky, :us_la, :us_nj, :us_nc, :us_nd, :us_pr, :us_tn])[0] || {})[:name]
+
+    assert_equal "Good Friday", (Holidays.on(Date.civil(2017, 4, 14), [:us], [:informal])[0] || {})[:name]
+assert_equal "Good Friday", (Holidays.on(Date.civil(2018, 3, 30), [:us], [:informal])[0] || {})[:name]
+assert_equal "Good Friday", (Holidays.on(Date.civil(2019, 4, 19), [:us], [:informal])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 2, 28), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2018, 2, 13), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2019, 3, 5), [:us])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 4, 16), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2018, 4, 1), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2019, 4, 21), [:us])[0] || {})[:name]
+
+    assert_equal "Easter Sunday", (Holidays.on(Date.civil(2017, 4, 16), [:us], [:informal])[0] || {})[:name]
+assert_equal "Easter Sunday", (Holidays.on(Date.civil(2018, 4, 1), [:us], [:informal])[0] || {})[:name]
+assert_equal "Easter Sunday", (Holidays.on(Date.civil(2019, 4, 21), [:us], [:informal])[0] || {})[:name]
+
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2017, 1, 1), [:us])[0] || {})[:name]
+
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2017, 1, 2), [:us], [:observed])[0] || {})[:name]
+
+    assert_equal "Martin Luther King, Jr. Day", (Holidays.on(Date.civil(2017, 1, 16), [:us])[0] || {})[:name]
+assert_equal "Martin Luther King, Jr. Day", (Holidays.on(Date.civil(2018, 1, 15), [:us])[0] || {})[:name]
+assert_equal "Martin Luther King, Jr. Day", (Holidays.on(Date.civil(2019, 1, 21), [:us])[0] || {})[:name]
+
+    assert_equal "Martin Luther King, Jr. Day", (Holidays.on(Date.civil(2016, 1, 18), [:us])[0] || {})[:name]
+assert_equal "Martin Luther King, Jr. Day", (Holidays.on(Date.civil(2017, 1, 16), [:us])[0] || {})[:name]
+assert_equal "Martin Luther King, Jr. Day", (Holidays.on(Date.civil(2018, 1, 15), [:us])[0] || {})[:name]
+
+    assert_equal "Martin Luther King's and Robert E. Lee's Birthdays", (Holidays.on(Date.civil(2016, 1, 18), [:us_ms])[0] || {})[:name]
+assert_equal "Martin Luther King's and Robert E. Lee's Birthdays", (Holidays.on(Date.civil(2017, 1, 16), [:us_ms])[0] || {})[:name]
+assert_equal "Martin Luther King's and Robert E. Lee's Birthdays", (Holidays.on(Date.civil(2018, 1, 15), [:us_ms])[0] || {})[:name]
+
+    assert_equal "Idaho Human Rights Day", (Holidays.on(Date.civil(2016, 1, 18), [:us_id])[0] || {})[:name]
+assert_equal "Idaho Human Rights Day", (Holidays.on(Date.civil(2017, 1, 16), [:us_id])[0] || {})[:name]
+assert_equal "Idaho Human Rights Day", (Holidays.on(Date.civil(2018, 1, 15), [:us_id])[0] || {})[:name]
+
+    assert_equal "Civil Rights Day", (Holidays.on(Date.civil(2016, 1, 18), [:us_ar])[0] || {})[:name]
+assert_equal "Civil Rights Day", (Holidays.on(Date.civil(2017, 1, 16), [:us_ar])[0] || {})[:name]
+assert_equal "Civil Rights Day", (Holidays.on(Date.civil(2018, 1, 15), [:us_ar])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 1, 20), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2021, 1, 20), [:us])[0] || {})[:name]
+
+    assert_equal "Inauguration Day", (Holidays.on(Date.civil(2017, 1, 20), [:us_tx, :us_dc, :us_la, :us_md, :us_va])[0] || {})[:name]
+assert_equal "Inauguration Day", (Holidays.on(Date.civil(2021, 1, 20), [:us_tx, :us_dc, :us_la, :us_md, :us_va])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 1, 13), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2018, 1, 12), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2019, 1, 18), [:us])[0] || {})[:name]
+
+    assert_equal "Lee-Jackson Day", (Holidays.on(Date.civil(2017, 1, 13), [:us_va])[0] || {})[:name]
+assert_equal "Lee-Jackson Day", (Holidays.on(Date.civil(2018, 1, 12), [:us_va])[0] || {})[:name]
+assert_equal "Lee-Jackson Day", (Holidays.on(Date.civil(2019, 1, 18), [:us_va])[0] || {})[:name]
+
+    assert_equal "Confederate Heroes Day", (Holidays.on(Date.civil(2017, 1, 19), [:us_tx])[0] || {})[:name]
+
+    assert_equal "Presidents' Day", (Holidays.on(Date.civil(2008, 2, 18), [:us])[0] || {})[:name]
+assert_equal "Presidents' Day", (Holidays.on(Date.civil(2017, 2, 20), [:us])[0] || {})[:name]
+assert_equal "Presidents' Day", (Holidays.on(Date.civil(2018, 2, 19), [:us])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 3, 6), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2018, 3, 5), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2019, 3, 4), [:us])[0] || {})[:name]
+
+    assert_equal "Casimir Pulaski Day", (Holidays.on(Date.civil(2017, 3, 6), [:us_il])[0] || {})[:name]
+assert_equal "Casimir Pulaski Day", (Holidays.on(Date.civil(2018, 3, 5), [:us_il])[0] || {})[:name]
+assert_equal "Casimir Pulaski Day", (Holidays.on(Date.civil(2019, 3, 4), [:us_il])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 3, 7), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2018, 3, 6), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2019, 3, 5), [:us])[0] || {})[:name]
+
+    assert_equal "Town Meeting Day", (Holidays.on(Date.civil(2017, 3, 7), [:us_vt])[0] || {})[:name]
+assert_equal "Town Meeting Day", (Holidays.on(Date.civil(2018, 3, 6), [:us_vt])[0] || {})[:name]
+assert_equal "Town Meeting Day", (Holidays.on(Date.civil(2019, 3, 5), [:us_vt])[0] || {})[:name]
+
+    assert_equal "Texas Independence Day", (Holidays.on(Date.civil(2017, 3, 2), [:us_tx])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 3, 27), [:us], [:observed])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2018, 3, 26), [:us], [:observed])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2022, 3, 25), [:us], [:observed])[0] || {})[:name]
+
+    assert_equal "Prince Jonah Kuhio Kalanianaole Day", (Holidays.on(Date.civil(2017, 3, 27), [:us_hi], [:observed])[0] || {})[:name]
+assert_equal "Prince Jonah Kuhio Kalanianaole Day", (Holidays.on(Date.civil(2018, 3, 26), [:us_hi], [:observed])[0] || {})[:name]
+assert_equal "Prince Jonah Kuhio Kalanianaole Day", (Holidays.on(Date.civil(2022, 3, 25), [:us_hi], [:observed])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 3, 26), [:us])[0] || {})[:name]
+
+    assert_equal "Prince Jonah Kuhio Kalanianaole Day", (Holidays.on(Date.civil(2017, 3, 26), [:us_hi])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 3, 27), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2018, 3, 26), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2019, 3, 25), [:us])[0] || {})[:name]
+
+    assert_equal "Seward's Day", (Holidays.on(Date.civil(2017, 3, 27), [:us_ak])[0] || {})[:name]
+assert_equal "Seward's Day", (Holidays.on(Date.civil(2018, 3, 26), [:us_ak])[0] || {})[:name]
+assert_equal "Seward's Day", (Holidays.on(Date.civil(2019, 3, 25), [:us_ak])[0] || {})[:name]
+
+    assert_equal "César Chávez Day", (Holidays.on(Date.civil(2017, 3, 31), [:us_ca])[0] || {})[:name]
+
+    assert_equal "Emancipation Day", (Holidays.on(Date.civil(2023, 4, 17), [:us_dc, :us_ca], [:observed])[0] || {})[:name]
+assert_equal "Emancipation Day", (Holidays.on(Date.civil(2022, 4, 15), [:us_dc, :us_ca], [:observed])[0] || {})[:name]
+assert_equal "Emancipation Day", (Holidays.on(Date.civil(2028, 4, 17), [:us_dc, :us_ca], [:observed])[0] || {})[:name]
+
+    assert_equal "Emancipation Day", (Holidays.on(Date.civil(2017, 4, 16), [:us_dc, :us_ca])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 4, 17), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2018, 4, 16), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2019, 4, 15), [:us])[0] || {})[:name]
+
+    assert_equal "Patriots' Day", (Holidays.on(Date.civil(2017, 4, 17), [:us_me, :us_ma])[0] || {})[:name]
+assert_equal "Patriots' Day", (Holidays.on(Date.civil(2018, 4, 16), [:us_me, :us_ma])[0] || {})[:name]
+assert_equal "Patriots' Day", (Holidays.on(Date.civil(2019, 4, 15), [:us_me, :us_ma])[0] || {})[:name]
+
+    assert_equal "San Jacinto Day", (Holidays.on(Date.civil(2017, 4, 21), [:us_tx])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 4, 24), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2018, 4, 30), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2019, 4, 29), [:us])[0] || {})[:name]
+
+    assert_equal "Confederate Memorial Day", (Holidays.on(Date.civil(2017, 4, 24), [:us_al, :us_ms])[0] || {})[:name]
+assert_equal "Confederate Memorial Day", (Holidays.on(Date.civil(2018, 4, 30), [:us_al, :us_ms])[0] || {})[:name]
+assert_equal "Confederate Memorial Day", (Holidays.on(Date.civil(2019, 4, 29), [:us_al, :us_ms])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2015, 4, 27), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2020, 4, 27), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2026, 4, 27), [:us])[0] || {})[:name]
+
+    assert_equal "Confederate Memorial Day", (Holidays.on(Date.civil(2015, 4, 27), [:us_fl], [:observed])[0] || {})[:name]
+assert_equal "Confederate Memorial Day", (Holidays.on(Date.civil(2020, 4, 27), [:us_fl], [:observed])[0] || {})[:name]
+assert_equal "Confederate Memorial Day", (Holidays.on(Date.civil(2026, 4, 27), [:us_fl], [:observed])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 4, 26), [:us])[0] || {})[:name]
+
+    assert_equal "Confederate Memorial Day", (Holidays.on(Date.civil(2017, 4, 26), [:us_fl])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2015, 4, 20), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2021, 4, 26), [:us])[0] || {})[:name]
+
+    assert_equal "State Holiday", (Holidays.on(Date.civil(2015, 4, 20), [:us_ga])[0] || {})[:name]
+assert_equal "State Holiday", (Holidays.on(Date.civil(2021, 4, 26), [:us_ga])[0] || {})[:name]
+
+    assert_equal "Arbor Day", (Holidays.on(Date.civil(2017, 4, 28), [:us_ne])[0] || {})[:name]
+
+    assert_equal "Truman Day", (Holidays.on(Date.civil(2017, 5, 8), [:us_mo])[0] || {})[:name]
+
+    assert_equal "Confederate Memorial Day", (Holidays.on(Date.civil(2017, 5, 10), [:us_sc])[0] || {})[:name]
+
+    assert_equal "Memorial Day", (Holidays.on(Date.civil(2017, 5, 29), [:us])[0] || {})[:name]
+assert_equal "Memorial Day", (Holidays.on(Date.civil(2018, 5, 28), [:us])[0] || {})[:name]
+assert_equal "Memorial Day", (Holidays.on(Date.civil(2019, 5, 27), [:us])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 6, 5), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2018, 6, 4), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2019, 6, 3), [:us])[0] || {})[:name]
+
+    assert_equal "Jefferson Davis' Birthday", (Holidays.on(Date.civil(2017, 6, 5), [:us_al])[0] || {})[:name]
+assert_equal "Jefferson Davis' Birthday", (Holidays.on(Date.civil(2018, 6, 4), [:us_al])[0] || {})[:name]
+assert_equal "Jefferson Davis' Birthday", (Holidays.on(Date.civil(2019, 6, 3), [:us_al])[0] || {})[:name]
+
+    assert_equal "Birthday of Jefferson Davis", (Holidays.on(Date.civil(2017, 6, 3), [:us_fl])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 6, 12), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2018, 6, 11), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2022, 6, 10), [:us])[0] || {})[:name]
+
+    assert_equal "King Kamehameha I Day", (Holidays.on(Date.civil(2017, 6, 12), [:us_hi], [:observed])[0] || {})[:name]
+assert_equal "King Kamehameha I Day", (Holidays.on(Date.civil(2018, 6, 11), [:us_hi], [:observed])[0] || {})[:name]
+assert_equal "King Kamehameha I Day", (Holidays.on(Date.civil(2022, 6, 10), [:us_hi], [:observed])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 6, 11), [:us])[0] || {})[:name]
+
+    assert_equal "King Kamehameha I Day", (Holidays.on(Date.civil(2017, 6, 11), [:us_hi])[0] || {})[:name]
+
+    assert_equal "Emancipation Day in Texas", (Holidays.on(Date.civil(2017, 6, 19), [:us_tx])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 6, 20), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2020, 6, 19), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2021, 6, 21), [:us])[0] || {})[:name]
+
+    assert_equal "West Virginia Day", (Holidays.on(Date.civil(2017, 6, 20), [:us_wv], [:observed])[0] || {})[:name]
+assert_equal "West Virginia Day", (Holidays.on(Date.civil(2020, 6, 19), [:us_wv], [:observed])[0] || {})[:name]
+assert_equal "West Virginia Day", (Holidays.on(Date.civil(2021, 6, 21), [:us_wv], [:observed])[0] || {})[:name]
+
+    assert_equal "West Virginia Day", (Holidays.on(Date.civil(2017, 6, 20), [:us_wv])[0] || {})[:name]
+
+    assert_equal "Emancipation Day", (Holidays.on(Date.civil(2017, 7, 3), [:us_vi])[0] || {})[:name]
+
+    assert_equal "Independence Day", (Holidays.on(Date.civil(2020, 7, 4), [:us, :us_va])[0] || {})[:name]
+assert_equal "Independence Day", (Holidays.on(Date.civil(2021, 7, 4), [:us, :us_va])[0] || {})[:name]
+assert_equal "Independence Day", (Holidays.on(Date.civil(2026, 7, 4), [:us, :us_va])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2020, 7, 3), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2021, 7, 5), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2026, 7, 3), [:us])[0] || {})[:name]
+
+    assert_equal "Independence Day (Holiday)", (Holidays.on(Date.civil(2020, 7, 3), [:us_va])[0] || {})[:name]
+assert_equal "Independence Day (Holiday)", (Holidays.on(Date.civil(2021, 7, 5), [:us_va])[0] || {})[:name]
+assert_equal "Independence Day (Holiday)", (Holidays.on(Date.civil(2026, 7, 3), [:us_va])[0] || {})[:name]
+
+    assert_equal "Pioneer Day", (Holidays.on(Date.civil(2020, 7, 24), [:us_ut])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 8, 14), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2020, 8, 10), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2021, 8, 9), [:us])[0] || {})[:name]
+
+    assert_equal "Victory Day", (Holidays.on(Date.civil(2017, 8, 14), [:us_ri])[0] || {})[:name]
+assert_equal "Victory Day", (Holidays.on(Date.civil(2020, 8, 10), [:us_ri])[0] || {})[:name]
+assert_equal "Victory Day", (Holidays.on(Date.civil(2021, 8, 9), [:us_ri])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 8, 16), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2020, 8, 17), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2025, 8, 15), [:us])[0] || {})[:name]
+
+    assert_equal "Bennington Battle Day", (Holidays.on(Date.civil(2017, 8, 16), [:us_vt], [:observed])[0] || {})[:name]
+assert_equal "Bennington Battle Day", (Holidays.on(Date.civil(2020, 8, 17), [:us_vt], [:observed])[0] || {})[:name]
+assert_equal "Bennington Battle Day", (Holidays.on(Date.civil(2025, 8, 15), [:us_vt], [:observed])[0] || {})[:name]
+
+    assert_equal "Bennington Battle Day", (Holidays.on(Date.civil(2017, 8, 16), [:us_vt])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 8, 18), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2020, 8, 21), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2025, 8, 15), [:us])[0] || {})[:name]
+
+    assert_equal "Statehood Day", (Holidays.on(Date.civil(2017, 8, 18), [:us_hi])[0] || {})[:name]
+assert_equal "Statehood Day", (Holidays.on(Date.civil(2020, 8, 21), [:us_hi])[0] || {})[:name]
+assert_equal "Statehood Day", (Holidays.on(Date.civil(2025, 8, 15), [:us_hi])[0] || {})[:name]
+
+    assert_equal "Lyndon Baines Johnson Day", (Holidays.on(Date.civil(2017, 8, 27), [:us_tx])[0] || {})[:name]
+
+    assert_equal "Labor Day", (Holidays.on(Date.civil(2017, 9, 4), [:us])[0] || {})[:name]
+assert_equal "Labor Day", (Holidays.on(Date.civil(2018, 9, 3), [:us])[0] || {})[:name]
+assert_equal "Labor Day", (Holidays.on(Date.civil(2019, 9, 2), [:us])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 9, 21), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2018, 9, 10), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2019, 9, 30), [:us])[0] || {})[:name]
+
+    assert_equal "Rosh Hashanah", (Holidays.on(Date.civil(2017, 9, 21), [:us_tx])[0] || {})[:name]
+assert_equal "Rosh Hashanah", (Holidays.on(Date.civil(2018, 9, 10), [:us_tx])[0] || {})[:name]
+assert_equal "Rosh Hashanah", (Holidays.on(Date.civil(2019, 9, 30), [:us_tx])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 9, 30), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2018, 9, 19), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2019, 10, 9), [:us])[0] || {})[:name]
+
+    assert_equal "Yom Kippur", (Holidays.on(Date.civil(2017, 9, 30), [:us_tx])[0] || {})[:name]
+assert_equal "Yom Kippur", (Holidays.on(Date.civil(2018, 9, 19), [:us_tx])[0] || {})[:name]
+assert_equal "Yom Kippur", (Holidays.on(Date.civil(2019, 10, 9), [:us_tx])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 10, 9), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2018, 10, 8), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2019, 10, 14), [:us])[0] || {})[:name]
+
+    assert_equal "Columbus Day", (Holidays.on(Date.civil(2017, 10, 9), [:us_al, :us_az, :us_co, :us_ct, :us_dc, :us_ga, :us_id, :us_il, :us_in, :us_ma, :us_md, :us_me, :us_mo, :us_mt, :us_ne, :us_nj, :us_nm, :us_ny, :us_oh, :us_pa, :us_ri, :us_ut, :us_va, :us_wv])[0] || {})[:name]
+assert_equal "Columbus Day", (Holidays.on(Date.civil(2018, 10, 8), [:us_al, :us_az, :us_co, :us_ct, :us_dc, :us_ga, :us_id, :us_il, :us_in, :us_ma, :us_md, :us_me, :us_mo, :us_mt, :us_ne, :us_nj, :us_nm, :us_ny, :us_oh, :us_pa, :us_ri, :us_ut, :us_va, :us_wv])[0] || {})[:name]
+assert_equal "Columbus Day", (Holidays.on(Date.civil(2019, 10, 14), [:us_al, :us_az, :us_co, :us_ct, :us_dc, :us_ga, :us_id, :us_il, :us_in, :us_ma, :us_md, :us_me, :us_mo, :us_mt, :us_ne, :us_nj, :us_nm, :us_ny, :us_oh, :us_pa, :us_ri, :us_ut, :us_va, :us_wv])[0] || {})[:name]
+
+    assert_equal "Columbus Day", (Holidays.on(Date.civil(2017, 10, 9), [:us_ak, :us_ar, :us_ca, :us_de, :us_fl, :us_hi, :us_mi, :us_mn, :us_nd, :us_nv, :us_or, :us_sd, :us_tx, :us_vt, :us_wa, :us_wi, :us_wy], [:informal])[0] || {})[:name]
+assert_equal "Columbus Day", (Holidays.on(Date.civil(2018, 10, 8), [:us_ak, :us_ar, :us_ca, :us_de, :us_fl, :us_hi, :us_mi, :us_mn, :us_nd, :us_nv, :us_or, :us_sd, :us_tx, :us_vt, :us_wa, :us_wi, :us_wy], [:informal])[0] || {})[:name]
+assert_equal "Columbus Day", (Holidays.on(Date.civil(2019, 10, 14), [:us_ak, :us_ar, :us_ca, :us_de, :us_fl, :us_hi, :us_mi, :us_mn, :us_nd, :us_nv, :us_or, :us_sd, :us_tx, :us_vt, :us_wa, :us_wi, :us_wy], [:informal])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 10, 9), [:us_ak, :us_ar, :us_ca, :us_de, :us_fl, :us_hi, :us_mi, :us_mn, :us_nd, :us_nv, :us_or, :us_sd, :us_tx, :us_vt, :us_wa, :us_wi, :us_wy])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2018, 10, 8), [:us_ak, :us_ar, :us_ca, :us_de, :us_fl, :us_hi, :us_mi, :us_mn, :us_nd, :us_nv, :us_or, :us_sd, :us_tx, :us_vt, :us_wa, :us_wi, :us_wy])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2019, 10, 14), [:us_ak, :us_ar, :us_ca, :us_de, :us_fl, :us_hi, :us_mi, :us_mn, :us_nd, :us_nv, :us_or, :us_sd, :us_tx, :us_vt, :us_wa, :us_wi, :us_wy])[0] || {})[:name]
+
+    assert_equal "Alaska Day", (Holidays.on(Date.civil(2017, 10, 18), [:us_ak])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 10, 27), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2018, 10, 26), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2019, 10, 25), [:us])[0] || {})[:name]
+
+    assert_equal "Nevada Day", (Holidays.on(Date.civil(2017, 10, 27), [:us_nv])[0] || {})[:name]
+assert_equal "Nevada Day", (Holidays.on(Date.civil(2018, 10, 26), [:us_nv])[0] || {})[:name]
+assert_equal "Nevada Day", (Holidays.on(Date.civil(2019, 10, 25), [:us_nv])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 11, 7), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2018, 11, 6), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2021, 11, 2), [:us])[0] || {})[:name]
+
+    assert_equal "Election Day", (Holidays.on(Date.civil(2017, 11, 7), [:us_de, :us_hi, :us_il, :us_in, :us_mt, :us_nj, :us_ny, :us_pa, :us_ri])[0] || {})[:name]
+assert_equal "Election Day", (Holidays.on(Date.civil(2018, 11, 6), [:us_de, :us_hi, :us_il, :us_in, :us_mt, :us_nj, :us_ny, :us_pa, :us_ri])[0] || {})[:name]
+assert_equal "Election Day", (Holidays.on(Date.civil(2021, 11, 2), [:us_de, :us_hi, :us_il, :us_in, :us_mt, :us_nj, :us_ny, :us_pa, :us_ri])[0] || {})[:name]
+
+    assert_equal "Veterans Day", (Holidays.on(Date.civil(2017, 11, 10), [:us], [:observed])[0] || {})[:name]
+assert_equal "Veterans Day", (Holidays.on(Date.civil(2018, 11, 12), [:us], [:observed])[0] || {})[:name]
+assert_equal "Veterans Day", (Holidays.on(Date.civil(2019, 11, 11), [:us], [:observed])[0] || {})[:name]
+
+    assert_equal "Veterans Day", (Holidays.on(Date.civil(2017, 11, 11), [:us])[0] || {})[:name]
+
+    assert_equal "Thanksgiving", (Holidays.on(Date.civil(2017, 11, 23), [:us])[0] || {})[:name]
+assert_equal "Thanksgiving", (Holidays.on(Date.civil(2018, 11, 22), [:us])[0] || {})[:name]
+assert_equal "Thanksgiving", (Holidays.on(Date.civil(2019, 11, 28), [:us])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 11, 24), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2018, 11, 23), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2019, 11, 29), [:us])[0] || {})[:name]
+
+    assert_equal "Family Day", (Holidays.on(Date.civil(2017, 11, 24), [:us_nv])[0] || {})[:name]
+assert_equal "Family Day", (Holidays.on(Date.civil(2018, 11, 23), [:us_nv])[0] || {})[:name]
+assert_equal "Family Day", (Holidays.on(Date.civil(2019, 11, 29), [:us_nv])[0] || {})[:name]
+
+    assert_equal "State Holiday", (Holidays.on(Date.civil(2017, 11, 24), [:us_ga])[0] || {})[:name]
+assert_equal "State Holiday", (Holidays.on(Date.civil(2018, 11, 23), [:us_ga])[0] || {})[:name]
+assert_equal "State Holiday", (Holidays.on(Date.civil(2019, 11, 29), [:us_ga])[0] || {})[:name]
+
+    assert_equal "Presidents' Day", (Holidays.on(Date.civil(2017, 11, 24), [:us_nm])[0] || {})[:name]
+assert_equal "Presidents' Day", (Holidays.on(Date.civil(2018, 11, 23), [:us_nm])[0] || {})[:name]
+assert_equal "Presidents' Day", (Holidays.on(Date.civil(2019, 11, 29), [:us_nm])[0] || {})[:name]
+
+    assert_equal "Lincoln's Birthday", (Holidays.on(Date.civil(2017, 11, 24), [:us_in])[0] || {})[:name]
+assert_equal "Lincoln's Birthday", (Holidays.on(Date.civil(2018, 11, 23), [:us_in])[0] || {})[:name]
+assert_equal "Lincoln's Birthday", (Holidays.on(Date.civil(2019, 11, 29), [:us_in])[0] || {})[:name]
+
+    assert_equal "American Indian Heritage Day", (Holidays.on(Date.civil(2017, 11, 24), [:us_md])[0] || {})[:name]
+assert_equal "American Indian Heritage Day", (Holidays.on(Date.civil(2018, 11, 23), [:us_md])[0] || {})[:name]
+assert_equal "American Indian Heritage Day", (Holidays.on(Date.civil(2019, 11, 29), [:us_md])[0] || {})[:name]
+
+    assert_equal "Day after Thanksgiving (Black Friday)", (Holidays.on(Date.civil(2017, 11, 24), [:us_ca, :us_de, :us_fl, :us_ia, :us_il, :us_ks, :us_ky, :us_me, :us_mi, :us_mn, :us_ms, :us_ne, :us_nh, :us_nc, :us_pa, :us_sc, :us_ok, :us_tn, :us_tx, :us_va, :us_wa, :us_wv])[0] || {})[:name]
+assert_equal "Day after Thanksgiving (Black Friday)", (Holidays.on(Date.civil(2018, 11, 23), [:us_ca, :us_de, :us_fl, :us_ia, :us_il, :us_ks, :us_ky, :us_me, :us_mi, :us_mn, :us_ms, :us_ne, :us_nh, :us_nc, :us_pa, :us_sc, :us_ok, :us_tn, :us_tx, :us_va, :us_wa, :us_wv])[0] || {})[:name]
+assert_equal "Day after Thanksgiving (Black Friday)", (Holidays.on(Date.civil(2019, 11, 29), [:us_ca, :us_de, :us_fl, :us_ia, :us_il, :us_ks, :us_ky, :us_me, :us_mi, :us_mn, :us_ms, :us_ne, :us_nh, :us_nc, :us_pa, :us_sc, :us_ok, :us_tn, :us_tx, :us_va, :us_wa, :us_wv])[0] || {})[:name]
+
+    assert_equal "Christmas Eve (Holiday)", (Holidays.on(Date.civil(2022, 12, 23), [:us_mi, :us_sc, :us_va])[0] || {})[:name]
+assert_equal "Christmas Eve (Holiday)", (Holidays.on(Date.civil(2023, 12, 22), [:us_mi, :us_sc, :us_va])[0] || {})[:name]
+assert_equal "Christmas Eve (Holiday)", (Holidays.on(Date.civil(2028, 12, 22), [:us_mi, :us_sc, :us_va])[0] || {})[:name]
+
+    assert_equal "Christmas Eve", (Holidays.on(Date.civil(2017, 12, 24), [:us_ar, :us_mi, :us_nc, :us_va, :us_sc, :us_tx, :us_wi])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2021, 12, 27), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2022, 12, 26), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2027, 12, 27), [:us])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2021, 12, 27), [:us], [:observed])[0] || {})[:name]
+assert_equal "Christmas Day", (Holidays.on(Date.civil(2022, 12, 26), [:us], [:observed])[0] || {})[:name]
+assert_equal "Christmas Day", (Holidays.on(Date.civil(2027, 12, 27), [:us], [:observed])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2017, 12, 25), [:us])[0] || {})[:name]
+
+    assert_equal "Day after Christmas", (Holidays.on(Date.civil(2017, 12, 26), [:us_ar, :us_nc, :us_ok, :us_sc, :us_tn, :us_tx])[0] || {})[:name]
+
+    assert_equal "New Year's Eve", (Holidays.on(Date.civil(2017, 12, 31), [:us_mi, :us_wi])[0] || {})[:name]
+
+    assert_equal "Groundhog Day", (Holidays.on(Date.civil(2013, 2, 2), [:us], [:informal])[0] || {})[:name]
+
+    assert_equal "Valentine's Day", (Holidays.on(Date.civil(2013, 2, 14), [:us], [:informal])[0] || {})[:name]
+
+    assert_equal "St. Patrick's Day", (Holidays.on(Date.civil(2013, 3, 17), [:us], [:informal])[0] || {})[:name]
+
+    assert_equal "April Fool's Day", (Holidays.on(Date.civil(2013, 4, 1), [:us], [:informal])[0] || {})[:name]
+
+    assert_equal "Earth Day", (Holidays.on(Date.civil(2013, 4, 22), [:us], [:informal])[0] || {})[:name]
+
+    assert_equal "Mother's Day", (Holidays.on(Date.civil(2013, 5, 12), [:us], [:informal])[0] || {})[:name]
+
+    assert_equal "Armed Forces Day", (Holidays.on(Date.civil(2013, 5, 18), [:us], [:informal])[0] || {})[:name]
+
+    assert_equal "Father's Day", (Holidays.on(Date.civil(2013, 6, 16), [:us], [:informal])[0] || {})[:name]
+
+    assert_equal "Halloween", (Holidays.on(Date.civil(2013, 10, 31), [:us], [:informal])[0] || {})[:name]
 
   end
 end
