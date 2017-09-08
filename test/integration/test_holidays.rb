@@ -296,6 +296,7 @@ class HolidaysTests < Test::Unit::TestCase
 
   def test_load_all
     Holidays.load_all
-    assert_equal 240, Holidays.available_regions.count
+    # update this if you add a new region!
+    assert_equal 241, Holidays.available_regions.count
   end
 end

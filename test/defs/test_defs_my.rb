@@ -19,8 +19,5 @@ class MyDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Christmas Day", (Holidays.on(Date.civil(2016, 12, 25), [:my], [:informal])[0] || {})[:name]
 
-assert_nil Date.civil(2017, 9, 15).holidays(:my, :observed)[0]
-assert_nil Date.civil(2017, 1, 2).holidays(:my, :observed)[0]
-
   end
 end

@@ -52,6 +52,7 @@ The following definition files are included in this installation:
 * generated_definitions/nz
 * generated_definitions/pe
 * generated_definitions/ph
+* generated_definitions/pk
 * generated_definitions/pl
 * generated_definitions/pt
 * generated_definitions/ro
