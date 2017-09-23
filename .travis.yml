@@ -7,6 +7,7 @@ cache:
 sudo: false
 
 before_install:
+  - gem update bundler
   - bundle --version
   - gem --version
 
