@@ -205,6 +205,8 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_nil (Holidays.on(Date.civil(2018, 10, 31), [:de])[0] || {})[:name]
 
+    assert_equal "Reformationstag", (Holidays.on(Date.civil(2019, 10, 31), [:de_bb, :de_mv, :de_sn, :de_st, :de_th])[0] || {})[:name]
+
     assert_equal "Allerheiligen", (Holidays.on(Date.civil(2009, 11, 1), [:de_bw, :de_by, :de_nw, :de_rp, :de_sl, :de_])[0] || {})[:name]
 
     assert_equal "Friedensfest", (Holidays.on(Date.civil(2015, 8, 8), [:de_by_augsburg])[0] || {})[:name]
