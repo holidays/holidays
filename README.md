@@ -50,6 +50,15 @@ Get all holidays in July, 2008 in Canada and the US.
     => [{:name => 'Canada Day',...}
         {:name => 'Independence Day',...}]
 
+Get all US Federal holidays between 2018 and 2019.
+
+    from = Date.civil(2018,1,1)
+    to = Date.civil(2019,12,31)
+
+    Holidays.between(from, to, :federal_reserve, :observed)
+    => [{:name => "New Year's Day"....}
+        {:name => "Birthday of Martin Luther King, Jr"....}]
+
 Get informal holidays in February.
 
     from = Date.civil(2008,2,1)
