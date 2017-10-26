@@ -173,7 +173,7 @@ months:
     function: election_day(year)
     regions: [graceway]
     slug: election-day
-  - name: Veteran's Day
+  - name: Veterans Day
     regions: [graceway]
     mday: 11
     slug: veterans-day

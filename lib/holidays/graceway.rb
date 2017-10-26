@@ -51,7 +51,7 @@ module Holidays
             {:mday => 31, :slug => "reformation-day", :name => "Reformation Day", :regions => [:graceway]}],
       11 => [{:wday => 0, :week => 1, :slug => "daylight-saving-ends", :name => "Daylight Saving Ends", :regions => [:graceway]},
             {:function => lambda { |year| Holidays.election_day(year) }, :function_id => "election_day(year)", :slug => "election-day", :name => "Election Day", :regions => [:graceway]},
-            {:mday => 11, :slug => "veterans-day", :name => "Veteran's Day", :regions => [:graceway]},
+            {:mday => 11, :slug => "veterans-day", :name => "Veterans Day", :regions => [:graceway]},
             {:wday => 4, :week => 4, :slug => "thanksgiving", :name => "Thanksgiving", :regions => [:graceway]}],
       12 => [{:wday => 0, :week => 1, :hide_date => true, :slug => "winter", :name => "Winter Events", :regions => [:graceway]},
             {:mday => 25, :slug => "christmas", :name => "Christmas Day", :regions => [:graceway]}]
