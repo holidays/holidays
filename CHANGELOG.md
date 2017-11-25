@@ -1,5 +1,10 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 6.2.0
+
+* Update to [v2.2.1 definitions](https://github.com/holidays/definitions/releases/tag/v2.2.1). Please see the changelog for the definition details.
+* README update to add `:federal_reserve` examples (thanks to https://github.com/aahmad)
+
 ## 6.1.0
 
 * Update to [v2.1.1 definitions](https://github.com/holidays/definitions/releases/tag/v2.1.1). Please see the changelog for
