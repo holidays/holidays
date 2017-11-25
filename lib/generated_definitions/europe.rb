@@ -312,7 +312,7 @@ module Holidays
             {:mday => 1, :name => "dan spomina na mrtve", :regions => [:si]},
             {:mday => 1, :name => "Revival Leader's Day", :regions => [:bg_en]},
             {:mday => 1, :name => "Ден на Народните будители", :regions => [:bg_bg]}],
-      12 => [{:mday => 8, :name => "Mariä Empfägnis", :regions => [:at]},
+      12 => [{:mday => 8, :name => "Mariä Empfängnis", :regions => [:at]},
             {:mday => 25, :name => "1. Weihnachtstag", :regions => [:at]},
             {:mday => 26, :name => "2. Weihnachtstag", :regions => [:at]},
             {:mday => 25, :name => "Noël", :regions => [:be_fr]},

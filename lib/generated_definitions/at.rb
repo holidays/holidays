@@ -22,7 +22,7 @@ module Holidays
       8 => [{:mday => 15, :name => "Mariä Himmelfahrt", :regions => [:at]}],
       10 => [{:mday => 26, :name => "Nationalfeiertag", :regions => [:at]}],
       11 => [{:mday => 1, :name => "Allerheiligen", :regions => [:at]}],
-      12 => [{:mday => 8, :name => "Mariä Empfägnis", :regions => [:at]},
+      12 => [{:mday => 8, :name => "Mariä Empfängnis", :regions => [:at]},
             {:mday => 25, :name => "1. Weihnachtstag", :regions => [:at]},
             {:mday => 26, :name => "2. Weihnachtstag", :regions => [:at]}]
       }
