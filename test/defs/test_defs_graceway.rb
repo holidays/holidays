@@ -7,7 +7,7 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class GracewayDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_graceway
-{Date.civil(2014,1,1)   => 'New Years',
+{Date.civil(2014,1,1)   => "New Year's",
  Date.civil(2014,1,19)  => 'Sanctity of Life Week',
  Date.civil(2014,1,20)  => 'Martin Luther King Jr',
  Date.civil(2014,2,14)  => "Valentine\'s Day",

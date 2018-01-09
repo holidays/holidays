@@ -44,7 +44,7 @@ months:
     date_end: "12/24"
     slug: advent
   1:
-  - name: New Years
+  - name: New Year's
     regions: [graceway]
     mday: 1
     slug: new-years
@@ -173,7 +173,7 @@ months:
     function: election_day(year)
     regions: [graceway]
     slug: election-day
-  - name: Veterans Day
+  - name: Veteran's Day
     regions: [graceway]
     mday: 11
     slug: veterans-day
@@ -210,7 +210,7 @@ methods:
         end
       end
 tests: |
-    {Date.civil(2014,1,1)   => 'New Years',
+    {Date.civil(2014,1,1)   => "New Year's",
      Date.civil(2014,1,19)  => 'Sanctity of Life Week',
      Date.civil(2014,1,20)  => 'Martin Luther King Jr',
      Date.civil(2014,2,14)  => "Valentine\'s Day",

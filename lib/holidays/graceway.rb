@@ -27,7 +27,7 @@ module Holidays
             {:function => lambda { |year| Holidays.easter(year)+49 }, :function_id => "easter(year)+49", :slug => "pentecost", :name => "Pentecost", :regions => [:graceway]},
             {:function => lambda { |year| Holidays.easter(year)+56 }, :function_id => "easter(year)+56", :slug => "trinity-sunday", :name => "Trinity Sunday", :regions => [:graceway]},
             {:function => lambda { |year| Holidays.advent_sunday(year) }, :function_id => "advent_sunday(year)", :slug => "advent", :date_end => "12/24", :name => "Advent", :regions => [:graceway]}],
-      1 => [{:mday => 1, :slug => "new-years", :name => "New Years", :regions => [:graceway]},
+      1 => [{:mday => 1, :slug => "new-years", :name => "New Year's", :regions => [:graceway]},
             {:wday => 1, :week => 3, :slug => "mlk-day", :name => "Martin Luther King Jr", :regions => [:graceway]},
             {:wday => 0, :week => 3, :slug => "sanctity-of-life", :name => "Sanctity of Life Week", :regions => [:graceway]}],
       2 => [{:wday => 0, :week => 1, :slug => "super-bowl-sunday", :name => "Super Bowl Sunday", :regions => [:graceway]},
@@ -51,7 +51,7 @@ module Holidays
             {:mday => 31, :slug => "reformation-day", :name => "Reformation Day", :regions => [:graceway]}],
       11 => [{:wday => 0, :week => 1, :slug => "daylight-saving-ends", :name => "Daylight Saving Ends", :regions => [:graceway]},
             {:function => lambda { |year| Holidays.election_day(year) }, :function_id => "election_day(year)", :slug => "election-day", :name => "Election Day", :regions => [:graceway]},
-            {:mday => 11, :slug => "veterans-day", :name => "Veterans Day", :regions => [:graceway]},
+            {:mday => 11, :slug => "veterans-day", :name => "Veteran's Day", :regions => [:graceway]},
             {:wday => 4, :week => 4, :slug => "thanksgiving", :name => "Thanksgiving", :regions => [:graceway]}],
       12 => [{:wday => 0, :week => 1, :hide_date => true, :slug => "winter", :name => "Winter Events", :regions => [:graceway]},
             {:mday => 25, :slug => "christmas", :name => "Christmas Day", :regions => [:graceway]}]
