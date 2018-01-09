@@ -1,0 +1,239 @@
+# Graceway holiday definitions for the Ruby Holiday gem.
+#
+# Updated: 2015-11-24
+--- 
+months:
+  0:
+  - name: Ash Wednesday
+    regions: [ig7]
+    function: easter(year)-46
+    slug: ash-wednesday
+  - name: Lent
+    regions: [ig7]
+    function: easter(year)-46
+    length: 43
+    slug: lent
+  - name: Palm Sunday
+    regions: [ig7]
+    function: easter(year)-7
+    slug: palm-sunday
+  - name: Passover
+    regions: [ig7]
+    function: passover_start(year)
+    length: 8
+    slug: passover
+  - name: Good Friday
+    regions: [ig7]
+    function: easter(year)-2
+    slug: good-friday
+  - name: Easter Sunday
+    regions: [ig7]
+    function: easter(year)
+    slug: easter
+  - name: Pentecost
+    regions: [ig7]
+    function: easter(year)+49
+    slug: pentecost
+  - name: Trinity Sunday
+    regions: [ig7]
+    function: easter(year)+56
+    slug: trinity-sunday
+  - name: Advent
+    regions: [ig7]
+    function: advent_sunday(year)
+    date_end: "12/24"
+    slug: advent
+  1:
+  - name: New Year's
+    regions: [ig7]
+    mday: 1
+    slug: new-years
+  - name: Martin Luther King Jr
+    week: 3
+    regions: [ig7]
+    wday: 1
+    slug: mlk-day
+  - name: Sanctity of Life Week
+    week: 3
+    wday: 0
+    regions: [ig7]
+    slug: sanctity-of-life
+  2:
+  - name: Super Bowl Sunday
+    week: 1
+    regions: [ig7]
+    wday: 0
+    slug: super-bowl-sunday
+  - name: Valentine's Day
+    mday: 14
+    regions: [ig7]
+    slug: valentines-day
+  3:
+  - name: Daylight Saving Begins
+    week: 2
+    wday: 0
+    regions: [ig7]
+    slug: daylight-saving-begins
+  - name: Spring Events
+    regions: [ig7]
+    week: 1
+    wday: 0
+    hidedate: true
+    slug: spring
+  5:
+  - name: National Day of Prayer
+    regions: [ig7]
+    week: 1
+    wday: 4
+    slug: national-day-of-prayer
+  - name: Mother's Day
+    regions: [ig7]
+    week: 2
+    wday: 0
+    slug: mothers-day
+  - name: Graduation
+    regions: [ig7]
+    week: 3
+    wday: 0
+    hidedate: true
+    slug: graduation
+  - name: Memorial Day
+    week: -1
+    regions: [ig7]
+    wday: 1
+    slug: memorial-day
+  6:
+  - name: Summer Events
+    regions: [ig7]
+    week: 1
+    wday: 0
+    hidedate: true
+    slug: summer
+  - name: Father's Day
+    regions: [ig7]
+    week: 3
+    wday: 0
+    slug: fathers-day
+  7:
+  - name: Independence Day
+    regions: [ig7]
+    mday: 4
+    slug: independence-day
+  - name: VBS
+    regions: [ig7]
+    week: 2
+    wday: 0
+    hidedate: true
+    slug: vbs
+  8:
+  - name: Back to School
+    regions: [ig7]
+    week: 2
+    wday: 0
+    hidedate: true
+    slug: back-to-school
+  - name: Fall Events
+    regions: [ig7]
+    week: 1
+    wday: 0
+    hidedate: true
+    slug: fall
+  9:
+  - name: Labor Day
+    week: 1
+    regions: [ig7]
+    wday: 1
+    slug: labor-day
+  - name: See You at the Pole
+    regions: [ig7]
+    week: 4
+    wday: 3
+    slug: see-you-at-the-pole
+  10:
+  - name: Pastor Appreciation
+    regions: [ig7]
+    week: 2
+    wday: 0
+    slug: pastor-appreciation
+  - name: Halloween
+    regions: [ig7]
+    mday: 31
+    slug: halloween
+  - name: Reformation Day
+    regions: [ig7]
+    mday: 31
+    slug: reformation-day
+  11:
+  - name: Daylight Saving Ends
+    regions: [ig7]
+    week: 1
+    wday: 0
+    slug: daylight-saving-ends
+  - name: Election Day
+    function: election_day(year)
+    regions: [ig7]
+    slug: election-day
+  - name: Veteran's Day
+    regions: [ig7]
+    mday: 11
+    slug: veterans-day
+  - name: Thanksgiving
+    week: 4
+    regions: [ig7]
+    wday: 4
+    slug: thanksgiving
+  12:
+  - name: Winter Events
+    regions: [ig7]
+    week: 1
+    wday: 0
+    hidedate: true
+    slug: winter
+  - name: Christmas Day
+    regions: [ig7]
+    mday: 25
+    slug: christmas
+methods:
+  advent_sunday: |
+    def self.advent_sunday(year)
+      d = Date.new(year, 11, -1)
+      d -= (d.wday - 4) % 7
+      d + 3
+    end
+  election_day: |
+      def self.election_day(year)
+        d = Date.new(year, 11, 1)
+        if d.wday == 2
+          d = Date.calculate_mday(year, 11, :second, 2)
+        else
+          d = Date.calculate_mday(year, 11, :first, 2)
+        end
+      end
+tests: |
+    {Date.civil(2014,1,1)   => "New Year\'s",
+     Date.civil(2014,1,19)  => 'Sanctity of Life Week',
+     Date.civil(2014,1,20)  => 'Martin Luther King Jr',
+     Date.civil(2014,2,14)  => "Valentine\'s Day",
+     Date.civil(2014,3,5)   => 'Ash Wednesday',
+     Date.civil(2014,3,9)   => 'Daylight Saving Begins',
+     Date.civil(2016,3,25)  => 'Good Friday',
+     Date.civil(2015,3,29)  => 'Palm Sunday',
+     Date.civil(2016,4,22)  => 'Passover',
+     Date.civil(2014,4,20)  => 'Easter Sunday',
+     Date.civil(2014,5,1)   => 'National Day of Prayer',
+     Date.civil(2014,5,11)  => "Mother\'s Day",
+     Date.civil(2015,5,24)  => 'Pentecost',
+     Date.civil(2014,5,26)  => 'Memorial Day',
+     Date.civil(2015,5,31)  => 'Trinity Sunday',
+     Date.civil(2015,6,21)  => "Father\'s Day",
+     Date.civil(2014,7,4)   => 'Independence Day',
+     Date.civil(2014,9,1)   => 'Labor Day',
+     Date.civil(2014,9,24)  => 'See You at the Pole',
+     Date.civil(2014,10,12) => 'Pastor Appreciation',
+     Date.civil(2014,11,2)  => 'Daylight Saving Ends',
+     Date.civil(2014,11,11) => "Veteran\'s Day",
+     Date.civil(2014,11,27) => 'Thanksgiving',
+     Date.civil(2015,11,29) => 'Advent',
+     Date.civil(2014,12,25) => 'Christmas Day'}.each do |date, name|
+      assert_equal name, (Holidays.on(date, :ig7)[0] || {})[:name]
+    end
