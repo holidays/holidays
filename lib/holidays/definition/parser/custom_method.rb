@@ -21,7 +21,7 @@ module Holidays
             custom_methods[method_key(name, arguments)] = Entity::CustomMethod.new({
               name: name,
               arguments: arguments,
-              source: pieces["source"],
+              source: pieces["ruby"],
             })
           end
 
@@ -36,7 +36,7 @@ module Holidays
               {
                 :name => name,
                 :arguments => pieces["arguments"],
-                :source => pieces["source"]
+                :source => pieces["ruby"]
               }
             )
           end

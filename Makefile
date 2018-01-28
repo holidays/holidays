@@ -21,7 +21,7 @@ build: clean
 push:
 	bundle exec gem push $(GEM)
 
-update-defs: definitions
+update-defs: definitions/
 	git submodule update --init --remote --recursive
 
 definitions: point-to-defs-master
