@@ -99,5 +99,11 @@ class GbDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Bank Holiday", (Holidays.on(Date.civil(2008, 8, 25), [:gb_])[0] || {})[:name]
 
+    assert_equal "Liberation Day", (Holidays.on(Date.civil(2018, 5, 9), [:je])[0] || {})[:name]
+
+    assert_equal "Easter Monday", (Holidays.on(Date.civil(2018, 4, 2), [:je])[0] || {})[:name]
+
+    assert_equal "Bank Holiday", (Holidays.on(Date.civil(2018, 8, 27), [:je])[0] || {})[:name]
+
   end
 end

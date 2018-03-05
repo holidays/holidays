@@ -17,6 +17,8 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Nationalfeiertag", (Holidays.on(Date.civil(2009, 10, 26), [:at], [:informal])[0] || {})[:name]
 
+    assert_equal "Mariä Empfängnis", (Holidays.on(Date.civil(2009, 12, 8), [:at], [:informal])[0] || {})[:name]
+
     assert_equal "1. Weihnachtstag", (Holidays.on(Date.civil(2009, 12, 25), [:at], [:informal])[0] || {})[:name]
 
     assert_equal "2. Weihnachtstag", (Holidays.on(Date.civil(2009, 12, 26), [:at], [:informal])[0] || {})[:name]
@@ -508,6 +510,12 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_equal "Easter Monday", (Holidays.on(Date.civil(2008, 3, 24), [:gb_])[0] || {})[:name]
 
     assert_equal "Bank Holiday", (Holidays.on(Date.civil(2008, 8, 25), [:gb_])[0] || {})[:name]
+
+    assert_equal "Liberation Day", (Holidays.on(Date.civil(2018, 5, 9), [:je])[0] || {})[:name]
+
+    assert_equal "Easter Monday", (Holidays.on(Date.civil(2018, 4, 2), [:je])[0] || {})[:name]
+
+    assert_equal "Bank Holiday", (Holidays.on(Date.civil(2018, 8, 27), [:je])[0] || {})[:name]
 
     assert_equal "Nova godina", (Holidays.on(Date.civil(2012, 1, 1), [:hr], [:informal])[0] || {})[:name]
 
