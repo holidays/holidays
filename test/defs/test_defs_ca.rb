@@ -81,6 +81,14 @@ class CaDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_nil (Holidays.on(Date.civil(2012, 2, 13), [:ca_bc])[0] || {})[:name]
 
+    assert_equal "Family Day", (Holidays.on(Date.civil(2018, 2, 19), [:ca_nb])[0] || {})[:name]
+
+    assert_equal "Family Day", (Holidays.on(Date.civil(2019, 2, 18), [:ca_nb])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2016, 2, 18), [:ca_nb])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 2, 20), [:ca_nb])[0] || {})[:name]
+
     assert_equal "Nova Scotia Heritage Day", (Holidays.on(Date.civil(2015, 2, 16), [:ca_ns])[0] || {})[:name]
 
     assert_equal "Nova Scotia Heritage Day", (Holidays.on(Date.civil(2016, 2, 15), [:ca_ns])[0] || {})[:name]
@@ -187,6 +195,14 @@ assert_equal "Remembrance Day", (Holidays.on(Date.civil(2017, 11, 13), [:ca_ab, 
 assert_equal "Boxing Day", (Holidays.on(Date.civil(2012, 12, 26), [:ca_on], [:observed])[0] || {})[:name]
 assert_equal "Boxing Day", (Holidays.on(Date.civil(2015, 12, 28), [:ca_on], [:observed])[0] || {})[:name]
 assert_equal "Boxing Day", (Holidays.on(Date.civil(2016, 12, 27), [:ca_on], [:observed])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2015, 6, 21), [:ca_yt])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2016, 6, 21), [:ca_yt])[0] || {})[:name]
+
+    assert_equal "National Aboriginal Day", (Holidays.on(Date.civil(2017, 6, 21), [:ca_yt])[0] || {})[:name]
+
+    assert_equal "National Aboriginal Day", (Holidays.on(Date.civil(2018, 6, 21), [:ca_yt])[0] || {})[:name]
 
     assert_equal "Groundhog Day", (Holidays.on(Date.civil(2013, 2, 2), [:us], [:informal])[0] || {})[:name]
 
