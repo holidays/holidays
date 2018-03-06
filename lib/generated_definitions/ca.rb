@@ -7,7 +7,7 @@ module Holidays
   # All the definitions are available at https://github.com/holidays/holidays
   module CA # :nodoc:
     def self.defined_regions
-      [:ca, :ca_qc, :ca_ab, :ca_sk, :ca_on, :ca_bc, :ca_mb, :ca_ns, :ca_pe, :ca_nl, :ca_nt, :ca_nu, :ca_yt, :ca_nb, :us]
+      [:ca, :ca_qc, :ca_ab, :ca_sk, :ca_on, :ca_bc, :ca_nb, :ca_mb, :ca_ns, :ca_pe, :ca_nl, :ca_nt, :ca_nu, :ca_yt, :us]
     end
 
     def self.holidays_by_month
@@ -21,6 +21,7 @@ module Holidays
             {:wday => 1, :week => 3,  :year_ranges => [{:after => 2007}],:name => "Family Day", :regions => [:ca_sk]},
             {:wday => 1, :week => 3,  :year_ranges => [{:after => 2008}],:name => "Family Day", :regions => [:ca_on]},
             {:wday => 1, :week => 2,  :year_ranges => [{:after => 2013}],:name => "Family Day", :regions => [:ca_bc]},
+            {:wday => 1, :week => 3,  :year_ranges => [{:after => 2018}],:name => "Family Day", :regions => [:ca_nb]},
             {:wday => 1, :week => 3, :name => "Louis Riel Day", :regions => [:ca_mb]},
             {:wday => 1, :week => 3,  :year_ranges => [{:after => 2015}],:name => "Nova Scotia Heritage Day", :regions => [:ca_ns]},
             {:wday => 1, :week => 3, :name => "Islander Day", :regions => [:ca_pe]},
@@ -35,6 +36,7 @@ module Holidays
       6 => [{:mday => 24, :type => :informal, :name => "Discovery Day", :regions => [:ca_nl]},
             {:mday => 24, :name => "Fête Nationale", :regions => [:ca_qc]},
             {:mday => 21, :name => "National Aboriginal Day", :regions => [:ca_nt]},
+            {:mday => 21,  :year_ranges => [{:after => 2017}],:name => "National Aboriginal Day", :regions => [:ca_yt]},
             {:wday => 0, :week => 3, :type => :informal, :name => "Father's Day", :regions => [:us, :ca]}],
       7 => [{:mday => 1, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Canada Day", :regions => [:ca]},
             {:mday => 12, :type => :informal, :name => "Orangemen's Day", :regions => [:ca_nl]},
