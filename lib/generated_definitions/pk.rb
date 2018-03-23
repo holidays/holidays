@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              2 => [{:mday => 4, :name => "Kashmir Day", :regions => [:pk]}],
+              2 => [{:mday => 5, :name => "Kashmir Day", :regions => [:pk]}],
       3 => [{:mday => 23, :name => "Pakistan Day", :regions => [:pk]}],
       5 => [{:mday => 1, :name => "Labour Day", :regions => [:pk]}],
       8 => [{:mday => 14, :name => "Independence Day", :regions => [:pk]}],
