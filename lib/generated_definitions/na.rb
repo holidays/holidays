@@ -12,18 +12,18 @@ module Holidays
 
     def self.holidays_by_month
       {
-              1 => [{:mday => 1, :name => "New Years Days", :regions => [:na]}],
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:na]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:na]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Ascension Day", :regions => [:na]}],
+      1 => [{:mday => 1, :name => "New Years Days", :regions => [:na]}],
       3 => [{:mday => 21, :name => "Independence Day", :regions => [:na]}],
-      4 => [{:mday => 14, :name => "Good Friday", :regions => [:na]},
-            {:mday => 17, :name => "Easter Monday", :regions => [:na]}],
-      5 => [{:mday => 1, :name => "May Day", :regions => [:na]},
+      5 => [{:mday => 1, :name => "Worker's Day", :regions => [:na]},
             {:mday => 4, :name => "Cassinga Day", :regions => [:na]},
-            {:mday => 25, :name => "Ascendion Day", :regions => [:na]},
             {:mday => 25, :name => "Africa Day", :regions => [:na]}],
-      8 => [{:mday => 26, :name => "Heroes' Day", :regions => [:na]}],
+      8 => [{:mday => 26, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Heroes' Day", :regions => [:na]}],
       12 => [{:mday => 10, :name => "International Human Rights Day", :regions => [:na]},
             {:mday => 25, :name => "Christmas Day", :regions => [:na]},
-            {:mday => 26, :name => "Day of Goodwill", :regions => [:na]}]
+            {:mday => 26, :name => "Family Day", :regions => [:na]}]
       }
     end
 
