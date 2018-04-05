@@ -36,7 +36,7 @@ module Holidays
               dates = [ dates ]
             end
 
-            @validator.valid?(
+            res = @validator.valid?(
               {
                 :dates => dates,
                 :regions => t["given"]["regions"],
@@ -45,6 +45,13 @@ module Holidays
                 :holiday => t["expect"]["holiday"],
               }
             )
+
+            unless res
+              puts "Test failed!"
+              puts t
+            end
+
+            res
           end
         end
 
