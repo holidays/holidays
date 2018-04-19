@@ -417,8 +417,6 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Good Friday", (Holidays.on(Date.civil(2008, 3, 21), [:gb], [:informal])[0] || {})[:name]
 
-    assert_equal "Easter Sunday", (Holidays.on(Date.civil(2008, 3, 23), [:gb], [:informal])[0] || {})[:name]
-
     assert_equal "May Day", (Holidays.on(Date.civil(2008, 5, 5), [:gb], [:informal])[0] || {})[:name]
 
     assert_equal "Bank Holiday", (Holidays.on(Date.civil(2008, 5, 26), [:gb], [:informal])[0] || {})[:name]

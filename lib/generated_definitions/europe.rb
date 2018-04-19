@@ -71,7 +71,6 @@ module Holidays
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :type => :informal, :name => "Pentecôte", :regions => [:fr]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Lundi de Pentecôte", :regions => [:fr]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:gb]},
-            {:function => "easter(year)", :function_arguments => [:year], :name => "Easter Sunday", :regions => [:gb]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:gb_eng, :gb_wls, :gb_eaw, :gb_nir]},
             {:function => "easter(year)", :function_arguments => [:year], :name => "Uskrs", :regions => [:hr]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Uskrsni ponedjeljak", :regions => [:hr]},
