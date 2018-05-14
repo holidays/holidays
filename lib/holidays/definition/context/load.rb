@@ -14,7 +14,7 @@ module Holidays
           target_region_module = Module.const_get("Holidays").const_get(region.upcase)
 
           @definition_merger.call(
-            target_region_module.defined_regions,
+            region,
             target_region_module.holidays_by_month,
             target_region_module.custom_methods,
           )
