@@ -14,7 +14,7 @@ class LoadTests < Test::Unit::TestCase
   end
 
   def test_region_is_found_and_loaded_and_merged
-    @definition_merger.expects(:call).with([:test_region, :test_region2], {}, {})
+    @definition_merger.expects(:call).with(:test_region, {}, {})
     @subject.call(:test_region)
   end
 
@@ -31,7 +31,7 @@ class LoadTests < Test::Unit::TestCase
   end
 
   def test_returns_list_of_loaded_regions
-    @definition_merger.expects(:call).with([:test_region, :test_region2], {}, {})
-    assert_equal([:test_region, :test_region2], @subject.call(:test_region))
+    @definition_merger.expects(:call).with(:test_region, {}, {})
+    assert_equal([:test_region, :test_region2], @subject.call(:test_region), "Should cache subregions under the parent region's name")
   end
 end
