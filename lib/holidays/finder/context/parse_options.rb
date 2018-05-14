@@ -42,12 +42,6 @@ module Holidays
 
           loaded_regions = []
 
-          #FIXME I don't know what this means or why we have it! I'm reluctant to remove it
-          # at this time without understanding more. -PP 2017/3/29
-          #
-          # special case for north_america/US cross-linking
-          load_region!(:north_america) if regions.include?(:us)
-
           if regions.include?(:any)
             @regions_repo.all_generated.each do |r|
               if @regions_repo.loaded?(r)

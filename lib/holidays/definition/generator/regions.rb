@@ -2,6 +2,10 @@ module Holidays
   module Definition
     module Generator
       class Regions
+        # The "ca", "mx", and "us" holiday definitions include the "north_america_informal"
+        # holiday definitions, but that does not make these countries subregions of one another.
+        NORTH_AMERICA_REGIONS = %i[ca mx us].freeze
+
         def call(regions)
           validate!(regions)
 
@@ -37,8 +41,9 @@ EOF
           lookup = {}
 
           regions.each do |region, subregions|
-            subregions.each do |s|
-              lookup[s] = region unless lookup.has_key?(s)
+            subregions.each do |subregion|
+              parent_region = NORTH_AMERICA_REGIONS.include?(subregion) ? subregion : region
+              lookup[subregion] = parent_region unless lookup.has_key?(subregion)
             end
           end
 
