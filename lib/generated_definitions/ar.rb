@@ -12,10 +12,12 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Viernes Santo", :regions => [:ar]}],
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Viernes Santo", :regions => [:ar]},
+                    {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -48, :name => "Carnaval Lunes", :regions => [:ar]},
+                    {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -47, :name => "Carnaval Martes", :regions => [:ar]}
+                   ],
       1 => [{:mday => 1, :name => "Año Nuevo", :regions => [:ar]}],
-      2 => [{:mday => 8, :name => "Carnaval", :regions => [:ar]},
-            {:mday => 9, :name => "Carnaval", :regions => [:ar]}],
+      2 => [],
       3 => [{:mday => 24, :name => "Día Nacional de la Memoria por la Verdad y la Justicia", :regions => [:ar]}],
       4 => [{:mday => 2, :name => "Día del Veterano y de los Caídos en la Guerra de Malvinas", :regions => [:ar]}],
       5 => [{:mday => 1, :name => "Día del Trabajador", :regions => [:ar]},
