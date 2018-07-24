@@ -209,8 +209,9 @@ class HolidaysTests < Test::Unit::TestCase
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2050, 1, 1))
     assert_equal 9, holidays.length
 
+    # Feb 23rd in 2070 is Sunday. So Feb 24th in 2070 is substitute holiday.
     holidays = Holidays.year_holidays([:jp], Date.civil(2070, 1, 1))
-    assert_equal 18, holidays.length
+    assert_equal 19, holidays.length
   end
 
   def test_sub_regions
@@ -296,6 +297,6 @@ class HolidaysTests < Test::Unit::TestCase
 
   def test_load_all
     Holidays.load_all
-    assert_equal 235, Holidays.available_regions.count
+    assert_equal 236, Holidays.available_regions.count
   end
 end

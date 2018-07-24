@@ -16,7 +16,9 @@ module Holidays
             {:wday => 1, :week => 2, :name => "成人の日", :regions => [:jp]},
             {:mday => 1, :function => "jp_substitute_holiday(year, month, day)", :function_arguments => [:year, :month, :day], :name => "振替休日", :regions => [:jp]}],
       2 => [{:mday => 11, :name => "建国記念の日", :regions => [:jp]},
-            {:mday => 11, :function => "jp_substitute_holiday(year, month, day)", :function_arguments => [:year, :month, :day], :name => "振替休日", :regions => [:jp]}],
+            {:mday => 11, :function => "jp_substitute_holiday(year, month, day)", :function_arguments => [:year, :month, :day], :name => "振替休日", :regions => [:jp]},
+            {:mday => 23,  :year_ranges => [{:after => 2020}],:name => "天皇誕生日", :regions => [:jp]},
+            {:mday => 23, :function => "jp_substitute_holiday(year, month, day)", :function_arguments => [:year, :month, :day],  :year_ranges => [{:after => 2020}],:name => "振替休日", :regions => [:jp]}],
       3 => [{:function => "jp_vernal_equinox_day(year)", :function_arguments => [:year], :name => "春分の日", :regions => [:jp]},
             {:function => "jp_vernal_equinox_day_substitute(year)", :function_arguments => [:year], :name => "振替休日", :regions => [:jp]}],
       4 => [{:mday => 29, :name => "昭和の日", :regions => [:jp]},
@@ -43,8 +45,8 @@ module Holidays
             {:mday => 3, :function => "jp_substitute_holiday(year, month, day)", :function_arguments => [:year, :month, :day], :name => "振替休日", :regions => [:jp]},
             {:mday => 23, :name => "勤労感謝の日", :regions => [:jp]},
             {:mday => 23, :function => "jp_substitute_holiday(year, month, day)", :function_arguments => [:year, :month, :day], :name => "振替休日", :regions => [:jp]}],
-      12 => [{:mday => 23, :name => "天皇誕生日", :regions => [:jp]},
-            {:mday => 23, :function => "jp_substitute_holiday(year, month, day)", :function_arguments => [:year, :month, :day], :name => "振替休日", :regions => [:jp]}]
+      12 => [{:mday => 23,  :year_ranges => [{:before => 2018}],:name => "天皇誕生日", :regions => [:jp]},
+            {:mday => 23, :function => "jp_substitute_holiday(year, month, day)", :function_arguments => [:year, :month, :day],  :year_ranges => [{:before => 2018}],:name => "振替休日", :regions => [:jp]}]
       }
     end
 
