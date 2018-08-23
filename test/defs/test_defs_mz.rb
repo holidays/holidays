@@ -7,25 +7,25 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class MzDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_mz
-    assert_equal "New Year's Day", (Holidays.on(Date.civil(2017, 1, 1), [:mz], [:informal])[0] || {})[:name]
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2017, 1, 1), [:mz])[0] || {})[:name]
 
-    assert_equal "New Year's Day", (Holidays.on(Date.civil(2017, 1, 2), [:mz], [:informal])[0] || {})[:name]
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2017, 1, 2), [:mz], [:observed])[0] || {})[:name]
 
-    assert_equal "Heroes' Day", (Holidays.on(Date.civil(2017, 2, 3), [:mz], [:informal])[0] || {})[:name]
+    assert_equal "Heroes' Day", (Holidays.on(Date.civil(2017, 2, 3), [:mz])[0] || {})[:name]
 
-    assert_equal "Women's Day", (Holidays.on(Date.civil(2017, 4, 7), [:mz], [:informal])[0] || {})[:name]
+    assert_equal "Women's Day", (Holidays.on(Date.civil(2017, 4, 7), [:mz])[0] || {})[:name]
 
-    assert_equal "Worker's Day", (Holidays.on(Date.civil(2017, 5, 1), [:mz], [:informal])[0] || {})[:name]
+    assert_equal "Worker's Day", (Holidays.on(Date.civil(2017, 5, 1), [:mz])[0] || {})[:name]
 
-    assert_equal "Independence Day", (Holidays.on(Date.civil(2017, 6, 25), [:mz], [:informal])[0] || {})[:name]
+    assert_equal "Independence Day", (Holidays.on(Date.civil(2017, 6, 25), [:mz])[0] || {})[:name]
 
-    assert_equal "Victory Day", (Holidays.on(Date.civil(2017, 9, 7), [:mz], [:informal])[0] || {})[:name]
+    assert_equal "Victory Day", (Holidays.on(Date.civil(2017, 9, 7), [:mz])[0] || {})[:name]
 
-    assert_equal "Revolution Day", (Holidays.on(Date.civil(2017, 9, 25), [:mz], [:informal])[0] || {})[:name]
+    assert_equal "Revolution Day", (Holidays.on(Date.civil(2017, 9, 25), [:mz])[0] || {})[:name]
 
-    assert_equal "Day of Peace and Reconciliation", (Holidays.on(Date.civil(2017, 10, 4), [:mz], [:informal])[0] || {})[:name]
+    assert_equal "Day of Peace and Reconciliation", (Holidays.on(Date.civil(2017, 10, 4), [:mz])[0] || {})[:name]
 
-    assert_equal "Family Day", (Holidays.on(Date.civil(2017, 12, 25), [:mz], [:informal])[0] || {})[:name]
+    assert_equal "Family Day", (Holidays.on(Date.civil(2017, 12, 25), [:mz])[0] || {})[:name]
 
   end
 end

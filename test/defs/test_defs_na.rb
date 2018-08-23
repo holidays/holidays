@@ -15,7 +15,7 @@ class NaDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Ascension Day", (Holidays.on(Date.civil(2018, 5, 10), [:na])[0] || {})[:name]
 
-    assert_equal "Heroes' Day", (Holidays.on(Date.civil(2018, 8, 27), [:na])[0] || {})[:name]
+    assert_equal "Heroes' Day", (Holidays.on(Date.civil(2018, 8, 27), [:na], [:observed])[0] || {})[:name]
 
     assert_equal "Easter Monday", (Holidays.on(Date.civil(2019, 4, 22), [:na])[0] || {})[:name]
 
