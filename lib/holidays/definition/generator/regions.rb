@@ -33,12 +33,16 @@ EOF
           all_regions.flatten.uniq
         end
 
+        # generates a hash of regions to their parent region
+        # eg. :au_nsw => :au
         def generate_parent_lookup(regions)
           lookup = {}
-
           regions.each do |region, subregions|
             subregions.each do |s|
-              lookup[s] = region unless lookup.has_key?(s)
+              next if lookup.has_key?(s) # don't override already generated regions
+              # don't set things like "south_america" as the region for countries like venezuela that we don't have states for
+              next if subregions.count > 1 && regions.has_key?(s) && regions[s].count == 1
+              lookup[s] = region
             end
           end
 
