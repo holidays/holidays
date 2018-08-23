@@ -15,7 +15,6 @@ module Holidays
               0 => [{:function => "easter(year)", :function_arguments => [:year], :name => "Pasen", :regions => [:be_nl]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Paasmaandag", :regions => [:be_nl]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "O.H. Hemelvaart", :regions => [:be_nl]},
-            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Pinksteren", :regions => [:be_nl]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Pinkstermaandag", :regions => [:be_nl]}],
       1 => [{:mday => 1, :name => "Nieuwjaar", :regions => [:be_nl]}],
       5 => [{:mday => 1, :name => "Feest van de Arbeid", :regions => [:be_nl]}],

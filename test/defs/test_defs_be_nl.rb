@@ -17,8 +17,6 @@ class Be_nlDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "O.H. Hemelvaart", (Holidays.on(Date.civil(2007, 5, 17), [:be_nl], [:informal])[0] || {})[:name]
 
-    assert_equal "Pinksteren", (Holidays.on(Date.civil(2007, 5, 27), [:be_nl], [:informal])[0] || {})[:name]
-
     assert_equal "Pinkstermaandag", (Holidays.on(Date.civil(2007, 5, 28), [:be_nl], [:informal])[0] || {})[:name]
 
     assert_equal "Nationale Feestdag", (Holidays.on(Date.civil(2007, 7, 21), [:be_nl], [:informal])[0] || {})[:name]

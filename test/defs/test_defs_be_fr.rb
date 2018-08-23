@@ -17,8 +17,6 @@ class Be_frDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Ascension", (Holidays.on(Date.civil(2007, 5, 17), [:be_fr], [:informal])[0] || {})[:name]
 
-    assert_equal "Pentecôte", (Holidays.on(Date.civil(2007, 5, 27), [:be_fr], [:informal])[0] || {})[:name]
-
     assert_equal "Lundi de Pentecôte", (Holidays.on(Date.civil(2007, 5, 28), [:be_fr], [:informal])[0] || {})[:name]
 
     assert_equal "Fête nationale", (Holidays.on(Date.civil(2007, 7, 21), [:be_fr], [:informal])[0] || {})[:name]
