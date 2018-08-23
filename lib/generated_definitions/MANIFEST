@@ -13,6 +13,7 @@ The following definition files are included in this installation:
 * generated_definitions/ca
 * generated_definitions/ch
 * generated_definitions/cl
+* generated_definitions/co
 * generated_definitions/cr
 * generated_definitions/cz
 * generated_definitions/de
@@ -66,6 +67,7 @@ The following definition files are included in this installation:
 * generated_definitions/sg
 * generated_definitions/si
 * generated_definitions/sk
+* generated_definitions/south_america
 * generated_definitions/tn
 * generated_definitions/tr
 * generated_definitions/united_nations

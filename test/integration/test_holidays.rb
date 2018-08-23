@@ -155,7 +155,7 @@ class HolidaysTests < Test::Unit::TestCase
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2016, 1, 1))
     assert_equal 9, holidays.length
 
-    # Should return all 5 holidays for 2016 in Australia (most holidays now differ by state)
+    # Should return all 5 holidays for 2016 in Australia
     holidays = Holidays.year_holidays([:au], Date.civil(2016, 1, 1))
     assert_equal 5, holidays.length
   end
@@ -210,7 +210,7 @@ class HolidaysTests < Test::Unit::TestCase
     assert_equal 9, holidays.length
 
     holidays = Holidays.year_holidays([:jp], Date.civil(2070, 1, 1))
-    assert_equal 18, holidays.length
+    assert_equal 19, holidays.length
   end
 
   def test_sub_regions
@@ -296,7 +296,6 @@ class HolidaysTests < Test::Unit::TestCase
 
   def test_load_all
     Holidays.load_all
-    # update this if you add a new region!
-    assert_equal 243, Holidays.available_regions.count
+    assert_equal 239, Holidays.available_regions.count
   end
 end

@@ -17,6 +17,8 @@ class AtDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Nationalfeiertag", (Holidays.on(Date.civil(2009, 10, 26), [:at], [:informal])[0] || {})[:name]
 
+    assert_equal "Mariä Empfängnis", (Holidays.on(Date.civil(2009, 12, 8), [:at], [:informal])[0] || {})[:name]
+
     assert_equal "1. Weihnachtstag", (Holidays.on(Date.civil(2009, 12, 25), [:at], [:informal])[0] || {})[:name]
 
     assert_equal "2. Weihnachtstag", (Holidays.on(Date.civil(2009, 12, 26), [:at], [:informal])[0] || {})[:name]
