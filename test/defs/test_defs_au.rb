@@ -93,6 +93,8 @@ assert_equal "Queen's Birthday", (Holidays.on(Date.civil(2016, 9, 26), [:au_wa])
 
     assert_equal "Friday before the AFL Grand Final", (Holidays.on(Date.civil(2017, 9, 29), [:au_vic])[0] || {})[:name]
 
+    assert_equal "Friday before the AFL Grand Final", (Holidays.on(Date.civil(2018, 9, 28), [:au_vic])[0] || {})[:name]
+
     assert_equal "May Public Holiday", (Holidays.on(Date.civil(2005, 5, 16), [:au_sa])[0] || {})[:name]
 
     assert_equal "March Public Holiday", (Holidays.on(Date.civil(2014, 3, 10), [:au_sa])[0] || {})[:name]
