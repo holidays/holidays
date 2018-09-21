@@ -210,7 +210,7 @@ class HolidaysTests < Test::Unit::TestCase
     assert_equal 9, holidays.length
 
     holidays = Holidays.year_holidays([:jp], Date.civil(2070, 1, 1))
-    assert_equal 18, holidays.length
+    assert_equal 19, holidays.length
   end
 
   def test_sub_regions
@@ -296,6 +296,6 @@ class HolidaysTests < Test::Unit::TestCase
 
   def test_load_all
     Holidays.load_all
-    assert_equal 235, Holidays.available_regions.count
+    assert_equal 240, Holidays.available_regions.count
   end
 end

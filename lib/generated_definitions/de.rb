@@ -7,7 +7,7 @@ module Holidays
   # All the definitions are available at https://github.com/holidays/holidays
   module DE # :nodoc:
     def self.defined_regions
-      [:de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_sorbian, :de_th_cath, :de_sn, :de_st, :de_by_cath, :de_by_augsburg, :de_bb, :de_mv, :de_th]
+      [:de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_sorbian, :de_th_cath, :de_sn, :de_st, :de_by_cath, :de_by_augsburg, :de_bb, :de_mv, :de_th, :de_hb, :de_hh, :de_ni, :de_sh]
     end
 
     def self.holidays_by_month
@@ -30,7 +30,8 @@ module Holidays
       10 => [{:mday => 3, :name => "Tag der Deutschen Einheit", :regions => [:de]},
             {:mday => 31, :name => "Reformationstag", :regions => [:de_bb, :de_mv, :de_sn, :de_st, :de_th]},
             {:mday => 31, :type => :informal, :name => "Reformationstag", :regions => [:de_bw]},
-            {:mday => 31,  :year_ranges => [{:limited => [2017]}],:name => "Reformationstag", :regions => [:de]}],
+            {:mday => 31,  :year_ranges => [{:limited => [2017]}],:name => "Reformationstag", :regions => [:de]},
+            {:mday => 31,  :year_ranges => [{:after => 2018}],:name => "Reformationstag", :regions => [:de_hb, :de_hh, :de_ni, :de_sh]}],
       11 => [{:mday => 1, :name => "Allerheiligen", :regions => [:de_bw, :de_by, :de_nw, :de_rp, :de_sl]},
             {:function => "de_buss_und_bettag(year)", :function_arguments => [:year], :name => "Buß- und Bettag", :regions => [:de_sn]}],
       12 => [{:mday => 24, :type => :informal, :name => "Heilig Abend", :regions => [:de]},

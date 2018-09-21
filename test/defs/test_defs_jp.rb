@@ -127,5 +127,13 @@ class JpDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_nil (Holidays.on(Date.civil(1998, 9, 22), [:jp])[0] || {})[:name]
 
+    assert_equal "天皇誕生日", (Holidays.on(Date.civil(2018, 12, 23), [:jp])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2019, 2, 23), [:jp])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2019, 12, 23), [:jp])[0] || {})[:name]
+
+    assert_equal "天皇誕生日", (Holidays.on(Date.civil(2020, 2, 23), [:jp])[0] || {})[:name]
+
   end
 end
