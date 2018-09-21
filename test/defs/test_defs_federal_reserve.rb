@@ -17,6 +17,8 @@ class Federal_reserveDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Independence Day", (Holidays.on(Date.civil(2012, 7, 4), [:federal_reserve], [:observed])[0] || {})[:name]
 
+    assert_equal "Independence Day", (Holidays.on(Date.civil(2020, 7, 3), [:federal_reserve], [:observed])[0] || {})[:name]
+
     assert_equal "Labor Day", (Holidays.on(Date.civil(2012, 9, 3), [:federal_reserve], [:observed])[0] || {})[:name]
 
     assert_equal "Columbus Day", (Holidays.on(Date.civil(2012, 10, 8), [:federal_reserve], [:observed])[0] || {})[:name]
@@ -75,7 +77,7 @@ class Federal_reserveDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Memorial Day", (Holidays.on(Date.civil(2015, 5, 25), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Independence Day", (Holidays.on(Date.civil(2015, 7, 4), [:federal_reserve], [:observed])[0] || {})[:name]
+    assert_equal "Independence Day", (Holidays.on(Date.civil(2015, 7, 3), [:federal_reserve], [:observed])[0] || {})[:name]
 
     assert_equal "Labor Day", (Holidays.on(Date.civil(2015, 9, 7), [:federal_reserve], [:observed])[0] || {})[:name]
 

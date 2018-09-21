@@ -9,9 +9,17 @@ class ArDefinitionTests < Test::Unit::TestCase  # :nodoc:
   def test_ar
     assert_equal "Año Nuevo", (Holidays.on(Date.civil(2016, 1, 1), [:ar], [:informal])[0] || {})[:name]
 
-    assert_equal "Carnaval", (Holidays.on(Date.civil(2016, 2, 8), [:ar], [:informal])[0] || {})[:name]
+    assert_equal "Carnaval Lunes", (Holidays.on(Date.civil(2016, 2, 8), [:ar], [:informal])[0] || {})[:name]
 
-    assert_equal "Carnaval", (Holidays.on(Date.civil(2016, 2, 9), [:ar], [:informal])[0] || {})[:name]
+    assert_equal "Carnaval Martes", (Holidays.on(Date.civil(2016, 2, 9), [:ar], [:informal])[0] || {})[:name]
+
+    assert_equal "Carnaval Lunes", (Holidays.on(Date.civil(2017, 2, 27), [:ar], [:informal])[0] || {})[:name]
+
+    assert_equal "Carnaval Martes", (Holidays.on(Date.civil(2017, 2, 28), [:ar], [:informal])[0] || {})[:name]
+
+    assert_equal "Carnaval Lunes", (Holidays.on(Date.civil(2018, 2, 12), [:ar], [:informal])[0] || {})[:name]
+
+    assert_equal "Carnaval Martes", (Holidays.on(Date.civil(2018, 2, 13), [:ar], [:informal])[0] || {})[:name]
 
     assert_equal "Día Nacional de la Memoria por la Verdad y la Justicia", (Holidays.on(Date.civil(2016, 3, 24), [:ar], [:informal])[0] || {})[:name]
 

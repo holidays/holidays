@@ -1,5 +1,10 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 6.5.0
+
+* Update to [v2.5.2 definitions](https://github.com/holidays/definitions/releases/tag/v2.5.2). Please see the changelog for the definition details.
+* Fix permissions on `bin` executables (thanks to github.com/JuanitoFatas)
+
 ## 6.4.0
 
 * Update to [v2.4.0 definitions](https://github.com/holidays/definitions/releases/tag/v2.4.0). Please see the changelog for the definition details.

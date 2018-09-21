@@ -7,7 +7,7 @@ module Holidays
   # All the definitions are available at https://github.com/holidays/holidays
   module EUROPE # :nodoc:
     def self.defined_regions
-      [:at, :be_fr, :be_nl, :ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_ne, :ch_ge, :ch_ju, :ch_vs, :ch, :cz, :dk, :de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_sorbian, :de_th_cath, :de_sn, :de_st, :de_by_cath, :de_by_augsburg, :de_bb, :de_mv, :de_th, :el, :es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex, :es, :es_ct, :es_v, :es_vc, :fr_a, :fr_m, :fr, :gb, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :je, :gb_jsy, :gg, :gb_gsy, :gb_sct, :gb_con, :im, :gb_iom, :hr, :hu, :ie, :is, :it, :li, :lt, :nl, :no, :pl, :pt, :pt_li, :pt_po, :ro, :sk, :si, :bg_en, :bg_bg]
+      [:at, :be_fr, :be_nl, :ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_ne, :ch_ge, :ch_ju, :ch_vs, :ch, :cz, :dk, :de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_sorbian, :de_th_cath, :de_sn, :de_st, :de_by_cath, :de_by_augsburg, :de_bb, :de_mv, :de_th, :de_hb, :de_hh, :de_ni, :de_sh, :el, :es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex, :es, :es_ct, :es_v, :es_vc, :fr_a, :fr_m, :fr, :gb, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :je, :gb_jsy, :gg, :gb_gsy, :gb_sct, :gb_con, :im, :gb_iom, :hr, :hu, :ie, :is, :it, :li, :lt, :nl, :no, :pl, :pt, :pt_li, :pt_po, :ro, :sk, :si, :bg_en, :bg_bg]
     end
 
     def self.holidays_by_month
@@ -270,6 +270,7 @@ module Holidays
             {:mday => 31, :name => "Reformationstag", :regions => [:de_bb, :de_mv, :de_sn, :de_st, :de_th]},
             {:mday => 31, :type => :informal, :name => "Reformationstag", :regions => [:de_bw]},
             {:mday => 31,  :year_ranges => [{:limited => [2017]}],:name => "Reformationstag", :regions => [:de]},
+            {:mday => 31,  :year_ranges => [{:after => 2018}],:name => "Reformationstag", :regions => [:de_hb, :de_hh, :de_ni, :de_sh]},
             {:mday => 28, :name => "Επέτειος του Όχι", :regions => [:el]},
             {:mday => 9, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de Valencia", :regions => [:es_vc, :es_v]},
             {:mday => 12, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de la Hispanidad", :regions => [:es]},
@@ -457,6 +458,7 @@ module Holidays
             {:mday => 8, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de Asturias", :regions => [:es_o]},
             {:mday => 8, :name => "Día de Extremadura", :regions => [:es_ex]},
             {:mday => 11, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Fiesta Nacional de Cataluña", :regions => [:es_ct]},
+            {:mday => 24, :name => "La Mercè", :regions => [:es_ct]},
             {:mday => 8, :name => "Maria Geburt", :regions => [:li]},
             {:mday => 30, :type => :informal, :name => "Dzień Chłopaka", :regions => [:pl]},
             {:mday => 1, :name => "Deň Ústavy Slovenskej republiky", :regions => [:sk]},
