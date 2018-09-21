@@ -17,7 +17,7 @@ module Holidays
             months.each do |month|
               next unless hbm = @holidays_by_month_repo.find_by_month(month)
               hbm.each do |h|
-                next if (h[:type] == :informal) && !informal_set?(options)
+                next if informal_type?(h[:type]) && !informal_set?(options)
                 next unless @rules[:in_region].call(regions, h[:regions])
 
                 if h[:year_ranges]
@@ -79,6 +79,10 @@ module Holidays
               raise ArgumentError unless month >= 0 && month <= 12
             end
           end
+        end
+
+        def informal_type?(type)
+          type && [:informal, 'informal'].include?(type)
         end
 
         def informal_set?(options)
