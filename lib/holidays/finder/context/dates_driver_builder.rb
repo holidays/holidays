@@ -11,7 +11,7 @@ module Holidays
         def call(start_date, end_date)
           dates_driver = {}
 
-          (start_date..end_date).map do |date|
+          (start_date..end_date).each do |date|
             dates_driver[date.year] = [] unless dates_driver[date.year]
             dates_driver[date.year] << date.month
             dates_driver = add_border_months(date, dates_driver)
