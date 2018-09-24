@@ -14,7 +14,6 @@ module Holidays
           regions, observed, informal = @options_parser.call(options)
 
           holidays = []
-          ret_holidays = []
           opts = gather_options(observed, informal)
 
           # This could be smarter but I don't have any evidence that just checking for
@@ -22,17 +21,18 @@ module Holidays
           # smarter here to check in smaller increments.
           dates_driver = @dates_driver_builder.call(from_date, from_date >> 12)
 
-          ret_holidays = @definition_search.call(dates_driver, regions, opts)
-
-          ret_holidays.sort{|a, b| a[:date] <=> b[:date] }.each do |holiday|
-            if holiday[:date] >= from_date
-              holidays << holiday
-              holidays_count -= 1
-              break if holidays_count == 0
+          @definition_search
+            .call(dates_driver, regions, opts)
+            .sort_by { |a| a[:date] }
+            .each do |holiday|
+              if holiday[:date] >= from_date
+                holidays << holiday
+                holidays_count -= 1
+                break if holidays_count == 0
+              end
             end
-          end
 
-          holidays.sort{|a, b| a[:date] <=> b[:date] }
+          holidays.sort_by { |a| a[:date] }
         end
 
         private
@@ -46,8 +46,8 @@ module Holidays
         def gather_options(observed, informal)
           opts = []
 
-          opts << :observed if observed == true
-          opts << :informal if informal == true
+          opts << :observed if observed
+          opts << :informal if informal
 
           opts
         end
