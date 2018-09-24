@@ -40,6 +40,8 @@ module Holidays
 
       start_date, end_date = get_date(start_date), get_date(end_date)
 
+      return [] if end_date < start_date
+
       if cached_holidays = Factory::Definition.cache_repository.find(start_date, end_date, options)
         return cached_holidays
       end
