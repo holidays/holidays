@@ -11,18 +11,12 @@ module Holidays
         def call(start_date, end_date)
           dates_driver = {}
 
-          (start_date..end_date).map{|current_date|build(dates_driver, current_date)}
+          (start_date..end_date).each do |date|
+            dates_driver[date.year] = [] unless dates_driver[date.year]
+            dates_driver[date.year] << date.month
+            dates_driver = add_border_months(date, dates_driver)
+          end
           clean(dates_driver)
-        end
-
-        #FIXME Why is the date_driver set to optional as the first param? That's
-        # just plain wrong...
-        def build(dates_driver = {}, date)
-          raise ArgumentError unless dates_driver
-          raise ArgumentError unless date
-          dates_driver[date.year] = [] unless dates_driver[date.year]
-          dates_driver[date.year] << date.month
-          dates_driver = add_border_months(date, dates_driver)
         end
 
         private
