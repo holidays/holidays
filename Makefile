@@ -33,7 +33,7 @@ point-to-defs-master:
 	git submodule add https://github.com/holidays/definitions definitions/
 
 clean-defs:
-	git rm definitions
+	git rm -f definitions
 	rm -rf .git/modules/definitions
 	git config -f .git/config --remove-section submodule.definitions 2> /dev/null
 
