@@ -136,6 +136,8 @@ date.wday == 0 ? (Holidays::Factory::Definition.custom_methods_repository.find("
 },
 
 "jp_next_weekday(date)" => Proc.new { |date|
+# This suuuucks. I have no idea how to make this not reach into our interal ruby API to do this.
+# I'm punting, I'll come back to this.
 is_holiday = Holidays::JP.holidays_by_month[date.month].any? do |holiday|
   holiday[:mday] == date.day
 end

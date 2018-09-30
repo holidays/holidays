@@ -7,6 +7,13 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class AuDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_au
+    assert_equal "Good Friday", (Holidays.on(Date.civil(2017, 4, 14), [:au])[0] || {})[:name]
+
+    assert_equal "Easter Saturday", (Holidays.on(Date.civil(2017, 4, 15), [:au_nsw])[0] || {})[:name]
+
+    assert_equal "Easter Sunday", (Holidays.on(Date.civil(2010, 4, 4), [:au_nsw])[0] || {})[:name]
+assert_equal "Easter Sunday", (Holidays.on(Date.civil(2017, 4, 16), [:au_nsw])[0] || {})[:name]
+
     assert_equal "Labour Day", (Holidays.on(Date.civil(2013, 10, 7), [:au_qld])[0] || {})[:name]
 
     assert_equal "Labour Day", (Holidays.on(Date.civil(2012, 5, 7), [:au_qld])[0] || {})[:name]
@@ -183,7 +190,11 @@ assert_equal "Queen's Birthday", (Holidays.on(Date.civil(2016, 9, 26), [:au_wa])
 
     assert_equal "New Year's Day", (Holidays.on(Date.civil(2017, 1, 2), [:au_tas])[0] || {})[:name]
 
+    assert_nil (Holidays.on(Date.civil(2016, 3, 27), [:au_qld])[0] || {})[:name]
+
     assert_equal "Easter Sunday", (Holidays.on(Date.civil(2017, 4, 16), [:au_qld])[0] || {})[:name]
+
+    assert_equal "G20 Day", (Holidays.on(Date.civil(2014, 11, 14), [:au_qld_brisbane])[0] || {})[:name]
 
   end
 end

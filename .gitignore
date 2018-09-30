@@ -1,7 +1,6 @@
 .DS_Store
 *.gem
 nbproject
-doc/
 rdoc/
 Gemfile.lock
 .ruby-version

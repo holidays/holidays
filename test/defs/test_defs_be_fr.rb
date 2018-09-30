@@ -31,5 +31,15 @@ class Be_frDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Noël", (Holidays.on(Date.civil(2007, 12, 25), [:be_fr], [:informal])[0] || {})[:name]
 
+    assert_equal "Pâques", (Holidays.on(Date.civil(2017, 4, 16), [:be_fr])[0] || {})[:name]
+
+    assert_equal "Lundi de Pâques", (Holidays.on(Date.civil(2017, 4, 17), [:be_fr])[0] || {})[:name]
+
+    assert_equal "Ascension", (Holidays.on(Date.civil(2017, 5, 25), [:be_fr])[0] || {})[:name]
+
+    assert_equal "Pentecôte", (Holidays.on(Date.civil(2017, 6, 4), [:be_fr])[0] || {})[:name]
+
+    assert_equal "Lundi de Pentecôte", (Holidays.on(Date.civil(2017, 6, 5), [:be_fr])[0] || {})[:name]
+
   end
 end

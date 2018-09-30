@@ -9,11 +9,11 @@ class AtDefinitionTests < Test::Unit::TestCase  # :nodoc:
   def test_at
     assert_equal "Neujahrstag", (Holidays.on(Date.civil(2009, 1, 1), [:at], [:informal])[0] || {})[:name]
 
-    assert_equal "Ostermontag", (Holidays.on(Date.civil(2009, 4, 13), [:at], [:informal])[0] || {})[:name]
+    assert_equal "Ostermontag", (Holidays.on(Date.civil(2009, 4, 13), [:at])[0] || {})[:name]
 
-    assert_equal "Christi Himmelfahrt", (Holidays.on(Date.civil(2009, 5, 21), [:at], [:informal])[0] || {})[:name]
+    assert_equal "Christi Himmelfahrt", (Holidays.on(Date.civil(2009, 5, 21), [:at])[0] || {})[:name]
 
-    assert_equal "Pfingstmontag", (Holidays.on(Date.civil(2009, 6, 1), [:at], [:informal])[0] || {})[:name]
+    assert_equal "Pfingstmontag", (Holidays.on(Date.civil(2009, 6, 1), [:at])[0] || {})[:name]
 
     assert_equal "Nationalfeiertag", (Holidays.on(Date.civil(2009, 10, 26), [:at], [:informal])[0] || {})[:name]
 
@@ -24,6 +24,8 @@ class AtDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_equal "2. Weihnachtstag", (Holidays.on(Date.civil(2009, 12, 26), [:at], [:informal])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(2010, 5, 8), [:at])[0] || {})[:name]
+
+    assert_equal "Fronleichnam", (Holidays.on(Date.civil(2017, 6, 15), [:at])[0] || {})[:name]
 
   end
 end

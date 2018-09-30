@@ -1,5 +1,15 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 6.6.0
+
+* Update to [v3.0.0 definitions](https://github.com/holidays/definitions/releases/tag/v3.0.0). This required updates to the custom method parser but no behavior changes.
+* Remove unused `simplecov-rcov` from gemspec dev dependencies
+* Fix parent region loading bug [PR](https://github.com/holidays/holidays/pull/320) (thanks to chadrschroeder)
+* Fix `ruby-head` build caused by new 'endless range' feature in ruby 2.6.0 [PR](https://github.com/holidays/holidays/pull/321)
+* Refactor definition search logic for improved readability [PR](https://github.com/holidays/holidays/pull/318) (thanks to https://github.com/guizma)
+* Reorganize most documentation into the `docs/` directory
+* Fix list of covered rubies in README
+
 ## 6.5.0
 
 * Update to [v2.5.2 definitions](https://github.com/holidays/definitions/releases/tag/v2.5.2). Please see the changelog for the definition details.
