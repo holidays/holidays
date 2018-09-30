@@ -1,4 +1,4 @@
 [submodule "definitions"]
 	path = definitions
-	url = https://github.com/ppeble/definitions
-  branch = issue-24
+	url = git@github.com:ppeble/definitions.git
+	branch = issue-24
