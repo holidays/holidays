@@ -41,7 +41,7 @@ end
 
 desc 'Launch IRB session'
 task :console do
-  sh "irb -rubygems -I lib -r holidays.rb"
+  sh "irb -r rubygems -I lib -r holidays.rb"
 end
 
 desc 'Generate definitions and tests used in main holiday logic based on raw YAML definitions'

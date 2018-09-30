@@ -49,7 +49,7 @@ sections below.
 ### Release flow
 
 * Does this update require definition updates? If YES, then:
-  * Pull the latest `master` version of this ruby repository and run `make update_defs`. This will grab the latest version from the [definitions](https://github.com/holidays/definitions) repository. Run `git diff` to verify that the version of the submodule for the definitions matches the correct commit in the [definitions](https://github.com/holidays/definitions) repo.
+  * Pull the latest `master` version of this ruby repository and run `make update-defs`. This will grab the latest version from the [definitions](https://github.com/holidays/definitions) repository. Run `git diff` to verify that the version of the submodule for the definitions matches the correct commit in the [definitions](https://github.com/holidays/definitions) repo.
   * Run the `make generate` command. This will 'recompile' the ruby sources with the latest definitions.
   * Run `make test` and ensure that all of the tests pass. If any tests fail then do *not* merge and contact a [core member](https://github.com/orgs/holidays/teams/core/members) for assistance.
   * If all of the tests pass, update the `lib/holidays/version.rb` file to the new version. Reference the above [semver](http://semver.org/) rules for how to update versions.

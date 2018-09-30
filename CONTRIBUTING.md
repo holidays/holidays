@@ -9,27 +9,19 @@ Please read our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing. Every
 ## General note
 
 The definitions for this project are housed in a submodule. Please make sure to run `git clone --recursive git@github.com/holidays/holidays`
-or, if you forgot to do so, run `make update_defs` so that all of the submodule data is pulled down.
+or, if you forgot to do so, run `make update-defs` so that all of the submodule data is pulled down.
 
 ## For definition updates
 
-Our definitions are written in YAML. They are housed in a [separate repository](https://github.com/holidays/definitions) so
-that they can be used by tools written in other languages. You can find a complete guide to our format in the
-[definitions SYNTAX guide](https://github.com/holidays/definitions/blob/master/SYNTAX.md).
+Our definitions are written in YAML. They are housed in a [separate repository](https://github.com/holidays/definitions) so that they can be used by tools written in other languages. You can find a complete guide to our format in the [definitions SYNTAX guide](https://github.com/holidays/definitions/blob/master/SYNTAX.md).
 
-In this ruby project we take the YAML definitions and generate final ruby classes that are loaded at runtime for fast
-calculations.
+In this ruby project we take the YAML definitions and generate final ruby classes that are loaded at runtime for fast calculations.
 
 Once you have a good idea on what you want to change, please see the [contributing guide](https://github.com/holidays/definitions/blob/master/CONTRIBUTING.md) in the `definitions` repository.
 
-*NOTICE* - this whole submodule-definitions-thing is brand-new. If you are confused or run into issues please open an issue.
-The maintainers will respond immediately to help you out. :)
+The idea is that if the validation passes on the other repo then you shouldn't have to worry about generating and testing here. We'll see how that goes!
 
-The idea is that if the validation passes on the other repo then you shouldn't have to worry about generating and testing
-here. We'll see how that goes!
-
-Once that PR is accepted the maintainers of this project will be responsible for generating the updated definitions and
-releasing a new gem. Don't worry about versioning, we'll take care of it!
+Once that PR is accepted the maintainers of this project will be responsible for generating the updated definitions and releasing a new gem. Don't worry about versioning, we'll take care of it!
 
 ## For non-definition functionality
 
@@ -46,6 +38,9 @@ Don't worry about versioning, we'll handle it on our end.
 We have included a few handy tasks to help you troubleshoot and test:
 
 * `make test` - runs the entire suite
-* `REGION=<region> make test_region` - runs the tests for just that region
+* `REGION=<region> make test-region` - runs the tests for just that region
 * `make console` - launches an IRB session with the 'holidays' gem loaded for quick testing
-* `make update_defs` - this will run the appropriate git submodule commands to pull the latest definitions
+* `make update-defs` - this will run the appropriate git submodule commands to pull the latest definitions
+* `make clean-defs` - totally removes the cloned definitions
+* `BRANCH=<branch> USER=<user> make point-to-defs-branch` - lets you update your defs to point at a fork and branch. Example: `BRANCH=issue-24 USER=ppeble make-point-defs-branch`. Run `make clean-defs` before this!
+* `make point-to-defs-master` - points you back at the `holidays/definitions` repo and the master branch. Run `make clean-defs` before this!

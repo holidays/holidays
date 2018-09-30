@@ -410,7 +410,7 @@ module Holidays
             {:mday => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de las Islas Baleares", :regions => [:es_ib]},
             {:mday => 19, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "San José", :regions => [:es_v, :es_vc, :es_cm, :es_mu, :es_m]},
             {:mday => 5, :name => "St. Piran's Day", :regions => [:gb_con]},
-            {:mday => 17, :name => "St. Patrick's Day", :regions => [:gb_nir]},
+            {:mday => 17, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "St. Patrick's Day", :regions => [:gb_nir]},
             {:mday => 15, :name => "1848/49-es forradalom és szabadságharc ünnepe", :regions => [:hu]},
             {:mday => 17, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "St. Patrick's Day", :regions => [:ie]},
             {:mday => 19, :name => "St. Josef", :regions => [:li]},
