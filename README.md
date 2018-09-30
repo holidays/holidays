@@ -175,7 +175,7 @@ Holidays for the regions specified within the dates specified will be pre-calcul
 
 ### How to contribute
 
-See our [contribution guidelines](CONTRIBUTING.md) for information on how to help out!
+See our [contribution guidelines](doc/CONTRIBUTING.md) for information on how to help out!
 
 ### Credits and code
 

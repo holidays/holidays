@@ -4,7 +4,7 @@ There are multiple ways to help! We rely on users around the world to help keep 
 
 ## Code of Conduct
 
-Please read our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing. Everyone interacting with this project (or associated projects) is expected to abide by its terms.
+Please read our [Code of Conduct](../CODE_OF_CONDUCT.md) before contributing. Everyone interacting with this project (or associated projects) is expected to abide by its terms.
 
 ## General note
 
@@ -13,11 +13,11 @@ or, if you forgot to do so, run `make update-defs` so that all of the submodule 
 
 ## For definition updates
 
-Our definitions are written in YAML. They are housed in a [separate repository](https://github.com/holidays/definitions) so that they can be used by tools written in other languages. You can find a complete guide to our format in the [definitions SYNTAX guide](https://github.com/holidays/definitions/blob/master/SYNTAX.md).
+Our definitions are written in YAML. They are housed in a [separate repository](https://github.com/holidays/definitions) so that they can be used by tools written in other languages. You can find a complete guide to our format in the [definitions SYNTAX guide](https://github.com/holidays/definitions/blob/master/doc/SYNTAX.md).
 
 In this ruby project we take the YAML definitions and generate final ruby classes that are loaded at runtime for fast calculations.
 
-Once you have a good idea on what you want to change, please see the [CONTRIBUTING guide](https://github.com/holidays/definitions/blob/master/CONTRIBUTING.md) in the `definitions` repository.
+Once you have a good idea on what you want to change, please see the [CONTRIBUTING guide](https://github.com/holidays/definitions/blob/master/doc/CONTRIBUTING.md) in the `definitions` repository.
 
 The idea is that if the validation passes on the other repo then you shouldn't have to worry about generating and testing here. We'll see how that goes!
 
