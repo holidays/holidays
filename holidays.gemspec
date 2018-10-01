@@ -17,8 +17,8 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
   gem.licenses      = ['MIT']
   gem.required_ruby_version = '~> 2.2'
-  gem.add_development_dependency 'bundler'
-  gem.add_development_dependency 'rake', '~> 12.0'
+  gem.add_development_dependency 'bundler', '~> 1.16'
+  gem.add_development_dependency 'rake', '~> 12'
   gem.add_development_dependency 'simplecov', '~> 0.16'
   gem.add_development_dependency 'test-unit', '~> 3.2'
   gem.add_development_dependency 'mocha', '~> 1.7'
