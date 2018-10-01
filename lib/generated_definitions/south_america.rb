@@ -119,7 +119,6 @@ if [2,3,4].include?(date.wday)
 elsif date.wday == 5
   date += 3
 end
-
 date
 },
 
@@ -130,7 +129,6 @@ if [2,3,4].include?(date.wday)
 elsif date.wday == 5
   date += 3
 end
-
 date
 },
 
@@ -141,7 +139,6 @@ if date.wday == 2
 elsif date.wday == 3
   date += 2
 end
-
 date
 },
 

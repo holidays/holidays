@@ -9,11 +9,11 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
   def test_europe
     assert_equal "Neujahrstag", (Holidays.on(Date.civil(2009, 1, 1), [:at], [:informal])[0] || {})[:name]
 
-    assert_equal "Ostermontag", (Holidays.on(Date.civil(2009, 4, 13), [:at], [:informal])[0] || {})[:name]
+    assert_equal "Ostermontag", (Holidays.on(Date.civil(2009, 4, 13), [:at])[0] || {})[:name]
 
-    assert_equal "Christi Himmelfahrt", (Holidays.on(Date.civil(2009, 5, 21), [:at], [:informal])[0] || {})[:name]
+    assert_equal "Christi Himmelfahrt", (Holidays.on(Date.civil(2009, 5, 21), [:at])[0] || {})[:name]
 
-    assert_equal "Pfingstmontag", (Holidays.on(Date.civil(2009, 6, 1), [:at], [:informal])[0] || {})[:name]
+    assert_equal "Pfingstmontag", (Holidays.on(Date.civil(2009, 6, 1), [:at])[0] || {})[:name]
 
     assert_equal "Nationalfeiertag", (Holidays.on(Date.civil(2009, 10, 26), [:at], [:informal])[0] || {})[:name]
 
@@ -24,6 +24,8 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_equal "2. Weihnachtstag", (Holidays.on(Date.civil(2009, 12, 26), [:at], [:informal])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(2010, 5, 8), [:at])[0] || {})[:name]
+
+    assert_equal "Fronleichnam", (Holidays.on(Date.civil(2017, 6, 15), [:at])[0] || {})[:name]
 
     assert_equal "Jour de l'an", (Holidays.on(Date.civil(2007, 1, 1), [:be_fr], [:informal])[0] || {})[:name]
 
@@ -49,6 +51,16 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Noël", (Holidays.on(Date.civil(2007, 12, 25), [:be_fr], [:informal])[0] || {})[:name]
 
+    assert_equal "Pâques", (Holidays.on(Date.civil(2017, 4, 16), [:be_fr])[0] || {})[:name]
+
+    assert_equal "Lundi de Pâques", (Holidays.on(Date.civil(2017, 4, 17), [:be_fr])[0] || {})[:name]
+
+    assert_equal "Ascension", (Holidays.on(Date.civil(2017, 5, 25), [:be_fr])[0] || {})[:name]
+
+    assert_equal "Pentecôte", (Holidays.on(Date.civil(2017, 6, 4), [:be_fr])[0] || {})[:name]
+
+    assert_equal "Lundi de Pentecôte", (Holidays.on(Date.civil(2017, 6, 5), [:be_fr])[0] || {})[:name]
+
     assert_equal "Nieuwjaar", (Holidays.on(Date.civil(2007, 1, 1), [:be_nl], [:informal])[0] || {})[:name]
 
     assert_equal "Pasen", (Holidays.on(Date.civil(2007, 4, 8), [:be_nl], [:informal])[0] || {})[:name]
@@ -72,6 +84,16 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_equal "Wapenstilstand 1918", (Holidays.on(Date.civil(2007, 11, 11), [:be_nl], [:informal])[0] || {})[:name]
 
     assert_equal "Kerstmis", (Holidays.on(Date.civil(2007, 12, 25), [:be_nl], [:informal])[0] || {})[:name]
+
+    assert_equal "Pasen", (Holidays.on(Date.civil(2017, 4, 16), [:be_nl])[0] || {})[:name]
+
+    assert_equal "Paasmaandag", (Holidays.on(Date.civil(2017, 4, 17), [:be_nl])[0] || {})[:name]
+
+    assert_equal "O.H. Hemelvaart", (Holidays.on(Date.civil(2017, 5, 25), [:be_nl])[0] || {})[:name]
+
+    assert_equal "Pinksteren", (Holidays.on(Date.civil(2017, 6, 4), [:be_nl])[0] || {})[:name]
+
+    assert_equal "Pinkstermaandag", (Holidays.on(Date.civil(2017, 6, 5), [:be_nl])[0] || {})[:name]
 
     assert_equal "Bundesfeiertag", (Holidays.on(Date.civil(2012, 8, 1), [:ch])[0] || {})[:name]
 
@@ -434,6 +456,14 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_equal "Boxing Day", (Holidays.on(Date.civil(2008, 12, 26), [:gb], [:informal])[0] || {})[:name]
 
     assert_equal "St. Patrick's Day", (Holidays.on(Date.civil(2008, 3, 17), [:gb_nir], [:informal])[0] || {})[:name]
+
+    assert_equal "St. Patrick's Day", (Holidays.on(Date.civil(2018, 3, 17), [:gb_nir], [:informal])[0] || {})[:name]
+
+    assert_equal "St. Patrick's Day", (Holidays.on(Date.civil(2018, 3, 19), [:gb_nir], [:observed, :informal])[0] || {})[:name]
+
+    assert_equal "St. Patrick's Day", (Holidays.on(Date.civil(2019, 3, 17), [:gb_nir], [:informal])[0] || {})[:name]
+
+    assert_equal "St. Patrick's Day", (Holidays.on(Date.civil(2019, 3, 18), [:gb_nir], [:observed, :informal])[0] || {})[:name]
 
     assert_equal "St. Andrew's Day", (Holidays.on(Date.civil(2006, 11, 30), [:gb_sct], [:informal])[0] || {})[:name]
 

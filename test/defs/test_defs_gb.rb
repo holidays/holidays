@@ -23,6 +23,14 @@ class GbDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "St. Patrick's Day", (Holidays.on(Date.civil(2008, 3, 17), [:gb_nir], [:informal])[0] || {})[:name]
 
+    assert_equal "St. Patrick's Day", (Holidays.on(Date.civil(2018, 3, 17), [:gb_nir], [:informal])[0] || {})[:name]
+
+    assert_equal "St. Patrick's Day", (Holidays.on(Date.civil(2018, 3, 19), [:gb_nir], [:observed, :informal])[0] || {})[:name]
+
+    assert_equal "St. Patrick's Day", (Holidays.on(Date.civil(2019, 3, 17), [:gb_nir], [:informal])[0] || {})[:name]
+
+    assert_equal "St. Patrick's Day", (Holidays.on(Date.civil(2019, 3, 18), [:gb_nir], [:observed, :informal])[0] || {})[:name]
+
     assert_equal "St. Andrew's Day", (Holidays.on(Date.civil(2006, 11, 30), [:gb_sct], [:informal])[0] || {})[:name]
 
     assert_equal "St. Andrew's Day", (Holidays.on(Date.civil(2006, 11, 30), [:gb_sct], [:informal, :observed])[0] || {})[:name]

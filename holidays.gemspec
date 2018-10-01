@@ -7,7 +7,7 @@ require 'holidays/version'
 Gem::Specification.new do |gem|
   gem.name          = 'holidays'
   gem.version       = Holidays::VERSION
-  gem.authors       = ['Alex Dunae', 'Phil Trimble']
+  gem.authors       = ['Alex Dunae', 'Phil Peble']
   gem.email         = ['holidaysgem@gmail.com']
   gem.homepage      = 'https://github.com/holidays/holidays'
   gem.description   = %q(A collection of Ruby methods to deal with statutory and other holidays. You deserve a holiday!)
@@ -19,9 +19,8 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = '~> 2.2'
   gem.add_development_dependency 'bundler'
   gem.add_development_dependency 'rake', '~> 12.0'
-  gem.add_development_dependency 'simplecov', '~> 0.15'
-  gem.add_development_dependency 'simplecov-rcov', '~> 0.2'
+  gem.add_development_dependency 'simplecov', '~> 0.16'
   gem.add_development_dependency 'test-unit', '~> 3.2'
-  gem.add_development_dependency 'mocha', '~> 1.0'
-  gem.add_development_dependency 'pry', '~> 0.10'
+  gem.add_development_dependency 'mocha', '~> 1.7'
+  gem.add_development_dependency 'pry', '~> 0.11'
 end

@@ -11,7 +11,7 @@ class ParserCustomMethodTests < Test::Unit::TestCase
   end
 
   def test_parse_happy_single_method
-    input = {"custom_method"=>{"arguments"=>"year", "source"=>"d = Date.civil(year, 1, 1)\nd + 2\n"}}
+    input = {"custom_method"=>{"arguments"=>"year", "ruby"=>"d = Date.civil(year, 1, 1)\nd + 2\n"}}
     @validator.expects(:valid?).with({:name => "custom_method", :arguments => "year", :source => "d = Date.civil(year, 1, 1)\nd + 2\n"}).returns(true)
 
     result = @parser.call(input)
@@ -28,7 +28,7 @@ class ParserCustomMethodTests < Test::Unit::TestCase
   end
 
   def test_call_happy_with_multiple_methods
-    input = {"custom_method"=>{"arguments"=>"year", "source"=>"d = Date.civil(year, 1, 1)\nd + 2\n"}, "second_method"=>{"arguments"=>"month","source"=>"source"}}
+    input = {"custom_method"=>{"arguments"=>"year", "ruby"=>"d = Date.civil(year, 1, 1)\nd + 2\n"}, "second_method"=>{"arguments"=>"month","ruby"=>"source"}}
     @validator.expects(:valid?).with({:name => "custom_method", :arguments => "year", :source => "d = Date.civil(year, 1, 1)\nd + 2\n"}).returns(true)
     @validator.expects(:valid?).with({:name => "second_method", :arguments => "month", :source => "source"}).returns(true)
 
@@ -59,7 +59,7 @@ class ParserCustomMethodTests < Test::Unit::TestCase
   end
 
   def test_call_raises_error_if_validator_returns_false_for_single_method
-    input = {"custom_method"=>{"arguments"=>"year", "source"=>"d = Date.civil(year, 1, 1)\nd + 2\n"}}
+    input = {"custom_method"=>{"arguments"=>"year", "ruby"=>"d = Date.civil(year, 1, 1)\nd + 2\n"}}
     @validator.expects(:valid?).with({:name => "custom_method", :arguments => "year", :source => "d = Date.civil(year, 1, 1)\nd + 2\n"}).returns(false)
 
     assert_raises ArgumentError do
@@ -68,7 +68,7 @@ class ParserCustomMethodTests < Test::Unit::TestCase
   end
 
   def test_call_raises_error_if_validator_returns_false_for_one_of_multiple_methods
-    input = {"custom_method"=>{"arguments"=>"year", "source"=>"d = Date.civil(year, 1, 1)\nd + 2\n"}, "second_method"=>{"arguments"=>"month","source"=>"source"}}
+    input = {"custom_method"=>{"arguments"=>"year", "ruby"=>"d = Date.civil(year, 1, 1)\nd + 2\n"}, "second_method"=>{"arguments"=>"month","ruby"=>"source"}}
     @validator.expects(:valid?).with({:name => "custom_method", :arguments => "year", :source => "d = Date.civil(year, 1, 1)\nd + 2\n"}).returns(true)
     @validator.expects(:valid?).with({:name => "second_method", :arguments => "month", :source => "source"}).returns(false)
 
