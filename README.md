@@ -166,8 +166,9 @@ Or find end of month for given date (requires 'Time' extensions as well):
 ### Caching Holiday Lookups
 
 If you are checking holidays regularly you can cache your results for improved performance. Run this before looking up a holiday (eg. in an initializer):
-
-    Holidays.cache_between(Time.now, 2.years.from_now, :ca, :us, :observed)
+    
+    YEAR = 365 * 24 * 60 * 60
+    Holidays.cache_between(Time.now, Time.now + 2 * YEAR, :ca, :us, :observed)
 
 Holidays for the regions specified within the dates specified will be pre-calculated and stored in-memory. Future lookups will be much faster.
 
