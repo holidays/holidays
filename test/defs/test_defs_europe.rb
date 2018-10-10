@@ -95,6 +95,8 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Pinkstermaandag", (Holidays.on(Date.civil(2017, 6, 5), [:be_nl])[0] || {})[:name]
 
+    assert_equal "Neujahrstag", (Holidays.on(Date.civil(2018, 1, 1), [:ch])[0] || {})[:name]
+
     assert_equal "Bundesfeiertag", (Holidays.on(Date.civil(2012, 8, 1), [:ch])[0] || {})[:name]
 
     assert_equal "Weihnachten", (Holidays.on(Date.civil(2012, 12, 25), [:ch])[0] || {})[:name]
