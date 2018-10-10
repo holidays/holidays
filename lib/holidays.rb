@@ -47,6 +47,9 @@ module Holidays
       Factory::Finder.between.call(start_date, end_date, options)
     end
 
+    #FIXME All other methods start with a date and require a date. For the next
+    #      major version bump we should take the opportunity to change this
+    #      signature to match, e.g. next_holidays(from_date, count, options)
     def next_holidays(holidays_count, options, from_date = Date.today)
       raise ArgumentError unless holidays_count
       raise ArgumentError if options.empty?
@@ -60,6 +63,9 @@ module Holidays
       Factory::Finder.next_holiday.call(holidays_count, from_date, options)
     end
 
+    #FIXME All other methods start with a date and require a date. For the next
+    #      major version bump we should take the opportunity to change this
+    #      signature to match, e.g. year_holidays(from_date, options)
     def year_holidays(options, from_date = Date.today)
       raise ArgumentError if options.empty?
       raise ArgumentError unless options.is_a?(Array)
