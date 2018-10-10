@@ -19,13 +19,12 @@ module Holidays
 
   class << self
     def any_holidays_during_work_week?(date, *options)
-      days_to_monday = date.wday - 1
-      days_to_friday = 5 - date.wday
-      start_date = date - days_to_monday
-      end_date = date + days_to_friday
-      options += [:observed] unless options.include?(:no_observed)
-      options.delete(:no_observed)
-      between(start_date, end_date, options).empty?
+      monday = date - (date.wday - 1)
+      friday = date + (5 - date.wday)
+
+      holidays = between(monday, friday, *options)
+
+      holidays && holidays.count > 0
     end
 
     def on(date, *options)
