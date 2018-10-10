@@ -19,7 +19,7 @@ module Holidays
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 60, :name => "Fronleichnam", :regions => [:ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_zg, :ch_fr, :ch_so, :ch_ai, :ch_ag, :ch_ti, :ch_vs, :ch_ne, :ch_ju]},
             {:function => "ch_vd_lundi_du_jeune_federal(year)", :function_arguments => [:year], :name => "Lundi du Jeûne fédéral", :regions => [:ch_vd]},
             {:function => "ch_ge_jeune_genevois(year)", :function_arguments => [:year], :name => "Jeûne genevois", :regions => [:ch_ge]}],
-      1 => [{:mday => 1, :name => "Neujahrstag", :regions => [:ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_vd, :ch_vs, :ch_ne, :ch_ge, :ch_ju, :ch_ti]},
+      1 => [{:mday => 1, :name => "Neujahrstag", :regions => [:ch]},
             {:mday => 2, :name => "Berchtoldstag", :regions => [:ch_zh, :ch_be, :ch_lu, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_sh, :ch_sg, :ch_ag, :ch_tg, :ch_vd, :ch_vs, :ch_ne, :ch_ju]},
             {:mday => 6, :name => "Dreikönigstag", :regions => [:ch_ur, :ch_sz, :ch_ti]}],
       3 => [{:mday => 1, :name => "Instauration de la République", :regions => [:ch_ne]},
