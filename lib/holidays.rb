@@ -19,13 +19,12 @@ module Holidays
 
   class << self
     def any_holidays_during_work_week?(date, *options)
-      days_to_monday = date.wday - 1
-      days_to_friday = 5 - date.wday
-      start_date = date - days_to_monday
-      end_date = date + days_to_friday
-      options += [:observed] unless options.include?(:no_observed)
-      options.delete(:no_observed)
-      between(start_date, end_date, options).empty?
+      monday = date - (date.wday - 1)
+      friday = date + (5 - date.wday)
+
+      holidays = between(monday, friday, *options)
+
+      holidays && holidays.count > 0
     end
 
     def on(date, *options)
@@ -48,6 +47,9 @@ module Holidays
       Factory::Finder.between.call(start_date, end_date, options)
     end
 
+    #FIXME All other methods start with a date and require a date. For the next
+    #      major version bump we should take the opportunity to change this
+    #      signature to match, e.g. next_holidays(from_date, count, options)
     def next_holidays(holidays_count, options, from_date = Date.today)
       raise ArgumentError unless holidays_count
       raise ArgumentError if options.empty?
@@ -61,6 +63,9 @@ module Holidays
       Factory::Finder.next_holiday.call(holidays_count, from_date, options)
     end
 
+    #FIXME All other methods start with a date and require a date. For the next
+    #      major version bump we should take the opportunity to change this
+    #      signature to match, e.g. year_holidays(from_date, options)
     def year_holidays(options, from_date = Date.today)
       raise ArgumentError if options.empty?
       raise ArgumentError unless options.is_a?(Array)

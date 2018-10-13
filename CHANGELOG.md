@@ -1,5 +1,9 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 6.6.1
+
+* Fixes `any_holidays_during_work_week?` so that it actually does what it says it does [issue-264](https://github.com/holidays/holidays/issues/264)
+
 ## 6.6.0
 
 * Update to [v3.0.0 definitions](https://github.com/holidays/definitions/releases/tag/v3.0.0). This required updates to the custom method parser but no behavior changes.
