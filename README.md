@@ -2,6 +2,8 @@
 
 Functionality to deal with holidays in Ruby.
 
+Extends Ruby's built-in Date and Time classes and supports custom holiday definition lists.
+
 ## Installation
 
 ```
