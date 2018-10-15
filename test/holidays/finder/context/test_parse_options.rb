@@ -138,14 +138,4 @@ class ParseOptionsTests < Test::Unit::TestCase
     regions = @subject.call(:any).first
     assert_equal([:region1, :region2], regions)
   end
-
-  # This is a legacy thing...we currently have this in the code and...I don't fully
-  # understand why. I don't want to remove it as part of this refactor.
-  def test_load_north_america_if_regions_include_us
-    @regions_repo.expects(:parent_region_lookup).with(:us).returns(nil)
-    @definition_loader.expects(:call).with(:north_america)
-
-    regions = @subject.call([:us]).first
-    assert_equal([:us], regions)
-  end
 end

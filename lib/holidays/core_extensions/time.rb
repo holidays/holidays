@@ -4,7 +4,7 @@ module Holidays
       def self.included(base)
         base.extend ClassMethods
       end
-     
+
       module ClassMethods
         COMMON_YEAR_DAYS_IN_MONTH = [nil, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
@@ -17,7 +17,7 @@ module Holidays
             COMMON_YEAR_DAYS_IN_MONTH[month]
           end
         end
-      end 
+      end
     end
   end
 end

@@ -109,6 +109,14 @@ class JpDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "海の日", (Holidays.on(Date.civil(2014, 7, 21), [:jp])[0] || {})[:name]
 
+    assert_equal "海の日", (Holidays.on(Date.civil(2019, 7, 15), [:jp])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2020, 7, 20), [:jp])[0] || {})[:name]
+
+    assert_equal "海の日", (Holidays.on(Date.civil(2020, 7, 23), [:jp])[0] || {})[:name]
+
+    assert_equal "海の日", (Holidays.on(Date.civil(2021, 7, 19), [:jp])[0] || {})[:name]
+
     assert_equal "山の日", (Holidays.on(Date.civil(2016, 8, 11), [:jp])[0] || {})[:name]
 
     assert_equal "山の日", (Holidays.on(Date.civil(2017, 8, 11), [:jp])[0] || {})[:name]
@@ -117,7 +125,9 @@ class JpDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "山の日", (Holidays.on(Date.civil(2019, 8, 11), [:jp])[0] || {})[:name]
 
-    assert_equal "山の日", (Holidays.on(Date.civil(2020, 8, 11), [:jp])[0] || {})[:name]
+    assert_equal "山の日", (Holidays.on(Date.civil(2020, 8, 10), [:jp])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2020, 8, 11), [:jp])[0] || {})[:name]
 
     assert_equal "山の日", (Holidays.on(Date.civil(2021, 8, 11), [:jp])[0] || {})[:name]
 
@@ -126,6 +136,22 @@ class JpDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_nil (Holidays.on(Date.civil(2015, 8, 11), [:jp])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(1998, 9, 22), [:jp])[0] || {})[:name]
+
+    assert_equal "天皇誕生日", (Holidays.on(Date.civil(2018, 12, 23), [:jp])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2019, 2, 23), [:jp])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2019, 12, 23), [:jp])[0] || {})[:name]
+
+    assert_equal "天皇誕生日", (Holidays.on(Date.civil(2020, 2, 23), [:jp])[0] || {})[:name]
+
+    assert_equal "体育の日", (Holidays.on(Date.civil(2019, 10, 14), [:jp])[0] || {})[:name]
+
+    assert_equal "スポーツの日", (Holidays.on(Date.civil(2020, 7, 24), [:jp])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2020, 10, 12), [:jp])[0] || {})[:name]
+
+    assert_equal "スポーツの日", (Holidays.on(Date.civil(2021, 10, 11), [:jp])[0] || {})[:name]
 
   end
 end

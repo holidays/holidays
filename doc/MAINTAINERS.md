@@ -49,19 +49,19 @@ sections below.
 ### Release flow
 
 * Does this update require definition updates? If YES, then:
-  * Pull the latest `master` version of this ruby repository and run `make update_defs`. This will grab the latest version from the [definitions](https://github.com/holidays/definitions) repository. Run `git diff` to verify that the version of the submodule for the definitions matches the correct commit in the [definitions](https://github.com/holidays/definitions) repo.
+  * Pull the latest `master` version of this ruby repository and run `make update-defs`. This will grab the latest version from the [definitions](https://github.com/holidays/definitions) repository. Run `git diff` to verify that the version of the submodule for the definitions matches the latest commit in the [definitions](https://github.com/holidays/definitions) repo.
   * Run the `make generate` command. This will 'recompile' the ruby sources with the latest definitions.
   * Run `make test` and ensure that all of the tests pass. If any tests fail then do *not* merge and contact a [core member](https://github.com/orgs/holidays/teams/core/members) for assistance.
   * If all of the tests pass, update the `lib/holidays/version.rb` file to the new version. Reference the above [semver](http://semver.org/) rules for how to update versions.
-  * Make a branch on your fork and update the [CHANGELOG](https://github.com/holidays/holidays/blob/master/CHANGELOG.md) to reflect the latest changes. You do not need to put in all of the definition changes in this update, you can simply reference the other repository. See other entries in the CHANGELOG for examples.
-  * Open a PR against the new branch and merge it (this may require another maintainer for safety)
+  * Make a branch on your fork and update the [CHANGELOG](../CHANGELOG.md) to reflect the latest changes. You do not need to put in all of the definition changes in this update, you can simply reference the other repository. See other entries in the CHANGELOG for examples.
+  * Open a PR against the new branch and merge it (another maintainer will need to review before you can merge)
   * Once the branch is merged, pull down the latest master from Github and run `make build`. This will generate a new `gem` file with the new version. The new version number is pulled from the above `version.rb` update.
   * If the build was successful then you can run the following to push up to rubygems.org: `GEM=<gem> make push`. Example: `GEM=holidays-6.2.0.gem make push`
 * Does this update require functionality additions or bug fixes? If YES, then:
   * Run `make test` and ensure that all of the tests pass. If any tests fail then do *not* merge and contact a [core member](https://github.com/orgs/holidays/teams/core/members) for assistance.
-  * If all of the tests pass, make a branch on your fork and update the [CHANGELOG](https://github.com/holidays/holidays/blob/master/CHANGELOG.md) to reflect the latest changes.
+  * If all of the tests pass, make a branch on your fork and update the [CHANGELOG](../CHANGELOG.md) to reflect the latest changes.
   * Update the `lib/holidays/version.rb` file to the new version. Reference the above [semver](http://semver.org/) rules for how to update versions.
-  * Open a PR against the new branch and merge it (this may require another maintainer for safety)
+  * Open a PR against the new branch and merge it (another maintainer will need to review before you can merge)
   * Once the branch is merged, pull down the latest master from Github and run `make build`. This will generate a new `gem` file with the new version. The new version number is pulled from the above `version.rb` update.
   * If the build was successful then you can run the following to push up to rubygems.org: `GEM=<gem> make push`. Example: `GEM=holidays-6.2.0.gem make push`
 
@@ -79,4 +79,3 @@ are that there are issues in the definition-specific tests. This is most likely 
 It is a known issue that the definitions do not have a good set of self-tests to ensure that they are internally consistent. This means that a failure in this
 repository could NOT be related to ruby specifically. It could be that the 'tests' specified in in the YAML files are incorrect! If you encounter errors here
 make sure that you don't assume that it is just a ruby error that is causing the issues!
-

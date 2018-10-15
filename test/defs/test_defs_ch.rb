@@ -7,6 +7,8 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class ChDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_ch
+    assert_equal "Neujahrstag", (Holidays.on(Date.civil(2018, 1, 1), [:ch])[0] || {})[:name]
+
     assert_equal "Bundesfeiertag", (Holidays.on(Date.civil(2012, 8, 1), [:ch])[0] || {})[:name]
 
     assert_equal "Weihnachten", (Holidays.on(Date.civil(2012, 12, 25), [:ch])[0] || {})[:name]

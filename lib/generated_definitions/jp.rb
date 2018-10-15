@@ -16,7 +16,9 @@ module Holidays
             {:wday => 1, :week => 2, :name => "成人の日", :regions => [:jp]},
             {:mday => 1, :function => "jp_substitute_holiday(year, month, day)", :function_arguments => [:year, :month, :day], :name => "振替休日", :regions => [:jp]}],
       2 => [{:mday => 11, :name => "建国記念の日", :regions => [:jp]},
-            {:mday => 11, :function => "jp_substitute_holiday(year, month, day)", :function_arguments => [:year, :month, :day], :name => "振替休日", :regions => [:jp]}],
+            {:mday => 11, :function => "jp_substitute_holiday(year, month, day)", :function_arguments => [:year, :month, :day], :name => "振替休日", :regions => [:jp]},
+            {:mday => 23,  :year_ranges => [{:after => 2020}],:name => "天皇誕生日", :regions => [:jp]},
+            {:mday => 23, :function => "jp_substitute_holiday(year, month, day)", :function_arguments => [:year, :month, :day],  :year_ranges => [{:after => 2020}],:name => "振替休日", :regions => [:jp]}],
       3 => [{:function => "jp_vernal_equinox_day(year)", :function_arguments => [:year], :name => "春分の日", :regions => [:jp]},
             {:function => "jp_vernal_equinox_day_substitute(year)", :function_arguments => [:year], :name => "振替休日", :regions => [:jp]}],
       4 => [{:mday => 29, :name => "昭和の日", :regions => [:jp]},
@@ -28,23 +30,29 @@ module Holidays
             {:mday => 4, :function => "jp_substitute_holiday(year, month, day)", :function_arguments => [:year, :month, :day], :name => "振替休日", :regions => [:jp]},
             {:mday => 5, :function => "jp_substitute_holiday(year, month, day)", :function_arguments => [:year, :month, :day], :name => "振替休日", :regions => [:jp]}],
       7 => [{:mday => 20,  :year_ranges => [{:between => 1996..2002}],:name => "海の日", :regions => [:jp]},
-            {:wday => 1, :week => 3,  :year_ranges => [{:after => 2003}],:name => "海の日", :regions => [:jp]},
-            {:function => "jp_marine_day_substitute(year)", :function_arguments => [:year],  :year_ranges => [{:between => 1996..2002}],:name => "振替休日", :regions => [:jp]}],
-      8 => [{:function => "jp_mountain_holiday(year)", :function_arguments => [:year],  :year_ranges => [{:after => 2016}],:name => "山の日", :regions => [:jp]},
+            {:wday => 1, :week => 3,  :year_ranges => [{:between => 2003..2019}],:name => "海の日", :regions => [:jp]},
+            {:mday => 23,  :year_ranges => [{:limited => [2020]}],:name => "海の日", :regions => [:jp]},
+            {:wday => 1, :week => 3,  :year_ranges => [{:after => 2021}],:name => "海の日", :regions => [:jp]},
+            {:function => "jp_marine_day_substitute(year)", :function_arguments => [:year],  :year_ranges => [{:between => 1996..2002}],:name => "振替休日", :regions => [:jp]},
+            {:mday => 24,  :year_ranges => [{:limited => [2020]}],:name => "スポーツの日", :regions => [:jp]}],
+      8 => [{:function => "jp_mountain_holiday(year)", :function_arguments => [:year],  :year_ranges => [{:between => 2016..2019}],:name => "山の日", :regions => [:jp]},
+            {:mday => 10,  :year_ranges => [{:limited => [2020]}],:name => "山の日", :regions => [:jp]},
+            {:function => "jp_mountain_holiday(year)", :function_arguments => [:year],  :year_ranges => [{:after => 2021}],:name => "山の日", :regions => [:jp]},
             {:function => "jp_mountain_holiday_substitute(year)", :function_arguments => [:year],  :year_ranges => [{:after => 2016}],:name => "振替休日", :regions => [:jp]}],
       9 => [{:wday => 1, :week => 3, :name => "敬老の日", :regions => [:jp]},
             {:function => "jp_respect_for_aged_holiday_substitute(year)", :function_arguments => [:year], :name => "振替休日", :regions => [:jp]},
             {:function => "jp_citizens_holiday(year)", :function_arguments => [:year],  :year_ranges => [{:after => 2003}],:name => "国民の休日", :regions => [:jp]},
             {:function => "jp_national_culture_day(year)", :function_arguments => [:year], :name => "秋分の日", :regions => [:jp]},
             {:function => "jp_national_culture_day_substitute(year)", :function_arguments => [:year], :name => "振替休日", :regions => [:jp]}],
-      10 => [{:wday => 1, :week => 2, :name => "体育の日", :regions => [:jp]},
+      10 => [{:wday => 1, :week => 2,  :year_ranges => [{:before => 2019}],:name => "体育の日", :regions => [:jp]},
+            {:wday => 1, :week => 2,  :year_ranges => [{:after => 2021}],:name => "スポーツの日", :regions => [:jp]},
             {:function => "jp_health_sports_day_substitute(year)", :function_arguments => [:year], :name => "振替休日", :regions => [:jp]}],
       11 => [{:mday => 3, :name => "文化の日", :regions => [:jp]},
             {:mday => 3, :function => "jp_substitute_holiday(year, month, day)", :function_arguments => [:year, :month, :day], :name => "振替休日", :regions => [:jp]},
             {:mday => 23, :name => "勤労感謝の日", :regions => [:jp]},
             {:mday => 23, :function => "jp_substitute_holiday(year, month, day)", :function_arguments => [:year, :month, :day], :name => "振替休日", :regions => [:jp]}],
-      12 => [{:mday => 23, :name => "天皇誕生日", :regions => [:jp]},
-            {:mday => 23, :function => "jp_substitute_holiday(year, month, day)", :function_arguments => [:year, :month, :day], :name => "振替休日", :regions => [:jp]}]
+      12 => [{:mday => 23,  :year_ranges => [{:before => 2018}],:name => "天皇誕生日", :regions => [:jp]},
+            {:mday => 23, :function => "jp_substitute_holiday(year, month, day)", :function_arguments => [:year, :month, :day],  :year_ranges => [{:before => 2018}],:name => "振替休日", :regions => [:jp]}]
       }
     end
 
@@ -134,6 +142,8 @@ date.wday == 0 ? (Holidays::Factory::Definition.custom_methods_repository.find("
 },
 
 "jp_next_weekday(date)" => Proc.new { |date|
+# This suuuucks. I have no idea how to make this not reach into our interal ruby API to do this.
+# I'm punting, I'll come back to this.
 is_holiday = Holidays::JP.holidays_by_month[date.month].any? do |holiday|
   holiday[:mday] == date.day
 end

@@ -7,7 +7,7 @@ module Holidays
   # All the definitions are available at https://github.com/holidays/holidays
   module EUROPE # :nodoc:
     def self.defined_regions
-      [:at, :be_fr, :be_nl, :ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_ne, :ch_ge, :ch_ju, :ch_vs, :ch, :cz, :dk, :de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_sorbian, :de_th_cath, :de_sn, :de_st, :de_by_cath, :de_by_augsburg, :de_bb, :de_mv, :de_th, :el, :es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex, :es, :es_ct, :es_v, :es_vc, :fr_a, :fr_m, :fr, :gb, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :je, :gb_jsy, :gg, :gb_gsy, :gb_sct, :gb_con, :im, :gb_iom, :hr, :hu, :ie, :is, :it, :li, :lt, :nl, :no, :pl, :pt, :pt_li, :pt_po, :ro, :sk, :si, :bg_en, :bg_bg]
+      [:at, :be_fr, :be_nl, :ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_ne, :ch_ge, :ch_ju, :ch_vs, :ch, :cz, :dk, :de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_sorbian, :de_th_cath, :de_sn, :de_st, :de_by_cath, :de_by_augsburg, :de_bb, :de_mv, :de_th, :de_hb, :de_hh, :de_ni, :de_sh, :el, :es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex, :es, :es_ct, :es_v, :es_vc, :fr_a, :fr_m, :fr, :gb, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :je, :gb_jsy, :gg, :gb_gsy, :gb_sct, :gb_con, :im, :gb_iom, :hr, :hu, :ie, :is, :it, :li, :lt, :nl, :no, :pl, :pt, :pt_li, :pt_po, :ro, :sk, :si, :bg_en, :bg_bg]
     end
 
     def self.holidays_by_month
@@ -151,7 +151,7 @@ module Holidays
             {:mday => 6, :name => "Heilige Drei Könige", :regions => [:at]},
             {:mday => 1, :name => "Jour de l'an", :regions => [:be_fr]},
             {:mday => 1, :name => "Nieuwjaar", :regions => [:be_nl]},
-            {:mday => 1, :name => "Neujahrstag", :regions => [:ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_vd, :ch_vs, :ch_ne, :ch_ge, :ch_ju, :ch_ti]},
+            {:mday => 1, :name => "Neujahrstag", :regions => [:ch]},
             {:mday => 2, :name => "Berchtoldstag", :regions => [:ch_zh, :ch_be, :ch_lu, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_sh, :ch_sg, :ch_ag, :ch_tg, :ch_vd, :ch_vs, :ch_ne, :ch_ju]},
             {:mday => 6, :name => "Dreikönigstag", :regions => [:ch_ur, :ch_sz, :ch_ti]},
             {:mday => 1, :name => "Den obnovy samostatného českého státu", :regions => [:cz]},
@@ -270,6 +270,7 @@ module Holidays
             {:mday => 31, :name => "Reformationstag", :regions => [:de_bb, :de_mv, :de_sn, :de_st, :de_th]},
             {:mday => 31, :type => :informal, :name => "Reformationstag", :regions => [:de_bw]},
             {:mday => 31,  :year_ranges => [{:limited => [2017]}],:name => "Reformationstag", :regions => [:de]},
+            {:mday => 31,  :year_ranges => [{:after => 2018}],:name => "Reformationstag", :regions => [:de_hb, :de_hh, :de_ni, :de_sh]},
             {:mday => 28, :name => "Επέτειος του Όχι", :regions => [:el]},
             {:mday => 9, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de Valencia", :regions => [:es_vc, :es_v]},
             {:mday => 12, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de la Hispanidad", :regions => [:es]},
@@ -409,7 +410,7 @@ module Holidays
             {:mday => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de las Islas Baleares", :regions => [:es_ib]},
             {:mday => 19, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "San José", :regions => [:es_v, :es_vc, :es_cm, :es_mu, :es_m]},
             {:mday => 5, :name => "St. Piran's Day", :regions => [:gb_con]},
-            {:mday => 17, :name => "St. Patrick's Day", :regions => [:gb_nir]},
+            {:mday => 17, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "St. Patrick's Day", :regions => [:gb_nir]},
             {:mday => 15, :name => "1848/49-es forradalom és szabadságharc ünnepe", :regions => [:hu]},
             {:mday => 17, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "St. Patrick's Day", :regions => [:ie]},
             {:mday => 19, :name => "St. Josef", :regions => [:li]},
@@ -457,6 +458,7 @@ module Holidays
             {:mday => 8, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de Asturias", :regions => [:es_o]},
             {:mday => 8, :name => "Día de Extremadura", :regions => [:es_ex]},
             {:mday => 11, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Fiesta Nacional de Cataluña", :regions => [:es_ct]},
+            {:mday => 24, :name => "La Mercè", :regions => [:es_ct]},
             {:mday => 8, :name => "Maria Geburt", :regions => [:li]},
             {:mday => 30, :type => :informal, :name => "Dzień Chłopaka", :regions => [:pl]},
             {:mday => 1, :name => "Deň Ústavy Slovenskej republiky", :regions => [:sk]},

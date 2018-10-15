@@ -20,30 +20,6 @@ class HolidaysTests < Test::Unit::TestCase
     assert_equal 0, holidays.length
   end
 
-  def test_any_holidays_during_work_week
-    ## Full weeks:
-    # Try with a Monday
-    assert Holidays.any_holidays_during_work_week?(Date.civil(2012,1,23), :us)
-    # Try with a Wednesday
-    assert Holidays.any_holidays_during_work_week?(Date.civil(2012,1,25), :us)
-    # Try Sunday on a week going into a new month
-    assert Holidays.any_holidays_during_work_week?(Date.civil(2012,1,29), :us)
-    # Try Wednesday on a week going into a new month
-    assert Holidays.any_holidays_during_work_week?(Date.civil(2012,2,1), :us)
-
-    ## Weeks with holidays:
-    # New Year's 2012 (on Sunday, observed Monday). Test from a Wednesday.
-    assert_equal(false, Holidays.any_holidays_during_work_week?(Date.civil(2012,1,4), :us))
-    # Ignore observed holidays with :no_observed
-    assert Holidays.any_holidays_during_work_week?(Date.civil(2012,1,4), :us, :no_observed)
-    # Labor Day 2012 should be Sept 3
-    assert_equal(false, Holidays.any_holidays_during_work_week?(Date.civil(2012,9,5), :us))
-    # Should be 10 non-full weeks in the year (in the US)
-    weeks_in_2012 = Date.commercial(2013, -1).cweek
-    holidays_in_2012 = weeks_in_2012.times.count { |week| Holidays.any_holidays_during_work_week?(Date.commercial(2012,week+1), :us) == false }
-    assert_equal 9, holidays_in_2012
-  end
-
   def test_requires_valid_regions
     assert_raises Holidays::InvalidRegion do
       Holidays.on(Date.civil(2008,1,1), :xx)
@@ -210,7 +186,7 @@ class HolidaysTests < Test::Unit::TestCase
     assert_equal 9, holidays.length
 
     holidays = Holidays.year_holidays([:jp], Date.civil(2070, 1, 1))
-    assert_equal 18, holidays.length
+    assert_equal 19, holidays.length
   end
 
   def test_sub_regions
@@ -296,6 +272,6 @@ class HolidaysTests < Test::Unit::TestCase
 
   def test_load_all
     Holidays.load_all
-    assert_equal 235, Holidays.available_regions.count
+    assert_equal 240, Holidays.available_regions.count
   end
 end
