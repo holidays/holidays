@@ -73,13 +73,29 @@ class North_americaDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Family Day", (Holidays.on(Date.civil(2014, 2, 10), [:ca_bc])[0] || {})[:name]
 
-    assert_equal "Family Day", (Holidays.on(Date.civil(2044, 2, 8), [:ca_bc])[0] || {})[:name]
+    assert_equal "Family Day", (Holidays.on(Date.civil(2018, 2, 12), [:ca_bc])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(2000, 2, 14), [:ca_bc])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(2011, 2, 14), [:ca_bc])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(2012, 2, 13), [:ca_bc])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2019, 2, 11), [:ca_bc])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2044, 2, 8), [:ca_bc])[0] || {})[:name]
+
+    assert_equal "Family Day", (Holidays.on(Date.civil(2019, 2, 18), [:ca_bc])[0] || {})[:name]
+
+    assert_equal "Family Day", (Holidays.on(Date.civil(2020, 2, 17), [:ca_bc])[0] || {})[:name]
+
+    assert_equal "Family Day", (Holidays.on(Date.civil(2044, 2, 15), [:ca_bc])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2000, 2, 21), [:ca_bc])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2011, 2, 21), [:ca_bc])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2018, 2, 19), [:ca_bc])[0] || {})[:name]
 
     assert_equal "Family Day", (Holidays.on(Date.civil(2018, 2, 19), [:ca_nb])[0] || {})[:name]
 

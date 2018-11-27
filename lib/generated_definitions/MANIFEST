@@ -24,6 +24,7 @@ The following definition files are included in this installation:
 * generated_definitions/es
 * generated_definitions/europe
 * generated_definitions/federal_reserve
+* generated_definitions/federal_reserve_banks
 * generated_definitions/fedex
 * generated_definitions/fi
 * generated_definitions/fr
@@ -67,6 +68,7 @@ The following definition files are included in this installation:
 * generated_definitions/south_america
 * generated_definitions/tn
 * generated_definitions/tr
+* generated_definitions/ua
 * generated_definitions/united_nations
 * generated_definitions/ups
 * generated_definitions/us
