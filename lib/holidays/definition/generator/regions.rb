@@ -2,7 +2,7 @@ module Holidays
   module Definition
     module Generator
       class Regions
-        # The "ca", "mx", and "us" holiday definitions include the "north_america_informal"
+        # The "ca", "mx", and "us" holiday definitions include the "northamericainformal"
         # holiday definitions, but that does not make these countries subregions of one another.
         NORTH_AMERICA_REGIONS = %i[ca mx us].freeze
 

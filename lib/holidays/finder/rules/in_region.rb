@@ -6,6 +6,7 @@ module Holidays
           def call(requested, available)
             return true if requested.include?(:any)
 
+            #TODO HERE IS WHERE WE TREAT UNDERSCORES AS SUBREGIONS FROM A PARENT
             # When an underscore is encountered, derive the parent regions
             # symbol and check for both.
             requested = requested.collect do |r|

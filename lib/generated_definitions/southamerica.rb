@@ -5,7 +5,7 @@ module Holidays
   # Definitions loaded: definitions/ar.yaml, definitions/br.yaml, definitions/cl.yaml, definitions/co.yaml, definitions/pe.yaml, definitions/ve.yaml
   #
   # All the definitions are available at https://github.com/holidays/holidays
-  module SOUTH_AMERICA # :nodoc:
+  module SOUTHAMERICA # :nodoc:
     def self.defined_regions
       [:ar, :br, :cl, :co, :pe, :ve]
     end

@@ -11,12 +11,13 @@ module Holidays
   module Definition
     module Context
       class Generator
-        def initialize(custom_method_parser, custom_method_source_decorator, custom_methods_repository, test_parser, test_source_generator)
+        def initialize(custom_method_parser, custom_method_source_decorator, custom_methods_repository, test_parser, test_source_generator, module_source_generator)
           @custom_method_parser = custom_method_parser
           @custom_method_source_decorator = custom_method_source_decorator
           @custom_methods_repository = custom_methods_repository
           @test_parser = test_parser
           @test_source_generator = test_source_generator
+          @module_source_generator = module_source_generator
         end
 
         def parse_definition_files(files)
