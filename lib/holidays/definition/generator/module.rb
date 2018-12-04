@@ -5,7 +5,18 @@ module Holidays
     module Generator
       class Module
         def call(files, module_name, regions, month_strings, custom_methods)
-          module_src = ""
+          raise ArgumentError.new("module name cannot be nil") if module_name.nil?
+          raise ArgumentError.new("module name cannot be blank") if module_name.empty?
+
+          raise ArgumentError.new("files cannot be nil") if files.nil?
+          raise ArgumentError.new("files cannot be empty") if files.empty?
+          raise ArgumentError.new("files must all be strings") unless files.all? { |f| f.is_a?(String) }
+
+          raise ArgumentError.new("regions cannot be nil") if regions.nil?
+          raise ArgumentError.new("regions cannot be empty") if regions.empty?
+
+          raise ArgumentError.new("month strings cannot be nil") if month_strings.nil?
+          raise ArgumentError.new("month strings cannot be empty") if month_strings.empty?
 
           module_src =<<-EOM
 # encoding: utf-8
@@ -35,7 +46,7 @@ module Holidays
 end
           EOM
 
-          return module_src
+          module_src
         end
       end
     end

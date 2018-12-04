@@ -67,7 +67,7 @@ module Holidays
             custom_method_string << @custom_method_source_decorator.call(code) + ",\n\n"
           end
 
-          module_src = generate_module_src(module_name, files, regions, month_strings, custom_method_string)
+          module_src = @module_source_generator.call(module_name, files, regions, month_strings, custom_method_string)
           test_src = @test_source_generator.call(module_name, files, tests)
 
           return module_src, test_src || ''
