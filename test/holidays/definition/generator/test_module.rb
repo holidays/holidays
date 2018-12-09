@@ -6,8 +6,8 @@ class GeneratorModuleTests < Test::Unit::TestCase
   def setup
     @generator = Holidays::Definition::Generator::Module.new
 
-    @files = ["file1.rb", "file2.rb"]
     @module_name = "TEST"
+    @files = ["file1.rb", "file2.rb"]
     @regions = [:test, :test2]
     @month_strings = ["first-string", "second-string"]
     @custom_methods = "custom-methods"
@@ -15,8 +15,8 @@ class GeneratorModuleTests < Test::Unit::TestCase
 
   def subject
     @generator.call(
-      @files,
       @module_name,
+      @files,
       @regions,
       @month_strings,
       @custom_methods,

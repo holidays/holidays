@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -49, :type => :informal, :name => "Fastelavn", :regions => [:dk]},
+                0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -49, :type => :informal, :name => "Fastelavn", :regions => [:dk]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -7, :type => :informal, :name => "Palmesøndag", :regions => [:dk]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -3, :name => "Skærtorsdag", :regions => [:dk]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Langfredag", :regions => [:dk]},
@@ -115,7 +115,7 @@ module Holidays
 
     def self.custom_methods
       {
-        "is_sumardagurinn_fyrsti(year)" => Proc.new { |year|
+          "is_sumardagurinn_fyrsti(year)" => Proc.new { |year|
 date = Date.civil(year,4,18)
 if date.wday < 4
   date += (4 - date.wday)

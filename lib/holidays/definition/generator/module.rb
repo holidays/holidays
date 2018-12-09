@@ -4,7 +4,7 @@ module Holidays
   module Definition
     module Generator
       class Module
-        def call(files, module_name, regions, month_strings, custom_methods)
+        def call(module_name, files, regions, month_strings, custom_methods)
           raise ArgumentError.new("module name cannot be nil") if module_name.nil?
           raise ArgumentError.new("module name cannot be blank") if module_name.empty?
 

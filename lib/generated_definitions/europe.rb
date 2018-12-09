@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Ostermontag", :regions => [:at]},
+                0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Ostermontag", :regions => [:at]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Christi Himmelfahrt", :regions => [:at]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Pfingstmontag", :regions => [:at]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 60, :name => "Fronleichnam", :regions => [:at]},
@@ -492,7 +492,7 @@ module Holidays
 
     def self.custom_methods
       {
-        "ch_vd_lundi_du_jeune_federal(year)" => Proc.new { |year|
+          "ch_vd_lundi_du_jeune_federal(year)" => Proc.new { |year|
 date = Date.civil(year,9,1)
 # Find the first Sunday of September
 until date.wday.eql? 0 do

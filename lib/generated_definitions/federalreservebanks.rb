@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              1 => [{:mday => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:federalreservebanks]},
+                1 => [{:mday => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:federalreservebanks]},
             {:wday => 1, :week => 3, :name => "Birthday of Martin Luther King, Jr", :regions => [:federalreservebanks]}],
       2 => [{:wday => 1, :week => 3, :name => "Washington's Birthday", :regions => [:federalreservebanks]}],
       5 => [{:wday => 1, :week => -1, :name => "Memorial Day", :regions => [:federalreservebanks]}],
@@ -27,7 +27,7 @@ module Holidays
 
     def self.custom_methods
       {
-        
+          
       }
     end
   end

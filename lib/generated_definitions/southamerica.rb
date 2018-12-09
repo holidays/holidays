@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Viernes Santo", :regions => [:ar]},
+                0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Viernes Santo", :regions => [:ar]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -48, :name => "Carnaval Lunes", :regions => [:ar]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -47, :name => "Carnaval Martes", :regions => [:ar]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -47, :type => :informal, :name => "Carnaval", :regions => [:br]},
@@ -112,7 +112,7 @@ module Holidays
 
     def self.custom_methods
       {
-        "st_peter_st_paul_cl(year)" => Proc.new { |year|
+          "st_peter_st_paul_cl(year)" => Proc.new { |year|
 date = Date.civil(year, 6, 29)
 if [2,3,4].include?(date.wday)
   date -= (date.wday - 1)

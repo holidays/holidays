@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              1 => [{:mday => 1, :name => "Новый год", :regions => [:ru]},
+                1 => [{:mday => 1, :name => "Новый год", :regions => [:ru]},
             {:mday => 2, :name => "Новогодний праздник", :regions => [:ru]},
             {:mday => 3, :name => "Новогодний праздник", :regions => [:ru]},
             {:mday => 4, :name => "Новогодний праздник", :regions => [:ru]},
@@ -30,7 +30,7 @@ module Holidays
 
     def self.custom_methods
       {
-        
+          
       }
     end
   end

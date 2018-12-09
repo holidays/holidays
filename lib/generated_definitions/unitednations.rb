@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              2 => [{:mday => 2, :name => "International Mother Language Day", :regions => [:unitednations]}],
+                2 => [{:mday => 2, :name => "International Mother Language Day", :regions => [:unitednations]}],
       3 => [{:mday => 8, :name => "United Nations Day for Women's Rights and International Peace", :regions => [:unitednations]},
             {:mday => 21, :name => "International Day for the Elimination of Racial Discrimination", :regions => [:unitednations]},
             {:mday => 21, :name => "Beginning of the Week of Solidarity with the Peoples Struggling against Racism and Racial Discrimination", :regions => [:unitednations]},
@@ -74,7 +74,7 @@ module Holidays
 
     def self.custom_methods
       {
-        
+          
       }
     end
   end

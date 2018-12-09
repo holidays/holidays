@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              1 => [{:mday => 1, :name => "Año nuevo", :regions => [:mx]},
+                1 => [{:mday => 1, :name => "Año nuevo", :regions => [:mx]},
             {:mday => 6, :name => "Dia de los Santos Reyes", :regions => [:mx]}],
       2 => [{:wday => 1, :week => 1, :name => "Día de la Constitución", :regions => [:mx]},
             {:mday => 2, :type => :informal, :name => "Groundhog Day", :regions => [:us, :ca]},
@@ -47,7 +47,7 @@ module Holidays
 
     def self.custom_methods
       {
-        
+          
       }
     end
   end

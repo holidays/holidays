@@ -1,4 +1,3 @@
 [submodule "definitions"]
 	path = definitions
-	url = git@github.com:ppeble/definitions.git
-	branch = issue-110
+	url = https://github.com/holidays/definitions

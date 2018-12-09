@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Veľkonočný pondelok", :regions => [:sk]},
+                0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Veľkonočný pondelok", :regions => [:sk]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Veľký piatok", :regions => [:sk]}],
       1 => [{:mday => 1, :name => "Nový rok", :regions => [:sk]},
             {:mday => 6, :name => "Zjavenie Pána (Traja králi)", :regions => [:sk]}],
@@ -32,7 +32,7 @@ module Holidays
 
     def self.custom_methods
       {
-        
+          
       }
     end
   end

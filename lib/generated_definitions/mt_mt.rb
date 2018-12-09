@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Il-Ġimgħa l-Kbira", :regions => [:mt_mt]}],
+                0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Il-Ġimgħa l-Kbira", :regions => [:mt_mt]}],
       1 => [{:mday => 1, :name => "L-Ewwel tas-Sena", :regions => [:mt_mt]}],
       2 => [{:mday => 10, :name => "Nawfraġju ta' San Pawl", :regions => [:mt_mt]}],
       3 => [{:mday => 19, :name => "San Ġużepp", :regions => [:mt_mt]},
@@ -31,7 +31,7 @@ module Holidays
 
     def self.custom_methods
       {
-        
+          
       }
     end
   end

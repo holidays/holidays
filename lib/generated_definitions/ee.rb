@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "suur reede", :regions => [:ee]},
+                0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "suur reede", :regions => [:ee]},
             {:function => "easter(year)", :function_arguments => [:year], :name => "ülestõusmispühade 1. püha", :regions => [:ee]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "nelipühade 1. püha", :regions => [:ee]}],
       1 => [{:mday => 1, :name => "uusaasta", :regions => [:ee]}],
@@ -29,7 +29,7 @@ module Holidays
 
     def self.custom_methods
       {
-        
+          
       }
     end
   end

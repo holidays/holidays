@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "დიდი პარასკევი", :regions => [:ge]},
+                0 => [{:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "დიდი პარასკევი", :regions => [:ge]},
             {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => -1, :name => "დიდი შაბათი", :regions => [:ge]},
             {:function => "orthodox_easter(year)", :function_arguments => [:year], :name => "ბრწყინვალე აღდგომის დღე", :regions => [:ge]},
             {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "მიცვალებულთა", :regions => [:ge]}],
@@ -34,7 +34,7 @@ module Holidays
 
     def self.custom_methods
       {
-        
+          
       }
     end
   end

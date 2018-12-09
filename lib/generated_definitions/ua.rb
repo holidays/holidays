@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "orthodox_easter(year)", :function_arguments => [:year], :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Великдень", :regions => [:ua]},
+                0 => [{:function => "orthodox_easter(year)", :function_arguments => [:year], :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Великдень", :regions => [:ua]},
             {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => 49, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Трійця", :regions => [:ua]}],
       1 => [{:mday => 1, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Новий Рік", :regions => [:ua]},
             {:mday => 7, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Різдво Христове", :regions => [:ua]}],
@@ -30,7 +30,7 @@ module Holidays
 
     def self.custom_methods
       {
-        
+          
       }
     end
   end
