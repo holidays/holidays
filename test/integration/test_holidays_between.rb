@@ -8,7 +8,7 @@ require "#{Holidays::DEFINITIONS_PATH}/ca"
 # NOTE: this test is a mixture of integration and unit tests. It's messy and bad.
 # I am not fixing it here because I am trying to clean up the 'between' use case
 # and don't want to bite off more than I can chew.
-require "#{Holidays::DEFINITIONS_PATH}/north_america"
+require "#{Holidays::DEFINITIONS_PATH}/northamerica"
 
 class HolidaysBetweenTests < Test::Unit::TestCase
   def setup

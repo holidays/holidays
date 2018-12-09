@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              1 => [{:mday => 1, :function => "lunar_to_solar(year, month, day, region)", :function_arguments => [:year, :month, :day, :region], :name => "설날", :regions => [:kr]},
+                1 => [{:mday => 1, :function => "lunar_to_solar(year, month, day, region)", :function_arguments => [:year, :month, :day, :region], :name => "설날", :regions => [:kr]},
             {:mday => 2, :function => "lunar_to_solar(year, month, day, region)", :function_arguments => [:year, :month, :day, :region], :name => "설날 연휴", :regions => [:kr]},
             {:mday => 1, :name => "신정", :regions => [:kr]}],
       3 => [{:mday => 1, :name => "3·1절", :regions => [:kr]}],
@@ -33,7 +33,7 @@ module Holidays
 
     def self.custom_methods
       {
-        
+          
       }
     end
   end

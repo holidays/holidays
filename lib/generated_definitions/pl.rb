@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -52, :type => :informal, :name => "Tłusty Czwartek", :regions => [:pl]},
+                0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -52, :type => :informal, :name => "Tłusty Czwartek", :regions => [:pl]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -47, :type => :informal, :name => "Ostatki", :regions => [:pl]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -46, :type => :informal, :name => "Środa Popielcowa", :regions => [:pl]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -7, :type => :informal, :name => "Niedziela Palmowa", :regions => [:pl]},
@@ -57,7 +57,7 @@ module Holidays
 
     def self.custom_methods
       {
-        "pl_trzech_kroli(year)" => Proc.new { |year|
+          "pl_trzech_kroli(year)" => Proc.new { |year|
 year >= 2011 ? 6 : nil
 },
 

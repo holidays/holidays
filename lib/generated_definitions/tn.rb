@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              1 => [{:mday => 1, :name => "Jour de l'an", :regions => [:tn]},
+                1 => [{:mday => 1, :name => "Jour de l'an", :regions => [:tn]},
             {:mday => 14, :name => "Fête de la Révolution et de la Jeunesse", :regions => [:tn]}],
       3 => [{:mday => 20, :name => "Fête de l'Indépendance", :regions => [:tn]}],
       4 => [{:mday => 9, :name => "Journée des Martyrs", :regions => [:tn]}],
@@ -25,7 +25,7 @@ module Holidays
 
     def self.custom_methods
       {
-        
+          
       }
     end
   end

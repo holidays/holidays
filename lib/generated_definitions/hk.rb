@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "cn_new_lunar_day(year)", :function_arguments => [:year], :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Lunar New Year's Day", :regions => [:hk]},
+                0 => [{:function => "cn_new_lunar_day(year)", :function_arguments => [:year], :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Lunar New Year's Day", :regions => [:hk]},
             {:function => "cn_new_lunar_day(year)", :function_arguments => [:year], :function_modifier => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "The second day of Lunar New Year", :regions => [:hk]},
             {:function => "cn_new_lunar_day(year)", :function_arguments => [:year], :function_modifier => 2, :observed => "to_weekday_if_boxing_weekend(date)", :observed_arguments => [:date], :name => "The third day of Lunar New Year", :regions => [:hk]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:hk]},
@@ -29,7 +29,7 @@ module Holidays
 
     def self.custom_methods
       {
-        "cn_new_lunar_day(year)" => Proc.new { |year|
+          "cn_new_lunar_day(year)" => Proc.new { |year|
 month_day = case year
   when 1930, 1949, 1987, 2025, 2063, 2082, 2101, 2112, 2131, 2150, 2207, 2245, 2253, 2283, 2321
     [1, 29]

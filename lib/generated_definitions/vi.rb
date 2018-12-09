@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              1 => [{:mday => 1, :name => "Tết dương lịch", :regions => [:vi]}],
+                1 => [{:mday => 1, :name => "Tết dương lịch", :regions => [:vi]}],
       3 => [{:mday => 10, :function => "lunar_to_solar(year, month, day, region)", :function_arguments => [:year, :month, :day, :region], :name => "Giỗ tổ Hùng Vương", :regions => [:vi]}],
       4 => [{:mday => 30, :name => "Ngày Giải phóng miền Nam, thống nhất đất nước", :regions => [:vi]}],
       5 => [{:mday => 1, :name => "Ngày Quốc tế Lao động", :regions => [:vi]}],
@@ -22,7 +22,7 @@ module Holidays
 
     def self.custom_methods
       {
-        
+          
       }
     end
   end

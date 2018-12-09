@@ -5,6 +5,7 @@ require 'holidays/definition/context/load'
 require 'holidays/definition/decorator/custom_method_proc'
 require 'holidays/definition/decorator/custom_method_source'
 require 'holidays/definition/decorator/test'
+require 'holidays/definition/generator/module'
 require 'holidays/definition/generator/regions'
 require 'holidays/definition/generator/test'
 require 'holidays/definition/parser/custom_method'
@@ -29,6 +30,7 @@ module Holidays
             custom_methods_repository,
             test_parser,
             test_generator,
+            module_generator,
           )
         end
 
@@ -39,6 +41,7 @@ module Holidays
             custom_methods_repository,
             test_parser,
             test_generator,
+            module_generator,
           )
         end
 
@@ -113,6 +116,10 @@ module Holidays
             merger,
             Holidays::FULL_DEFINITIONS_PATH,
           )
+        end
+
+        def module_generator
+          Holidays::Definition::Generator::Module.new
         end
 
         def test_generator

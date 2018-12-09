@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              1 => [{:mday => 1, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:fedex]}],
+                1 => [{:mday => 1, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:fedex]}],
       5 => [{:wday => 1, :week => -1, :name => "Memorial Day", :regions => [:fedex]}],
       7 => [{:mday => 4, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Independence Day", :regions => [:fedex]}],
       9 => [{:wday => 1, :week => 1, :name => "Labor Day", :regions => [:fedex]}],
@@ -25,7 +25,7 @@ module Holidays
 
     def self.custom_methods
       {
-        "day_after_thanksgiving(year)" => Proc.new { |year|
+          "day_after_thanksgiving(year)" => Proc.new { |year|
 Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 11, 4, 4) + 1
 },
 

@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Karfreitag", :regions => [:de]},
+                0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Karfreitag", :regions => [:de]},
             {:function => "easter(year)", :function_arguments => [:year], :type => :informal, :name => "Ostersonntag", :regions => [:de]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Ostermontag", :regions => [:de]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Christi Himmelfahrt", :regions => [:de]},
@@ -43,7 +43,7 @@ module Holidays
 
     def self.custom_methods
       {
-        "de_buss_und_bettag(year)" => Proc.new { |year|
+          "de_buss_und_bettag(year)" => Proc.new { |year|
 date = Date.civil(year,11,23)
 if date.wday > 3
   date -= (date.wday - 3)

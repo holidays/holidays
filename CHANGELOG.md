@@ -1,5 +1,21 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 7.0.0
+
+Major semver bump due to the major version change in the [definitions](https://github.com/holidays/definitions/blob/master/CHANGELOG.md#400). Several non ISO regions have been modified in order to provide more clarity for parent and sub-regions.
+
+Affected regions:
+
+* `ecb_target` region changed to `ecbtarget`
+* `federal_reserve` region changed to `federalreserve`
+* `federalreservebanks` region changed to `federalreservebanks`
+* `north_america_informal` region changed to `northamericainformal`
+* `united_nations` region changed to `unitednations`
+* `north_america` region changed to `northamerica`
+* `south_america` region changed to `southamerica`
+
+Please see the [definitions v4.0.0 CHANGELOG](https://github.com/holidays/definitions/blob/master/CHANGELOG.md#400) for the full change list.
+
 ## 6.6.1
 
 * Fixes `any_holidays_during_work_week?` so that it actually does what it says it does [issue-264](https://github.com/holidays/holidays/issues/264)
