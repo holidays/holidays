@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "ramadan_feast(year)", :function_arguments => [:year], :name => "Ramazan Bayramı", :regions => [:tr]},
+                0 => [{:function => "ramadan_feast(year)", :function_arguments => [:year], :name => "Ramazan Bayramı", :regions => [:tr]},
             {:function => "ramadan_feast(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Ramazan Bayramı (ikinci tatil)", :regions => [:tr]},
             {:function => "ramadan_feast(year)", :function_arguments => [:year], :function_modifier => 2, :name => "Ramazan Bayramı (üçüncü tatil)", :regions => [:tr]},
             {:function => "sacrifice_feast(year)", :function_arguments => [:year], :name => "Kurban Bayramı", :regions => [:tr]},
@@ -31,7 +31,7 @@ module Holidays
 
     def self.custom_methods
       {
-        "ramadan_feast(year)" => Proc.new { |year|
+          "ramadan_feast(year)" => Proc.new { |year|
 begin_of_ramadan_feast = {
     '2014' => Date.civil(2014, 7, 28),
     '2015' => Date.civil(2015, 7, 17),

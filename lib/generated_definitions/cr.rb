@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -3, :name => "Jueves Santo", :regions => [:cr]},
+                0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -3, :name => "Jueves Santo", :regions => [:cr]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Viernes Santo", :regions => [:cr]}],
       1 => [{:mday => 1, :name => "Año Nuevo", :regions => [:cr]}],
       4 => [{:mday => 11, :name => "Día de Juan Santamaría", :regions => [:cr]}],
@@ -28,7 +28,7 @@ module Holidays
 
     def self.custom_methods
       {
-        
+          
       }
     end
   end

@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Viernes Santo", :regions => [:cl]},
+                0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Viernes Santo", :regions => [:cl]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -1, :name => "Sábado Santo", :regions => [:cl]},
             {:function => "st_peter_st_paul_cl(year)", :function_arguments => [:year],  :year_ranges => [{:after => 2000}],:name => "San Pedro y San Pablo", :regions => [:cl]},
             {:function => "other_churches_day_cl(year)", :function_arguments => [:year],  :year_ranges => [{:after => 2008}],:name => "Día de las Iglesias Evangélicas y Protestantes", :regions => [:cl]}],
@@ -34,7 +34,7 @@ module Holidays
 
     def self.custom_methods
       {
-        "st_peter_st_paul_cl(year)" => Proc.new { |year|
+          "st_peter_st_paul_cl(year)" => Proc.new { |year|
 date = Date.civil(year, 6, 29)
 if [2,3,4].include?(date.wday)
   date -= (date.wday - 1)

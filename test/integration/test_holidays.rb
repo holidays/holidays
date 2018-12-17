@@ -1,12 +1,6 @@
 # encoding: utf-8
 require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 
-require "#{Holidays::DEFINITIONS_PATH}/ca"
-
-# Re-include CA defs via holidays/north_america to ensure that individual
-# defs aren't duplicated.
-require "#{Holidays::DEFINITIONS_PATH}/north_america"
-
 class HolidaysTests < Test::Unit::TestCase
   def setup
     @date = Date.civil(2008,1,1)
@@ -272,6 +266,6 @@ class HolidaysTests < Test::Unit::TestCase
 
   def test_load_all
     Holidays.load_all
-    assert_equal 240, Holidays.available_regions.count
+    assert_equal 242, Holidays.available_regions.count
   end
 end

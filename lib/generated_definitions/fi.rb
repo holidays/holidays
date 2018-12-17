@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Pitkäperjantai", :regions => [:fi]},
+                0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Pitkäperjantai", :regions => [:fi]},
             {:function => "easter(year)", :function_arguments => [:year], :name => "Pääsiäispäivä", :regions => [:fi]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "2. Pääsiäispäivä", :regions => [:fi]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Helatorstai", :regions => [:fi]},
@@ -32,7 +32,7 @@ module Holidays
 
     def self.custom_methods
       {
-        "fi_juhannusaatto(year)" => Proc.new { |year|
+          "fi_juhannusaatto(year)" => Proc.new { |year|
 date = Date.civil(year,6,19)
 if date.wday > 5 #if 19.6 is saturday
   date += 6

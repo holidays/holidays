@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Långfredagen", :regions => [:se]},
+                0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Långfredagen", :regions => [:se]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -1, :type => :informal, :name => "Påskafton", :regions => [:se]},
             {:function => "easter(year)", :function_arguments => [:year], :name => "Påskdagen", :regions => [:se]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Annandag påsk", :regions => [:se]},
@@ -34,7 +34,7 @@ module Holidays
 
     def self.custom_methods
       {
-        "se_midsommardagen(year)" => Proc.new { |year|
+          "se_midsommardagen(year)" => Proc.new { |year|
 date = Date.civil(year,6,20)
 date += (6 - date.wday)
 date

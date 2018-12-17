@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              1 => [{:mday => 1, :name => "Ras l' âm", :regions => [:ma]},
+                1 => [{:mday => 1, :name => "Ras l' âm", :regions => [:ma]},
             {:mday => 11, :name => "Takdim watikat al-istiqlal", :regions => [:ma]}],
       5 => [{:mday => 1, :name => "Eid Ash-Shughl", :regions => [:ma]}],
       7 => [{:mday => 30, :name => "Eid Al-Ârch", :regions => [:ma]}],
@@ -26,7 +26,7 @@ module Holidays
 
     def self.custom_methods
       {
-        
+          
       }
     end
   end

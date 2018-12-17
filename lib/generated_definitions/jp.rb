@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              1 => [{:mday => 1, :name => "元日", :regions => [:jp]},
+                1 => [{:mday => 1, :name => "元日", :regions => [:jp]},
             {:wday => 1, :week => 2, :name => "成人の日", :regions => [:jp]},
             {:mday => 1, :function => "jp_substitute_holiday(year, month, day)", :function_arguments => [:year, :month, :day], :name => "振替休日", :regions => [:jp]}],
       2 => [{:mday => 11, :name => "建国記念の日", :regions => [:jp]},
@@ -58,7 +58,7 @@ module Holidays
 
     def self.custom_methods
       {
-        "jp_health_sports_day_substitute(year)" => Proc.new { |year|
+          "jp_health_sports_day_substitute(year)" => Proc.new { |year|
 Holidays::Factory::Definition.custom_methods_repository.find("jp_substitute_holiday(year, month, day)").call(year, 10, Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 10, 2, 1))
 },
 

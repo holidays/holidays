@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -47, :name => "Fasnachtsdienstag", :regions => [:li]},
+                0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -47, :name => "Fasnachtsdienstag", :regions => [:li]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Karfreitag", :regions => [:li]},
             {:function => "easter(year)", :function_arguments => [:year], :type => :informal, :name => "Ostern", :regions => [:li]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Ostermontag", :regions => [:li]},
@@ -37,7 +37,7 @@ module Holidays
 
     def self.custom_methods
       {
-        
+          
       }
     end
   end
