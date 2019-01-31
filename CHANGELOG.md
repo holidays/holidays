@@ -8,7 +8,7 @@ Affected regions:
 
 * `ecb_target` region changed to `ecbtarget`
 * `federal_reserve` region changed to `federalreserve`
-* `federalreservebanks` region changed to `federalreservebanks`
+* `federal_reserve_banks` region changed to `federalreservebanks`
 * `north_america_informal` region changed to `northamericainformal`
 * `united_nations` region changed to `unitednations`
 * `north_america` region changed to `northamerica`
