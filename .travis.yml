@@ -5,8 +5,8 @@ cache:
   bundler: true
 
 before_install:
-  - gem update --system
-  - gem update bundler
+  - gem uninstall -v '>= 2' -i $(rvm gemdir)@global -ax bundler || true
+  - gem install bundler -v '< 2'
   - bundle --version
   - gem --version
 
