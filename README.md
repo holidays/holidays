@@ -14,10 +14,9 @@ gem install holidays
 
 This gem is tested with the following ruby versions:
 
-  * 2.2.9
-  * 2.3.8
   * 2.4.5
   * 2.5.3
+  * 2.6.1
   * JRuby 9.0.5.0
 
 ## Semver
