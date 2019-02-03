@@ -4,11 +4,9 @@ language: ruby
 cache:
   bundler: true
 
-sudo: false
-
 before_install:
-  - gem update --system
-  - gem update bundler
+  - gem uninstall -v '>= 2' -i $(rvm gemdir)@global -ax bundler || true
+  - gem install bundler -v '< 2'
   - bundle --version
   - gem --version
 
@@ -20,11 +18,11 @@ notifications:
     holidaysgem@gmail.com
 
 rvm:
-  - 2.2.0
-  - 2.3.0
-  - 2.4.0
+  - 2.2.9
+  - 2.3.8
+  - 2.4.5
   - jruby-9.0.5.0
-  - 2.5.0
+  - 2.5.3
   - ruby-head
 
 matrix:
