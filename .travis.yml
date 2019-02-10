@@ -17,11 +17,13 @@ notifications:
 
 rvm:
   - 2.4.5
-  - jruby-9.0.5.0
   - 2.5.3
   - 2.6.1
   - ruby-head
+  - jruby-9.2.5.0
+  - jruby-head
 
 matrix:
   allow_failures:
     - rvm: ruby-head
+    - rvm: jruby-head
