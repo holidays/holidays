@@ -3,7 +3,6 @@
 ## 7.1.0
 
 * Update to [v4.1.0 definitions](https://github.com/holidays/definitions/releases/tag/v4.1.0). Please see the changelog for the definition details.
-* Add ruby 2.6 to automated tests
 
 ## 7.0.0
 
