@@ -29,9 +29,6 @@ class HolidaysBetweenTests < Test::Unit::TestCase
 
     holidays = @subject.call(Date.civil(2008,7,2), Date.civil(2008,7,31), :ca)
     assert_equal 0, holidays.length
-
-    holidays = @subject.call(Date.civil(2008,7,2), Date.civil(2000,7,2), :ca)
-    assert_equal 0, holidays.length
   end
 
   def test_between_raises_error_if_missing_start_or_end_date
@@ -41,6 +38,16 @@ class HolidaysBetweenTests < Test::Unit::TestCase
 
     assert_raise ArgumentError do
       @subject.call(Date.civil(2015, 1, 1), nil, :us)
+    end
+  end
+
+  def test_between_raises_error_if_end_date_is_before_start_date
+    assert_raise ArgumentError do
+      @subject.call(Date.civil(2019, 2, 1), Date.civil(2019, 1, 1), :us)
+    end
+
+    assert_raise ArgumentError do
+      @subject.call(Date.civil(2008,7,2), Date.civil(2000,7,2), :ca)
     end
   end
 
