@@ -41,6 +41,16 @@ class HolidaysBetweenTests < Test::Unit::TestCase
     end
   end
 
+  def test_between_raises_error_if_end_date_is_before_start_date
+    assert_raise ArgumentError do
+      @subject.call(Date.civil(2019, 2, 1), Date.civil(2019, 1, 1), :us)
+    end
+
+    assert_raise ArgumentError do
+      @subject.call(Date.civil(2008,7,2), Date.civil(2000,7,2), :ca)
+    end
+  end
+
   def test_cached_holidays_are_returned_if_present
     start_date = Date.civil(2015, 1, 1)
     end_date = Date.civil(2015, 1, 31)
