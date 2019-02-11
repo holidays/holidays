@@ -1,5 +1,10 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 8.0.0
+
+* Remove support for ruby 2.2 and ruby 2.3.
+* Add support for latest ruby 2.6
+
 ## 7.1.0
 
 * Update to [v4.1.0 definitions](https://github.com/holidays/definitions/releases/tag/v4.1.0). Please see the changelog for the definition details.
