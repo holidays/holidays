@@ -75,5 +75,9 @@ class DeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Aschermittwoch", (Holidays.on(Date.civil(2016, 2, 10), [:de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn], [:informal])[0] || {})[:name]
 
+    assert_nil (Holidays.on(Date.civil(2018, 3, 8), [:de_be])[0] || {})[:name]
+
+    assert_equal "Internationaler Frauentag", (Holidays.on(Date.civil(2019, 3, 8), [:de_be])[0] || {})[:name]
+
   end
 end

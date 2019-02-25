@@ -4,13 +4,9 @@ language: ruby
 cache:
   bundler: true
 
-sudo: false
-
 before_install:
   - gem update --system
-  - gem update bundler
-  - bundle --version
-  - gem --version
+  - gem install bundler
 
 script:
   - make test
@@ -20,13 +16,14 @@ notifications:
     holidaysgem@gmail.com
 
 rvm:
-  - 2.2.0
-  - 2.3.0
-  - 2.4.0
-  - jruby-9.0.5.0
-  - 2.5.0
+  - 2.4.5
+  - 2.5.3
+  - 2.6.1
   - ruby-head
+  - jruby-9.2.5.0
+  - jruby-head
 
 matrix:
   allow_failures:
     - rvm: ruby-head
+    - rvm: jruby-head

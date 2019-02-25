@@ -1,5 +1,6 @@
 require File.expand_path(File.dirname(__FILE__)) + '/../../test_helper'
 
+require 'date'
 require 'holidays/core_extensions/date'
 
 class Date
@@ -114,8 +115,8 @@ class CoreExtensionDateTests < Test::Unit::TestCase
 
   def test_datetime_holiday?
     # in situations with activesupport
-    assert DateTime.now.to_date.holiday?('test') if DateTime.now.respond_to?(:to_date)
-    assert DateTime.now.holiday?('test')
+    assert DateTime.civil(2008, 1, 1).to_date.holiday?('ca')
+    assert DateTime.civil(2008, 1, 1).holiday?('ca')
   end
 
 end

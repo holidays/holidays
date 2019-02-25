@@ -14,7 +14,7 @@ class NonstandardRegionsHolidaysTests < Test::Unit::TestCase
   end
 
   def test_federalreservebanks_independence_day
-    h = Holidays.on(Date.new(2020,7,3), :federalreservebanks, :observed)
+    h = Holidays.on(Date.new(2019,7,4), :federalreservebanks, :observed)
     assert_equal 'Independence Day', h[0][:name]
   end
 
