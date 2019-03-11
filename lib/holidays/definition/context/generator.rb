@@ -87,15 +87,19 @@ module Holidays
                 rule = {}
 
                 definition.each do |key, val|
+                  val.transform_keys!(&:to_sym) if val.is_a?(Hash)
                   rule[key.to_sym] = val
+                end
+
+                if rule[:year_ranges] && rule[:year_ranges].key?(:between)
+                  start_year = rule[:year_ranges][:between]["start"].to_i
+                  end_year = rule[:year_ranges][:between]["end"].to_i
+
+                  rule[:year_ranges][:between] = Range.new(start_year, end_year)
                 end
 
                 rule[:regions] = rule[:regions].collect { |r| r.to_sym }
                 regions << rule[:regions]
-
-                if rule[:year_ranges]
-                  rule[:year_ranges] = clean_year_ranges(rule[:year_ranges])
-                end
 
                 exists = false
                 rules_by_month[month].each do |ex|
@@ -119,23 +123,6 @@ module Holidays
           end
 
           [regions, rules_by_month]
-        end
-
-        # In this case we end up parsing a range as "2006..2008" a string. This is codifying
-        # what we already do...today we parse as a string but when writing out to our final
-        # generated files it comes out as a range that Ruby interprets. This just puts it in stone
-        # what we want to do.
-        def clean_year_ranges(year_ranges)
-          year_ranges.collect do |year_range|
-            if year_range["between"]
-              range = year_range["between"]
-              if range.is_a?(String)
-                year_range["between"] = Range.new(*range.split("..").map(&:to_i))
-              end
-            end
-
-            year_range
-          end
         end
 
         #FIXME This should really be split out and tested with its own unit tests.
@@ -170,19 +157,11 @@ module Holidays
                 string << ":wday => #{rule[:wday]}, :week => #{rule[:week]}, "
               end
 
-              #FIXME I think this should be split out into its own file.
-              if rule[:year_ranges] && rule[:year_ranges].kind_of?(Array)
-                year_string = " :year_ranges => ["
-                len = rule[:year_ranges].length
-                rule[:year_ranges].each_with_index do |year,index|
-                  year_string << "{:#{year.keys.first} => #{year.values.first}}"
-                  if len == index + 1
-                    year_string << "],"
-                  else
-                    year_string << ","
-                  end
-                end
-                string << year_string
+              if rule[:year_ranges] && rule[:year_ranges].is_a?(Hash)
+                selector = rule[:year_ranges].keys.first
+                value = rule[:year_ranges][selector]
+
+                string << ":year_ranges => { :#{selector} => #{value} },"
               end
 
               if rule[:observed]

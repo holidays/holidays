@@ -51,7 +51,7 @@ make point-to-defs-master
 ## For non-definition functionality
 
 * Fork this repository
-* Make your changes
+* Make your changes. Don't forget to run `make test` to execute the test suite!
 * Create a PR pointing back to `master`
 
 Don't worry about versioning, we'll handle it on our end.
@@ -63,6 +63,7 @@ Don't worry about versioning, we'll handle it on our end.
 We have included a few handy tasks to help you troubleshoot and test:
 
 * `make test` - runs the entire suite
+* `bundle exec ruby <test-file-to-run>` - runs just the tests in the specified file
 * `REGION=<region> make test-region` - runs the tests for just that region
 * `make console` - launches an IRB session with the 'holidays' gem loaded for quick testing
 * `make update-defs` - runs the appropriate git submodule commands to pull the latest definitions

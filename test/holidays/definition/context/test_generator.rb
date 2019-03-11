@@ -143,31 +143,25 @@ class GeneratorTests < Test::Unit::TestCase
           :name => "after_year",
           :regions => [:custom_year_range_file],
           :mday => 1,
-          :year_ranges => [{"after" => 2016}]
+          :year_ranges => {:from => 2016}
         },
         {
           :name => "before_year",
           :regions => [:custom_year_range_file],
           :mday => 2,
-          :year_ranges => [{"before" => 2017}]
+          :year_ranges => {:until => 2017}
         },
         {
           :name => "between_year",
           :regions => [:custom_year_range_file],
           :mday => 3,
-          :year_ranges => [{"between" => 2016..2018}]
+          :year_ranges => {:between => 2016..2018 }
         },
         {
           :name => "limited_year",
           :regions => [:custom_year_range_file],
           :mday => 4,
-          :year_ranges => [{"limited" => [2016,2018,2019]}]
-        },
-        {
-          :name => "multiple_conditions",
-          :regions => [:custom_year_range_file],
-          :mday => 5,
-          :year_ranges => [{"before" => 2015}, {"after" => 2017}]
+          :year_ranges => {:limited => [2016,2018,2019]}
         }
       ]
     }
@@ -183,7 +177,7 @@ class GeneratorTests < Test::Unit::TestCase
 
     @test_source_generator.expects(:call).with('test', ['test/data/test_custom_year_range_holiday_defs.yaml'], ['parsed tests']).returns('test source')
 
-    @module_source_generator.expects(:call).with("test", ["test/data/test_custom_year_range_holiday_defs.yaml"], [:custom_year_range_file], ["      6 => [{:mday => 1,  :year_ranges => [{:after => 2016}],:name => \"after_year\", :regions => [:custom_year_range_file]},\n            {:mday => 2,  :year_ranges => [{:before => 2017}],:name => \"before_year\", :regions => [:custom_year_range_file]},\n            {:mday => 3,  :year_ranges => [{:between => 2016..2018}],:name => \"between_year\", :regions => [:custom_year_range_file]},\n            {:mday => 4,  :year_ranges => [{:limited => [2016, 2018, 2019]}],:name => \"limited_year\", :regions => [:custom_year_range_file]},\n            {:mday => 5,  :year_ranges => [{:before => 2015},{:after => 2017}],:name => \"multiple_conditions\", :regions => [:custom_year_range_file]}]"], "").returns('module_source')
+    @module_source_generator.expects(:call).with("test", ["test/data/test_custom_year_range_holiday_defs.yaml"], [:custom_year_range_file], ["      6 => [{:mday => 1, :year_ranges => { :from => 2016 },:name => \"after_year\", :regions => [:custom_year_range_file]},\n            {:mday => 2, :year_ranges => { :until => 2017 },:name => \"before_year\", :regions => [:custom_year_range_file]},\n            {:mday => 3, :year_ranges => { :between => 2016..2018 },:name => \"between_year\", :regions => [:custom_year_range_file]},\n            {:mday => 4, :year_ranges => { :limited => [2016, 2018, 2019] },:name => \"limited_year\", :regions => [:custom_year_range_file]}]"], "").returns('module_source')
 
     regions, rules_by_month, custom_methods, tests = @generator.parse_definition_files(files)
     module_src = @generator.generate_definition_source("test", files, regions, rules_by_month, custom_methods, tests)[0]
@@ -229,11 +223,4 @@ class GeneratorTests < Test::Unit::TestCase
 
     assert_equal 'test source', test_src
   end
-
-  #TODO Missing test scenarios. Adding here so I don't forget when I split this
-  #     apart into smaller components.
-  #
-  #     1) If a year_range contains empty entries then we should blow up.
-  #     2) If year_range contains invalid (i.e. too many types per entry) then
-  #        we should blow up
 end
