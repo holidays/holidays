@@ -7,7 +7,7 @@ module Holidays
   # All the definitions are available at https://github.com/holidays/holidays
   module US # :nodoc:
     def self.defined_regions
-      [:us_fl, :us_la, :us, :us_ct, :us_de, :us_gu, :us_hi, :us_in, :us_ky, :us_nj, :us_nc, :us_nd, :us_pr, :us_tn, :us_ms, :us_id, :us_ar, :us_tx, :us_dc, :us_md, :us_va, :us_il, :us_vt, :us_ak, :us_ca, :us_me, :us_ma, :us_al, :us_ga, :us_ne, :us_mo, :us_sc, :us_wv, :us_vi, :us_ut, :us_ri, :us_az, :us_co, :us_mt, :us_nm, :us_ny, :us_oh, :us_pa, :us_mi, :us_mn, :us_nv, :us_or, :us_sd, :us_wa, :us_wi, :us_wy, :us_ia, :us_ks, :us_nh, :us_ok, :ca]
+      [:us_fl, :us_la, :us, :us_ct, :us_de, :us_gu, :us_hi, :us_in, :us_ky, :us_nj, :us_nc, :us_nd, :us_pr, :us_tn, :us_ms, :us_id, :us_ar, :us_tx, :us_dc, :us_md, :us_va, :us_vt, :us_ak, :us_ca, :us_me, :us_ma, :us_al, :us_ga, :us_ne, :us_mo, :us_sc, :us_wv, :us_vi, :us_ut, :us_ri, :us_az, :us_co, :us_il, :us_mt, :us_nm, :us_ny, :us_oh, :us_pa, :us_mi, :us_mn, :us_nv, :us_or, :us_sd, :us_wa, :us_wi, :us_wy, :us_ia, :us_ks, :us_nh, :us_ok, :ca]
     end
 
     def self.holidays_by_month
@@ -28,14 +28,13 @@ module Holidays
       2 => [{:wday => 1, :week => 3, :name => "Presidents' Day", :regions => [:us]},
             {:mday => 2, :type => :informal, :name => "Groundhog Day", :regions => [:us, :ca]},
             {:mday => 14, :type => :informal, :name => "Valentine's Day", :regions => [:us, :ca]}],
-      3 => [{:wday => 1, :week => 1, :name => "Casimir Pulaski Day", :regions => [:us_il]},
-            {:wday => 2, :week => 1, :name => "Town Meeting Day", :regions => [:us_vt]},
+      3 => [{:wday => 2, :week => 1, :name => "Town Meeting Day", :regions => [:us_vt]},
             {:mday => 2, :name => "Texas Independence Day", :regions => [:us_tx]},
             {:mday => 26, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Prince Jonah Kuhio Kalanianaole Day", :regions => [:us_hi]},
             {:wday => 1, :week => -1, :name => "Seward's Day", :regions => [:us_ak]},
             {:mday => 31, :name => "César Chávez Day", :regions => [:us_ca]},
             {:mday => 17, :type => :informal, :name => "St. Patrick's Day", :regions => [:us, :ca]}],
-      4 => [{:mday => 16, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Emancipation Day", :regions => [:us_dc, :us_ca]},
+      4 => [{:mday => 16, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Emancipation Day", :regions => [:us_dc]},
             {:wday => 1, :week => 3, :name => "Patriots' Day", :regions => [:us_me, :us_ma]},
             {:mday => 21, :name => "San Jacinto Day", :regions => [:us_tx]},
             {:wday => 1, :week => -1, :name => "Confederate Memorial Day", :regions => [:us_al, :us_ms]},
@@ -71,7 +70,7 @@ module Holidays
             {:mday => 18, :name => "Alaska Day", :regions => [:us_ak]},
             {:wday => 5, :week => -1, :name => "Nevada Day", :regions => [:us_nv]},
             {:mday => 31, :type => :informal, :name => "Halloween", :regions => [:us, :ca]}],
-      11 => [{:function => "election_day(year)", :function_arguments => [:year], :name => "Election Day", :regions => [:us_de, :us_hi, :us_il, :us_in, :us_mt, :us_nj, :us_ny, :us_pa, :us_ri]},
+      11 => [{:function => "election_day(year)", :function_arguments => [:year], :name => "Election Day", :regions => [:us_de, :us_hi, :us_in, :us_mt, :us_nj, :us_ny, :us_pa, :us_ri]},
             {:mday => 11, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Veterans Day", :regions => [:us]},
             {:wday => 4, :week => 4, :name => "Thanksgiving", :regions => [:us]},
             {:function => "day_after_thanksgiving(year)", :function_arguments => [:year], :name => "Family Day", :regions => [:us_nv]},
