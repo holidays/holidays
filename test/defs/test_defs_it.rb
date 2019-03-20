@@ -21,6 +21,10 @@ class ItDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Festa della Repubblica", (Holidays.on(Date.civil(2007, 6, 2), [:it], [:informal])[0] || {})[:name]
 
+    assert_equal "Festa di San Pietro e Paolo", (Holidays.on(Date.civil(2019, 6, 29), [:it_rm], [:informal])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2019, 6, 29), [:it])[0] || {})[:name]
+
     assert_equal "Assunzione", (Holidays.on(Date.civil(2007, 8, 15), [:it], [:informal])[0] || {})[:name]
 
     assert_equal "Ognissanti", (Holidays.on(Date.civil(2007, 11, 1), [:it], [:informal])[0] || {})[:name]
