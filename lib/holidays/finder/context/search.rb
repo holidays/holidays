@@ -24,39 +24,11 @@ module Holidays
                   next unless @rules[:year_range].call(year, h[:year_ranges])
                 end
 
-                current_month = month
-                current_day = h[:mday]
-
-                if h[:function]
-                  result = @custom_method_processor.call(
-                    build_custom_method_input(year, current_month, current_day, h[:regions]),
-                    h[:function], h[:function_arguments], h[:function_modifier],
-                  )
-
-                  #FIXME The result should always be present, see https://github.com/holidays/holidays/issues/204 for more information
-                  if result
-                    current_month = result.month
-                    current_day = result.mday
-                  else
-                    current_month = nil
-                    current_day = nil
-                  end
-                else
-                  current_day = h[:mday] || @day_of_month_calculator.call(year, current_month, h[:week], h[:wday])
-                end
-
-                # Silently skip bad mdays
-                #TODO Should we be doing something different here? We have no concept of logging right now. Maybe we should add it?
-                begin
-                  date = Date.civil(year, current_month, current_day)
-                rescue; next; end
+                date = build_date(year, month, h)
+                next unless date
 
                 if observed_set?(options) && h[:observed]
-                  date = @custom_method_processor.call(
-                    build_custom_method_input(date.year, date.month, date.day, regions),
-                    h[:observed],
-                    [:date],
-                  )
+                  date = build_observed_date(date, regions, h)
                 end
 
                 holidays << {:date => date, :name => h[:name], :regions => h[:regions]}
@@ -93,6 +65,29 @@ module Holidays
           options && options.include?(:observed) == true
         end
 
+        def build_date(year, month, h)
+          if h[:function]
+            holiday = custom_holiday(year, month, h)
+            #FIXME The result should always be present, see https://github.com/holidays/holidays/issues/204 for more information
+            current_month = holiday&.month
+            current_day = holiday&.mday
+          else
+            current_month = month
+            current_day = h[:mday] || @day_of_month_calculator.call(year, month, h[:week], h[:wday])
+          end
+
+          # Silently skip bad mdays
+          #TODO Should we be doing something different here? We have no concept of logging right now. Maybe we should add it?
+          Date.civil(year, current_month, current_day) rescue nil
+        end
+
+        def custom_holiday(year, month, h)
+          @custom_method_processor.call(
+            build_custom_method_input(year, month, h[:mday], h[:regions]),
+            h[:function], h[:function_arguments], h[:function_modifier],
+          )
+        end
+
         def build_custom_method_input(year, month, day, regions)
           {
             year: year,
@@ -100,6 +95,14 @@ module Holidays
             day: day,
             region: regions.first, #FIXME This isn't ideal but will work for our current use case...
           }
+        end
+
+        def build_observed_date(date, regions, h)
+          @custom_method_processor.call(
+            build_custom_method_input(date.year, date.month, date.day, regions),
+            h[:observed],
+            [:date],
+          )
         end
       end
     end
