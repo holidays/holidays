@@ -87,7 +87,14 @@ module Holidays
                 rule = {}
 
                 definition.each do |key, val|
-                  val.transform_keys!(&:to_sym) if val.is_a?(Hash)
+                  # Ruby 2.4 doesn't have the `transform_keys` method. Once we drop 2.4 support we can
+                  # use `val.transform_keys!(&:to_sym) if val.is_a?(Hash)` instead of this `if` statement.
+                  if val.is_a?(Hash)
+                    val = val.keys.each_with_object({}) do |k, result|
+                      result[k.to_sym] = val[k]
+                    end
+                  end
+
                   rule[key.to_sym] = val
                 end
 
