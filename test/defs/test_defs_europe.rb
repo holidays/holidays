@@ -711,6 +711,10 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Festa della Repubblica", (Holidays.on(Date.civil(2007, 6, 2), [:it], [:informal])[0] || {})[:name]
 
+    assert_equal "Festa di San Pietro e Paolo", (Holidays.on(Date.civil(2019, 6, 29), [:it_rm], [:informal])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2019, 6, 29), [:it])[0] || {})[:name]
+
     assert_equal "Assunzione", (Holidays.on(Date.civil(2007, 8, 15), [:it], [:informal])[0] || {})[:name]
 
     assert_equal "Ognissanti", (Holidays.on(Date.civil(2007, 11, 1), [:it], [:informal])[0] || {})[:name]
@@ -1103,6 +1107,12 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Natal", (Holidays.on(Date.civil(2008, 12, 25), [:pt], [:informal])[0] || {})[:name]
 
+    assert_nil (Holidays.on(Date.civil(2017, 4, 14), [:ro])[0] || {})[:name]
+
+    assert_equal "Paștele - Vinerea Mare", (Holidays.on(Date.civil(2018, 4, 6), [:ro], [:informal])[0] || {})[:name]
+
+    assert_equal "Paștele - Vinerea Mare", (Holidays.on(Date.civil(2019, 4, 26), [:ro], [:informal])[0] || {})[:name]
+
     assert_equal "Paștele - duminică", (Holidays.on(Date.civil(1961, 4, 9), [:ro], [:informal])[0] || {})[:name]
 
     assert_equal "Paștele - luni", (Holidays.on(Date.civil(1961, 4, 10), [:ro], [:informal])[0] || {})[:name]
@@ -1129,7 +1139,15 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Anul nou", (Holidays.on(Date.civil(2014, 1, 2), [:ro], [:informal])[0] || {})[:name]
 
+    assert_equal "Unirea Principatelor Române", (Holidays.on(Date.civil(2017, 1, 24), [:ro], [:informal])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2016, 1, 24), [:ro])[0] || {})[:name]
+
     assert_equal "Ziua muncii", (Holidays.on(Date.civil(2009, 5, 1), [:ro], [:informal])[0] || {})[:name]
+
+    assert_equal "Ziua Copilului", (Holidays.on(Date.civil(2017, 6, 1), [:ro], [:informal])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2016, 6, 1), [:ro])[0] || {})[:name]
 
     assert_equal "Adormirea Maicii Domnului", (Holidays.on(Date.civil(2012, 8, 15), [:ro], [:informal])[0] || {})[:name]
 

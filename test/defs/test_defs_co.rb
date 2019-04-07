@@ -45,11 +45,11 @@ class CoDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Día de la Ascensión", (Holidays.on(Date.civil(2017, 5, 29), [:co])[0] || {})[:name]
 
-    assert_equal "Corpus Christi", (Holidays.on(Date.civil(2014, 6, 19), [:co])[0] || {})[:name]
+    assert_equal "Corpus Christi", (Holidays.on(Date.civil(2014, 6, 23), [:co])[0] || {})[:name]
 
-    assert_equal "Corpus Christi", (Holidays.on(Date.civil(2016, 5, 26), [:co])[0] || {})[:name]
+    assert_equal "Corpus Christi", (Holidays.on(Date.civil(2016, 5, 30), [:co])[0] || {})[:name]
 
-    assert_equal "Corpus Christi", (Holidays.on(Date.civil(2017, 6, 15), [:co])[0] || {})[:name]
+    assert_equal "Corpus Christi", (Holidays.on(Date.civil(2017, 6, 19), [:co])[0] || {})[:name]
 
     assert_equal "Sagrado Corazón", (Holidays.on(Date.civil(2014, 6, 30), [:co])[0] || {})[:name]
 

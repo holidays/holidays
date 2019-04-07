@@ -109,7 +109,7 @@ class HolidaysByMonthRepoTests < Test::Unit::TestCase
     assert_equal(expected, @subject.all)
   end
 
-  def test_add_is_successful_and_updates_regions_to_existing_matching_definitions
+  def test_add_is_successful_if_only_region_is_different_and_updates_regions_to_existing_matching_definitions
     target_holidays = {0 => [:mday => 1, :name => "Test", :regions => [:test2]]}
 
     @subject.add(@existing_holidays_by_month)
@@ -151,5 +151,125 @@ class HolidaysByMonthRepoTests < Test::Unit::TestCase
     assert_raise ArgumentError do
       @subject.find_by_month(-1)
     end
+  end
+
+  def test_add_is_successful_if_only_function_is_different
+    initial_holidays = {0=> [{:mday => 1, :name=>"Test", :regions=>[:test], :function=>"easter(year)", :function_arguments=>[:year]}]}
+
+    @subject.add(initial_holidays)
+
+    second_holidays = {0=> [{:mday => 1, :name=>"Test", :regions=>[:test2], :function=>"orthodox_easter(year)", :function_arguments=>[:year]}]}
+    @subject.add(second_holidays)
+
+    expected = {
+      0 => [
+        {
+          :function=>"easter(year)",
+          :function_arguments=>[:year],
+          :mday=>1,
+          :name=>"Test",
+          :regions=>[:test]
+        },
+        {
+          :function=>"orthodox_easter(year)",
+          :function_arguments=>[:year],
+          :mday=>1,
+          :name=>"Test",
+          :regions=>[:test2]
+        }
+      ]
+    }
+
+    assert_equal(expected, @subject.all)
+  end
+
+  def test_add_is_successful_if_only_function_modifier_is_different
+    initial_holidays = {0=> [{:mday => 1, :name=>"Test", :regions=>[:test], :function=>"easter(year)", :function_modifier=>1, :function_arguments=>[:year]}]}
+
+    @subject.add(initial_holidays)
+
+    second_holidays = {0=> [{:mday => 1, :name=>"Test", :regions=>[:test2], :function=>"easter(year)", :function_modifier=>2, :function_arguments=>[:year]}]}
+    @subject.add(second_holidays)
+
+    expected = {
+      0 => [
+        {
+          :function=>"easter(year)",
+          :function_arguments=>[:year],
+          :function_modifier=>1,
+          :mday=>1,
+          :name=>"Test",
+          :regions=>[:test]
+        },
+        {
+          :function=>"easter(year)",
+          :function_arguments=>[:year],
+          :function_modifier=>2,
+          :mday=>1,
+          :name=>"Test",
+          :regions=>[:test2]
+        }
+      ]
+    }
+
+    assert_equal(expected, @subject.all)
+  end
+
+  def test_add_is_successful_if_only_observed_is_different
+    initial_holidays = {0=> [{:mday => 1, :name=>"Test", :regions=>[:test], :observed=>"to_weekday_if_weekend(year)", :function_arguments=>[:year]}]}
+
+    @subject.add(initial_holidays)
+
+    second_holidays = {0=> [{:mday => 1, :name=>"Test", :regions=>[:test2], :observed =>"to_friday_if_saturday(year)", :function_arguments=>[:year]}]}
+    @subject.add(second_holidays)
+
+    expected = {
+      0 => [
+        {
+          :observed =>"to_weekday_if_weekend(year)",
+          :function_arguments=>[:year],
+          :mday=>1,
+          :name=>"Test",
+          :regions=>[:test]
+        },
+        {
+          :observed =>"to_friday_if_saturday(year)",
+          :function_arguments=>[:year],
+          :mday=>1,
+          :name=>"Test",
+          :regions=>[:test2]
+        }
+      ]
+    }
+
+    assert_equal(expected, @subject.all)
+  end
+
+  def test_add_is_successful_if_only_year_ranges_is_different
+    initial_holidays = {0=> [{:mday => 1, :name=>"Test", :regions=>[:test], :year_ranges => {:from => 1990}}]}
+
+    @subject.add(initial_holidays)
+
+    second_holidays = {0=> [{:mday => 1, :name=>"Test", :regions=>[:test2], :year_ranges => {:until => 2002}}]}
+    @subject.add(second_holidays)
+
+    expected = {
+      0 => [
+        {
+          :mday=>1,
+          :name=>"Test",
+          :regions=>[:test],
+          :year_ranges => {:from => 1990}
+        },
+        {
+          :mday=>1,
+          :name=>"Test",
+          :regions=>[:test2],
+          :year_ranges => {:until => 2002}
+        }
+      ]
+    }
+
+    assert_equal(expected, @subject.all)
   end
 end
