@@ -18,13 +18,13 @@ module Holidays
             {:mday => 7, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Різдво Христове", :regions => [:ua]}],
       3 => [{:mday => 8, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Міжнародний жіночий день", :regions => [:ua]}],
       5 => [{:mday => 1, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "День праці", :regions => [:ua]},
-            {:mday => 2,  :year_ranges => [{:before => 2017}],:name => "День міжнародної солідарності трудящих", :regions => [:ua]},
+            {:mday => 2, :year_ranges => { :until => 2017 },:name => "День міжнародної солідарності трудящих", :regions => [:ua]},
             {:mday => 9, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "День перемоги над нацизмом у Другій світовій війні", :regions => [:ua]}],
-      6 => [{:mday => 28,  :year_ranges => [{:after => 1997}],:observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "День Конституції", :regions => [:ua]}],
-      7 => [{:mday => 16,  :year_ranges => [{:limited => [1991]}],:name => "День Незалежності України", :regions => [:ua]}],
-      8 => [{:mday => 24,  :year_ranges => [{:after => 1992}],:observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "День Незалежності", :regions => [:ua]}],
-      10 => [{:mday => 14,  :year_ranges => [{:after => 2015}],:observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "День захисника України", :regions => [:ua]}],
-      12 => [{:mday => 25,  :year_ranges => [{:after => 2017}],:observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Різдво Христове", :regions => [:ua]}]
+      6 => [{:mday => 28, :year_ranges => { :from => 1997 },:observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "День Конституції", :regions => [:ua]}],
+      7 => [{:mday => 16, :year_ranges => { :limited => [1991] },:name => "День Незалежності України", :regions => [:ua]}],
+      8 => [{:mday => 24, :year_ranges => { :from => 1992 },:observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "День Незалежності", :regions => [:ua]}],
+      10 => [{:mday => 14, :year_ranges => { :from => 2015 },:observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "День захисника України", :regions => [:ua]}],
+      12 => [{:mday => 25, :year_ranges => { :from => 2017 },:observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Різдво Христове", :regions => [:ua]}]
       }
     end
 

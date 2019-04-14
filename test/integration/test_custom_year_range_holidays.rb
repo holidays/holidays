@@ -32,11 +32,4 @@ class CustomYearRangeHolidaysTest < Test::Unit::TestCase
     assert_not_equal [], Holidays.on(Date.civil(2019,6,4), :custom_year_range_file)
     assert_equal [], Holidays.on(Date.civil(2020,6,4), :custom_year_range_file)
   end
-
-  def test_multiple_condition
-    Holidays.load_custom('test/data/test_custom_year_range_holiday_defs.yaml')
-    assert_not_equal [], Holidays.on(Date.civil(2015,6,5), :custom_year_range_file)
-    assert_equal [], Holidays.on(Date.civil(2016,6,5), :custom_year_range_file)
-    assert_not_equal [], Holidays.on(Date.civil(2017,6,5), :custom_year_range_file)
-  end
 end
