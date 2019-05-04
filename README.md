@@ -135,7 +135,7 @@ Get all observed US Federal holidays between 2018 and 2019:
 from = Date.civil(2018,1,1)
 to = Date.civil(2019,12,31)
 
-Holidays.between(from, to, :federal_reserve, :observed)
+Holidays.between(from, to, :federalreserve, :observed)
 => [{:name => "New Year's Day"....}
     {:name => "Birthday of Martin Luther King, Jr"....}]
 ```
