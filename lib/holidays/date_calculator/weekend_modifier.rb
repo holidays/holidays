@@ -75,6 +75,24 @@ module Holidays
 
         date
       end
+
+      def to_next_monday(date)
+        to_next(1, date)
+      end
+
+      private
+      # Move to next date that falls on wday
+      # e.g. to_next(1, "2019-05-27) => "2019-05-27"
+      #      to_next(1, "2019-05-28) => "2019-06-03"
+      def to_next(wday, date)
+        return date if date.wday == wday
+
+        if date.wday < wday
+          date += wday - date.wday
+        else
+          date += wday + (7 - date.wday)
+        end
+      end
     end
   end
 end

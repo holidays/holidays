@@ -21,7 +21,8 @@ module Holidays
           "calculate_day_of_month(year, month, day, wday)" => day_of_month_calculator.method(:call).to_proc,
           "to_weekday_if_boxing_weekend_from_year_or_to_tuesday_if_monday(year)" => weekend_modifier.method(:to_weekday_if_boxing_weekend_from_year_or_to_tuesday_if_monday).to_proc,
           "to_tuesday_if_sunday_or_monday_if_saturday(date)" => weekend_modifier.method(:to_tuesday_if_sunday_or_monday_if_saturday).to_proc,
-          "lunar_to_solar(year, month, day, region)" => lunar_date.method(:to_solar).to_proc, 
+          "lunar_to_solar(year, month, day, region)" => lunar_date.method(:to_solar).to_proc,
+          "to_next_monday(date)" => weekend_modifier.method(:to_next_monday).to_proc
         }
 
         Factory::Definition.custom_methods_repository.add(global_methods)

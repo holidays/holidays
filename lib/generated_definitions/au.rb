@@ -33,7 +33,7 @@ module Holidays
       5 => [{:function => "qld_labour_day_may(year)", :function_arguments => [:year], :name => "Labour Day", :regions => [:au_qld]},
             {:wday => 1, :week => 1, :name => "May Day", :regions => [:au_nt]},
             {:function => "may_pub_hol_sa(year)", :function_arguments => [:year], :name => "May Public Holiday", :regions => [:au_sa]},
-            {:mday => 28,  :year_ranges => [{:after => 2018}],:name => "ACT Reconciliation Day", :regions => [:au_act]}],
+            {:mday => 27, :observed => "to_next_monday(date)", :observed_arguments => [:date], :name => "ACT Reconciliation Day", :regions => [:au_act]}],
       6 => [{:wday => 1, :week => 1, :name => "Foundation Day", :regions => [:au_wa]},
             {:wday => 1, :week => 2, :name => "Queen's Birthday", :regions => [:au_act, :au_nsw, :au_sa, :au_tas, :au_nt, :au_vic]},
             {:function => "qld_queens_birthday_june(year)", :function_arguments => [:year], :name => "Queen's Birthday", :regions => [:au_qld]},
