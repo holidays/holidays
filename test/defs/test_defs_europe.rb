@@ -419,7 +419,7 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "May Day", (Holidays.on(Date.civil(2008, 5, 5), [:gb], [:informal])[0] || {})[:name]
 
-    assert_equal "Bank Holiday", (Holidays.on(Date.civil(2008, 5, 26), [:gb], [:informal])[0] || {})[:name]
+    assert_equal "Spring Bank Holiday", (Holidays.on(Date.civil(2008, 5, 26), [:gb], [:informal])[0] || {})[:name]
 
     assert_equal "Guy Fawkes Day", (Holidays.on(Date.civil(2008, 11, 5), [:gb], [:informal])[0] || {})[:name]
 
@@ -487,29 +487,29 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Easter Monday", (Holidays.on(Date.civil(2008, 3, 24), [:gb_wls])[0] || {})[:name]
 
-    assert_equal "Bank Holiday", (Holidays.on(Date.civil(2008, 8, 25), [:gb_wls])[0] || {})[:name]
+    assert_equal "Summer Bank Holiday", (Holidays.on(Date.civil(2008, 8, 25), [:gb_wls])[0] || {})[:name]
 
     assert_equal "Easter Monday", (Holidays.on(Date.civil(2008, 3, 24), [:gb_eng])[0] || {})[:name]
 
-    assert_equal "Bank Holiday", (Holidays.on(Date.civil(2008, 8, 25), [:gb_eng])[0] || {})[:name]
+    assert_equal "Summer Bank Holiday", (Holidays.on(Date.civil(2008, 8, 25), [:gb_eng])[0] || {})[:name]
 
     assert_equal "Easter Monday", (Holidays.on(Date.civil(2008, 3, 24), [:gb_nir])[0] || {})[:name]
 
-    assert_equal "Bank Holiday", (Holidays.on(Date.civil(2008, 8, 25), [:gb_nir])[0] || {})[:name]
+    assert_equal "Summer Bank Holiday", (Holidays.on(Date.civil(2008, 8, 25), [:gb_nir])[0] || {})[:name]
 
     assert_equal "Easter Monday", (Holidays.on(Date.civil(2008, 3, 24), [:gb_eaw])[0] || {})[:name]
 
-    assert_equal "Bank Holiday", (Holidays.on(Date.civil(2008, 8, 25), [:gb_eaw])[0] || {})[:name]
+    assert_equal "Summer Bank Holiday", (Holidays.on(Date.civil(2008, 8, 25), [:gb_eaw])[0] || {})[:name]
 
     assert_equal "Easter Monday", (Holidays.on(Date.civil(2008, 3, 24), [:gb_])[0] || {})[:name]
 
-    assert_equal "Bank Holiday", (Holidays.on(Date.civil(2008, 8, 25), [:gb_])[0] || {})[:name]
+    assert_equal "Summer Bank Holiday", (Holidays.on(Date.civil(2008, 8, 25), [:gb_])[0] || {})[:name]
 
     assert_equal "Liberation Day", (Holidays.on(Date.civil(2018, 5, 9), [:je])[0] || {})[:name]
 
     assert_equal "Easter Monday", (Holidays.on(Date.civil(2018, 4, 2), [:je])[0] || {})[:name]
 
-    assert_equal "Bank Holiday", (Holidays.on(Date.civil(2018, 8, 27), [:je])[0] || {})[:name]
+    assert_equal "Summer Bank Holiday", (Holidays.on(Date.civil(2018, 8, 27), [:je])[0] || {})[:name]
 
     assert_equal "Nova godina", (Holidays.on(Date.civil(2012, 1, 1), [:hr], [:informal])[0] || {})[:name]
 
