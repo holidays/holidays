@@ -41,7 +41,15 @@ module Holidays
         private
 
         def definition_exists?(existing_def, target_def)
-          existing_def[:name] == target_def[:name] && existing_def[:wday] == target_def[:wday] && existing_def[:mday] == target_def[:mday] && existing_def[:week] == target_def[:week] && existing_def[:function] == target_def[:function] && existing_def[:type] == target_def[:type] && existing_def[:observed] == target_def[:observed] && existing_def[:year_ranges] == target_def[:year_ranges]
+          existing_def[:name] == target_def[:name] &&
+          existing_def[:wday] == target_def[:wday] &&
+          existing_def[:mday] == target_def[:mday] &&
+          existing_def[:week] == target_def[:week] &&
+          existing_def[:function] == target_def[:function] &&
+          existing_def[:function_modifier] == target_def[:function_modifier] &&
+          existing_def[:type] == target_def[:type] &&
+          existing_def[:observed] == target_def[:observed] &&
+          existing_def[:year_ranges] == target_def[:year_ranges]
         end
       end
     end
