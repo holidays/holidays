@@ -23,7 +23,7 @@ module Holidays
       4 => [{:mday => 23, :name => "Ulusal Egemenlik ve Çocuk Bayramı", :regions => [:tr]}],
       5 => [{:mday => 1, :name => "Emek ve Dayanışma Günü", :regions => [:tr]},
             {:mday => 19, :name => "Atatürk'ü Anma Gençlik ve Spor Bayramı", :regions => [:tr]}],
-      7 => [{:mday => 15,  :year_ranges => [{:after => 2016}],:name => "Demokrasi ve Milli Birlik Günü", :regions => [:tr]}],
+      7 => [{:mday => 15, :year_ranges => { :from => 2016 },:name => "Demokrasi ve Milli Birlik Günü", :regions => [:tr]}],
       8 => [{:mday => 30, :name => "Zafer Bayramı", :regions => [:tr]}],
       10 => [{:mday => 29, :name => "Cumhuriyet Bayramı", :regions => [:tr]}]
       }

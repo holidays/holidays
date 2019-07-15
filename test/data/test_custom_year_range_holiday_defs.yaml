@@ -4,28 +4,24 @@ months:
     regions: [custom_year_range_file]
     mday: 1
     year_ranges:
-      - after: 2016
+      from: 2016
   - name: before_year
     regions: [custom_year_range_file]
     mday: 2
     year_ranges:
-      - before: 2017
+      until: 2017
   - name: between_year
     regions: [custom_year_range_file]
     mday: 3
     year_ranges:
-      - between: 2016..2018
+      between:
+        start: 2016
+        end: 2018
   - name: limited_year
     regions: [custom_year_range_file]
     mday: 4
     year_ranges:
-      - limited: [2016,2018,2019]
-  - name: multiple_conditions
-    regions: [custom_year_range_file]
-    mday: 5
-    year_ranges:
-      - before: 2015
-      - after: 2017
+      limited: [2016,2018,2019]
 
 tests:
   - given:
