@@ -69,6 +69,8 @@ when 2017
   Date.civil(2017, 9, 29)
 when 2018
   Date.civil(2018, 9, 28)
+when 2019
+  Date.civil(2019, 9, 27)
 end
 },
 
