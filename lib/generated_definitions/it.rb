@@ -7,7 +7,7 @@ module Holidays
   # All the definitions are available at https://github.com/holidays/holidays
   module IT # :nodoc:
     def self.defined_regions
-      [:it, :it_rm]
+      [:it, :it_fi, :it_ge, :it_to, :it_rm]
     end
 
     def self.holidays_by_month
@@ -19,6 +19,7 @@ module Holidays
       4 => [{:mday => 25, :name => "Festa della Liberazione", :regions => [:it]}],
       5 => [{:mday => 1, :name => "Festa dei Lavoratori", :regions => [:it]}],
       6 => [{:mday => 2, :name => "Festa della Repubblica", :regions => [:it]},
+            {:mday => 24, :name => "Festa di San Giovanni Battista", :regions => [:it_fi, :it_ge, :it_to]},
             {:mday => 29, :name => "Festa di San Pietro e Paolo", :regions => [:it_rm]}],
       8 => [{:mday => 15, :name => "Assunzione", :regions => [:it]}],
       11 => [{:mday => 1, :name => "Ognissanti", :regions => [:it]}],
