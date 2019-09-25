@@ -593,15 +593,15 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "1848/49-es forradalom és szabadságharc ünnepe", (Holidays.on(Date.civil(2012, 3, 15), [:hu], [:informal])[0] || {})[:name]
 
-    assert_equal "Húsvét hétfő", (Holidays.on(Date.civil(2011, 4, 25), [:hu], [:informal])[0] || {})[:name]
+    assert_equal "Húsvéthétfő", (Holidays.on(Date.civil(2011, 4, 25), [:hu], [:informal])[0] || {})[:name]
 
-    assert_equal "Húsvét hétfő", (Holidays.on(Date.civil(2012, 4, 9), [:hu], [:informal])[0] || {})[:name]
+    assert_equal "Húsvéthétfő", (Holidays.on(Date.civil(2012, 4, 9), [:hu], [:informal])[0] || {})[:name]
 
     assert_equal "A munka ünnepe", (Holidays.on(Date.civil(2012, 5, 1), [:hu], [:informal])[0] || {})[:name]
 
-    assert_equal "Pünkösd hétfő", (Holidays.on(Date.civil(2011, 6, 13), [:hu], [:informal])[0] || {})[:name]
+    assert_equal "Pünkösdhétfő", (Holidays.on(Date.civil(2011, 6, 13), [:hu], [:informal])[0] || {})[:name]
 
-    assert_equal "Pünkösd hétfő", (Holidays.on(Date.civil(2012, 5, 28), [:hu], [:informal])[0] || {})[:name]
+    assert_equal "Pünkösdhétfő", (Holidays.on(Date.civil(2012, 5, 28), [:hu], [:informal])[0] || {})[:name]
 
     assert_equal "Az államalapítás ünnepe", (Holidays.on(Date.civil(2012, 8, 20), [:hu], [:informal])[0] || {})[:name]
 
@@ -614,6 +614,14 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_equal "Karácsony", (Holidays.on(Date.civil(2012, 12, 26), [:hu], [:informal])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(2012, 3, 14), [:hu])[0] || {})[:name]
+
+    assert_equal "Húsvéthétfő", (Holidays.on(Date.civil(2016, 3, 28), [:hu])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2016, 3, 25), [:hu])[0] || {})[:name]
+
+    assert_equal "Húsvéthétfő", (Holidays.on(Date.civil(2017, 4, 17), [:hu])[0] || {})[:name]
+
+    assert_equal "Nagypéntek", (Holidays.on(Date.civil(2017, 4, 14), [:hu])[0] || {})[:name]
 
     assert_equal "New Year's Day", (Holidays.on(Date.civil(2008, 1, 1), [:ie])[0] || {})[:name]
 
@@ -707,9 +715,15 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Festa della Liberazione", (Holidays.on(Date.civil(2007, 4, 25), [:it], [:informal])[0] || {})[:name]
 
+    assert_equal "Festa di San Liberale", (Holidays.on(Date.civil(2019, 4, 27), [:it_tv], [:informal])[0] || {})[:name]
+
     assert_equal "Festa dei Lavoratori", (Holidays.on(Date.civil(2007, 5, 1), [:it], [:informal])[0] || {})[:name]
 
+    assert_equal "Festa di San Zeno", (Holidays.on(Date.civil(2019, 5, 21), [:it_vr], [:informal])[0] || {})[:name]
+
     assert_equal "Festa della Repubblica", (Holidays.on(Date.civil(2007, 6, 2), [:it], [:informal])[0] || {})[:name]
+
+    assert_equal "Festa di Sant'Antonio di Padova", (Holidays.on(Date.civil(2019, 6, 13), [:it_pd], [:informal])[0] || {})[:name]
 
     assert_equal "Festa di San Giovanni Battista", (Holidays.on(Date.civil(2019, 6, 24), [:it_fi, :it_ge, :it_to], [:informal])[0] || {})[:name]
 
@@ -721,7 +735,13 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Assunzione", (Holidays.on(Date.civil(2007, 8, 15), [:it], [:informal])[0] || {})[:name]
 
+    assert_equal "Festa della Madonna di Monte Berico", (Holidays.on(Date.civil(2019, 9, 8), [:it_vi], [:informal])[0] || {})[:name]
+
     assert_equal "Ognissanti", (Holidays.on(Date.civil(2007, 11, 1), [:it], [:informal])[0] || {})[:name]
+
+    assert_equal "Festa di San Martino", (Holidays.on(Date.civil(2019, 11, 11), [:it_bl], [:informal])[0] || {})[:name]
+
+    assert_equal "Festa di San Bellino", (Holidays.on(Date.civil(2019, 11, 26), [:it_ro], [:informal])[0] || {})[:name]
 
     assert_equal "Immacolata Concezione", (Holidays.on(Date.civil(2007, 12, 8), [:it], [:informal])[0] || {})[:name]
 

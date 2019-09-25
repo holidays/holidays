@@ -13,15 +13,15 @@ class HuDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "1848/49-es forradalom és szabadságharc ünnepe", (Holidays.on(Date.civil(2012, 3, 15), [:hu], [:informal])[0] || {})[:name]
 
-    assert_equal "Húsvét hétfő", (Holidays.on(Date.civil(2011, 4, 25), [:hu], [:informal])[0] || {})[:name]
+    assert_equal "Húsvéthétfő", (Holidays.on(Date.civil(2011, 4, 25), [:hu], [:informal])[0] || {})[:name]
 
-    assert_equal "Húsvét hétfő", (Holidays.on(Date.civil(2012, 4, 9), [:hu], [:informal])[0] || {})[:name]
+    assert_equal "Húsvéthétfő", (Holidays.on(Date.civil(2012, 4, 9), [:hu], [:informal])[0] || {})[:name]
 
     assert_equal "A munka ünnepe", (Holidays.on(Date.civil(2012, 5, 1), [:hu], [:informal])[0] || {})[:name]
 
-    assert_equal "Pünkösd hétfő", (Holidays.on(Date.civil(2011, 6, 13), [:hu], [:informal])[0] || {})[:name]
+    assert_equal "Pünkösdhétfő", (Holidays.on(Date.civil(2011, 6, 13), [:hu], [:informal])[0] || {})[:name]
 
-    assert_equal "Pünkösd hétfő", (Holidays.on(Date.civil(2012, 5, 28), [:hu], [:informal])[0] || {})[:name]
+    assert_equal "Pünkösdhétfő", (Holidays.on(Date.civil(2012, 5, 28), [:hu], [:informal])[0] || {})[:name]
 
     assert_equal "Az államalapítás ünnepe", (Holidays.on(Date.civil(2012, 8, 20), [:hu], [:informal])[0] || {})[:name]
 
@@ -34,6 +34,14 @@ class HuDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_equal "Karácsony", (Holidays.on(Date.civil(2012, 12, 26), [:hu], [:informal])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(2012, 3, 14), [:hu])[0] || {})[:name]
+
+    assert_equal "Húsvéthétfő", (Holidays.on(Date.civil(2016, 3, 28), [:hu])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2016, 3, 25), [:hu])[0] || {})[:name]
+
+    assert_equal "Húsvéthétfő", (Holidays.on(Date.civil(2017, 4, 17), [:hu])[0] || {})[:name]
+
+    assert_equal "Nagypéntek", (Holidays.on(Date.civil(2017, 4, 14), [:hu])[0] || {})[:name]
 
   end
 end
