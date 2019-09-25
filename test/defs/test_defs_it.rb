@@ -17,9 +17,15 @@ class ItDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Festa della Liberazione", (Holidays.on(Date.civil(2007, 4, 25), [:it], [:informal])[0] || {})[:name]
 
+    assert_equal "Festa di San Liberale", (Holidays.on(Date.civil(2019, 4, 27), [:it_tv], [:informal])[0] || {})[:name]
+
     assert_equal "Festa dei Lavoratori", (Holidays.on(Date.civil(2007, 5, 1), [:it], [:informal])[0] || {})[:name]
 
+    assert_equal "Festa di San Zeno", (Holidays.on(Date.civil(2019, 5, 21), [:it_vr], [:informal])[0] || {})[:name]
+
     assert_equal "Festa della Repubblica", (Holidays.on(Date.civil(2007, 6, 2), [:it], [:informal])[0] || {})[:name]
+
+    assert_equal "Festa di Sant'Antonio di Padova", (Holidays.on(Date.civil(2019, 6, 13), [:it_pd], [:informal])[0] || {})[:name]
 
     assert_equal "Festa di San Giovanni Battista", (Holidays.on(Date.civil(2019, 6, 24), [:it_fi, :it_ge, :it_to], [:informal])[0] || {})[:name]
 
@@ -31,7 +37,13 @@ class ItDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Assunzione", (Holidays.on(Date.civil(2007, 8, 15), [:it], [:informal])[0] || {})[:name]
 
+    assert_equal "Festa della Madonna di Monte Berico", (Holidays.on(Date.civil(2019, 9, 8), [:it_vi], [:informal])[0] || {})[:name]
+
     assert_equal "Ognissanti", (Holidays.on(Date.civil(2007, 11, 1), [:it], [:informal])[0] || {})[:name]
+
+    assert_equal "Festa di San Martino", (Holidays.on(Date.civil(2019, 11, 11), [:it_bl], [:informal])[0] || {})[:name]
+
+    assert_equal "Festa di San Bellino", (Holidays.on(Date.civil(2019, 11, 26), [:it_ro], [:informal])[0] || {})[:name]
 
     assert_equal "Immacolata Concezione", (Holidays.on(Date.civil(2007, 12, 8), [:it], [:informal])[0] || {})[:name]
 

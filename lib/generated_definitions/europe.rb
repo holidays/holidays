@@ -7,7 +7,7 @@ module Holidays
   # All the definitions are available at https://github.com/holidays/holidays
   module EUROPE # :nodoc:
     def self.defined_regions
-      [:at, :be_fr, :be_nl, :ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_ne, :ch_ge, :ch_ju, :ch_vs, :ch, :cz, :dk, :de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_sorbian, :de_th_cath, :de_sn, :de_st, :de_be, :de_by_cath, :de_by_augsburg, :de_bb, :de_mv, :de_th, :de_hb, :de_hh, :de_ni, :de_sh, :el, :es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex, :es, :es_ct, :es_v, :es_vc, :fr_a, :fr_m, :fr, :gb, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :je, :gb_jsy, :gg, :gb_gsy, :gb_sct, :gb_con, :im, :gb_iom, :hr, :hu, :ie, :is, :it, :it_fi, :it_ge, :it_to, :it_rm, :li, :lt, :lv, :nl, :no, :pl, :pt, :pt_li, :pt_po, :ro, :sk, :si, :bg_en, :bg_bg, :ua]
+      [:at, :be_fr, :be_nl, :ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_ne, :ch_ge, :ch_ju, :ch_vs, :ch, :cz, :dk, :de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_sorbian, :de_th_cath, :de_sn, :de_st, :de_be, :de_by_cath, :de_by_augsburg, :de_bb, :de_mv, :de_th, :de_hb, :de_hh, :de_ni, :de_sh, :el, :es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex, :es, :es_ct, :es_v, :es_vc, :fr_a, :fr_m, :fr, :gb, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :je, :gb_jsy, :gg, :gb_gsy, :gb_sct, :gb_con, :im, :gb_iom, :hr, :hu, :ie, :is, :it, :it_ve, :it_tv, :it_vr, :it_pd, :it_fi, :it_ge, :it_to, :it_rm, :it_vi, :it_bl, :it_ro, :li, :lt, :lv, :nl, :no, :pl, :pt, :pt_li, :pt_po, :ro, :sk, :si, :bg_en, :bg_bg, :ua]
     end
 
     def self.holidays_by_month
@@ -76,8 +76,9 @@ module Holidays
             {:function => "easter(year)", :function_arguments => [:year], :name => "Uskrs", :regions => [:hr]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Uskrsni ponedjeljak", :regions => [:hr]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 60, :name => "Tijelovo", :regions => [:hr]},
-            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Húsvét hétfő", :regions => [:hu]},
-            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Pünkösd hétfő", :regions => [:hu]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :year_ranges => { :from => 2017 },:name => "Nagypéntek", :regions => [:hu]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Húsvéthétfő", :regions => [:hu]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Pünkösdhétfő", :regions => [:hu]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:ie]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -48, :name => "Bolludagur", :regions => [:is]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -47, :name => "Sprengidagur", :regions => [:is]},
@@ -231,6 +232,7 @@ module Holidays
             {:mday => 1, :name => "Verkalýðsdagurinn", :regions => [:is]},
             {:mday => 13, :name => "Mæðradagurinn", :regions => [:is]},
             {:mday => 1, :name => "Festa dei Lavoratori", :regions => [:it]},
+            {:mday => 21, :name => "Festa di San Zeno", :regions => [:it_vr]},
             {:mday => 1, :name => "Tag der Arbeit", :regions => [:li]},
             {:mday => 1, :name => "Darbininkų diena", :regions => [:lt]},
             {:mday => 1, :name => "Darba svētki, Latvijas Republikas Satversmes sapulces sasaukšanas diena", :regions => [:lv]},
@@ -322,6 +324,8 @@ module Holidays
             {:mday => 1, :name => "Mindenszentek", :regions => [:hu]},
             {:mday => 16, :name => "Dagur íslenskrar tungu", :regions => [:is]},
             {:mday => 1, :name => "Ognissanti", :regions => [:it]},
+            {:mday => 11, :name => "Festa di San Martino", :regions => [:it_bl]},
+            {:mday => 26, :name => "Festa di San Bellino", :regions => [:it_ro]},
             {:mday => 1, :name => "Allerheiligen", :regions => [:li]},
             {:mday => 1, :name => "Visų šventųjų diena", :regions => [:lt]},
             {:mday => 18, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Latvijas Republikas Proklamēšanas diena", :regions => [:lv]},
@@ -458,6 +462,8 @@ module Holidays
             {:mday => 23, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "San Jorge, Día de Aragón", :regions => [:es_ar]},
             {:function => "is_sumardagurinn_fyrsti(year)", :function_arguments => [:year], :name => "Sumardagurinn fyrsti", :regions => [:is]},
             {:mday => 25, :name => "Festa della Liberazione", :regions => [:it]},
+            {:mday => 25, :name => "Festa di San Marco Evangelista", :regions => [:it_ve]},
+            {:mday => 27, :name => "Festa di San Liberale", :regions => [:it_tv]},
             {:mday => 27, :name => "Koningsdag", :regions => [:nl]},
             {:mday => 1, :type => :informal, :name => "Prima Aprilis", :regions => [:pl]},
             {:mday => 22, :type => :informal, :name => "Międzynarodowy Dzień Ziemi", :regions => [:pl]},
@@ -477,6 +483,7 @@ module Holidays
             {:mday => 3, :type => :informal, :name => "Sjómannadagurinn", :regions => [:is]},
             {:mday => 17, :name => "Lýðveldisdagurinn", :regions => [:is]},
             {:mday => 2, :name => "Festa della Repubblica", :regions => [:it]},
+            {:mday => 13, :name => "Festa di Sant'Antonio di Padova", :regions => [:it_pd]},
             {:mday => 24, :name => "Festa di San Giovanni Battista", :regions => [:it_fi, :it_ge, :it_to]},
             {:mday => 29, :name => "Festa di San Pietro e Paolo", :regions => [:it_rm]},
             {:mday => 24, :name => "Joninės", :regions => [:lt]},
@@ -497,6 +504,7 @@ module Holidays
             {:mday => 8, :name => "Día de Extremadura", :regions => [:es_ex]},
             {:mday => 11, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Fiesta Nacional de Cataluña", :regions => [:es_ct]},
             {:mday => 24, :name => "La Mercè", :regions => [:es_ct]},
+            {:mday => 8, :name => "Festa della Madonna di Monte Berico", :regions => [:it_vi]},
             {:mday => 8, :name => "Maria Geburt", :regions => [:li]},
             {:mday => 24, :year_ranges => { :limited => [2018] },:name => "Viņa Svētības pāvesta Franciska pastorālās vizītes Latvijā diena", :regions => [:lv]},
             {:mday => 30, :type => :informal, :name => "Dzień Chłopaka", :regions => [:pl]},

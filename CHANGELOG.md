@@ -4,6 +4,7 @@
 
 * Remove support for ruby 2.2 and ruby 2.3.
 * Add support for latest ruby 2.6
+* Update to [v5.0.1 definitions](https://github.com/holidays/definitions/releases/tag/v5.0.1). Please see the changelog for the definition details.
 
 ## 7.1.0
 

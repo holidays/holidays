@@ -12,8 +12,9 @@ module Holidays
 
     def self.holidays_by_month
       {
-                0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Húsvét hétfő", :regions => [:hu]},
-            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Pünkösd hétfő", :regions => [:hu]}],
+                0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :year_ranges => { :from => 2017 },:name => "Nagypéntek", :regions => [:hu]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Húsvéthétfő", :regions => [:hu]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Pünkösdhétfő", :regions => [:hu]}],
       1 => [{:mday => 1, :name => "Újév", :regions => [:hu]}],
       3 => [{:mday => 15, :name => "1848/49-es forradalom és szabadságharc ünnepe", :regions => [:hu]}],
       5 => [{:mday => 1, :name => "A munka ünnepe", :regions => [:hu]}],
