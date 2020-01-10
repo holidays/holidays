@@ -103,7 +103,7 @@ module Holidays
             {:wday => 1, :week => 1, :name => "Labor Day", :regions => [:us]},
             {:function => "rosh_hashanah(year)", :function_arguments => [:year], :name => "Rosh Hashanah", :regions => [:us_tx]},
             {:function => "yom_kippur(year)", :function_arguments => [:year], :name => "Yom Kippur", :regions => [:us_tx]}],
-      10 => [{:wday => 1, :week => 2, :name => "Thanksgiving", :regions => [:ca_ab, :ca_bc, :ca_mb, :ca_nt, :ca_nu, :ca_on, :ca_sk, :ca_yt]},
+      10 => [{:wday => 1, :week => 2, :name => "Thanksgiving", :regions => [:ca_ab, :ca_bc, :ca_mb, :ca_nt, :ca_nu, :ca_on, :ca_qc, :ca_sk, :ca_yt]},
             {:mday => 12, :type => :informal, :name => "Día de la Raza", :regions => [:mx]},
             {:wday => 1, :week => 2, :name => "Columbus Day", :regions => [:us_al, :us_az, :us_co, :us_ct, :us_dc, :us_ga, :us_id, :us_il, :us_in, :us_ma, :us_md, :us_me, :us_mo, :us_mt, :us_ne, :us_nj, :us_nm, :us_ny, :us_oh, :us_pa, :us_ri, :us_ut, :us_va, :us_wv]},
             {:wday => 1, :week => 2, :type => :informal, :name => "Columbus Day", :regions => [:us_ak, :us_ar, :us_ca, :us_de, :us_fl, :us_hi, :us_mi, :us_mn, :us_nd, :us_nv, :us_or, :us_sd, :us_tx, :us_vt, :us_wa, :us_wi, :us_wy]},

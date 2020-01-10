@@ -261,6 +261,8 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Internationaler Frauentag", (Holidays.on(Date.civil(2019, 3, 8), [:de_be])[0] || {})[:name]
 
+    assert_equal "Tag der Befreiung", (Holidays.on(Date.civil(2020, 5, 8), [:de_be])[0] || {})[:name]
+
     assert_equal "Πρωτοχρονιά", (Holidays.on(Date.civil(2011, 1, 1), [:el], [:informal])[0] || {})[:name]
 
     assert_equal "Θεοφάνεια", (Holidays.on(Date.civil(2011, 1, 6), [:el], [:informal])[0] || {})[:name]
@@ -555,21 +557,21 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Nova godina", (Holidays.on(Date.civil(2012, 1, 1), [:hr], [:informal])[0] || {})[:name]
 
-    assert_equal "Sveta tri kralja", (Holidays.on(Date.civil(2012, 1, 6), [:hr], [:informal])[0] || {})[:name]
+    assert_equal "Bogojavljenje ili Sveta tri kralja", (Holidays.on(Date.civil(2012, 1, 6), [:hr], [:informal])[0] || {})[:name]
 
-    assert_equal "Međunarodni praznik rada", (Holidays.on(Date.civil(2012, 5, 1), [:hr], [:informal])[0] || {})[:name]
+    assert_equal "Praznik rada", (Holidays.on(Date.civil(2012, 5, 1), [:hr], [:informal])[0] || {})[:name]
 
     assert_equal "Dan antifašističke borbe", (Holidays.on(Date.civil(2012, 6, 22), [:hr], [:informal])[0] || {})[:name]
 
-    assert_equal "Dan državnosti", (Holidays.on(Date.civil(2012, 6, 25), [:hr], [:informal])[0] || {})[:name]
+    assert_equal "Dan državnosti", (Holidays.on(Date.civil(2020, 5, 30), [:hr], [:informal])[0] || {})[:name]
 
-    assert_equal "Dan pobjede i domovinske zahvalnosti i dan hrvatskih branitelja", (Holidays.on(Date.civil(2012, 8, 5), [:hr], [:informal])[0] || {})[:name]
+    assert_equal "Dan pobjede i domovinske zahvalnosti i Dan hrvatskih branitelja", (Holidays.on(Date.civil(2012, 8, 5), [:hr], [:informal])[0] || {})[:name]
 
     assert_equal "Velika Gospa", (Holidays.on(Date.civil(2012, 8, 15), [:hr], [:informal])[0] || {})[:name]
 
-    assert_equal "Dan neovisnosti", (Holidays.on(Date.civil(2012, 10, 8), [:hr], [:informal])[0] || {})[:name]
+    assert_equal "Dan sjećanja na žrtve Domovinskog rata i Dan sjećanja na žrtvu Vukovara i Škabrnje", (Holidays.on(Date.civil(2020, 11, 18), [:hr], [:informal])[0] || {})[:name]
 
-    assert_equal "Dan svih svetih", (Holidays.on(Date.civil(2012, 11, 1), [:hr], [:informal])[0] || {})[:name]
+    assert_equal "Svi sveti", (Holidays.on(Date.civil(2012, 11, 1), [:hr], [:informal])[0] || {})[:name]
 
     assert_equal "Božić", (Holidays.on(Date.civil(2012, 12, 25), [:hr], [:informal])[0] || {})[:name]
 
