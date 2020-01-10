@@ -53,7 +53,7 @@ module Holidays
             {:wday => 1, :week => 1, :name => "Terry Fox Day", :regions => [:ca_mb]},
             {:wday => 1, :week => 3, :name => "Discovery Day", :regions => [:ca_yt]}],
       9 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:ca]}],
-      10 => [{:wday => 1, :week => 2, :name => "Thanksgiving", :regions => [:ca_ab, :ca_bc, :ca_mb, :ca_nt, :ca_nu, :ca_on, :ca_sk, :ca_yt]},
+      10 => [{:wday => 1, :week => 2, :name => "Thanksgiving", :regions => [:ca_ab, :ca_bc, :ca_mb, :ca_nt, :ca_nu, :ca_on, :ca_qc, :ca_sk, :ca_yt]},
             {:mday => 31, :type => :informal, :name => "Halloween", :regions => [:us, :ca]}],
       11 => [{:mday => 11, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Remembrance Day", :regions => [:ca_ab, :ca_sk, :ca_bc, :ca_pe, :ca_nl, :ca_nt, :ca_nu, :ca_nb, :ca_yt]}],
       12 => [{:mday => 25, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:ca]},
