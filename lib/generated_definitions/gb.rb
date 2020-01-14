@@ -18,7 +18,7 @@ module Holidays
             {:mday => 2, :observed => "to_weekday_if_boxing_weekend(date)", :observed_arguments => [:date], :name => "2nd January", :regions => [:gb_sct]}],
       3 => [{:mday => 5, :name => "St. Piran's Day", :regions => [:gb_con]},
             {:mday => 17, :name => "St. Patrick's Day", :regions => [:gb_nir]}],
-      5 => [{:wday => 1, :week => 1, :name => "May Day", :regions => [:gb]},
+      5 => [{:mday => 8, :name => "May Day", :regions => [:gb]},
             {:mday => 9, :name => "Liberation Day", :regions => [:je, :gb_jsy, :gg, :gb_gsy]},
             {:wday => 1, :week => -1, :name => "Spring Bank Holiday", :regions => [:gb]}],
       7 => [{:mday => 5, :name => "Tynwald Day", :regions => [:im, :gb_iom]},

@@ -205,7 +205,7 @@ module Holidays
             {:mday => 31, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de la Región Castilla-La Mancha", :regions => [:es_cm]},
             {:mday => 1, :name => "Fête du travail", :regions => [:fr]},
             {:mday => 8, :name => "Victoire 1945", :regions => [:fr]},
-            {:wday => 1, :week => 1, :name => "May Day", :regions => [:gb]},
+            {:mday => 8, :name => "May Day", :regions => [:gb]},
             {:mday => 9, :name => "Liberation Day", :regions => [:je, :gb_jsy, :gg, :gb_gsy]},
             {:wday => 1, :week => -1, :name => "Spring Bank Holiday", :regions => [:gb]},
             {:mday => 1, :name => "Međunarodni praznik rada", :regions => [:hr]},
