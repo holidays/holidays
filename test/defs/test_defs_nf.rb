@@ -19,5 +19,11 @@ assert_equal "Easter Monday", (Holidays.on(Date.civil(2020, 4, 13), [:nf])[0] ||
 assert_equal "Queen's Birthday", (Holidays.on(Date.civil(2019, 6, 10), [:nf])[0] || {})[:name]
 assert_equal "Queen's Birthday", (Holidays.on(Date.civil(2020, 6, 15), [:nf])[0] || {})[:name]
 
+    assert_equal "Australia Day", (Holidays.on(Date.civil(2019, 1, 28), [:nf], [:observed])[0] || {})[:name]
+assert_equal "Australia Day", (Holidays.on(Date.civil(2020, 1, 27), [:nf], [:observed])[0] || {})[:name]
+
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2019, 12, 26), [:nf], [:observed])[0] || {})[:name]
+assert_equal "Boxing Day", (Holidays.on(Date.civil(2020, 12, 28), [:nf], [:observed])[0] || {})[:name]
+
   end
 end
