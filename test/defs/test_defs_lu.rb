@@ -25,5 +25,11 @@ class LuDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Péngschtméindeg", (Holidays.on(Date.civil(2008, 5, 11), [:lu], [:informal])[0] || {})[:name]
 
+    assert_equal "Dag vun der Aarbecht", (Holidays.on(Date.civil(2019, 5, 1), [:lu])[0] || {})[:name]
+
+    assert_equal "Europadag", (Holidays.on(Date.civil(2019, 5, 9), [:lu])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2018, 5, 9), [:lu])[0] || {})[:name]
+
   end
 end
