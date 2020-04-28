@@ -240,6 +240,14 @@ assert_equal "Boxing Day", (Holidays.on(Date.civil(2016, 12, 27), [:ca_on], [:ob
 
     assert_equal "Terry Fox Day", (Holidays.on(Date.civil(2045, 8, 7), [:ca_mb])[0] || {})[:name]
 
+    assert_equal "Nunavut Day", (Holidays.on(Date.civil(2020, 7, 9), [:ca_nu])[0] || {})[:name]
+
+    assert_equal "Nunavut Day", (Holidays.on(Date.civil(2021, 7, 9), [:ca_nu])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2019, 7, 9), [:ca_nu])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2018, 7, 9), [:ca_nu])[0] || {})[:name]
+
     assert_equal "Groundhog Day", (Holidays.on(Date.civil(2013, 2, 2), [:us], [:informal])[0] || {})[:name]
 
     assert_equal "Valentine's Day", (Holidays.on(Date.civil(2013, 2, 14), [:us], [:informal])[0] || {})[:name]
