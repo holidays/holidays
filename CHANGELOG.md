@@ -1,5 +1,9 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 8.2.0
+
+* Update submodule definitions. Thanks to contributors!!
+
 ## 8.1.0
 
 * Update submodule definitions, so that the newest holidays from the definition
