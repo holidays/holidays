@@ -13,7 +13,7 @@ module Holidays
     def self.holidays_by_month
       {
                 1 => [{:mday => 1, :name => "Año nuevo", :regions => [:mx]},
-            {:mday => 6, :name => "Dia de los Santos Reyes", :regions => [:mx]}],
+            {:mday => 6, :type => :informal, :name => "Dia de los Santos Reyes", :regions => [:mx]}],
       2 => [{:wday => 1, :week => 1, :name => "Día de la Constitución", :regions => [:mx]},
             {:mday => 2, :type => :informal, :name => "Groundhog Day", :regions => [:us, :ca]},
             {:mday => 14, :type => :informal, :name => "Valentine's Day", :regions => [:us, :ca]}],
@@ -24,7 +24,7 @@ module Holidays
             {:mday => 22, :type => :informal, :name => "Earth Day", :regions => [:us, :ca]}],
       5 => [{:mday => 1, :name => "Día del Trabajo", :regions => [:mx]},
             {:mday => 5, :type => :informal, :name => "Cinco de Mayo", :regions => [:mx]},
-            {:mday => 5, :name => "La Batalla de Puebla", :regions => [:mx_pue]},
+            {:mday => 5, :type => :informal, :name => "La Batalla de Puebla", :regions => [:mx_pue]},
             {:mday => 10, :type => :informal, :name => "Día de la Madre", :regions => [:mx]},
             {:mday => 15, :type => :informal, :name => "Día del Maestro", :regions => [:mx]},
             {:wday => 0, :week => 2, :type => :informal, :name => "Mother's Day", :regions => [:us, :ca]},
@@ -41,7 +41,7 @@ module Holidays
       12 => [{:mday => 12, :type => :informal, :name => "Día de la Virgen de Guadalupe", :regions => [:mx]},
             {:mday => 24, :type => :informal, :name => "Nochebuena", :regions => [:mx]},
             {:mday => 25, :name => "Navidad", :regions => [:mx]},
-            {:mday => 28, :name => "Los Santos Inocentes", :regions => [:mx]}]
+            {:mday => 28, :type => :informal, :name => "Los Santos Inocentes", :regions => [:mx]}]
       }
     end
 

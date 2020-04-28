@@ -223,5 +223,25 @@ class FederalreservebanksDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Christmas Day", (Holidays.on(Date.civil(2023, 12, 25), [:federalreservebanks], [:observed])[0] || {})[:name]
 
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2024, 1, 1), [:federalreservebanks], [:observed])[0] || {})[:name]
+
+    assert_equal "Birthday of Martin Luther King, Jr", (Holidays.on(Date.civil(2024, 1, 15), [:federalreservebanks], [:observed])[0] || {})[:name]
+
+    assert_equal "Washington's Birthday", (Holidays.on(Date.civil(2024, 2, 19), [:federalreservebanks], [:observed])[0] || {})[:name]
+
+    assert_equal "Memorial Day", (Holidays.on(Date.civil(2024, 5, 27), [:federalreservebanks], [:observed])[0] || {})[:name]
+
+    assert_equal "Independence Day", (Holidays.on(Date.civil(2024, 7, 4), [:federalreservebanks], [:observed])[0] || {})[:name]
+
+    assert_equal "Labor Day", (Holidays.on(Date.civil(2024, 9, 2), [:federalreservebanks], [:observed])[0] || {})[:name]
+
+    assert_equal "Columbus Day", (Holidays.on(Date.civil(2024, 10, 14), [:federalreservebanks], [:observed])[0] || {})[:name]
+
+    assert_equal "Veterans Day", (Holidays.on(Date.civil(2024, 11, 11), [:federalreservebanks], [:observed])[0] || {})[:name]
+
+    assert_equal "Thanksgiving Day", (Holidays.on(Date.civil(2024, 11, 28), [:federalreservebanks], [:observed])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2024, 12, 25), [:federalreservebanks], [:observed])[0] || {})[:name]
+
   end
 end
