@@ -42,7 +42,7 @@ module Holidays
             {:wday => 0, :week => 3, :type => :informal, :name => "Father's Day", :regions => [:us, :ca]}],
       7 => [{:mday => 1, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Canada Day", :regions => [:ca]},
             {:mday => 12, :type => :informal, :name => "Orangemen's Day", :regions => [:ca_nl]},
-            {:mday => 9, :name => "Nunavut Day", :regions => [:ca_nu]}],
+            {:mday => 9, :year_ranges => { :from => 2020 },:observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Nunavut Day", :regions => [:ca_nu]}],
       8 => [{:wday => 1, :week => 1, :name => "B.C. Day", :regions => [:ca_bc]},
             {:wday => 1, :week => 1, :name => "Saskatchewan Day", :regions => [:ca_sk]},
             {:wday => 1, :week => 1, :type => :informal, :name => "Heritage Day", :regions => [:ca_ab]},
