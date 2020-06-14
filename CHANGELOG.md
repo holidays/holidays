@@ -1,5 +1,11 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 8.3.0
+
+* Update submodule definitions. 
+* Remove test about feb 29 on non leap year.
+* Thanks to contributors!!
+
 ## 8.2.0
 
 * Update submodule definitions. Thanks to contributors!!
