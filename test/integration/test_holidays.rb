@@ -142,28 +142,6 @@ class HolidaysTests < Test::Unit::TestCase
     assert_empty holidays
   end
 
-  def test_year_holidays_feb_29_on_non_leap_year
-    assert_raises ArgumentError do
-      Holidays.year_holidays([:ca_on], Date.civil(2015, 2, 29))
-    end
-
-    assert_raises ArgumentError do
-      Holidays.year_holidays([:ca_on], Date.civil(2019, 2, 29))
-    end
-
-    assert_raises ArgumentError do
-      Holidays.year_holidays([:ca_on], Date.civil(2021, 2, 29))
-    end
-
-    assert_raises ArgumentError do
-      Holidays.year_holidays([:us], Date.civil(2023, 2, 29))
-    end
-
-    assert_raises ArgumentError do
-      Holidays.year_holidays([:ca_on], Date.civil(2025, 2, 29))
-    end
-  end
-
   def test_year_holidays_random_years
     # Should be 1 less holiday, as Family day didn't exist in Ontario in 1990
     holidays = Holidays.year_holidays([:ca_on], Date.civil(1990, 1, 1))
