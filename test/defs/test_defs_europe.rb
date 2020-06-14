@@ -131,6 +131,10 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Näfelser Fahrt", (Holidays.on(Date.civil(2014, 4, 3), [:ch_gl])[0] || {})[:name]
 
+    assert_equal "Zibelemärit", (Holidays.on(Date.civil(2014, 11, 24), [:ch_be])[0] || {})[:name]
+
+    assert_equal "Zibelemärit", (Holidays.on(Date.civil(2020, 11, 23), [:ch_be])[0] || {})[:name]
+
     assert_equal "Den obnovy samostatného českého státu", (Holidays.on(Date.civil(2010, 1, 1), [:cz], [:informal])[0] || {})[:name]
 
     assert_equal "Velký pátek", (Holidays.on(Date.civil(2016, 3, 25), [:cz], [:informal])[0] || {})[:name]
@@ -417,6 +421,8 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Fiesta Nacional de Cataluña", (Holidays.on(Date.civil(2009, 9, 11), [:es_ct])[0] || {})[:name]
 
+    assert_equal "Lunes de Pascua Granada", (Holidays.on(Date.civil(2020, 6, 1), [:es_ct])[0] || {})[:name]
+
     assert_equal "Jour de l'an", (Holidays.on(Date.civil(2007, 1, 1), [:fr])[0] || {})[:name]
 
     assert_equal "Lundi de Pâques", (Holidays.on(Date.civil(2007, 4, 9), [:fr])[0] || {})[:name]
@@ -472,6 +478,22 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_equal "St. Patrick's Day", (Holidays.on(Date.civil(2019, 3, 17), [:gb_nir], [:informal])[0] || {})[:name]
 
     assert_equal "St. Patrick's Day", (Holidays.on(Date.civil(2019, 3, 18), [:gb_nir], [:observed, :informal])[0] || {})[:name]
+
+    assert_equal "Battle of the Boyne", (Holidays.on(Date.civil(2020, 7, 12), [:gb_nir])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2020, 7, 12), [:gb_nir], [:observed])[0] || {})[:name]
+
+    assert_equal "Battle of the Boyne", (Holidays.on(Date.civil(2020, 7, 13), [:gb_nir], [:observed])[0] || {})[:name]
+
+    assert_equal "Battle of the Boyne", (Holidays.on(Date.civil(2008, 7, 12), [:gb_nir])[0] || {})[:name]
+
+    assert_equal "Battle of the Boyne", (Holidays.on(Date.civil(2008, 7, 14), [:gb_nir], [:observed])[0] || {})[:name]
+
+    assert_equal "Battle of the Boyne", (Holidays.on(Date.civil(2021, 7, 12), [:gb_nir])[0] || {})[:name]
+
+    assert_equal "Battle of the Boyne", (Holidays.on(Date.civil(2021, 7, 12), [:gb_nir], [:observed])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2021, 7, 13), [:gb_nir], [:observed])[0] || {})[:name]
 
     assert_equal "St. Andrew's Day", (Holidays.on(Date.civil(2006, 11, 30), [:gb_sct], [:informal])[0] || {})[:name]
 

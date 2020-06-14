@@ -25,7 +25,7 @@ module Holidays
             {:mday => 9, :name => "Liberation Day", :regions => [:je, :gb_jsy, :gg, :gb_gsy]},
             {:wday => 1, :week => -1, :name => "Bank Holiday", :regions => [:gb]}],
       7 => [{:mday => 5, :name => "Tynwald Day", :regions => [:im, :gb_iom]},
-            {:mday => 12, :name => "Battle of the Boyne", :regions => [:gb_nir]}],
+            {:mday => 12, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Battle of the Boyne", :regions => [:gb_nir]}],
       8 => [{:wday => 1, :week => 1, :name => "Bank Holiday", :regions => [:gb_sct]},
             {:wday => 1, :week => -1, :name => "Bank Holiday", :regions => [:gb_eng, :gb_wls, :gb_eaw, :gb_nir, :je, :gb_jsy, :gg, :gb_gsy]}],
       11 => [{:mday => 5, :type => :informal, :name => "Guy Fawkes Day", :regions => [:gb]},

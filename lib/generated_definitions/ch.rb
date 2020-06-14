@@ -32,7 +32,8 @@ module Holidays
             {:mday => 15, :name => "Mariä Himmelfahrt", :regions => [:ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_zg, :ch_fr, :ch_so, :ch_ai, :ch_ag, :ch_ti, :ch_vs, :ch_ju]}],
       9 => [{:mday => 22, :name => "Mauritiustag", :regions => [:ch_ai]},
             {:mday => 25, :name => "Bruderklausenfest", :regions => [:ch_ow]}],
-      11 => [{:mday => 1, :name => "Allerheiligen", :regions => [:ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_ai, :ch_sg, :ch_ag, :ch_ti, :ch_vs, :ch_ju]}],
+      11 => [{:function => "ch_be_zibelemaerit(year)", :function_arguments => [:year], :name => "Zibelemärit", :regions => [:ch_be]},
+            {:mday => 1, :name => "Allerheiligen", :regions => [:ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_ai, :ch_sg, :ch_ag, :ch_ti, :ch_vs, :ch_ju]}],
       12 => [{:mday => 8, :name => "Maria Empfängnis", :regions => [:ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_zg, :ch_fr, :ch_ai, :ch_ag, :ch_ti, :ch_vs]},
             {:mday => 25, :name => "Weihnachten", :regions => [:ch]},
             {:mday => 26, :name => "Stefanstag", :regions => [:ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vs, :ch_ne]},
@@ -74,6 +75,17 @@ if date.eql?(Holidays::Factory::DateCalculator::Easter::Gregorian.easter_calcula
   date += 7
 end
 date
+},
+
+"ch_be_zibelemaerit(year)" => Proc.new { |year|
+date = Date.civil(year,11,1)
+# Find the first Monday of November
+until date.wday.eql? 1 do
+  date += 1
+end
+# There are 21 days between the first monday
+# and the 4rth Monday after
+date + 21
 },
 
 
