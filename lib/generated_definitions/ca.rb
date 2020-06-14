@@ -50,7 +50,7 @@ module Holidays
             {:wday => 1, :week => 1, :name => "Civic Holiday", :regions => [:ca_nt, :ca_nu]},
             {:wday => 1, :week => 1, :type => :informal, :name => "Civic Holiday", :regions => [:ca_on, :ca_pe]},
             {:wday => 1, :week => 1, :name => "New Brunswick Day", :regions => [:ca_nb]},
-            {:wday => 1, :week => 1, :name => "Terry Fox Day", :regions => [:ca_mb]},
+            {:wday => 1, :week => 1, :type => :informal, :name => "Terry Fox Day", :regions => [:ca_mb]},
             {:wday => 1, :week => 3, :name => "Discovery Day", :regions => [:ca_yt]}],
       9 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:ca]}],
       10 => [{:wday => 1, :week => 2, :name => "Thanksgiving", :regions => [:ca_ab, :ca_bc, :ca_mb, :ca_nt, :ca_nu, :ca_on, :ca_qc, :ca_sk, :ca_yt]},

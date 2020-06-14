@@ -232,13 +232,15 @@ assert_equal "Boxing Day", (Holidays.on(Date.civil(2016, 12, 27), [:ca_on], [:ob
 
     assert_equal "National Aboriginal Day", (Holidays.on(Date.civil(2018, 6, 21), [:ca_yt])[0] || {})[:name]
 
-    assert_equal "Terry Fox Day", (Holidays.on(Date.civil(2019, 8, 5), [:ca_mb])[0] || {})[:name]
+    assert_equal "Terry Fox Day", (Holidays.on(Date.civil(2019, 8, 5), [:ca_mb], [:informal])[0] || {})[:name]
 
-    assert_equal "Terry Fox Day", (Holidays.on(Date.civil(2020, 8, 3), [:ca_mb])[0] || {})[:name]
+    assert_equal "Terry Fox Day", (Holidays.on(Date.civil(2020, 8, 3), [:ca_mb], [:informal])[0] || {})[:name]
 
-    assert_equal "Terry Fox Day", (Holidays.on(Date.civil(2015, 8, 3), [:ca_mb])[0] || {})[:name]
+    assert_nil (Holidays.on(Date.civil(2020, 8, 3), [:ca_mb])[0] || {})[:name]
 
-    assert_equal "Terry Fox Day", (Holidays.on(Date.civil(2045, 8, 7), [:ca_mb])[0] || {})[:name]
+    assert_equal "Terry Fox Day", (Holidays.on(Date.civil(2015, 8, 3), [:ca_mb], [:informal])[0] || {})[:name]
+
+    assert_equal "Terry Fox Day", (Holidays.on(Date.civil(2045, 8, 7), [:ca_mb], [:informal])[0] || {})[:name]
 
     assert_equal "Nunavut Day", (Holidays.on(Date.civil(2020, 7, 9), [:ca_nu])[0] || {})[:name]
 

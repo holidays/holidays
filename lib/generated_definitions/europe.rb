@@ -64,6 +64,7 @@ module Holidays
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -3, :name => "Jueves Santo", :regions => [:es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Viernes Santo", :regions => [:es]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Lunes de Pascua", :regions => [:es_pv, :es_ct, :es_na, :es_v, :es_vc]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Lunes de Pascua Granada", :regions => [:es_ct]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Vendredi saint", :regions => [:fr_a, :fr_m]},
             {:function => "easter(year)", :function_arguments => [:year], :type => :informal, :name => "Pâques", :regions => [:fr]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Lundi de Pâques", :regions => [:fr]},
@@ -299,7 +300,7 @@ module Holidays
             {:mday => 28, :name => "Επέτειος του Όχι", :regions => [:el]},
             {:mday => 9, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de Valencia", :regions => [:es_vc, :es_v]},
             {:mday => 12, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de la Hispanidad", :regions => [:es]},
-            {:mday => 8, :year_ranges => { :until => 2020 },:name => "Dan neovisnosti", :regions => [:hr]},
+            {:mday => 8, :year_ranges => { :until => 2019 },:name => "Dan neovisnosti", :regions => [:hr]},
             {:mday => 23, :name => "1956-os forradalom és szabadságharc ünnepe", :regions => [:hu]},
             {:wday => 1, :week => -1, :name => "October Bank Holiday", :regions => [:ie]},
             {:mday => 14, :type => :informal, :name => "Dzień Nauczyciela (Dzień Edukacji Narodowej)", :regions => [:pl]},
@@ -311,6 +312,7 @@ module Holidays
             {:mday => 11, :name => "Armistice 1918", :regions => [:be_fr]},
             {:mday => 1, :name => "Allerheiligen", :regions => [:be_nl]},
             {:mday => 11, :name => "Wapenstilstand 1918", :regions => [:be_nl]},
+            {:function => "ch_be_zibelemaerit(year)", :function_arguments => [:year], :name => "Zibelemärit", :regions => [:ch_be]},
             {:mday => 1, :name => "Allerheiligen", :regions => [:ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_ai, :ch_sg, :ch_ag, :ch_ti, :ch_vs, :ch_ju]},
             {:mday => 17, :name => "Den boje za svobodu a demokracii", :regions => [:cz]},
             {:mday => 10, :type => :informal, :name => "Mortensaften", :regions => [:dk]},
@@ -436,7 +438,7 @@ module Holidays
             {:mday => 23, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Santiago Apostol", :regions => [:es_ga]},
             {:mday => 14, :name => "Fête nationale", :regions => [:fr]},
             {:mday => 5, :name => "Tynwald Day", :regions => [:im, :gb_iom]},
-            {:mday => 12, :name => "Battle of the Boyne", :regions => [:gb_nir]},
+            {:mday => 12, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Battle of the Boyne", :regions => [:gb_nir]},
             {:mday => 6, :name => "Valstybės diena", :regions => [:lt]},
             {:mday => 5, :name => "Sviatok svätého Cyrila a svätého Metoda", :regions => [:sk]},
             {:mday => 16, :year_ranges => { :limited => [1991] },:name => "День Незалежності України", :regions => [:ua]}],
@@ -481,7 +483,7 @@ module Holidays
             {:mday => 9, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de La Rioja", :regions => [:es_lo]},
             {:mday => 24, :name => "San Juan", :regions => [:es_ct, :es_vc]},
             {:mday => 22, :name => "Dan antifašističke borbe", :regions => [:hr]},
-            {:mday => 25, :year_ranges => { :until => 2020 },:name => "Dan državnosti", :regions => [:hr]},
+            {:mday => 25, :year_ranges => { :until => 2019 },:name => "Dan državnosti", :regions => [:hr]},
             {:wday => 1, :week => 1, :name => "June Bank Holiday", :regions => [:ie]},
             {:mday => 3, :type => :informal, :name => "Sjómannadagurinn", :regions => [:is]},
             {:mday => 17, :name => "Lýðveldisdagurinn", :regions => [:is]},
@@ -561,6 +563,17 @@ if date.eql?(Holidays::Factory::DateCalculator::Easter::Gregorian.easter_calcula
   date += 7
 end
 date
+},
+
+"ch_be_zibelemaerit(year)" => Proc.new { |year|
+date = Date.civil(year,11,1)
+# Find the first Monday of November
+until date.wday.eql? 1 do
+  date += 1
+end
+# There are 21 days between the first monday
+# and the 4rth Monday after
+date + 21
 },
 
 "de_buss_und_bettag(year)" => Proc.new { |year|
