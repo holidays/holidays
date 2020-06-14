@@ -91,7 +91,7 @@ module Holidays
             {:wday => 1, :week => 1, :name => "Civic Holiday", :regions => [:ca_nt, :ca_nu]},
             {:wday => 1, :week => 1, :type => :informal, :name => "Civic Holiday", :regions => [:ca_on, :ca_pe]},
             {:wday => 1, :week => 1, :name => "New Brunswick Day", :regions => [:ca_nb]},
-            {:wday => 1, :week => 1, :name => "Terry Fox Day", :regions => [:ca_mb]},
+            {:wday => 1, :week => 1, :type => :informal, :name => "Terry Fox Day", :regions => [:ca_mb]},
             {:wday => 1, :week => 3, :name => "Discovery Day", :regions => [:ca_yt]},
             {:wday => 1, :week => 2, :name => "Victory Day", :regions => [:us_ri]},
             {:mday => 16, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Bennington Battle Day", :regions => [:us_vt]},

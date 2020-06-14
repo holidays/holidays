@@ -31,6 +31,22 @@ class GbDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "St. Patrick's Day", (Holidays.on(Date.civil(2019, 3, 18), [:gb_nir], [:observed, :informal])[0] || {})[:name]
 
+    assert_equal "Battle of the Boyne", (Holidays.on(Date.civil(2020, 7, 12), [:gb_nir])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2020, 7, 12), [:gb_nir], [:observed])[0] || {})[:name]
+
+    assert_equal "Battle of the Boyne", (Holidays.on(Date.civil(2020, 7, 13), [:gb_nir], [:observed])[0] || {})[:name]
+
+    assert_equal "Battle of the Boyne", (Holidays.on(Date.civil(2008, 7, 12), [:gb_nir])[0] || {})[:name]
+
+    assert_equal "Battle of the Boyne", (Holidays.on(Date.civil(2008, 7, 14), [:gb_nir], [:observed])[0] || {})[:name]
+
+    assert_equal "Battle of the Boyne", (Holidays.on(Date.civil(2021, 7, 12), [:gb_nir])[0] || {})[:name]
+
+    assert_equal "Battle of the Boyne", (Holidays.on(Date.civil(2021, 7, 12), [:gb_nir], [:observed])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2021, 7, 13), [:gb_nir], [:observed])[0] || {})[:name]
+
     assert_equal "St. Andrew's Day", (Holidays.on(Date.civil(2006, 11, 30), [:gb_sct], [:informal])[0] || {})[:name]
 
     assert_equal "St. Andrew's Day", (Holidays.on(Date.civil(2006, 11, 30), [:gb_sct], [:informal, :observed])[0] || {})[:name]

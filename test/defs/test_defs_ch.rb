@@ -43,5 +43,9 @@ class ChDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Näfelser Fahrt", (Holidays.on(Date.civil(2014, 4, 3), [:ch_gl])[0] || {})[:name]
 
+    assert_equal "Zibelemärit", (Holidays.on(Date.civil(2014, 11, 24), [:ch_be])[0] || {})[:name]
+
+    assert_equal "Zibelemärit", (Holidays.on(Date.civil(2020, 11, 23), [:ch_be])[0] || {})[:name]
+
   end
 end

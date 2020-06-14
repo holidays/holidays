@@ -131,5 +131,7 @@ class EsDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Fiesta Nacional de Cataluña", (Holidays.on(Date.civil(2009, 9, 11), [:es_ct])[0] || {})[:name]
 
+    assert_equal "Lunes de Pascua Granada", (Holidays.on(Date.civil(2020, 6, 1), [:es_ct])[0] || {})[:name]
+
   end
 end
