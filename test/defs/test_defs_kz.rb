@@ -8,7 +8,8 @@ class KzDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_kz
     assert_equal "Jańa jyl", (Holidays.on(Date.civil(2020, 1, 1), [:kz])[0] || {})[:name]
-assert_equal "Jańa jyl", (Holidays.on(Date.civil(2020, 1, 2), [:kz])[0] || {})[:name]
+
+    assert_equal "Jańa jyl", (Holidays.on(Date.civil(2020, 1, 2), [:kz])[0] || {})[:name]
 
     assert_equal "Halyqaralyq áıelder kúni", (Holidays.on(Date.civil(2020, 3, 8), [:kz])[0] || {})[:name]
 
