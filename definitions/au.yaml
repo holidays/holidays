@@ -5,7 +5,7 @@
 # - http://www.docep.wa.gov.au/lr/LabourRelations/Content/Wages%20and%20Conditions/Public%20Holidays/Public_Holidays.html
 # - http://www.wst.tas.gov.au/employment_info/public_holidays
 # - https://www.fairwork.gov.au/leave/public-holidays/list-of-public-holidays
---- 
+---
 months:
   0:
   - name: Good Friday
@@ -58,11 +58,14 @@ months:
     regions: [au]
     mday: 25
   - name: ANZAC Day
-    regions: [au_nsw, au_vic, au_qld, au_nt, au_act, au_sa, au_tas]
+    regions: [au_qld]
     mday: 25
     observed: to_monday_if_sunday(date)
   - name: ANZAC Day
-    regions: [au_wa]
+    regions: [au_nsw, au_vic, au_nt, au_act, au_sa, au_tas]
+    mday: 25
+  - name: ANZAC Day
+    regions: [au_wa, au_act]
     mday: 25
     observed: to_monday_if_weekend(date)
   5:
