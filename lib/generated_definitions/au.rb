@@ -27,9 +27,9 @@ module Holidays
             {:wday => 1, :week => 2, :name => "Labour Day", :regions => [:au_vic]},
             {:function => "march_pub_hol_sa(year)", :function_arguments => [:year], :name => "March Public Holiday", :regions => [:au_sa]},
             {:wday => 1, :week => 2, :name => "Canberra Day", :regions => [:au_act]}],
-      4 => [{:mday => 25, :name => "ANZAC Day", :regions => [:au]},
-            {:mday => 25, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "ANZAC Day", :regions => [:au_nsw, :au_vic, :au_qld, :au_nt, :au_sa, :au_tas]},
-            {:mday => 25, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "ANZAC Day", :regions => [:au_wa, :au_act]}],
+      4 => [{:mday => 25, :name => "ANZAC Day", :regions => [:au_nsw, :au_sa, :au_tas, :au_vic, :au_wa]},
+            {:mday => 25, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "ANZAC Day", :regions => [:au_act, :au_nt, :au_qld]},
+            {:mday => 25, :function => "additional_anzac_on_monday_if_on_weekend(date)", :function_arguments => [:date], :name => "Additional public holiday for ANZAC Day", :regions => [:au_sa, :au_wa]}],
       5 => [{:function => "qld_labour_day_may(year)", :function_arguments => [:year], :name => "Labour Day", :regions => [:au_qld]},
             {:wday => 1, :week => 1, :name => "May Day", :regions => [:au_nt]},
             {:function => "may_pub_hol_sa(year)", :function_arguments => [:year], :name => "May Public Holiday", :regions => [:au_sa]},
@@ -49,10 +49,12 @@ module Holidays
       11 => [{:function => "g20_day_2014_only(year)", :function_arguments => [:year], :name => "G20 Day", :regions => [:au_qld_brisbane]},
             {:wday => 1, :week => 1, :name => "Recreation Day", :regions => [:au_tas_north]},
             {:wday => 2, :week => 1, :name => "Melbourne Cup Day", :regions => [:au_vic_melbourne, :au_vic]}],
-      12 => [{:mday => 25, :observed => "to_tuesday_if_sunday_or_monday_if_saturday(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:au, :au_qld, :au_nsw, :au_act, :au_tas, :au_wa, :au_vic, :au_nt]},
-            {:mday => 26, :observed => "to_tuesday_if_sunday_or_monday_if_saturday(date)", :observed_arguments => [:date], :name => "Boxing Day", :regions => [:au_nsw, :au_vic, :au_qld, :au_act, :au_wa]},
-            {:mday => 26, :function => "additiona_boxing_day(date)", :function_arguments => [:date], :name => "Additional public holiday for Boxing Day", :regions => [:au_nsw, :au_vic, :au_qld, :au_act, :au_wa]},
-            {:function => "to_weekday_if_boxing_weekend_from_year(year)", :function_arguments => [:year], :name => "Boxing Day", :regions => [:au_tas, :au_nt]},
+      12 => [{:mday => 25, :name => "Christmas Day", :regions => [:au, :au_act, :au_nsw, :au_qld, :au_sa, :au_tas, :au_vic, :au_wa]},
+            {:mday => 25, :function => "additional_holiday_if_on_weekend(date)", :function_arguments => [:date], :name => "Additional public holiday for Christmas Day", :regions => [:au_act, :au_nsw, :au_qld, :au_sa, :au_tas, :au_vic, :au_wa]},
+            {:mday => 25, :observed => "to_tuesday_if_sunday_or_monday_if_saturday(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:au_nt]},
+            {:mday => 26, :name => "Boxing Day", :regions => [:au, :au_act, :au_nsw, :au_qld, :au_sa, :au_vic, :au_wa]},
+            {:mday => 26, :function => "additional_holiday_if_on_weekend(date)", :function_arguments => [:date], :name => "Additional public holiday Boxing Day", :regions => [:au_act, :au_nsw, :au_qld, :au_sa, :au_vic, :au_wa]},
+            {:mday => 26, :observed => "to_tuesday_if_sunday_or_monday_if_saturday(date)", :observed_arguments => [:date], :name => "Boxing Day", :regions => [:au_tas, :au_nt]},
             {:function => "to_weekday_if_boxing_weekend_from_year_or_to_tuesday_if_monday(year)", :function_arguments => [:year], :name => "Proclamation Day", :regions => [:au_sa]},
             {:mday => 25, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:au_sa]}]
       }
@@ -130,12 +132,20 @@ else
 end
 },
 
-"additiona_boxing_day(date)" => Proc.new { |date|
+"additional_holiday_if_on_weekend(date)" => Proc.new { |date|
 if [0,6].include?(date.wday)
+  date += 2
   date
 else
   nil
 end
+},
+
+"additional_anzac_on_monday_if_on_weekend(date)" => Proc.new { |date|
+return nil unless [0,6].include?(date.wday)
+date += 2 if date.wday == 6
+date += 1 if date.wday == 0
+date
 },
 
 
