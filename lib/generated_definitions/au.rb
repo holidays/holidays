@@ -52,9 +52,9 @@ module Holidays
       12 => [{:mday => 25, :name => "Christmas Day", :regions => [:au_act, :au_nsw, :au_qld, :au_sa, :au_tas, :au_vic, :au_wa]},
             {:mday => 25, :function => "additional_holiday_if_on_weekend(date)", :function_arguments => [:date], :name => "Additional public holiday for Christmas Day", :regions => [:au_act, :au_nsw, :au_qld, :au_sa, :au_tas, :au_vic, :au_wa]},
             {:mday => 25, :observed => "to_tuesday_if_sunday_or_monday_if_saturday(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:au_nt]},
-            {:mday => 26, :name => "Boxing Day", :regions => [:au_act, :au_nsw, :au_qld, :au_sa, :au_vic, :au_wa]},
-            {:mday => 26, :function => "additional_holiday_if_on_weekend(date)", :function_arguments => [:date], :name => "Additional public holiday Boxing Day", :regions => [:au_act, :au_nsw, :au_qld, :au_sa, :au_vic, :au_wa]},
-            {:mday => 26, :observed => "to_tuesday_if_sunday_or_monday_if_saturday(date)", :observed_arguments => [:date], :name => "Boxing Day", :regions => [:au_tas, :au_nt]},
+            {:mday => 26, :name => "Boxing Day", :regions => [:au_act, :au_nsw, :au_qld, :au_vic, :au_wa]},
+            {:mday => 26, :function => "additional_holiday_if_on_weekend(date)", :function_arguments => [:date], :name => "Additional public holiday Boxing Day", :regions => [:au_act, :au_nsw, :au_qld, :au_vic, :au_wa]},
+            {:mday => 26, :observed => "to_tuesday_if_sunday_or_monday_if_saturday(date)", :observed_arguments => [:date], :name => "Boxing Day", :regions => [:au_tas, :au_nt, :au_sa]},
             {:function => "to_weekday_if_boxing_weekend_from_year_or_to_tuesday_if_monday(year)", :function_arguments => [:year], :name => "Proclamation Day", :regions => [:au_sa]},
             {:mday => 25, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:au_sa]}]
       }
