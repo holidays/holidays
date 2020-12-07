@@ -141,10 +141,13 @@ end
 },
 
 "additional_anzac_on_monday_if_on_weekend(date)" => Proc.new { |date|
-return nil unless [0,6].include?(date.wday)
-date += 2 if date.wday == 6
-date += 1 if date.wday == 0
-date
+if [0,6].include?(date.wday)
+  date += 2 if date.wday == 6
+  date += 1 if date.wday == 0
+  date
+else
+  nil
+end
 },
 
 
