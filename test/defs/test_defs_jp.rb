@@ -115,7 +115,7 @@ class JpDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "海の日", (Holidays.on(Date.civil(2020, 7, 23), [:jp])[0] || {})[:name]
 
-    assert_equal "海の日", (Holidays.on(Date.civil(2021, 7, 19), [:jp])[0] || {})[:name]
+    assert_equal "海の日", (Holidays.on(Date.civil(2021, 7, 22), [:jp])[0] || {})[:name]
 
     assert_equal "山の日", (Holidays.on(Date.civil(2016, 8, 11), [:jp])[0] || {})[:name]
 
@@ -129,7 +129,9 @@ class JpDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_nil (Holidays.on(Date.civil(2020, 8, 11), [:jp])[0] || {})[:name]
 
-    assert_equal "山の日", (Holidays.on(Date.civil(2021, 8, 11), [:jp])[0] || {})[:name]
+    assert_equal "山の日", (Holidays.on(Date.civil(2021, 8, 8), [:jp])[0] || {})[:name]
+
+    assert_equal "振替休日", (Holidays.on(Date.civil(2021, 8, 9), [:jp])[0] || {})[:name]
 
     assert_equal "山の日", (Holidays.on(Date.civil(2022, 8, 11), [:jp])[0] || {})[:name]
 
@@ -151,7 +153,7 @@ class JpDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_nil (Holidays.on(Date.civil(2020, 10, 12), [:jp])[0] || {})[:name]
 
-    assert_equal "スポーツの日", (Holidays.on(Date.civil(2021, 10, 11), [:jp])[0] || {})[:name]
+    assert_equal "スポーツの日", (Holidays.on(Date.civil(2021, 7, 23), [:jp])[0] || {})[:name]
 
   end
 end
