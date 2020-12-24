@@ -1,5 +1,11 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 8.4.0
+
+* Update submodule definitions. 
+* Thanks to contributors!!
+
+
 ## 8.3.0
 
 * Update submodule definitions. 
