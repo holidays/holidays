@@ -32,7 +32,7 @@ module Holidays
       5 => [{:function => "qld_labour_day_may(year)", :function_arguments => [:year], :name => "Labour Day", :regions => [:au_qld]},
             {:wday => 1, :week => 1, :name => "May Day", :regions => [:au_nt]},
             {:function => "may_pub_hol_sa(year)", :function_arguments => [:year], :name => "May Public Holiday", :regions => [:au_sa]}],
-      6 => [{:wday => 1, :week => 1, :name => "Foundation Day", :regions => [:au_wa]},
+      6 => [{:wday => 1, :week => 1, :name => "Western Australia Day", :regions => [:au_wa]},
             {:wday => 1, :week => 2, :name => "Queen's Birthday", :regions => [:au_act, :au_nsw, :au_sa, :au_tas, :au_nt, :au_vic]},
             {:function => "qld_queens_birthday_june(year)", :function_arguments => [:year], :name => "Queen's Birthday", :regions => [:au_qld]},
             {:mday => 6, :type => :informal, :name => "Queensland Day", :regions => [:au_qld]}],
@@ -66,6 +66,12 @@ when 2016
   Date.civil(2016, 9, 30)
 when 2017
   Date.civil(2017, 9, 29)
+when 2018
+  Date.civil(2018, 9, 28)
+when 2019
+  Date.civil(2019,9, 27)
+when 2020
+  Date.civil(2020, 10, 23)
 end
 },
 
