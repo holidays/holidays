@@ -53,7 +53,7 @@ module Holidays
             {:function => "jp_national_culture_day(year)", :function_arguments => [:year], :name => "秋分の日", :regions => [:jp]},
             {:function => "jp_national_culture_day_substitute(year)", :function_arguments => [:year], :name => "振替休日", :regions => [:jp]}],
       10 => [{:wday => 1, :week => 2, :year_ranges => { :until => 2019 },:name => "体育の日", :regions => [:jp]},
-            {:wday => 1, :week => 2, :year_ranges => { :from => 2021 },:name => "スポーツの日", :regions => [:jp]},
+            {:wday => 1, :week => 2, :year_ranges => { :from => 2022 },:name => "スポーツの日", :regions => [:jp]},
             {:function => "jp_health_sports_day_substitute(year)", :function_arguments => [:year], :name => "振替休日", :regions => [:jp]},
             {:mday => 22, :year_ranges => { :limited => [2019] },:name => "即位礼正殿の儀", :regions => [:jp]}],
       11 => [{:mday => 3, :name => "文化の日", :regions => [:jp]},
