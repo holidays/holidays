@@ -1,5 +1,9 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 8.4.1
+
+* Fix jp holidays from 2022. 
+
 ## 8.4.0
 
 * Update submodule definitions. 
