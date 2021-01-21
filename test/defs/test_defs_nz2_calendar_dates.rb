@@ -7,29 +7,29 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class Nz2_calendar_datesDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_nz2_calendar_dates
-    assert_equal "New Year's Day", (Holidays.on(Date.civil(2007, 1, 1), [:nz2], [:informal])[0] || {})[:name]
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2007, 1, 1), [:nz2_calendar_dates], [:informal])[0] || {})[:name]
 
-    assert_equal "Day after New Year's Day", (Holidays.on(Date.civil(2007, 1, 2), [:nz2], [:informal])[0] || {})[:name]
+    assert_equal "Day after New Year's Day", (Holidays.on(Date.civil(2007, 1, 2), [:nz2_calendar_dates], [:informal])[0] || {})[:name]
 
-    assert_equal "Waitangi Day", (Holidays.on(Date.civil(2007, 2, 6), [:nz2], [:informal])[0] || {})[:name]
+    assert_equal "Waitangi Day", (Holidays.on(Date.civil(2007, 2, 6), [:nz2_calendar_dates], [:informal])[0] || {})[:name]
 
-    assert_equal "Good Friday", (Holidays.on(Date.civil(2007, 4, 6), [:nz2], [:informal])[0] || {})[:name]
+    assert_equal "Good Friday", (Holidays.on(Date.civil(2007, 4, 6), [:nz2_calendar_dates], [:informal])[0] || {})[:name]
 
-    assert_equal "Easter Monday", (Holidays.on(Date.civil(2007, 4, 9), [:nz2], [:informal])[0] || {})[:name]
+    assert_equal "Easter Monday", (Holidays.on(Date.civil(2007, 4, 9), [:nz2_calendar_dates], [:informal])[0] || {})[:name]
 
-    assert_equal "ANZ2AC Day", (Holidays.on(Date.civil(2007, 4, 25), [:nz2], [:informal])[0] || {})[:name]
+    assert_equal "ANZAC Day", (Holidays.on(Date.civil(2007, 4, 25), [:nz2_calendar_dates], [:informal])[0] || {})[:name]
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2007, 12, 25), [:nz2], [:informal])[0] || {})[:name]
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2007, 12, 25), [:nz2_calendar_dates], [:informal])[0] || {})[:name]
 
-    assert_equal "Boxing Day", (Holidays.on(Date.civil(2007, 12, 26), [:nz2], [:informal])[0] || {})[:name]
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2007, 12, 26), [:nz2_calendar_dates], [:informal])[0] || {})[:name]
 
-    assert_equal "ANZ2AC Day", (Holidays.on(Date.civil(2015, 4, 25), [:nz2])[0] || {})[:name]
+    assert_equal "ANZAC Day", (Holidays.on(Date.civil(2015, 4, 25), [:nz2_calendar_dates])[0] || {})[:name]
 
-    assert_equal "ANZ2AC Day", (Holidays.on(Date.civil(2016, 4, 25), [:nz2])[0] || {})[:name]
+    assert_equal "ANZAC Day", (Holidays.on(Date.civil(2016, 4, 25), [:nz2_calendar_dates])[0] || {})[:name]
 
-    assert_equal "Waitangi Day", (Holidays.on(Date.civil(2015, 2, 6), [:nz2])[0] || {})[:name]
+    assert_equal "Waitangi Day", (Holidays.on(Date.civil(2015, 2, 6), [:nz2_calendar_dates])[0] || {})[:name]
 
-    assert_equal "Waitangi Day", (Holidays.on(Date.civil(2016, 2, 6), [:nz2])[0] || {})[:name]
+    assert_equal "Waitangi Day", (Holidays.on(Date.civil(2016, 2, 6), [:nz2_calendar_dates])[0] || {})[:name]
 
   end
 end

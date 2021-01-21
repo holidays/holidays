@@ -7,34 +7,21 @@ module Holidays
   # All the definitions are available at https://github.com/holidays/holidays
   module NZ2_CALENDAR_DATES # :nodoc:
     def self.defined_regions
-      [:nz2, :nz2_sl, :nz2_we, :nz2_ak, :nz2_nl, :nz2_ne, :nz2_ot, :nz2_ta, :nz2_sc, :nz2_hb, :nz2_mb, :nz2_ca, :nz2_ch, :nz2_wl]
+      [:nz2_calendar_dates]
     end
 
     def self.holidays_by_month
       {
-              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:nz2]},
-            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:nz2]}],
-      1 => [{:mday => 1, :name => "New Year's Day", :regions => [:nz2]},
-            {:mday => 2, :name => "Day after New Year's Day", :regions => [:nz2]},
-            {:mday => 17, :name => "Southland Anniversary Day", :regions => [:nz2_sl]},
-            {:mday => 22, :name => "Wellington Anniversary Day", :regions => [:nz2_we]},
-            {:mday => 29, :name => "Auckland Anniversary Day", :regions => [:nz2_ak]},
-            {:mday => 29, :name => "Northland Anniversary Day", :regions => [:nz2_nl]}],
-      2 => [{:mday => 1, :name => "Nelson Anniversary Day", :regions => [:nz2_ne]},
-            {:mday => 6, :name => "Waitangi Day", :regions => [:nz2]}],
-      3 => [{:mday => 23, :name => "Otago Anniversary Day", :regions => [:nz2_ot]},
-            {:wday => 1, :week => 2, :name => "Taranaki Anniversary Day", :regions => [:nz2_ta]}],
-      4 => [{:mday => 25, :name => "ANZ2AC Day", :regions => [:nz2]}],
-      6 => [{:wday => 1, :week => 1, :name => "Queen's Birthday", :regions => [:nz2]}],
-      9 => [{:wday => 1, :week => 4, :name => "Dominion Day", :regions => [:nz2_sc]}],
-      10 => [{:wday => 1, :week => 1, :name => "Hawke's bay Anniversary Day", :regions => [:nz2_hb]},
-            {:wday => 1, :week => 4, :name => "Labour Day", :regions => [:nz2]},
-            {:wday => 1, :week => 4, :name => "Marlborough Anniversary Day", :regions => [:nz2_mb]}],
-      11 => [{:wday => 5, :week => 2, :name => "Canterbury Anniversary Day", :regions => [:nz2_ca]},
-            {:mday => 30, :name => "Chatham Island Anniversary Day", :regions => [:nz2_ch]}],
-      12 => [{:mday => 1, :name => "Westland Anniversary Day", :regions => [:nz2_wl]},
-            {:mday => 25, :name => "Christmas Day", :regions => [:nz2]},
-            {:mday => 26, :name => "Boxing Day", :regions => [:nz2]}]
+              0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:nz2_calendar_dates]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:nz2_calendar_dates]}],
+      1 => [{:mday => 1, :name => "New Year's Day", :regions => [:nz2_calendar_dates]},
+            {:mday => 2, :name => "Day after New Year's Day", :regions => [:nz2_calendar_dates]}],
+      2 => [{:mday => 6, :name => "Waitangi Day", :regions => [:nz2_calendar_dates]}],
+      4 => [{:mday => 25, :name => "ANZAC Day", :regions => [:nz2_calendar_dates]}],
+      6 => [{:wday => 1, :week => 1, :name => "Queen's Birthday", :regions => [:nz2_calendar_dates]}],
+      10 => [{:wday => 1, :week => 4, :name => "Labour Day", :regions => [:nz2_calendar_dates]}],
+      12 => [{:mday => 25, :name => "Christmas Day", :regions => [:nz2_calendar_dates]},
+            {:mday => 26, :name => "Boxing Day", :regions => [:nz2_calendar_dates]}]
       }
     end
 
