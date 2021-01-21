@@ -56,7 +56,7 @@ The following definition files are included in this installation:
 * generated_definitions/north_america
 * generated_definitions/nyse
 * generated_definitions/nz
-* generated_definitions/nz_calendar_dates
+* generated_definitions/nz2_calendar_dates
 * generated_definitions/pe
 * generated_definitions/ph
 * generated_definitions/pk
