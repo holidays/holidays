@@ -7,6 +7,20 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class AuDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_au
+    assert_equal "ANZAC Day", (Holidays.on(Date.civil(2020, 4, 25), [:au_act])[0] || {})[:name]
+
+    assert_equal "ANZAC Day", (Holidays.on(Date.civil(2020, 4, 25), [:au_qld])[0] || {})[:name]
+
+    assert_equal "Additional public holiday for ANZAC Day", (Holidays.on(Date.civil(2021, 4, 26), [:au_wa])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2021, 12, 25), [:au_qld])[0] || {})[:name]
+
+    assert_equal "Additional public holiday for Christmas Day", (Holidays.on(Date.civil(2021, 12, 27), [:au_qld])[0] || {})[:name]
+
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2021, 12, 26), [:au_qld])[0] || {})[:name]
+
+    assert_equal "Additional public holiday Boxing Day", (Holidays.on(Date.civil(2021, 12, 28), [:au_qld])[0] || {})[:name]
+
     assert_equal "Labour Day", (Holidays.on(Date.civil(2013, 10, 7), [:au_qld])[0] || {})[:name]
 
     assert_equal "Labour Day", (Holidays.on(Date.civil(2012, 5, 7), [:au_qld])[0] || {})[:name]
@@ -60,11 +74,11 @@ assert_equal "ACT Reconciliation Day", (Holidays.on(Date.civil(2020, 6, 1), [:au
 
     assert_equal "Recreation Day", (Holidays.on(Date.civil(2016, 11, 7), [:au_tas_north])[0] || {})[:name]
 
-    assert_nil (Holidays.on(Date.civil(2015, 12, 26), [:au_tas])[0] || {})[:name]
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2015, 12, 26), [:au_tas])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(2015, 11, 14), [:au_qld_brisbane])[0] || {})[:name]
 
-    assert_nil (Holidays.on(Date.civil(2015, 12, 26), [:au_nt])[0] || {})[:name]
+    asset_equal "Boxing Day", (Holidays.on(Date.civil(2015, 12, 26), [:au_nt])[0] || {})[:name]
 
     assert_equal "Proclamation Day", (Holidays.on(Date.civil(2016, 12, 27), [:au_sa])[0] || {})[:name]
 
@@ -121,6 +135,8 @@ assert_equal "ACT Reconciliation Day", (Holidays.on(Date.civil(2020, 6, 1), [:au
     assert_equal "Boxing Day", (Holidays.on(Date.civil(2015, 12, 26), [:au_qld])[0] || {})[:name]
 
     assert_equal "Boxing Day", (Holidays.on(Date.civil(2015, 12, 28), [:au_qld], [:observed])[0] || {})[:name]
+
+    assert_equal "Additional public holiday for Boxing Day", (Holidays.on(Date.civil(2020, 12, 26), [:au_qld])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(2015, 12, 26), [:au_sa])[0] || {})[:name]
 
