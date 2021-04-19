@@ -78,7 +78,7 @@ assert_equal "ACT Reconciliation Day", (Holidays.on(Date.civil(2020, 6, 1), [:au
 
     assert_nil (Holidays.on(Date.civil(2015, 11, 14), [:au_qld_brisbane])[0] || {})[:name]
 
-    asset_equal "Boxing Day", (Holidays.on(Date.civil(2015, 12, 26), [:au_nt])[0] || {})[:name]
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2015, 12, 26), [:au_nt])[0] || {})[:name]
 
     assert_equal "Proclamation Day", (Holidays.on(Date.civil(2016, 12, 27), [:au_sa])[0] || {})[:name]
 
