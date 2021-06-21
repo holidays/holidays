@@ -151,13 +151,13 @@ class HolidaysTests < Test::Unit::TestCase
   end
 
   def test_year_holidays_with_specified_year
-    # Should return all 11 holidays for 2016 in Ontario, Canada
+    # Should return all 9 holidays for 2016 in Ontario, Canada
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2016, 1, 1))
     assert_equal 9, holidays.length
 
-    # Should return all 6 holidays for 2016 in Australia
+    # Should return all 4 holidays for 2016 in Australia
     holidays = Holidays.year_holidays([:au], Date.civil(2016, 1, 1))
-    assert_equal 6, holidays.length
+    assert_equal 4, holidays.length
   end
 
   def test_year_holidays_without_specified_year
@@ -173,23 +173,23 @@ class HolidaysTests < Test::Unit::TestCase
   end
 
   def test_year_holidays_feb_29_on_non_leap_year
-    assert_raises ArgumentError do
+    assert_raises Date::Error do
       Holidays.year_holidays([:ca_on], Date.civil(2015, 2, 29))
     end
 
-    assert_raises ArgumentError do
+    assert_raises Date::Error do
       Holidays.year_holidays([:ca_on], Date.civil(2019, 2, 29))
     end
 
-    assert_raises ArgumentError do
+    assert_raises Date::Error do
       Holidays.year_holidays([:ca_on], Date.civil(2021, 2, 29))
     end
 
-    assert_raises ArgumentError do
+    assert_raises Date::Error do
       Holidays.year_holidays([:us], Date.civil(2023, 2, 29))
     end
 
-    assert_raises ArgumentError do
+    assert_raises Date::Error do
       Holidays.year_holidays([:ca_on], Date.civil(2025, 2, 29))
     end
   end
@@ -296,6 +296,6 @@ class HolidaysTests < Test::Unit::TestCase
 
   def test_load_all
     Holidays.load_all
-    assert_equal 244, Holidays.available_regions.count
+    assert_equal 245, Holidays.available_regions.count
   end
 end
