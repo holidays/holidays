@@ -7,7 +7,7 @@ module Holidays
         end
 
         def cache_between(start_date, end_date, cache_data, options)
-          raise ArgumentError unless cache_data
+          raise ArgumentError unless cache_data && start_date && end_date
 
           @cache_range[options] = start_date..end_date
           @cache[options] = cache_data.group_by { |holiday| holiday[:date] }

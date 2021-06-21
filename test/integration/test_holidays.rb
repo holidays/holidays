@@ -173,23 +173,23 @@ class HolidaysTests < Test::Unit::TestCase
   end
 
   def test_year_holidays_feb_29_on_non_leap_year
-    assert_raises ArgumentError do
+    assert_raises Date::Error do
       Holidays.year_holidays([:ca_on], Date.civil(2015, 2, 29))
     end
 
-    assert_raises ArgumentError do
+    assert_raises Date::Error do
       Holidays.year_holidays([:ca_on], Date.civil(2019, 2, 29))
     end
 
-    assert_raises ArgumentError do
+    assert_raises Date::Error do
       Holidays.year_holidays([:ca_on], Date.civil(2021, 2, 29))
     end
 
-    assert_raises ArgumentError do
+    assert_raises Date::Error do
       Holidays.year_holidays([:us], Date.civil(2023, 2, 29))
     end
 
-    assert_raises ArgumentError do
+    assert_raises Date::Error do
       Holidays.year_holidays([:ca_on], Date.civil(2025, 2, 29))
     end
   end
