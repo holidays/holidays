@@ -29,7 +29,7 @@ module Holidays
             {:wday => 1, :week => 2, :name => "Canberra Day", :regions => [:au_act]}],
       4 => [{:mday => 25, :name => "ANZAC Day", :regions => [:au_nsw, :au_sa, :au_tas, :au_vic, :au_act, :au_wa]},
             {:mday => 25, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "ANZAC Day", :regions => [:au_nt, :au_qld]},
-            {:mday => 26, :function => "additional_anzac_on_monday_if_on_weekend(date)", :function_arguments => [:date], :name => "Additional public holiday for ANZAC Day", :regions => [:au_sa, :au_act, :au_wa]}],
+            {:mday => 25, :function => "additional_anzac_on_monday_if_on_weekend(date)", :function_arguments => [:date], :name => "Additional public holiday for ANZAC Day", :regions => [:au_sa, :au_act, :au_wa]}],
       5 => [{:function => "qld_labour_day_may(year)", :function_arguments => [:year], :name => "Labour Day", :regions => [:au_qld]},
             {:wday => 1, :week => 1, :name => "May Day", :regions => [:au_nt]},
             {:function => "may_pub_hol_sa(year)", :function_arguments => [:year], :name => "May Public Holiday", :regions => [:au_sa]},

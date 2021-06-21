@@ -11,7 +11,7 @@ class AuDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "ANZAC Day", (Holidays.on(Date.civil(2020, 4, 25), [:au_qld])[0] || {})[:name]
 
-    assert_equal "Additional public holiday for ANZAC Day", (Holidays.on(Date.civil(2021, 4, 26), [:au_wa])[0] || {})[:name]
+    assert_equal "Additional public holiday for ANZAC Day", (Holidays.on(Date.civil(2021, 4, 27), [:au_wa])[0] || {})[:name]
 
     assert_equal "Christmas Day", (Holidays.on(Date.civil(2021, 12, 25), [:au_qld])[0] || {})[:name]
 
