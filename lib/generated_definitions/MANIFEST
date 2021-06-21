@@ -45,6 +45,7 @@ The following definition files are included in this installation:
 * generated_definitions/mm
 * generated_definitions/mt_en
 * generated_definitions/mt_mt
+* generated_definitions/mu
 * generated_definitions/mx
 * generated_definitions/my
 * generated_definitions/mz
