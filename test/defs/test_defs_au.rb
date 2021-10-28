@@ -11,7 +11,7 @@ class AuDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "ANZAC Day", (Holidays.on(Date.civil(2020, 4, 25), [:au_qld])[0] || {})[:name]
 
-    assert_equal "Additional public holiday for ANZAC Day", (Holidays.on(Date.civil(2021, 4, 27), [:au_wa])[0] || {})[:name]
+    assert_equal "Additional public holiday for ANZAC Day", (Holidays.on(Date.civil(2021, 4, 26), [:au_wa])[0] || {})[:name]
 
     assert_equal "Christmas Day", (Holidays.on(Date.civil(2021, 12, 25), [:au_qld])[0] || {})[:name]
 
@@ -19,7 +19,7 @@ class AuDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Boxing Day", (Holidays.on(Date.civil(2021, 12, 26), [:au_qld])[0] || {})[:name]
 
-    assert_equal "Additional public holiday for Boxing Day", (Holidays.on(Date.civil(2021, 12, 28), [:au_qld])[0] || {})[:name]
+    assert_equal "Additional public holiday Boxing Day", (Holidays.on(Date.civil(2021, 12, 28), [:au_qld])[0] || {})[:name]
 
     assert_equal "Labour Day", (Holidays.on(Date.civil(2013, 10, 7), [:au_qld])[0] || {})[:name]
 
@@ -74,13 +74,13 @@ assert_equal "ACT Reconciliation Day", (Holidays.on(Date.civil(2020, 6, 1), [:au
 
     assert_equal "Recreation Day", (Holidays.on(Date.civil(2016, 11, 7), [:au_tas_north])[0] || {})[:name]
 
-    assert_nil (Holidays.on(Date.civil(2015, 12, 26), [:au_tas])[0] || {})[:name]
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2015, 12, 26), [:au_tas])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(2015, 11, 14), [:au_qld_brisbane])[0] || {})[:name]
 
-    assert_nil (Holidays.on(Date.civil(2015, 12, 26), [:au_nt])[0] || {})[:name]
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2015, 12, 26), [:au_nt])[0] || {})[:name]
 
-    assert_equal "Proclamation Day", (Holidays.on(Date.civil(2016, 12, 27), [:au_sa])[0] || {})[:name]
+    assert_equal "Additional public holiday for Christmas Day", (Holidays.on(Date.civil(2016, 12, 27), [:au_sa])[0] || {})[:name]
 
     assert_equal "Christmas Day", (Holidays.on(Date.civil(2016, 12, 25), [:au_nt])[0] || {})[:name]
 
@@ -100,11 +100,13 @@ assert_equal "ACT Reconciliation Day", (Holidays.on(Date.civil(2020, 6, 1), [:au
 
     assert_nil (Holidays.on(Date.civil(2014, 11, 14), [:au_qld])[0] || {})[:name]
 
-    assert_equal "Melbourne Cup Day", (Holidays.on(Date.civil(2014, 11, 4), [:au_vic_melbourne])[0] || {})[:name]
+    assert_nil (Holidays.on(Date.civil(2014, 11, 4), [:au_vic_melbourne])[0] || {})[:name]
 
-    assert_equal "Melbourne Cup Day", (Holidays.on(Date.civil(2015, 11, 3), [:au_vic_melbourne])[0] || {})[:name]
+    assert_nil (Holidays.on(Date.civil(2015, 11, 3), [:au_vic_melbourne])[0] || {})[:name]
 
-    assert_equal "Melbourne Cup Day", (Holidays.on(Date.civil(2019, 11, 5), [:au_vic])[0] || {})[:name]
+    assert_nil (Holidays.on(Date.civil(2019, 11, 5), [:au_vic])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2021, 11, 2), [:au_vic])[0] || {})[:name]
 
     assert_equal "Friday before the AFL Grand Final", (Holidays.on(Date.civil(2015, 10, 2), [:au_vic])[0] || {})[:name]
 

@@ -7,7 +7,7 @@ module Holidays
   # All the definitions are available at https://github.com/holidays/holidays
   module AU # :nodoc:
     def self.defined_regions
-      [:au, :au_nsw, :au_vic, :au_qld, :au_nt, :au_act, :au_sa, :au_wa, :au_tas, :au_tas_south, :au_qld_cairns, :au_qld_brisbane, :au_tas_north, :au_vic_melbourne]
+      [:au, :au_nsw, :au_vic, :au_qld, :au_nt, :au_act, :au_sa, :au_wa, :au_tas, :au_tas_south, :au_qld_cairns, :au_qld_brisbane, :au_tas_north]
     end
 
     def self.holidays_by_month
@@ -48,8 +48,7 @@ module Holidays
             {:function => "qld_queens_bday_october(year)", :function_arguments => [:year], :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Queen's Birthday", :regions => [:au_qld]},
             {:function => "hobart_show_day(year)", :function_arguments => [:year], :name => "Royal Hobart Show", :regions => [:au_tas_south]}],
       11 => [{:function => "g20_day_2014_only(year)", :function_arguments => [:year], :name => "G20 Day", :regions => [:au_qld_brisbane]},
-            {:wday => 1, :week => 1, :name => "Recreation Day", :regions => [:au_tas_north]},
-            {:wday => 2, :week => 1, :name => "Melbourne Cup Day", :regions => [:au_vic_melbourne, :au_vic]}],
+            {:wday => 1, :week => 1, :name => "Recreation Day", :regions => [:au_tas_north]}],
       12 => [{:mday => 25, :name => "Christmas Day", :regions => [:au_act, :au_nsw, :au_qld, :au_sa, :au_tas, :au_vic, :au_wa, :au_nt]},
             {:mday => 25, :function => "additional_holiday_if_on_weekend(date)", :function_arguments => [:date], :name => "Additional public holiday for Christmas Day", :regions => [:au_act, :au_nsw, :au_qld, :au_sa, :au_tas, :au_vic, :au_wa, :au_nt]},
             {:mday => 26, :name => "Boxing Day", :regions => [:au_act, :au_nsw, :au_qld, :au_vic, :au_wa, :au_nt]},

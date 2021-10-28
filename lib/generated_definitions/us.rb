@@ -81,7 +81,7 @@ module Holidays
             {:function => "day_after_thanksgiving(year)", :function_arguments => [:year], :name => "Day after Thanksgiving (Black Friday)", :regions => [:us_ca, :us_de, :us_fl, :us_ia, :us_il, :us_ks, :us_ky, :us_me, :us_mi, :us_mn, :us_ms, :us_ne, :us_nh, :us_nc, :us_pa, :us_sc, :us_ok, :us_tn, :us_tx, :us_va, :us_wa, :us_wv]}],
       12 => [{:mday => 24, :name => "Christmas Eve", :regions => [:us_ar, :us_mi, :us_nc, :us_sc, :us_tx, :us_wi]},
             {:mday => 24, :function => "christmas_eve_holiday(date)", :function_arguments => [:date], :name => "Christmas Eve (Holiday)", :regions => [:us_mi, :us_sc, :us_va]},
-            {:mday => 25, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:us]},
+            {:mday => 25, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:us]},
             {:mday => 26, :name => "Day after Christmas", :regions => [:us_ar, :us_nc, :us_ok, :us_sc, :us_tn, :us_tx]},
             {:mday => 31, :name => "New Year's Eve", :regions => [:us_mi, :us_wi]}]
       }
