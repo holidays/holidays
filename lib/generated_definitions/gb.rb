@@ -18,9 +18,11 @@ module Holidays
             {:mday => 2, :observed => "to_weekday_if_boxing_weekend(date)", :observed_arguments => [:date], :name => "2nd January", :regions => [:gb_sct]}],
       3 => [{:mday => 5, :name => "St. Piran's Day", :regions => [:gb_con]},
             {:mday => 17, :name => "St. Patrick's Day", :regions => [:gb_nir]}],
-      5 => [{:wday => 1, :week => 1, :name => "May Day", :regions => [:gb]},
+      5 => [{:wday => 1, :week => 1, :name => "Early May bank holiday", :regions => [:gb]},
             {:mday => 9, :name => "Liberation Day", :regions => [:je, :gb_jsy, :gg, :gb_gsy]},
-            {:wday => 1, :week => -1, :name => "Spring Bank Holiday", :regions => [:gb]}],
+            {:wday => 1, :week => -1,  :year_ranges => [{:before => 2022},{:after => 2022}],:name => "Spring Bank Holiday", :regions => [:gb]}],
+      6 => [{:mday => 2,  :year_ranges => [{:limited => [2022]}],:name => "Spring Bank Holiday", :regions => [:gb]},
+            {:mday => 3,  :year_ranges => [{:limited => [2022]}],:name => "Platinum Jubilee bank holiday", :regions => [:gb]}],
       7 => [{:mday => 5, :name => "Tynwald Day", :regions => [:im, :gb_iom]},
             {:mday => 12, :name => "Battle of the Boyne", :regions => [:gb_nir]}],
       8 => [{:wday => 1, :week => 1, :name => "Bank Holiday", :regions => [:gb_sct]},
@@ -28,8 +30,10 @@ module Holidays
       11 => [{:mday => 5, :type => :informal, :name => "Guy Fawkes Day", :regions => [:gb]},
             {:mday => 30,  :year_ranges => [{:before => 2006}],:observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :type => :informal, :name => "St. Andrew's Day", :regions => [:gb_sct]},
             {:mday => 30,  :year_ranges => [{:after => 2007}],:observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "St. Andrew's Day", :regions => [:gb_sct]}],
-      12 => [{:mday => 25, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:gb]},
-            {:mday => 26, :observed => "to_weekday_if_boxing_weekend(date)", :observed_arguments => [:date], :name => "Boxing Day", :regions => [:gb]}]
+      12 => [{:mday => 25,  :year_ranges => [{:before => 2022},{:after => 2022}],:observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:gb]},
+            {:mday => 26,  :year_ranges => [{:before => 2022},{:after => 2022}],:observed => "to_weekday_if_boxing_weekend(date)", :observed_arguments => [:date], :name => "Boxing Day", :regions => [:gb]},
+            {:mday => 27,  :year_ranges => [{:limited => [2022]}],:name => "Christmas Day (substitute day)", :regions => [:gb]},
+            {:mday => 26,  :year_ranges => [{:limited => [2022]}],:name => "Boxing Day", :regions => [:gb]}]
       }
     end
 
