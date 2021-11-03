@@ -351,9 +351,9 @@ assert_equal "Christmas Eve (Holiday)", (Holidays.on(Date.civil(2028, 12, 22), [
 assert_nil (Holidays.on(Date.civil(2022, 12, 26), [:us])[0] || {})[:name]
 assert_nil (Holidays.on(Date.civil(2027, 12, 27), [:us])[0] || {})[:name]
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2021, 12, 24), [:us], [:observed])[0] || {})[:name]
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2021, 12, 27), [:us], [:observed])[0] || {})[:name]
 assert_equal "Christmas Day", (Holidays.on(Date.civil(2022, 12, 26), [:us], [:observed])[0] || {})[:name]
-assert_equal "Christmas Day", (Holidays.on(Date.civil(2027, 12, 24), [:us], [:observed])[0] || {})[:name]
+assert_equal "Christmas Day", (Holidays.on(Date.civil(2027, 12, 27), [:us], [:observed])[0] || {})[:name]
 
     assert_equal "Christmas Day", (Holidays.on(Date.civil(2017, 12, 25), [:us])[0] || {})[:name]
 
