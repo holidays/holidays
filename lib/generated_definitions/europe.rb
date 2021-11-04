@@ -338,7 +338,7 @@ module Holidays
             {:mday => 25, :name => "Noël", :regions => [:fr]},
             {:mday => 26, :name => "Saint-Étienne", :regions => [:fr_a, :fr_m]},
             {:mday => 25,  :year_ranges => [{:before => 2021},{:after => 2023}],:observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:gb]},
-            {:mday => 26,  :year_ranges => [{:before => 2022},{:after => 2022}],:observed => "to_weekday_if_boxing_weekend(date)", :observed_arguments => [:date], :name => "Boxing Day", :regions => [:gb]},
+            {:mday => 26, :observed => "to_weekday_if_boxing_weekend(date)", :observed_arguments => [:date], :name => "Boxing Day", :regions => [:gb]},
             {:mday => 27,  :year_ranges => [{:limited => [2022]}],:name => "Christmas Day (substitute day)", :regions => [:gb]},
             {:mday => 25, :name => "Božić", :regions => [:hr]},
             {:mday => 26, :name => "Sveti Stjepan", :regions => [:hr]},
