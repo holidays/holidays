@@ -9,13 +9,13 @@ class GbDefinitionTests < Test::Unit::TestCase  # :nodoc:
   def test_gb
     assert_equal "Good Friday", (Holidays.on(Date.civil(2008, 3, 21), [:gb], [:informal])[0] || {})[:name]
 
-    assert_equal "Early May bank holiday", (Holidays.on(Date.civil(2008, 5, 5), [:gb], [:informal])[0] || {})[:name]
+    assert_equal "Early May Bank Holiday", (Holidays.on(Date.civil(2008, 5, 5), [:gb], [:informal])[0] || {})[:name]
 
     assert_equal "Spring Bank Holiday", (Holidays.on(Date.civil(2008, 5, 26), [:gb], [:informal])[0] || {})[:name]
 
     assert_equal "Spring Bank Holiday", (Holidays.on(Date.civil(2022, 6, 2), [:gb], [:informal])[0] || {})[:name]
 
-    assert_equal "Platinum Jubilee bank holiday", (Holidays.on(Date.civil(2022, 6, 3), [:gb], [:informal])[0] || {})[:name]
+    assert_equal "Platinum Jubilee Bank Holiday", (Holidays.on(Date.civil(2022, 6, 3), [:gb], [:informal])[0] || {})[:name]
 
     assert_equal "Guy Fawkes Day", (Holidays.on(Date.civil(2008, 11, 5), [:gb], [:informal])[0] || {})[:name]
 
