@@ -175,10 +175,10 @@ end
 },
 
 "to_monday_if_saturday_or_to_tuesday_if_sunday_or_monday(date)" => Proc.new { |date|
-if date.wday == 6
+if [6,0].include?(date.wday)
   date += 2
   date
-elsif [0,1].include?(date.wday)
+elsif date.wday == 1
   date += 1
   date
 else
