@@ -182,6 +182,10 @@ assert_equal "ACT Reconciliation Day", (Holidays.on(Date.civil(2020, 6, 1), [:au
 
     assert_equal "Christmas Day", (Holidays.on(Date.civil(2016, 12, 25), [:au_sa])[0] || {})[:name]
 
+    assert_nil (Holidays.on(Date.civil(2021, 12, 25), [:au_sa])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2022, 12, 25), [:au_sa])[0] || {})[:name]
+
     assert_equal "Christmas Day", (Holidays.on(Date.civil(2016, 12, 26), [:au_sa], [:observed])[0] || {})[:name]
 
     assert_equal "Christmas Day", (Holidays.on(Date.civil(2016, 12, 25), [:au_nsw])[0] || {})[:name]
@@ -213,6 +217,10 @@ assert_equal "ACT Reconciliation Day", (Holidays.on(Date.civil(2020, 6, 1), [:au
     assert_equal "New Year's Day", (Holidays.on(Date.civil(2017, 1, 2), [:au, :au_qld, :au_nsw, :au_act, :au_vic, :au_sa, :au_wa, :au_nt], [:observed])[0] || {})[:name]
 
     assert_equal "New Year's Day", (Holidays.on(Date.civil(2017, 1, 2), [:au_tas])[0] || {})[:name]
+
+    assert_equal "Additional public holiday for New Year's Day", (Holidays.on(Date.civil(2022, 1, 3), [:"au_nsw, au_vic, au_act, au_sa, au_wa, au_nt, au_qld"])[0] || {})[:name]
+
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2022, 1, 1), [:"au_nsw, au_vic, au_act, au_sa, au_wa, au_nt, au_qld"])[0] || {})[:name]
 
     assert_equal "Easter Sunday", (Holidays.on(Date.civil(2017, 4, 16), [:au_qld])[0] || {})[:name]
 
