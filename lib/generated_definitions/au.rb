@@ -19,7 +19,7 @@ module Holidays
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:au]},
             {:function => "afl_grand_final(year)", :function_arguments => [:year], :name => "Friday before the AFL Grand Final", :regions => [:au_vic]}],
       1 => [{:mday => 1, :name => "New Year's Day", :regions => [:au_nsw, :au_vic, :au_act, :au_wa, :au_nt, :au_qld]},
-            {:mday => 1, :function => "to_monday_if_weekend(date)", :function_arguments => [:date], :name => "New Year's Day", :regions => [:au_tas, :au_sa]},
+            {:mday => 1, :function => "to_monday_if_weekend(date)", :function_arguments => [:date], :name => "New Year's Day", :regions => [:au, :au_tas, :au_sa]},
             {:mday => 1, :function => "additional_holiday_on_monday_if_on_weekend(date)", :function_arguments => [:date], :name => "Additional public holiday for New Year's Day", :regions => [:au_nsw, :au_vic, :au_act, :au_wa, :au_nt, :au_qld]},
             {:mday => 26, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Australia Day", :regions => [:au]}],
       2 => [{:wday => 1, :week => 2, :name => "Royal Hobart Regatta", :regions => [:au_tas_south]}],
