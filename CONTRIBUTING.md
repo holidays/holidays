@@ -45,6 +45,7 @@ Don't worry about versioning, we'll handle it on our end.
 
 We have included a few handy tasks to help you troubleshoot and test:
 
+* `make generate` - regenerates defs based on the `definitions` submodule
 * `make test` - runs the entire suite
 * `REGION=<region> make test_region` - runs the tests for just that region
 * `make console` - launches an IRB session with the 'holidays' gem loaded for quick testing
