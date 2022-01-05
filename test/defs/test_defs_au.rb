@@ -196,5 +196,7 @@ assert_equal "Queen's Birthday", (Holidays.on(Date.civil(2016, 9, 26), [:au_wa])
 
     assert_equal "G20 Day", (Holidays.on(Date.civil(2014, 11, 14), [:au_qld_brisbane])[0] || {})[:name]
 
+    assert_nil (Holidays.on(Date.civil(2021, 4, 26), [:au_vic])[0] || {})[:name]
+
   end
 end

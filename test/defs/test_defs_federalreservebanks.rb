@@ -15,6 +15,10 @@ class FederalreservebanksDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Memorial Day", (Holidays.on(Date.civil(2012, 5, 28), [:federalreservebanks], [:observed])[0] || {})[:name]
 
+    assert_nil (Holidays.on(Date.civil(2021, 6, 19), [:federalreservebanks], [:observed])[0] || {})[:name]
+
+    assert_equal "Juneteenth National Independence Day", (Holidays.on(Date.civil(2021, 6, 18), [:federalreservebanks], [:observed])[0] || {})[:name]
+
     assert_equal "Independence Day", (Holidays.on(Date.civil(2012, 7, 4), [:federalreservebanks], [:observed])[0] || {})[:name]
 
     assert_equal "Labor Day", (Holidays.on(Date.civil(2012, 9, 3), [:federalreservebanks], [:observed])[0] || {})[:name]

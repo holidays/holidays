@@ -19,7 +19,7 @@ class CaDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Labour Day", (Holidays.on(Date.civil(2008, 9, 1), [:ca], [:informal])[0] || {})[:name]
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2008, 12, 25), [:ca], [:informal])[0] || {})[:name]
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2008, 12, 25), [:ca_on], [:informal])[0] || {})[:name]
 
     assert_equal "Family Day", (Holidays.on(Date.civil(1990, 2, 19), [:ca_ab])[0] || {})[:name]
 
@@ -201,28 +201,37 @@ assert_equal "Remembrance Day", (Holidays.on(Date.civil(2017, 11, 13), [:ca_ab, 
 
     assert_equal "Canada Day", (Holidays.on(Date.civil(2017, 7, 3), [:ca], [:observed])[0] || {})[:name]
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2010, 12, 25), [:ca])[0] || {})[:name]
+    assert_equal "National Day for Truth and Reconciliation", (Holidays.on(Date.civil(2021, 9, 30), [:ca])[0] || {})[:name]
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2018, 12, 25), [:ca])[0] || {})[:name]
+    assert_equal "National Day for Truth and Reconciliation", (Holidays.on(Date.civil(2026, 9, 30), [:ca])[0] || {})[:name]
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2022, 12, 25), [:ca])[0] || {})[:name]
+    assert_nil (Holidays.on(Date.civil(2020, 9, 30), [:ca])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(1985, 9, 30), [:ca])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2010, 12, 25), [:ca_on])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2018, 12, 25), [:ca_on])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2022, 12, 25), [:ca_on])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(2022, 12, 25), [:ca], [:observed])[0] || {})[:name]
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2010, 12, 24), [:ca], [:observed])[0] || {})[:name]
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2010, 12, 24), [:ca_on], [:observed])[0] || {})[:name]
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2012, 12, 25), [:ca], [:observed])[0] || {})[:name]
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2012, 12, 25), [:ca_on], [:observed])[0] || {})[:name]
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2016, 12, 26), [:ca], [:observed])[0] || {})[:name]
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2016, 12, 26), [:ca_on], [:observed])[0] || {})[:name]
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2021, 12, 24), [:ca], [:observed])[0] || {})[:name]
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2021, 12, 24), [:ca_ab, :ca_bc, :ca_mb, :ca_nb, :ca_nl, :ca_nt, :ca_ns, :ca_nu, :ca_pe, :ca_qc, :ca_sk, :ca_yt], [:observed])[0] || {})[:name]
 
-    assert_equal "Christmas Day", (Holidays.on(Date.civil(2022, 12, 26), [:ca], [:observed])[0] || {})[:name]
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2021, 12, 27), [:ca_on], [:observed])[0] || {})[:name]
 
-    assert_equal "Boxing Day", (Holidays.on(Date.civil(2010, 12, 28), [:ca_on], [:observed])[0] || {})[:name]
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2022, 12, 26), [:ca_on], [:observed])[0] || {})[:name]
+
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2010, 12, 27), [:ca_on], [:observed])[0] || {})[:name]
 assert_equal "Boxing Day", (Holidays.on(Date.civil(2012, 12, 26), [:ca_on], [:observed])[0] || {})[:name]
 assert_equal "Boxing Day", (Holidays.on(Date.civil(2015, 12, 28), [:ca_on], [:observed])[0] || {})[:name]
-assert_equal "Boxing Day", (Holidays.on(Date.civil(2016, 12, 27), [:ca_on], [:observed])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(2015, 6, 21), [:ca_yt])[0] || {})[:name]
 
