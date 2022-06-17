@@ -41,7 +41,7 @@ class HolidaysTests < Test::Unit::TestCase
     # Should be 10 non-full weeks in the year (in the US)
     weeks_in_2012 = Date.commercial(2013, -1).cweek
     holidays_in_2012 = weeks_in_2012.times.count { |week| Holidays.any_holidays_during_work_week?(Date.commercial(2012,week+1), :us) == false }
-    assert_equal 9, holidays_in_2012
+    assert_equal 10, holidays_in_2012
   end
 
   def test_requires_valid_regions
@@ -157,7 +157,7 @@ class HolidaysTests < Test::Unit::TestCase
 
     # Should return all 4 holidays for 2016 in Australia
     holidays = Holidays.year_holidays([:au], Date.civil(2016, 1, 1))
-    assert_equal 4, holidays.length
+    assert_equal 3, holidays.length
   end
 
   def test_year_holidays_without_specified_year
