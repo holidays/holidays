@@ -120,6 +120,8 @@ assert_equal "ACT Reconciliation Day", (Holidays.on(Date.civil(2020, 6, 1), [:au
 
     assert_equal "Friday before the AFL Grand Final", (Holidays.on(Date.civil(2021, 9, 24), [:au_vic])[0] || {})[:name]
 
+    assert_equal "Friday before the AFL Grand Final", (Holidays.on(Date.civil(2022, 9, 23), [:au_vic])[0] || {})[:name]
+
     assert_equal "May Public Holiday", (Holidays.on(Date.civil(2005, 5, 16), [:au_sa])[0] || {})[:name]
 
     assert_equal "March Public Holiday", (Holidays.on(Date.civil(2014, 3, 10), [:au_sa])[0] || {})[:name]

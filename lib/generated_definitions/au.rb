@@ -84,6 +84,8 @@ when 2020
   Date.civil(2020, 10, 23)
 when 2021
   Date.civil(2021, 9, 24)
+when 2022
+  Date.civil(2022, 9, 23)
 end
 },
 
