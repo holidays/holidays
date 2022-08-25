@@ -408,15 +408,16 @@ assert_equal "King Kamehameha I Day", (Holidays.on(Date.civil(2022, 6, 10), [:us
 
     assert_equal "King Kamehameha I Day", (Holidays.on(Date.civil(2017, 6, 11), [:us_hi])[0] || {})[:name]
 
-    assert_equal "Juneteenth National Independence Day", (Holidays.on(Date.civil(2017, 6, 19), [:us_tx])[0] || {})[:name]
+    assert_equal "Emancipation Day in Texas", (Holidays.on(Date.civil(2017, 6, 19), [:us_tx])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(2017, 6, 20), [:us])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2020, 6, 19), [:us])[0] || {})[:name]
 assert_nil (Holidays.on(Date.civil(2021, 6, 21), [:us])[0] || {})[:name]
 
     assert_equal "Juneteenth National Independence Day", (Holidays.on(Date.civil(2021, 6, 18), [:us], [:observed])[0] || {})[:name]
 
     assert_equal "West Virginia Day", (Holidays.on(Date.civil(2017, 6, 20), [:us_wv], [:observed])[0] || {})[:name]
-assert_equal "Juneteenth National Independence Day", (Holidays.on(Date.civil(2020, 6, 19), [:us_wv], [:observed])[0] || {})[:name]
+assert_equal "West Virginia Day", (Holidays.on(Date.civil(2020, 6, 19), [:us_wv], [:observed])[0] || {})[:name]
 assert_equal "West Virginia Day", (Holidays.on(Date.civil(2021, 6, 21), [:us_wv], [:observed])[0] || {})[:name]
 
     assert_equal "West Virginia Day", (Holidays.on(Date.civil(2017, 6, 20), [:us_wv])[0] || {})[:name]
