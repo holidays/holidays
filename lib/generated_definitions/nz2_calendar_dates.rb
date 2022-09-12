@@ -20,6 +20,7 @@ module Holidays
       4 => [{:mday => 25, :name => "ANZAC Day", :regions => [:nz2_calendar_dates]}],
       6 => [{:wday => 1, :week => 1, :name => "Queen's Birthday", :regions => [:nz2_calendar_dates]},
             {:function => "matariki_holiday(year)", :function_arguments => [:year], :name => "Matariki Holiday", :regions => [:nz2_calendar_dates]}],
+      9 => [{:mday => 26,  :year_ranges => [{:limited => 2022}],:name => "Day of mourning for Queen Elizabeth II", :regions => [:nz2_calendar_dates]}],
       10 => [{:wday => 1, :week => 4, :name => "Labour Day", :regions => [:nz2_calendar_dates]}],
       12 => [{:mday => 25, :name => "Christmas Day", :regions => [:nz2_calendar_dates]},
             {:mday => 26, :name => "Boxing Day", :regions => [:nz2_calendar_dates]}]
