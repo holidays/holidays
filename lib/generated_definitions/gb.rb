@@ -27,6 +27,7 @@ module Holidays
             {:mday => 12, :name => "Battle of the Boyne", :regions => [:gb_nir]}],
       8 => [{:wday => 1, :week => 1, :name => "Bank Holiday", :regions => [:gb_sct]},
             {:wday => 1, :week => -1, :name => "Summer Bank Holiday", :regions => [:gb_eng, :gb_wls, :gb_eaw, :gb_nir, :je, :gb_jsy, :gg, :gb_gsy]}],
+      9 => [{:mday => 19,  :year_ranges => [{:limited => [2022]}],:name => "Bank Holiday for the State Funeral of Queen Elizabeth II", :regions => [:gb]}],
       11 => [{:mday => 5, :type => :informal, :name => "Guy Fawkes Day", :regions => [:gb]},
             {:mday => 30,  :year_ranges => [{:before => 2006}],:observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :type => :informal, :name => "St. Andrew's Day", :regions => [:gb_sct]},
             {:mday => 30,  :year_ranges => [{:after => 2007}],:observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "St. Andrew's Day", :regions => [:gb_sct]}],
