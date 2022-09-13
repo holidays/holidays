@@ -458,7 +458,6 @@ module Holidays
             {:mday => 8, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de Asturias", :regions => [:es_o]},
             {:mday => 8, :name => "Día de Extremadura", :regions => [:es_ex]},
             {:mday => 11, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Fiesta Nacional de Cataluña", :regions => [:es_ct]},
-            {:mday => 19,  :year_ranges => [{:limited => [2022]}],:name => "Bank Holiday for the State Funeral of Queen Elizabeth II", :regions => [:gb]},
             {:mday => 8, :name => "Maria Geburt", :regions => [:li]},
             {:mday => 30, :type => :informal, :name => "Dzień Chłopaka", :regions => [:pl]},
             {:mday => 1, :name => "Deň Ústavy Slovenskej republiky", :regions => [:sk]},
