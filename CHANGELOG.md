@@ -1,5 +1,9 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 8.6.0
+
+* Update to [v5.5.0 definitions](https://github.com/holidays/definitions/releases/tag/v5.5.0). Please see the changelog for the definition details.
+
 ## 8.5.0
 
 * Update submodule definitions. 

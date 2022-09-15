@@ -7,6 +7,10 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class GbDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_gb
+    assert_equal "Mothering Sunday", (Holidays.on(Date.civil(2022, 3, 27), [:gb], [:informal])[0] || {})[:name]
+
+    assert_equal "Mothering Sunday", (Holidays.on(Date.civil(2021, 3, 14), [:gb], [:informal])[0] || {})[:name]
+
     assert_equal "Good Friday", (Holidays.on(Date.civil(2008, 3, 21), [:gb], [:informal])[0] || {})[:name]
 
     assert_equal "Easter Sunday", (Holidays.on(Date.civil(2008, 3, 23), [:gb], [:informal])[0] || {})[:name]
@@ -134,6 +138,12 @@ class GbDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_nil (Holidays.on(Date.civil(2022, 5, 30), [:gb])[0] || {})[:name]
 
     assert_equal "Platinum Jubilee", (Holidays.on(Date.civil(2022, 6, 3), [:gb])[0] || {})[:name]
+
+    assert_equal "Bank Holiday for the State Funeral of Queen Elizabeth II", (Holidays.on(Date.civil(2022, 9, 19), [:gb])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2023, 9, 19), [:gb])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2021, 9, 19), [:gb])[0] || {})[:name]
 
     assert_equal "Bank Holiday", (Holidays.on(Date.civil(2023, 5, 29), [:gb])[0] || {})[:name]
 

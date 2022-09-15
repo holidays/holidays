@@ -455,6 +455,10 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Saint-Étienne", (Holidays.on(Date.civil(2017, 12, 26), [:fr_a, :fr_m], [:informal])[0] || {})[:name]
 
+    assert_equal "Mothering Sunday", (Holidays.on(Date.civil(2022, 3, 27), [:gb], [:informal])[0] || {})[:name]
+
+    assert_equal "Mothering Sunday", (Holidays.on(Date.civil(2021, 3, 14), [:gb], [:informal])[0] || {})[:name]
+
     assert_equal "Good Friday", (Holidays.on(Date.civil(2008, 3, 21), [:gb], [:informal])[0] || {})[:name]
 
     assert_equal "Easter Sunday", (Holidays.on(Date.civil(2008, 3, 23), [:gb], [:informal])[0] || {})[:name]
@@ -582,6 +586,12 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_nil (Holidays.on(Date.civil(2022, 5, 30), [:gb])[0] || {})[:name]
 
     assert_equal "Platinum Jubilee", (Holidays.on(Date.civil(2022, 6, 3), [:gb])[0] || {})[:name]
+
+    assert_equal "Bank Holiday for the State Funeral of Queen Elizabeth II", (Holidays.on(Date.civil(2022, 9, 19), [:gb])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2023, 9, 19), [:gb])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2021, 9, 19), [:gb])[0] || {})[:name]
 
     assert_equal "Bank Holiday", (Holidays.on(Date.civil(2023, 5, 29), [:gb])[0] || {})[:name]
 
@@ -902,11 +912,17 @@ assert_equal "Jāņu diena", (Holidays.on(Date.civil(2020, 6, 24), [:lv])[0] || 
 assert_equal "Jāņu diena", (Holidays.on(Date.civil(2029, 6, 24), [:lv])[0] || {})[:name]
 
     assert_equal "Vispārējo latviešu Dziesmu un deju svētku noslēguma diena", (Holidays.on(Date.civil(2018, 7, 8), [:lv])[0] || {})[:name]
+assert_equal "Vispārējo latviešu Dziesmu un deju svētku noslēguma diena", (Holidays.on(Date.civil(2023, 7, 9), [:lv])[0] || {})[:name]
 
     assert_equal "Vispārējo latviešu Dziesmu un deju svētku noslēguma diena", (Holidays.on(Date.civil(2018, 7, 9), [:lv], [:observed])[0] || {})[:name]
+assert_equal "Vispārējo latviešu Dziesmu un deju svētku noslēguma diena", (Holidays.on(Date.civil(2023, 7, 10), [:lv], [:observed])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(2019, 7, 8), [:lv])[0] || {})[:name]
 assert_nil (Holidays.on(Date.civil(2019, 7, 9), [:lv])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2022, 7, 8), [:lv])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2022, 7, 9), [:lv])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2024, 7, 8), [:lv])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2024, 7, 9), [:lv])[0] || {})[:name]
 
     assert_equal "Viņa Svētības pāvesta Franciska pastorālās vizītes Latvijā diena", (Holidays.on(Date.civil(2018, 9, 24), [:lv])[0] || {})[:name]
 

@@ -37,8 +37,9 @@ module Holidays
             {:function => "qld_queens_birthday_june(year)", :function_arguments => [:year], :name => "Queen's Birthday", :regions => [:au_qld]},
             {:mday => 6, :type => :informal, :name => "Queensland Day", :regions => [:au_qld]}],
       7 => [{:wday => 5, :week => 3, :name => "Cairns Show", :regions => [:au_qld_cairns]}],
-      8 => [{:wday => 3, :week => -3, :name => "Ekka", :regions => [:au_qld_brisbane]}],
-      9 => [{:wday => 1, :week => -1, :name => "Queen's Birthday", :regions => [:au_wa]},
+      8 => [{:function => "qld_brisbane_ekka_holiday(year)", :function_arguments => [:year], :name => "Ekka", :regions => [:au_qld_brisbane]}],
+      9 => [{:mday => 22, :year_ranges => { :limited => [2022] },:name => "National Day of Mourning for Her Majesty Queen Elizabeth II", :regions => [:au]},
+            {:wday => 1, :week => -1, :name => "Queen's Birthday", :regions => [:au_wa]},
             {:wday => 1, :week => -1, :name => "Family & Community Day", :regions => [:au_act]}],
       10 => [{:function => "afl_grand_final(year)", :function_arguments => [:year], :name => "Friday before the AFL Grand Final", :regions => [:au_vic]},
             {:wday => 1, :week => 1, :name => "Labour Day", :regions => [:au_act, :au_nsw, :au_sa]},
@@ -125,6 +126,17 @@ if year >= 2006
   nil
 else
   Date.civil(year, 5, Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 5, :third, :monday))
+end
+},
+
+"qld_brisbane_ekka_holiday(year)" => Proc.new { |year|
+first_friday = Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 8, :first, :friday)
+
+if first_friday < 5
+  second_friday = Date.civil(year, 8, Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 8, :second, :friday))
+  second_friday + 5 # The next Wednesday
+else
+  Date.civil(year, 8, first_friday) + 5
 end
 },
 
