@@ -71,6 +71,7 @@ module Holidays
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Ascension", :regions => [:fr]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :type => :informal, :name => "Pentecôte", :regions => [:fr]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Lundi de Pentecôte", :regions => [:fr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -21, :type => :informal, :name => "Mothering Sunday", :regions => [:gb]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:gb]},
             {:function => "easter(year)", :function_arguments => [:year], :name => "Easter Sunday", :regions => [:gb]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:gb_eng, :gb_wls, :gb_eaw, :gb_nir, :je, :gb_jsy, :gg, :gb_gsy]},
@@ -202,6 +203,7 @@ module Holidays
             {:mday => 1, :name => "Nový rok", :regions => [:sk]},
             {:mday => 6, :name => "Zjavenie Pána (Traja králi)", :regions => [:sk]},
             {:mday => 1, :name => "novo leto", :regions => [:si]},
+            {:mday => 2, :name => "novo leto", :regions => [:si]},
             {:mday => 1, :name => "New Year's Day", :regions => [:bg_en]},
             {:mday => 1, :name => "Нова година", :regions => [:bg_bg]},
             {:mday => 1, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Новий Рік", :regions => [:ua]},
@@ -512,6 +514,7 @@ module Holidays
             {:mday => 8, :name => "Día de Extremadura", :regions => [:es_ex]},
             {:mday => 11, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Fiesta Nacional de Cataluña", :regions => [:es_ct]},
             {:mday => 24, :name => "La Mercè", :regions => [:es_ct]},
+            {:mday => 19, :year_ranges => { :limited => [2022] },:name => "Bank Holiday for the State Funeral of Queen Elizabeth II", :regions => [:gb]},
             {:mday => 8, :name => "Festa della Madonna di Monte Berico", :regions => [:it_vi]},
             {:mday => 8, :name => "Maria Geburt", :regions => [:li]},
             {:mday => 24, :year_ranges => { :limited => [2018] },:name => "Viņa Svētības pāvesta Franciska pastorālās vizītes Latvijā diena", :regions => [:lv]},
@@ -605,8 +608,11 @@ when 2018
   # https://likumi.lv/ta/id/281541 (Ministru kabineta rīkojums Nr. 252 "Par XXVI Vispārējo latviešu dziesmu un XVI Deju svētku norises laiku")
   Date.new(2018, 7, 8)
 when 2023
+  # https://likumi.lv/ta/id/330067 (Ministru kabineta rīkojums Nr. 92 "Par XXVII Vispārējo latviešu dziesmu un XVII Deju svētku norises laiku")
+  Date.new(2023, 7, 9)
+when 2028
   # Event's period/next year is known, but precise dates aren't.
-  # Previously, dates were announced 2 years ahead, so at ~2021-05 this method would need to be revisited.
+  # Previously, dates were announced 2 years ahead, so on ~2026-05 this method would need to be revisited.
 end
 },
 

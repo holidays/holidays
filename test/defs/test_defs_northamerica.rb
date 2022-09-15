@@ -267,6 +267,8 @@ assert_equal "Boxing Day", (Holidays.on(Date.civil(2015, 12, 28), [:ca_on], [:ob
 
     assert_equal "Cinco de Mayo", (Holidays.on(Date.civil(2007, 5, 5), [:mx], [:informal])[0] || {})[:name]
 
+    assert_equal "Grito de Dolores", (Holidays.on(Date.civil(2007, 9, 15), [:mx], [:informal])[0] || {})[:name]
+
     assert_equal "Día de la Independencia", (Holidays.on(Date.civil(2007, 9, 16), [:mx], [:informal])[0] || {})[:name]
 
     assert_equal "Todos los Santos", (Holidays.on(Date.civil(2007, 11, 1), [:mx], [:informal])[0] || {})[:name]

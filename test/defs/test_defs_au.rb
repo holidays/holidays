@@ -198,5 +198,21 @@ assert_equal "Queen's Birthday", (Holidays.on(Date.civil(2016, 9, 26), [:au_wa])
 
     assert_nil (Holidays.on(Date.civil(2021, 4, 26), [:au_vic])[0] || {})[:name]
 
+    assert_equal "Ekka", (Holidays.on(Date.civil(2019, 8, 14), [:au_qld_brisbane])[0] || {})[:name]
+
+    assert_equal "Ekka", (Holidays.on(Date.civil(2022, 8, 10), [:au_qld_brisbane])[0] || {})[:name]
+
+    assert_equal "Ekka", (Holidays.on(Date.civil(2023, 8, 16), [:au_qld_brisbane])[0] || {})[:name]
+
+    assert_equal "Ekka", (Holidays.on(Date.civil(2024, 8, 14), [:au_qld_brisbane])[0] || {})[:name]
+
+    assert_equal "Ekka", (Holidays.on(Date.civil(2025, 8, 13), [:au_qld_brisbane])[0] || {})[:name]
+
+    assert_equal "National Day of Mourning for Her Majesty Queen Elizabeth II", (Holidays.on(Date.civil(2022, 9, 22), [:au])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2023, 9, 22), [:au])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2021, 9, 22), [:au])[0] || {})[:name]
+
   end
 end
