@@ -3,6 +3,7 @@
 ## 8.6.0
 
 * Update to [v5.5.0 definitions](https://github.com/holidays/definitions/releases/tag/v5.5.0). Please see the changelog for the definition details.
+* Temporarily remove jruby from required jobs due to test coverage issues
 
 ## 8.5.0
 
