@@ -13,23 +13,23 @@ module Holidays
     def self.holidays_by_month
       {
         0 => [
-          {:function => "easter(year)", :function_arguments => [:year], :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Вялікдзень", :regions => [:by]},
-          {:function => "orthodox_easter(year)", :function_arguments => [:year], :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Вялікдзень", :regions => [:by]}
+          {:function => "easter(year)", :function_arguments => [:year], :name => "Вялікдзень", :regions => [:by]},
+          {:function => "orthodox_easter(year)", :function_arguments => [:year], :name => "Вялікдзень", :regions => [:by]}
         ],
-        1 => [{:mday => 1, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Новы год", :regions => [:by]},
-        {:mday => 2, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Новы год", :regions => [:by]},
-        {:mday => 7, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Каляды", :regions => [:by]}],
-        2 => [{:mday => 23, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Дзень абаронцаў Айчыны і Узброеных Сіл Рэспублікі Беларусь", :regions => [:by]}],
-        3 => [{:mday => 8, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Міжнародны жаночы дзень", :regions => [:by]},
-              {:mday => 15, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Дзень Канстытуцыі", :regions => [:by]}],
-        4 => [{:mday => 2, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Дзень яднання народаў Беларусі і Расіі", :regions => [:by]}],
-        5 => [{:mday => 1, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Свята працы", :regions => [:by]},
-              {:mday => 9, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Дзень Перамогі", :regions => [:by]}],
-        7 => [{:mday => 3, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Дзень Незалежнасці Рэспублікі Беларусь (Дзень Рэспублікі)", :regions => [:by]}],
-        9 => [{:mday => 17, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Дзень народнага адзінства", :regions => [:by]}],
-        11 => [{:mday => 2, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Дзень памяці", :regions => [:by]},
-               {:mday => 14, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Дзень Кастрычніцкай рэвалюцыі", :regions => [:by]}],
-        12 => [{:mday => 25, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Каляды", :regions => [:by]}]
+        1 => [{:mday => 1, :name => "Новы год", :regions => [:by]},
+        {:mday => 2, :name => "Новы год", :regions => [:by]},
+        {:mday => 7, :name => "Каляды", :regions => [:by]}],
+        2 => [{:mday => 23, :name => "Дзень абаронцаў Айчыны і Узброеных Сіл Рэспублікі Беларусь", :regions => [:by]}],
+        3 => [{:mday => 8, :name => "Міжнародны жаночы дзень", :regions => [:by]},
+              {:mday => 15, :name => "Дзень Канстытуцыі", :regions => [:by]}],
+        4 => [{:mday => 2, :name => "Дзень яднання народаў Беларусі і Расіі", :regions => [:by]}],
+        5 => [{:mday => 1, :name => "Свята працы", :regions => [:by]},
+              {:mday => 9, :name => "Дзень Перамогі", :regions => [:by]}],
+        7 => [{:mday => 3, :name => "Дзень Незалежнасці Рэспублікі Беларусь (Дзень Рэспублікі)", :regions => [:by]}],
+        9 => [{:mday => 17, :name => "Дзень народнага адзінства", :regions => [:by]}],
+        11 => [{:mday => 2, :name => "Дзень памяці", :regions => [:by]},
+               {:mday => 14, :name => "Дзень Кастрычніцкай рэвалюцыі", :regions => [:by]}],
+        12 => [{:mday => 25, :name => "Каляды", :regions => [:by]}]
       }
     end
 
