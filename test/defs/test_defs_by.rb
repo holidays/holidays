@@ -26,7 +26,7 @@ class ByDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_equal "Дзень народнага адзінства", (Holidays.on(Date.civil(2017, 9, 17), [:by])[0] || {})[:name]
 
     assert_equal "Дзень памяці", (Holidays.on(Date.civil(2017, 11, 2), [:by])[0] || {})[:name]
-    assert_equal "Дзень Кастрычніцкай рэвалюцыі", (Holidays.on(Date.civil(2017, 11, 14), [:by])[0] || {})[:name]
+    assert_equal "Дзень Кастрычніцкай рэвалюцыі", (Holidays.on(Date.civil(2017, 11, 7), [:by])[0] || {})[:name]
 
     assert_equal "Каляды", (Holidays.on(Date.civil(2017, 12, 25), [:by])[0] || {})[:name]
   end
