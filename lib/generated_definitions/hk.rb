@@ -13,8 +13,8 @@ module Holidays
     def self.holidays_by_month
       {
                 0 => [{:function => "cn_new_lunar_day(year)", :function_arguments => [:year], :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Lunar New Year's Day", :regions => [:hk]},
-            {:function => "cn_new_lunar_day(year)", :function_arguments => [:year], :function_modifier => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "The second day of Lunar New Year", :regions => [:hk]},
-            {:function => "cn_new_lunar_day(year)", :function_arguments => [:year], :function_modifier => 2, :observed => "to_weekday_if_boxing_weekend(date)", :observed_arguments => [:date], :name => "The third day of Lunar New Year", :regions => [:hk]},
+            {:function => "cn_new_lunar_day(year)", :function_arguments => [:year], :observed => "to_the_weekday_after(date)", :observed_arguments => [:date], :name => "The second day of Lunar New Year", :regions => [:hk]},
+            {:function => "cn_new_lunar_day(year)", :function_arguments => [:year], :observed => "to_the_second_weekday_after(date)", :observed_arguments => [:date], :name => "The third day of Lunar New Year", :regions => [:hk]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:hk]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -1, :name => "The day following Good Friday", :regions => [:hk]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:hk]}],
@@ -63,11 +63,11 @@ month_day = case year
     [2, 13]
   when 1946, 2003, 2022, 2041, 2052, 2098, 2147, 2155, 2166, 2223, 2242, 2261, 2299, 2310, 2375, 2394
     [2, 1]
-  when 1947, 2004, 2042, 2050, 2080, 2118, 2137, 2194, 2270, 2289, 2300, 2338, 2376
+  when 1947, 2004, 2023, 2042, 2050, 2080, 2118, 2137, 2194, 2270, 2289, 2300, 2338, 2376
     [1, 22]
   when 1948, 1994, 2013, 2024, 2043, 2089, 2119, 2138, 2157, 2176, 2195, 2214, 2320, 2396
     [2, 10]
-  when 1954, 1973, 2011, 2057, 2068, 2087, 2125, 2163, 2231, 2277, 2288, 2345, 2383
+  when 1954, 1973, 2011, 2030, 2057, 2068, 2087, 2125, 2163, 2231, 2277, 2288, 2345, 2383
     [2, 3]
   when 1956, 2002, 2021, 2059, 2078, 2097, 2135, 2154, 2173, 2184, 2203, 2222, 2241, 2279, 2287, 2298, 2355, 2374, 2393
     [2, 12]
@@ -77,9 +77,9 @@ month_day = case year
     [1, 28]
   when 1962, 1981, 2000, 2019, 2065, 2076, 2084, 2095, 2133, 2152, 2171, 2190, 2220, 2239, 2285, 2315, 2334, 2353, 2372, 2391
     [2, 5]
-  when 1965, 1984, 2030, 2049, 2060, 2079, 2117, 2136, 2174, 2182, 2193, 2204, 2250, 2269, 2280, 2318, 2337, 2356
+  when 1965, 1984, 2049, 2060, 2079, 2117, 2136, 2174, 2182, 2193, 2204, 2250, 2269, 2280, 2318, 2337, 2356
     [2, 2]
-  when 1966, 2023, 2061, 2099, 2186, 2262, 2281, 2357, 2395
+  when 1966, 2061, 2099, 2186, 2262, 2281, 2357, 2395
     [1, 21]
   when 1967, 1986, 2005, 2062, 2100, 2168, 2233, 2244, 2263, 2282, 2301, 2339, 2377, 2385, 2388
     [2, 9]
