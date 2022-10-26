@@ -83,6 +83,11 @@ module Holidays
 
         date
       end
+
+      def to_previous_day_if_leap_year(date)
+        date -= 1 if ::Date.gregorian_leap?(date.year)
+        date
+      end
     end
   end
 end

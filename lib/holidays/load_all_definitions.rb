@@ -24,6 +24,7 @@ module Holidays
           "lunar_to_solar(year, month, day, region)" => lunar_date.method(:to_solar).to_proc,
           "to_the_weekday_after(date)" => weekend_modifier.method(:to_the_weekday_after).to_proc,
           "to_the_second_weekday_after(date)" => weekend_modifier.method(:to_the_second_weekday_after).to_proc,
+          "to_previous_day_if_leap_year(date)" => weekend_modifier.method(:to_previous_day_if_leap_year).to_proc,
         }
 
         Factory::Definition.custom_methods_repository.add(global_methods)
