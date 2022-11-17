@@ -27,7 +27,7 @@ module Holidays
       12 => [{:mday => 25, :name => "Christmas Day", :regions => [:nf]},
             {:mday => 25, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "(additional day Christmas Day)", :regions => [:nf]},
             {:mday => 26, :name => "Boxing Day", :regions => [:nf]},
-            {:mday => 26, :observed => "to_monday_if_saturday_or_to_tuesday_if_sunday_or_monday", :observed_arguments => , :name => "(additional day Boxing Day)", :regions => [:nf]}]
+            {:mday => 26, :function => "to_monday_if_saturday_or_to_tuesday_if_sunday_or_monday(date)", :function_arguments => [:date], :name => "(additional day Boxing Day)", :regions => [:nf]}]
       }
     end
 
