@@ -46,7 +46,7 @@ elsif date.wday == 1
   date += 1
   date
 else
-  date
+  nil
 end
 },
 
