@@ -25,7 +25,7 @@ module Holidays
       10 => [{:wday => 1, :week => 2, :name => "Norfolk Island Agricultural Show", :regions => [:nf]}],
       11 => [{:wday => 3, :week => 5, :name => "Thanksgiving Day", :regions => [:nf]}],
       12 => [{:mday => 25, :name => "Christmas Day", :regions => [:nf]},
-            {:mday => 25, :function => "to_tuesday_if_sunday_or_monday(date)", :function_arguments => [:date], :name => "(additional day Christmas Day)", :regions => [:nf]},
+            {:mday => 25, :function => "to_tuesday_if_sunday(date)", :function_arguments => [:date], :name => "(additional day Christmas Day)", :regions => [:nf]},
             {:mday => 26, :name => "Boxing Day", :regions => [:nf]}]
       }
     end
@@ -37,12 +37,9 @@ second_sat_in_jun = Date.civil(year, 6, Holidays::Factory::DateCalculator.day_of
 second_sat_in_jun + 2
 },
 
-"to_tuesday_if_sunday_or_monday(date)" => Proc.new { |date|
+"to_tuesday_if_sunday(date)" => Proc.new { |date|
 if [6,0].include?(date.wday)
   date += 2
-  date
-elsif date.wday == 1
-  date += 1
   date
 else
   nil
