@@ -15,15 +15,18 @@ module Holidays
               0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:nf]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:nf]}],
       1 => [{:mday => 1, :name => "New Year's Day", :regions => [:nf]},
+            {:mday => 1, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "(additional day New Year's Day)", :regions => [:nf]},
             {:mday => 26, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Australia Day", :regions => [:nf]}],
-      3 => [{:mday => 6, :name => "Foundation Day", :regions => [:nf]}],
+      3 => [{:mday => 6, :name => "Foundation Day", :regions => [:nf]},
+            {:mday => 6, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "(additional day Foundation Day)", :regions => [:nf]}],
       4 => [{:mday => 25, :name => "Anzac Day", :regions => [:nf]}],
       6 => [{:mday => 8, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Bounty Day", :regions => [:nf]},
             {:function => "monday_after_second_saturday(year)", :function_arguments => [:year], :name => "Queen's Birthday", :regions => [:nf]}],
       10 => [{:wday => 1, :week => 2, :name => "Norfolk Island Agricultural Show", :regions => [:nf]}],
-      11 => [{:wday => 3, :week => 4, :name => "Thanksgiving Day", :regions => [:nf]}],
+      11 => [{:wday => 3, :week => 5, :name => "Thanksgiving Day", :regions => [:nf]}],
       12 => [{:mday => 25, :name => "Christmas Day", :regions => [:nf]},
-            {:mday => 26, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Boxing Day", :regions => [:nf]}]
+            {:mday => 25, :function => "to_tuesday_if_sunday(date)", :function_arguments => [:date], :name => "(additional day Christmas Day)", :regions => [:nf]},
+            {:mday => 26, :name => "Boxing Day", :regions => [:nf]}]
       }
     end
 
@@ -32,6 +35,15 @@ module Holidays
         "monday_after_second_saturday(year)" => Proc.new { |year|
 second_sat_in_jun = Date.civil(year, 6, Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 6, 2, :saturday))
 second_sat_in_jun + 2
+},
+
+"to_tuesday_if_sunday(date)" => Proc.new { |date|
+if [6,0].include?(date.wday)
+  date += 2
+  date
+else
+  nil
+end
 },
 
 
