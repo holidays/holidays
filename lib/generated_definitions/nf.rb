@@ -26,7 +26,8 @@ module Holidays
       11 => [{:wday => 3, :week => 5, :name => "Thanksgiving Day", :regions => [:nf]}],
       12 => [{:mday => 25, :name => "Christmas Day", :regions => [:nf]},
             {:mday => 25, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "(additional day Christmas Day)", :regions => [:nf]},
-            {:mday => 26, :name => "Boxing Day", :regions => [:nf]}]
+            {:mday => 26, :name => "Boxing Day", :regions => [:nf]},
+            {:mday => 26, :observed => "to_monday_if_saturday_or_to_tuesday_if_sunday_or_monday", :observed_arguments => , :name => "(additional day Boxing Day)", :regions => [:nf]}]
       }
     end
 
@@ -35,6 +36,18 @@ module Holidays
         "monday_after_second_saturday(year)" => Proc.new { |year|
 second_sat_in_jun = Date.civil(year, 6, Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 6, 2, :saturday))
 second_sat_in_jun + 2
+},
+
+"to_monday_if_saturday_or_to_tuesday_if_sunday_or_monday(date)" => Proc.new { |date|
+if [6,0].include?(date.wday)
+  date += 2
+  date
+elsif date.wday == 1
+  date += 1
+  date
+else
+  date
+end
 },
 
 
