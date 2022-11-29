@@ -28,10 +28,10 @@ module Holidays
       8 => [{:mday => 15,  :year_ranges => [{:limited => [2022]}],:name => "Assumption Day", :regions => [:mu]}],
       9 => [{:mday => 11,  :year_ranges => [{:limited => [2021]}],:name => "Ganesh Chaturthi", :regions => [:mu]},
             {:mday => 1,  :year_ranges => [{:limited => [2022]}],:name => "Ganesh Chaturthi", :regions => [:mu]}],
+      10 => [{:mday => 24,  :year_ranges => [{:limited => [2022]}],:name => "Diwali", :regions => [:mu]}],
       11 => [{:mday => 1,  :year_ranges => [{:limited => [2021]}],:name => "All Saints' Day", :regions => [:mu]},
             {:mday => 2, :name => "Arrival of Indentured Labourers", :regions => [:mu]},
-            {:mday => 4,  :year_ranges => [{:limited => [2021]}],:name => "Diwali", :regions => [:mu]},
-            {:mday => 24,  :year_ranges => [{:limited => [2022]}],:name => "Diwali", :regions => [:mu]}],
+            {:mday => 4,  :year_ranges => [{:limited => [2021]}],:name => "Diwali", :regions => [:mu]}],
       12 => [{:mday => 25, :name => "Christmas Day", :regions => [:mu]}]
       }
     end
