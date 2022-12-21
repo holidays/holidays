@@ -15,7 +15,7 @@ module Holidays
               0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -3, :name => "Jueves Santo", :regions => [:es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Viernes Santo", :regions => [:es]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Lunes de Pascua", :regions => [:es_pv, :es_ct, :es_na, :es_v, :es_vc]}],
-      1 => [{:mday => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Año Nuevo", :regions => [:es]},
+      1 => [{:mday => 1,  :year_ranges => [{:before => 2023}],:observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Año Nuevo", :regions => [:es]},
             {:mday => 6, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de Reyes", :regions => [:es]}],
       2 => [{:mday => 28, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de Andalucía", :regions => [:es_an]}],
       3 => [{:mday => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de las Islas Baleares", :regions => [:es_ib]},
