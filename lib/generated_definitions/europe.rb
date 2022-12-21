@@ -157,7 +157,7 @@ module Holidays
             {:mday => 6, :name => "Heilige Drei Könige", :regions => [:de_bw, :de_by, :de_st]},
             {:mday => 1, :name => "Πρωτοχρονιά", :regions => [:el]},
             {:mday => 6, :name => "Θεοφάνεια", :regions => [:el]},
-            {:mday => 1,  :year_ranges => [{:before => 2023}],:observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Año Nuevo", :regions => [:es]},
+            {:mday => 1,  :year_ranges => [{:before => 2022}],:observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Año Nuevo", :regions => [:es]},
             {:mday => 6, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de Reyes", :regions => [:es]},
             {:mday => 1, :name => "Jour de l'an", :regions => [:fr]},
             {:mday => 1, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:gb]},
