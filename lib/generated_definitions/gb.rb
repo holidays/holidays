@@ -19,6 +19,7 @@ module Holidays
       3 => [{:mday => 5, :name => "St. Piran's Day", :regions => [:gb_con]},
             {:mday => 17, :name => "St. Patrick's Day", :regions => [:gb_nir]}],
       5 => [{:wday => 1, :week => 1, :name => "Early May Bank Holiday", :regions => [:gb]},
+            {:mday => 8,  :year_ranges => [{:limited => [2023]}],:name => "Bank holiday for the coronation of King Charles III", :regions => [:gb]},
             {:mday => 9, :name => "Liberation Day", :regions => [:je, :gb_jsy, :gg, :gb_gsy]},
             {:wday => 1, :week => -1,  :year_ranges => [{:before => 2021},{:after => 2023}],:name => "Spring Bank Holiday", :regions => [:gb]}],
       6 => [{:mday => 2,  :year_ranges => [{:limited => [2022]}],:name => "Spring Bank Holiday", :regions => [:gb]},
