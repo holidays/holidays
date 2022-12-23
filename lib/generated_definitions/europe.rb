@@ -206,6 +206,7 @@ module Holidays
             {:mday => 1, :name => "Fête du travail", :regions => [:fr]},
             {:mday => 8, :name => "Victoire 1945", :regions => [:fr]},
             {:wday => 1, :week => 1, :name => "Early May Bank Holiday", :regions => [:gb]},
+            {:mday => 8,  :year_ranges => [{:limited => [2023]}],:name => "Bank holiday for the coronation of King Charles III", :regions => [:gb]},
             {:mday => 9, :name => "Liberation Day", :regions => [:je, :gb_jsy, :gg, :gb_gsy]},
             {:wday => 1, :week => -1,  :year_ranges => [{:before => 2021},{:after => 2023}],:name => "Spring Bank Holiday", :regions => [:gb]},
             {:mday => 1, :name => "Međunarodni praznik rada", :regions => [:hr]},
