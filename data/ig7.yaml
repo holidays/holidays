@@ -60,7 +60,7 @@ months:
     slug: sanctity-of-life
   2:
   - name: Super Bowl Sunday
-    week: 1
+    week: 2
     regions: [ig7]
     wday: 0
     slug: super-bowl-sunday

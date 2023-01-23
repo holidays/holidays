@@ -30,7 +30,7 @@ module Holidays
       1 => [{:mday => 1, :slug => "new-years", :name => "New Year's", :regions => [:ig7]},
             {:wday => 1, :week => 3, :slug => "mlk-day", :name => "Martin Luther King Jr", :regions => [:ig7]},
             {:wday => 0, :week => 3, :slug => "sanctity-of-life", :name => "Sanctity of Life Week", :regions => [:ig7]}],
-      2 => [{:wday => 0, :week => 1, :slug => "super-bowl-sunday", :name => "Super Bowl Sunday", :regions => [:ig7]},
+      2 => [{:wday => 0, :week => 2, :slug => "super-bowl-sunday", :name => "Super Bowl Sunday", :regions => [:ig7]},
             {:mday => 14, :slug => "valentines-day", :name => "Valentine's Day", :regions => [:ig7]}],
       3 => [{:wday => 0, :week => 2, :slug => "daylight-saving-begins", :name => "Daylight Saving Begins", :regions => [:ig7]},
             {:wday => 0, :week => 1, :hide_date => true, :slug => "spring", :name => "Spring Events", :regions => [:ig7]}],
