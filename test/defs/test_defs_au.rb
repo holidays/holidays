@@ -230,5 +230,9 @@ assert_equal "ACT Reconciliation Day", (Holidays.on(Date.civil(2020, 6, 1), [:au
 
     assert_equal "Picnic Day", (Holidays.on(Date.civil(2021, 8, 2), [:"au-nt"])[0] || {})[:name]
 
+    assert_nil (Holidays.on(Date.civil(2022, 4, 17), [:"au-nt"])[0] || {})[:name]
+
+    assert_equal "Easter Sunday", (Holidays.on(Date.civil(2023, 4, 9), [:au_nt])[0] || {})[:name]
+
   end
 end
