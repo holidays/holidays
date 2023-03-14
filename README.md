@@ -183,7 +183,7 @@ Holidays.next_holidays(3, [:us, :informal], Date.civil(2016, 2, 23))
 
 You can specify the number of holidays to return. This method will default to `Date.today` if no date is provided.
 
-#### Find all holidays occuring starting from a specific date to the end of the year
+#### Find all holidays occurring starting from a specific date to the end of the year
 
 Get all holidays starting from February 23, 2016 to end of year in the US:
 
