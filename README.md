@@ -190,7 +190,7 @@ Get all holidays starting from February 23, 2016 to end of year in the US:
 ```ruby
 Holidays.year_holidays([:ca_on], Date.civil(2016, 2, 23))
 => [{:name=>"Good Friday",...},
-    {name=>"Easter Sunday",...},
+    {:name=>"Easter Sunday",...},
     {:name=>"Victoria Day",...},
     {:name=>"Canada Day",...},
     {:name=>"Civic Holiday",...},
