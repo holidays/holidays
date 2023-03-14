@@ -155,13 +155,13 @@ You can also pass in `informal` or `observed`:
 
 ```ruby
 # Returns true since Valentine's Day falls on a Wednesday
-holidays.any_holidays_during_work_week?(date.civil(2018, 2, 14), :us, :informal)
+Holidays.any_holidays_during_work_week?(date.civil(2018, 2, 14), :us, :informal)
 => true
 # Returns false if you don't specify informal
 irb(main):006:0> Holidays.any_holidays_during_work_week?(Date.civil(2018, 2, 14), :us)
 => false
 # Returns true since Veteran's Day is observed on Monday November 12, 2018
-holidays.any_holidays_during_work_week?(date.civil(2018, 11, 12), :us, :observed)
+Holidays.any_holidays_during_work_week?(date.civil(2018, 11, 12), :us, :observed)
 => true
 # Returns false if you don't specify observed since the actual holiday is on Sunday November 11th 2018
 irb(main):005:0> Holidays.any_holidays_during_work_week?(Date.civil(2018, 11, 12), :us)
