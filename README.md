@@ -125,6 +125,7 @@ Leaving off the 'observed' flag will mean that 'Canada Day' is not returned sinc
 ```ruby
 Holidays.on(Date.civil(2007, 7, 2), :ca_bc)
 => []
+
 Holidays.on(Date.civil(2007, 7, 1), :ca_bc)
 => [{:name=>"Canada Day", :regions=>[:ca],...}]
 ```
@@ -157,12 +158,15 @@ You can also pass in `informal` or `observed`:
 # Returns true since Valentine's Day falls on a Wednesday
 Holidays.any_holidays_during_work_week?(date.civil(2018, 2, 14), :us, :informal)
 => true
+
 # Returns false if you don't specify informal
 Holidays.any_holidays_during_work_week?(Date.civil(2018, 2, 14), :us)
 => false
+
 # Returns true since Veteran's Day is observed on Monday November 12, 2018
 Holidays.any_holidays_during_work_week?(date.civil(2018, 11, 12), :us, :observed)
 => true
+
 # Returns false if you don't specify observed since the actual holiday is on Sunday November 11th 2018
 Holidays.any_holidays_during_work_week?(Date.civil(2018, 11, 12), :us)
 => false
@@ -217,7 +221,7 @@ To load custom 'Company Founding' holiday on June 1st:
 ```ruby
 Holidays.load_custom('/home/user/holiday_definitions/custom_holidays.yaml')
 Holidays.on(Date.civil(2013, 6, 1), :my_custom_region)
-  => [{:name => 'Company Founding',...}]
+=> [{:name => 'Company Founding',...}]
 ```
 
 Custom definition files must match the [syntax of the existing definition files](https://github.com/holidays/definitions/blob/master/doc/SYNTAX.md).
@@ -225,7 +229,10 @@ Custom definition files must match the [syntax of the existing definition files]
 Multiple files can be loaded at the same time:
 
 ```ruby
-Holidays.load_custom('/home/user/holidays/custom_holidays1.yaml', '/home/user/holidays/custom_holidays2.yaml')
+Holidays.load_custom(
+  '/home/user/holidays/custom_holidays1.yaml',
+  '/home/user/holidays/custom_holidays2.yaml'
+)
 ```
 
 ## Extending Ruby's Date and Time classes
@@ -236,6 +243,7 @@ To extend the 'Date' class:
 
 ```ruby
 require 'holidays/core_extensions/date'
+
 class Date
   include Holidays::CoreExtensions::Date
 end
@@ -284,6 +292,7 @@ Date.calculate_mday(2015, 4, :first, 2)
 
 ```ruby
 require 'holidays/core_extensions/time'
+
 class Time
   include Holidays::CoreExtensions::Time
 end
