@@ -40,18 +40,21 @@ module Holidays
             {:function => "may_pub_hol_sa(year)", :function_arguments => [:year], :name => "May Public Holiday", :regions => [:au_sa]},
             {:mday => 27, :observed => "to_next_monday(date)", :observed_arguments => [:date], :name => "ACT Reconciliation Day", :regions => [:au_act]}],
       6 => [{:wday => 1, :week => 1, :name => "Foundation Day", :regions => [:au_wa]},
-            {:wday => 1, :week => 2, :name => "Queen's Birthday", :regions => [:au_act, :au_nsw, :au_sa, :au_tas, :au_nt, :au_vic]},
+            {:wday => 1, :week => 2,  :year_ranges => [{:before => 2022}],:name => "Queen's Birthday", :regions => [:au_act, :au_nsw, :au_sa, :au_tas, :au_nt, :au_vic]},
+            {:wday => 1, :week => 2,  :year_ranges => [{:after => 2023}],:name => "King's Birthday", :regions => [:au_act, :au_nsw, :au_sa, :au_tas, :au_nt, :au_vic]},
             {:function => "qld_queens_birthday_june(year)", :function_arguments => [:year], :name => "Queen's Birthday", :regions => [:au_qld]},
             {:mday => 6, :type => :informal, :name => "Queensland Day", :regions => [:au_qld]}],
       7 => [{:wday => 5, :week => 3, :name => "Cairns Show", :regions => [:au_qld_cairns]}],
       8 => [{:wday => 3, :week => -3, :name => "Ekka", :regions => [:au_qld_brisbane]},
             {:wday => 1, :week => 1, :name => "Picnic Day", :regions => [:au_nt]}],
-      9 => [{:wday => 1, :week => -1, :name => "Queen's Birthday", :regions => [:au_wa]},
+      9 => [{:wday => 1, :week => -1,  :year_ranges => [{:before => 2022}],:name => "Queen's Birthday", :regions => [:au_wa]},
+            {:wday => 1, :week => -1,  :year_ranges => [{:before => 2023}],:name => "King's Birthday", :regions => [:au_wa]},
             {:wday => 1, :week => -1,  :year_ranges => [{:before => 2017}],:name => "Family & Community Day", :regions => [:au_act]},
             {:mday => 22,  :year_ranges => [{:limited => 2022}],:name => "Day of mourning for Queen Elizabeth II", :regions => [:au, :au_nsw, :au_act, :au_sa, :au_tas, :au_vic, :au_wa, :au_nt, :au_qld]}],
       10 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:au_act, :au_nsw, :au_sa]},
             {:function => "qld_labour_day_october(year)", :function_arguments => [:year], :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Labour Day", :regions => [:au_qld]},
             {:function => "qld_queens_bday_october(year)", :function_arguments => [:year], :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Queen's Birthday", :regions => [:au_qld]},
+            {:function => "qld_kings_bday_october(year)", :function_arguments => [:year], :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "King's Birthday", :regions => [:au_qld]},
             {:function => "hobart_show_day(year)", :function_arguments => [:year], :name => "Royal Hobart Show", :regions => [:au_tas_south]}],
       11 => [{:function => "g20_day_2014_only(year)", :function_arguments => [:year], :name => "G20 Day", :regions => [:au_qld_brisbane]},
             {:wday => 1, :week => 1, :name => "Recreation Day", :regions => [:au_tas_north]},
@@ -92,8 +95,16 @@ when 2022
 end
 },
 
+"qld_kings_bday_october(year)" => Proc.new { |year|
+if year >= 2023
+  Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 10, 1, 1)
+else
+  nil
+end
+},
+
 "qld_queens_bday_october(year)" => Proc.new { |year|
-if year >= 2016
+if year <= 2022 && year >= 2016
   Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 10, 1, 1)
 elsif year == 2012
   1
