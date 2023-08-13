@@ -47,6 +47,11 @@ module Holidays
 
                 # Silently skip bad mdays
                 #TODO Should we be doing something different here? We have no concept of logging right now. Maybe we should add it?
+
+                # Prevent having to rescue en-masse unnecessarily, which is far slower.
+                # If any val is nil we get a TypeError: invalid day (not numeric) Error
+                next if current_day.nil? && current_month.nil? && year.nil?
+
                 begin
                   date = Date.civil(year, current_month, current_day)
                 rescue; next; end
