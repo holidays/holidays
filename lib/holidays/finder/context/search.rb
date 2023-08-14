@@ -50,7 +50,7 @@ module Holidays
 
                 # Prevent having to rescue en-masse unnecessarily, which is far slower.
                 # If any val is nil we get a TypeError: invalid day (not numeric) Error
-                next if current_day.nil? && current_month.nil? && year.nil?
+                next if current_day.nil? || current_month.nil? || year.nil?
 
                 begin
                   date = Date.civil(year, current_month, current_day)
