@@ -7,6 +7,10 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class ElDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_el
+    assert_equal "Πεντηκοστή", (Holidays.on(Date.civil(2023, 6, 4), [:el], [:informal])[0] || {})[:name]
+
+    assert_equal "Πεντηκοστή", (Holidays.on(Date.civil(2024, 6, 23), [:el], [:informal])[0] || {})[:name]
+
     assert_equal "Πρωτοχρονιά", (Holidays.on(Date.civil(2011, 1, 1), [:el], [:informal])[0] || {})[:name]
 
     assert_equal "Θεοφάνεια", (Holidays.on(Date.civil(2011, 1, 6), [:el], [:informal])[0] || {})[:name]
