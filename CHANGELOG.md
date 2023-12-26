@@ -1,5 +1,10 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 8.7.0
+
+* Update to [v5.6.2 definitions](https://github.com/holidays/definitions/releases/tag/v5.6.2). Please see the changelog for the definition details.
+* Add support for ruby 2.7, 3.0, 3.1, 3.2, 3.3
+
 ## 8.6.0
 
 * Update to [v5.5.0 definitions](https://github.com/holidays/definitions/releases/tag/v5.5.0). Please see the changelog for the definition details.
@@ -7,22 +12,22 @@
 
 ## 8.5.0
 
-* Update submodule definitions. 
+* Update submodule definitions.
 * Thanks to contributors!!
 
 ## 8.4.1
 
-* Fix jp holidays from 2022. 
+* Fix jp holidays from 2022.
 
 ## 8.4.0
 
-* Update submodule definitions. 
+* Update submodule definitions.
 * Thanks to contributors!!
 
 
 ## 8.3.0
 
-* Update submodule definitions. 
+* Update submodule definitions
 * Remove test about feb 29 on non leap year.
 * Thanks to contributors!!
 

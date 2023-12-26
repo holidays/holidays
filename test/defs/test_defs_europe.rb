@@ -161,6 +161,10 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "2. svátek vánoční", (Holidays.on(Date.civil(2010, 12, 26), [:cz], [:informal])[0] || {})[:name]
 
+    assert_equal "Store Bededag", (Holidays.on(Date.civil(2023, 5, 5), [:dk])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2024, 4, 26), [:dk])[0] || {})[:name]
+
     assert_equal "Nytårsdag", (Holidays.on(Date.civil(2007, 1, 1), [:dk], [:informal])[0] || {})[:name]
 
     assert_equal "Fastelavn", (Holidays.on(Date.civil(2007, 2, 18), [:dk], [:informal])[0] || {})[:name]
@@ -264,6 +268,8 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_nil (Holidays.on(Date.civil(2018, 3, 8), [:de_be])[0] || {})[:name]
 
     assert_equal "Internationaler Frauentag", (Holidays.on(Date.civil(2019, 3, 8), [:de_be])[0] || {})[:name]
+
+    assert_equal "Internationaler Frauentag", (Holidays.on(Date.civil(2023, 3, 8), [:de_mv])[0] || {})[:name]
 
     assert_equal "Tag der Befreiung", (Holidays.on(Date.civil(2020, 5, 8), [:de_be])[0] || {})[:name]
 
@@ -433,7 +439,7 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Ascension", (Holidays.on(Date.civil(2007, 5, 17), [:fr])[0] || {})[:name]
 
-    assert_equal "Lundi de Pentecôte", (Holidays.on(Date.civil(2007, 5, 28), [:fr])[0] || {})[:name]
+    assert_equal "Pentecôte", (Holidays.on(Date.civil(2007, 5, 27), [:fr])[0] || {})[:name]
 
     assert_equal "Fête nationale", (Holidays.on(Date.civil(2007, 7, 14), [:fr])[0] || {})[:name]
 
@@ -447,11 +453,11 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_nil (Holidays.on(Date.civil(2007, 4, 8), [:fr])[0] || {})[:name]
 
-    assert_nil (Holidays.on(Date.civil(2007, 5, 27), [:fr])[0] || {})[:name]
+    assert_nil (Holidays.on(Date.civil(2007, 5, 28), [:fr])[0] || {})[:name]
 
     assert_equal "Pâques", (Holidays.on(Date.civil(2007, 4, 8), [:fr], [:informal])[0] || {})[:name]
 
-    assert_equal "Pentecôte", (Holidays.on(Date.civil(2007, 5, 27), [:fr], [:informal])[0] || {})[:name]
+    assert_equal "Lundi de Pentecôte", (Holidays.on(Date.civil(2007, 5, 28), [:fr], [:informal])[0] || {})[:name]
 
     assert_equal "Saint-Étienne", (Holidays.on(Date.civil(2017, 12, 26), [:fr_a, :fr_m], [:informal])[0] || {})[:name]
 
@@ -593,7 +599,15 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_nil (Holidays.on(Date.civil(2021, 9, 19), [:gb])[0] || {})[:name]
 
+    assert_equal "Bank Holiday for the Coronation of King Charles III", (Holidays.on(Date.civil(2023, 5, 8), [:gb])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2024, 5, 8), [:gb])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2022, 5, 8), [:gb])[0] || {})[:name]
+
     assert_equal "Bank Holiday", (Holidays.on(Date.civil(2023, 5, 29), [:gb])[0] || {})[:name]
+
+    assert_equal "Bank Holiday for the Coronation of King Charles III", (Holidays.on(Date.civil(2023, 5, 8), [:gb])[0] || {})[:name]
 
     assert_equal "Nova godina", (Holidays.on(Date.civil(2012, 1, 1), [:hr], [:informal])[0] || {})[:name]
 
@@ -898,6 +912,8 @@ assert_equal "Latvijas Republikas Neatkarības atjaunošanas diena", (Holidays.o
     assert_equal "Mātes diena", (Holidays.on(Date.civil(2019, 5, 12), [:lv])[0] || {})[:name]
 assert_equal "Mātes diena", (Holidays.on(Date.civil(2020, 5, 10), [:lv])[0] || {})[:name]
 assert_equal "Mātes diena", (Holidays.on(Date.civil(2029, 5, 13), [:lv])[0] || {})[:name]
+
+    assert_equal "Diena, kad Latvijas hokeja komanda ieguva bronzas medaļu 2023. gada Pasaules hokeja čempionātā", (Holidays.on(Date.civil(2023, 5, 29), [:lv])[0] || {})[:name]
 
     assert_equal "Vasarsvētki", (Holidays.on(Date.civil(2019, 6, 9), [:lv])[0] || {})[:name]
 assert_equal "Vasarsvētki", (Holidays.on(Date.civil(2020, 5, 31), [:lv])[0] || {})[:name]

@@ -7,7 +7,7 @@ module Holidays
   # All the definitions are available at https://github.com/holidays/holidays
   module EUROPE # :nodoc:
     def self.defined_regions
-      [:at, :be_fr, :be_nl, :ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_ne, :ch_ge, :ch_ju, :ch_vs, :ch, :cz, :dk, :de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_sorbian, :de_th_cath, :de_sn, :de_st, :de_be, :de_by_cath, :de_by_augsburg, :de_bb, :de_mv, :de_th, :de_hb, :de_hh, :de_ni, :de_sh, :el, :es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex, :es, :es_ct, :es_v, :es_vc, :fr_a, :fr_m, :fr, :gb, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :je, :gb_jsy, :gg, :gb_gsy, :gb_sct, :gb_con, :im, :gb_iom, :hr, :hu, :ie, :is, :it, :it_ve, :it_tv, :it_vr, :it_pd, :it_fi, :it_ge, :it_to, :it_rm, :it_vi, :it_bl, :it_ro, :li, :lt, :lv, :nl, :no, :pl, :pt, :pt_li, :pt_po, :ro, :sk, :si, :bg_en, :bg_bg, :ua]
+      [:at, :be_fr, :be_nl, :ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_ne, :ch_ge, :ch_ju, :ch_vs, :ch, :cz, :dk, :de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_sorbian, :de_th_cath, :de_sn, :de_st, :de_be, :de_mv, :de_by_cath, :de_by_augsburg, :de_bb, :de_th, :de_hb, :de_hh, :de_ni, :de_sh, :el, :es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex, :es, :es_ct, :es_v, :es_vc, :fr_a, :fr_m, :fr, :gb, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :je, :gb_jsy, :gg, :gb_gsy, :gb_sct, :gb_con, :im, :gb_iom, :hr, :hu, :ie, :is, :it, :it_ve, :it_tv, :it_vr, :it_pd, :it_fi, :it_ge, :it_to, :it_rm, :it_vi, :it_bl, :it_ro, :li, :lt, :lv, :nl, :no, :pl, :pt, :pt_li, :pt_po, :ro, :sk, :si, :bg_en, :bg_bg, :ua]
     end
 
     def self.holidays_by_month
@@ -41,7 +41,7 @@ module Holidays
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Langfredag", :regions => [:dk]},
             {:function => "easter(year)", :function_arguments => [:year], :name => "Påskedag", :regions => [:dk]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "2. påskedag", :regions => [:dk]},
-            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 26, :name => "Store Bededag", :regions => [:dk]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 26, :year_ranges => { :until => 2023 },:name => "Store Bededag", :regions => [:dk]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Kristi Himmelfartsdag", :regions => [:dk]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Pinsedag", :regions => [:dk]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "2. Pinsedag", :regions => [:dk]},
@@ -69,8 +69,8 @@ module Holidays
             {:function => "easter(year)", :function_arguments => [:year], :type => :informal, :name => "Pâques", :regions => [:fr]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Lundi de Pâques", :regions => [:fr]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Ascension", :regions => [:fr]},
-            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :type => :informal, :name => "Pentecôte", :regions => [:fr]},
-            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Lundi de Pentecôte", :regions => [:fr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Pentecôte", :regions => [:fr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :type => :informal, :name => "Lundi de Pentecôte", :regions => [:fr]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -21, :type => :informal, :name => "Mothering Sunday", :regions => [:gb]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:gb]},
             {:function => "easter(year)", :function_arguments => [:year], :name => "Easter Sunday", :regions => [:gb]},
@@ -227,6 +227,7 @@ module Holidays
             {:mday => 8, :name => "Victoire 1945", :regions => [:fr]},
             {:wday => 1, :week => 1, :year_ranges => { :until => 2019 },:name => "May Day", :regions => [:gb]},
             {:mday => 8, :year_ranges => { :limited => [2020] },:name => "May Day", :regions => [:gb]},
+            {:mday => 8, :year_ranges => { :limited => [2023] },:name => "Bank Holiday for the Coronation of King Charles III", :regions => [:gb, :gb]},
             {:wday => 1, :week => 1, :year_ranges => { :from => 2021 },:name => "May Day", :regions => [:gb]},
             {:mday => 9, :name => "Liberation Day", :regions => [:je, :gb_jsy, :gg, :gb_gsy]},
             {:wday => 1, :week => -1, :year_ranges => { :until => 2021 },:name => "Bank Holiday", :regions => [:gb]},
@@ -244,6 +245,7 @@ module Holidays
             {:mday => 1, :name => "Darba svētki, Latvijas Republikas Satversmes sapulces sasaukšanas diena", :regions => [:lv]},
             {:mday => 4, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Latvijas Republikas Neatkarības atjaunošanas diena", :regions => [:lv]},
             {:wday => 0, :week => 2, :name => "Mātes diena", :regions => [:lv]},
+            {:mday => 29, :year_ranges => { :limited => [2023] },:name => "Diena, kad Latvijas hokeja komanda ieguva bronzas medaļu 2023. gada Pasaules hokeja čempionātā", :regions => [:lv]},
             {:mday => 4, :type => :informal, :name => "Dodenherdenking", :regions => [:nl]},
             {:mday => 5, :name => "Bevrijdingsdag", :regions => [:nl]},
             {:mday => 1, :name => "1. mai", :regions => [:no]},
@@ -295,7 +297,7 @@ module Holidays
             {:mday => 24, :year_ranges => { :from => 1992 },:observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "День Незалежності", :regions => [:ua]}],
       10 => [{:mday => 26, :name => "Nationalfeiertag", :regions => [:at]},
             {:mday => 28, :name => "Den vzniku samostatného československého státu", :regions => [:cz]},
-            {:mday => 3, :name => "Tag der Deutschen Einheit", :regions => [:de]},
+            {:mday => 3, :year_ranges => { :from => 1990 },:name => "Tag der Deutschen Einheit", :regions => [:de]},
             {:mday => 31, :name => "Reformationstag", :regions => [:de_bb, :de_mv, :de_sn, :de_st, :de_th]},
             {:mday => 31, :type => :informal, :name => "Reformationstag", :regions => [:de_bw]},
             {:mday => 31, :year_ranges => { :limited => [2017] },:name => "Reformationstag", :regions => [:de]},
@@ -448,6 +450,7 @@ module Holidays
       3 => [{:mday => 1, :name => "Instauration de la République", :regions => [:ch_ne]},
             {:mday => 19, :name => "Josephstag", :regions => [:ch_ur, :ch_sz, :ch_nw, :ch_ti, :ch_vs]},
             {:mday => 8, :year_ranges => { :from => 2019 },:name => "Internationaler Frauentag", :regions => [:de_be]},
+            {:mday => 8, :year_ranges => { :from => 2023 },:name => "Internationaler Frauentag", :regions => [:de_mv]},
             {:mday => 25, :name => "Επέτειος της Επανάστασης του 1821", :regions => [:el]},
             {:mday => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de las Islas Baleares", :regions => [:es_ib]},
             {:mday => 19, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "San José", :regions => [:es_v, :es_vc, :es_cm, :es_mu, :es_m]},
@@ -482,6 +485,7 @@ module Holidays
             {:mday => 5, :type => :informal, :name => "Grundlovsdag", :regions => [:dk]},
             {:mday => 15, :type => :informal, :name => "Valdemarsdag og Genforeningsdag", :regions => [:dk]},
             {:mday => 23, :type => :informal, :name => "Sankt Hans aften", :regions => [:dk]},
+            {:mday => 17, :year_ranges => { :between => 1954..1990 },:name => "Tag der Deutschen Einheit", :regions => [:de]},
             {:mday => 9, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de la Región de Murcia", :regions => [:es_mu]},
             {:mday => 9, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de La Rioja", :regions => [:es_lo]},
             {:mday => 24, :name => "San Juan", :regions => [:es_ct, :es_vc]},

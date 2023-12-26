@@ -39,6 +39,8 @@ assert_equal "Latvijas Republikas Neatkarības atjaunošanas diena", (Holidays.o
 assert_equal "Mātes diena", (Holidays.on(Date.civil(2020, 5, 10), [:lv])[0] || {})[:name]
 assert_equal "Mātes diena", (Holidays.on(Date.civil(2029, 5, 13), [:lv])[0] || {})[:name]
 
+    assert_equal "Diena, kad Latvijas hokeja komanda ieguva bronzas medaļu 2023. gada Pasaules hokeja čempionātā", (Holidays.on(Date.civil(2023, 5, 29), [:lv])[0] || {})[:name]
+
     assert_equal "Vasarsvētki", (Holidays.on(Date.civil(2019, 6, 9), [:lv])[0] || {})[:name]
 assert_equal "Vasarsvētki", (Holidays.on(Date.civil(2020, 5, 31), [:lv])[0] || {})[:name]
 assert_equal "Vasarsvētki", (Holidays.on(Date.civil(2029, 5, 20), [:lv])[0] || {})[:name]

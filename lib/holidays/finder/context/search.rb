@@ -83,6 +83,7 @@ module Holidays
 
         def custom_holiday(year, month, h)
           @custom_method_processor.call(
+            #FIXME This seems like a bug, we seem to expect the day in here in the au defs?
             build_custom_method_input(year, month, h[:mday], h[:regions]),
             h[:function], h[:function_arguments], h[:function_modifier],
           )
