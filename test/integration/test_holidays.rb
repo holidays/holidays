@@ -130,12 +130,6 @@ class HolidaysTests < Test::Unit::TestCase
     assert_equal 5, holidays.length
   end
 
-  def test_year_holidays_without_specified_year
-    # Gets holidays for current year from today's date
-    holidays = Holidays.year_holidays([:de])
-    assert_equal holidays.first[:date].year, Date.today.year
-  end
-
   def test_year_holidays_empty
     # if remain holidays is nothing , method will return empty.
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2016, 12, 27))

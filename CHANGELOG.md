@@ -1,5 +1,10 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 8.7.1
+
+* Fix testing issues and github action config, no behavior changes
+* Remove Travis CI config
+
 ## 8.7.0
 
 * Update to [v5.6.2 definitions](https://github.com/holidays/definitions/releases/tag/v5.6.2). Please see the changelog for the definition details.
@@ -13,7 +18,11 @@
 
 ## 8.5.0
 
+<<<<<<< HEAD
 * Update submodule definitions.
+=======
+* Update submodule definitions
+>>>>>>> e893d1f (Fix github actions for defs 8.7.0)
 * Thanks to contributors!!
 
 ## 8.4.1
@@ -22,7 +31,11 @@
 
 ## 8.4.0
 
+<<<<<<< HEAD
 * Update submodule definitions.
+=======
+* Update submodule definitions
+>>>>>>> e893d1f (Fix github actions for defs 8.7.0)
 * Thanks to contributors!!
 
 
