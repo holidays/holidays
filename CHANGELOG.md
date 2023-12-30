@@ -4,6 +4,7 @@
 
 * Update to [v5.6.2 definitions](https://github.com/holidays/definitions/releases/tag/v5.6.2). Please see the changelog for the definition details.
 * Add support for ruby 2.7, 3.0, 3.1, 3.2, 3.3
+* Add GitHub actions support since Travis CI is not free for OSS anymore
 
 ## 8.6.0
 
