@@ -18,11 +18,7 @@
 
 ## 8.5.0
 
-<<<<<<< HEAD
 * Update submodule definitions.
-=======
-* Update submodule definitions
->>>>>>> e893d1f (Fix github actions for defs 8.7.0)
 * Thanks to contributors!!
 
 ## 8.4.1
@@ -31,11 +27,7 @@
 
 ## 8.4.0
 
-<<<<<<< HEAD
-* Update submodule definitions.
-=======
 * Update submodule definitions
->>>>>>> e893d1f (Fix github actions for defs 8.7.0)
 * Thanks to contributors!!
 
 
