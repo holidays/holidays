@@ -1,14 +1,11 @@
 name: Ruby
-
 on:
   push:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-
 permissions:
   contents: read
-
 jobs:
   test:
     runs-on: ubuntu-latest
