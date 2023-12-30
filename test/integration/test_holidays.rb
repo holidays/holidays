@@ -155,7 +155,7 @@ class HolidaysTests < Test::Unit::TestCase
     assert_equal 11, holidays.length
 
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2050, 1, 1))
-    assert_equal 10, holidays.length
+    assert_equal 9, holidays.length
 
     holidays = Holidays.year_holidays([:jp], Date.civil(2070, 1, 1))
     assert_equal 19, holidays.length

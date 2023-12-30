@@ -201,9 +201,17 @@ assert_equal "Remembrance Day", (Holidays.on(Date.civil(2017, 11, 13), [:ca_ab, 
 
     assert_equal "Canada Day", (Holidays.on(Date.civil(2017, 7, 3), [:ca], [:observed])[0] || {})[:name]
 
-    assert_equal "National Day for Truth and Reconciliation", (Holidays.on(Date.civil(2021, 9, 30), [:ca])[0] || {})[:name]
+    assert_equal "National Day for Truth and Reconciliation", (Holidays.on(Date.civil(2021, 9, 30), [:ca_bc, :ca_nt, :ca_pe, :ca_yt])[0] || {})[:name]
 
-    assert_equal "National Day for Truth and Reconciliation", (Holidays.on(Date.civil(2026, 9, 30), [:ca])[0] || {})[:name]
+    assert_equal "National Day for Truth and Reconciliation", (Holidays.on(Date.civil(2021, 9, 30), [:ca_ab, :ca_mb, :ca_nu], [:informal])[0] || {})[:name]
+
+    assert_equal "National Day for Truth and Reconciliation", (Holidays.on(Date.civil(2023, 10, 2), [:ca_bc, :ca_nt, :ca_pe, :ca_yt], [:observed])[0] || {})[:name]
+
+    assert_equal "National Day for Truth and Reconciliation", (Holidays.on(Date.civil(2023, 10, 2), [:ca_ab, :ca_mb, :ca_nu], [:informal, :observed])[0] || {})[:name]
+
+    assert_equal "National Day for Truth and Reconciliation", (Holidays.on(Date.civil(2026, 9, 30), [:ca_bc, :ca_nt, :ca_pe, :ca_yt], [:observed])[0] || {})[:name]
+
+    assert_equal "National Day for Truth and Reconciliation", (Holidays.on(Date.civil(2026, 9, 30), [:ca_ab, :ca_mb, :ca_nu], [:informal, :observed])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(2020, 9, 30), [:ca])[0] || {})[:name]
 

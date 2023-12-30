@@ -31,7 +31,8 @@ module Holidays
             {:mday => 25, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "ANZAC Day", :regions => [:au_wa]}],
       5 => [{:function => "qld_labour_day_may(year)", :function_arguments => [:year], :name => "Labour Day", :regions => [:au_qld]},
             {:wday => 1, :week => 1, :name => "May Day", :regions => [:au_nt]},
-            {:function => "may_pub_hol_sa(year)", :function_arguments => [:year], :name => "May Public Holiday", :regions => [:au_sa]}],
+            {:function => "may_pub_hol_sa(year)", :function_arguments => [:year], :name => "May Public Holiday", :regions => [:au_sa]},
+            {:mday => 27, :function => "to_nearest_monday_after(date)", :function_arguments => [:date], :year_ranges => { :from => 2018 },:name => "Reconciliation Day", :regions => [:au_act]}],
       6 => [{:wday => 1, :week => 1, :name => "Western Australia Day", :regions => [:au_wa]},
             {:wday => 1, :week => 2, :name => "Queen's Birthday", :regions => [:au_act, :au_nsw, :au_sa, :au_tas, :au_nt, :au_vic]},
             {:function => "qld_queens_birthday_june(year)", :function_arguments => [:year], :name => "Queen's Birthday", :regions => [:au_qld]},
@@ -40,7 +41,7 @@ module Holidays
       8 => [{:function => "qld_brisbane_ekka_holiday(year)", :function_arguments => [:year], :name => "Ekka", :regions => [:au_qld_brisbane]}],
       9 => [{:mday => 22, :year_ranges => { :limited => [2022] },:name => "National Day of Mourning for Her Majesty Queen Elizabeth II", :regions => [:au]},
             {:wday => 1, :week => -1, :name => "Queen's Birthday", :regions => [:au_wa]},
-            {:wday => 1, :week => -1, :name => "Family & Community Day", :regions => [:au_act]}],
+            {:wday => 1, :week => -1, :year_ranges => { :until => 2017 },:name => "Family & Community Day", :regions => [:au_act]}],
       10 => [{:function => "afl_grand_final(year)", :function_arguments => [:year], :name => "Friday before the AFL Grand Final", :regions => [:au_vic]},
             {:wday => 1, :week => 1, :name => "Labour Day", :regions => [:au_act, :au_nsw, :au_sa]},
             {:function => "qld_labour_day_october(year)", :function_arguments => [:year], :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Labour Day", :regions => [:au_qld]},
@@ -138,6 +139,24 @@ if first_friday < 5
 else
   Date.civil(year, 8, first_friday) + 5
 end
+},
+
+"to_nearest_monday_after(date)" => Proc.new { |date|
+case date.wday
+when 6
+  date += 2
+when 5
+  date += 3
+when 4
+  date += 4
+when 3
+  date += 5
+when 2
+  date += 6
+when 0
+  date += 1
+end
+date
 },
 
 
