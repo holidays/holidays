@@ -21,8 +21,8 @@ This gem is tested with the following ruby versions:
   * 3.0.6
   * 3.1.4
   * 3.2.2
-  * 3.3.0
-  * JRuby 9.2.5.0
+  * JRuby 9.2.21.0
+  * JRuby 9.4.2.0
 
 ## Semver
 
