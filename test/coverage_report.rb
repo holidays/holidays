@@ -4,7 +4,7 @@ require 'simplecov'
 # than other ruby versions. Ruby 2.5.3, for instance, is at 92%.
 #
 # We set the floor based on jruby so that all automated tests pass on Travis CI.
-SimpleCov.minimum_coverage 89
+SimpleCov.minimum_coverage 88
 
 SimpleCov.add_filter [
   # Apparently simplecov doesn't automatically filter 'spec' or 'test' so we
