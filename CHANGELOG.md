@@ -1,5 +1,9 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 8.7.2
+
+* Add ruby 3.3 to github actions
+
 ## 8.7.1
 
 * Fix testing issues and github action config, no behavior changes
