@@ -45,14 +45,14 @@ This gem offers multiple ways to check for holidays for a variety of scenarios.
 
 Get all holidays on April 25, 2008 in Australia:
 
-```
+```ruby
 Holidays.on(Date.civil(2008, 4, 25), :au)
 => [{:name => 'ANZAC Day',...}]
 ```
 
 You can check multiple regions in a single call:
 
-```
+```ruby
 Holidays.on(Date.civil(2008, 1, 1), :us, :fr)
 => [{:name=>"New Year's Day", :regions=>[:us],...},
     {:name=>"Jour de l'an", :regions=>[:fr],...}]
@@ -60,7 +60,7 @@ Holidays.on(Date.civil(2008, 1, 1), :us, :fr)
 
 You can leave off 'regions' to get holidays for any region in our [definitions](https://github.com/holidays/definitions):
 
-```
+```ruby
  Holidays.on(Date.civil(2007, 4, 25))
 => [{:name=>"ANZAC Day", :regions=>[:au],...},
     {:name=>"Festa della Liberazione", :regions=>[:it],...},
@@ -73,7 +73,7 @@ You can leave off 'regions' to get holidays for any region in our [definitions](
 
 Get all holidays during the month of July 2008 in Canada and the US:
 
-```
+```ruby
 from = Date.civil(2008,7,1)
 to = Date.civil(2008,7,31)
 
@@ -90,21 +90,21 @@ By default this flag is turned off, meaning no informal holidays will be returne
 
 Get Valentine's Day in the US:
 
-```
+```ruby
 Holidays.on(Date.new(2018, 2, 14), :us, :informal)
 => [{:name=>"Valentine's Day",...}]
 ```
 
 Leaving off 'informal' will mean that Valentine's Day is not returned:
 
-```
+```ruby
 Holidays.on(Date.new(2018, 2, 14), :us)
 => []
 ```
 
 Get informal holidays during the month of February 2008 for any region:
 
-```
+```ruby
 from = Date.civil(2008,2,1)
 to = Date.civil(2008,2,15)
 
@@ -120,23 +120,24 @@ By default this flag is turned off, meaning no observed logic will be applied.
 
 Get holidays that are observed on Monday July 2, 2007 in British Columbia, Canada:
 
-```
+```ruby
 Holidays.on(Date.civil(2007, 7, 2), :ca_bc, :observed)
 => [{:name => 'Canada Day',...}]
 ```
 
 Leaving off the 'observed' flag will mean that 'Canada Day' is not returned since it actually falls on Sunday July 1:
 
-```
+```ruby
 Holidays.on(Date.civil(2007, 7, 2), :ca_bc)
 => []
+
 Holidays.on(Date.civil(2007, 7, 1), :ca_bc)
 => [{:name=>"Canada Day", :regions=>[:ca],...}]
 ```
 
 Get all observed US Federal holidays between 2018 and 2019:
 
-```
+```ruby
 from = Date.civil(2018,1,1)
 to = Date.civil(2019,12,31)
 
@@ -151,25 +152,28 @@ Check if there are any holidays taking place during a specified work week. 'Work
 
 Check whether a holiday falls during first week of the year for any region:
 
-```
+```ruby
 Holidays.any_holidays_during_work_week?(Date.civil(2016, 1, 1))
 => true
 ```
 
 You can also pass in `informal` or `observed`:
 
-```
+```ruby
 # Returns true since Valentine's Day falls on a Wednesday
-holidays.any_holidays_during_work_week?(date.civil(2018, 2, 14), :us, :informal)
+Holidays.any_holidays_during_work_week?(date.civil(2018, 2, 14), :us, :informal)
 => true
+
 # Returns false if you don't specify informal
-irb(main):006:0> Holidays.any_holidays_during_work_week?(Date.civil(2018, 2, 14), :us)
+Holidays.any_holidays_during_work_week?(Date.civil(2018, 2, 14), :us)
 => false
+
 # Returns true since Veteran's Day is observed on Monday November 12, 2018
-holidays.any_holidays_during_work_week?(date.civil(2018, 11, 12), :us, :observed)
+Holidays.any_holidays_during_work_week?(date.civil(2018, 11, 12), :us, :observed)
 => true
+
 # Returns false if you don't specify observed since the actual holiday is on Sunday November 11th 2018
-irb(main):005:0> Holidays.any_holidays_during_work_week?(Date.civil(2018, 11, 12), :us)
+Holidays.any_holidays_during_work_week?(Date.civil(2018, 11, 12), :us)
 => false
 ```
 
@@ -177,21 +181,21 @@ irb(main):005:0> Holidays.any_holidays_during_work_week?(Date.civil(2018, 11, 12
 
 Get the next holidays occurring from February 23, 2016 for the US:
 
-```
+```ruby
 Holidays.next_holidays(3, [:us, :informal], Date.civil(2016, 2, 23))
 => [{:name => "St. Patrick's Day",...}, {:name => "Good Friday",...}, {:name => "Easter Sunday",...}]
 ```
 
 You can specify the number of holidays to return. This method will default to `Date.today` if no date is provided.
 
-#### Find all holidays occuring starting from a specific date to the end of the year
+#### Find all holidays occurring starting from a specific date to the end of the year
 
 Get all holidays starting from February 23, 2016 to end of year in the US:
 
-```
+```ruby
 Holidays.year_holidays([:ca_on], Date.civil(2016, 2, 23))
 => [{:name=>"Good Friday",...},
-    {name=>"Easter Sunday",...},
+    {:name=>"Easter Sunday",...},
     {:name=>"Victoria Day",...},
     {:name=>"Canada Day",...},
     {:name=>"Civic Holiday",...},
@@ -208,7 +212,7 @@ This method will default to `Date.today` if no date is provided.
 
 Return all available regions:
 
-```
+```ruby
 Holidays.available_regions
 => [:ar, :at, ..., :sg] # this will be a big array
 ```
@@ -219,18 +223,21 @@ In addition to the [provided definitions](https://github.com/holidays/definition
 
 To load custom 'Company Founding' holiday on June 1st:
 
-```
+```ruby
 Holidays.load_custom('/home/user/holiday_definitions/custom_holidays.yaml')
 Holidays.on(Date.civil(2013, 6, 1), :my_custom_region)
-  => [{:name => 'Company Founding',...}]
+=> [{:name => 'Company Founding',...}]
 ```
 
 Custom definition files must match the [syntax of the existing definition files](https://github.com/holidays/definitions/blob/master/doc/SYNTAX.md).
 
 Multiple files can be loaded at the same time:
 
-```
-Holidays.load_custom('/home/user/holidays/custom_holidays1.yaml', '/home/user/holidays/custom_holidays2.yaml')
+```ruby
+Holidays.load_custom(
+  '/home/user/holidays/custom_holidays1.yaml',
+  '/home/user/holidays/custom_holidays2.yaml'
+)
 ```
 
 ## Extending Ruby's Date and Time classes
@@ -239,8 +246,9 @@ Holidays.load_custom('/home/user/holidays/custom_holidays1.yaml', '/home/user/ho
 
 To extend the 'Date' class:
 
-```
+```ruby
 require 'holidays/core_extensions/date'
+
 class Date
   include Holidays::CoreExtensions::Date
 end
@@ -248,7 +256,7 @@ end
 
 Now you can check which holidays occur in Iceland on January 1, 2008:
 
-```
+```ruby
 d = Date.civil(2008,7,1)
 
 d.holidays(:is)
@@ -257,7 +265,7 @@ d.holidays(:is)
 
 Or lookup Canada Day in different regions:
 
-```
+```ruby
 d = Date.civil(2008,7,1)
 
 d.holiday?(:ca) # Canada
@@ -272,7 +280,7 @@ d.holiday?(:fr) # France
 
 Or return the new date based on the options:
 
-```
+```ruby
 d = Date.civil(2008,7,1)
 d.change(:year => 2016, :month => 1, :day => 1)
 => #<Date: 2016-01-01 ((2457389j,0s,0n),+0s,2299161j)>
@@ -280,15 +288,16 @@ d.change(:year => 2016, :month => 1, :day => 1)
 
 Or you can calculate the day of the month:
 
-```
+```ruby
 Date.calculate_mday(2015, 4, :first, 2)
 => 7
 ```
 
 ### Time
 
-```
+```ruby
 require 'holidays/core_extensions/time'
+
 class Time
   include Holidays::CoreExtensions::Time
 end
@@ -296,7 +305,7 @@ end
 
 Find end of month for given date:
 
-```
+```ruby
 d = Date.civil(2016,8,1)
 d.end_of_month
 => #<Date: 2016-08-31 ((2457632j,0s,0n),+0s,2299161j)>
@@ -306,7 +315,7 @@ d.end_of_month
 
 If you are checking holidays regularly you can cache your results for improved performance. Run this before looking up a holiday (e.g. in an initializer):
 
-```
+```ruby
 YEAR = 365 * 24 * 60 * 60
 Holidays.cache_between(Time.now, Time.now + 2 * YEAR, :ca, :us, :observed)
 ```
