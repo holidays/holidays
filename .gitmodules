@@ -1,3 +1,4 @@
 [submodule "definitions"]
 	path = definitions
-	url = https://github.com/holidays/definitions
+	url = git@github.com:bkmgit/definitions.git
+	branch = KE-fixes

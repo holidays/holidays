@@ -39,6 +39,10 @@ class BrDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Proclamação da República", (Holidays.on(Date.civil(2008, 11, 15), [:br], [:informal])[0] || {})[:name]
 
+    assert_nil (Holidays.on(Date.civil(2023, 11, 20), [:br], [:informal])[0] || {})[:name]
+
+    assert_equal "Dia Nacional de Zumbi e da Consciência Negra", (Holidays.on(Date.civil(2024, 11, 20), [:br], [:informal])[0] || {})[:name]
+
     assert_equal "Natal", (Holidays.on(Date.civil(2008, 12, 25), [:br], [:informal])[0] || {})[:name]
 
   end
