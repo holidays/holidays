@@ -1,4 +1,4 @@
-# Ruby Holidays Gem [![Build Status](https://travis-ci.org/holidays/holidays.svg?branch=master)](https://travis-ci.org/holidays/holidays)
+# Ruby Holidays Gem [![Build Status](https://github.com/holidays/holidays/actions/workflows/ruby.yml/badge.svg)](https://github.com/holidays/holidays/actions/workflows/ruby.yml)
 
 Functionality to deal with holidays in Ruby.
 
