@@ -12,6 +12,11 @@ Gem::Specification.new do |gem|
   gem.homepage      = 'https://github.com/holidays/holidays'
   gem.description   = %q(A collection of Ruby methods to deal with statutory and other holidays. You deserve a holiday!)
   gem.summary       = %q(A collection of Ruby methods to deal with statutory and other holidays.)
+  gem.metadata = {
+    'changelog_uri' => "https://github.com/holidays/holidays/blob/master/CHANGELOG.md",
+    'source_code_uri' => 'https://github.com/holidays/holidays',
+    'bug_tracker_uri' => 'https://github.com/holidays/holidays/issues'
+  }
   gem.files         = `git ls-files`.split("\n") - ['.gitignore', '.travis.yml']
   gem.test_files    = gem.files.grep(/^test/)
   gem.require_paths = ['lib']
