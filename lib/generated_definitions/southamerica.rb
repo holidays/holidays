@@ -92,6 +92,7 @@ module Holidays
             {:mday => 22, :year_ranges => { :limited => [2021] },:name => "Feriado con fines turísticos", :regions => [:ar]},
             {:mday => 2, :name => "Dia de Finados", :regions => [:br]},
             {:mday => 15, :name => "Proclamação da República", :regions => [:br]},
+            {:mday => 20, :year_ranges => { :from => 2024 },:name => "Dia Nacional de Zumbi e da Consciência Negra", :regions => [:br]},
             {:mday => 1, :name => "Día de Todos los Santos", :regions => [:cl]},
             {:function => "all_saints_day(year)", :function_arguments => [:year], :name => "Día de Todos los Santos", :regions => [:co]},
             {:function => "independence_of_cartagena(year)", :function_arguments => [:year], :name => "Independencia de Cartagena", :regions => [:co]},

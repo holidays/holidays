@@ -22,7 +22,8 @@ module Holidays
       9 => [{:mday => 7, :name => "Proclamação da Independência", :regions => [:br]}],
       10 => [{:mday => 12, :name => "Dia de Nossa Senhora Aparecida", :regions => [:br]}],
       11 => [{:mday => 2, :name => "Dia de Finados", :regions => [:br]},
-            {:mday => 15, :name => "Proclamação da República", :regions => [:br]}],
+            {:mday => 15, :name => "Proclamação da República", :regions => [:br]},
+            {:mday => 20, :year_ranges => { :from => 2024 },:name => "Dia Nacional de Zumbi e da Consciência Negra", :regions => [:br]}],
       12 => [{:mday => 25, :name => "Natal", :regions => [:br]}]
       }
     end
