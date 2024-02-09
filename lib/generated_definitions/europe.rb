@@ -469,7 +469,7 @@ module Holidays
             {:mday => 22, :name => "The Independence Day", :regions => [:bg_en]},
             {:mday => 22, :name => "Ден на Независимостта", :regions => [:bg_bg]}],
       2 => [{:mday => 28, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de Andalucía", :regions => [:es_an]},
-            {:mday => 6, :name => "St Brigid's Day", :regions => [:ie]},
+            {:mday => 5, :name => "St Brigid's Day", :regions => [:ie]},
             {:mday => 18, :type => :informal, :name => "Konudagur", :regions => [:is]},
             {:mday => 2, :name => "Maria Lichtmess", :regions => [:li]},
             {:mday => 16, :name => "Valstybės atkūrimo diena", :regions => [:lt]},
