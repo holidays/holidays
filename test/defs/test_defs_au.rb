@@ -43,6 +43,8 @@ assert_equal "Queen's Birthday", (Holidays.on(Date.civil(2015, 9, 28), [:au_wa])
 assert_equal "Queen's Birthday", (Holidays.on(Date.civil(2016, 9, 26), [:au_wa])[0] || {})[:name]
 
     assert_equal "King's Birthday", (Holidays.on(Date.civil(2023, 9, 25), [:au_wa])[0] || {})[:name]
+assert_equal "King's Birthday", (Holidays.on(Date.civil(2024, 9, 23), [:au_wa])[0] || {})[:name]
+assert_equal "King's Birthday", (Holidays.on(Date.civil(2025, 9, 30), [:au_wa])[0] || {})[:name]
 
     assert_equal "Family & Community Day", (Holidays.on(Date.civil(2014, 9, 29), [:au_act])[0] || {})[:name]
 
