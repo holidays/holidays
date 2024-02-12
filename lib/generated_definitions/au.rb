@@ -48,7 +48,7 @@ module Holidays
       8 => [{:wday => 3, :week => -3, :name => "Ekka", :regions => [:au_qld_brisbane]},
             {:wday => 1, :week => 1, :name => "Picnic Day", :regions => [:au_nt]}],
       9 => [{:wday => 1, :week => -1,  :year_ranges => [{:before => 2022}],:name => "Queen's Birthday", :regions => [:au_wa]},
-            {:wday => 1, :week => -1,  :year_ranges => [{:before => 2023}],:name => "King's Birthday", :regions => [:au_wa]},
+            {:wday => 1, :week => -1,  :year_ranges => [{:after => 2023}],:name => "King's Birthday", :regions => [:au_wa]},
             {:wday => 1, :week => -1,  :year_ranges => [{:before => 2017}],:name => "Family & Community Day", :regions => [:au_act]},
             {:mday => 22,  :year_ranges => [{:limited => 2022}],:name => "Day of mourning for Queen Elizabeth II", :regions => [:au, :au_nsw, :au_act, :au_sa, :au_tas, :au_vic, :au_wa, :au_nt, :au_qld]}],
       10 => [{:wday => 1, :week => 1, :name => "Labour Day", :regions => [:au_act, :au_nsw, :au_sa]},
