@@ -168,6 +168,8 @@ Date.civil(year, month_day[0], month_day[1])
 
 "hari_raya_haji(year)" => Proc.new { |year|
 month_day = case year
+  when 2023
+    [06, 29]
   when 2024
     [06, 17]
   when 2025
@@ -180,10 +182,12 @@ Date.civil(year, month_day[0], month_day[1])
 
 "hari_raya_puasa(year)" => Proc.new { |year|
 month_day = case year
+  when 2023
+    [04, 22]
   when 2024
     [04, 10]
   when 2025
-    [06, 31]
+    [03, 31]
   when 2026
     [03, 20]
   end
@@ -192,8 +196,10 @@ Date.civil(year, month_day[0], month_day[1])
 
 "vesak_day(year)" => Proc.new { |year|
 month_day = case year
+  when 2023
+    [06, 02]
   when 2024
-    [05, 22]
+    [05, 23]
   when 2025
     [05, 12]
   when 2026
