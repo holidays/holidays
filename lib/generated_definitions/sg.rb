@@ -109,7 +109,7 @@ month_day = case year
   when 2025
     [10, 20]
   when 2026
-    [10, 08]
+    [10, 8]
   end
 Date.civil(year, month_day[0], month_day[1])
 },
@@ -121,7 +121,7 @@ month_day = case year
   when 2024
     [06, 17]
   when 2025
-    [06, 06]
+    [06, 6]
   when 2026
     [05, 27]
   end
