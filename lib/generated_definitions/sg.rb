@@ -97,7 +97,7 @@ month_day = case year
   when 2319
     [2, 21]
   end
-Date.civil(year, month_day[0], month_day[1])
+Date.civil(year, month_day[0], month_day[1]) if month_day
 },
 
 "deepavali(year)" => Proc.new { |year|
@@ -111,7 +111,7 @@ month_day = case year
   when 2026
     [10, 8]
   end
-Date.civil(year, month_day[0], month_day[1])
+Date.civil(year, month_day[0], month_day[1]) if month_day
 },
 
 "hari_raya_haji(year)" => Proc.new { |year|
@@ -125,7 +125,7 @@ month_day = case year
   when 2026
     [05, 27]
   end
-Date.civil(year, month_day[0], month_day[1])
+Date.civil(year, month_day[0], month_day[1]) if month_day
 },
 
 "hari_raya_puasa(year)" => Proc.new { |year|
@@ -139,7 +139,7 @@ month_day = case year
   when 2026
     [03, 20]
   end
-Date.civil(year, month_day[0], month_day[1])
+Date.civil(year, month_day[0], month_day[1]) if month_day
 },
 
 "vesak_day(year)" => Proc.new { |year|
@@ -153,7 +153,7 @@ month_day = case year
   when 2026
     [05, 31]
   end
-Date.civil(year, month_day[0], month_day[1])
+Date.civil(year, month_day[0], month_day[1]) if month_day
 },
 
 
