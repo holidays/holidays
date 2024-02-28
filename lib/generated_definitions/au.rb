@@ -16,6 +16,7 @@ module Holidays
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -1, :name => "Easter Saturday", :regions => [:au_nsw, :au_vic, :au_qld, :au_nt, :au_act, :au_sa]},
             {:function => "easter(year)", :function_arguments => [:year], :name => "Easter Sunday", :regions => [:au_nsw, :au_vic]},
             {:function => "easter(year)", :function_arguments => [:year],  :year_ranges => [{:after => 2017}],:name => "Easter Sunday", :regions => [:au_qld, :au_act]},
+            {:function => "easter(year)", :function_arguments => [:year],  :year_ranges => [{:after => 2024}],:name => "Easter Sunday", :regions => [:au_sa]},
             {:function => "easter(year)", :function_arguments => [:year],  :year_ranges => [{:after => 2021}],:name => "Easter Sunday", :regions => [:au_wa]},
             {:function => "easter(year)", :function_arguments => [:year],  :year_ranges => [{:after => 2022}],:name => "Easter Sunday", :regions => [:au_nt]},
             {:function => "easter(year)", :function_arguments => [:year],  :year_ranges => [{:limited => 2022}],:name => "Easter Sunday", :regions => [:au_nt]},
