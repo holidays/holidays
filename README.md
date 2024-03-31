@@ -21,6 +21,7 @@ This gem is tested with the following ruby versions:
   * 3.0.6
   * 3.1.4
   * 3.2.2
+  * 3.3.0
   * JRuby 9.2.21.0
   * JRuby 9.4.2.0
 
@@ -161,7 +162,7 @@ You can also pass in `informal` or `observed`:
 
 ```ruby
 # Returns true since Valentine's Day falls on a Wednesday
-Holidays.any_holidays_during_work_week?(date.new(2018, 2, 14), :us, :informal)
+Holidays.any_holidays_during_work_week?(Date.new(2018, 2, 14), :us, :informal)
 => true
 
 # Returns false if you don't specify informal
@@ -169,7 +170,7 @@ Holidays.any_holidays_during_work_week?(Date.new(2018, 2, 14), :us)
 => false
 
 # Returns true since Veteran's Day is observed on Monday November 12, 2018
-Holidays.any_holidays_during_work_week?(date.new(2018, 11, 12), :us, :observed)
+Holidays.any_holidays_during_work_week?(Date.new(2018, 11, 12), :us, :observed)
 => true
 
 # Returns false if you don't specify observed since the actual holiday is on Sunday November 11th 2018
