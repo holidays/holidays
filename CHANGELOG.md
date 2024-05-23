@@ -1,5 +1,9 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 8.8.0
+
+* Update to [v5.7.4 definitions](https://github.com/holidays/definitions/releases/tag/v5.7.4). Please see the changelog for the definition details.
+
 ## 8.7.1
 
 * Fix testing issues and github action config, no behavior changes
