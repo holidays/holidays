@@ -42,9 +42,8 @@ module Holidays
 
       raise ArgumentError if end_date < start_date
 
-      if cached_holidays = Factory::Definition.cache_repository.find(start_date, end_date, options)
-        return cached_holidays
-      end
+      cached_holidays = Factory::Definition.cache_repository.find(start_date, end_date, options)
+      return cached_holidays unless cached_holidays.nil?
 
       Factory::Finder.between.call(start_date, end_date, options)
     end
