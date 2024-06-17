@@ -13,8 +13,8 @@ module Holidays
     def self.holidays_by_month
       {
               0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:sg]},
-            {:function => "cn_new_lunar_day(year)", :function_arguments => [:year], :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Lunar New Year's Day", :regions => [:sg]},
-            {:function => "cn_new_lunar_day(year)", :function_arguments => [:year], :function_modifier => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "The second day of Lunar New Year", :regions => [:sg]},
+            {:function => "cn_new_lunar_day(year)", :function_arguments => [:year], :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Chinese New Year", :regions => [:sg]},
+            {:function => "cn_new_lunar_day(year)", :function_arguments => [:year], :function_modifier => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "The second day of Chinese New Year", :regions => [:sg]},
             {:function => "deepavali(year)", :function_arguments => [:year], :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Deepavali", :regions => [:sg]},
             {:function => "hari_raya_puasa(year)", :function_arguments => [:year], :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Hari Raya Puasa", :regions => [:sg]},
             {:function => "hari_raya_haji(year)", :function_arguments => [:year], :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Hari Raya Haji", :regions => [:sg]},
