@@ -27,7 +27,7 @@ update-defs: definitions/
 definitions: point-to-defs-master
 
 point-to-defs-branch:
-	git submodule add -b $(BRANCH) git@github.com:$(USER)/definitions.git definitions/
+	git submodule add -b $(BRANCH) https://github.com/$(USER)/definitions.git ./definitions/
 
 point-to-defs-master:
 	git submodule add https://github.com/holidays/definitions definitions/
