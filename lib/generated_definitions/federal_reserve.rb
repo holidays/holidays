@@ -13,7 +13,7 @@ module Holidays
     def self.holidays_by_month
       {
               1 => [{:mday => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:federal_reserve]},
-            {:wday => 1, :week => 3, :name => "Birthday of Martin Luther King, Jr", :regions => [:federal_reserve]}],
+            {:wday => 1, :week => 3, :name => "Birthday of Martin Luther King Jr", :regions => [:federal_reserve]}],
       2 => [{:wday => 1, :week => 3, :name => "Washington's Birthday", :regions => [:federal_reserve]}],
       5 => [{:wday => 1, :week => -1, :name => "Memorial Day", :regions => [:federal_reserve]}],
       7 => [{:mday => 4, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Independence Day", :regions => [:federal_reserve]}],

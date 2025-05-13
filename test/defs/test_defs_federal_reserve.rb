@@ -9,7 +9,7 @@ class Federal_reserveDefinitionTests < Test::Unit::TestCase  # :nodoc:
   def test_federal_reserve
     assert_equal "New Year's Day", (Holidays.on(Date.civil(2012, 1, 2), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Birthday of Martin Luther King, Jr", (Holidays.on(Date.civil(2012, 1, 16), [:federal_reserve], [:observed])[0] || {})[:name]
+    assert_equal "Birthday of Martin Luther King Jr", (Holidays.on(Date.civil(2012, 1, 16), [:federal_reserve], [:observed])[0] || {})[:name]
 
     assert_equal "Washington's Birthday", (Holidays.on(Date.civil(2012, 2, 20), [:federal_reserve], [:observed])[0] || {})[:name]
 
@@ -29,7 +29,7 @@ class Federal_reserveDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "New Year's Day", (Holidays.on(Date.civil(2013, 1, 1), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Birthday of Martin Luther King, Jr", (Holidays.on(Date.civil(2013, 1, 21), [:federal_reserve], [:observed])[0] || {})[:name]
+    assert_equal "Birthday of Martin Luther King Jr", (Holidays.on(Date.civil(2013, 1, 21), [:federal_reserve], [:observed])[0] || {})[:name]
 
     assert_equal "Washington's Birthday", (Holidays.on(Date.civil(2013, 2, 18), [:federal_reserve], [:observed])[0] || {})[:name]
 
@@ -49,7 +49,7 @@ class Federal_reserveDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "New Year's Day", (Holidays.on(Date.civil(2014, 1, 1), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Birthday of Martin Luther King, Jr", (Holidays.on(Date.civil(2014, 1, 20), [:federal_reserve], [:observed])[0] || {})[:name]
+    assert_equal "Birthday of Martin Luther King Jr", (Holidays.on(Date.civil(2014, 1, 20), [:federal_reserve], [:observed])[0] || {})[:name]
 
     assert_equal "Washington's Birthday", (Holidays.on(Date.civil(2014, 2, 17), [:federal_reserve], [:observed])[0] || {})[:name]
 
@@ -69,7 +69,7 @@ class Federal_reserveDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "New Year's Day", (Holidays.on(Date.civil(2015, 1, 1), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Birthday of Martin Luther King, Jr", (Holidays.on(Date.civil(2015, 1, 19), [:federal_reserve], [:observed])[0] || {})[:name]
+    assert_equal "Birthday of Martin Luther King Jr", (Holidays.on(Date.civil(2015, 1, 19), [:federal_reserve], [:observed])[0] || {})[:name]
 
     assert_equal "Washington's Birthday", (Holidays.on(Date.civil(2015, 2, 16), [:federal_reserve], [:observed])[0] || {})[:name]
 
@@ -89,7 +89,7 @@ class Federal_reserveDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "New Year's Day", (Holidays.on(Date.civil(2016, 1, 1), [:federal_reserve], [:observed])[0] || {})[:name]
 
-    assert_equal "Birthday of Martin Luther King, Jr", (Holidays.on(Date.civil(2016, 1, 18), [:federal_reserve], [:observed])[0] || {})[:name]
+    assert_equal "Birthday of Martin Luther King Jr", (Holidays.on(Date.civil(2016, 1, 18), [:federal_reserve], [:observed])[0] || {})[:name]
 
     assert_equal "Washington's Birthday", (Holidays.on(Date.civil(2016, 2, 15), [:federal_reserve], [:observed])[0] || {})[:name]
 

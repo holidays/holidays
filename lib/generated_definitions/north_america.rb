@@ -28,7 +28,7 @@ module Holidays
             {:wday => 1, :week => 3, :name => "Martin Luther King's and Robert E. Lee's Birthdays", :regions => [:us_ms]},
             {:wday => 1, :week => 3, :name => "Idaho Human Rights Day", :regions => [:us_id]},
             {:wday => 1, :week => 3, :name => "Civil Rights Day", :regions => [:us_ar]},
-            {:wday => 1, :week => 3, :name => "Martin Luther King, Jr. Day", :regions => [:us]},
+            {:wday => 1, :week => 3, :name => "Martin Luther King Jr. Day", :regions => [:us]},
             {:function => "us_inauguration_day(year)", :function_arguments => [:year], :name => "Inauguration Day", :regions => [:us_tx, :us_dc, :us_la, :us_md, :us_va]},
             {:function => "lee_jackson_day(year, month)", :function_arguments => [:year, :month], :name => "Lee-Jackson Day", :regions => [:us_va]},
             {:mday => 19, :name => "Confederate Heroes Day", :regions => [:us_tx]}],

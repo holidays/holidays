@@ -14,7 +14,7 @@ assert_equal "New Year's Day", (Holidays.on(Date.civil(2012, 1, 2), [:nyse], [:o
 assert_equal "New Year's Day", (Holidays.on(Date.civil(2011, 1, 1), [:nyse], [:observed])[0] || {})[:name]
 assert_equal "New Year's Day", (Holidays.on(Date.civil(2006, 1, 2), [:nyse], [:observed])[0] || {})[:name]
 
-    assert_equal "Martin Luther King, Jr. Day", (Holidays.on(Date.civil(2008, 1, 21), [:nyse])[0] || {})[:name]
+    assert_equal "Martin Luther King Jr. Day", (Holidays.on(Date.civil(2008, 1, 21), [:nyse])[0] || {})[:name]
 
     assert_equal "Presidents' Day", (Holidays.on(Date.civil(2008, 2, 18), [:nyse])[0] || {})[:name]
 

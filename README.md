@@ -57,7 +57,7 @@ Get all US Federal holidays between 2018 and 2019.
 
     Holidays.between(from, to, :federal_reserve, :observed)
     => [{:name => "New Year's Day"....}
-        {:name => "Birthday of Martin Luther King, Jr"....}]
+        {:name => "Birthday of Martin Luther King Jr"....}]
 
 Get informal holidays in February.
 

@@ -258,13 +258,13 @@ assert_equal "Easter Sunday", (Holidays.on(Date.civil(2019, 4, 21), [:us], [:inf
 
     assert_equal "New Year's Day", (Holidays.on(Date.civil(2017, 1, 2), [:us], [:observed])[0] || {})[:name]
 
-    assert_equal "Martin Luther King, Jr. Day", (Holidays.on(Date.civil(2017, 1, 16), [:us])[0] || {})[:name]
-assert_equal "Martin Luther King, Jr. Day", (Holidays.on(Date.civil(2018, 1, 15), [:us])[0] || {})[:name]
-assert_equal "Martin Luther King, Jr. Day", (Holidays.on(Date.civil(2019, 1, 21), [:us])[0] || {})[:name]
+    assert_equal "Martin Luther King Jr. Day", (Holidays.on(Date.civil(2017, 1, 16), [:us])[0] || {})[:name]
+assert_equal "Martin Luther King Jr. Day", (Holidays.on(Date.civil(2018, 1, 15), [:us])[0] || {})[:name]
+assert_equal "Martin Luther King Jr. Day", (Holidays.on(Date.civil(2019, 1, 21), [:us])[0] || {})[:name]
 
-    assert_equal "Martin Luther King, Jr. Day", (Holidays.on(Date.civil(2016, 1, 18), [:us])[0] || {})[:name]
-assert_equal "Martin Luther King, Jr. Day", (Holidays.on(Date.civil(2017, 1, 16), [:us])[0] || {})[:name]
-assert_equal "Martin Luther King, Jr. Day", (Holidays.on(Date.civil(2018, 1, 15), [:us])[0] || {})[:name]
+    assert_equal "Martin Luther King Jr. Day", (Holidays.on(Date.civil(2016, 1, 18), [:us])[0] || {})[:name]
+assert_equal "Martin Luther King Jr. Day", (Holidays.on(Date.civil(2017, 1, 16), [:us])[0] || {})[:name]
+assert_equal "Martin Luther King Jr. Day", (Holidays.on(Date.civil(2018, 1, 15), [:us])[0] || {})[:name]
 
     assert_equal "Martin Luther King's and Robert E. Lee's Birthdays", (Holidays.on(Date.civil(2016, 1, 18), [:us_ms])[0] || {})[:name]
 assert_equal "Martin Luther King's and Robert E. Lee's Birthdays", (Holidays.on(Date.civil(2017, 1, 16), [:us_ms])[0] || {})[:name]
