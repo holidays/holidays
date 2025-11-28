@@ -35,7 +35,7 @@ module Holidays
           if regions.empty?
             regions = [:any]
           else
-            regions = regions.collect { |r| r.to_sym }
+            regions = regions.collect(&:to_sym)
           end
 
           validate!(regions)

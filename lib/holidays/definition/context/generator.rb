@@ -105,7 +105,7 @@ module Holidays
                   rule[:year_ranges][:between] = Range.new(start_year, end_year)
                 end
 
-                rule[:regions] = rule[:regions].collect { |r| r.to_sym }
+                rule[:regions] = rule[:regions].collect(&:to_sym)
                 regions << rule[:regions]
 
                 exists = false
@@ -200,7 +200,7 @@ module Holidays
           if method = @custom_methods_repository.find(function_id)
             method.parameters.collect { |arg| arg[1] }
           elsif method = parsed_custom_methods[function_id]
-            method.arguments.collect { |arg| arg.to_sym }
+            method.arguments.collect(&:to_sym)
           end
         end
       end
