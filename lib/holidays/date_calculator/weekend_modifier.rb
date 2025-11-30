@@ -75,6 +75,19 @@ module Holidays
 
         date
       end
+
+      def to_the_weekday_after(date)
+        to_monday_if_sunday(to_monday_if_sunday(date) + 1)
+      end
+
+      def to_the_second_weekday_after(date)
+        to_monday_if_sunday(to_the_weekday_after(date) + 1)
+      end
+
+      def to_previous_day_if_leap_year(date)
+        date -= 1 if ::Date.gregorian_leap?(date.year)
+        date
+      end
     end
   end
 end
