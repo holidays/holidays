@@ -17,6 +17,14 @@ module Holidays
         to_next_weekday(date)
       end
 
+      def to_the_weekday_after(date)
+        to_monday_if_sunday(to_monday_if_sunday(date) + 1)
+      end
+
+      def to_the_second_weekday_after(date)
+        to_monday_if_sunday(to_the_weekday_after(date) + 1)
+      end
+
       # Move Boxing Day if it falls on a weekend, leaving room for Christmas.
       # Used as a callback function.
       def to_weekday_if_boxing_weekend(date)
