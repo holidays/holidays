@@ -27,7 +27,7 @@ module Holidays
             {:function => "march_pub_hol_sa(year)", :function_arguments => [:year], :name => "March Public Holiday", :regions => [:au_sa]},
             {:wday => 1, :week => 2, :name => "Canberra Day", :regions => [:au_act]}],
       4 => [{:mday => 25, :name => "ANZAC Day", :regions => [:au, :au_vic]},
-            {:mday => 25, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "ANZAC Day", :regions => [:au_nsw, :au_qld, :au_nt, :au_act, :au_sa, :au_tas]},
+            {:mday => 25, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "ANZAC Day", :regions => [:au_qld, :au_nt, :au_act, :au_sa]},
             {:mday => 25, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "ANZAC Day", :regions => [:au_wa]}],
       5 => [{:function => "qld_labour_day_may(year)", :function_arguments => [:year], :name => "Labour Day", :regions => [:au_qld]},
             {:wday => 1, :week => 1, :name => "May Day", :regions => [:au_nt]},

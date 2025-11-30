@@ -35,6 +35,7 @@ The following definition files are included in this installation:
 * generated_definitions/hr
 * generated_definitions/hu
 * generated_definitions/ie
+* generated_definitions/in
 * generated_definitions/is
 * generated_definitions/it
 * generated_definitions/jp
@@ -74,6 +75,7 @@ The following definition files are included in this installation:
 * generated_definitions/th
 * generated_definitions/tn
 * generated_definitions/tr
+* generated_definitions/tsx
 * generated_definitions/ua
 * generated_definitions/unitednations
 * generated_definitions/ups

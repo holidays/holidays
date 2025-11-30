@@ -22,7 +22,7 @@ module Holidays
         def find_wildcard_base(region)
           r = region.to_s
 
-          if r =~ /_$/
+          if /_$/.match?(r)
             base = r.split('_').first
           else
             base = r

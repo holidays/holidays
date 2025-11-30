@@ -34,7 +34,7 @@ module Holidays
             end
           end
 
-          holidays.sort{|a, b| a[:date] <=> b[:date] }
+          holidays.sort_by { |a| a[:date] }
         end
 
         private
