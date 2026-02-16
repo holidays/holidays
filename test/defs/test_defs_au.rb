@@ -305,7 +305,20 @@ class AuDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_includes matching_holiday[:regions], :au_wa
 
 
-    assert_nil (Holidays.on(Date.civil(2026, 4, 27), [:au_nsw, :au_vic, :au_tas, :au_sa, :au_nt, :au_qld])[0] || {})[:name]
+    holidays = Holidays.on(Date.civil(2026, 4, 27), [:au_nsw])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Additional public holiday for ANZAC Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2026, 4, 27), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :au_nsw
+
+    holidays = Holidays.on(Date.civil(2027, 4, 26), [:au_nsw])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Additional public holiday for ANZAC Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2027, 4, 26), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :au_nsw
+
+
+    assert_nil (Holidays.on(Date.civil(2026, 4, 27), [:au_vic, :au_tas, :au_sa, :au_nt, :au_qld])[0] || {})[:name]
 
     holidays = Holidays.on(Date.civil(2021, 12, 25), [:au_qld])
     matching_holiday = holidays.find { |hol| hol[:name] == "Christmas Day" }
