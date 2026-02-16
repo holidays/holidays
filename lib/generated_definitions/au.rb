@@ -40,6 +40,7 @@ module Holidays
             {:mday => 25,  :year_ranges => [{:limited => 2026}],:observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "ANZAC Day", :regions => [:au_act]},
             {:mday => 25,  :year_ranges => [{:after => 2027}],:observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "ANZAC Day", :regions => [:au_act]},
             {:mday => 25, :function => "to_monday_if_sunday(date)", :function_arguments => [:date],  :year_ranges => [{:after => 2026}],:name => "ANZAC Day", :regions => [:au_qld]},
+            {:mday => 25, :function => "additional_anzac_on_monday_if_on_weekend(date)", :function_arguments => [:date],  :year_ranges => [{:between => 2026..2027}],:name => "Additional public holiday for ANZAC Day", :regions => [:au_nsw]},
             {:mday => 25, :function => "additional_anzac_on_monday_if_on_weekend(date)", :function_arguments => [:date], :name => "Additional public holiday for ANZAC Day", :regions => [:au_wa]}],
       5 => [{:function => "qld_labour_day_may(year)", :function_arguments => [:year], :name => "Labour Day", :regions => [:au_qld]},
             {:wday => 1, :week => 1, :name => "May Day", :regions => [:au_nt]},
