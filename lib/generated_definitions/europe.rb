@@ -439,6 +439,7 @@ module Holidays
             {:mday => 9, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de La Rioja", :regions => [:es_lo]},
             {:mday => 2,  :year_ranges => [{:limited => [2022]}],:name => "Spring Bank Holiday", :regions => [:gb]},
             {:mday => 3,  :year_ranges => [{:limited => [2022]}],:name => "Platinum Jubilee Bank Holiday", :regions => [:gb]},
+            {:mday => 15,  :year_ranges => [{:limited => [2026]}],:name => "World Cup", :regions => [:gb_sct]},
             {:mday => 22, :name => "Dan antifašističke borbe", :regions => [:hr]},
             {:mday => 25, :name => "Dan državnosti", :regions => [:hr]},
             {:wday => 1, :week => 1, :name => "June Bank Holiday", :regions => [:ie]},

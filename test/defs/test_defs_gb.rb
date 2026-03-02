@@ -42,6 +42,13 @@ class GbDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_includes matching_holiday[:regions], :gb
 
 
+    holidays = Holidays.on(Date.civil(2026, 6, 15), [:gb_sct])
+    matching_holiday = holidays.find { |hol| hol[:name] == "World Cup" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2026, 6, 15), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :gb_sct
+
+
     holidays = Holidays.on(Date.civil(2008, 11, 5), [:gb], [:informal])
     matching_holiday = holidays.find { |hol| hol[:name] == "Guy Fawkes Day" }
     assert_not_nil matching_holiday
