@@ -111,7 +111,7 @@ month_day = case year
   when 2026
     [11, 8]
   when 2027
-    [11, 15]
+    [11, 8]
   end
 Date.civil(year, month_day[0], month_day[1]) if month_day
 },
