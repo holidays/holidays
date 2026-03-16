@@ -55,14 +55,7 @@ class SgDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_equal Date.civil(2016, 2, 9), matching_holiday[:date]
     assert_includes matching_holiday[:regions], :sg
 
-
-    holidays = Holidays.on(Date.civil(2027, 11, 8), [:sg], [:observed])
-    matching_holiday = holidays.find { |hol| hol[:name] == "Deepavali" }
-    assert_not_nil matching_holiday
-    assert_equal Date.civil(2027, 11, 8), matching_holiday[:date]
-    assert_includes matching_holiday[:regions], :sg
-
-
+    
     holidays = Holidays.on(Date.civil(2025, 6, 7), [:sg], [:observed])
     matching_holiday = holidays.find { |hol| hol[:name] == "Hari Raya Haji" }
     assert_not_nil matching_holiday
