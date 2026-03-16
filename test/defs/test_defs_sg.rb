@@ -55,18 +55,11 @@ class SgDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_equal Date.civil(2016, 2, 9), matching_holiday[:date]
     assert_includes matching_holiday[:regions], :sg
 
-
-    holidays = Holidays.on(Date.civil(2077, 11, 15), [:sg], [:observed])
-    matching_holiday = holidays.find { |hol| hol[:name] == "Deepavali" }
-    assert_not_nil matching_holiday
-    assert_equal Date.civil(2077, 11, 15), matching_holiday[:date]
-    assert_includes matching_holiday[:regions], :sg
-
-
-    holidays = Holidays.on(Date.civil(2025, 6, 6), [:sg], [:observed])
+    
+    holidays = Holidays.on(Date.civil(2025, 6, 7), [:sg], [:observed])
     matching_holiday = holidays.find { |hol| hol[:name] == "Hari Raya Haji" }
     assert_not_nil matching_holiday
-    assert_equal Date.civil(2025, 6, 6), matching_holiday[:date]
+    assert_equal Date.civil(2025, 6, 7), matching_holiday[:date]
     assert_includes matching_holiday[:regions], :sg
 
 
@@ -81,6 +74,34 @@ class SgDefinitionTests < Test::Unit::TestCase  # :nodoc:
     matching_holiday = holidays.find { |hol| hol[:name] == "Vesak Day" }
     assert_not_nil matching_holiday
     assert_equal Date.civil(2025, 5, 12), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :sg
+
+
+    holidays = Holidays.on(Date.civil(2026, 3, 21), [:sg], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Hari Raya Puasa" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2026, 3, 21), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :sg
+
+
+    holidays = Holidays.on(Date.civil(2026, 5, 27), [:sg], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Hari Raya Haji" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2026, 5, 27), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :sg
+
+
+    holidays = Holidays.on(Date.civil(2026, 6, 1), [:sg], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Vesak Day" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2026, 6, 1), matching_holiday[:date]
+    assert_includes matching_holiday[:regions], :sg
+
+
+    holidays = Holidays.on(Date.civil(2026, 11, 9), [:sg], [:observed])
+    matching_holiday = holidays.find { |hol| hol[:name] == "Deepavali" }
+    assert_not_nil matching_holiday
+    assert_equal Date.civil(2026, 11, 9), matching_holiday[:date]
     assert_includes matching_holiday[:regions], :sg
 
 
