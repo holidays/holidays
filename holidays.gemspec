@@ -21,7 +21,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(/^test/)
   gem.require_paths = ['lib']
   gem.licenses      = ['MIT']
-  gem.required_ruby_version = '>= 2.4'
+  gem.required_ruby_version = '>= 3.1'
   gem.add_development_dependency 'bundler', '~> 2'
   gem.add_development_dependency 'rake', '~> 13'
   gem.add_development_dependency 'simplecov', '~> 0.16'
