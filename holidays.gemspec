@@ -23,7 +23,7 @@ Gem::Specification.new do |gem|
   gem.licenses      = ['MIT']
   gem.required_ruby_version = '>= 2.4'
   gem.add_development_dependency 'bundler', '~> 2'
-  gem.add_development_dependency 'rake', '~> 12'
+  gem.add_development_dependency 'rake', '~> 13'
   gem.add_development_dependency 'simplecov', '~> 0.16'
   gem.add_development_dependency 'test-unit', '~> 3'
   gem.add_development_dependency 'mocha', '~> 1'
