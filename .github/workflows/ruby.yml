@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['3.2', '3.3', '3.4', 'ruby-head']
+        ruby-version: ['3.2', '3.3', '3.4', 'ruby-head', '4.0']
     env:
       BUNDLER_NO_OLD_RUBYGEMS_WARNING: true
     steps:
