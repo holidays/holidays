@@ -1,5 +1,10 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 9.0.0
+
+* Drop support for Ruby < 3.2. Supported versions are now 3.2, 3.3, 3.4, and ruby-head.
+* Update to [v5.9.0 definitions](https://github.com/holidays/definitions/releases/tag/v5.9.0). Please see the changelog for the definition details.
+
 ## 8.8.0
 
 * Update to [v5.7.4 definitions](https://github.com/holidays/definitions/releases/tag/v5.7.4). Please see the changelog for the definition details.
