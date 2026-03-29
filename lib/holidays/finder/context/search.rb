@@ -36,7 +36,10 @@ module Holidays
             end
           end
 
-          holidays
+          holidays.sort_by.with_index do |h, i|
+            direct = h[:regions].any? { |r| regions.include?(r) } ? 0 : 1
+            [direct, i]
+          end
         end
 
         private

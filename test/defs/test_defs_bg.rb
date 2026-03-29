@@ -11,13 +11,13 @@ class BgDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Liberation Day", (Holidays.on(Date.civil(2015, 3, 3), [:bg_en])[0] || {})[:name]
 
-    assert_equal "Good Friday", (Holidays.on(Date.civil(2015, 3, 28), [:bg_en])[0] || {})[:name]
+    assert_equal "Good Friday", (Holidays.on(Date.civil(2015, 4, 10), [:bg_en])[0] || {})[:name]
 
-    assert_equal "Holy Saturday", (Holidays.on(Date.civil(2015, 3, 29), [:bg_en])[0] || {})[:name]
+    assert_equal "Holy Saturday", (Holidays.on(Date.civil(2015, 4, 11), [:bg_en])[0] || {})[:name]
 
-    assert_equal "Easter Sunday", (Holidays.on(Date.civil(2015, 3, 30), [:bg_en])[0] || {})[:name]
+    assert_equal "Easter Sunday", (Holidays.on(Date.civil(2015, 4, 12), [:bg_en])[0] || {})[:name]
 
-    assert_equal "Easter Monday", (Holidays.on(Date.civil(2015, 3, 31), [:bg_en])[0] || {})[:name]
+    assert_equal "Easter Monday", (Holidays.on(Date.civil(2015, 4, 13), [:bg_en])[0] || {})[:name]
 
     assert_equal "Labour Day", (Holidays.on(Date.civil(2015, 5, 1), [:bg_en])[0] || {})[:name]
 

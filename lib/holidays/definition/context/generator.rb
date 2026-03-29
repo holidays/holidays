@@ -62,7 +62,7 @@ module Holidays
           month_strings = generate_month_definition_strings(rules_by_month, custom_methods)
 
           # Build the custom methods string
-          custom_method_string = ''
+          custom_method_string = +''
           custom_methods.each do |key, code|
             custom_method_string << @custom_method_source_decorator.call(code) + ",\n\n"
           end
@@ -140,7 +140,7 @@ module Holidays
             month_string = "      #{month.to_s} => ["
             rule_strings = []
             rules.each do |rule|
-              string = '{'
+              string = +'{'
               if rule[:mday]
                 string << ":mday => #{rule[:mday]}, "
               end

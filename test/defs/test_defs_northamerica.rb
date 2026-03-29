@@ -291,17 +291,17 @@ assert_equal "Boxing Day", (Holidays.on(Date.civil(2015, 12, 28), [:ca_on], [:ob
 assert_equal "Shrove Tuesday", (Holidays.on(Date.civil(2018, 2, 13), [:us_fl])[0] || {})[:name]
 assert_equal "Shrove Tuesday", (Holidays.on(Date.civil(2019, 3, 5), [:us_fl])[0] || {})[:name]
 
-    assert_equal "Mardi Gras Day", (Holidays.on(Date.civil(2017, 2, 28), [:us_la])[0] || {})[:name]
-assert_equal "Mardi Gras Day", (Holidays.on(Date.civil(2018, 2, 13), [:us_la])[0] || {})[:name]
-assert_equal "Mardi Gras Day", (Holidays.on(Date.civil(2019, 3, 5), [:us_la])[0] || {})[:name]
+    assert_equal "Mardi Gras Day", (Holidays.on(Date.civil(2017, 2, 28), [:us_al, :us_la])[0] || {})[:name]
+assert_equal "Mardi Gras Day", (Holidays.on(Date.civil(2018, 2, 13), [:us_al, :us_la])[0] || {})[:name]
+assert_equal "Mardi Gras Day", (Holidays.on(Date.civil(2019, 3, 5), [:us_al, :us_la])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(2017, 2, 28), [:us])[0] || {})[:name]
 assert_nil (Holidays.on(Date.civil(2018, 2, 13), [:us])[0] || {})[:name]
 assert_nil (Holidays.on(Date.civil(2019, 3, 5), [:us])[0] || {})[:name]
 
-    assert_equal "Good Friday", (Holidays.on(Date.civil(2017, 4, 14), [:us_ct, :us_de, :us_gu, :us_hi, :us_in, :us_ky, :us_la, :us_nj, :us_nc, :us_nd, :us_pr, :us_tn])[0] || {})[:name]
-assert_equal "Good Friday", (Holidays.on(Date.civil(2018, 3, 30), [:us_ct, :us_de, :us_gu, :us_hi, :us_in, :us_ky, :us_la, :us_nj, :us_nc, :us_nd, :us_pr, :us_tn])[0] || {})[:name]
-assert_equal "Good Friday", (Holidays.on(Date.civil(2019, 4, 19), [:us_ct, :us_de, :us_gu, :us_hi, :us_in, :us_ky, :us_la, :us_nj, :us_nc, :us_nd, :us_pr, :us_tn])[0] || {})[:name]
+    assert_equal "Good Friday", (Holidays.on(Date.civil(2017, 4, 14), [:us_ct, :us_de, :us_gu, :us_hi, :us_in, :us_ky, :us_la, :us_nj, :us_nc, :us_nd, :us_pa, :us_pr, :us_tn])[0] || {})[:name]
+assert_equal "Good Friday", (Holidays.on(Date.civil(2018, 3, 30), [:us_ct, :us_de, :us_gu, :us_hi, :us_in, :us_ky, :us_la, :us_nj, :us_nc, :us_nd, :us_pa, :us_pr, :us_tn])[0] || {})[:name]
+assert_equal "Good Friday", (Holidays.on(Date.civil(2019, 4, 19), [:us_ct, :us_de, :us_gu, :us_hi, :us_in, :us_ky, :us_la, :us_nj, :us_nc, :us_nd, :us_pa, :us_pr, :us_tn])[0] || {})[:name]
 
     assert_equal "Good Friday", (Holidays.on(Date.civil(2017, 4, 14), [:us], [:informal])[0] || {})[:name]
 assert_equal "Good Friday", (Holidays.on(Date.civil(2018, 3, 30), [:us], [:informal])[0] || {})[:name]
@@ -420,8 +420,12 @@ assert_nil (Holidays.on(Date.civil(2018, 4, 30), [:us])[0] || {})[:name]
 assert_nil (Holidays.on(Date.civil(2019, 4, 29), [:us])[0] || {})[:name]
 
     assert_equal "Confederate Memorial Day", (Holidays.on(Date.civil(2017, 4, 24), [:us_al, :us_ms])[0] || {})[:name]
-assert_equal "Confederate Memorial Day", (Holidays.on(Date.civil(2018, 4, 30), [:us_al, :us_ms])[0] || {})[:name]
-assert_equal "Confederate Memorial Day", (Holidays.on(Date.civil(2019, 4, 29), [:us_al, :us_ms])[0] || {})[:name]
+
+    assert_equal "Confederate Memorial Day", (Holidays.on(Date.civil(2018, 4, 23), [:us_al])[0] || {})[:name]
+assert_equal "Confederate Memorial Day", (Holidays.on(Date.civil(2019, 4, 22), [:us_al])[0] || {})[:name]
+
+    assert_equal "Confederate Memorial Day", (Holidays.on(Date.civil(2018, 4, 30), [:us_ms])[0] || {})[:name]
+assert_equal "Confederate Memorial Day", (Holidays.on(Date.civil(2019, 4, 29), [:us_ms])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(2015, 4, 27), [:us])[0] || {})[:name]
 assert_nil (Holidays.on(Date.civil(2020, 4, 27), [:us])[0] || {})[:name]
@@ -442,6 +446,7 @@ assert_nil (Holidays.on(Date.civil(2021, 4, 26), [:us])[0] || {})[:name]
 assert_equal "State Holiday", (Holidays.on(Date.civil(2021, 4, 26), [:us_ga])[0] || {})[:name]
 
     assert_equal "Arbor Day", (Holidays.on(Date.civil(2017, 4, 28), [:us_ne])[0] || {})[:name]
+assert_equal "Arbor Day", (Holidays.on(Date.civil(2025, 4, 25), [:us_ne])[0] || {})[:name]
 
     assert_equal "Truman Day", (Holidays.on(Date.civil(2017, 5, 8), [:us_mo])[0] || {})[:name]
 
@@ -584,8 +589,10 @@ assert_nil (Holidays.on(Date.civil(2018, 11, 6), [:us])[0] || {})[:name]
 assert_nil (Holidays.on(Date.civil(2021, 11, 2), [:us])[0] || {})[:name]
 
     assert_equal "Election Day", (Holidays.on(Date.civil(2017, 11, 7), [:us_de, :us_hi, :us_in, :us_mt, :us_nj, :us_ny, :us_pa, :us_ri])[0] || {})[:name]
-assert_equal "Election Day", (Holidays.on(Date.civil(2018, 11, 6), [:us_de, :us_hi, :us_in, :us_mt, :us_nj, :us_ny, :us_pa, :us_ri])[0] || {})[:name]
 assert_equal "Election Day", (Holidays.on(Date.civil(2021, 11, 2), [:us_de, :us_hi, :us_in, :us_mt, :us_nj, :us_ny, :us_pa, :us_ri])[0] || {})[:name]
+
+    assert_equal "Election Day", (Holidays.on(Date.civil(2018, 11, 6), [:us_de, :us_hi, :us_in, :us_la, :us_mt, :us_nj, :us_ny, :us_pa, :us_ri])[0] || {})[:name]
+assert_equal "Election Day", (Holidays.on(Date.civil(2028, 11, 7), [:us_de, :us_hi, :us_in, :us_la, :us_mt, :us_nj, :us_ny, :us_pa, :us_ri])[0] || {})[:name]
 
     assert_equal "Veterans Day", (Holidays.on(Date.civil(2017, 11, 10), [:us], [:observed])[0] || {})[:name]
 assert_equal "Veterans Day", (Holidays.on(Date.civil(2018, 11, 12), [:us], [:observed])[0] || {})[:name]
