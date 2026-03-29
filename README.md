@@ -14,14 +14,10 @@ gem install holidays
 
 This gem is tested with the following ruby versions:
 
-  * 2.4.5
-  * 2.5.3
-  * 2.6.1
-  * 2.7.7
-  * 3.0.6
-  * 3.1.4
-  * 3.2.2
-  * 3.3.0
+  * 3.2
+  * 3.3
+  * 3.4
+  * 4.0
   * JRuby 9.2.21.0
   * JRuby 9.4.2.0
 
