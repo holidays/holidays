@@ -61,5 +61,9 @@ class RoDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_nil (Holidays.on(Date.civil(2013, 7, 23), [:ro])[0] || {})[:name]
 
+    assert_equal "Botezul Domnului - Boboteaza", (Holidays.on(Date.civil(2025, 1, 6), [:ro], [:informal])[0] || {})[:name]
+
+    assert_equal "Soborul Sfântului Proroc Ioan Botezătorul", (Holidays.on(Date.civil(2025, 1, 7), [:ro], [:informal])[0] || {})[:name]
+
   end
 end

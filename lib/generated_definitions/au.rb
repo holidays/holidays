@@ -27,7 +27,7 @@ module Holidays
             {:function => "march_pub_hol_sa(year)", :function_arguments => [:year], :name => "March Public Holiday", :regions => [:au_sa]},
             {:wday => 1, :week => 2, :name => "Canberra Day", :regions => [:au_act]}],
       4 => [{:mday => 25, :name => "ANZAC Day", :regions => [:au, :au_vic]},
-            {:mday => 25, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "ANZAC Day", :regions => [:au_nsw, :au_qld, :au_nt, :au_act, :au_sa, :au_tas]},
+            {:mday => 25, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "ANZAC Day", :regions => [:au_qld, :au_nt, :au_act, :au_sa]},
             {:mday => 25, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "ANZAC Day", :regions => [:au_wa]}],
       5 => [{:function => "qld_labour_day_may(year)", :function_arguments => [:year], :name => "Labour Day", :regions => [:au_qld]},
             {:wday => 1, :week => 1, :name => "May Day", :regions => [:au_nt]},
@@ -74,9 +74,17 @@ when 2017
 when 2018
   Date.civil(2018, 9, 28)
 when 2019
-  Date.civil(2019,9, 27)
+  Date.civil(2019, 9, 27)
 when 2020
   Date.civil(2020, 10, 23)
+when 2021
+  Date.civil(2021, 9, 24)
+when 2022
+  Date.civil(2022, 9, 23)
+when 2023
+  Date.civil(2023, 9, 29)
+when 2024
+  Date.civil(2024, 9, 27)
 end
 },
 

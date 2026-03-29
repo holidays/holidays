@@ -19,6 +19,8 @@ module Holidays
             {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Rusaliile - 51", :regions => [:ro]}],
       1 => [{:mday => 1, :name => "Anul nou", :regions => [:ro]},
             {:mday => 2, :name => "Anul nou", :regions => [:ro]},
+            {:mday => 6, :name => "Botezul Domnului - Boboteaza", :regions => [:ro]},
+            {:mday => 7, :name => "Soborul Sfântului Proroc Ioan Botezătorul", :regions => [:ro]},
             {:mday => 24, :year_ranges => { :from => 2017 },:name => "Unirea Principatelor Române", :regions => [:ro]}],
       5 => [{:mday => 1, :name => "Ziua muncii", :regions => [:ro]}],
       6 => [{:mday => 1, :year_ranges => { :from => 2017 },:name => "Ziua Copilului", :regions => [:ro]}],
