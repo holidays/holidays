@@ -1,0 +1,47 @@
+name: Changelog Check
+on:
+  pull_request:
+    branches: ["master"]
+    paths:
+      - 'lib/holidays/version.rb'
+      - 'CHANGELOG.md'
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Extract version from version.rb
+        id: version
+        run: |
+          VERSION=$(grep -oP "VERSION = '\K[^']+" lib/holidays/version.rb)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "version.rb declares: $VERSION"
+      - name: Extract latest version from CHANGELOG
+        id: changelog
+        run: |
+          CHANGELOG_VERSION=$(grep -oP "^## \K[0-9]+\.[0-9]+\.[0-9]+" CHANGELOG.md | head -1)
+          echo "changelog_version=$CHANGELOG_VERSION" >> $GITHUB_OUTPUT
+          echo "CHANGELOG latest entry: $CHANGELOG_VERSION"
+      - name: Verify version.rb and CHANGELOG agree
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          CHANGELOG_VERSION="${{ steps.changelog.outputs.changelog_version }}"
+          FAILED=false
+
+          if ! grep -q "^## ${VERSION}$" CHANGELOG.md; then
+            echo "ERROR: version.rb declares ${VERSION} but no matching '## ${VERSION}' section found in CHANGELOG.md"
+            FAILED=true
+          fi
+
+          if [ "${CHANGELOG_VERSION}" != "${VERSION}" ]; then
+            echo "ERROR: CHANGELOG.md latest entry is ${CHANGELOG_VERSION} but version.rb declares ${VERSION}"
+            FAILED=true
+          fi
+
+          if [ "$FAILED" = "true" ]; then
+            echo ""
+            echo "Both version.rb and CHANGELOG.md must be updated together and must agree on the version."
+            exit 1
+          fi
+
+          echo "OK: version.rb and CHANGELOG.md both declare ${VERSION}"

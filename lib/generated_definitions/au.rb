@@ -71,20 +71,16 @@ when 2016
   Date.civil(2016, 9, 30)
 when 2017
   Date.civil(2017, 9, 29)
-when 2018
-  Date.civil(2018, 9, 28)
-when 2019
-  Date.civil(2019, 9, 27)
 when 2020
   Date.civil(2020, 10, 23)
-when 2021
-  Date.civil(2021, 9, 24)
 when 2022
   Date.civil(2022, 9, 23)
-when 2023
-  Date.civil(2023, 9, 29)
-when 2024
-  Date.civil(2024, 9, 27)
+else
+  # Friday before AFL Grand Final typically falls on the last Friday in September
+  # Override when falls on a different date
+  last_day = Date.civil(year, 9, -1)
+  last_friday = last_day - ((last_day.wday - 5) % 7)
+  last_friday
 end
 },
 
