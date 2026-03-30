@@ -1,0 +1,46 @@
+name: Release
+on:
+  push:
+    branches: ["master"]
+permissions:
+  contents: read
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      BUNDLER_NO_OLD_RUBYGEMS_WARNING: true
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@3ff19f5e2baf30647122352b96108b1fbe250c64 #v1.299.0
+        with:
+          ruby-version: 'ruby'
+          bundler-cache: true
+      - name: Extract version from version.rb
+        id: version
+        run: |
+          VERSION=$(grep -oP "VERSION = '\K[^']+" lib/holidays/version.rb)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Detected version: $VERSION"
+      - name: Check if version already exists on RubyGems
+        id: rubygems
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            "https://rubygems.org/api/v2/rubygems/holidays/versions/${VERSION}.json")
+          if [ "$HTTP_STATUS" = "200" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "Version ${VERSION} already exists on RubyGems, skipping publish"
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "Version ${VERSION} not found on RubyGems (HTTP ${HTTP_STATUS})"
+          fi
+      - name: Build and publish gem
+        if: steps.rubygems.outputs.exists == 'false'
+        env:
+          GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          gem build holidays.gemspec
+          gem push "holidays-${VERSION}.gem"
+          echo "Successfully published holidays ${VERSION} to RubyGems"

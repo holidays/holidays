@@ -26,6 +26,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rake', '~> 13'
   gem.add_development_dependency 'simplecov', '~> 0.16'
   gem.add_development_dependency 'test-unit', '~> 3'
-  gem.add_development_dependency 'mocha', '~> 1'
+  gem.add_development_dependency 'mocha', '~> 2'
   gem.add_development_dependency 'pry', '~> 0.12'
 end

@@ -189,7 +189,7 @@ class GeneratorTests < Test::Unit::TestCase
   def test_generate_definition_source_correctly_generate_module_src_with_custom_methods
     files = ['test/data/test_single_custom_holiday_with_custom_procs.yaml']
 
-    @custom_method_parser.expects(:call).with('custom_method' => {'arguments' => 'year, month', 'source' => "d = Date.civil(year, month, 1)\nd + 2\n"}).returns({"custom_method(year, month)" => @parsed_custom_method})
+    @custom_method_parser.expects(:call).with(equals({'custom_method' => {'arguments' => 'year, month', 'source' => "d = Date.civil(year, month, 1)\nd + 2\n"}})).returns({"custom_method(year, month)" => @parsed_custom_method})
     @custom_methods_repository.expects(:find).twice.with('custom_method(year, month)').returns(nil)
     @custom_method_source_decorator.expects(:call).once.with(@parsed_custom_method).returns("\"custom_method(year, month)\" => Proc.new { |year, month|\nsource_stuff\n}")
 
@@ -209,7 +209,7 @@ class GeneratorTests < Test::Unit::TestCase
   def test_generate_definition_source_correctly_generate_test_src_with_custom_methods
     files = ['test/data/test_single_custom_holiday_with_custom_procs.yaml']
 
-    @custom_method_parser.expects(:call).with('custom_method' => {'arguments' => 'year, month', 'source' => "d = Date.civil(year, month, 1)\nd + 2\n"}).returns({"custom_method(year, month)" => @parsed_custom_method})
+    @custom_method_parser.expects(:call).with(equals({'custom_method' => {'arguments' => 'year, month', 'source' => "d = Date.civil(year, month, 1)\nd + 2\n"}})).returns({"custom_method(year, month)" => @parsed_custom_method})
     @custom_methods_repository.expects(:find).twice.with('custom_method(year, month)').returns(nil)
     @custom_method_source_decorator.expects(:call).once.with(@parsed_custom_method).returns("\"custom_method(year, month)\" => Proc.new { |year, month|\nsource_stuff\n}")
 

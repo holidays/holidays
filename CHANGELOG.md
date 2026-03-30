@@ -1,5 +1,10 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 9.1.0
+
+* Update to [v6.0.0 definitions](https://github.com/holidays/definitions/releases/tag/v6.0.0). Please see the changelog for the definition details.
+* Update mocha from 1.x to 2.x for Ruby 4.0 compatibility. Fixes warning about removed CGI library.
+
 ## 9.0.0
 
 * Drop support for Ruby < 3.2. Supported versions are now 3.2, 3.3, 3.4, and ruby-head.
