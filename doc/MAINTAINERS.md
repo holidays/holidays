@@ -55,15 +55,13 @@ sections below.
   * If all of the tests pass, update the `lib/holidays/version.rb` file to the new version. Reference the above [semver](http://semver.org/) rules for how to update versions.
   * Make a branch on your fork and update the [CHANGELOG](../CHANGELOG.md) to reflect the latest changes. You do not need to put in all of the definition changes in this update, you can simply reference the other repository. See other entries in the CHANGELOG for examples.
   * Open a PR against the new branch and merge it (another maintainer will need to review before you can merge)
-  * Once the branch is merged, pull down the latest master from Github and run `make build`. This will generate a new `gem` file with the new version. The new version number is pulled from the above `version.rb` update.
-  * If the build was successful then you can run the following to push up to rubygems.org: `GEM=<gem> make push`. Example: `GEM=holidays-6.2.0.gem make push`
+  * Once the branch is merged, the release GitHub Actions workflow will automatically build the gem and push it to rubygems.org. No local steps are required.
 * Does this update require functionality additions or bug fixes? If YES, then:
   * Run `make test` and ensure that all of the tests pass. If any tests fail then do *not* merge and contact a [core member](https://github.com/orgs/holidays/teams/core/members) for assistance.
   * If all of the tests pass, make a branch on your fork and update the [CHANGELOG](../CHANGELOG.md) to reflect the latest changes.
   * Update the `lib/holidays/version.rb` file to the new version. Reference the above [semver](http://semver.org/) rules for how to update versions.
   * Open a PR against the new branch and merge it (another maintainer will need to review before you can merge)
-  * Once the branch is merged, pull down the latest master from Github and run `make build`. This will generate a new `gem` file with the new version. The new version number is pulled from the above `version.rb` update.
-  * If the build was successful then you can run the following to push up to rubygems.org: `GEM=<gem> make push`. Example: `GEM=holidays-6.2.0.gem make push`
+  * Once the branch is merged, the release GitHub Actions workflow will automatically build the gem and push it to rubygems.org. No local steps are required.
 
 You are done! The latest version should be uploaded to rubygems.org. You can go to view the [holidays page](https://rubygems.org/gems/holidays) to verify that the latest version is available.
 
