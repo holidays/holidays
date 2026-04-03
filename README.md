@@ -18,8 +18,7 @@ This gem is tested with the following ruby versions:
   * 3.3
   * 3.4
   * 4.0
-  * JRuby 9.2.21.0
-  * JRuby 9.4.2.0
+  * JRuby 10.0.4.0
 
 ## Semver
 

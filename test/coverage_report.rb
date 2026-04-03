@@ -1,10 +1,8 @@
 require 'simplecov'
 
-# For reasons I don't understand jruby implementations report lower coverage
-# than other ruby versions. Ruby 2.5.3, for instance, is at 92%.
-#
-# We set the floor based on jruby so that all automated tests pass on Travis CI.
-SimpleCov.minimum_coverage 89
+# JRuby coverage reporting is inaccurate without --debug mode, resulting in
+# artificially low numbers. Skip the minimum coverage check under JRuby.
+SimpleCov.minimum_coverage 89 unless RUBY_PLATFORM == 'java'
 
 SimpleCov.add_filter [
   # Apparently simplecov doesn't automatically filter 'spec' or 'test' so we
