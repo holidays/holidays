@@ -22,10 +22,10 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
   gem.licenses      = ['MIT']
   gem.required_ruby_version = '>= 3.2'
-  gem.add_development_dependency 'bundler', '>= 2'
+  gem.add_development_dependency 'bundler', '>= 4'
   gem.add_development_dependency 'rake', '~> 13'
   gem.add_development_dependency 'simplecov', '~> 0.16'
   gem.add_development_dependency 'test-unit', '~> 3'
-  gem.add_development_dependency 'mocha', '~> 2'
-  gem.add_development_dependency 'pry', '~> 0.12'
+  gem.add_development_dependency 'mocha', '~> 3'
+  gem.add_development_dependency 'pry', '~> 0.16'
 end
