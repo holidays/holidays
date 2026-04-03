@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['3.2', '3.3', '3.4', 'ruby-head', '4.0']
+        ruby-version: ['3.2', '3.3', '3.4', '4.0', 'ruby-head', 'jruby-10.0.4.0']
     env:
       BUNDLER_NO_OLD_RUBYGEMS_WARNING: true
     steps:
@@ -20,6 +20,7 @@ jobs:
       uses: ruby/setup-ruby@3ff19f5e2baf30647122352b96108b1fbe250c64 #v1.299.0
       with:
         ruby-version: ${{ matrix.ruby-version }}
+        bundler: latest
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Run tests
       run: make test
