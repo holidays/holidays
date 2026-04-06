@@ -12,15 +12,20 @@ Gem::Specification.new do |gem|
   gem.homepage      = 'https://github.com/holidays/holidays'
   gem.description   = %q(A collection of Ruby methods to deal with statutory and other holidays. You deserve a holiday!)
   gem.summary       = %q(A collection of Ruby methods to deal with statutory and other holidays.)
+  gem.metadata = {
+    'changelog_uri' => "https://github.com/holidays/holidays/blob/master/CHANGELOG.md",
+    'source_code_uri' => 'https://github.com/holidays/holidays',
+    'bug_tracker_uri' => 'https://github.com/holidays/holidays/issues'
+  }
   gem.files         = `git ls-files`.split("\n") - ['.gitignore', '.travis.yml']
   gem.test_files    = gem.files.grep(/^test/)
   gem.require_paths = ['lib']
   gem.licenses      = ['MIT']
-  gem.required_ruby_version = '>= 2.4'
-  gem.add_development_dependency 'bundler', '~> 2'
-  gem.add_development_dependency 'rake', '~> 12'
+  gem.required_ruby_version = '>= 3.2'
+  gem.add_development_dependency 'bundler', '>= 4'
+  gem.add_development_dependency 'rake', '~> 13'
   gem.add_development_dependency 'simplecov', '~> 0.16'
   gem.add_development_dependency 'test-unit', '~> 3'
-  gem.add_development_dependency 'mocha', '~> 1'
-  gem.add_development_dependency 'pry', '~> 0.12'
+  gem.add_development_dependency 'mocha', '~> 3'
+  gem.add_development_dependency 'pry', '~> 0.16'
 end

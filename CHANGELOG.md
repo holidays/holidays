@@ -1,18 +1,57 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 9.1.1
+
+* Update to [v6.0.1 definitions](https://github.com/holidays/definitions/releases/tag/v6.0.1). Please see the changelog for the definition details.
+
+## 9.1.0
+
+* Update to [v6.0.0 definitions](https://github.com/holidays/definitions/releases/tag/v6.0.0). Please see the changelog for the definition details.
+* Update mocha from 1.x to 2.x for Ruby 4.0 compatibility. Fixes warning about removed CGI library.
+
+## 9.0.0
+
+* Drop support for Ruby < 3.2. Supported versions are now 3.2, 3.3, 3.4, and ruby-head.
+* Update to [v5.9.0 definitions](https://github.com/holidays/definitions/releases/tag/v5.9.0). Please see the changelog for the definition details.
+
+## 8.8.0
+
+* Update to [v5.7.4 definitions](https://github.com/holidays/definitions/releases/tag/v5.7.4). Please see the changelog for the definition details.
+
+## 8.7.1
+
+* Fix testing issues and github action config, no behavior changes
+* Remove Travis CI config
+
+## 8.7.0
+
+* Update to [v5.6.2 definitions](https://github.com/holidays/definitions/releases/tag/v5.6.2). Please see the changelog for the definition details.
+* Add support for ruby 2.7, 3.0, 3.1, 3.2, 3.3
+* Add GitHub actions support since Travis CI is not free for OSS anymore
+
+## 8.6.0
+
+* Update to [v5.5.0 definitions](https://github.com/holidays/definitions/releases/tag/v5.5.0). Please see the changelog for the definition details.
+* Temporarily remove jruby from required jobs due to test coverage issues
+
+## 8.5.0
+
+* Update submodule definitions.
+* Thanks to contributors!!
+
 ## 8.4.1
 
-* Fix jp holidays from 2022. 
+* Fix jp holidays from 2022.
 
 ## 8.4.0
 
-* Update submodule definitions. 
+* Update submodule definitions
 * Thanks to contributors!!
 
 
 ## 8.3.0
 
-* Update submodule definitions. 
+* Update submodule definitions
 * Remove test about feb 29 on non leap year.
 * Thanks to contributors!!
 

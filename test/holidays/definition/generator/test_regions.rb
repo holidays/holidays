@@ -14,7 +14,7 @@ class GeneratorRegionsTests < Test::Unit::TestCase
 module Holidays
   REGIONS = [:test, :test2]
 
-  PARENT_REGION_LOOKUP = {:test=>:region1, :test2=>:region1}
+  PARENT_REGION_LOOKUP = {test: :region1, test2: :region1}
 end
 EOE
 
@@ -28,7 +28,7 @@ EOE
 module Holidays
   REGIONS = [:test, :test2]
 
-  PARENT_REGION_LOOKUP = {:test=>:region1, :test2=>:region2}
+  PARENT_REGION_LOOKUP = {test: :region1, test2: :region2}
 end
 EOE
 
@@ -42,7 +42,7 @@ EOE
 module Holidays
   REGIONS = [:test, :test2, :test3]
 
-  PARENT_REGION_LOOKUP = {:test=>:region1, :test2=>:region2, :test3=>:region3}
+  PARENT_REGION_LOOKUP = {test: :region1, test2: :region2, test3: :region3}
 end
 EOE
 
@@ -64,7 +64,7 @@ EOE
 module Holidays
   REGIONS = [:test, :test2, :test3, :test4, :test5, :test6]
 
-  PARENT_REGION_LOOKUP = {:test=>:region1, :test2=>:region2, :test3=>:region3, :test4=>:region4, :test5=>:region5, :test6=>:region6}
+  PARENT_REGION_LOOKUP = {test: :region1, test2: :region2, test3: :region3, test4: :region4, test5: :region5, test6: :region6}
 end
 EOE
 

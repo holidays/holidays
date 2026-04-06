@@ -1,3 +1,3 @@
 module Holidays
-  VERSION = '8.4.1'
+  VERSION = '9.1.1'
 end
