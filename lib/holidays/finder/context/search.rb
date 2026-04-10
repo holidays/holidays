@@ -24,7 +24,7 @@ module Holidays
                   next unless @rules[:year_range].call(year, h[:year_ranges])
                 end
 
-                date = build_date(year, month, h)
+                date = build_date(year, month, h, regions)
                 next unless date
 
                 if observed_set?(options) && h[:observed]
@@ -68,9 +68,9 @@ module Holidays
           options && options.include?(:observed) == true
         end
 
-        def build_date(year, month, h)
+        def build_date(year, month, h, queried_regions)
           if h[:function]
-            holiday = custom_holiday(year, month, h)
+            holiday = custom_holiday(year, month, h, queried_regions)
             #FIXME The result should always be present, see https://github.com/holidays/holidays/issues/204 for more information
             current_month = holiday&.month
             current_day = holiday&.mday
@@ -84,20 +84,32 @@ module Holidays
           Date.civil(year, current_month, current_day) rescue nil
         end
 
-        def custom_holiday(year, month, h)
+        def custom_holiday(year, month, h, queried_regions)
           @custom_method_processor.call(
             #FIXME This seems like a bug, we seem to expect the day in here in the au defs?
-            build_custom_method_input(year, month, h[:mday], h[:regions]),
+            build_custom_method_input(year, month, h[:mday], queried_regions, h[:regions]),
             h[:function], h[:function_arguments], h[:function_modifier],
           )
         end
 
-        def build_custom_method_input(year, month, day, regions)
+        def build_custom_method_input(year, month, day, queried_regions, holiday_regions = nil)
+          # Determine the most relevant region for function lookup.
+          # When the queried region is :any (or no holiday_regions are provided),
+          # fall back to the holiday's own first region. Otherwise use the first
+          # queried region that also appears in the holiday's region list so that
+          # region-specific function implementations resolve correctly even when a
+          # holiday definition is shared across multiple regions.
+          effective_region = if holiday_regions.nil? || queried_regions.include?(:any)
+            queried_regions.first
+          else
+            (queried_regions & holiday_regions).first || holiday_regions.first
+          end
+
           {
             year: year,
             month: month,
             day: day,
-            region: regions.first, #FIXME This isn't ideal but will work for our current use case...
+            region: effective_region,
           }
         end
 

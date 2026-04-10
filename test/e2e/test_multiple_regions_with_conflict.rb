@@ -26,4 +26,24 @@ class MultipleRegionsWithConflictsTests < Test::Unit::TestCase
     assert_equal 'With Function Modifier', result.first[:name]
   end
 
+  def test_custom_loaded_region_returns_correct_value_when_two_regions_share_function_name_but_have_different_logic
+    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_1.yaml')
+
+    result = Holidays.on(Date.new(2019, 9, 1), :multiple_with_conflict_1)
+    assert_equal 1, result.count
+    assert_equal 'With Function Only Same Function Name', result.first[:name]
+
+    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_2.yaml')
+
+    result = Holidays.on(Date.new(2019, 11, 1), :multiple_with_conflict_2)
+    assert_equal 1, result.count
+    assert_equal 'With Function Only Same Function Name', result.first[:name]
+
+    # Region 1 must still return the correct date even though region 2 was
+    # loaded afterwards with the same function name but different logic.
+    result = Holidays.on(Date.new(2019, 9, 1), :multiple_with_conflict_1)
+    assert_equal 1, result.count
+    assert_equal 'With Function Only Same Function Name', result.first[:name]
+  end
+
 end
