@@ -229,4 +229,41 @@ class FinderSearchTests < Test::Unit::TestCase
       @subject.call(@dates_driver, @regions, @options)
     )
   end
+
+  def test_conflicting_function_in_two_regions_evaluates_each_independently
+    two_regions = [:r1, :r2]
+
+    @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns(
+      [{ mday: 1, name: "Test", regions: two_regions, function: "func-id", function_arguments: [:year], function_modifier: nil }]
+    )
+    @in_region_rule.expects(:call).with(two_regions, two_regions).returns(true)
+
+    @custom_method_processor.expects(:call).with(
+      { year: 2015, month: 1, day: 1, region: :r1 }, "func-id", [:year], nil,
+    ).returns(Date.civil(2015, 3, 10))
+
+    @custom_method_processor.expects(:call).with(
+      { year: 2015, month: 1, day: 1, region: :r2 }, "func-id", [:year], nil,
+    ).returns(Date.civil(2015, 6, 15))
+
+    result = @subject.call(@dates_driver, two_regions, [])
+    assert_equal 2, result.count
+    assert result.any? { |h| h[:date] == Date.civil(2015, 3, 10) }
+    assert result.any? { |h| h[:date] == Date.civil(2015, 6, 15) }
+  end
+
+  def test_any_region_query_with_function_evaluates_function_exactly_once
+    @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns(
+      [{ mday: 1, name: "Test", regions: [:r1], function: "func-id", function_arguments: [:year], function_modifier: nil }]
+    )
+    @in_region_rule.expects(:call).with([:any], [:r1]).returns(true)
+
+    @custom_method_processor.expects(:call).with(
+      { year: 2015, month: 1, day: 1, region: :any }, "func-id", [:year], nil,
+    ).returns(Date.civil(2015, 3, 10))
+
+    result = @subject.call(@dates_driver, [:any], [])
+    assert_equal 1, result.count
+    assert_equal Date.civil(2015, 3, 10), result.first[:date]
+  end
 end

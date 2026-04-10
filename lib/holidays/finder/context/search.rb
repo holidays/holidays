@@ -24,14 +24,19 @@ module Holidays
                   next unless @rules[:year_range].call(year, h[:year_ranges])
                 end
 
-                date = build_date(year, month, h, regions)
-                next unless date
-
-                if observed_set?(options) && h[:observed]
-                  date = build_observed_date(date, regions, h)
+                dates = if h[:function]
+                  custom_holidays(year, month, h, regions)
+                else
+                  date = build_date(year, month, h, regions)
+                  date ? [date] : []
                 end
 
-                holidays << {:date => date, :name => h[:name], :regions => h[:regions]}
+                dates.each do |d|
+                  if observed_set?(options) && h[:observed]
+                    d = build_observed_date(d, regions, h)
+                  end
+                  holidays << {:date => d, :name => h[:name], :regions => h[:regions]}
+                end
               end
             end
           end
@@ -69,36 +74,35 @@ module Holidays
         end
 
         def build_date(year, month, h, queried_regions)
-          if h[:function]
-            holiday = custom_holiday(year, month, h, queried_regions)
-            #FIXME The result should always be present, see https://github.com/holidays/holidays/issues/204 for more information
-            current_month = holiday&.month
-            current_day = holiday&.mday
-          else
-            current_month = month
-            current_day = h[:mday] || @day_of_month_calculator.call(year, month, h[:week], h[:wday])
-          end
+          current_month = month
+          current_day = h[:mday] || @day_of_month_calculator.call(year, month, h[:week], h[:wday])
 
           # Silently skip bad mdays
           #TODO Should we be doing something different here? We have no concept of logging right now. Maybe we should add it?
           Date.civil(year, current_month, current_day) rescue nil
         end
 
-        def custom_holiday(year, month, h, queried_regions)
-          @custom_method_processor.call(
-            #FIXME This seems like a bug, we seem to expect the day in here in the au defs?
-            build_custom_method_input(year, month, h[:mday], queried_regions, h[:regions]),
-            h[:function], h[:function_arguments], h[:function_modifier],
-          )
+        def custom_holidays(year, month, h, queried_regions)
+          effective_regions = queried_regions & h[:regions]
+          effective_regions = [queried_regions.first] if effective_regions.empty?
+
+          effective_regions.each_with_object([]) do |region, dates|
+            result = @custom_method_processor.call(
+              { year: year, month: month, day: h[:mday], region: region },
+              h[:function], h[:function_arguments], h[:function_modifier],
+            )
+            next if result.nil?
+            date = Date.civil(year, result.month, result.mday) rescue nil
+            dates << date if date
+          end.uniq
         end
 
         def build_custom_method_input(year, month, day, queried_regions, holiday_regions = nil)
-          # Determine the most relevant region for function lookup.
-          # When the queried region is :any (or no holiday_regions are provided),
-          # fall back to the holiday's own first region. Otherwise use the first
-          # queried region that also appears in the holiday's region list so that
-          # region-specific function implementations resolve correctly even when a
-          # holiday definition is shared across multiple regions.
+          # When the queried region is :any (or no holiday_regions are provided), fall back
+          # to the holiday's own first region. Otherwise use the first queried region that
+          # also appears in the holiday's region list so that region-specific function
+          # implementations resolve correctly even when a holiday definition is shared across
+          # multiple regions.
           effective_region = if holiday_regions.nil? || queried_regions.include?(:any)
             queried_regions.first
           else
