@@ -12,7 +12,7 @@ module Holidays
         def call(input, func_id, desired_func_args, func_modifier = nil)
           validate!(input, func_id, desired_func_args)
 
-          function = @custom_methods_repo.find(func_id)
+          function = @custom_methods_repo.find(func_id, input[:region])
           raise Holidays::FunctionNotFound.new("Unable to find function with id '#{func_id}'") if function.nil?
 
           calculate(input, function, parse_arguments(input, desired_func_args), func_modifier)
