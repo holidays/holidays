@@ -19,7 +19,7 @@ class FunctionProcessorTests < Test::Unit::TestCase
 
     @custom_func = mock()
 
-    @custom_methods_repo.expects(:find).at_most_once.with(@func_id).returns(@custom_func)
+    @custom_methods_repo.expects(:find).at_most_once.with(@func_id, @region).returns(@custom_func)
     @proc_result_cache_repo.expects(:lookup).at_most_once.with(@custom_func, @year).returns(Date.civil(@year, @month, @day))
 
     @subject = Holidays::Definition::Context::FunctionProcessor.new(
@@ -46,7 +46,7 @@ class FunctionProcessorTests < Test::Unit::TestCase
 
   def test_unknown_function_id_returns_error
     bad_id = "some-bad-id"
-    @custom_methods_repo.expects(:find).at_most_once.with(bad_id).returns(nil)
+    @custom_methods_repo.expects(:find).at_most_once.with(bad_id, @region).returns(nil)
 
     assert_raises Holidays::FunctionNotFound do
       @subject.call(@input, bad_id, @func_args, @func_modifier)
