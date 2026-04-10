@@ -230,6 +230,27 @@ class FinderSearchTests < Test::Unit::TestCase
     )
   end
 
+  def test_nil_returned_from_one_region_function_does_not_suppress_valid_result_from_other_region
+    two_regions = [:r1, :r2]
+
+    @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns(
+      [{ mday: 1, name: "Test", regions: two_regions, function: "func-id", function_arguments: [:year], function_modifier: nil }]
+    )
+    @in_region_rule.expects(:call).with(two_regions, two_regions).returns(true)
+
+    @custom_method_processor.expects(:call).with(
+      { year: 2015, month: 1, day: 1, region: :r1 }, "func-id", [:year], nil,
+    ).returns(nil)
+
+    @custom_method_processor.expects(:call).with(
+      { year: 2015, month: 1, day: 1, region: :r2 }, "func-id", [:year], nil,
+    ).returns(Date.civil(2015, 6, 15))
+
+    result = @subject.call(@dates_driver, two_regions, [])
+    assert_equal 1, result.count
+    assert_equal Date.civil(2015, 6, 15), result.first[:date]
+  end
+
   def test_conflicting_function_in_two_regions_evaluates_each_independently
     two_regions = [:r1, :r2]
 

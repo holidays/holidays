@@ -91,7 +91,10 @@ module Holidays
               { year: year, month: month, day: h[:mday], region: region },
               h[:function], h[:function_arguments], h[:function_modifier],
             )
+
+            #FIXME The result should always be present, see https://github.com/holidays/holidays/issues/204 for more information
             next if result.nil?
+
             date = Date.civil(year, result.month, result.mday) rescue nil
             dates << date if date
           end.uniq
