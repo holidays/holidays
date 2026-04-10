@@ -8,16 +8,8 @@ module Holidays
           @regional_overrides = {}
         end
 
-        # Adds new custom methods to the repository.
-        #
-        # new_sources:      {func_id => source_string} — used to detect genuine
-        #                   conflicts (same name, different logic) vs reloads.
-        # function_regions: {func_id => [regions]} — which regions the incoming
-        #                   methods belong to, derived from the holiday definitions.
-        #
-        # When a conflict is detected the incoming method is stored as a regional
-        # override keyed by its regions. find() then resolves the right
-        # implementation at lookup time using the queried region.
+        # When a conflict is detected the method is stored as a regional override keyed by its regions.
+        # find() then resolves the right implementation at lookup time using the queried region.
         def add(new_custom_methods, new_sources = {}, function_regions = {})
           raise ArgumentError if new_custom_methods.nil?
 
@@ -28,15 +20,10 @@ module Holidays
               existing_source = @custom_method_sources[key]
 
               if new_source && existing_source && new_source != existing_source
-                # Genuine conflict: same name but different source code.
-                # Store as a regional override so region-aware lookups work
-                # without touching the holiday definitions.
                 regions = function_regions[key] || []
                 @regional_overrides[key] ||= []
                 @regional_overrides[key] << { regions: regions, proc: method }
               else
-                # Same source or no source to compare — safe to overwrite
-                # (handles reloading the same definition file).
                 @custom_methods[key] = method
                 @custom_method_sources[key] = new_source if new_source
               end

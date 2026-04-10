@@ -51,7 +51,7 @@ class MultipleRegionsWithConflictsTests < Test::Unit::TestCase
     assert_equal 'With Function Only Same Function Name', result.first[:name]
   end
 
-  # Load region 2 first, then region 1 — the opposite of the test above.
+  # Load region 2 first, then region 1, which is the opposite of the test above.
   # The first-loaded method lands in @custom_methods; the second goes into
   # @regional_overrides. This reversal exercises the fallback path for the
   # first-loaded region rather than the override path.
@@ -108,10 +108,9 @@ class MultipleRegionsWithConflictsTests < Test::Unit::TestCase
     assert_equal 'With Function Only Same Function Name', result.first[:name]
   end
 
-  # Canonical https://www.github.com/holidays/holidays/issues/344 scenario: two regions
+  # https://www.github.com/holidays/holidays/issues/344 scenario: two regions
   # share a function name but each implements it differently, so a single between() call
-  # spanning both result dates must return one holiday entry per region — not just the
-  # result from whichever region's function happens to be evaluated first.
+  # spanning both result dates must return one holiday entry per region.
   #
   # Region 1's function returns Sept 1; region 2's function returns Nov 1.
   # Querying Sept 1 to Nov 1 with both regions should produce two separate
@@ -158,7 +157,7 @@ class MultipleRegionsWithConflictsTests < Test::Unit::TestCase
     assert_equal 'Weekend Holiday', result.first[:name]
 
     # Multi-region: a single call spanning both shifted dates must return one
-    # result per region — each evaluated with its own function logic.
+    # result per region, each evaluated with its own function logic.
     result = Holidays.between(
       Date.new(2025, 1, 4),
       Date.new(2025, 1, 5),

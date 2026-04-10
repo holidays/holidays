@@ -97,12 +97,12 @@ module Holidays
           end.uniq
         end
 
+        # When the queried region is :any (or no holiday_regions are provided), fall back
+        # to the holiday's own first region. Otherwise use the first queried region that
+        # also appears in the holiday's region list so that region-specific function
+        # implementations resolve correctly even when a holiday definition is shared across
+        # multiple regions.
         def build_custom_method_input(year, month, day, queried_regions, holiday_regions = nil)
-          # When the queried region is :any (or no holiday_regions are provided), fall back
-          # to the holiday's own first region. Otherwise use the first queried region that
-          # also appears in the holiday's region list so that region-specific function
-          # implementations resolve correctly even when a holiday definition is shared across
-          # multiple regions.
           effective_region = if holiday_regions.nil? || queried_regions.include?(:any)
             queried_regions.first
           else
