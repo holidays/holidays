@@ -15,6 +15,25 @@ Rake::TestTask.new(:test) do |t|
   t.test_files = FileList['test/**/test_*.rb']
 end
 
+task 'test:smoke' do
+  ENV['SMOKE_TEST'] = '1'
+end
+
+Rake::TestTask.new('test:smoke') do |t|
+  t.libs << 'test'
+  t.test_files = FileList['test/smoke/test_*.rb']
+end
+
+Rake::TestTask.new('test:integration') do |t|
+  t.libs << 'test'
+  t.test_files = FileList['test/integration/test_*.rb']
+end
+
+Rake::TestTask.new('test:e2e') do |t|
+  t.libs << 'test'
+  t.test_files = FileList['test/e2e/test_*.rb']
+end
+
 task :default => :test
 
 desc "Run tests for only a single region. Do not provide sub regions. Example (without quotes): 'rake test_region jp'"

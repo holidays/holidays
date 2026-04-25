@@ -9,6 +9,15 @@ generate:
 test:
 	bundle exec rake test
 
+test-smoke:
+	bundle exec rake test:smoke
+
+test-integration:
+	bundle exec rake test:integration
+
+test-e2e:
+	bundle exec rake test:e2e
+
 console:
 	bundle exec rake console
 
@@ -42,4 +51,4 @@ clean:
 	rm -rf reports
 	rm -rf coverage
 
-.PHONY: setup test generate console build push update-defs test-region clean-defs point-to-defs-master point-to-defs-branch clean definitions
+.PHONY: setup test test-smoke test-integration test-e2e generate console build push update-defs test-region clean-defs point-to-defs-master point-to-defs-branch clean definitions
