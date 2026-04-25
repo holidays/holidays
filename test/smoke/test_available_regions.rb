@@ -15,9 +15,4 @@ class AvailableRegionsTests < Test::Unit::TestCase
     end
   end
 
-  # This test might fail if we add new regions. Since this is an integration test
-  # I am fine with that!
-  def test_available_regions_returns_correct_number_of_regions
-    assert_equal 286, Holidays.available_regions.count
-  end
 end

@@ -15,12 +15,12 @@ class MultipleRegionsWithConflictsTests < Test::Unit::TestCase
   end
 
   def test_custom_loaded_region_returns_correct_value_with_function_modifier_conflict_even_if_conflict_definition_is_loaded_first
-    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_1.yaml')
+    Holidays.load_custom('test/e2e/data/test_multiple_regions_with_conflicts_region_1.yaml')
     result = Holidays.on(Date.new(2019, 6, 20), :multiple_with_conflict_1)
     assert_equal 1, result.count
     assert_equal 'With Function Modifier', result.first[:name]
 
-    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_2.yaml')
+    Holidays.load_custom('test/e2e/data/test_multiple_regions_with_conflicts_region_2.yaml')
     result = Holidays.on(Date.new(2019, 6, 24), :multiple_with_conflict_2)
     assert_equal 1, result.count
     assert_equal 'With Function Modifier', result.first[:name]
