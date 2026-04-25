@@ -32,13 +32,13 @@ class MultipleRegionsWithConflictsTests < Test::Unit::TestCase
   end
 
   def test_custom_loaded_region_returns_correct_value_when_two_regions_share_function_name_but_have_different_logic
-    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_1.yaml')
+    Holidays.load_custom('test/e2e/data/test_multiple_regions_with_conflicts_region_1.yaml')
 
     result = Holidays.on(Date.new(2019, 9, 1), :multiple_with_conflict_1)
     assert_equal 1, result.count
     assert_equal 'With Function Only Same Function Name', result.first[:name]
 
-    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_2.yaml')
+    Holidays.load_custom('test/e2e/data/test_multiple_regions_with_conflicts_region_2.yaml')
 
     result = Holidays.on(Date.new(2019, 11, 1), :multiple_with_conflict_2)
     assert_equal 1, result.count
@@ -56,13 +56,13 @@ class MultipleRegionsWithConflictsTests < Test::Unit::TestCase
   # @regional_overrides. This reversal exercises the fallback path for the
   # first-loaded region rather than the override path.
   def test_custom_loaded_region_returns_correct_value_when_load_order_is_reversed
-    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_2.yaml')
+    Holidays.load_custom('test/e2e/data/test_multiple_regions_with_conflicts_region_2.yaml')
 
     result = Holidays.on(Date.new(2019, 11, 1), :multiple_with_conflict_2)
     assert_equal 1, result.count
     assert_equal 'With Function Only Same Function Name', result.first[:name]
 
-    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_1.yaml')
+    Holidays.load_custom('test/e2e/data/test_multiple_regions_with_conflicts_region_1.yaml')
 
     result = Holidays.on(Date.new(2019, 9, 1), :multiple_with_conflict_1)
     assert_equal 1, result.count
@@ -80,8 +80,8 @@ class MultipleRegionsWithConflictsTests < Test::Unit::TestCase
   # holidays_by_month keeps them as separate entries (no region merge). Conflict
   # resolution must still route each holiday to its own function implementation.
   def test_custom_loaded_region_returns_correct_value_when_function_name_is_shared_but_holiday_names_differ
-    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_1.yaml')
-    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_2.yaml')
+    Holidays.load_custom('test/e2e/data/test_multiple_regions_with_conflicts_region_1.yaml')
+    Holidays.load_custom('test/e2e/data/test_multiple_regions_with_conflicts_region_2.yaml')
 
     result = Holidays.on(Date.new(2019, 9, 15), :multiple_with_conflict_1)
     assert_equal 1, result.count
@@ -96,8 +96,8 @@ class MultipleRegionsWithConflictsTests < Test::Unit::TestCase
   # same function name but different logic, the search must evaluate the function
   # independently for each queried region and return the union of all matches.
   def test_simultaneous_multi_region_query_evaluates_each_region_function_independently
-    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_1.yaml')
-    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_2.yaml')
+    Holidays.load_custom('test/e2e/data/test_multiple_regions_with_conflicts_region_1.yaml')
+    Holidays.load_custom('test/e2e/data/test_multiple_regions_with_conflicts_region_2.yaml')
 
     result = Holidays.on(Date.new(2019, 11, 1), :multiple_with_conflict_1, :multiple_with_conflict_2)
     assert_equal 1, result.count
@@ -116,8 +116,8 @@ class MultipleRegionsWithConflictsTests < Test::Unit::TestCase
   # Querying Sept 1 to Nov 1 with both regions should produce two separate
   # 'With Function Only Same Function Name' entries, one per region.
   def test_simultaneous_multi_region_query_returns_one_result_per_region_in_a_single_call
-    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_1.yaml')
-    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_2.yaml')
+    Holidays.load_custom('test/e2e/data/test_multiple_regions_with_conflicts_region_1.yaml')
+    Holidays.load_custom('test/e2e/data/test_multiple_regions_with_conflicts_region_2.yaml')
 
     result = Holidays.between(
       Date.new(2019, 9, 1),
@@ -175,9 +175,9 @@ class MultipleRegionsWithConflictsTests < Test::Unit::TestCase
   # different logic (region 1 -> Sept 1, region 2 -> Nov 1, region 3 -> Mar 1).
   # After all three are loaded, every region must still resolve to its own date.
   def test_three_regions_with_same_function_name_each_return_correct_result
-    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_1.yaml')
-    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_2.yaml')
-    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_3.yaml')
+    Holidays.load_custom('test/e2e/data/test_multiple_regions_with_conflicts_region_1.yaml')
+    Holidays.load_custom('test/e2e/data/test_multiple_regions_with_conflicts_region_2.yaml')
+    Holidays.load_custom('test/e2e/data/test_multiple_regions_with_conflicts_region_3.yaml')
 
     result = Holidays.on(Date.new(2019, 9, 1), :multiple_with_conflict_1)
     assert_equal 1, result.count
@@ -195,9 +195,9 @@ class MultipleRegionsWithConflictsTests < Test::Unit::TestCase
   # A single between() call across all three regions must return one result per
   # region, each evaluated with its own function implementation.
   def test_simultaneous_three_region_query_returns_one_result_per_region
-    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_1.yaml')
-    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_2.yaml')
-    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_3.yaml')
+    Holidays.load_custom('test/e2e/data/test_multiple_regions_with_conflicts_region_1.yaml')
+    Holidays.load_custom('test/e2e/data/test_multiple_regions_with_conflicts_region_2.yaml')
+    Holidays.load_custom('test/e2e/data/test_multiple_regions_with_conflicts_region_3.yaml')
 
     result = Holidays.between(
       Date.new(2019, 3, 1),
@@ -218,8 +218,8 @@ class MultipleRegionsWithConflictsTests < Test::Unit::TestCase
   # source is added again the method is simply overwritten and the holiday
   # definition repo de-duplicates via uniq!, so exactly one result is returned.
   def test_loading_the_same_custom_file_twice_does_not_duplicate_or_break_results
-    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_1.yaml')
-    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_1.yaml')
+    Holidays.load_custom('test/e2e/data/test_multiple_regions_with_conflicts_region_1.yaml')
+    Holidays.load_custom('test/e2e/data/test_multiple_regions_with_conflicts_region_1.yaml')
 
     result = Holidays.on(Date.new(2019, 9, 1), :multiple_with_conflict_1)
     assert_equal 1, result.count
