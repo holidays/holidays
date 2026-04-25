@@ -2,7 +2,9 @@
 
 True gem integration tests that verify how the gem's components work together
 (loader, calculator, observed-date logic, sub-region inheritance, caching, etc.)
-using **local fixture YAMLs** from `test/data/`.
+using **local fixture YAMLs**. Integration-only fixtures live in
+`test/integration/data/`. Fixtures shared with other test categories live in
+`test/data/`.
 
 ## Purpose
 
@@ -25,8 +27,9 @@ behave together against a known input, write an integration test here.
 
 ## What belongs here
 
-- Tests that exercise gem internals end-to-end (parsing → calculation → output)
-  using controlled inputs from `test/data/`.
+- Tests that exercise gem internals end-to-end (parsing, calculation, output)
+  using controlled inputs from `test/integration/data/` (or `test/data/` for
+  fixtures shared with other test categories).
 - Tests for custom-method evaluation, year-range handling, informal flag
   filtering, observed-date shifting, sub-region inheritance, etc., using fixtures.
 
