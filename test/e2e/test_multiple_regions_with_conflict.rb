@@ -171,6 +171,49 @@ class MultipleRegionsWithConflictsTests < Test::Unit::TestCase
     assert matching.any? { |h| h[:date] == Date.new(2025, 1, 5) }, 'expected region 2 result on Jan 5 (Sunday)'
   end
 
+  # Three regions all share the same function name but each implements it with
+  # different logic (region 1 -> Sept 1, region 2 -> Nov 1, region 3 -> Mar 1).
+  # After all three are loaded, every region must still resolve to its own date.
+  def test_three_regions_with_same_function_name_each_return_correct_result
+    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_1.yaml')
+    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_2.yaml')
+    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_3.yaml')
+
+    result = Holidays.on(Date.new(2019, 9, 1), :multiple_with_conflict_1)
+    assert_equal 1, result.count
+    assert_equal 'With Function Only Same Function Name', result.first[:name]
+
+    result = Holidays.on(Date.new(2019, 11, 1), :multiple_with_conflict_2)
+    assert_equal 1, result.count
+    assert_equal 'With Function Only Same Function Name', result.first[:name]
+
+    result = Holidays.on(Date.new(2019, 3, 1), :multiple_with_conflict_3)
+    assert_equal 1, result.count
+    assert_equal 'With Function Only Same Function Name', result.first[:name]
+  end
+
+  # A single between() call across all three regions must return one result per
+  # region, each evaluated with its own function implementation.
+  def test_simultaneous_three_region_query_returns_one_result_per_region
+    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_1.yaml')
+    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_2.yaml')
+    Holidays.load_custom('test/data/test_multiple_regions_with_conflicts_region_3.yaml')
+
+    result = Holidays.between(
+      Date.new(2019, 3, 1),
+      Date.new(2019, 11, 1),
+      :multiple_with_conflict_1,
+      :multiple_with_conflict_2,
+      :multiple_with_conflict_3,
+    )
+
+    matching = result.select { |h| h[:name] == 'With Function Only Same Function Name' }
+    assert_equal 3, matching.count
+    assert matching.any? { |h| h[:date] == Date.new(2019, 3, 1) },  'expected region 3 result on Mar 1'
+    assert matching.any? { |h| h[:date] == Date.new(2019, 9, 1) },  'expected region 1 result on Sept 1'
+    assert matching.any? { |h| h[:date] == Date.new(2019, 11, 1) }, 'expected region 2 result on Nov 1'
+  end
+
   # Verifies the safe-overwrite path in CustomMethods#add: when the same
   # source is added again the method is simply overwritten and the holiday
   # definition repo de-duplicates via uniq!, so exactly one result is returned.

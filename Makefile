@@ -1,4 +1,3 @@
-default: test
 
 setup: update-defs
 	bundle install
@@ -41,6 +40,9 @@ point-to-defs-branch:
 point-to-defs-master:
 	git submodule add https://github.com/holidays/definitions definitions/
 
+reset-defs-to-master:
+	git -C definitions checkout $$(git ls-tree origin/master -- definitions | awk '{print $$3}')
+
 clean-defs:
 	git rm -f definitions
 	rm -rf .git/modules/definitions
@@ -51,4 +53,4 @@ clean:
 	rm -rf reports
 	rm -rf coverage
 
-.PHONY: setup test test-smoke test-integration test-e2e generate console build push update-defs test-region clean-defs point-to-defs-master point-to-defs-branch clean definitions
+.PHONY: setup test test-smoke test-integration test-e2e generate console build push update-defs test-region reset-defs-to-master clean-defs point-to-defs-master point-to-defs-branch clean definitions
