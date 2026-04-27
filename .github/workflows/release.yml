@@ -1,12 +1,15 @@
 name: Release
 on:
-  push:
+  workflow_run:
+    workflows: ["Ruby"]
+    types: [completed]
     branches: ["master"]
 permissions:
   contents: read
 jobs:
   publish:
     runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success'
     env:
       BUNDLER_NO_OLD_RUBYGEMS_WARNING: true
     steps:
