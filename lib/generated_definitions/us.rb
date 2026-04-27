@@ -7,7 +7,7 @@ module Holidays
   # All the definitions are available at https://github.com/holidays/holidays
   module US # :nodoc:
     def self.defined_regions
-      [:us_fl, :us_al, :us_la, :us, :us_ct, :us_de, :us_gu, :us_hi, :us_in, :us_ky, :us_nj, :us_nc, :us_nd, :us_pa, :us_pr, :us_tn, :us_ms, :us_id, :us_ar, :us_tx, :us_dc, :us_md, :us_va, :us_vt, :us_ak, :us_ca, :us_me, :us_ma, :us_ga, :us_ne, :us_mo, :us_sc, :us_wv, :us_vi, :us_ut, :us_ri, :us_az, :us_co, :us_il, :us_mt, :us_nm, :us_ny, :us_oh, :us_mi, :us_mn, :us_nv, :us_or, :us_sd, :us_wa, :us_wi, :us_wy, :us_ia, :us_ks, :us_nh, :us_ok, :ca]
+      [:us_fl, :us_al, :us_la, :us, :us_ct, :us_de, :us_gu, :us_hi, :us_in, :us_ky, :us_nj, :us_nc, :us_nd, :us_pa, :us_pr, :us_tn, :us_ga, :us_ms, :us_id, :us_ar, :us_tx, :us_dc, :us_md, :us_va, :us_vt, :us_ak, :us_ca, :us_me, :us_ma, :us_ne, :us_mo, :us_sc, :us_wv, :us_vi, :us_ut, :us_ri, :us_az, :us_co, :us_il, :us_mt, :us_nm, :us_ny, :us_oh, :us_mi, :us_mn, :us_nv, :us_or, :us_sd, :us_wa, :us_wi, :us_wy, :us_ia, :us_ks, :us_nh, :us_ok, :ca]
     end
 
     def self.holidays_by_month
@@ -16,6 +16,7 @@ module Holidays
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -47, :name => "Mardi Gras Day", :regions => [:us_al, :us_la]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :type => :informal, :name => "Good Friday", :regions => [:us]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:us_ct, :us_de, :us_gu, :us_hi, :us_in, :us_ky, :us_la, :us_nj, :us_nc, :us_nd, :us_pa, :us_pr, :us_tn]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :year_ranges => { :from => 2020 },:name => "State Holiday", :regions => [:us_ga]},
             {:function => "easter(year)", :function_arguments => [:year], :type => :informal, :name => "Easter Sunday", :regions => [:us]}],
       1 => [{:mday => 1, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:us]},
             {:wday => 1, :week => 3, :name => "Martin Luther King's and Robert E. Lee's Birthdays", :regions => [:us_ms]},
@@ -40,7 +41,7 @@ module Holidays
             {:wday => 1, :week => -1, :name => "Confederate Memorial Day", :regions => [:us_ms]},
             {:wday => 1, :week => 4, :name => "Confederate Memorial Day", :regions => [:us_al]},
             {:mday => 26, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Confederate Memorial Day", :regions => [:us_fl]},
-            {:function => "georgia_state_holiday(year, month)", :function_arguments => [:year, :month], :name => "State Holiday", :regions => [:us_ga]},
+            {:function => "georgia_state_holiday(year, month)", :function_arguments => [:year, :month], :year_ranges => { :until => 2019 },:name => "State Holiday", :regions => [:us_ga]},
             {:wday => 5, :week => -1, :name => "Arbor Day", :regions => [:us_ne]},
             {:mday => 1, :type => :informal, :name => "April Fool's Day", :regions => [:us, :ca]},
             {:mday => 22, :type => :informal, :name => "Earth Day", :regions => [:us, :ca]}],

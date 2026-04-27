@@ -163,7 +163,12 @@ assert_equal "Confederate Memorial Day", (Holidays.on(Date.civil(2026, 4, 27), [
 assert_nil (Holidays.on(Date.civil(2021, 4, 26), [:us])[0] || {})[:name]
 
     assert_equal "State Holiday", (Holidays.on(Date.civil(2015, 4, 20), [:us_ga])[0] || {})[:name]
-assert_equal "State Holiday", (Holidays.on(Date.civil(2021, 4, 26), [:us_ga])[0] || {})[:name]
+
+    assert_equal "State Holiday", (Holidays.on(Date.civil(2020, 4, 10), [:us_ga])[0] || {})[:name]
+assert_equal "State Holiday", (Holidays.on(Date.civil(2021, 4, 2), [:us_ga])[0] || {})[:name]
+assert_equal "State Holiday", (Holidays.on(Date.civil(2022, 4, 15), [:us_ga])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2021, 4, 26), [:us_ga])[0] || {})[:name]
 
     assert_equal "Arbor Day", (Holidays.on(Date.civil(2017, 4, 28), [:us_ne])[0] || {})[:name]
 assert_equal "Arbor Day", (Holidays.on(Date.civil(2025, 4, 25), [:us_ne])[0] || {})[:name]

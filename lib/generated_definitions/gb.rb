@@ -7,7 +7,7 @@ module Holidays
   # All the definitions are available at https://github.com/holidays/holidays
   module GB # :nodoc:
     def self.defined_regions
-      [:gb, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :je, :gb_jsy, :gg, :gb_gsy, :gb_sct, :gb_con, :im, :gb_iom]
+      [:gb, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :gb_con, :je, :gb_jsy, :gg, :gb_gsy, :gb_sct, :im, :gb_iom]
     end
 
     def self.holidays_by_month
@@ -15,7 +15,7 @@ module Holidays
                 0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -21, :type => :informal, :name => "Mothering Sunday", :regions => [:gb]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:gb]},
             {:function => "easter(year)", :function_arguments => [:year], :name => "Easter Sunday", :regions => [:gb]},
-            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:gb_eng, :gb_wls, :gb_eaw, :gb_nir, :je, :gb_jsy, :gg, :gb_gsy]}],
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:gb_eng, :gb_wls, :gb_eaw, :gb_nir, :gb_con, :je, :gb_jsy, :gg, :gb_gsy]}],
       1 => [{:mday => 1, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:gb]},
             {:mday => 2, :observed => "to_weekday_if_boxing_weekend(date)", :observed_arguments => [:date], :name => "2nd January", :regions => [:gb_sct]}],
       3 => [{:mday => 5, :name => "St. Piran's Day", :regions => [:gb_con]},
@@ -32,7 +32,7 @@ module Holidays
       7 => [{:mday => 5, :name => "Tynwald Day", :regions => [:im, :gb_iom]},
             {:mday => 12, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Battle of the Boyne", :regions => [:gb_nir]}],
       8 => [{:wday => 1, :week => 1, :name => "Bank Holiday", :regions => [:gb_sct]},
-            {:wday => 1, :week => -1, :name => "Bank Holiday", :regions => [:gb_eng, :gb_wls, :gb_eaw, :gb_nir, :je, :gb_jsy, :gg, :gb_gsy]}],
+            {:wday => 1, :week => -1, :name => "Bank Holiday", :regions => [:gb_eng, :gb_wls, :gb_eaw, :gb_nir, :gb_con, :je, :gb_jsy, :gg, :gb_gsy]}],
       9 => [{:mday => 19, :year_ranges => { :limited => [2022] },:name => "Bank Holiday for the State Funeral of Queen Elizabeth II", :regions => [:gb]}],
       11 => [{:mday => 5, :type => :informal, :name => "Guy Fawkes Day", :regions => [:gb]},
             {:mday => 30, :year_ranges => { :until => 2006 },:observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :type => :informal, :name => "St. Andrew's Day", :regions => [:gb_sct]},
