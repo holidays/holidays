@@ -18,7 +18,6 @@ Gem::Specification.new do |gem|
     'bug_tracker_uri' => 'https://github.com/holidays/holidays/issues'
   }
   gem.files         = `git ls-files`.split("\n") - ['.gitignore', '.travis.yml']
-  gem.test_files    = gem.files.grep(/^test/)
   gem.require_paths = ['lib']
   gem.licenses      = ['MIT']
   gem.required_ruby_version = '>= 3.2'
