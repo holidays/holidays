@@ -413,7 +413,7 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Ascension", (Holidays.on(Date.civil(2007, 5, 17), [:fr])[0] || {})[:name]
 
-    assert_equal "Pentecôte", (Holidays.on(Date.civil(2007, 5, 27), [:fr])[0] || {})[:name]
+    assert_nil (Holidays.on(Date.civil(2007, 5, 27), [:fr])[0] || {})[:name]
 
     assert_equal "Fête nationale", (Holidays.on(Date.civil(2007, 7, 14), [:fr])[0] || {})[:name]
 
@@ -427,11 +427,11 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_nil (Holidays.on(Date.civil(2007, 4, 8), [:fr])[0] || {})[:name]
 
-    assert_nil (Holidays.on(Date.civil(2007, 5, 28), [:fr])[0] || {})[:name]
+    assert_equal "Lundi de Pentecôte", (Holidays.on(Date.civil(2007, 5, 28), [:fr])[0] || {})[:name]
 
     assert_equal "Pâques", (Holidays.on(Date.civil(2007, 4, 8), [:fr], [:informal])[0] || {})[:name]
 
-    assert_equal "Lundi de Pentecôte", (Holidays.on(Date.civil(2007, 5, 28), [:fr], [:informal])[0] || {})[:name]
+    assert_equal "Pentecôte", (Holidays.on(Date.civil(2007, 5, 27), [:fr], [:informal])[0] || {})[:name]
 
     assert_equal "Saint-Étienne", (Holidays.on(Date.civil(2017, 12, 26), [:fr_a, :fr_m], [:informal])[0] || {})[:name]
 
@@ -574,6 +574,10 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_nil (Holidays.on(Date.civil(2021, 9, 19), [:gb])[0] || {})[:name]
 
     assert_equal "Bank Holiday for the Coronation of King Charles III", (Holidays.on(Date.civil(2023, 5, 8), [:gb])[0] || {})[:name]
+
+    assert_equal "Easter Monday", (Holidays.on(Date.civil(2016, 3, 28), [:gb_con])[0] || {})[:name]
+
+    assert_equal "Bank Holiday", (Holidays.on(Date.civil(2016, 8, 29), [:gb_con])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(2024, 5, 8), [:gb])[0] || {})[:name]
 

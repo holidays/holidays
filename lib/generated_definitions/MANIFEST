@@ -36,6 +36,7 @@ The following definition files are included in this installation:
 * generated_definitions/hr
 * generated_definitions/hu
 * generated_definitions/ie
+* generated_definitions/il
 * generated_definitions/in
 * generated_definitions/is
 * generated_definitions/it
@@ -48,6 +49,7 @@ The following definition files are included in this installation:
 * generated_definitions/lu
 * generated_definitions/lv
 * generated_definitions/ma
+* generated_definitions/mc
 * generated_definitions/mt_en
 * generated_definitions/mt_mt
 * generated_definitions/mx
