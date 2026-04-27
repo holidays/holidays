@@ -4,7 +4,33 @@ There are multiple ways to help! We rely on users around the world to help keep 
 
 ## Code of Conduct
 
-Please read our [Code of Conduct](../CODE_OF_CONDUCT.md) before contributing. Everyone interacting with this project (or associated projects) is expected to abide by its terms.
+Please read our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing. Everyone interacting with this project (or associated projects) is expected to abide by its terms.
+
+## AI Usage
+
+Please read our [AI Usage Policy](AI_POLICY.md) before contributing.
+
+## Commit requirements
+
+All commits must be GPG-signed and include a `Signed-off-by` trailer. Use both
+the `-S` and `-s` flags together:
+
+```sh
+git commit -S -s -m "Your commit message"
+```
+
+**GPG signing** (`-S`) verifies that the commit genuinely came from you. If you
+haven't set up GPG signing with Git yet, GitHub has a guide:
+https://docs.github.com/en/authentication/managing-commit-signature-verification
+
+**Signed-off-by** (`-s`) is your acknowledgment of the
+[Developer Certificate of Origin](https://developercertificate.org/), certifying
+that you have the right to submit the contribution under this project's license.
+It appends the following to your commit message automatically:
+
+```
+Signed-off-by: Your Name <your@email.com>
+```
 
 ## General note
 
