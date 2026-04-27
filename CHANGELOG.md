@@ -1,5 +1,9 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 9.1.2
+
+* Fix bug ([#344](https://github.com/holidays/holidays/issues/344)) where holidays with the same name and function but different implementations across regions would return incorrect results depending on region load order. When multiple regions are queried simultaneously, each region's function implementation is now evaluated independently and all matching results are returned.
+
 ## 9.1.1
 
 * Update to [v6.0.1 definitions](https://github.com/holidays/definitions/releases/tag/v6.0.1). Please see the changelog for the definition details.

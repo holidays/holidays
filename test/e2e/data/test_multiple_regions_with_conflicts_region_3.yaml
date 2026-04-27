@@ -1,0 +1,38 @@
+months:
+  0:
+  - name: With Function Modifier
+    regions: [multiple_with_conflict_3]
+    function: easter(year)
+    function_modifier: 70
+  - name: With Function Only Different Function Name
+    regions: [multiple_with_conflict_3]
+    function: conflict_custom_method_3(year)
+  - name: With Function Only Same Function Name
+    regions: [multiple_with_conflict_3]
+    function: conflict_custom_method_identical_name_between_regions(year)
+  - name: With Function Only Same Function Name - Region 3
+    regions: [multiple_with_conflict_3]
+    function: conflict_custom_method_identical_name_between_regions_but_different_holiday_names(year)
+  1:
+  - name: New Year's Day
+    regions: [multiple_with_conflict_3]
+    mday: 1
+    observed: to_monday_if_weekend(date)
+  10:
+  - name: Testing Conflict Month 10
+    regions: [multiple_with_conflict_3]
+    mday: 9
+
+methods:
+  conflict_custom_method_3:
+    arguments: year
+    ruby: |
+      Date.civil(year, 4, 1)
+  conflict_custom_method_identical_name_between_regions:
+    arguments: year
+    ruby: |
+      Date.civil(year, 3, 1)
+  conflict_custom_method_identical_name_between_regions_but_different_holiday_names:
+    arguments: year
+    ruby: |
+      Date.civil(year, 3, 15)
