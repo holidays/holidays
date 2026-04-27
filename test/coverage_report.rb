@@ -2,7 +2,7 @@ require 'simplecov'
 
 # JRuby coverage reporting is inaccurate without --debug mode, resulting in
 # artificially low numbers. Skip the minimum coverage check under JRuby.
-SimpleCov.minimum_coverage 89 unless RUBY_PLATFORM == 'java' || ENV['SMOKE_TEST']
+SimpleCov.minimum_coverage 90 unless RUBY_PLATFORM == 'java' || RUBY_PATCHLEVEL == -1 || ENV['SMOKE_TEST'] || ENV['CONTRACT_TEST']
 
 SimpleCov.add_filter [
   # Apparently simplecov doesn't automatically filter 'spec' or 'test' so we

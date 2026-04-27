@@ -24,6 +24,15 @@ Rake::TestTask.new('test:smoke') do |t|
   t.test_files = FileList['test/smoke/test_*.rb']
 end
 
+task 'test:contract' do
+  ENV['CONTRACT_TEST'] = '1'
+end
+
+Rake::TestTask.new('test:contract') do |t|
+  t.libs << 'test'
+  t.test_files = FileList['test/smoke/test_*.rb'] + FileList['test/defs/test_*.rb']
+end
+
 Rake::TestTask.new('test:integration') do |t|
   t.libs << 'test'
   t.test_files = FileList['test/integration/test_*.rb']
