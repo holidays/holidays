@@ -6,10 +6,14 @@ generate:
 	bundle exec rake generate
 
 test:
+	rm -rf reports
 	bundle exec rake test
 
 test-smoke:
 	bundle exec rake test:smoke
+
+test-contract:
+	bundle exec rake test:contract
 
 test-integration:
 	bundle exec rake test:integration
@@ -53,4 +57,4 @@ clean:
 	rm -rf reports
 	rm -rf coverage
 
-.PHONY: setup test test-smoke test-integration test-e2e generate console build push update-defs test-region reset-defs-to-master clean-defs point-to-defs-master point-to-defs-branch clean definitions
+.PHONY: setup test test-smoke test-contract test-integration test-e2e generate console build push update-defs test-region reset-defs-to-master clean-defs point-to-defs-master point-to-defs-branch clean definitions
