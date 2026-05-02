@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
     'source_code_uri' => 'https://github.com/holidays/holidays',
     'bug_tracker_uri' => 'https://github.com/holidays/holidays/issues'
   }
-  gem.files         = `git ls-files`.split("\n") - ['.gitignore', '.travis.yml']
+  gem.files         = `git ls-files lib`.split("\n") + ['CHANGELOG.md', 'LICENSE', 'README.md']
   gem.require_paths = ['lib']
   gem.licenses      = ['MIT']
   gem.required_ruby_version = '>= 3.2'
