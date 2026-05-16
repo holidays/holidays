@@ -267,6 +267,12 @@ Holidays.load_custom(
 )
 ```
 
+Note that any `tests:` stanzas in a custom definition file are ignored by
+`load_custom`. Tests are only executed at build time for definitions contributed
+to the [definitions repository](https://github.com/holidays/definitions), where
+`rake generate` turns them into the test suite. There is no runtime mechanism to
+run the tests embedded in a custom file loaded on the fly.
+
 ## Extending Ruby's Date and Time classes
 
 ### Date
