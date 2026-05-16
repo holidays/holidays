@@ -32,7 +32,7 @@ module Holidays
       10 => [{:wday => 1, :week => 1, :observed => "previous_friday(date)", :observed_arguments => [:date], :name => "Hawke's bay Anniversary Day", :regions => [:nz_hb]},
             {:wday => 1, :week => 4, :name => "Labour Day", :regions => [:nz]},
             {:wday => 1, :week => 4, :observed => "next_week(date)", :observed_arguments => [:date], :name => "Marlborough Anniversary Day", :regions => [:nz_mb]}],
-      11 => [{:wday => 5, :week => 2, :name => "Canterbury Anniversary Day", :regions => [:nz_ca]},
+      11 => [{:function => "nz_canterbury_anniversary(year)", :function_arguments => [:year], :name => "Canterbury Anniversary Day", :regions => [:nz_ca]},
             {:mday => 30, :observed => "closest_monday(date)", :observed_arguments => [:date], :name => "Chatham Island Anniversary Day", :regions => [:nz_ch]}],
       12 => [{:mday => 1, :observed => "closest_monday(date)", :observed_arguments => [:date], :name => "Westland Anniversary Day", :regions => [:nz_wl]},
             {:mday => 25, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Christmas Day", :regions => [:nz]},
@@ -58,6 +58,14 @@ date - 3
 },
 
 "next_week(date)" => Proc.new { |date|
+date + 7
+},
+
+"nz_canterbury_anniversary(year)" => Proc.new { |year|
+date = Date.civil(year, 11, 1)
+date += 1 until date.tuesday?
+date += 1
+date += 1 until date.friday?
 date + 7
 },
 

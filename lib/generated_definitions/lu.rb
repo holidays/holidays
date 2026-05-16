@@ -14,7 +14,7 @@ module Holidays
       {
                 0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Ouschterméindeg", :regions => [:lu]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Christi Himmelfaart", :regions => [:lu]},
-            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Péngschtméindeg", :regions => [:lu]}],
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Péngschtméindeg", :regions => [:lu]}],
       1 => [{:mday => 1, :name => "Neijoerschdag", :regions => [:lu]}],
       5 => [{:mday => 1, :name => "Dag vun der Aarbecht", :regions => [:lu]},
             {:mday => 9, :year_ranges => { :from => 2019 },:name => "Europadag", :regions => [:lu]}],

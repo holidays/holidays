@@ -194,8 +194,8 @@ module Holidays
             {:mday => 1, :name => "Nieuwjaarsdag", :regions => [:nl]},
             {:mday => 1, :name => "Nyttårsdag", :regions => [:no]},
             {:mday => 1, :name => "Nowy Rok", :regions => [:pl]},
-            {:function => "pl_trzech_kroli(year)", :function_arguments => [:year], :name => "Objawienie Pańskie (święto Trzech Króli)", :regions => [:pl]},
-            {:function => "pl_trzech_kroli_informal(year)", :function_arguments => [:year], :type => :informal, :name => "Objawienie Pańskie (święto Trzech Króli)", :regions => [:pl]},
+            {:mday => 6, :year_ranges => { :from => 2011 },:name => "Objawienie Pańskie (święto Trzech Króli)", :regions => [:pl]},
+            {:mday => 6, :year_ranges => { :until => 2010 },:type => :informal, :name => "Objawienie Pańskie (święto Trzech Króli)", :regions => [:pl]},
             {:mday => 21, :type => :informal, :name => "Dzień Babci", :regions => [:pl]},
             {:mday => 22, :type => :informal, :name => "Dzień Dziadka", :regions => [:pl]},
             {:mday => 1, :name => "Ano Novo", :regions => [:pt]},
@@ -627,14 +627,6 @@ when 2028
   # Event's period/next year is known, but precise dates aren't.
   # Previously, dates were announced 2 years ahead, so on ~2026-05 this method would need to be revisited.
 end
-},
-
-"pl_trzech_kroli(year)" => Proc.new { |year|
-year >= 2011 ? 6 : nil
-},
-
-"pl_trzech_kroli_informal(year)" => Proc.new { |year|
-year < 2011 ? 6 : nil
 },
 
 

@@ -24,8 +24,8 @@ module Holidays
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Zesłanie Ducha Świętego (Zielone Świątki)", :regions => [:pl]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 60, :name => "Uroczystość Najświętszego Ciała i Krwi Pańskiej (Boże Ciało)", :regions => [:pl]}],
       1 => [{:mday => 1, :name => "Nowy Rok", :regions => [:pl]},
-            {:function => "pl_trzech_kroli(year)", :function_arguments => [:year], :name => "Objawienie Pańskie (święto Trzech Króli)", :regions => [:pl]},
-            {:function => "pl_trzech_kroli_informal(year)", :function_arguments => [:year], :type => :informal, :name => "Objawienie Pańskie (święto Trzech Króli)", :regions => [:pl]},
+            {:mday => 6, :year_ranges => { :from => 2011 },:name => "Objawienie Pańskie (święto Trzech Króli)", :regions => [:pl]},
+            {:mday => 6, :year_ranges => { :until => 2010 },:type => :informal, :name => "Objawienie Pańskie (święto Trzech Króli)", :regions => [:pl]},
             {:mday => 21, :type => :informal, :name => "Dzień Babci", :regions => [:pl]},
             {:mday => 22, :type => :informal, :name => "Dzień Dziadka", :regions => [:pl]}],
       2 => [{:mday => 2, :type => :informal, :name => "Ofiarowanie Pańskie (Matki Boskiej Gromnicznej)", :regions => [:pl]},
@@ -58,15 +58,7 @@ module Holidays
 
     def self.custom_methods
       {
-          "pl_trzech_kroli(year)" => Proc.new { |year|
-year >= 2011 ? 6 : nil
-},
-
-"pl_trzech_kroli_informal(year)" => Proc.new { |year|
-year < 2011 ? 6 : nil
-},
-
-
+          
       }
     end
   end
