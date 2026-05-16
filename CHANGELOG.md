@@ -1,5 +1,14 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 10.0.0
+
+* Drop support for Ruby 3.2. Supported versions are now 3.3, 3.4, 4.0, and ruby-head.
+* Update to [v7.0.0 definitions](https://github.com/holidays/definitions/releases/tag/v7.0.0). Please see the changelog for the definition details.
+* Bump tested JRuby from 10.0.4.0 to 10.0.5.0
+* Raise an `ArgumentError` during definition parsing when a `function` or `observed` rule references an unknown method ([#333](https://github.com/holidays/holidays/issues/333))
+* Fix bug ([#352](https://github.com/holidays/holidays/issues/352)) where holidays with the same name and region that differed only by their function modifier were merged into a single entry, dropping one of the dates
+* Document that `tests` stanzas in custom definition files loaded via `load_custom` are not run at runtime ([#304](https://github.com/holidays/holidays/issues/304))
+
 ## 9.2.0
 
 * Update to [v6.1.1 definitions](https://github.com/holidays/definitions/releases/tag/v6.1.1). Please see the changelog for the definition details.

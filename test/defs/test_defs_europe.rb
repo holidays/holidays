@@ -1136,6 +1136,8 @@ assert_equal "Vecgada diena", (Holidays.on(Date.civil(2029, 12, 31), [:lv])[0] |
 
     assert_equal "Objawienie Pańskie (święto Trzech Króli)", (Holidays.on(Date.civil(2011, 1, 6), [:pl])[0] || {})[:name]
 
+    assert_equal "Objawienie Pańskie (święto Trzech Króli)", (Holidays.on(Date.civil(2011, 1, 6), [:pl], [:informal])[0] || {})[:name]
+
     assert_equal "Objawienie Pańskie (święto Trzech Króli)", (Holidays.on(Date.civil(2012, 1, 6), [:pl])[0] || {})[:name]
 
     assert_equal "Objawienie Pańskie (święto Trzech Króli)", (Holidays.on(Date.civil(2013, 1, 6), [:pl])[0] || {})[:name]

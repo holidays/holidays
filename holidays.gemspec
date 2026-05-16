@@ -20,7 +20,7 @@ Gem::Specification.new do |gem|
   gem.files         = `git ls-files lib`.split("\n") + ['CHANGELOG.md', 'LICENSE', 'README.md']
   gem.require_paths = ['lib']
   gem.licenses      = ['MIT']
-  gem.required_ruby_version = '>= 3.2'
+  gem.required_ruby_version = '>= 3.3'
   gem.add_development_dependency 'bundler', '>= 4'
   gem.add_development_dependency 'rake', '~> 13'
   gem.add_development_dependency 'simplecov', '~> 0.16'

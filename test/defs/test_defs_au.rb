@@ -229,5 +229,23 @@ assert_equal "King's Birthday", (Holidays.on(Date.civil(2023, 9, 25), [:au_wa])[
 
     assert_equal "Reconciliation Day", (Holidays.on(Date.civil(2025, 6, 2), [:au_act])[0] || {})[:name]
 
+    assert_equal "May Public Holiday", (Holidays.on(Date.civil(2004, 5, 17), [:au_sa])[0] || {})[:name]
+
+    assert_equal "March Public Holiday", (Holidays.on(Date.civil(2006, 3, 13), [:au_sa])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2006, 5, 15), [:au_sa])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2011, 10, 3), [:au_qld])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2013, 5, 6), [:au_qld])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2013, 11, 14), [:au_qld_brisbane])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2015, 5, 4), [:au_qld])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2016, 6, 13), [:au_qld])[0] || {})[:name]
+
+    assert_equal "King's Birthday", (Holidays.on(Date.civil(2024, 10, 7), [:au_qld])[0] || {})[:name]
+
   end
 end

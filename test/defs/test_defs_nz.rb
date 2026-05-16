@@ -63,5 +63,11 @@ class NzDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "King's Birthday", (Holidays.on(Date.civil(2023, 6, 5), [:nz])[0] || {})[:name]
 
+    assert_equal "Canterbury Anniversary Day", (Holidays.on(Date.civil(2023, 11, 17), [:nz_ca])[0] || {})[:name]
+
+    assert_equal "Canterbury Anniversary Day", (Holidays.on(Date.civil(2024, 11, 15), [:nz_ca])[0] || {})[:name]
+
+    assert_equal "Canterbury Anniversary Day", (Holidays.on(Date.civil(2028, 11, 17), [:nz_ca])[0] || {})[:name]
+
   end
 end
