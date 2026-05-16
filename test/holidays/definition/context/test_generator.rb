@@ -53,6 +53,18 @@ class GeneratorTests < Test::Unit::TestCase
     assert_match(/Unknown function 'to_weekday_if_sunday\(date\)'/, error.message)
   end
 
+  def test_parse_definition_files_keeps_same_name_holidays_with_different_modifiers
+    files = ['test/data/test_same_name_different_modifier_defs.yaml']
+    @custom_method_parser.expects(:call).with(nil).returns({})
+    @custom_methods_repository.stubs(:find).with('easter(year)').returns(->(year) {})
+    @test_parser.expects(:call).with(nil).returns([])
+
+    rules_by_month = @generator.parse_definition_files(files)[1]
+
+    assert_equal 2, rules_by_month[0].length
+    assert_equal [nil, 1], rules_by_month[0].map { |r| r[:function_modifier] }
+  end
+
   def test_parse_definition_files_correctly_parse_regions
     files = ['test/data/test_single_custom_holiday_defs.yaml']
     @custom_method_parser.expects(:call).with(nil).returns({})

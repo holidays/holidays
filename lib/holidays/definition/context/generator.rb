@@ -110,7 +110,7 @@ module Holidays
 
                 exists = false
                 rules_by_month[month].each do |ex|
-                  if ex[:name] == rule[:name] and ex[:wday] == rule[:wday] and ex[:mday] == rule[:mday] and ex[:week] == rule[:week] and ex[:type] == rule[:type] and ex[:function] == rule[:function] and ex[:observed] == rule[:observed] and ex[:year_ranges] == rule[:year_ranges]
+                  if ex[:name] == rule[:name] and ex[:wday] == rule[:wday] and ex[:mday] == rule[:mday] and ex[:week] == rule[:week] and ex[:type] == rule[:type] and ex[:function] == rule[:function] and ex[:function_modifier] == rule[:function_modifier] and ex[:observed] == rule[:observed] and ex[:year_ranges] == rule[:year_ranges]
                     ex[:regions] << rule[:regions].flatten
                     exists = true
                   end
