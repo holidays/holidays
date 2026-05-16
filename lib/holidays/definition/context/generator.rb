@@ -201,6 +201,8 @@ module Holidays
             method.parameters.collect { |arg| arg[1] }
           elsif method = parsed_custom_methods[function_id]
             method.arguments.collect { |arg| arg.to_sym }
+          else
+            raise ArgumentError, "Unknown function '#{function_id}'. It must either be a built-in method or be defined in the 'methods' section of a definition file."
           end
         end
       end
