@@ -67,6 +67,35 @@ You can leave off 'regions' to get holidays for any region in our [definitions](
    ]
 ```
 
+#### Wildcard regions
+
+A region ending in an underscore (e.g. `:au_`, `:ca_`) is a *wildcard*. It matches the
+parent country region **and all of its sub-regions** in a single call:
+
+```ruby
+Holidays.on(Date.new(2017, 3, 13), :au_)
+=> [{:name=>"Eight Hours Day", :regions=>[:au_tas],...},
+    {:name=>"Labour Day", :regions=>[:au_vic],...},
+    {:name=>"March Public Holiday", :regions=>[:au_sa],...},
+    {:name=>"Canberra Day", :regions=>[:au_act],...}]
+```
+
+The same date queried with the plain `:au` region returns nothing, because none of
+those holidays are observed nation-wide:
+
+```ruby
+Holidays.on(Date.new(2017, 3, 13), :au)
+=> []
+```
+
+Use a wildcard when you want "this country and every sub-region it defines" without
+listing each sub-region explicitly.
+
+Note that a wildcard always collapses to the **top-level** country region. The portion
+between the country prefix and the trailing underscore is ignored, so `:au_vic_` behaves
+identically to `:au_` (it loads every Australian sub-region, not just Victoria's). There
+is currently no way to wildcard-match only the children of a sub-region.
+
 #### Checking a date range
 
 Get all holidays during the month of July 2008 in Canada and the US:
