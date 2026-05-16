@@ -41,6 +41,18 @@ class GeneratorTests < Test::Unit::TestCase
     end
   end
 
+  def test_parse_definition_files_raises_error_for_unknown_function
+    files = ['test/data/test_invalid_function_defs.yaml']
+    @custom_method_parser.expects(:call).with(nil).returns({})
+    @custom_methods_repository.expects(:find).with('to_weekday_if_sunday(date)').returns(nil)
+
+    error = assert_raises ArgumentError do
+      @generator.parse_definition_files(files)
+    end
+
+    assert_match(/Unknown function 'to_weekday_if_sunday\(date\)'/, error.message)
+  end
+
   def test_parse_definition_files_correctly_parse_regions
     files = ['test/data/test_single_custom_holiday_defs.yaml']
     @custom_method_parser.expects(:call).with(nil).returns({})
