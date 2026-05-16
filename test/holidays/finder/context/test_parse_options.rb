@@ -61,6 +61,17 @@ class ParseOptionsTests < Test::Unit::TestCase
     assert_equal(false, regions.include?(:ch_))
   end
 
+  # A multi-segment wildcard collapses to the top-level country prefix: only
+  # the portion before the first underscore is used, so :ch_zh_ behaves
+  # identically to :ch_ and loads every Swiss sub-region, not just Zurich's.
+  def test_multi_segment_wildcard_collapses_to_top_level_region
+    @definition_loader.expects(:call).with(:ch).returns([:ch, :ch_zh])
+
+    regions = @subject.call([:ch_zh_]).first
+
+    assert_equal([:ch, :ch_zh], regions)
+  end
+
   def test_does_nothing_if_region_is_already_loaded_and_is_parent
     @regions_repo.expects(:parent_region_lookup).with(:test).returns(nil)
     regions = @subject.call([:test]).first
