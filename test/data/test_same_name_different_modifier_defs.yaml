@@ -1,0 +1,9 @@
+months:
+  0:
+  - name: Same Name Holiday
+    regions: [custom_same_name_file]
+    function: easter(year)
+  - name: Same Name Holiday
+    regions: [custom_same_name_file]
+    function: easter(year)
+    function_modifier: 1

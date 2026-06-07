@@ -37,7 +37,7 @@ EndOfTests
         end
 
         def decorate(tests)
-          out = ""
+          out = +""
 
           tests.each do |t|
             out << "\n    " + @decorator.call(t)

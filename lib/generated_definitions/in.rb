@@ -12,9 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-                0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:in]},
-            {:wday => 6, :week => 2, :type => :informal, :name => "Second Saturday Bank Holiday", :regions => [:in]},
-            {:wday => 6, :week => 4, :type => :informal, :name => "Fourth Saturday Bank Holiday", :regions => [:in]}],
+                0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:in]}],
       1 => [{:mday => 1, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:in]},
             {:mday => 12, :name => "Swami Vivekananda Jayanti", :regions => [:in_wb]},
             {:mday => 14, :name => "Makar Sankranti / Pongal / Magh Bihu / Uttarayan / Khichdi / Sankranti", :regions => [:in]},
@@ -28,9 +26,9 @@ module Holidays
             {:mday => 14, :name => "Dr. B. R. Ambedkar Jayanti", :regions => [:in]},
             {:mday => 15, :name => "Himachal Pradesh Day", :regions => [:in_hp]},
             {:mday => 15, :name => "West Bengal Day", :regions => [:in_wb]}],
-      5 => [{:mday => 1, :name => "Labour Day", :regions => [:in]},
-            {:mday => 1, :name => "Gujarat Day", :regions => [:in_gj]},
+      5 => [{:mday => 1, :name => "Gujarat Day", :regions => [:in_gj]},
             {:mday => 1, :name => "Maharashtra Day", :regions => [:in_mh]},
+            {:mday => 1, :name => "Labour Day", :regions => [:in]},
             {:mday => 7, :name => "Rabindranath Tagore Jayanti", :regions => [:in_wb]},
             {:mday => 16, :name => "Sikkim State Day", :regions => [:in_sk]}],
       6 => [{:mday => 2, :name => "Telangana Formation Day", :regions => [:in_ts]}],

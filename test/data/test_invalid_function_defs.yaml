@@ -1,0 +1,5 @@
+months:
+  6:
+  - name: Invalid Function Holiday
+    regions: [custom_invalid_function_file]
+    function: to_weekday_if_sunday(date)

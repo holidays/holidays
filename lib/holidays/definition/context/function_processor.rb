@@ -12,7 +12,7 @@ module Holidays
         def call(input, func_id, desired_func_args, func_modifier = nil)
           validate!(input, func_id, desired_func_args)
 
-          function = @custom_methods_repo.find(func_id)
+          function = @custom_methods_repo.find(func_id, input[:region])
           raise Holidays::FunctionNotFound.new("Unable to find function with id '#{func_id}'") if function.nil?
 
           calculate(input, function, parse_arguments(input, desired_func_args), func_modifier)
@@ -74,11 +74,10 @@ module Holidays
               raise Holidays::InvalidFunctionResponse.new("invalid day response from custom method call resulting in invalid date. Result: '#{result}'")
             end
           elsif result.nil?
-            # Do nothing. This is because some functions can return 'nil' today.
-            # I want to change this and so rather than come up with a clean
-            # implementation I'll do this so we don't throw an error in this specific
-            # situation. This should be removed once we have changed the existing
-            # custom definition functions. See https://github.com/holidays/holidays/issues/204
+            # nil is a valid return value meaning the calculation determined that no
+            # holiday exists on this date. For example, jp_substitute_holiday returns
+            # nil when the original holiday does not fall on a Sunday (no substitute
+            # needed), and us_inauguration_day returns nil when year % 4 != 1.
           else
             raise Holidays::InvalidFunctionResponse.new("invalid response from custom method call, must be a 'date' or 'integer' representing the day. Result: '#{result}'")
           end

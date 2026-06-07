@@ -42,9 +42,8 @@ module Holidays
 
       raise ArgumentError if end_date < start_date
 
-      if cached_holidays = Factory::Definition.cache_repository.find(start_date, end_date, options)
-        return cached_holidays
-      end
+      cached_holidays = Factory::Definition.cache_repository.find(start_date, end_date, options)
+      return cached_holidays unless cached_holidays.nil?
 
       Factory::Finder.between.call(start_date, end_date, options)
     end
@@ -93,11 +92,17 @@ module Holidays
     def load_custom(*files)
       regions, rules_by_month, custom_methods, _ = Factory::Definition.file_parser.parse_definition_files(files)
 
+      # Capture source code before converting entities to Procs so the merger
+      # can detect genuine conflicts (same name, different logic).
+      method_sources = custom_methods.each_with_object({}) do |(key, entity), h|
+        h[key] = entity.source
+      end
+
       custom_methods.each do |method_key, method_entity|
         custom_methods[method_key] = Factory::Definition.custom_method_proc_decorator.call(method_entity)
       end
 
-      Factory::Definition.merger.call(regions, rules_by_month, custom_methods)
+      Factory::Definition.merger.call(regions, rules_by_month, custom_methods, method_sources)
 
       rules_by_month
     end

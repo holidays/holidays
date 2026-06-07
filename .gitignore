@@ -7,3 +7,17 @@ Gemfile.lock
 .bundle
 reports/
 coverage/
+
+# Beads / Dolt files (added by bd init)
+.beads/
+.dolt/
+*.db
+.beads-credential-key
+
+# Beads orchestration
+.worktrees/
+
+# Claude / local agent protocol (kept local, never committed)
+.claude/
+CLAUDE.md
+AGENTS.md

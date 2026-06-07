@@ -4,6 +4,8 @@ Functionality to deal with holidays in Ruby.
 
 Extends Ruby's built-in Date and Time classes and supports custom holiday definition lists.
 
+All holiday definitions are maintained in the [holidays/definitions](https://github.com/holidays/definitions) repository. By default this gem returns statutory (formally government-defined) holidays. Culturally recognized but non-statutory holidays (such as Valentine's Day) are available via the `:informal` option. See the [definitions syntax guide](https://github.com/holidays/definitions/blob/master/doc/SYNTAX.md#formalinformal) for details on how holidays are classified.
+
 ## Installation
 
 ```
@@ -14,16 +16,10 @@ gem install holidays
 
 This gem is tested with the following ruby versions:
 
-  * 2.4.5
-  * 2.5.3
-  * 2.6.1
-  * 2.7.7
-  * 3.0.6
-  * 3.1.4
-  * 3.2.2
-  * 3.3.0
-  * JRuby 9.2.21.0
-  * JRuby 9.4.2.0
+  * 3.3
+  * 3.4
+  * 4.0
+  * JRuby 10.0.5.0
 
 ## Semver
 
@@ -69,6 +65,35 @@ You can leave off 'regions' to get holidays for any region in our [definitions](
     ...
    ]
 ```
+
+#### Wildcard regions
+
+A region ending in an underscore (e.g. `:au_`, `:ca_`) is a *wildcard*. It matches the
+parent country region **and all of its sub-regions** in a single call:
+
+```ruby
+Holidays.on(Date.new(2017, 3, 13), :au_)
+=> [{:name=>"Eight Hours Day", :regions=>[:au_tas],...},
+    {:name=>"Labour Day", :regions=>[:au_vic],...},
+    {:name=>"March Public Holiday", :regions=>[:au_sa],...},
+    {:name=>"Canberra Day", :regions=>[:au_act],...}]
+```
+
+The same date queried with the plain `:au` region returns nothing, because none of
+those holidays are observed nation-wide:
+
+```ruby
+Holidays.on(Date.new(2017, 3, 13), :au)
+=> []
+```
+
+Use a wildcard when you want "this country and every sub-region it defines" without
+listing each sub-region explicitly.
+
+Note that a wildcard always collapses to the **top-level** country region. The portion
+between the country prefix and the trailing underscore is ignored, so `:au_vic_` behaves
+identically to `:au_` (it loads every Australian sub-region, not just Victoria's). There
+is currently no way to wildcard-match only the children of a sub-region.
 
 #### Checking a date range
 
@@ -240,6 +265,12 @@ Holidays.load_custom(
   '/home/user/holidays/custom_holidays2.yaml'
 )
 ```
+
+Note that any `tests:` stanzas in a custom definition file are ignored by
+`load_custom`. Tests are only executed at build time for definitions contributed
+to the [definitions repository](https://github.com/holidays/definitions), where
+`rake generate` turns them into the test suite. There is no runtime mechanism to
+run the tests embedded in a custom file loaded on the fly.
 
 ## Extending Ruby's Date and Time classes
 

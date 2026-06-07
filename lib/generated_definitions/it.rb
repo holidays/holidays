@@ -27,6 +27,7 @@ module Holidays
             {:mday => 29, :name => "Festa di San Pietro e Paolo", :regions => [:it_rm]}],
       8 => [{:mday => 15, :name => "Assunzione", :regions => [:it]}],
       9 => [{:mday => 8, :name => "Festa della Madonna di Monte Berico", :regions => [:it_vi]}],
+      10 => [{:mday => 4, :year_ranges => { :from => 2026 },:name => "Festa di San Francesco d'Assisi", :regions => [:it]}],
       11 => [{:mday => 1, :name => "Ognissanti", :regions => [:it]},
             {:mday => 11, :name => "Festa di San Martino", :regions => [:it_bl]},
             {:mday => 26, :name => "Festa di San Bellino", :regions => [:it_ro]}],

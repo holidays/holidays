@@ -45,7 +45,7 @@ class InDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Telangana Formation Day", (Holidays.on(Date.civil(2025, 6, 2), [:in_ts])[0] || {})[:name]
 
-    assert_equal "Martyrs' Day", (Holidays.on(Date.civil(2025, 8, 13), [:in_jh])[0] || {})[:name]
+    assert_equal "Martyrs' Day", (Holidays.on(Date.civil(2025, 7, 13), [:in_jh])[0] || {})[:name]
 
     assert_equal "Independence day", (Holidays.on(Date.civil(2025, 8, 15), [:in])[0] || {})[:name]
 
@@ -86,10 +86,6 @@ class InDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_equal "Christmas Day", (Holidays.on(Date.civil(2025, 12, 25), [:in])[0] || {})[:name]
 
     assert_equal "Good Friday", (Holidays.on(Date.civil(2025, 4, 18), [:in])[0] || {})[:name]
-
-    assert_equal "Second Saturday Bank Holiday", (Holidays.on(Date.civil(2025, 1, 11), [:in], [:informal])[0] || {})[:name]
-
-    assert_equal "Fourth Saturday Bank Holiday", (Holidays.on(Date.civil(2025, 1, 25), [:in], [:informal])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(2025, 1, 4), [:in], [:informal])[0] || {})[:name]
 assert_nil (Holidays.on(Date.civil(2025, 1, 18), [:in], [:informal])[0] || {})[:name]

@@ -39,6 +39,8 @@ class ItDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Festa della Madonna di Monte Berico", (Holidays.on(Date.civil(2019, 9, 8), [:it_vi], [:informal])[0] || {})[:name]
 
+    assert_equal "Festa di San Francesco d'Assisi", (Holidays.on(Date.civil(2026, 10, 4), [:it], [:informal])[0] || {})[:name]
+
     assert_equal "Ognissanti", (Holidays.on(Date.civil(2007, 11, 1), [:it], [:informal])[0] || {})[:name]
 
     assert_equal "Festa di San Martino", (Holidays.on(Date.civil(2019, 11, 11), [:it_bl], [:informal])[0] || {})[:name]

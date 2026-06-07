@@ -1,0 +1,14 @@
+months:
+  1:
+  - name: Weekend Holiday
+    regions: [date_transform_conflict_1]
+    mday: 1
+    function: to_nearest_upcoming_weekend_day(date)
+
+methods:
+  to_nearest_upcoming_weekend_day:
+    arguments: date
+    ruby: |
+      days_until = (6 - date.wday) % 7
+      days_until = 7 if days_until == 0
+      date + days_until

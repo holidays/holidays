@@ -7,7 +7,7 @@ module Holidays
   # All the definitions are available at https://github.com/holidays/holidays
   module EUROPE # :nodoc:
     def self.defined_regions
-      [:at, :be_fr, :be_nl, :ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_ne, :ch_ge, :ch_ju, :ch_vs, :ch, :cz, :dk, :de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_sorbian, :de_th_cath, :de_sn, :de_st, :de_be, :de_mv, :de_by_cath, :de_by_augsburg, :de_th, :de_bb, :de_hb, :de_hh, :de_ni, :de_sh, :es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex, :es, :es_ct, :es_v, :es_vc, :fr_a, :fr_m, :fr, :gb, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :je, :gb_jsy, :gg, :gb_gsy, :gb_sct, :gb_con, :im, :gb_iom, :gr, :hr, :hu, :ie, :is, :it, :it_ve, :it_tv, :it_vr, :it_pd, :it_fi, :it_ge, :it_to, :it_rm, :it_vi, :it_bl, :it_ro, :li, :lt, :lv, :nl, :no, :pl, :pt, :pt_li, :pt_po, :ro, :sk, :si, :bg_en, :bg_bg, :ua]
+      [:at, :be_fr, :be_nl, :ch_zh, :ch_be, :ch_lu, :ch_ur, :ch_sz, :ch_ow, :ch_nw, :ch_gl, :ch_zg, :ch_fr, :ch_so, :ch_bs, :ch_bl, :ch_sh, :ch_ar, :ch_ai, :ch_sg, :ch_gr, :ch_ag, :ch_tg, :ch_ti, :ch_vd, :ch_ne, :ch_ge, :ch_ju, :ch_vs, :ch, :cz, :dk, :de, :de_bw, :de_by, :de_he, :de_nw, :de_rp, :de_sl, :de_sn_sorbian, :de_th_cath, :de_sn, :de_st, :de_be, :de_mv, :de_by_cath, :de_by_augsburg, :de_th, :de_bb, :de_hb, :de_hh, :de_ni, :de_sh, :es_pv, :es_na, :es_an, :es_ib, :es_cm, :es_mu, :es_m, :es_ar, :es_cl, :es_cn, :es_lo, :es_ga, :es_ce, :es_o, :es_ex, :es, :es_ct, :es_v, :es_vc, :fr_a, :fr_m, :fr, :gb, :gb_eng, :gb_wls, :gb_eaw, :gb_nir, :gb_con, :je, :gb_jsy, :gg, :gb_gsy, :gb_sct, :im, :gb_iom, :gr, :hr, :hu, :ie, :is, :it, :it_ve, :it_tv, :it_vr, :it_pd, :it_fi, :it_ge, :it_to, :it_rm, :it_vi, :it_bl, :it_ro, :li, :lt, :lv, :nl, :no, :pl, :pt, :pt_li, :pt_po, :ro, :sk, :si, :bg_en, :bg_bg, :ua]
     end
 
     def self.holidays_by_month
@@ -63,12 +63,12 @@ module Holidays
             {:function => "easter(year)", :function_arguments => [:year], :type => :informal, :name => "Pâques", :regions => [:fr]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Lundi de Pâques", :regions => [:fr]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 39, :name => "Ascension", :regions => [:fr]},
-            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Pentecôte", :regions => [:fr]},
-            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :type => :informal, :name => "Lundi de Pentecôte", :regions => [:fr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :type => :informal, :name => "Pentecôte", :regions => [:fr]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 50, :name => "Lundi de Pentecôte", :regions => [:fr]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -21, :type => :informal, :name => "Mothering Sunday", :regions => [:gb]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:gb]},
             {:function => "easter(year)", :function_arguments => [:year], :name => "Easter Sunday", :regions => [:gb]},
-            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:gb_eng, :gb_wls, :gb_eaw, :gb_nir, :je, :gb_jsy, :gg, :gb_gsy]},
+            {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:gb_eng, :gb_wls, :gb_eaw, :gb_nir, :gb_con, :je, :gb_jsy, :gg, :gb_gsy]},
             {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Μεγάλη Παρασκευή", :regions => [:gr]},
             {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => -1, :name => "Μεγάλο Σάββατο", :regions => [:gr]},
             {:function => "orthodox_easter(year)", :function_arguments => [:year], :name => "Κυριακή του Πάσχα", :regions => [:gr]},
@@ -149,13 +149,14 @@ module Holidays
             {:function => "easter(year)", :function_arguments => [:year], :name => "velikonočna nedelja", :regions => [:si]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "velikonočni ponedeljek", :regions => [:si]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "binkošti", :regions => [:si]},
-            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:bg_en]},
-            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Разпети петък", :regions => [:bg_bg]},
-            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :function_modifier => -1, :name => "Holy Saturday", :regions => [:bg_en]},
-            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :function_modifier => -1, :name => "Велика събота", :regions => [:bg_bg]},
-            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :name => "Easter Sunday", :regions => [:bg_en]},
-            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :name => "Възкресение Христово. Великден", :regions => [:bg_bg, :bg_bg]},
-            {:function => "orthodox_easter_julian(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:bg_en]},
+            {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:bg_en]},
+            {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Разпети петък", :regions => [:bg_bg]},
+            {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => -1, :name => "Holy Saturday", :regions => [:bg_en]},
+            {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => -1, :name => "Велика събота", :regions => [:bg_bg]},
+            {:function => "orthodox_easter(year)", :function_arguments => [:year], :name => "Easter Sunday", :regions => [:bg_en]},
+            {:function => "orthodox_easter(year)", :function_arguments => [:year], :name => "Възкресение Христово. Великден", :regions => [:bg_bg]},
+            {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:bg_en]},
+            {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Великденски понеделник", :regions => [:bg_bg]},
             {:function => "orthodox_easter(year)", :function_arguments => [:year], :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Великдень", :regions => [:ua]},
             {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => 49, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Трійця", :regions => [:ua]}],
       1 => [{:mday => 1, :name => "Neujahrstag", :regions => [:at]},
@@ -193,13 +194,15 @@ module Holidays
             {:mday => 1, :name => "Nieuwjaarsdag", :regions => [:nl]},
             {:mday => 1, :name => "Nyttårsdag", :regions => [:no]},
             {:mday => 1, :name => "Nowy Rok", :regions => [:pl]},
-            {:function => "pl_trzech_kroli(year)", :function_arguments => [:year], :name => "Objawienie Pańskie (święto Trzech Króli)", :regions => [:pl]},
-            {:function => "pl_trzech_kroli_informal(year)", :function_arguments => [:year], :type => :informal, :name => "Objawienie Pańskie (święto Trzech Króli)", :regions => [:pl]},
+            {:mday => 6, :year_ranges => { :from => 2011 },:name => "Objawienie Pańskie (święto Trzech Króli)", :regions => [:pl]},
+            {:mday => 6, :year_ranges => { :until => 2010 },:type => :informal, :name => "Objawienie Pańskie (święto Trzech Króli)", :regions => [:pl]},
             {:mday => 21, :type => :informal, :name => "Dzień Babci", :regions => [:pl]},
             {:mday => 22, :type => :informal, :name => "Dzień Dziadka", :regions => [:pl]},
             {:mday => 1, :name => "Ano Novo", :regions => [:pt]},
             {:mday => 1, :name => "Anul nou", :regions => [:ro]},
             {:mday => 2, :name => "Anul nou", :regions => [:ro]},
+            {:mday => 6, :name => "Botezul Domnului - Boboteaza", :regions => [:ro]},
+            {:mday => 7, :name => "Soborul Sfântului Proroc Ioan Botezătorul", :regions => [:ro]},
             {:mday => 24, :year_ranges => { :from => 2017 },:name => "Unirea Principatelor Române", :regions => [:ro]},
             {:mday => 1, :name => "Nový rok", :regions => [:sk]},
             {:mday => 6, :name => "Zjavenie Pána (Traja králi)", :regions => [:sk]},
@@ -279,7 +282,7 @@ module Holidays
             {:mday => 15, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Asunción", :regions => [:es]},
             {:mday => 15, :name => "Assomption", :regions => [:fr]},
             {:wday => 1, :week => 1, :name => "Bank Holiday", :regions => [:gb_sct]},
-            {:wday => 1, :week => -1, :name => "Bank Holiday", :regions => [:gb_eng, :gb_wls, :gb_eaw, :gb_nir, :je, :gb_jsy, :gg, :gb_gsy]},
+            {:wday => 1, :week => -1, :name => "Bank Holiday", :regions => [:gb_eng, :gb_wls, :gb_eaw, :gb_nir, :gb_con, :je, :gb_jsy, :gg, :gb_gsy]},
             {:mday => 15, :name => "Κοίμηση της Θεοτόκου", :regions => [:gr]},
             {:mday => 5, :name => "Dan pobjede i domovinske zahvalnosti i Dan hrvatskih branitelja", :regions => [:hr]},
             {:mday => 15, :name => "Velika Gospa", :regions => [:hr]},
@@ -309,6 +312,7 @@ module Holidays
             {:mday => 8, :year_ranges => { :until => 2019 },:name => "Dan neovisnosti", :regions => [:hr]},
             {:mday => 23, :name => "1956-os forradalom és szabadságharc ünnepe", :regions => [:hu]},
             {:wday => 1, :week => -1, :name => "October Bank Holiday", :regions => [:ie]},
+            {:mday => 4, :year_ranges => { :from => 2026 },:name => "Festa di San Francesco d'Assisi", :regions => [:it]},
             {:mday => 14, :type => :informal, :name => "Dzień Nauczyciela (Dzień Edukacji Narodowej)", :regions => [:pl]},
             {:mday => 5, :name => "Dia da República", :regions => [:pt]},
             {:mday => 31, :name => "dan reformacije", :regions => [:si]},
@@ -350,7 +354,6 @@ module Holidays
             {:mday => 1, :name => "Dia de Todos-os-Santos", :regions => [:pt]},
             {:mday => 30, :name => "Sfântul Apostol Andrei", :regions => [:ro]},
             {:mday => 1, :name => "Sviatok všetkých svätých", :regions => [:sk]},
-            {:mday => 17, :name => "Deň boja za slobodu a demokraciu", :regions => [:sk]},
             {:mday => 1, :name => "dan spomina na mrtve", :regions => [:si]},
             {:mday => 1, :name => "Revival Leader's Day", :regions => [:bg_en]},
             {:mday => 1, :name => "Ден на Народните будители", :regions => [:bg_bg]}],
@@ -418,7 +421,8 @@ module Holidays
             {:mday => 31, :type => :informal, :name => "Nyttårsaften", :regions => [:no]},
             {:mday => 4, :type => :informal, :name => "Barbórka (Dzień Górnika, Naftowca i Gazownika)", :regions => [:pl]},
             {:mday => 6, :type => :informal, :name => "Mikołajki", :regions => [:pl]},
-            {:mday => 24, :type => :informal, :name => "Wigilia Bożego Narodzenia", :regions => [:pl]},
+            {:mday => 24, :year_ranges => { :from => 2025 },:name => "Wigilia Bożego Narodzenia", :regions => [:pl]},
+            {:mday => 24, :year_ranges => { :until => 2024 },:type => :informal, :name => "Wigilia Bożego Narodzenia", :regions => [:pl]},
             {:mday => 25, :name => "pierwszy dzień Bożego Narodzenia", :regions => [:pl]},
             {:mday => 26, :name => "drugi dzień Bożego Narodzenia", :regions => [:pl]},
             {:mday => 31, :type => :informal, :name => "Sylwester", :regions => [:pl]},
@@ -490,6 +494,7 @@ module Holidays
             {:mday => 15, :type => :informal, :name => "Valdemarsdag og Genforeningsdag", :regions => [:dk]},
             {:mday => 23, :type => :informal, :name => "Sankt Hans aften", :regions => [:dk]},
             {:mday => 17, :year_ranges => { :between => 1954..1990 },:name => "Tag der Deutschen Einheit", :regions => [:de]},
+            {:mday => 17, :year_ranges => { :limited => [2028] },:name => "Jahrestag des Volksaufstands in der DDR", :regions => [:de_be]},
             {:mday => 9, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de la Región de Murcia", :regions => [:es_mu]},
             {:mday => 9, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de La Rioja", :regions => [:es_lo]},
             {:mday => 24, :name => "San Juan", :regions => [:es_ct, :es_vc]},
@@ -528,7 +533,6 @@ module Holidays
             {:mday => 8, :name => "Maria Geburt", :regions => [:li]},
             {:mday => 24, :year_ranges => { :limited => [2018] },:name => "Viņa Svētības pāvesta Franciska pastorālās vizītes Latvijā diena", :regions => [:lv]},
             {:mday => 30, :type => :informal, :name => "Dzień Chłopaka", :regions => [:pl]},
-            {:mday => 1, :name => "Deň Ústavy Slovenskej republiky", :regions => [:sk]},
             {:mday => 15, :name => "Sedembolestná Panna Mária", :regions => [:sk]},
             {:mday => 6, :name => "Unification Day", :regions => [:bg_en]},
             {:mday => 6, :name => "Ден на Съединението", :regions => [:bg_bg]},
@@ -623,14 +627,6 @@ when 2028
   # Event's period/next year is known, but precise dates aren't.
   # Previously, dates were announced 2 years ahead, so on ~2026-05 this method would need to be revisited.
 end
-},
-
-"pl_trzech_kroli(year)" => Proc.new { |year|
-year >= 2011 ? 6 : nil
-},
-
-"pl_trzech_kroli_informal(year)" => Proc.new { |year|
-year < 2011 ? 6 : nil
 },
 
 

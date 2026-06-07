@@ -12,7 +12,8 @@ module Holidays
 
     def self.holidays_by_month
       {
-                1 => [{:mday => 1, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:ups]}],
+                1 => [{:mday => 1, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:ups]},
+            {:wday => 1, :week => 3, :name => "Birthday of Martin Luther King, Jr", :regions => [:ups]}],
       5 => [{:wday => 1, :week => -1, :name => "Memorial Day", :regions => [:ups]}],
       7 => [{:mday => 4, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Independence Day", :regions => [:ups]}],
       9 => [{:wday => 1, :week => 1, :name => "Labor Day", :regions => [:ups]}],

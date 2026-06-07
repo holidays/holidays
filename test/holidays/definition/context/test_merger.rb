@@ -18,7 +18,7 @@ class MergerTests < Test::Unit::TestCase
   def test_repos_are_called_to_add_regions_and_holidays
     @holidays_repo.expects(:add).with(@target_holidays)
     @regions_repo.expects(:add).with(@target_regions)
-    @custom_methods_repo.expects(:add).with(@target_custom_methods)
+    @custom_methods_repo.expects(:add).with(@target_custom_methods, {}, {})
 
     @subject.call(@target_regions, @target_holidays, @target_custom_methods)
   end

@@ -62,7 +62,7 @@ module Holidays
           month_strings = generate_month_definition_strings(rules_by_month, custom_methods)
 
           # Build the custom methods string
-          custom_method_string = ''
+          custom_method_string = +''
           custom_methods.each do |key, code|
             custom_method_string << @custom_method_source_decorator.call(code) + ",\n\n"
           end
@@ -110,7 +110,7 @@ module Holidays
 
                 exists = false
                 rules_by_month[month].each do |ex|
-                  if ex[:name] == rule[:name] and ex[:wday] == rule[:wday] and ex[:mday] == rule[:mday] and ex[:week] == rule[:week] and ex[:type] == rule[:type] and ex[:function] == rule[:function] and ex[:observed] == rule[:observed] and ex[:year_ranges] == rule[:year_ranges]
+                  if ex[:name] == rule[:name] and ex[:wday] == rule[:wday] and ex[:mday] == rule[:mday] and ex[:week] == rule[:week] and ex[:type] == rule[:type] and ex[:function] == rule[:function] and ex[:function_modifier] == rule[:function_modifier] and ex[:observed] == rule[:observed] and ex[:year_ranges] == rule[:year_ranges]
                     ex[:regions] << rule[:regions].flatten
                     exists = true
                   end
@@ -140,7 +140,7 @@ module Holidays
             month_string = "      #{month.to_s} => ["
             rule_strings = []
             rules.each do |rule|
-              string = '{'
+              string = +'{'
               if rule[:mday]
                 string << ":mday => #{rule[:mday]}, "
               end
@@ -201,6 +201,8 @@ module Holidays
             method.parameters.collect { |arg| arg[1] }
           elsif method = parsed_custom_methods[function_id]
             method.arguments.collect(&:to_sym)
+          else
+            raise ArgumentError, "Unknown function '#{function_id}'. It must either be a built-in method or be defined in the 'methods' section of a definition file."
           end
         end
       end

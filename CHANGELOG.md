@@ -1,5 +1,38 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 10.0.0
+
+* Drop support for Ruby 3.2. Supported versions are now 3.3, 3.4, 4.0, and ruby-head.
+* Update to [v7.0.0 definitions](https://github.com/holidays/definitions/releases/tag/v7.0.0). Please see the changelog for the definition details.
+* Bump tested JRuby from 10.0.4.0 to 10.0.5.0
+* Raise an `ArgumentError` during definition parsing when a `function` or `observed` rule references an unknown method ([#333](https://github.com/holidays/holidays/issues/333))
+* Fix bug ([#352](https://github.com/holidays/holidays/issues/352)) where holidays with the same name and region that differed only by their function modifier were merged into a single entry, dropping one of the dates
+* Document that `tests` stanzas in custom definition files loaded via `load_custom` are not run at runtime ([#304](https://github.com/holidays/holidays/issues/304))
+
+## 9.2.0
+
+* Update to [v6.1.1 definitions](https://github.com/holidays/definitions/releases/tag/v6.1.1). Please see the changelog for the definition details.
+* Add `test:contract` rake task and `make test-contract` target combining smoke and generated definition tests for use as a downstream contract check
+* Set coverage minimum to 90% and skip for ruby-head builds
+
+## 9.1.2
+
+* Fix bug ([#344](https://github.com/holidays/holidays/issues/344)) where holidays with the same name and function but different implementations across regions would return incorrect results depending on region load order. When multiple regions are queried simultaneously, each region's function implementation is now evaluated independently and all matching results are returned.
+
+## 9.1.1
+
+* Update to [v6.0.1 definitions](https://github.com/holidays/definitions/releases/tag/v6.0.1). Please see the changelog for the definition details.
+
+## 9.1.0
+
+* Update to [v6.0.0 definitions](https://github.com/holidays/definitions/releases/tag/v6.0.0). Please see the changelog for the definition details.
+* Update mocha from 1.x to 2.x for Ruby 4.0 compatibility. Fixes warning about removed CGI library.
+
+## 9.0.0
+
+* Drop support for Ruby < 3.2. Supported versions are now 3.2, 3.3, 3.4, and ruby-head.
+* Update to [v5.9.0 definitions](https://github.com/holidays/definitions/releases/tag/v5.9.0). Please see the changelog for the definition details.
+
 ## 8.8.0
 
 * Update to [v5.7.4 definitions](https://github.com/holidays/definitions/releases/tag/v5.7.4). Please see the changelog for the definition details.

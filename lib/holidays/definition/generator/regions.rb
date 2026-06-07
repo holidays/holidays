@@ -47,7 +47,8 @@ EOF
             end
           end
 
-          lookup
+          pairs = lookup.map { |k, v| "#{k}: :#{v}" }.join(", ")
+          "{#{pairs}}"
         end
       end
     end
