@@ -9,16 +9,13 @@ include any (or a combination of) the following:
 
 ### semver
 
-This gem operates under the rules of [semver](http://semver.org/). The decisions on what constitutes a major,
-minor, or patch version update fall on the maintainer. If in doubt, follow these rules:
+This gem follows [Semantic Versioning 2.0.0](https://semver.org/) (the `MAJOR.MINOR.PATCH` scheme defined at semver.org):
 
-* Will this change mean that users will be REQUIRED to make a code change? If so then it is a major version bump. This includes dropping supported versions of ruby!
-* Will this change mean that users might see a definition/behavior change but won't need to modify their own code? If so then it is as minor version bump
-* Will this change mean that a bug, either in code or definitions, will be fixed? If so then it is a patch version bump
+* **MAJOR** for any breaking change: anything that REQUIRES a consumer to change their code or expectations. This includes renaming or removing a region code, dropping a supported version of Ruby, or changing a public method signature.
+* **MINOR** for backwards-compatible behavior or definition changes: consumers may see different results, but no consumer code change is required.
+* **PATCH** for backwards-compatible bug fixes in code or definitions.
 
-*@ppeble editor note*: I am pretty aggressive when it comes to version bumps! If the slightest functionality has changed then
-I consider it a minor version bump, if ANY consumer code has to change then I consider it a major version bump. I don't care
-if we get up to version 250, the version number doesn't matter. Communicating the effort required in updating is what matters!
+We are strict about this. If ANY consumer code or expectation must change, it is a MAJOR bump, full stop, no matter how small the change seems. The version number is free; what matters is honestly communicating the effort required to upgrade. Never avoid a major bump to keep the number low.
 
 ### Who this document is for
 
@@ -52,14 +49,14 @@ sections below.
   * Pull the latest `master` version of this ruby repository and run `make update-defs`. This will grab the latest version from the [definitions](https://github.com/holidays/definitions) repository. Run `git diff` to verify that the version of the submodule for the definitions matches the latest commit in the [definitions](https://github.com/holidays/definitions) repo.
   * Run the `make generate` command. This will 'recompile' the ruby sources with the latest definitions.
   * Run `make test` and ensure that all of the tests pass. If any tests fail then do *not* merge and contact a [core member](https://github.com/orgs/holidays/teams/core/members) for assistance.
-  * If all of the tests pass, update the `lib/holidays/version.rb` file to the new version. Reference the above [semver](http://semver.org/) rules for how to update versions.
+  * If all of the tests pass, update the `lib/holidays/version.rb` file to the new version. Reference the above [semver](https://semver.org/) rules for how to update versions.
   * Make a branch on your fork and update the [CHANGELOG](../CHANGELOG.md) to reflect the latest changes. You do not need to put in all of the definition changes in this update, you can simply reference the other repository. See other entries in the CHANGELOG for examples.
   * Open a PR against the new branch and merge it (another maintainer will need to review before you can merge)
   * Once the branch is merged, the release GitHub Actions workflow will automatically build the gem and push it to rubygems.org. No local steps are required.
 * Does this update require functionality additions or bug fixes? If YES, then:
   * Run `make test` and ensure that all of the tests pass. If any tests fail then do *not* merge and contact a [core member](https://github.com/orgs/holidays/teams/core/members) for assistance.
   * If all of the tests pass, make a branch on your fork and update the [CHANGELOG](../CHANGELOG.md) to reflect the latest changes.
-  * Update the `lib/holidays/version.rb` file to the new version. Reference the above [semver](http://semver.org/) rules for how to update versions.
+  * Update the `lib/holidays/version.rb` file to the new version. Reference the above [semver](https://semver.org/) rules for how to update versions.
   * Open a PR against the new branch and merge it (another maintainer will need to review before you can merge)
   * Once the branch is merged, the release GitHub Actions workflow will automatically build the gem and push it to rubygems.org. No local steps are required.
 
