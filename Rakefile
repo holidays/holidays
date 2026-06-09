@@ -82,6 +82,13 @@ namespace :generate do
     # create a dir for the generated tests
     FileUtils.mkdir_p(DEFINITION_TESTS_PATH)
 
+    # Remove previously generated files first so regions dropped from the index
+    # (e.g. a renamed region) don't leave stale modules and tests behind. Both
+    # locations contain only generated output; REGIONS.rb is rewritten below and
+    # MANIFEST by the manifest task.
+    FileUtils.rm_f(Dir.glob("lib/#{Holidays::DEFINITIONS_PATH}/*.rb"))
+    FileUtils.rm_f(Dir.glob("#{DEFINITION_TESTS_PATH}/test_defs_*.rb"))
+
     #TODO This entire section should be moved into '/lib/holidays/definition'. I don't think such an
     # important part of the gem should be left in the Rakefile and without unit tests. There's no
     # reason we can't move it.
