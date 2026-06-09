@@ -1,5 +1,10 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 11.0.0
+
+* Update to [v8.0.0 definitions](https://github.com/holidays/definitions/releases/tag/v8.0.0). Please see the changelog for the definition details.
+* Rename the Vietnam region code from `vi` to `vn` to follow ISO 3166-1 alpha-2 (`VI` is the US Virgin Islands, `VN` is Vietnam) ([definitions #177](https://github.com/holidays/definitions/issues/177)). This is a breaking change: callers must use `:vn` instead of `:vi`.
+
 ## 10.0.0
 
 * Drop support for Ruby 3.2. Supported versions are now 3.3, 3.4, 4.0, and ruby-head.
