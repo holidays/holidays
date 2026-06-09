@@ -86,4 +86,10 @@ class LunarHolidaysCalculatorTests < Test::Unit::TestCase
     assert_equal '2017-04-06', @subject.to_solar(2017,3,10, :vi).to_s
     assert_equal '2018-03-27', @subject.to_solar(2018,3,10, :vi).to_s
   end
+
+  def test_hung_kings_festival_resolves_for_vn_region
+    assert_equal '2014-04-09', @subject.to_solar(2014,3,10, :vn).to_s
+    assert_equal '2017-04-06', @subject.to_solar(2017,3,10, :vn).to_s
+    assert_equal '2018-03-27', @subject.to_solar(2018,3,10, :vn).to_s
+  end
 end

@@ -501,6 +501,9 @@ module Holidays
       CALENDAR_YEAR_INFO_MAP = {
         kr: KOREAN_LUNAR_YEAR_INFO,
         vi: VIETNAMESE_LUNAR_YEAR_INFO,
+        # vn is the ISO 3166-1 code for Vietnam; kept alongside the legacy vi key
+        # until the breaking vi -> vn rename lands. See definitions issue #177.
+        vn: VIETNAMESE_LUNAR_YEAR_INFO,
         hk: CHINESE_LUNAR_YEAR_INFO,
       }.freeze
 
