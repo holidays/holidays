@@ -6,7 +6,7 @@ module Holidays
         # holiday definitions, but that does not make these countries subregions of one another.
         NORTH_AMERICA_REGIONS = %i[ca mx us].freeze
 
-        def call(regions)
+        def call(regions, region_names = {})
           validate!(regions)
 
           <<-EOF
@@ -15,6 +15,8 @@ module Holidays
   REGIONS = #{to_array(regions)}
 
   PARENT_REGION_LOOKUP = #{generate_parent_lookup(regions)}
+
+  REGION_NAMES = #{generate_region_names(region_names)}
 end
 EOF
         end
@@ -48,6 +50,14 @@ EOF
           end
 
           pairs = lookup.map { |k, v| "#{k}: :#{v}" }.join(", ")
+          "{#{pairs}}"
+        end
+
+        # Symbol keys and string values are emitted via inspect so the literal
+        # round-trips exactly: YAML-reserved keys like :no stay symbols and
+        # values with quotes or commas are escaped rather than breaking the hash.
+        def generate_region_names(region_names)
+          pairs = region_names.map { |sym, name| "#{sym.inspect} => #{name.inspect}" }.join(", ")
           "{#{pairs}}"
         end
       end
