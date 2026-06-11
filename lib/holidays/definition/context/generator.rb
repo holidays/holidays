@@ -27,6 +27,7 @@ module Holidays
           all_rules_by_month = {}
           all_custom_methods = {}
           all_tests = []
+          all_region_names = {}
 
           files.flatten!
 
@@ -51,11 +52,19 @@ module Holidays
             all_custom_methods.merge!(custom_methods)
 
             all_tests += @test_parser.call(definition_file['tests'])
+
+            region_names = definition_file['region_names']
+            if region_names
+              symbolized_region_names = region_names.each_with_object({}) do |(region, name), hash|
+                hash[region.to_sym] = name
+              end
+              all_region_names.merge!(symbolized_region_names)
+            end
           end
 
           all_regions.flatten!.uniq!
 
-          [all_regions, all_rules_by_month, all_custom_methods, all_tests]
+          [all_regions, all_rules_by_month, all_custom_methods, all_tests, all_region_names]
         end
 
         def generate_definition_source(module_name, files, regions, rules_by_month, custom_methods, tests)

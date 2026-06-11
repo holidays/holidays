@@ -90,7 +90,7 @@ module Holidays
     end
 
     def load_custom(*files)
-      regions, rules_by_month, custom_methods, _ = Factory::Definition.file_parser.parse_definition_files(files)
+      regions, rules_by_month, custom_methods, _, _ = Factory::Definition.file_parser.parse_definition_files(files)
 
       # Capture source code before converting entities to Procs so the merger
       # can detect genuine conflicts (same name, different logic).
