@@ -108,6 +108,36 @@ class CacheRepoTests < Test::Unit::TestCase
     end
   end
 
+  def test_entry_stored_with_symbol_regions_is_found_with_string_regions
+    start_date = Date.civil(2015, 1, 1)
+    end_date = Date.civil(2015, 7, 1)
+    cache_data = [{:date=>Date.civil(2015, 1, 1), :name=>"New Year's Day", :regions=>[:us]}]
+
+    @subject.cache_between(start_date, end_date, cache_data, [:us])
+
+    assert_equal(cache_data, @subject.find(start_date, end_date, ["us"]))
+  end
+
+  def test_reordered_regions_hit_the_same_cached_entry
+    start_date = Date.civil(2015, 1, 1)
+    end_date = Date.civil(2015, 7, 1)
+    cache_data = [{:date=>Date.civil(2015, 1, 1), :name=>"New Year's Day", :regions=>[:us]}]
+
+    @subject.cache_between(start_date, end_date, cache_data, [:us, :ca])
+
+    assert_equal(cache_data, @subject.find(start_date, end_date, [:ca, :us]))
+  end
+
+  def test_duplicate_regions_hit_the_same_cached_entry
+    start_date = Date.civil(2015, 1, 1)
+    end_date = Date.civil(2015, 7, 1)
+    cache_data = [{:date=>Date.civil(2015, 1, 1), :name=>"New Year's Day", :regions=>[:us]}]
+
+    @subject.cache_between(start_date, end_date, cache_data, [:us])
+
+    assert_equal(cache_data, @subject.find(start_date, end_date, [:us, :us]))
+  end
+
   def test_reset_clears_cache
     start_date = Date.civil(2015, 1, 1)
     end_date = Date.civil(2015, 1, 1)
