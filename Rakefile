@@ -98,7 +98,8 @@ namespace :generate do
       puts "Building #{region} definition module:"
       files = files.collect { |f| "#{DEFINITION_PATH}/#{f}" }.uniq
 
-      regions, rules_by_month, custom_methods, tests = Holidays::Factory::Definition.file_parser.parse_definition_files(files)
+      regions, rules_by_month, custom_methods, tests, region_names = Holidays::Factory::Definition.file_parser.parse_definition_files(files)
+      _ = region_names # consumed by REGION_NAMES generation in a later step
       module_src, test_src = Holidays::Factory::Definition.source_generator.generate_definition_source(region, files, regions, rules_by_month, custom_methods, tests)
 
       File.open("lib/#{Holidays::DEFINITIONS_PATH}/#{region.downcase.to_s}.rb","w") do |file|

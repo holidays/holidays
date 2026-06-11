@@ -120,6 +120,47 @@ class GeneratorTests < Test::Unit::TestCase
     assert_equal ["parsed tests"], parsed_tests
   end
 
+  def test_parse_definition_files_correctly_parse_region_names
+    files = ['test/data/test_region_names_one_defs.yaml']
+    @custom_method_parser.expects(:call).with(nil).returns({})
+    @test_parser.stubs(:call).returns([])
+
+    region_names = @generator.parse_definition_files(files)[4]
+
+    expected_region_names = {
+      :region_names_one     => 'Region Names One',
+      :region_names_one_sub => 'Region Names One Sub',
+    }
+
+    assert_equal expected_region_names, region_names
+  end
+
+  def test_parse_definition_files_merges_region_names_across_multiple_files
+    files = ['test/data/test_region_names_one_defs.yaml', 'test/data/test_region_names_two_defs.yaml']
+    @custom_method_parser.expects(:call).with(nil).twice.returns({})
+    @test_parser.stubs(:call).returns([])
+
+    region_names = @generator.parse_definition_files(files)[4]
+
+    expected_region_names = {
+      :region_names_one     => 'Region Names One',
+      :region_names_one_sub => 'Region Names One Sub',
+      :region_names_two     => 'Region Names Two',
+    }
+
+    assert_equal expected_region_names, region_names
+  end
+
+  def test_parse_definition_files_returns_empty_region_names_when_absent
+    files = ['test/data/test_single_custom_holiday_defs.yaml']
+    @custom_method_parser.expects(:call).with(nil).returns({})
+    @test_parser.stubs(:call).returns([])
+
+    region_names = @generator.parse_definition_files(files)[4]
+
+    assert_equal({}, region_names)
+  end
+
   def test_generate_definition_source_correctly_generate_module_src
     files = ['test/data/test_single_custom_holiday_defs.yaml']
     @custom_method_parser.expects(:call).with(nil).returns({})

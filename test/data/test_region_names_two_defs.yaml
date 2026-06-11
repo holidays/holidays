@@ -1,0 +1,15 @@
+months:
+  6:
+  - name: Region Names Two
+    regions: [region_names_two]
+    mday: 2
+
+region_names:
+  region_names_two: 'Region Names Two'
+
+tests:
+  - given:
+      date: '2013-06-02'
+      regions: [region_names_two]
+    expect:
+      name: "Region Names Two"

@@ -1,0 +1,16 @@
+months:
+  6:
+  - name: Region Names One
+    regions: [region_names_one]
+    mday: 1
+
+region_names:
+  region_names_one: 'Region Names One'
+  region_names_one_sub: 'Region Names One Sub'
+
+tests:
+  - given:
+      date: '2013-06-01'
+      regions: [region_names_one]
+    expect:
+      name: "Region Names One"
