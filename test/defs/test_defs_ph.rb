@@ -19,6 +19,8 @@ class PhDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "National Heroes Day", (Holidays.on(Date.civil(2015, 8, 31), [:ph])[0] || {})[:name]
 
+    assert_equal "National Heroes Day", (Holidays.on(Date.civil(2025, 8, 25), [:ph])[0] || {})[:name]
+
     assert_equal "Bonifacio Day", (Holidays.on(Date.civil(2015, 11, 30), [:ph])[0] || {})[:name]
 
     assert_equal "Christmas Day", (Holidays.on(Date.civil(2015, 12, 25), [:ph])[0] || {})[:name]

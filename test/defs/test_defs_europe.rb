@@ -517,7 +517,13 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Boxing Day", (Holidays.on(Date.civil(2010, 12, 28), [:gb_], [:observed])[0] || {})[:name]
 
-    assert_equal "Boxing Day", (Holidays.on(Date.civil(2011, 12, 27), [:gb_], [:observed])[0] || {})[:name]
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2011, 12, 27), [:gb_], [:observed])[0] || {})[:name]
+
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2011, 12, 26), [:gb_], [:observed])[0] || {})[:name]
+
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2022, 12, 26), [:gb_], [:observed])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2022, 12, 27), [:gb_], [:observed])[0] || {})[:name]
 
     assert_equal "New Year's Day", (Holidays.on(Date.civil(2010, 1, 1), [:gb], [:observed])[0] || {})[:name]
 
