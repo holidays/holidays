@@ -89,6 +89,14 @@ module Holidays
       Holidays::REGIONS
     end
 
+    def region_names
+      Holidays::REGION_NAMES
+    end
+
+    def region_name(region)
+      Holidays::REGION_NAMES[region]
+    end
+
     def load_custom(*files)
       regions, rules_by_month, custom_methods, _, _ = Factory::Definition.file_parser.parse_definition_files(files)
 
