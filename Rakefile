@@ -93,13 +93,14 @@ namespace :generate do
     # important part of the gem should be left in the Rakefile and without unit tests. There's no
     # reason we can't move it.
     all_regions = {}
+    all_region_names = {}
 
     def_index['defs'].each do |region, files|
       puts "Building #{region} definition module:"
       files = files.collect { |f| "#{DEFINITION_PATH}/#{f}" }.uniq
 
       regions, rules_by_month, custom_methods, tests, region_names = Holidays::Factory::Definition.file_parser.parse_definition_files(files)
-      _ = region_names # consumed by REGION_NAMES generation in a later step
+      all_region_names.merge!(region_names)
       module_src, test_src = Holidays::Factory::Definition.source_generator.generate_definition_source(region, files, regions, rules_by_month, custom_methods, tests)
 
       File.open("lib/#{Holidays::DEFINITIONS_PATH}/#{region.downcase.to_s}.rb","w") do |file|
@@ -119,7 +120,7 @@ namespace :generate do
     puts "Building regions master file for later validation:"
 
     File.open("lib/#{Holidays::DEFINITIONS_PATH}/REGIONS.rb","w") do |file|
-      file.puts Holidays::Factory::Definition.regions_generator.call(all_regions)
+      file.puts Holidays::Factory::Definition.regions_generator.call(all_regions, all_region_names)
     end
 
     puts "Done.\n\n"
