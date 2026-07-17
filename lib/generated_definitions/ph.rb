@@ -35,11 +35,7 @@ module Holidays
       {
           "ph_heroes_day(year)" => Proc.new { |year|
 date = Date.new(year, 8, -1)
-
-if date.wday != 1
-  date -= date.wday - 1
-end
-
+date -= (date.wday - 1) % 7
 date
 },
 
