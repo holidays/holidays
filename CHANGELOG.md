@@ -1,5 +1,12 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 11.1.0
+
+* Add `Holidays.region_names` and `Holidays.region_name(region)` to expose the English name of each region ([#160](https://github.com/holidays/holidays/issues/160)). Names are the ISO 3166 English short names added in [definitions #325](https://github.com/holidays/definitions/pull/325). `region_name` returns `nil` for an unknown region. `available_regions` is unchanged.
+* Update to [v8.0.1 definitions](https://github.com/holidays/definitions/releases/tag/v8.0.1). Please see the changelog for the definition details.
+* Fix `gb` Christmas and Boxing Day observed dates when Christmas falls on a Sunday ([#396](https://github.com/holidays/holidays/issues/396)). Boxing Day is now observed on Monday the 26th and Christmas Day is substituted to Tuesday the 27th. Callers matching on holiday name will see these two names swap for the affected dates.
+* Fix `ph` National Heroes Day when August 31st falls on a Sunday ([definitions issue-345](https://github.com/holidays/definitions/issues/345))
+
 ## 11.0.0
 
 * Update to [v8.0.0 definitions](https://github.com/holidays/definitions/releases/tag/v8.0.0). Please see the changelog for the definition details.

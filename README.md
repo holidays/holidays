@@ -243,6 +243,31 @@ Holidays.available_regions
 => [:ar, :at, ..., :sg] # this will be a big array
 ```
 
+#### Return region names
+
+Return the English name of every region:
+
+```ruby
+Holidays.region_names
+=> {:ar=>"Argentina", :at=>"Austria", ..., :sg=>"Singapore"} # this will be a big hash
+```
+
+Return the English name of a single region:
+
+```ruby
+Holidays.region_name(:gb_eng)
+=> "England"
+```
+
+Unknown regions return `nil`:
+
+```ruby
+Holidays.region_name(:not_a_region)
+=> nil
+```
+
+Names are the [ISO 3166](https://www.iso.org/iso-3166-country-codes.html) English short names where one exists. Subregions and non-country regions (stock exchanges, central banks, shipping carriers) use their common English name.
+
 ## Loading Custom Definitions on the fly
 
 In addition to the [provided definitions](https://github.com/holidays/definitions) you can load custom definitions file on the fly and use them immediately.
