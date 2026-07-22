@@ -502,6 +502,7 @@ module Holidays
         kr: KOREAN_LUNAR_YEAR_INFO,
         vn: VIETNAMESE_LUNAR_YEAR_INFO,
         hk: CHINESE_LUNAR_YEAR_INFO,
+        sg: CHINESE_LUNAR_YEAR_INFO,
       }.freeze
 
       # Provides number of days per lunar month type.  Lunar months
