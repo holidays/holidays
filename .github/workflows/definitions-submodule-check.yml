@@ -1,0 +1,58 @@
+name: Definitions Submodule Check
+on:
+  pull_request:
+    branches: ["master"]
+  push:
+    branches: ["master"]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd #v5.0.1
+      - name: Verify definitions submodule points at holidays/definitions master
+        run: |
+          EXPECTED_URL="https://github.com/holidays/definitions"
+          FAILED=false
+
+          URL=$(git config -f .gitmodules --get submodule.definitions.url || true)
+          echo ".gitmodules url: ${URL:-<unset>}"
+          if [ "$URL" != "$EXPECTED_URL" ]; then
+            echo "ERROR: .gitmodules declares definitions url '${URL:-<unset>}' but must be ${EXPECTED_URL}"
+            FAILED=true
+          fi
+
+          BRANCH=$(git config -f .gitmodules --get submodule.definitions.branch || true)
+          if [ -n "$BRANCH" ]; then
+            echo "ERROR: .gitmodules declares 'branch = ${BRANCH}' for definitions; the submodule must pin a commit, not track a branch"
+            FAILED=true
+          fi
+
+          PIN=$(git ls-tree HEAD -- definitions | awk '{print $3}')
+          echo "pinned commit: ${PIN:-<none>}"
+          if [ -z "$PIN" ]; then
+            echo "ERROR: no gitlink entry for definitions found in the tree"
+            FAILED=true
+          else
+            git init -q defs-check
+            git -C defs-check remote add origin "$EXPECTED_URL"
+            if ! git -C defs-check fetch -q --filter=blob:none origin master; then
+              echo "ERROR: could not fetch master from ${EXPECTED_URL}"
+              FAILED=true
+            elif ! git -C defs-check cat-file -e "${PIN}^{commit}" 2>/dev/null; then
+              echo "ERROR: pinned commit ${PIN} does not exist in ${EXPECTED_URL}; it looks like a fork-only or unmerged commit"
+              FAILED=true
+            elif ! git -C defs-check merge-base --is-ancestor "$PIN" FETCH_HEAD; then
+              echo "ERROR: pinned commit ${PIN} exists in ${EXPECTED_URL} but is not reachable from master; master must never pin a side branch or unmerged PR head"
+              FAILED=true
+            fi
+            rm -rf defs-check
+          fi
+
+          if [ "$FAILED" = "true" ]; then
+            echo ""
+            echo "The definitions submodule on master must point at ${EXPECTED_URL} and pin a commit that is on its master branch."
+            echo "See CONTRIBUTING.md: use 'make point-to-defs-master' locally, and never merge a fork or branch pointer."
+            exit 1
+          fi
+
+          echo "OK: definitions points at ${EXPECTED_URL} and pin ${PIN} is on master"
