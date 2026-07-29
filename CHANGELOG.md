@@ -1,5 +1,12 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 11.2.0
+
+* Update to [v8.0.2 definitions](https://github.com/holidays/definitions/releases/tag/v8.0.2). Please see the changelog for the definition details.
+* Fix `sg` observed dates so Saturday holidays are no longer shifted back to Friday ([#488](https://github.com/holidays/holidays/issues/488)). New Year's Day, National Day and Christmas Day now follow the Ministry of Manpower rule that only a Sunday holiday gets a substitute. Callers using the `:observed` option will see these holidays return the Saturday date itself, and no longer see a substitute on the preceding Friday.
+* Add `sg` Chinese New Year, Vesak Day, Hari Raya Puasa, Hari Raya Haji and Deepavali ([#351](https://github.com/holidays/holidays/issues/351))
+* Add `gb_sct` bank holiday for 15 June 2026 to mark the World Cup
+
 ## 11.1.0
 
 * Add `Holidays.region_names` and `Holidays.region_name(region)` to expose the English name of each region ([#160](https://github.com/holidays/holidays/issues/160)). Names are the ISO 3166 English short names added in [definitions #325](https://github.com/holidays/definitions/pull/325). `region_name` returns `nil` for an unknown region. `available_regions` is unchanged.

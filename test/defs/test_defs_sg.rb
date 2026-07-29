@@ -21,5 +21,65 @@ class SgDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Christmas Day", (Holidays.on(Date.civil(2014, 12, 25), [:sg], [:informal])[0] || {})[:name]
 
+    assert_equal "Chinese New Year", (Holidays.on(Date.civil(2019, 2, 5), [:sg])[0] || {})[:name]
+
+    assert_equal "Chinese New Year", (Holidays.on(Date.civil(2019, 2, 6), [:sg])[0] || {})[:name]
+
+    assert_equal "Chinese New Year", (Holidays.on(Date.civil(2026, 2, 17), [:sg])[0] || {})[:name]
+
+    assert_equal "Chinese New Year", (Holidays.on(Date.civil(2030, 2, 3), [:sg])[0] || {})[:name]
+
+    assert_equal "Vesak Day", (Holidays.on(Date.civil(2019, 5, 19), [:sg])[0] || {})[:name]
+
+    assert_equal "Hari Raya Haji", (Holidays.on(Date.civil(2019, 8, 11), [:sg])[0] || {})[:name]
+
+    assert_equal "Deepavali", (Holidays.on(Date.civil(2019, 10, 27), [:sg])[0] || {})[:name]
+
+    assert_equal "Vesak Day", (Holidays.on(Date.civil(2019, 5, 20), [:sg], [:observed])[0] || {})[:name]
+
+    assert_equal "Hari Raya Haji", (Holidays.on(Date.civil(2019, 8, 12), [:sg], [:observed])[0] || {})[:name]
+
+    assert_equal "Deepavali", (Holidays.on(Date.civil(2019, 10, 28), [:sg], [:observed])[0] || {})[:name]
+
+    assert_equal "Hari Raya Puasa", (Holidays.on(Date.civil(2019, 6, 5), [:sg])[0] || {})[:name]
+
+    assert_equal "Vesak Day", (Holidays.on(Date.civil(2023, 6, 2), [:sg])[0] || {})[:name]
+
+    assert_equal "Vesak Day", (Holidays.on(Date.civil(2025, 5, 12), [:sg])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2030, 10, 27), [:sg])[0] || {})[:name]
+
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2022, 1, 1), [:sg], [:observed])[0] || {})[:name]
+assert_equal "New Year's Day", (Holidays.on(Date.civil(2028, 1, 1), [:sg], [:observed])[0] || {})[:name]
+assert_equal "New Year's Day", (Holidays.on(Date.civil(2033, 1, 1), [:sg], [:observed])[0] || {})[:name]
+
+    assert_equal "National Day", (Holidays.on(Date.civil(2025, 8, 9), [:sg], [:observed])[0] || {})[:name]
+assert_equal "National Day", (Holidays.on(Date.civil(2031, 8, 9), [:sg], [:observed])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2021, 12, 25), [:sg], [:observed])[0] || {})[:name]
+assert_equal "Christmas Day", (Holidays.on(Date.civil(2027, 12, 25), [:sg], [:observed])[0] || {})[:name]
+assert_equal "Christmas Day", (Holidays.on(Date.civil(2032, 12, 25), [:sg], [:observed])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2021, 12, 31), [:sg], [:observed])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2027, 12, 31), [:sg], [:observed])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2032, 12, 31), [:sg], [:observed])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2025, 8, 8), [:sg], [:observed])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2031, 8, 8), [:sg], [:observed])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2021, 12, 24), [:sg], [:observed])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2027, 12, 24), [:sg], [:observed])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2032, 12, 24), [:sg], [:observed])[0] || {})[:name]
+
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2017, 1, 2), [:sg], [:observed])[0] || {})[:name]
+assert_equal "New Year's Day", (Holidays.on(Date.civil(2023, 1, 2), [:sg], [:observed])[0] || {})[:name]
+assert_equal "New Year's Day", (Holidays.on(Date.civil(2034, 1, 2), [:sg], [:observed])[0] || {})[:name]
+
+    assert_equal "National Day", (Holidays.on(Date.civil(2015, 8, 10), [:sg], [:observed])[0] || {})[:name]
+assert_equal "National Day", (Holidays.on(Date.civil(2020, 8, 10), [:sg], [:observed])[0] || {})[:name]
+assert_equal "National Day", (Holidays.on(Date.civil(2026, 8, 10), [:sg], [:observed])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2016, 12, 26), [:sg], [:observed])[0] || {})[:name]
+assert_equal "Christmas Day", (Holidays.on(Date.civil(2022, 12, 26), [:sg], [:observed])[0] || {})[:name]
+assert_equal "Christmas Day", (Holidays.on(Date.civil(2033, 12, 26), [:sg], [:observed])[0] || {})[:name]
+
   end
 end

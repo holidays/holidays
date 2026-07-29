@@ -500,6 +500,7 @@ module Holidays
             {:mday => 24, :name => "San Juan", :regions => [:es_ct, :es_vc]},
             {:mday => 2, :year_ranges => { :limited => [2022] },:name => "Bank Holiday", :regions => [:gb]},
             {:mday => 3, :year_ranges => { :limited => [2022] },:name => "Platinum Jubilee", :regions => [:gb]},
+            {:mday => 15, :year_ranges => { :limited => [2026] },:name => "World Cup Bank Holiday", :regions => [:gb_sct]},
             {:mday => 22, :name => "Dan antifašističke borbe", :regions => [:hr]},
             {:mday => 25, :year_ranges => { :until => 2019 },:name => "Dan državnosti", :regions => [:hr]},
             {:wday => 1, :week => 1, :name => "June Bank Holiday", :regions => [:ie]},
