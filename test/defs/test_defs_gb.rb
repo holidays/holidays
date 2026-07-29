@@ -165,5 +165,95 @@ class GbDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Bank Holiday for the Coronation of King Charles III", (Holidays.on(Date.civil(2023, 5, 8), [:gb])[0] || {})[:name]
 
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2021, 1, 1), [:gb_eng], [:observed])[0] || {})[:name]
+
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2021, 1, 1), [:gb_nir], [:observed])[0] || {})[:name]
+
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2021, 1, 1), [:gb_sct], [:observed])[0] || {})[:name]
+
+    assert_equal "2nd January", (Holidays.on(Date.civil(2021, 1, 4), [:gb_sct], [:observed])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2021, 12, 27), [:gb_eng], [:observed])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2021, 12, 27), [:gb_nir], [:observed])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2021, 12, 27), [:gb_sct], [:observed])[0] || {})[:name]
+
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2021, 12, 28), [:gb_eng], [:observed])[0] || {})[:name]
+
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2021, 12, 28), [:gb_nir], [:observed])[0] || {})[:name]
+
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2021, 12, 28), [:gb_sct], [:observed])[0] || {})[:name]
+
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2023, 1, 2), [:gb_eng], [:observed])[0] || {})[:name]
+
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2023, 1, 2), [:gb_nir], [:observed])[0] || {})[:name]
+
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2023, 1, 2), [:gb_sct], [:observed])[0] || {})[:name]
+
+    assert_equal "2nd January", (Holidays.on(Date.civil(2023, 1, 3), [:gb_sct], [:observed])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2023, 12, 25), [:gb_eng], [:observed])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2023, 12, 25), [:gb_nir], [:observed])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2023, 12, 25), [:gb_sct], [:observed])[0] || {})[:name]
+
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2023, 12, 26), [:gb_eng], [:observed])[0] || {})[:name]
+
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2023, 12, 26), [:gb_nir], [:observed])[0] || {})[:name]
+
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2023, 12, 26), [:gb_sct], [:observed])[0] || {})[:name]
+
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2027, 1, 1), [:gb_eng], [:observed])[0] || {})[:name]
+
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2027, 1, 1), [:gb_nir], [:observed])[0] || {})[:name]
+
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2027, 1, 1), [:gb_sct], [:observed])[0] || {})[:name]
+
+    assert_equal "2nd January", (Holidays.on(Date.civil(2027, 1, 4), [:gb_sct], [:observed])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2027, 12, 27), [:gb_eng], [:observed])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2027, 12, 27), [:gb_nir], [:observed])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2027, 12, 27), [:gb_sct], [:observed])[0] || {})[:name]
+
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2027, 12, 28), [:gb_eng], [:observed])[0] || {})[:name]
+
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2027, 12, 28), [:gb_nir], [:observed])[0] || {})[:name]
+
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2027, 12, 28), [:gb_sct], [:observed])[0] || {})[:name]
+
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2028, 1, 3), [:gb_eng], [:observed])[0] || {})[:name]
+
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2028, 1, 3), [:gb_nir], [:observed])[0] || {})[:name]
+
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2028, 1, 3), [:gb_sct], [:observed])[0] || {})[:name]
+
+    assert_equal "2nd January", (Holidays.on(Date.civil(2028, 1, 4), [:gb_sct], [:observed])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2028, 12, 25), [:gb_eng], [:observed])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2028, 12, 25), [:gb_nir], [:observed])[0] || {})[:name]
+
+    assert_equal "Christmas Day", (Holidays.on(Date.civil(2028, 12, 25), [:gb_sct], [:observed])[0] || {})[:name]
+
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2028, 12, 26), [:gb_eng], [:observed])[0] || {})[:name]
+
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2028, 12, 26), [:gb_nir], [:observed])[0] || {})[:name]
+
+    assert_equal "Boxing Day", (Holidays.on(Date.civil(2028, 12, 26), [:gb_sct], [:observed])[0] || {})[:name]
+
+    assert_equal "World Cup Bank Holiday", (Holidays.on(Date.civil(2026, 6, 15), [:gb_sct], [:observed])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2026, 6, 15), [:gb_eng])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2026, 6, 15), [:gb_nir])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2025, 6, 15), [:gb_sct])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2027, 6, 15), [:gb_sct])[0] || {})[:name]
+
   end
 end
