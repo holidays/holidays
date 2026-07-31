@@ -1,5 +1,13 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 11.3.0
+
+* Update to [v8.1.0 definitions](https://github.com/holidays/definitions/releases/tag/v8.1.0). Please see the changelog for the definition details.
+* Pass a custom method's declared arguments to `observed` methods, and supply all custom method arguments in the order the definition declares them ([#433](https://github.com/holidays/holidays/issues/433)). Previously `observed` methods only ever received `date`, and arguments were supplied in a fixed order regardless of the declared order, so a definition declaring anything else bound values to the wrong parameters.
+* Add `us_ut` Juneteenth observance, observed on June 19 when that is a Monday, the preceding Monday when June 19 is Tuesday through Friday, and the following Monday when it is a weekend. Callers querying `us_ut` with the `:observed` option will see a different date from the rest of `us`.
+* Add `ie` St Brigid's Day, the first Monday in February or 1 February when that day is a Friday, a public holiday from 2023
+* Restore `sk` Deň Ústavy Slovenskej republiky and Deň boja za slobodu a demokraciu, which remain state holidays in Slovak law. Both are formal up to the year each stopped being a day of rest, 2024 and 2025 respectively, and informal from then on, so they no longer appear in default results for those later years
+
 ## 11.2.0
 
 * Update to [v8.0.2 definitions](https://github.com/holidays/definitions/releases/tag/v8.0.2). Please see the changelog for the definition details.

@@ -354,6 +354,8 @@ module Holidays
             {:mday => 1, :name => "Dia de Todos-os-Santos", :regions => [:pt]},
             {:mday => 30, :name => "Sfântul Apostol Andrei", :regions => [:ro]},
             {:mday => 1, :name => "Sviatok všetkých svätých", :regions => [:sk]},
+            {:mday => 17, :year_ranges => { :until => 2024 },:name => "Deň boja za slobodu a demokraciu", :regions => [:sk]},
+            {:mday => 17, :year_ranges => { :from => 2025 },:type => :informal, :name => "Deň boja za slobodu a demokraciu", :regions => [:sk]},
             {:mday => 1, :name => "dan spomina na mrtve", :regions => [:si]},
             {:mday => 1, :name => "Revival Leader's Day", :regions => [:bg_en]},
             {:mday => 1, :name => "Ден на Народните будители", :regions => [:bg_bg]}],
@@ -534,12 +536,15 @@ module Holidays
             {:mday => 8, :name => "Maria Geburt", :regions => [:li]},
             {:mday => 24, :year_ranges => { :limited => [2018] },:name => "Viņa Svētības pāvesta Franciska pastorālās vizītes Latvijā diena", :regions => [:lv]},
             {:mday => 30, :type => :informal, :name => "Dzień Chłopaka", :regions => [:pl]},
+            {:mday => 1, :year_ranges => { :until => 2023 },:name => "Deň Ústavy Slovenskej republiky", :regions => [:sk]},
+            {:mday => 1, :year_ranges => { :from => 2024 },:type => :informal, :name => "Deň Ústavy Slovenskej republiky", :regions => [:sk]},
             {:mday => 15, :name => "Sedembolestná Panna Mária", :regions => [:sk]},
             {:mday => 6, :name => "Unification Day", :regions => [:bg_en]},
             {:mday => 6, :name => "Ден на Съединението", :regions => [:bg_bg]},
             {:mday => 22, :name => "The Independence Day", :regions => [:bg_en]},
             {:mday => 22, :name => "Ден на Независимостта", :regions => [:bg_bg]}],
       2 => [{:mday => 28, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de Andalucía", :regions => [:es_an]},
+            {:function => "ie_st_brigids_day(year)", :function_arguments => [:year], :year_ranges => { :from => 2023 },:name => "St Brigid's Day", :regions => [:ie]},
             {:mday => 18, :type => :informal, :name => "Konudagur", :regions => [:is]},
             {:mday => 2, :name => "Maria Lichtmess", :regions => [:li]},
             {:mday => 16, :name => "Valstybės atkūrimo diena", :regions => [:lt]},
@@ -604,6 +609,15 @@ else
   date -= (date.wday + 4)
 end
 date
+},
+
+"ie_st_brigids_day(year)" => Proc.new { |year|
+date = Date.civil(year, 2, 1)
+if date.wday == 5
+  date
+else
+  date + ((1 - date.wday) % 7)
+end
 },
 
 "is_sumardagurinn_fyrsti(year)" => Proc.new { |year|

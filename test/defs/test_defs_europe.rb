@@ -825,6 +825,20 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "St. Stephen's Day", (Holidays.on(Date.civil(2015, 12, 28), [:ie], [:observed])[0] || {})[:name]
 
+    assert_equal "St Brigid's Day", (Holidays.on(Date.civil(2023, 2, 6), [:ie])[0] || {})[:name]
+assert_equal "St Brigid's Day", (Holidays.on(Date.civil(2024, 2, 5), [:ie])[0] || {})[:name]
+assert_equal "St Brigid's Day", (Holidays.on(Date.civil(2025, 2, 3), [:ie])[0] || {})[:name]
+assert_equal "St Brigid's Day", (Holidays.on(Date.civil(2026, 2, 2), [:ie])[0] || {})[:name]
+assert_equal "St Brigid's Day", (Holidays.on(Date.civil(2028, 2, 7), [:ie])[0] || {})[:name]
+
+    assert_equal "St Brigid's Day", (Holidays.on(Date.civil(2027, 2, 1), [:ie])[0] || {})[:name]
+
+    assert_equal "St Brigid's Day", (Holidays.on(Date.civil(2030, 2, 1), [:ie])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2030, 2, 4), [:ie])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2022, 2, 7), [:ie])[0] || {})[:name]
+
     assert_equal "Nýársdagur", (Holidays.on(Date.civil(2007, 1, 1), [:is], [:informal])[0] || {})[:name]
 
     assert_equal "Þrettándinn", (Holidays.on(Date.civil(2007, 1, 6), [:is], [:informal])[0] || {})[:name]
@@ -1460,9 +1474,25 @@ assert_equal "Vecgada diena", (Holidays.on(Date.civil(2029, 12, 31), [:lv])[0] |
 
     assert_equal "Výročie Slovenského národného povstania", (Holidays.on(Date.civil(2025, 8, 29), [:sk], [:informal])[0] || {})[:name]
 
+    assert_equal "Deň Ústavy Slovenskej republiky", (Holidays.on(Date.civil(2023, 9, 1), [:sk])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2024, 9, 1), [:sk])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2025, 9, 1), [:sk])[0] || {})[:name]
+
+    assert_equal "Deň Ústavy Slovenskej republiky", (Holidays.on(Date.civil(2024, 9, 1), [:sk], [:informal])[0] || {})[:name]
+assert_equal "Deň Ústavy Slovenskej republiky", (Holidays.on(Date.civil(2025, 9, 1), [:sk], [:informal])[0] || {})[:name]
+
     assert_equal "Sedembolestná Panna Mária", (Holidays.on(Date.civil(2025, 9, 15), [:sk], [:informal])[0] || {})[:name]
 
     assert_equal "Sviatok všetkých svätých", (Holidays.on(Date.civil(2025, 11, 1), [:sk], [:informal])[0] || {})[:name]
+
+    assert_equal "Deň boja za slobodu a demokraciu", (Holidays.on(Date.civil(2024, 11, 17), [:sk])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2025, 11, 17), [:sk])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2026, 11, 17), [:sk])[0] || {})[:name]
+
+    assert_equal "Deň boja za slobodu a demokraciu", (Holidays.on(Date.civil(2025, 11, 17), [:sk], [:informal])[0] || {})[:name]
+assert_equal "Deň boja za slobodu a demokraciu", (Holidays.on(Date.civil(2026, 11, 17), [:sk], [:informal])[0] || {})[:name]
 
     assert_equal "Štedrý deň", (Holidays.on(Date.civil(2025, 12, 24), [:sk], [:informal])[0] || {})[:name]
 

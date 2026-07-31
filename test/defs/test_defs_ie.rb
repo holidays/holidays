@@ -49,5 +49,19 @@ class IeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "St. Stephen's Day", (Holidays.on(Date.civil(2015, 12, 28), [:ie], [:observed])[0] || {})[:name]
 
+    assert_equal "St Brigid's Day", (Holidays.on(Date.civil(2023, 2, 6), [:ie])[0] || {})[:name]
+assert_equal "St Brigid's Day", (Holidays.on(Date.civil(2024, 2, 5), [:ie])[0] || {})[:name]
+assert_equal "St Brigid's Day", (Holidays.on(Date.civil(2025, 2, 3), [:ie])[0] || {})[:name]
+assert_equal "St Brigid's Day", (Holidays.on(Date.civil(2026, 2, 2), [:ie])[0] || {})[:name]
+assert_equal "St Brigid's Day", (Holidays.on(Date.civil(2028, 2, 7), [:ie])[0] || {})[:name]
+
+    assert_equal "St Brigid's Day", (Holidays.on(Date.civil(2027, 2, 1), [:ie])[0] || {})[:name]
+
+    assert_equal "St Brigid's Day", (Holidays.on(Date.civil(2030, 2, 1), [:ie])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2030, 2, 4), [:ie])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2022, 2, 7), [:ie])[0] || {})[:name]
+
   end
 end
