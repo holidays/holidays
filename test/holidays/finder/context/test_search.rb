@@ -182,6 +182,25 @@ class FinderSearchTests < Test::Unit::TestCase
     )
   end
 
+  def test_passes_declared_observed_arguments_to_the_observed_function
+    @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns([:mday => 8, :name => "Test", :type => :observed, :observed => "SOME_OBSERVED_FUNC_ID", :observed_arguments => [:date, :region], :regions=>@regions])
+
+    @custom_method_processor.expects(:call).with(
+      {:year => 2015, :month => 1, :day => 8, :region => :us},
+      "SOME_OBSERVED_FUNC_ID",
+      [:date, :region],
+    ).returns(Date.civil(2015, 10, 1))
+
+    assert_equal(
+      [{
+        :date => Date.civil(2015, 10, 1),
+        :name => "Test",
+        :regions => [:us],
+      }],
+      @subject.call(@dates_driver, @regions, [:observed])
+    )
+  end
+
   def test_returns_unobserved_date_if_observed_method_not_set_but_flag_is_present
     @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns([:mday => 14, :name => "Test", :type => :observed, :observed => "SOME_OBSERVED_FUNC_ID", :regions=>@regions])
 

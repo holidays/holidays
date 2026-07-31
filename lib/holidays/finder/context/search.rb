@@ -120,11 +120,14 @@ module Holidays
           }
         end
 
+        # Observed methods default to taking only a date, but they may declare
+        # additional arguments such as :region so that a single definition shared
+        # across regions can observe differently in one of them.
         def build_observed_date(date, regions, h)
           @custom_method_processor.call(
             build_custom_method_input(date.year, date.month, date.day, regions),
             h[:observed],
-            [:date],
+            h[:observed_arguments] || [:date],
           )
         end
       end

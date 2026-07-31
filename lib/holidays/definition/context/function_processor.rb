@@ -35,30 +35,19 @@ module Holidays
           raise ArgumentError if desired_func_args.include?(:region) && !input[:region].is_a?(Symbol)
         end
 
+        # Arguments are supplied in the order the definition declares them. The proc
+        # is built with that same declared order, so anything else silently binds
+        # values to the wrong parameters.
         def parse_arguments(input, target_args)
-          args = []
-
-          if target_args.include?(:year)
-            args << input[:year]
+          target_args.map do |arg|
+            case arg
+            when :year   then input[:year]
+            when :month  then input[:month]
+            when :day    then input[:day]
+            when :date   then Date.civil(input[:year], input[:month], input[:day])
+            when :region then input[:region]
+            end
           end
-
-          if target_args.include?(:month)
-            args << input[:month]
-          end
-
-          if target_args.include?(:day)
-            args << input[:day]
-          end
-
-          if target_args.include?(:date)
-            args << Date.civil(input[:year], input[:month], input[:day])
-          end
-
-          if target_args.include?(:region)
-            args << input[:region]
-          end
-
-          args
         end
 
         def calculate(input, id, args, modifier)
