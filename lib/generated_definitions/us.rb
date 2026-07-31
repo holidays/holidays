@@ -53,7 +53,7 @@ module Holidays
       6 => [{:wday => 1, :week => 1, :name => "Jefferson Davis' Birthday", :regions => [:us_al]},
             {:mday => 3, :name => "Birthday of Jefferson Davis", :regions => [:us_fl]},
             {:mday => 11, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "King Kamehameha I Day", :regions => [:us_hi]},
-            {:mday => 19, :year_ranges => { :from => 2021 },:observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Juneteenth National Independence Day", :regions => [:us]},
+            {:mday => 19, :year_ranges => { :from => 2021 },:observed => "juneteenth_national_independence_day(region, date)", :observed_arguments => [:region, :date], :name => "Juneteenth National Independence Day", :regions => [:us]},
             {:mday => 19, :name => "Emancipation Day in Texas", :regions => [:us_tx]},
             {:mday => 20, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "West Virginia Day", :regions => [:us_wv]},
             {:wday => 0, :week => 3, :type => :informal, :name => "Father's Day", :regions => [:us, :ca]}],
@@ -135,6 +135,27 @@ day_of_holiday = Holidays::Factory::DateCalculator.day_of_month_calculator.call(
 beginning_of_month = Date.civil(year, month, 1)
 king_day = Date.civil(year, month, day_of_holiday)
 king_day.downto(beginning_of_month).find {|date| date if date.wday == 5 }
+},
+
+"juneteenth_national_independence_day(region, date)" => Proc.new { |region, date|
+if region == :us_ut
+  case date.wday
+  when 1
+    date
+  when 2,3,4,5
+    date - (date.wday - 1)
+  when 6
+    date + 2
+  when 0
+    date + 1
+  end
+elsif date.wday == 0
+  date + 1
+elsif date.wday == 6
+  date - 1
+else
+  date
+end
 },
 
 "election_day(year)" => Proc.new { |year|

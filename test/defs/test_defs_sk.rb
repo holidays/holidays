@@ -23,9 +23,25 @@ class SkDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Výročie Slovenského národného povstania", (Holidays.on(Date.civil(2025, 8, 29), [:sk], [:informal])[0] || {})[:name]
 
+    assert_equal "Deň Ústavy Slovenskej republiky", (Holidays.on(Date.civil(2023, 9, 1), [:sk])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2024, 9, 1), [:sk])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2025, 9, 1), [:sk])[0] || {})[:name]
+
+    assert_equal "Deň Ústavy Slovenskej republiky", (Holidays.on(Date.civil(2024, 9, 1), [:sk], [:informal])[0] || {})[:name]
+assert_equal "Deň Ústavy Slovenskej republiky", (Holidays.on(Date.civil(2025, 9, 1), [:sk], [:informal])[0] || {})[:name]
+
     assert_equal "Sedembolestná Panna Mária", (Holidays.on(Date.civil(2025, 9, 15), [:sk], [:informal])[0] || {})[:name]
 
     assert_equal "Sviatok všetkých svätých", (Holidays.on(Date.civil(2025, 11, 1), [:sk], [:informal])[0] || {})[:name]
+
+    assert_equal "Deň boja za slobodu a demokraciu", (Holidays.on(Date.civil(2024, 11, 17), [:sk])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2025, 11, 17), [:sk])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2026, 11, 17), [:sk])[0] || {})[:name]
+
+    assert_equal "Deň boja za slobodu a demokraciu", (Holidays.on(Date.civil(2025, 11, 17), [:sk], [:informal])[0] || {})[:name]
+assert_equal "Deň boja za slobodu a demokraciu", (Holidays.on(Date.civil(2026, 11, 17), [:sk], [:informal])[0] || {})[:name]
 
     assert_equal "Štedrý deň", (Holidays.on(Date.civil(2025, 12, 24), [:sk], [:informal])[0] || {})[:name]
 

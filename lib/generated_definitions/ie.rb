@@ -14,6 +14,7 @@ module Holidays
       {
                 0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:ie]}],
       1 => [{:mday => 1, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:ie]}],
+      2 => [{:function => "ie_st_brigids_day(year)", :function_arguments => [:year], :year_ranges => { :from => 2023 },:name => "St Brigid's Day", :regions => [:ie]}],
       3 => [{:mday => 17, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "St. Patrick's Day", :regions => [:ie]}],
       5 => [{:wday => 1, :week => 1, :name => "May Day", :regions => [:ie]}],
       6 => [{:wday => 1, :week => 1, :name => "June Bank Holiday", :regions => [:ie]}],
@@ -26,7 +27,16 @@ module Holidays
 
     def self.custom_methods
       {
-          
+          "ie_st_brigids_day(year)" => Proc.new { |year|
+date = Date.civil(year, 2, 1)
+if date.wday == 5
+  date
+else
+  date + ((1 - date.wday) % 7)
+end
+},
+
+
       }
     end
   end
