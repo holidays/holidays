@@ -96,6 +96,13 @@ class FunctionProcessorTests < Test::Unit::TestCase
     @subject.call(@input, @func_id, @func_args, @func_modifier)
   end
 
+  def test_args_are_passed_in_the_order_the_definition_declares_them
+    @func_args = [:region, :date]
+    @proc_result_cache_repo.expects(:lookup).at_most_once.with(@custom_func, @region, Date.civil(@year, @month, @day)).returns(Date.civil(2016, 1, 15))
+
+    @subject.call(@input, @func_id, @func_args, @func_modifier)
+  end
+
   def test_call_returns_error_if_target_function_returns_unknown_value
     @proc_result_cache_repo.expects(:lookup).at_most_once.with(@custom_func, @year).returns("bad-response")
 
