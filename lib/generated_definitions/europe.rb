@@ -450,7 +450,7 @@ module Holidays
             {:mday => 21, :name => "Nationale Feestdag", :regions => [:be_nl]},
             {:mday => 5, :name => "Den slovanských věrozvěstů Cyrila a Metoděje", :regions => [:cz]},
             {:mday => 6, :name => "Den upálení mistra Jana Husa", :regions => [:cz]},
-            {:mday => 23, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Santiago Apostol", :regions => [:es_ga]},
+            {:mday => 25, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Santiago Apostol", :regions => [:es_ga]},
             {:mday => 14, :name => "Fête nationale", :regions => [:fr]},
             {:mday => 5, :name => "Tynwald Day", :regions => [:im, :gb_iom]},
             {:mday => 12, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Battle of the Boyne", :regions => [:gb_nir]},
