@@ -25,7 +25,7 @@ class PeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Día del Padre", (Holidays.on(Date.civil(2016, 6, 19), [:pe], [:informal])[0] || {})[:name]
 
-    assert_equal "San Pablo y San Pedro", (Holidays.on(Date.civil(2016, 6, 29), [:pe], [:informal])[0] || {})[:name]
+    assert_equal "Día de San Pedro y San Pablo", (Holidays.on(Date.civil(2016, 6, 29), [:pe], [:informal])[0] || {})[:name]
 
     assert_equal "Primer Día de la Independencia", (Holidays.on(Date.civil(2016, 7, 28), [:pe], [:informal])[0] || {})[:name]
 
@@ -35,13 +35,45 @@ class PeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Día de las Fuerzas Armadas", (Holidays.on(Date.civil(2016, 9, 24), [:pe], [:informal])[0] || {})[:name]
 
-    assert_equal "Batalla de Angamos", (Holidays.on(Date.civil(2016, 10, 8), [:pe], [:informal])[0] || {})[:name]
+    assert_equal "Combate de Angamos", (Holidays.on(Date.civil(2016, 10, 8), [:pe], [:informal])[0] || {})[:name]
 
     assert_equal "Todos los Santos", (Holidays.on(Date.civil(2016, 11, 1), [:pe], [:informal])[0] || {})[:name]
 
     assert_equal "Inmaculada Concepción", (Holidays.on(Date.civil(2016, 12, 8), [:pe], [:informal])[0] || {})[:name]
 
     assert_equal "Navidad del Señor", (Holidays.on(Date.civil(2016, 12, 25), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de la Bandera", (Holidays.on(Date.civil(2023, 6, 7), [:pe], [:informal])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2023, 6, 7), [:pe])[0] || {})[:name]
+
+    assert_equal "Batalla de Arica y Día de la Bandera", (Holidays.on(Date.civil(2024, 6, 7), [:pe])[0] || {})[:name]
+assert_equal "Batalla de Arica y Día de la Bandera", (Holidays.on(Date.civil(2026, 6, 7), [:pe])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2022, 7, 23), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de la Fuerza Aérea del Perú", (Holidays.on(Date.civil(2023, 7, 23), [:pe])[0] || {})[:name]
+assert_equal "Día de la Fuerza Aérea del Perú", (Holidays.on(Date.civil(2026, 7, 23), [:pe])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2021, 8, 6), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Batalla de Junín", (Holidays.on(Date.civil(2022, 8, 6), [:pe])[0] || {})[:name]
+assert_equal "Batalla de Junín", (Holidays.on(Date.civil(2026, 8, 6), [:pe])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2021, 12, 9), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Batalla de Ayacucho", (Holidays.on(Date.civil(2022, 12, 9), [:pe])[0] || {})[:name]
+assert_equal "Batalla de Ayacucho", (Holidays.on(Date.civil(2026, 12, 9), [:pe])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2016, 1, 6), [:pe])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2026, 1, 6), [:pe])[0] || {})[:name]
+
+    assert_equal "Día de los Reyes Magos", (Holidays.on(Date.civil(2026, 1, 6), [:pe], [:informal])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2016, 3, 27), [:pe])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2026, 4, 5), [:pe])[0] || {})[:name]
+
+    assert_equal "Pascua", (Holidays.on(Date.civil(2026, 4, 5), [:pe], [:informal])[0] || {})[:name]
 
   end
 end

@@ -215,6 +215,14 @@ assert_equal "Feriado con fines turísticos", (Holidays.on(Date.civil(2021, 11, 
 
     assert_equal "San Pedro y San Pablo", (Holidays.on(Date.civil(2017, 7, 3), [:co])[0] || {})[:name]
 
+    assert_equal "Día de Nuestra Señora del Rosario de Chiquinquirá", (Holidays.on(Date.civil(2026, 7, 13), [:co])[0] || {})[:name]
+
+    assert_equal "Día de Nuestra Señora del Rosario de Chiquinquirá", (Holidays.on(Date.civil(2027, 7, 12), [:co])[0] || {})[:name]
+
+    assert_equal "Día de Nuestra Señora del Rosario de Chiquinquirá", (Holidays.on(Date.civil(2029, 7, 9), [:co])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2025, 7, 14), [:co])[0] || {})[:name]
+
     assert_equal "Día de la Independencia", (Holidays.on(Date.civil(2014, 7, 20), [:co])[0] || {})[:name]
 
     assert_equal "Día de la Independencia", (Holidays.on(Date.civil(2016, 7, 20), [:co])[0] || {})[:name]
@@ -263,6 +271,72 @@ assert_equal "Feriado con fines turísticos", (Holidays.on(Date.civil(2021, 11, 
 
     assert_equal "Navidad", (Holidays.on(Date.civil(2017, 12, 25), [:co])[0] || {})[:name]
 
+    assert_equal "Día de los Reyes Magos", (Holidays.on(Date.civil(2013, 1, 7), [:co])[0] || {})[:name]
+
+    assert_equal "Día de los Reyes Magos", (Holidays.on(Date.civil(2016, 1, 11), [:co])[0] || {})[:name]
+
+    assert_equal "Día de los Reyes Magos", (Holidays.on(Date.civil(2022, 1, 10), [:co])[0] || {})[:name]
+
+    assert_equal "Día de los Reyes Magos", (Holidays.on(Date.civil(2018, 1, 8), [:co])[0] || {})[:name]
+
+    assert_equal "Día de San José", (Holidays.on(Date.civil(2013, 3, 25), [:co])[0] || {})[:name]
+
+    assert_equal "Día de San José", (Holidays.on(Date.civil(2015, 3, 23), [:co])[0] || {})[:name]
+
+    assert_equal "Día de San José", (Holidays.on(Date.civil(2021, 3, 22), [:co])[0] || {})[:name]
+
+    assert_equal "Día de San José", (Holidays.on(Date.civil(2016, 3, 21), [:co])[0] || {})[:name]
+
+    assert_equal "San Pedro y San Pablo", (Holidays.on(Date.civil(2031, 6, 30), [:co])[0] || {})[:name]
+
+    assert_equal "San Pedro y San Pablo", (Holidays.on(Date.civil(2015, 6, 29), [:co])[0] || {})[:name]
+
+    assert_equal "San Pedro y San Pablo", (Holidays.on(Date.civil(2021, 7, 5), [:co])[0] || {})[:name]
+
+    assert_equal "San Pedro y San Pablo", (Holidays.on(Date.civil(2018, 7, 2), [:co])[0] || {})[:name]
+
+    assert_equal "San Pedro y San Pablo", (Holidays.on(Date.civil(2013, 7, 1), [:co])[0] || {})[:name]
+
+    assert_equal "Día de Nuestra Señora del Rosario de Chiquinquirá", (Holidays.on(Date.civil(2028, 7, 10), [:co])[0] || {})[:name]
+
+    assert_equal "Día de Nuestra Señora del Rosario de Chiquinquirá", (Holidays.on(Date.civil(2030, 7, 15), [:co])[0] || {})[:name]
+
+    assert_equal "Día de Nuestra Señora del Rosario de Chiquinquirá", (Holidays.on(Date.civil(2031, 7, 14), [:co])[0] || {})[:name]
+
+    assert_equal "Día de Nuestra Señora del Rosario de Chiquinquirá", (Holidays.on(Date.civil(2033, 7, 11), [:co])[0] || {})[:name]
+
+    assert_equal "La Asunción de la Virgen", (Holidays.on(Date.civil(2021, 8, 16), [:co])[0] || {})[:name]
+
+    assert_equal "La Asunción de la Virgen", (Holidays.on(Date.civil(2018, 8, 20), [:co])[0] || {})[:name]
+
+    assert_equal "La Asunción de la Virgen", (Holidays.on(Date.civil(2013, 8, 19), [:co])[0] || {})[:name]
+
+    assert_equal "La Asunción de la Virgen", (Holidays.on(Date.civil(2015, 8, 17), [:co])[0] || {})[:name]
+
+    assert_equal "Día de la Raza", (Holidays.on(Date.civil(2015, 10, 12), [:co])[0] || {})[:name]
+
+    assert_equal "Día de la Raza", (Holidays.on(Date.civil(2021, 10, 18), [:co])[0] || {})[:name]
+
+    assert_equal "Día de la Raza", (Holidays.on(Date.civil(2018, 10, 15), [:co])[0] || {})[:name]
+
+    assert_equal "Día de la Raza", (Holidays.on(Date.civil(2013, 10, 14), [:co])[0] || {})[:name]
+
+    assert_equal "Día de Todos los Santos", (Holidays.on(Date.civil(2015, 11, 2), [:co])[0] || {})[:name]
+
+    assert_equal "Día de Todos los Santos", (Holidays.on(Date.civil(2021, 11, 1), [:co])[0] || {})[:name]
+
+    assert_equal "Día de Todos los Santos", (Holidays.on(Date.civil(2018, 11, 5), [:co])[0] || {})[:name]
+
+    assert_equal "Día de Todos los Santos", (Holidays.on(Date.civil(2013, 11, 4), [:co])[0] || {})[:name]
+
+    assert_equal "Independencia de Cartagena", (Holidays.on(Date.civil(2018, 11, 12), [:co])[0] || {})[:name]
+
+    assert_equal "Independencia de Cartagena", (Holidays.on(Date.civil(2013, 11, 11), [:co])[0] || {})[:name]
+
+    assert_equal "Independencia de Cartagena", (Holidays.on(Date.civil(2015, 11, 16), [:co])[0] || {})[:name]
+
+    assert_equal "Independencia de Cartagena", (Holidays.on(Date.civil(2021, 11, 15), [:co])[0] || {})[:name]
+
     assert_equal "Año Nuevo", (Holidays.on(Date.civil(2016, 1, 1), [:pe], [:informal])[0] || {})[:name]
 
     assert_equal "Día de los Reyes Magos", (Holidays.on(Date.civil(2016, 1, 6), [:pe], [:informal])[0] || {})[:name]
@@ -281,7 +355,7 @@ assert_equal "Feriado con fines turísticos", (Holidays.on(Date.civil(2021, 11, 
 
     assert_equal "Día del Padre", (Holidays.on(Date.civil(2016, 6, 19), [:pe], [:informal])[0] || {})[:name]
 
-    assert_equal "San Pablo y San Pedro", (Holidays.on(Date.civil(2016, 6, 29), [:pe], [:informal])[0] || {})[:name]
+    assert_equal "Día de San Pedro y San Pablo", (Holidays.on(Date.civil(2016, 6, 29), [:pe], [:informal])[0] || {})[:name]
 
     assert_equal "Primer Día de la Independencia", (Holidays.on(Date.civil(2016, 7, 28), [:pe], [:informal])[0] || {})[:name]
 
@@ -291,13 +365,45 @@ assert_equal "Feriado con fines turísticos", (Holidays.on(Date.civil(2021, 11, 
 
     assert_equal "Día de las Fuerzas Armadas", (Holidays.on(Date.civil(2016, 9, 24), [:pe], [:informal])[0] || {})[:name]
 
-    assert_equal "Batalla de Angamos", (Holidays.on(Date.civil(2016, 10, 8), [:pe], [:informal])[0] || {})[:name]
+    assert_equal "Combate de Angamos", (Holidays.on(Date.civil(2016, 10, 8), [:pe], [:informal])[0] || {})[:name]
 
     assert_equal "Todos los Santos", (Holidays.on(Date.civil(2016, 11, 1), [:pe], [:informal])[0] || {})[:name]
 
     assert_equal "Inmaculada Concepción", (Holidays.on(Date.civil(2016, 12, 8), [:pe], [:informal])[0] || {})[:name]
 
     assert_equal "Navidad del Señor", (Holidays.on(Date.civil(2016, 12, 25), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de la Bandera", (Holidays.on(Date.civil(2023, 6, 7), [:pe], [:informal])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2023, 6, 7), [:pe])[0] || {})[:name]
+
+    assert_equal "Batalla de Arica y Día de la Bandera", (Holidays.on(Date.civil(2024, 6, 7), [:pe])[0] || {})[:name]
+assert_equal "Batalla de Arica y Día de la Bandera", (Holidays.on(Date.civil(2026, 6, 7), [:pe])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2022, 7, 23), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Día de la Fuerza Aérea del Perú", (Holidays.on(Date.civil(2023, 7, 23), [:pe])[0] || {})[:name]
+assert_equal "Día de la Fuerza Aérea del Perú", (Holidays.on(Date.civil(2026, 7, 23), [:pe])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2021, 8, 6), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Batalla de Junín", (Holidays.on(Date.civil(2022, 8, 6), [:pe])[0] || {})[:name]
+assert_equal "Batalla de Junín", (Holidays.on(Date.civil(2026, 8, 6), [:pe])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2021, 12, 9), [:pe], [:informal])[0] || {})[:name]
+
+    assert_equal "Batalla de Ayacucho", (Holidays.on(Date.civil(2022, 12, 9), [:pe])[0] || {})[:name]
+assert_equal "Batalla de Ayacucho", (Holidays.on(Date.civil(2026, 12, 9), [:pe])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2016, 1, 6), [:pe])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2026, 1, 6), [:pe])[0] || {})[:name]
+
+    assert_equal "Día de los Reyes Magos", (Holidays.on(Date.civil(2026, 1, 6), [:pe], [:informal])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2016, 3, 27), [:pe])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2026, 4, 5), [:pe])[0] || {})[:name]
+
+    assert_equal "Pascua", (Holidays.on(Date.civil(2026, 4, 5), [:pe], [:informal])[0] || {})[:name]
 
     assert_equal "Año Nuevo", (Holidays.on(Date.civil(2013, 1, 1), [:ve])[0] || {})[:name]
 

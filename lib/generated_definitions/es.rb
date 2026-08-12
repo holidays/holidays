@@ -30,7 +30,7 @@ module Holidays
       6 => [{:mday => 9, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de la Región de Murcia", :regions => [:es_mu]},
             {:mday => 9, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de La Rioja", :regions => [:es_lo]},
             {:mday => 24, :name => "San Juan", :regions => [:es_ct, :es_vc]}],
-      7 => [{:mday => 23, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Santiago Apostol", :regions => [:es_ga]}],
+      7 => [{:mday => 25, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Santiago Apostol", :regions => [:es_ga]}],
       8 => [{:mday => 15, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Asunción", :regions => [:es]}],
       9 => [{:mday => 2, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de Ceuta", :regions => [:es_ce]},
             {:mday => 8, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Día de Asturias", :regions => [:es_o]},

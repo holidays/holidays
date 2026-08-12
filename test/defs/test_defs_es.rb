@@ -121,7 +121,15 @@ class EsDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Día de La Rioja", (Holidays.on(Date.civil(2009, 6, 9), [:es_lo])[0] || {})[:name]
 
-    assert_equal "Santiago Apostol", (Holidays.on(Date.civil(2009, 7, 23), [:es_ga])[0] || {})[:name]
+    assert_equal "Santiago Apostol", (Holidays.on(Date.civil(2009, 7, 25), [:es_ga])[0] || {})[:name]
+
+    assert_equal "Santiago Apostol", (Holidays.on(Date.civil(2021, 7, 25), [:es_ga])[0] || {})[:name]
+assert_equal "Santiago Apostol", (Holidays.on(Date.civil(2027, 7, 25), [:es_ga])[0] || {})[:name]
+
+    assert_equal "Santiago Apostol", (Holidays.on(Date.civil(2021, 7, 26), [:es_ga], [:observed])[0] || {})[:name]
+assert_equal "Santiago Apostol", (Holidays.on(Date.civil(2027, 7, 26), [:es_ga], [:observed])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2021, 7, 23), [:es_ga])[0] || {})[:name]
 
     assert_equal "Día de Ceuta", (Holidays.on(Date.civil(2009, 9, 2), [:es_ce])[0] || {})[:name]
 
