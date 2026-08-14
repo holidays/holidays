@@ -100,4 +100,22 @@ class LunarHolidaysCalculatorTests < Test::Unit::TestCase
     assert_equal '2023-01-23', @subject.to_solar(2023,1,2, :sg).to_s
     assert_equal '2026-02-18', @subject.to_solar(2026,1,2, :sg).to_s
   end
+
+  def test_chinese_new_year_returns_expected_results_for_china
+    assert_equal '2014-01-31', @subject.to_solar(2014,1,1, :cn).to_s
+    assert_equal '2020-01-25', @subject.to_solar(2020,1,1, :cn).to_s
+    assert_equal '2024-02-10', @subject.to_solar(2024,1,1, :cn).to_s
+    assert_equal '2025-01-29', @subject.to_solar(2025,1,1, :cn).to_s
+    assert_equal '2026-02-17', @subject.to_solar(2026,1,1, :cn).to_s
+  end
+
+  def test_dragon_boat_festival_returns_expected_results_for_china
+    assert_equal '2024-06-10', @subject.to_solar(2024,5,5, :cn).to_s
+    assert_equal '2025-05-31', @subject.to_solar(2025,5,5, :cn).to_s
+  end
+
+  def test_mid_autumn_festival_returns_expected_results_for_china
+    assert_equal '2024-09-17', @subject.to_solar(2024,8,15, :cn).to_s
+    assert_equal '2025-10-06', @subject.to_solar(2025,8,15, :cn).to_s
+  end
 end
