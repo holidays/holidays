@@ -24,13 +24,7 @@ module Holidays
     end
 
     def self.custom_methods
-      {
-          "day_after_thanksgiving(year)" => Proc.new { |year|
-Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 11, 4, 4) + 1
-},
-
-
-      }
+      {}
     end
   end
 end

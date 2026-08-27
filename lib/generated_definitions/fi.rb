@@ -31,31 +31,7 @@ module Holidays
     end
 
     def self.custom_methods
-      {
-          "fi_juhannusaatto(year)" => Proc.new { |year|
-date = Date.civil(year,6,19)
-if date.wday > 5 #if 19.6 is saturday
-  date += 6
-else
-  date += (5 - date.wday)
-end
-date
-},
-
-"fi_juhannuspaiva(year)" => Proc.new { |year|
-date = Date.civil(year,6,20)
-date += (6 - date.wday)
-date
-},
-
-"fi_pyhainpaiva(year)" => Proc.new { |year|
-date = Date.civil(year,10,31)
-date += (6 - date.wday)
-date
-},
-
-
-      }
+      {}
     end
   end
 end

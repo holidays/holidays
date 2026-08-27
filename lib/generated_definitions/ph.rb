@@ -32,15 +32,7 @@ module Holidays
     end
 
     def self.custom_methods
-      {
-          "ph_heroes_day(year)" => Proc.new { |year|
-date = Date.new(year, 8, -1)
-date -= (date.wday - 1) % 7
-date
-},
-
-
-      }
+      {}
     end
   end
 end
