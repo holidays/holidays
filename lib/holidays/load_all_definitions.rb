@@ -1,3 +1,5 @@
+require 'holidays/definition/custom_methods/registry'
+
 module Holidays
   #TODO This file should be renamed. It's no longer about definitions, really.
   class LoadAllDefinitions
@@ -28,6 +30,9 @@ module Holidays
         }
 
         Factory::Definition.custom_methods_repository.add(global_methods)
+
+        # Native per-region custom methods (replaces the old YAML methods:/ruby: blocks).
+        Factory::Definition.custom_methods_repository.add(Holidays::Definition::CustomMethods.all)
 
         static_regions_definition = "#{Holidays::DEFINITIONS_PATH}/REGIONS.rb"
         require static_regions_definition

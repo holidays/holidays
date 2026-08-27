@@ -45,9 +45,7 @@ second-string
     end
 
     def self.custom_methods
-      {
-          custom-methods
-      }
+      {}
     end
   end
 end
@@ -80,9 +78,7 @@ second-string
     end
 
     def self.custom_methods
-      {
-          custom-methods
-      }
+      {}
     end
   end
 end
@@ -115,9 +111,7 @@ second-string
     end
 
     def self.custom_methods
-      {
-          
-      }
+      {}
     end
   end
 end
@@ -150,9 +144,7 @@ second-string
     end
 
     def self.custom_methods
-      {
-          
-      }
+      {}
     end
   end
 end
@@ -185,9 +177,7 @@ second-string
     end
 
     def self.custom_methods
-      {
-          custom-methods
-      }
+      {}
     end
   end
 end

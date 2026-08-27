@@ -114,53 +114,7 @@ module Holidays
     end
 
     def self.custom_methods
-      {
-          "is_sumardagurinn_fyrsti(year)" => Proc.new { |year|
-date = Date.civil(year,4,18)
-if date.wday < 4
-  date += (4 - date.wday)
-else
-  date += (11 - date.wday)
-end
-date
-},
-
-"se_midsommardagen(year)" => Proc.new { |year|
-date = Date.civil(year,6,20)
-date += (6 - date.wday)
-date
-},
-
-"se_alla_helgons_dag(year)" => Proc.new { |year|
-date = Date.civil(year,10,31)
-date += (6 - date.wday)
-date
-},
-
-"fi_juhannusaatto(year)" => Proc.new { |year|
-date = Date.civil(year,6,19)
-if date.wday > 5 #if 19.6 is saturday
-  date += 6
-else
-  date += (5 - date.wday)
-end
-date
-},
-
-"fi_juhannuspaiva(year)" => Proc.new { |year|
-date = Date.civil(year,6,20)
-date += (6 - date.wday)
-date
-},
-
-"fi_pyhainpaiva(year)" => Proc.new { |year|
-date = Date.civil(year,10,31)
-date += (6 - date.wday)
-date
-},
-
-
-      }
+      {}
     end
   end
 end

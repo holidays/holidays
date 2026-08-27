@@ -33,21 +33,7 @@ module Holidays
     end
 
     def self.custom_methods
-      {
-          "se_midsommardagen(year)" => Proc.new { |year|
-date = Date.civil(year,6,20)
-date += (6 - date.wday)
-date
-},
-
-"se_alla_helgons_dag(year)" => Proc.new { |year|
-date = Date.civil(year,10,31)
-date += (6 - date.wday)
-date
-},
-
-
-      }
+      {}
     end
   end
 end
