@@ -1,0 +1,25 @@
+months:
+  6:
+  - name: Custom Observed Holiday
+    regions: [custom_observed_with_args]
+    mday: 19
+    observed: custom_move_if_weekend(region, date)
+methods:
+  custom_move_if_weekend:
+    arguments: region, date
+    ruby: |
+      if region == :custom_observed_with_args && date.saturday?
+        date + 2
+      elsif date.sunday?
+        date + 1
+      else
+        date
+      end
+
+tests:
+  - given:
+      date: '2021-06-21'
+      regions: [custom_observed_with_args]
+      options: [observed]
+    expect:
+      name: "Custom Observed Holiday"
