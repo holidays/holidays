@@ -51,19 +51,7 @@ module Holidays
     end
 
     def self.custom_methods
-      {
-          "de_buss_und_bettag(year)" => Proc.new { |year|
-date = Date.civil(year,11,23)
-if date.wday > 3
-  date -= (date.wday - 3)
-else
-  date -= (date.wday + 4)
-end
-date
-},
-
-
-      }
+      {}
     end
   end
 end

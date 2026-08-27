@@ -26,18 +26,7 @@ module Holidays
     end
 
     def self.custom_methods
-      {
-          "ie_st_brigids_day(year)" => Proc.new { |year|
-date = Date.civil(year, 2, 1)
-if date.wday == 5
-  date
-else
-  date + ((1 - date.wday) % 7)
-end
-},
-
-
-      }
+      {}
     end
   end
 end

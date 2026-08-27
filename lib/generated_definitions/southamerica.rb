@@ -121,63 +121,7 @@ module Holidays
     end
 
     def self.custom_methods
-      {
-          "to_nearest_monday(date)" => Proc.new { |date|
-case date.wday
-when 5
-  date += 3
-when 4
-  date += 4
-when 3
-  date -= 2
-when 2
-  date -= 1
-end
-
-date
-},
-
-"st_peter_st_paul_cl(year)" => Proc.new { |year|
-date = Date.civil(year, 6, 29)
-if [2,3,4].include?(date.wday)
-  date -= (date.wday - 1)
-elsif date.wday == 5
-  date += 3
-end
-date
-},
-
-"columbus_day_cl(year)" => Proc.new { |year|
-date = Date.civil(year, 10, 12)
-if [2,3,4].include?(date.wday)
-  date -= (date.wday - 1)
-elsif date.wday == 5
-  date += 3
-end
-date
-},
-
-"other_churches_day_cl(year)" => Proc.new { |year|
-date = Date.civil(year, 10, 31)
-if date.wday == 2
-  date -= 4
-elsif date.wday == 3
-  date += 2
-end
-date
-},
-
-"to_following_monday_if_not_monday(date)" => Proc.new { |date|
-if date.wday > 1
-  date += ( 8 - date.wday )
-elsif date.wday == 0
-  date += 1
-end
-date
-},
-
-
-      }
+      {}
     end
   end
 end

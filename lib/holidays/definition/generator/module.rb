@@ -4,7 +4,12 @@ module Holidays
   module Definition
     module Generator
       class Module
-        def call(module_name, files, regions, month_strings, custom_methods)
+        # NOTE: +custom_methods+ is accepted for backwards-compatible call sites but is
+        # no longer baked into the generated module. Per-region custom methods are now
+        # hosted natively under lib/holidays/definition/custom_methods/ and seeded into
+        # the repository at boot. YAML files that still carry methods:/ruby: blocks are
+        # tolerated: their bodies are simply ignored here.
+        def call(module_name, files, regions, month_strings, custom_methods = nil)
           raise ArgumentError.new("module name cannot be nil") if module_name.nil?
           raise ArgumentError.new("module name cannot be blank") if module_name.empty?
 
@@ -38,9 +43,7 @@ module Holidays
     end
 
     def self.custom_methods
-      {
-          #{custom_methods}
-      }
+      {}
     end
   end
 end
