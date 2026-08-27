@@ -16,8 +16,6 @@ jobs:
       BUNDLER_NO_OLD_RUBYGEMS_WARNING: true
     steps:
     - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd #v5.0.1
-      with:
-        submodules: recursive # native custom-method parity/coverage tests read definitions/*.yaml
     - name: Set up Ruby
       uses: ruby/setup-ruby@c4e5b1316158f92e3d49443a9d58b31d25ac0f8f #v1.306.0
       with:

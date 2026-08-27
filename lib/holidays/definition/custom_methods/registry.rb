@@ -2,6 +2,7 @@ require 'holidays/definition/custom_methods/ar'
 require 'holidays/definition/custom_methods/au'
 require 'holidays/definition/custom_methods/ca'
 require 'holidays/definition/custom_methods/ch'
+require 'holidays/definition/custom_methods/cn'
 require 'holidays/definition/custom_methods/cl'
 require 'holidays/definition/custom_methods/co'
 require 'holidays/definition/custom_methods/de'
@@ -10,6 +11,7 @@ require 'holidays/definition/custom_methods/fi'
 require 'holidays/definition/custom_methods/ie'
 require 'holidays/definition/custom_methods/is'
 require 'holidays/definition/custom_methods/jp'
+require 'holidays/definition/custom_methods/kr'
 require 'holidays/definition/custom_methods/lv'
 require 'holidays/definition/custom_methods/nz'
 require 'holidays/definition/custom_methods/ph'
@@ -40,6 +42,7 @@ module Holidays
           "ch_vd_lundi_du_jeune_federal(year)" => CH.method(:ch_vd_lundi_du_jeune_federal).to_proc,
           "christmas_eve_holiday(date)" => US.method(:christmas_eve_holiday).to_proc,
           "closest_monday(date)" => NZ.method(:closest_monday).to_proc,
+          "cn_qingming(year)" => CN.method(:cn_qingming).to_proc,
           "columbus_day_cl(year)" => CL.method(:columbus_day_cl).to_proc,
           "day_after_thanksgiving(year)" => FEDEX.method(:day_after_thanksgiving).to_proc,
           "de_buss_und_bettag(year)" => DE.method(:de_buss_und_bettag).to_proc,
@@ -65,6 +68,7 @@ module Holidays
           "jp_vernal_equinox_day(year)" => JP.method(:jp_vernal_equinox_day).to_proc,
           "jp_vernal_equinox_day_substitute(year)" => JP.method(:jp_vernal_equinox_day_substitute).to_proc,
           "juneteenth_national_independence_day(region, date)" => US.method(:juneteenth_national_independence_day).to_proc,
+          "kr_seollal_eve(year, region)" => KR.method(:kr_seollal_eve).to_proc,
           "lee_jackson_day(year, month)" => US.method(:lee_jackson_day).to_proc,
           "lv_song_and_dance_festival_end_date(year)" => LV.method(:lv_song_and_dance_festival_end_date).to_proc,
           "march_pub_hol_sa(year)" => AU.method(:march_pub_hol_sa).to_proc,
