@@ -94,7 +94,9 @@ module Holidays
             # This suuuucks. I have no idea how to make this not reach into our interal ruby API to do this.
             # I'm punting, I'll come back to this.
             is_holiday = Holidays::JP.holidays_by_month[date.month].any? do |holiday|
-              holiday[:mday] == date.day
+              next false unless holiday[:mday] == date.day
+              next true unless holiday[:year_ranges]
+              Holidays::Finder::Rules::YearRange.call(date.year, holiday[:year_ranges])
             end
             date.wday == 0 || is_holiday ? (Holidays::Factory::Definition.custom_methods_repository.find("jp_next_weekday(date)").call(date+1)) : date
           end
