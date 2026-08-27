@@ -132,6 +132,10 @@ module Holidays
                     rule[:function_arguments] = get_function_arguments(rule[:function], parsed_custom_methods)
                   end
 
+                  if rule[:observed]
+                    rule[:observed_arguments] = get_function_arguments(rule[:observed], parsed_custom_methods)
+                  end
+
                   rules_by_month[month] << rule
                 end
               end
