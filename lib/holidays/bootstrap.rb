@@ -1,16 +1,16 @@
 require 'holidays/definition/custom_methods/registry'
 
 module Holidays
-  #TODO This file should be renamed. It's no longer about definitions, really.
-  class LoadAllDefinitions
+  # Runs once at require time (see the bottom of lib/holidays.rb). Despite the
+  # historical name of its alias, this does NOT load per-region holiday data;
+  # that happens lazily in Definition::Context::Load. What it does:
+  #   1. Register the built-in calculation procs (easter, weekend modifiers,
+  #      lunar_to_solar, calculate_day_of_month) into custom_methods_repository.
+  #   2. Register the native per-region custom methods (CustomMethods.all).
+  #   3. Require generated_definitions/REGIONS.rb (the region-name list only).
+  class Bootstrap
     class << self
       def call
-        #FIXME I need a better way to do this. I'm thinking of putting these 'common' methods
-        # into some kind of definition file so it can be loaded automatically but I'm afraid
-        # of making that big of a breaking API change since these are public. For the time
-        # being I'll load them manually like this.
-        #
-        # NOTE: These are no longer public! We can do whatever we want here!
         global_methods = {
           "easter(year)" => gregorian_easter.method(:calculate_easter_for).to_proc,
           "orthodox_easter(year)" => gregorian_easter.method(:calculate_orthodox_easter_for).to_proc,
@@ -61,4 +61,6 @@ module Holidays
       end
     end
   end
+
+  private_constant :Bootstrap
 end
