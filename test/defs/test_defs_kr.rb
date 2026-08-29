@@ -33,5 +33,15 @@ class KrDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "설날", (Holidays.on(Date.civil(2017, 1, 28), [:kr], [:informal])[0] || {})[:name]
 
+    assert_equal "설날 연휴", (Holidays.on(Date.civil(2017, 1, 27), [:kr], [:informal])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 2, 15), [:kr], [:informal])[0] || {})[:name]
+
+    assert_equal "설날 연휴", (Holidays.on(Date.civil(2020, 1, 24), [:kr], [:informal])[0] || {})[:name]
+
+    assert_equal "설날 연휴", (Holidays.on(Date.civil(2022, 1, 31), [:kr], [:informal])[0] || {})[:name]
+
+    assert_equal "설날 연휴", (Holidays.on(Date.civil(2025, 1, 28), [:kr], [:informal])[0] || {})[:name]
+
   end
 end

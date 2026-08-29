@@ -79,9 +79,13 @@ class DeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Internationaler Frauentag", (Holidays.on(Date.civil(2019, 3, 8), [:de_be])[0] || {})[:name]
 
+    assert_nil (Holidays.on(Date.civil(2022, 3, 8), [:de_mv])[0] || {})[:name]
+
     assert_equal "Internationaler Frauentag", (Holidays.on(Date.civil(2023, 3, 8), [:de_mv])[0] || {})[:name]
 
     assert_equal "Tag der Befreiung", (Holidays.on(Date.civil(2020, 5, 8), [:de_be])[0] || {})[:name]
+
+    assert_equal "Tag der Befreiung", (Holidays.on(Date.civil(2025, 5, 8), [:de_be])[0] || {})[:name]
 
     assert_equal "Jahrestag des Volksaufstands in der DDR", (Holidays.on(Date.civil(2028, 6, 17), [:de_be])[0] || {})[:name]
 

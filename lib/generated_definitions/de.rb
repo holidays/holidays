@@ -28,7 +28,7 @@ module Holidays
       3 => [{:mday => 8, :year_ranges => { :from => 2019 },:name => "Internationaler Frauentag", :regions => [:de_be]},
             {:mday => 8, :year_ranges => { :from => 2023 },:name => "Internationaler Frauentag", :regions => [:de_mv]}],
       5 => [{:mday => 1, :year_ranges => { :from => 1933 },:name => "Tag der Arbeit", :regions => [:de]},
-            {:mday => 8, :year_ranges => { :limited => [2020] },:name => "Tag der Befreiung", :regions => [:de_be]}],
+            {:mday => 8, :year_ranges => { :limited => [2020, 2025] },:name => "Tag der Befreiung", :regions => [:de_be]}],
       6 => [{:mday => 17, :year_ranges => { :between => 1954..1990 },:name => "Tag der Deutschen Einheit", :regions => [:de]},
             {:mday => 17, :year_ranges => { :limited => [2028] },:name => "Jahrestag des Volksaufstands in der DDR", :regions => [:de_be]}],
       8 => [{:mday => 15, :name => "Mariä Himmelfahrt", :regions => [:de_by_cath, :de_by_augsburg, :de_sl]},

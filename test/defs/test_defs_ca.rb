@@ -285,5 +285,9 @@ assert_equal "Boxing Day", (Holidays.on(Date.civil(2015, 12, 28), [:ca_on], [:ob
 
     assert_equal "Halloween", (Holidays.on(Date.civil(2013, 10, 31), [:us], [:informal])[0] || {})[:name]
 
+    assert_equal "Day of the Dead", (Holidays.on(Date.civil(2013, 11, 1), [:us], [:informal])[0] || {})[:name]
+
+    assert_equal "Day of the Dead", (Holidays.on(Date.civil(2013, 11, 2), [:us], [:informal])[0] || {})[:name]
+
   end
 end

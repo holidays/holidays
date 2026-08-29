@@ -45,6 +45,14 @@ class JpDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "振替休日", (Holidays.on(Date.civil(2019, 8, 12), [:jp], [:informal])[0] || {})[:name]
 
+    assert_equal "振替休日", (Holidays.on(Date.civil(2018, 4, 30), [:jp], [:informal])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2018, 5, 7), [:jp], [:informal])[0] || {})[:name]
+
+    assert_equal "休日", (Holidays.on(Date.civil(2019, 4, 30), [:jp], [:informal])[0] || {})[:name]
+
+    assert_equal "振替休日", (Holidays.on(Date.civil(2019, 5, 6), [:jp], [:informal])[0] || {})[:name]
+
     assert_equal "春分の日", (Holidays.on(Date.civil(2004, 3, 20), [:jp])[0] || {})[:name]
 
     assert_equal "春分の日", (Holidays.on(Date.civil(2005, 3, 20), [:jp])[0] || {})[:name]

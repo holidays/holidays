@@ -1,5 +1,13 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 11.5.0
+
+* Update to [v9.0.0 definitions](https://github.com/holidays/definitions/releases/tag/v9.0.0): new `cn` region; `jp`, `kr`, `nz_sl`, `nz_hb`, `ro` date fixes; `tr` feasts through 2030; `de_be` 2025; informal Day of the Dead for `us`/`ca`. The v9.0.0 major is a definitions format change only and does not affect gem results or API.
+* Host region custom calculation methods natively instead of eval-ing Ruby from the definitions YAML; results unchanged. [#496](https://github.com/holidays/holidays/issues/496), [#498](https://github.com/holidays/holidays/pull/498), [#499](https://github.com/holidays/holidays/pull/499), [#500](https://github.com/holidays/holidays/pull/500)
+* Add `:cn` to the lunar calendar region map. [#494](https://github.com/holidays/holidays/pull/494)
+* Fix `observed` methods with arguments other than `date` raising `NoMethodError` under `load_custom`. [#501](https://github.com/holidays/holidays/pull/501)
+* Rename internal `Holidays::LoadAllDefinitions` to a private `Holidays::Bootstrap`. [#497](https://github.com/holidays/holidays/issues/497)
+
 ## 11.4.0
 
 * Update to [v8.2.0 definitions](https://github.com/holidays/definitions/releases/tag/v8.2.0). Please see the changelog for the definition details.
