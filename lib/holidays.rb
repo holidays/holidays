@@ -7,7 +7,7 @@ require 'holidays/factory/definition'
 require 'holidays/factory/date_calculator'
 require 'holidays/factory/finder'
 require 'holidays/errors'
-require 'holidays/load_all_definitions'
+require 'holidays/bootstrap'
 
 module Holidays
   WEEKS = {:first => 1, :second => 2, :third => 3, :fourth => 4, :fifth => 5, :last => -1, :second_last => -2, :third_last => -3}
@@ -140,4 +140,6 @@ module Holidays
   end
 end
 
-Holidays::LoadAllDefinitions.call
+module Holidays
+  Bootstrap.call
+end

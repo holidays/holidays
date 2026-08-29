@@ -25,7 +25,7 @@ module Holidays
       # Maps the full call-signature string used by YAML +function:+/+observed:+
       # references to the native proc that implements it. Seeded into
       # Factory::Definition.custom_methods_repository at boot by
-      # LoadAllDefinitions.call, alongside the global built-in methods.
+      # Holidays::Bootstrap.call, alongside the global built-in methods.
       #
       # Native replacement for the old per-region +methods:/ruby:+ YAML blocks.
       # No eval, no public registration API.
