@@ -12,7 +12,8 @@ module Holidays
 
     def self.holidays_by_month
       {
-                1 => [{:mday => 1, :function => "lunar_to_solar(year, month, day, region)", :function_arguments => [:year, :month, :day, :region], :name => "설날", :regions => [:kr]},
+                1 => [{:function => "kr_seollal_eve(year, region)", :function_arguments => [:year, :region], :name => "설날 연휴", :regions => [:kr]},
+            {:mday => 1, :function => "lunar_to_solar(year, month, day, region)", :function_arguments => [:year, :month, :day, :region], :name => "설날", :regions => [:kr]},
             {:mday => 2, :function => "lunar_to_solar(year, month, day, region)", :function_arguments => [:year, :month, :day, :region], :name => "설날 연휴", :regions => [:kr]},
             {:mday => 1, :name => "신정", :regions => [:kr]}],
       3 => [{:mday => 1, :name => "3·1절", :regions => [:kr]}],
@@ -26,8 +27,7 @@ module Holidays
             {:mday => 15, :name => "광복절", :regions => [:kr]}],
       10 => [{:mday => 3, :name => "개천절", :regions => [:kr]},
             {:mday => 9, :name => "한글날", :regions => [:kr]}],
-      12 => [{:mday => 25, :name => "크리스마스", :regions => [:kr]},
-            {:mday => 30, :function => "lunar_to_solar(year, month, day, region)", :function_arguments => [:year, :month, :day, :region], :name => "설날 연휴", :regions => [:kr]}]
+      12 => [{:mday => 25, :name => "크리스마스", :regions => [:kr]}]
       }
     end
 

@@ -7,7 +7,7 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class ThDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_th
-    assert_equal "วันขึ้นปีใหม่", (Holidays.on(Date.civil(20019, 1, 1), [:th], [:informal])[0] || {})[:name]
+    assert_equal "วันขึ้นปีใหม่", (Holidays.on(Date.civil(2019, 1, 1), [:th], [:informal])[0] || {})[:name]
 
     assert_equal "วันจักรี", (Holidays.on(Date.civil(2019, 4, 6), [:th], [:informal])[0] || {})[:name]
 

@@ -269,9 +269,13 @@ class EuropeDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Internationaler Frauentag", (Holidays.on(Date.civil(2019, 3, 8), [:de_be])[0] || {})[:name]
 
+    assert_nil (Holidays.on(Date.civil(2022, 3, 8), [:de_mv])[0] || {})[:name]
+
     assert_equal "Internationaler Frauentag", (Holidays.on(Date.civil(2023, 3, 8), [:de_mv])[0] || {})[:name]
 
     assert_equal "Tag der Befreiung", (Holidays.on(Date.civil(2020, 5, 8), [:de_be])[0] || {})[:name]
+
+    assert_equal "Tag der Befreiung", (Holidays.on(Date.civil(2025, 5, 8), [:de_be])[0] || {})[:name]
 
     assert_equal "Jahrestag des Volksaufstands in der DDR", (Holidays.on(Date.civil(2028, 6, 17), [:de_be])[0] || {})[:name]
 
@@ -1461,6 +1465,14 @@ assert_equal "Vecgada diena", (Holidays.on(Date.civil(2029, 12, 31), [:lv])[0] |
     assert_equal "Sărbătoarea Nașterii Domnului", (Holidays.on(Date.civil(2013, 12, 26), [:ro], [:informal])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(2013, 7, 23), [:ro])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2023, 1, 6), [:ro])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2023, 1, 7), [:ro])[0] || {})[:name]
+
+    assert_equal "Botezul Domnului - Boboteaza", (Holidays.on(Date.civil(2024, 1, 6), [:ro], [:informal])[0] || {})[:name]
+
+    assert_equal "Soborul Sfântului Proroc Ioan Botezătorul", (Holidays.on(Date.civil(2024, 1, 7), [:ro], [:informal])[0] || {})[:name]
 
     assert_equal "Botezul Domnului - Boboteaza", (Holidays.on(Date.civil(2025, 1, 6), [:ro], [:informal])[0] || {})[:name]
 

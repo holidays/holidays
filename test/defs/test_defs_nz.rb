@@ -7,6 +7,14 @@ require File.expand_path(File.dirname(__FILE__)) + '/../test_helper'
 class NzDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
   def test_nz
+    assert_equal "Southland Anniversary Day", (Holidays.on(Date.civil(2024, 4, 2), [:nz_sl])[0] || {})[:name]
+
+    assert_equal "Southland Anniversary Day", (Holidays.on(Date.civil(2025, 4, 22), [:nz_sl])[0] || {})[:name]
+
+    assert_equal "Hawke's bay Anniversary Day", (Holidays.on(Date.civil(2024, 10, 25), [:nz_hb], [:observed])[0] || {})[:name]
+
+    assert_equal "Hawke's bay Anniversary Day", (Holidays.on(Date.civil(2025, 10, 24), [:nz_hb], [:observed])[0] || {})[:name]
+
     assert_equal "New Year's Day", (Holidays.on(Date.civil(2007, 1, 1), [:nz], [:informal])[0] || {})[:name]
 
     assert_equal "Day after New Year's Day", (Holidays.on(Date.civil(2007, 1, 2), [:nz], [:informal])[0] || {})[:name]
