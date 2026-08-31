@@ -20,6 +20,7 @@ This gem is tested with the following ruby versions:
   * 3.4
   * 4.0
   * JRuby 10.0.5.0
+  * JRuby 10.1.0.0
 
 ## Semver
 
