@@ -84,7 +84,22 @@ class LunarHolidaysCalculatorTests < Test::Unit::TestCase
     assert_equal '2015-04-28', @subject.to_solar(2015,3,10, :vn).to_s
     assert_equal '2016-04-16', @subject.to_solar(2016,3,10, :vn).to_s
     assert_equal '2017-04-06', @subject.to_solar(2017,3,10, :vn).to_s
-    assert_equal '2018-03-27', @subject.to_solar(2018,3,10, :vn).to_s
+    assert_equal '2018-04-25', @subject.to_solar(2018,3,10, :vn).to_s
+    assert_equal '2019-04-14', @subject.to_solar(2019,3,10, :vn).to_s
+    assert_equal '2020-04-02', @subject.to_solar(2020,3,10, :vn).to_s
+    assert_equal '2021-04-21', @subject.to_solar(2021,3,10, :vn).to_s
+    assert_equal '2022-04-10', @subject.to_solar(2022,3,10, :vn).to_s
+    assert_equal '2023-04-29', @subject.to_solar(2023,3,10, :vn).to_s
+    assert_equal '2024-04-18', @subject.to_solar(2024,3,10, :vn).to_s
+  end
+
+  def test_vietnamese_new_year_returns_expected_results
+    assert_equal '2017-01-28', @subject.to_solar(2017,1,1, :vn).to_s
+    assert_equal '2018-02-16', @subject.to_solar(2018,1,1, :vn).to_s
+    assert_equal '2019-02-05', @subject.to_solar(2019,1,1, :vn).to_s
+    assert_equal '2020-01-25', @subject.to_solar(2020,1,1, :vn).to_s
+    assert_equal '2021-02-12', @subject.to_solar(2021,1,1, :vn).to_s
+    assert_equal '2023-01-22', @subject.to_solar(2023,1,1, :vn).to_s
   end
 
   def test_chinese_new_year_returns_expected_results_for_singapore

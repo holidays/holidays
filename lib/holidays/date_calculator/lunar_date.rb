@@ -152,7 +152,7 @@ module Holidays
         [384, 1, 2, 1, 2, 1, 2, 1, 2, 4, 2, 1, 2].freeze,
         [354, 1, 2, 1, 1, 2, 1, 2, 2, 2, 1, 2, 1].freeze,
         [355, 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2].freeze,
-        [355, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 2, 2].freeze,
+        [384, 1, 2, 1, 2, 1, 5, 1, 2, 1, 2, 2, 2].freeze, # 2017 has a leap 6th month; previous entry omitted it, shifting every later date
         [354, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2, 2].freeze,
         [354, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2].freeze,
         [384, 2, 1, 2, 4, 2, 1, 1, 2, 1, 2, 1, 2].freeze,
