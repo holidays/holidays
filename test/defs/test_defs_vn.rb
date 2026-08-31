@@ -16,7 +16,10 @@ class VnDefinitionTests < Test::Unit::TestCase  # :nodoc:
     assert_equal "Quốc khánh", (Holidays.on(Date.civil(2014, 9, 2), [:vn])[0] || {})[:name]
 
     assert_equal "Giỗ tổ Hùng Vương", (Holidays.on(Date.civil(2017, 4, 6), [:vn])[0] || {})[:name]
-assert_equal "Giỗ tổ Hùng Vương", (Holidays.on(Date.civil(2018, 3, 27), [:vn])[0] || {})[:name]
+assert_equal "Giỗ tổ Hùng Vương", (Holidays.on(Date.civil(2018, 4, 25), [:vn])[0] || {})[:name]
+assert_equal "Giỗ tổ Hùng Vương", (Holidays.on(Date.civil(2019, 4, 14), [:vn])[0] || {})[:name]
+assert_equal "Giỗ tổ Hùng Vương", (Holidays.on(Date.civil(2020, 4, 2), [:vn])[0] || {})[:name]
+assert_equal "Giỗ tổ Hùng Vương", (Holidays.on(Date.civil(2023, 4, 29), [:vn])[0] || {})[:name]
 
   end
 end

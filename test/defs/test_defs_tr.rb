@@ -33,6 +33,8 @@ assert_equal "Ramazan Bayramı", (Holidays.on(Date.civil(2027, 3, 9), [:tr])[0] 
 assert_equal "Ramazan Bayramı", (Holidays.on(Date.civil(2028, 2, 26), [:tr])[0] || {})[:name]
 assert_equal "Ramazan Bayramı", (Holidays.on(Date.civil(2029, 2, 15), [:tr])[0] || {})[:name]
 assert_equal "Ramazan Bayramı", (Holidays.on(Date.civil(2030, 2, 4), [:tr])[0] || {})[:name]
+assert_equal "Ramazan Bayramı", (Holidays.on(Date.civil(2031, 1, 25), [:tr])[0] || {})[:name]
+assert_equal "Ramazan Bayramı", (Holidays.on(Date.civil(2032, 1, 14), [:tr])[0] || {})[:name]
 
     assert_equal "Ramazan Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2017, 6, 26), [:tr])[0] || {})[:name]
 assert_equal "Ramazan Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2018, 6, 16), [:tr])[0] || {})[:name]
@@ -48,6 +50,8 @@ assert_equal "Ramazan Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2027, 3,
 assert_equal "Ramazan Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2028, 2, 27), [:tr])[0] || {})[:name]
 assert_equal "Ramazan Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2029, 2, 16), [:tr])[0] || {})[:name]
 assert_equal "Ramazan Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2030, 2, 5), [:tr])[0] || {})[:name]
+assert_equal "Ramazan Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2031, 1, 26), [:tr])[0] || {})[:name]
+assert_equal "Ramazan Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2032, 1, 15), [:tr])[0] || {})[:name]
 
     assert_equal "Ramazan Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2017, 6, 27), [:tr])[0] || {})[:name]
 assert_equal "Ramazan Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2018, 6, 17), [:tr])[0] || {})[:name]
@@ -63,6 +67,8 @@ assert_equal "Ramazan Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2027
 assert_equal "Ramazan Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2028, 2, 28), [:tr])[0] || {})[:name]
 assert_equal "Ramazan Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2029, 2, 17), [:tr])[0] || {})[:name]
 assert_equal "Ramazan Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2030, 2, 6), [:tr])[0] || {})[:name]
+assert_equal "Ramazan Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2031, 1, 27), [:tr])[0] || {})[:name]
+assert_equal "Ramazan Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2032, 1, 16), [:tr])[0] || {})[:name]
 
     assert_equal "Demokrasi ve Milli Birlik Günü", (Holidays.on(Date.civil(2017, 7, 15), [:tr])[0] || {})[:name]
 
@@ -80,6 +86,8 @@ assert_equal "Kurban Bayramı", (Holidays.on(Date.civil(2027, 5, 16), [:tr])[0] 
 assert_equal "Kurban Bayramı", (Holidays.on(Date.civil(2028, 5, 5), [:tr])[0] || {})[:name]
 assert_equal "Kurban Bayramı", (Holidays.on(Date.civil(2029, 4, 24), [:tr])[0] || {})[:name]
 assert_equal "Kurban Bayramı", (Holidays.on(Date.civil(2030, 4, 13), [:tr])[0] || {})[:name]
+assert_equal "Kurban Bayramı", (Holidays.on(Date.civil(2031, 4, 3), [:tr])[0] || {})[:name]
+assert_equal "Kurban Bayramı", (Holidays.on(Date.civil(2032, 3, 22), [:tr])[0] || {})[:name]
 
     assert_equal "Kurban Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2017, 9, 2), [:tr])[0] || {})[:name]
 assert_equal "Kurban Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2018, 8, 22), [:tr])[0] || {})[:name]
@@ -95,6 +103,8 @@ assert_equal "Kurban Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2027, 5, 
 assert_equal "Kurban Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2028, 5, 6), [:tr])[0] || {})[:name]
 assert_equal "Kurban Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2029, 4, 25), [:tr])[0] || {})[:name]
 assert_equal "Kurban Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2030, 4, 14), [:tr])[0] || {})[:name]
+assert_equal "Kurban Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2031, 4, 4), [:tr])[0] || {})[:name]
+assert_equal "Kurban Bayramı (ikinci tatil)", (Holidays.on(Date.civil(2032, 3, 23), [:tr])[0] || {})[:name]
 
     assert_equal "Kurban Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2017, 9, 3), [:tr])[0] || {})[:name]
 assert_equal "Kurban Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2018, 8, 23), [:tr])[0] || {})[:name]
@@ -110,6 +120,8 @@ assert_equal "Kurban Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2027,
 assert_equal "Kurban Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2028, 5, 7), [:tr])[0] || {})[:name]
 assert_equal "Kurban Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2029, 4, 26), [:tr])[0] || {})[:name]
 assert_equal "Kurban Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2030, 4, 15), [:tr])[0] || {})[:name]
+assert_equal "Kurban Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2031, 4, 5), [:tr])[0] || {})[:name]
+assert_equal "Kurban Bayramı (üçüncü tatil)", (Holidays.on(Date.civil(2032, 3, 24), [:tr])[0] || {})[:name]
 
     assert_equal "Kurban Bayramı (dördüncü tatil)", (Holidays.on(Date.civil(2017, 9, 4), [:tr])[0] || {})[:name]
 assert_equal "Kurban Bayramı (dördüncü tatil)", (Holidays.on(Date.civil(2018, 8, 24), [:tr])[0] || {})[:name]
@@ -125,6 +137,8 @@ assert_equal "Kurban Bayramı (dördüncü tatil)", (Holidays.on(Date.civil(2027
 assert_equal "Kurban Bayramı (dördüncü tatil)", (Holidays.on(Date.civil(2028, 5, 8), [:tr])[0] || {})[:name]
 assert_equal "Kurban Bayramı (dördüncü tatil)", (Holidays.on(Date.civil(2029, 4, 27), [:tr])[0] || {})[:name]
 assert_equal "Kurban Bayramı (dördüncü tatil)", (Holidays.on(Date.civil(2030, 4, 16), [:tr])[0] || {})[:name]
+assert_equal "Kurban Bayramı (dördüncü tatil)", (Holidays.on(Date.civil(2031, 4, 6), [:tr])[0] || {})[:name]
+assert_equal "Kurban Bayramı (dördüncü tatil)", (Holidays.on(Date.civil(2032, 3, 25), [:tr])[0] || {})[:name]
 
   end
 end
