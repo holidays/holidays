@@ -2,6 +2,7 @@ require 'holidays/date_calculator/easter'
 require 'holidays/date_calculator/weekend_modifier'
 require 'holidays/date_calculator/day_of_month'
 require 'holidays/date_calculator/lunar_date'
+require 'holidays/date_calculator/hijri_date'
 
 module Holidays
   module Factory
@@ -25,8 +26,12 @@ module Holidays
       end
 
       class << self
-        def lunar_date 
+        def lunar_date
           Holidays::DateCalculator::LunarDate.new
+        end
+
+        def hijri_date
+          Holidays::DateCalculator::HijriDate.new
         end
 
         def weekend_modifier
