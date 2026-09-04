@@ -33,14 +33,16 @@ class MergerTests < Test::Unit::TestCase
     @subject.call(@target_regions, @target_holidays, @target_custom_methods)
   end
 
-  def test_call_resets_both_caches_after_merge
-    @holidays_repo.stubs(:add)
+  def test_caches_are_still_reset_when_a_repo_raises_mid_merge
+    @holidays_repo.expects(:add).raises(StandardError, "boom")
     @regions_repo.stubs(:add)
     @custom_methods_repo.stubs(:add)
 
-    @cache_repo.expects(:reset!).once
-    @proc_result_cache_repo.expects(:reset!).once
+    @cache_repo.expects(:reset!)
+    @proc_result_cache_repo.expects(:reset!)
 
-    @subject.call(@target_regions, @target_holidays, @target_custom_methods)
+    assert_raise(StandardError) do
+      @subject.call(@target_regions, @target_holidays, @target_custom_methods)
+    end
   end
 end

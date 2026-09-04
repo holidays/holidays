@@ -23,4 +23,33 @@ class CacheInvalidationTest < Test::Unit::TestCase
     assert_include unscoped_names, "Zzz Cache Invalidation Test Day"
   end
 
+  # Whether a region counts as "unloaded" depends on the whole process's
+  # history (test/defs alone loads every region before test/integration
+  # runs), so this can't be driven off Factory::Definition's memoized
+  # singletons without depending on suite ordering. Build a fresh, isolated
+  # set of real (non-mocked) repos wired the same way Factory::Definition
+  # wires them, and drive Definition::Context::Load against the test_region
+  # fixture used by test_load.rb -- that exercises the real Load -> Merger
+  # -> Cache#reset! path without touching global state or actual region data.
+  def test_lazily_loading_a_new_region_also_invalidates_the_result_cache
+    cache_repo = Holidays::Definition::Repository::Cache.new
+    proc_result_cache_repo = Holidays::Definition::Repository::ProcResultCache.new
+
+    merger = Holidays::Definition::Context::Merger.new(
+      Holidays::Definition::Repository::HolidaysByMonth.new,
+      Holidays::Definition::Repository::Regions.new([], {}),
+      Holidays::Definition::Repository::CustomMethods.new,
+      cache_repo,
+      proc_result_cache_repo,
+    )
+    load = Holidays::Definition::Context::Load.new(merger, File.expand_path(File.dirname(__FILE__)) + '/../data')
+
+    cache_repo.cache_between(Date.civil(2025, 1, 1), Date.civil(2025, 12, 31), [], [:de_be])
+    assert_not_empty cache_repo.instance_variable_get(:@cache_range)
+
+    load.call(:test_region)
+
+    assert_empty cache_repo.instance_variable_get(:@cache_range)
+  end
+
 end
