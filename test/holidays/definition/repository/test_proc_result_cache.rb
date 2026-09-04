@@ -75,6 +75,18 @@ class ProcResultCacheRepoTests < Test::Unit::TestCase
     assert_equal(Date.civil(2016, 1, 6), @subject.lookup(function, date, modifier))
   end
 
+  def test_reset_clears_previously_cached_results
+    call_count = 0
+    function = lambda { |year| call_count += 1; Date.civil(year, 2, 1) - 1 }
+    function_argument = 2015
+
+    @subject.lookup(function, function_argument)
+    @subject.reset!
+    @subject.lookup(function, function_argument)
+
+    assert_equal(2, call_count)
+  end
+
   def test_lookup_raises_error_if_function_argument_is_not_valid
     function = lambda { |year| Date.civil(year, 2, 1) - 1 }
     function_argument = "2015"

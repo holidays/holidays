@@ -11,14 +11,35 @@ class MergerTests < Test::Unit::TestCase
     @holidays_repo = mock()
     @regions_repo = mock()
     @custom_methods_repo = mock()
+    @cache_repo = mock()
+    @proc_result_cache_repo = mock()
 
-    @subject = Holidays::Definition::Context::Merger.new(@holidays_repo, @regions_repo, @custom_methods_repo)
+    @subject = Holidays::Definition::Context::Merger.new(
+      @holidays_repo,
+      @regions_repo,
+      @custom_methods_repo,
+      @cache_repo,
+      @proc_result_cache_repo,
+    )
   end
 
   def test_repos_are_called_to_add_regions_and_holidays
     @holidays_repo.expects(:add).with(@target_holidays)
     @regions_repo.expects(:add).with(@target_regions)
     @custom_methods_repo.expects(:add).with(@target_custom_methods, {}, {})
+    @cache_repo.expects(:reset!)
+    @proc_result_cache_repo.expects(:reset!)
+
+    @subject.call(@target_regions, @target_holidays, @target_custom_methods)
+  end
+
+  def test_call_resets_both_caches_after_merge
+    @holidays_repo.stubs(:add)
+    @regions_repo.stubs(:add)
+    @custom_methods_repo.stubs(:add)
+
+    @cache_repo.expects(:reset!).once
+    @proc_result_cache_repo.expects(:reset!).once
 
     @subject.call(@target_regions, @target_holidays, @target_custom_methods)
   end

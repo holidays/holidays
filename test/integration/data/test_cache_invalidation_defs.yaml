@@ -1,0 +1,12 @@
+months:
+  7:
+  - name: Zzz Cache Invalidation Test Day
+    regions: [de_be]
+    mday: 3
+
+tests:
+  - given:
+      date: "2025-07-03"
+      regions: ["de_be"]
+    expect:
+      name: "Zzz Cache Invalidation Test Day"

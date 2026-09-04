@@ -57,6 +57,8 @@ module Holidays
             holidays_by_month_repository,
             regions_repository,
             custom_methods_repository,
+            cache_repository,
+            proc_result_cache_repository,
           )
         end
 
