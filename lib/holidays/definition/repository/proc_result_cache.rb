@@ -33,6 +33,10 @@ module Holidays
           @proc_cache[proc_key]
         end
 
+        def reset!
+          @proc_cache = {}
+        end
+
         private
 
         def validate!(function, function_arguments)

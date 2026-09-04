@@ -3,10 +3,12 @@ module Holidays
     module Context
       # Merge a new set of definitions into the Holidays module.
       class Merger
-        def initialize(holidays_by_month_repo, regions_repo, custom_methods_repo)
+        def initialize(holidays_by_month_repo, regions_repo, custom_methods_repo, cache_repo, proc_result_cache_repo)
           @holidays_repo = holidays_by_month_repo
           @regions_repo = regions_repo
           @custom_methods_repo = custom_methods_repo
+          @cache_repo = cache_repo
+          @proc_result_cache_repo = proc_result_cache_repo
         end
 
         def call(target_regions, target_holidays, target_custom_methods, target_custom_method_sources = {})
@@ -17,6 +19,9 @@ module Holidays
             target_custom_method_sources,
             derive_function_regions(target_holidays),
           )
+        ensure
+          @cache_repo.reset!
+          @proc_result_cache_repo.reset!
         end
 
         private
