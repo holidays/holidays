@@ -72,6 +72,33 @@ module Holidays
             end
           end
 
+          # Independence Day observed shift, which varies by region:
+          #   - us_ri: Rhode Island moves to the following Monday on a weekend
+          #     (Saturday -> +2, Sunday -> +1).
+          #   - us_tx: Texas does not shift, the date is returned unchanged.
+          #   - everyone else: nearest weekday, same as +to_weekday_if_weekend+
+          #     (Saturday -> Friday, Sunday -> Monday).
+          def independence_day(region, date)
+            if region == :us_ri
+              case date.wday
+              when 6
+                date + 2
+              when 0
+                date + 1
+              else
+                date
+              end
+            elsif region == :us_tx
+              date
+            elsif date.wday == 6
+              date - 1
+            elsif date.wday == 0
+              date + 1
+            else
+              date
+            end
+          end
+
           def election_day(year)
             Holidays::Factory::DateCalculator.day_of_month_calculator.call(year, 11, 1, 1) + 1
           end
