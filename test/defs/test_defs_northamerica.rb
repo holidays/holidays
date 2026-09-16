@@ -514,9 +514,19 @@ assert_equal "Independence Day", (Holidays.on(Date.civil(2026, 7, 4), [:us, :us_
 assert_nil (Holidays.on(Date.civil(2021, 7, 5), [:us])[0] || {})[:name]
 assert_nil (Holidays.on(Date.civil(2026, 7, 3), [:us])[0] || {})[:name]
 
-    assert_equal "Independence Day (Holiday)", (Holidays.on(Date.civil(2020, 7, 3), [:us_va])[0] || {})[:name]
-assert_equal "Independence Day (Holiday)", (Holidays.on(Date.civil(2021, 7, 5), [:us_va])[0] || {})[:name]
-assert_equal "Independence Day (Holiday)", (Holidays.on(Date.civil(2026, 7, 3), [:us_va])[0] || {})[:name]
+    assert_nil (Holidays.on(Date.civil(2020, 7, 3), [:us_va])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2021, 7, 5), [:us_va])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2026, 7, 3), [:us_va])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2026, 7, 4), [:us, :us_ri], [:observed])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2027, 7, 4), [:us, :us_ri], [:observed])[0] || {})[:name]
+
+    assert_equal "Independence Day", (Holidays.on(Date.civil(2026, 7, 3), [:us, :us_va], [:observed])[0] || {})[:name]
+assert_equal "Independence Day", (Holidays.on(Date.civil(2027, 7, 5), [:us, :us_va], [:observed])[0] || {})[:name]
+
+    assert_equal "Independence Day", (Holidays.on(Date.civil(2026, 7, 6), [:us_ri], [:observed])[0] || {})[:name]
+
+    assert_equal "Independence Day", (Holidays.on(Date.civil(2026, 7, 4), [:us_tx], [:observed])[0] || {})[:name]
 
     assert_equal "Pioneer Day", (Holidays.on(Date.civil(2020, 7, 24), [:us_ut])[0] || {})[:name]
 
