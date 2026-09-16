@@ -1,5 +1,12 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 11.6.0
+
+* Update to [v9.1.0 definitions](https://github.com/holidays/definitions/releases/tag/v9.1.0): `tr` feast dates calculated instead of table-driven, `vn` Giỗ Tổ Hùng Vương date fixes, and a region-aware `us` Independence Day observed shift.
+* Calculate `tr` Ramazan Bayramı and Kurban Bayramı from a Hijri calendar instead of a hand-maintained per-year table, so they no longer silently disappear past 2030. [#504](https://github.com/holidays/holidays/pull/504)
+* Fix `vn` Giỗ Tổ Hùng Vương dates for 2018-2023, caused by a lunar calendar leap-month bug in the 2017 table row. [#506](https://github.com/holidays/holidays/pull/506)
+* Add a region-aware `independence_day` observed method for `us` Independence Day, replacing the `us_va`-only shift. Most regions shift to the nearest weekday, `us_ri` shifts to the following Monday, and `us_tx` never shifts. [#508](https://github.com/holidays/holidays/pull/508)
+
 ## 11.5.0
 
 * Update to [v9.0.0 definitions](https://github.com/holidays/definitions/releases/tag/v9.0.0): new `cn` region; `jp`, `kr`, `nz_sl`, `nz_hb`, `ro` date fixes; `tr` feasts through 2030; `de_be` 2025; informal Day of the Dead for `us`/`ca`. The v9.0.0 major is a definitions format change only and does not affect gem results or API.
