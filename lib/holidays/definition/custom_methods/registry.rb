@@ -13,6 +13,7 @@ require 'holidays/definition/custom_methods/is'
 require 'holidays/definition/custom_methods/jp'
 require 'holidays/definition/custom_methods/kr'
 require 'holidays/definition/custom_methods/lv'
+require 'holidays/definition/custom_methods/ma'
 require 'holidays/definition/custom_methods/nz'
 require 'holidays/definition/custom_methods/ph'
 require 'holidays/definition/custom_methods/se'
@@ -46,6 +47,8 @@ module Holidays
           "columbus_day_cl(year)" => CL.method(:columbus_day_cl).to_proc,
           "day_after_thanksgiving(year)" => FEDEX.method(:day_after_thanksgiving).to_proc,
           "de_buss_und_bettag(year)" => DE.method(:de_buss_und_bettag).to_proc,
+          "eid_al_adha(year)" => MA.method(:eid_al_adha).to_proc,
+          "eid_al_fitr(year)" => MA.method(:eid_al_fitr).to_proc,
           "election_day(year)" => US.method(:election_day).to_proc,
           "even_year_election_day(year)" => US.method(:even_year_election_day).to_proc,
           "fi_juhannusaatto(year)" => FI.method(:fi_juhannusaatto).to_proc,
