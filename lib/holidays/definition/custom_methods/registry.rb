@@ -13,6 +13,7 @@ require 'holidays/definition/custom_methods/is'
 require 'holidays/definition/custom_methods/jp'
 require 'holidays/definition/custom_methods/kr'
 require 'holidays/definition/custom_methods/lv'
+require 'holidays/definition/custom_methods/my'
 require 'holidays/definition/custom_methods/nz'
 require 'holidays/definition/custom_methods/ph'
 require 'holidays/definition/custom_methods/se'
@@ -52,6 +53,8 @@ module Holidays
           "fi_juhannuspaiva(year)" => FI.method(:fi_juhannuspaiva).to_proc,
           "fi_pyhainpaiva(year)" => FI.method(:fi_pyhainpaiva).to_proc,
           "georgia_state_holiday(year, month)" => US.method(:georgia_state_holiday).to_proc,
+          "hari_raya_haji(year)" => MY.method(:hari_raya_haji).to_proc,
+          "hari_raya_puasa(year)" => MY.method(:hari_raya_puasa).to_proc,
           "hobart_show_day(year)" => AU.method(:hobart_show_day).to_proc,
           "ie_st_brigids_day(year)" => IE.method(:ie_st_brigids_day).to_proc,
           "independence_day(region, date)" => US.method(:independence_day).to_proc,
