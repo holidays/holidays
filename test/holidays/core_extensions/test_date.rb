@@ -120,3 +120,59 @@ class CoreExtensionDateTests < Test::Unit::TestCase
   end
 
 end
+
+class CoreExtensionDateEndOfMonthTests < Test::Unit::TestCase
+  class Monthly
+    include Holidays::CoreExtensions::Date
+
+    attr_reader :year, :month
+
+    def initialize(year, month)
+      @year = year
+      @month = month
+    end
+  end
+
+  class OwnEndOfMonth < Monthly
+    def end_of_month
+      :own_implementation
+    end
+  end
+
+  class Parent
+    def end_of_month
+      :parent_implementation
+    end
+  end
+
+  class Child < Parent
+    include Holidays::CoreExtensions::Date
+  end
+
+  class OwnEndOfMonthAfterInclude
+    include Holidays::CoreExtensions::Date
+
+    def end_of_month
+      :own_implementation
+    end
+  end
+
+  def test_keeps_end_of_month_defined_on_the_class
+    assert_equal :own_implementation, OwnEndOfMonth.new(2008, 1).end_of_month
+    assert_equal :own_implementation, OwnEndOfMonthAfterInclude.new.end_of_month
+  end
+
+  def test_does_not_shadow_end_of_month_inherited_from_superclass
+    assert_equal :parent_implementation, Child.new.end_of_month
+  end
+
+  def test_defines_end_of_month_when_missing
+    assert_equal Date.civil(2008, 1, 31), Monthly.new(2008, 1).end_of_month
+    assert_equal Date.civil(2008, 9, 30), Monthly.new(2008, 9).end_of_month
+  end
+
+  def test_end_of_month_handles_february
+    assert_equal Date.civil(2016, 2, 29), Monthly.new(2016, 2).end_of_month
+    assert_equal Date.civil(2015, 2, 28), Monthly.new(2015, 2).end_of_month
+  end
+end

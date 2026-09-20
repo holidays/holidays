@@ -351,6 +351,17 @@ Date.calculate_mday(2015, 4, :first, 2)
 => 7
 ```
 
+Or find the end of the month for a given date:
+
+```ruby
+d = Date.new(2016,8,1)
+d.end_of_month
+=> #<Date: 2016-08-31 ((2457632j,0s,0n),+0s,2299161j)>
+```
+
+`end_of_month` is only defined when the class does not already have one, so
+ActiveSupport's `end_of_month` is never overridden.
+
 ### Time
 
 ```ruby
@@ -359,14 +370,6 @@ require 'holidays/core_extensions/time'
 class Time
   include Holidays::CoreExtensions::Time
 end
-```
-
-Find end of month for given date:
-
-```ruby
-d = Date.new(2016,8,1)
-d.end_of_month
-=> #<Date: 2016-08-31 ((2457632j,0s,0n),+0s,2299161j)>
 ```
 
 ## Caching Holiday Lookups
