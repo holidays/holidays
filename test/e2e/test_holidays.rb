@@ -104,6 +104,38 @@ class HolidaysTests < Test::Unit::TestCase
     end
   end
 
+  def test_next_holidays_returns_the_requested_count_beyond_twelve_months
+    assert_equal 40, Holidays.next_holidays(40, [:de], Date.new(2024, 3, 1)).size
+    assert_equal 40, Holidays.next_holidays(40, [:us], Date.new(2024, 1, 1)).size
+  end
+
+  def test_next_holidays_does_not_skip_fixed_date_holidays_past_twelve_months
+    holidays = Holidays.next_holidays(12, [:de], Date.new(2024, 3, 1))
+
+    assert_includes holidays.map { |h| [h[:date].to_s, h[:name]] }, ['2025-05-01', 'Tag der Arbeit']
+  end
+
+  def test_next_holidays_matches_between_for_every_date_before_the_last_one
+    [
+      [[:de], Date.new(2024, 3, 1)],
+      [[:us], Date.new(2024, 1, 1)],
+      [[:gb], Date.new(2024, 12, 31)],
+      [[:ca_on], Date.new(2024, 2, 29)],
+    ].each do |regions, from_date|
+      holidays = Holidays.next_holidays(40, regions, from_date)
+      last_date = holidays.last[:date]
+      before_last = holidays.select { |h| h[:date] < last_date }
+
+      expected = Holidays.between(from_date, last_date - 1, regions)
+
+      assert_equal(
+        expected.map { |h| [h[:date], h[:name]] }.sort,
+        before_last.map { |h| [h[:date], h[:name]] }.sort,
+        "next_holidays(40, #{regions.inspect}, #{from_date}) disagrees with between",
+      )
+    end
+  end
+
   def test_year_holidays
     # Should return 7 holidays from February 23 to December 31
     holidays = Holidays.year_holidays([:ca_on], Date.civil(2016, 2, 23))
