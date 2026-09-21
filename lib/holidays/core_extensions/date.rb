@@ -3,6 +3,7 @@ module Holidays
     module Date
       def self.included(base)
         base.extend ClassMethods
+        base.include EndOfMonth unless base.method_defined?(:end_of_month)
       end
 
       # Get holidays on the current date.
@@ -42,9 +43,16 @@ module Holidays
         )
       end
 
-      def end_of_month
-        last_day = ::Time.days_in_month( self.month, self.year )
-        change(:day => last_day)
+      # Defined only when the including class has no end_of_month of its own,
+      # so implementations such as ActiveSupport's are never shadowed.
+      module EndOfMonth
+        # Returns the last day of the month as a Date.
+        #
+        #   Date.new(2016, 8, 1).end_of_month
+        #   => #<Date: 2016-08-31 ...>
+        def end_of_month
+          ::Date.new(year, month, -1)
+        end
       end
 
       module ClassMethods
