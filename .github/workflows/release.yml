@@ -9,7 +9,7 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    if: github.event.workflow_run.conclusion == 'success'
+    if: github.event.workflow_run.conclusion == 'success' && github.repository == 'holidays/holidays'
     env:
       BUNDLER_NO_OLD_RUBYGEMS_WARNING: true
     steps:
