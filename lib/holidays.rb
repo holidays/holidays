@@ -100,8 +100,8 @@ module Holidays
     def load_custom(*files)
       regions, rules_by_month, custom_methods, _, _ = Factory::Definition.file_parser.parse_definition_files(files)
 
-      # Capture source code before converting entities to Procs so the merger
-      # can detect genuine conflicts (same name, different logic).
+      # Capture source code before converting entities to Procs so reloading the
+      # same file is a no-op while any other name collision raises.
       method_sources = custom_methods.each_with_object({}) do |(key, entity), h|
         h[key] = entity.source
       end
