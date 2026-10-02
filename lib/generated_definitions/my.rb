@@ -12,7 +12,9 @@ module Holidays
 
     def self.holidays_by_month
       {
-                1 => [{:mday => 1, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:my]}],
+                0 => [{:function => "hari_raya_puasa(year)", :function_arguments => [:year], :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Hari Raya Puasa", :regions => [:my]},
+            {:function => "hari_raya_haji(year)", :function_arguments => [:year], :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Hari Raya Haji", :regions => [:my]}],
+      1 => [{:mday => 1, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:my]}],
       5 => [{:mday => 1, :name => "Labour Day", :regions => [:my]}],
       6 => [{:mday => 4, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Agong's Birthday", :regions => [:my]}],
       8 => [{:mday => 31, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "Independence Day", :regions => [:my]}],

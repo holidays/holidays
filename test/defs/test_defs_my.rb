@@ -19,5 +19,29 @@ class MyDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Christmas Day", (Holidays.on(Date.civil(2016, 12, 25), [:my], [:informal])[0] || {})[:name]
 
+    assert_equal "Hari Raya Puasa", (Holidays.on(Date.civil(2021, 5, 13), [:my])[0] || {})[:name]
+
+    assert_equal "Hari Raya Haji", (Holidays.on(Date.civil(2020, 7, 31), [:my])[0] || {})[:name]
+
+    assert_equal "Hari Raya Puasa", (Holidays.on(Date.civil(2014, 7, 28), [:my])[0] || {})[:name]
+assert_equal "Hari Raya Puasa", (Holidays.on(Date.civil(2015, 7, 17), [:my])[0] || {})[:name]
+assert_equal "Hari Raya Puasa", (Holidays.on(Date.civil(2016, 7, 6), [:my])[0] || {})[:name]
+assert_equal "Hari Raya Puasa", (Holidays.on(Date.civil(2017, 6, 25), [:my])[0] || {})[:name]
+assert_equal "Hari Raya Puasa", (Holidays.on(Date.civil(2026, 3, 21), [:my])[0] || {})[:name]
+
+    assert_equal "Hari Raya Haji", (Holidays.on(Date.civil(2016, 9, 12), [:my])[0] || {})[:name]
+assert_equal "Hari Raya Haji", (Holidays.on(Date.civil(2017, 9, 1), [:my])[0] || {})[:name]
+assert_equal "Hari Raya Haji", (Holidays.on(Date.civil(2019, 8, 11), [:my])[0] || {})[:name]
+
+    assert_equal "Hari Raya Puasa", (Holidays.on(Date.civil(2017, 6, 26), [:my], [:observed])[0] || {})[:name]
+
+    assert_equal "Hari Raya Haji", (Holidays.on(Date.civil(2019, 8, 12), [:my], [:observed])[0] || {})[:name]
+
+    assert_equal "Hari Raya Haji", (Holidays.on(Date.civil(2022, 7, 11), [:my], [:observed])[0] || {})[:name]
+
+    assert_equal "Hari Raya Puasa", (Holidays.on(Date.civil(2026, 3, 21), [:my], [:observed])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2026, 3, 22), [:my], [:observed])[0] || {})[:name]
+
   end
 end
