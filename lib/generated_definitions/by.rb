@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-                0 => [{:function => "easter(year)", :function_arguments => [:year], :type => :informal, :name => "Вялікдзень каталіцкі", :regions => [:by]},
+      0 => [{:function => "easter(year)", :function_arguments => [:year], :type => :informal, :name => "Вялікдзень каталіцкі", :regions => [:by]},
             {:function => "orthodox_easter(year)", :function_arguments => [:year], :type => :informal, :name => "Вялікдзень праваслаўны", :regions => [:by]},
             {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => 9, :name => "Радуніца", :regions => [:by]}],
       1 => [{:mday => 1, :name => "Новы год", :regions => [:by]},

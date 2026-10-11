@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-                1 => [{:mday => 1, :name => "วันขึ้นปีใหม่", :regions => [:th]}],
+      1 => [{:mday => 1, :name => "วันขึ้นปีใหม่", :regions => [:th]}],
       4 => [{:mday => 6, :name => "วันจักรี", :regions => [:th]},
             {:mday => 13, :name => "วันสงกรานต์", :regions => [:th]},
             {:mday => 14, :name => "วันสงกรานต์", :regions => [:th]},

@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-                0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:in]}],
+      0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:in]}],
       1 => [{:mday => 1, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:in]},
             {:mday => 12, :name => "Swami Vivekananda Jayanti", :regions => [:in_wb]},
             {:mday => 14, :name => "Makar Sankranti / Pongal / Magh Bihu / Uttarayan / Khichdi / Sankranti", :regions => [:in]},

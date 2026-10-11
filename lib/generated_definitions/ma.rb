@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-                0 => [{:function => "eid_al_fitr(year)", :function_arguments => [:year], :name => "Eid al-Fitr", :regions => [:ma]},
+      0 => [{:function => "eid_al_fitr(year)", :function_arguments => [:year], :name => "Eid al-Fitr", :regions => [:ma]},
             {:function => "eid_al_adha(year)", :function_arguments => [:year], :name => "Eid al-Adha", :regions => [:ma]}],
       1 => [{:mday => 1, :name => "Ras l' âm", :regions => [:ma]},
             {:mday => 11, :name => "Takdim watikat al-istiqlal", :regions => [:ma]}],

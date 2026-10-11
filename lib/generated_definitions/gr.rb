@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-                0 => [{:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Μεγάλη Παρασκευή", :regions => [:gr]},
+      0 => [{:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Μεγάλη Παρασκευή", :regions => [:gr]},
             {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => -1, :name => "Μεγάλο Σάββατο", :regions => [:gr]},
             {:function => "orthodox_easter(year)", :function_arguments => [:year], :name => "Κυριακή του Πάσχα", :regions => [:gr]},
             {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Δευτέρα του Πάσχα", :regions => [:gr]},

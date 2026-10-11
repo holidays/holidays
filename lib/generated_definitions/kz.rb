@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-                1 => [{:mday => 1, :name => "Jańa jyl", :regions => [:kz]},
+      1 => [{:mday => 1, :name => "Jańa jyl", :regions => [:kz]},
             {:mday => 2, :name => "Jańa jyl", :regions => [:kz]}],
       3 => [{:mday => 8, :name => "Halyqaralyq áıelder kúni", :regions => [:kz]},
             {:mday => 21, :name => "Naýryz Meıramy", :regions => [:kz]},

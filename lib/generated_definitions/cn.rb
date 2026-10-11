@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-                1 => [{:mday => 1, :name => "元旦", :regions => [:cn]},
+      1 => [{:mday => 1, :name => "元旦", :regions => [:cn]},
             {:mday => 1, :function => "lunar_to_solar(year, month, day, region)", :function_arguments => [:year, :month, :day, :region], :function_modifier => -1, :year_ranges => { :between => 2008..2013 },:name => "除夕", :regions => [:cn]},
             {:mday => 1, :function => "lunar_to_solar(year, month, day, region)", :function_arguments => [:year, :month, :day, :region], :function_modifier => -1, :year_ranges => { :from => 2025 },:name => "除夕", :regions => [:cn]},
             {:mday => 1, :function => "lunar_to_solar(year, month, day, region)", :function_arguments => [:year, :month, :day, :region], :name => "春节", :regions => [:cn]},

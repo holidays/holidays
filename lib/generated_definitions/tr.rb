@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-                0 => [{:function => "ramadan_feast(year)", :function_arguments => [:year], :name => "Ramazan Bayramı", :regions => [:tr]},
+      0 => [{:function => "ramadan_feast(year)", :function_arguments => [:year], :name => "Ramazan Bayramı", :regions => [:tr]},
             {:function => "ramadan_feast(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Ramazan Bayramı (ikinci tatil)", :regions => [:tr]},
             {:function => "ramadan_feast(year)", :function_arguments => [:year], :function_modifier => 2, :name => "Ramazan Bayramı (üçüncü tatil)", :regions => [:tr]},
             {:function => "sacrifice_feast(year)", :function_arguments => [:year], :name => "Kurban Bayramı", :regions => [:tr]},

@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-                0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:sg]}],
+      0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Good Friday", :regions => [:sg]}],
       1 => [{:mday => 1, :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:sg]},
             {:mday => 1, :function => "lunar_to_solar(year, month, day, region)", :function_arguments => [:year, :month, :day, :region], :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Chinese New Year", :regions => [:sg]},
             {:mday => 2, :function => "lunar_to_solar(year, month, day, region)", :function_arguments => [:year, :month, :day, :region], :observed => "to_monday_if_sunday(date)", :observed_arguments => [:date], :name => "Chinese New Year", :regions => [:sg]}],
