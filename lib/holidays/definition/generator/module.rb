@@ -38,7 +38,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-          #{month_strings.join(",\n")}
+#{month_strings.join(",\n")}
       }
     end
 

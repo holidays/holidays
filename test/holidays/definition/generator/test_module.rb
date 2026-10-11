@@ -39,7 +39,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-          first-string,
+first-string,
 second-string
       }
     end
@@ -72,7 +72,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-          first-string,
+first-string,
 second-string
       }
     end
@@ -105,7 +105,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-          first-string,
+first-string,
 second-string
       }
     end
@@ -138,7 +138,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-          first-string,
+first-string,
 second-string
       }
     end
@@ -171,7 +171,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-          first-string,
+first-string,
 second-string
       }
     end
