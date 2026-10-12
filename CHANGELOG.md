@@ -1,5 +1,12 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 11.7.0
+
+* Update to [v9.2.0 definitions](https://github.com/holidays/definitions/releases/tag/v9.2.0): `ma` Eid al-Fitr and Eid al-Adha, `my` Hari Raya Puasa and Hari Raya Haji.
+* Add `ma` Eid al-Fitr and Eid al-Adha, calculated from the Hijri calendar. Years where the date proclaimed by the Ministry of Habous and Islamic Affairs differs from the calculation (Eid al-Fitr 2022, Eid al-Adha 2021) use the proclaimed date. [#510](https://github.com/holidays/holidays/pull/510), [#392](https://github.com/holidays/holidays/issues/392)
+* Add `my` Hari Raya Puasa and Hari Raya Haji, calculated from the Hijri calendar. Years where the gazetted date differs from the calculation use the gazetted date, and a holiday falling on a Sunday is observed on the following Monday. [#511](https://github.com/holidays/holidays/pull/511), [#392](https://github.com/holidays/holidays/issues/392)
+* Fix `next_holidays` returning too few holidays and skipping some. It only searched the 12 months after the start date; it now keeps searching later years until enough holidays are found. [#514](https://github.com/holidays/holidays/pull/514), [#513](https://github.com/holidays/holidays/issues/513)
+
 ## 11.6.0
 
 * Update to [v9.1.0 definitions](https://github.com/holidays/definitions/releases/tag/v9.1.0): `tr` feast dates calculated instead of table-driven, `vn` Giỗ Tổ Hùng Vương date fixes, and a region-aware `us` Independence Day observed shift.

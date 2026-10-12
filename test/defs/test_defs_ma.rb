@@ -25,5 +25,15 @@ class MaDefinitionTests < Test::Unit::TestCase  # :nodoc:
 
     assert_equal "Eid Al Istiqulal", (Holidays.on(Date.civil(2007, 11, 18), [:ma], [:informal])[0] || {})[:name]
 
+    assert_equal "Eid al-Fitr", (Holidays.on(Date.civil(2018, 6, 15), [:ma])[0] || {})[:name]
+assert_equal "Eid al-Fitr", (Holidays.on(Date.civil(2023, 4, 22), [:ma])[0] || {})[:name]
+
+    assert_equal "Eid al-Fitr", (Holidays.on(Date.civil(2022, 5, 2), [:ma])[0] || {})[:name]
+
+    assert_equal "Eid al-Adha", (Holidays.on(Date.civil(2018, 8, 22), [:ma])[0] || {})[:name]
+assert_equal "Eid al-Adha", (Holidays.on(Date.civil(2023, 6, 29), [:ma])[0] || {})[:name]
+
+    assert_equal "Eid al-Adha", (Holidays.on(Date.civil(2021, 7, 21), [:ma])[0] || {})[:name]
+
   end
 end
