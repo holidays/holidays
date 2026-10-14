@@ -235,6 +235,17 @@ class HolidaysTests < Test::Unit::TestCase
     end
   end
 
+  # 中秋节 is defined under lunar month 8 but can land in solar October,
+  # outside the one-month border window around the queried date.
+  # See https://github.com/holidays/holidays/issues/519
+  def test_on_finds_lunar_holiday_defined_two_months_before_its_solar_date
+    assert_equal ['中秋节'], Holidays.on(Date.civil(2025,10,6), :cn).map { |h| h[:name] }
+
+    names = Holidays.on(Date.civil(2028,10,3), :cn).map { |h| h[:name] }
+    assert_includes names, '中秋节'
+    assert_includes names, '国庆节'
+  end
+
   def test_sorting
     (1..10).each{|year|
       (1..12).each{|month|

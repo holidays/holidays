@@ -21,7 +21,7 @@ class FinderSearchTests < Test::Unit::TestCase
     @regions = [:us]
     @options = []
 
-    @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns([:mday => 1, :name => "Test", :regions=>@regions])
+    @holidays_by_month_repo.expects(:all).at_most_once.returns({1 => [:mday => 1, :name => "Test", :regions=>@regions]})
     @in_region_rule.expects(:call).at_most_once.returns(true)
     @year_range_rule.expects(:call).at_most_once.returns(false)
 
@@ -54,34 +54,34 @@ class FinderSearchTests < Test::Unit::TestCase
     end
   end
 
-  def test_returns_nothing_if_holidays_repo_returns_nil
-    @holidays_by_month_repo.expects(:find_by_month).with(1).returns(nil)
+  def test_returns_nothing_if_holidays_repo_is_empty
+    @holidays_by_month_repo.expects(:all).returns({})
     assert_equal([], @subject.call(@dates_driver, @regions, @options))
   end
 
-  def test_returns_nothing_if_holidays_repo_returns_empty_array
-    @holidays_by_month_repo.expects(:find_by_month).with(1).returns([])
+  def test_returns_nothing_if_holidays_repo_month_is_empty
+    @holidays_by_month_repo.expects(:all).returns({1 => []})
     assert_equal([], @subject.call(@dates_driver, @regions, @options))
   end
 
   def test_returns_nothing_if_holidays_not_in_region
-    @holidays_by_month_repo.expects(:find_by_month).returns([:regions=>[:other_region]])
+    @holidays_by_month_repo.expects(:all).returns({1 => [:regions=>[:other_region]]})
     @in_region_rule.expects(:call).with(@regions, [:other_region]).returns(false)
     assert_equal([], @subject.call(@dates_driver, @regions, @options))
   end
 
   def test_returns_nothing_if_only_informal_holidays_are_returned_and_no_informal_flag_set
-    @holidays_by_month_repo.expects(:find_by_month).returns([:type => :informal, :regions=>@regions])
+    @holidays_by_month_repo.expects(:all).returns({1 => [:type => :informal, :regions=>@regions]})
     assert_equal([], @subject.call(@dates_driver, @regions, @options))
   end
 
   def test_year_rule_set_but_not_in_required_years_returns_nothing
-    @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns([:mday => 1, :name => "Test", :regions=>@regions, :year_ranges => [:after => 2000]])
+    @holidays_by_month_repo.expects(:all).at_most_once.returns({1 => [:mday => 1, :name => "Test", :regions=>@regions, :year_ranges => [:after => 2000]]})
     assert_equal([], @subject.call(@dates_driver, @regions, @options))
   end
 
   def test_function_present_returns_date
-    @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns([:mday => 1, :name => "Test", :regions=> @regions, :function => "func-id", :function_arguments => [:year], :function_modifier => 1])
+    @holidays_by_month_repo.expects(:all).at_most_once.returns({1 => [:mday => 1, :name => "Test", :regions=> @regions, :function => "func-id", :function_arguments => [:year], :function_modifier => 1]})
 
     returned_date = Date.civil(2015, 3, 10)
     @custom_method_processor.expects(:call).with(
@@ -104,7 +104,7 @@ class FinderSearchTests < Test::Unit::TestCase
   #FIXME This is a test that reflects how the current system works
   #      but this is NOT valid. See https://github.com/holidays/holidays/issues/204
   def test_function_returns_nil_date_should_not_be_returned
-    @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns([:mday => 1, :name => "Test", :regions=> @regions, :function => "func-id", :function_arguments => [:year], :function_modifier => 1])
+    @holidays_by_month_repo.expects(:all).at_most_once.returns({1 => [:mday => 1, :name => "Test", :regions=> @regions, :function => "func-id", :function_arguments => [:year], :function_modifier => 1]})
 
     @custom_method_processor.expects(:call).with(
       {:year => 2015, :month => 1, :day => 1, :region => :us},
@@ -117,7 +117,7 @@ class FinderSearchTests < Test::Unit::TestCase
   end
 
   def test_function_not_present_mday_set
-    @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns([:mday => 15, :name => "Test", :regions=> @regions])
+    @holidays_by_month_repo.expects(:all).at_most_once.returns({1 => [:mday => 15, :name => "Test", :regions=> @regions]})
 
     assert_equal(
       [{
@@ -130,7 +130,7 @@ class FinderSearchTests < Test::Unit::TestCase
   end
 
   def test_function_not_present_mday_not_set
-    @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns([:name => "Test", :week => 1, :wday => 1, :regions=> @regions])
+    @holidays_by_month_repo.expects(:all).at_most_once.returns({1 => [:name => "Test", :week => 1, :wday => 1, :regions=> @regions]})
 
     @day_of_month_calculator.expects(:call).with(2015, 1, 1, 1).returns(20)
 
@@ -145,7 +145,7 @@ class FinderSearchTests < Test::Unit::TestCase
   end
 
   def test_returns_holiday_if_informal_and_informal_flag_set
-    @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns([:mday => 13, :name => "Test", :type => :informal, :regions=>@regions])
+    @holidays_by_month_repo.expects(:all).at_most_once.returns({1 => [:mday => 13, :name => "Test", :type => :informal, :regions=>@regions]})
 
     assert_equal(
       [{
@@ -158,13 +158,13 @@ class FinderSearchTests < Test::Unit::TestCase
   end
 
   def test_does_not_return_holiday_if_informal_and_informal_flag_not_set
-    @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns([:mday => 13, :name => "Test", :type => :informal, :regions=>@regions])
+    @holidays_by_month_repo.expects(:all).at_most_once.returns({1 => [:mday => 13, :name => "Test", :type => :informal, :regions=>@regions]})
 
     assert_equal([], @subject.call(@dates_driver, @regions, @options))
   end
 
   def test_returns_observed_result_if_observed_set_and_observed_function_present
-    @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns([:mday => 8, :name => "Test", :type => :observed, :observed => "SOME_OBSERVED_FUNC_ID", :regions=>@regions])
+    @holidays_by_month_repo.expects(:all).at_most_once.returns({1 => [:mday => 8, :name => "Test", :type => :observed, :observed => "SOME_OBSERVED_FUNC_ID", :regions=>@regions]})
 
     @custom_method_processor.expects(:call).with(
       {:year => 2015, :month => 1, :day => 8, :region => :us},
@@ -183,7 +183,7 @@ class FinderSearchTests < Test::Unit::TestCase
   end
 
   def test_passes_declared_observed_arguments_to_the_observed_function
-    @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns([:mday => 8, :name => "Test", :type => :observed, :observed => "SOME_OBSERVED_FUNC_ID", :observed_arguments => [:date, :region], :regions=>@regions])
+    @holidays_by_month_repo.expects(:all).at_most_once.returns({1 => [:mday => 8, :name => "Test", :type => :observed, :observed => "SOME_OBSERVED_FUNC_ID", :observed_arguments => [:date, :region], :regions=>@regions]})
 
     @custom_method_processor.expects(:call).with(
       {:year => 2015, :month => 1, :day => 8, :region => :us},
@@ -202,7 +202,7 @@ class FinderSearchTests < Test::Unit::TestCase
   end
 
   def test_returns_unobserved_date_if_observed_method_not_set_but_flag_is_present
-    @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns([:mday => 14, :name => "Test", :type => :observed, :observed => "SOME_OBSERVED_FUNC_ID", :regions=>@regions])
+    @holidays_by_month_repo.expects(:all).at_most_once.returns({1 => [:mday => 14, :name => "Test", :type => :observed, :observed => "SOME_OBSERVED_FUNC_ID", :regions=>@regions]})
 
     assert_equal(
       [{
@@ -218,7 +218,7 @@ class FinderSearchTests < Test::Unit::TestCase
   # manipulation that occurs for a specific holiday should have no impact on other holidays.
   def test_returns_expected_result_if_custom_method_modifies_month_when_multiple_holidays_found
     @in_region_rule.expects(:call).twice.returns(true)
-    @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns(
+    @holidays_by_month_repo.expects(:all).at_most_once.returns(1 =>
       [
         {:mday => 14, :name => "Test", :function => "func-id", :function_arguments => [:year], :regions => @regions},
         {:mday => 14, :name => "Test2", :regions => @regions},
@@ -252,7 +252,7 @@ class FinderSearchTests < Test::Unit::TestCase
   def test_nil_returned_from_one_region_function_does_not_suppress_valid_result_from_other_region
     two_regions = [:r1, :r2]
 
-    @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns(
+    @holidays_by_month_repo.expects(:all).at_most_once.returns(1 =>
       [{ mday: 1, name: "Test", regions: two_regions, function: "func-id", function_arguments: [:year], function_modifier: nil }]
     )
     @in_region_rule.expects(:call).with(two_regions, two_regions).returns(true)
@@ -273,7 +273,7 @@ class FinderSearchTests < Test::Unit::TestCase
   def test_conflicting_function_in_two_regions_evaluates_each_independently
     two_regions = [:r1, :r2]
 
-    @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns(
+    @holidays_by_month_repo.expects(:all).at_most_once.returns(1 =>
       [{ mday: 1, name: "Test", regions: two_regions, function: "func-id", function_arguments: [:year], function_modifier: nil }]
     )
     @in_region_rule.expects(:call).with(two_regions, two_regions).returns(true)
@@ -293,7 +293,7 @@ class FinderSearchTests < Test::Unit::TestCase
   end
 
   def test_any_region_query_with_function_evaluates_function_exactly_once
-    @holidays_by_month_repo.expects(:find_by_month).at_most_once.returns(
+    @holidays_by_month_repo.expects(:all).at_most_once.returns(1 =>
       [{ mday: 1, name: "Test", regions: [:r1], function: "func-id", function_arguments: [:year], function_modifier: nil }]
     )
     @in_region_rule.expects(:call).with([:any], [:r1]).returns(true)
@@ -305,5 +305,47 @@ class FinderSearchTests < Test::Unit::TestCase
     result = @subject.call(@dates_driver, [:any], [])
     assert_equal 1, result.count
     assert_equal Date.civil(2015, 3, 10), result.first[:date]
+  end
+
+  # A function (e.g. a lunar date) can land months away from the month it is
+  # filed under, so it is evaluated even when its month is outside the driver.
+  # See https://github.com/holidays/holidays/issues/519
+  def test_function_from_month_outside_driver_is_evaluated_but_fixed_date_is_not
+    @in_region_rule.expects(:call).twice.returns(true)
+    @holidays_by_month_repo.expects(:all).at_most_once.returns(
+      1 => [{ mday: 14, name: "InDriver", regions: @regions }],
+      8 => [
+        { mday: 15, name: "Lunar", regions: @regions, function: "func-id", function_arguments: [:year] },
+        { mday: 15, name: "Fixed", regions: @regions },
+      ],
+    )
+
+    @custom_method_processor.expects(:call).once.with(
+      { year: 2015, month: 8, day: 15, region: :us }, "func-id", [:year], nil,
+    ).returns(Date.civil(2015, 9, 27))
+
+    assert_equal(
+      [
+        { date: Date.civil(2015, 1, 14), name: "InDriver", regions: [:us] },
+        { date: Date.civil(2015, 9, 27), name: "Lunar", regions: [:us] },
+      ],
+      @subject.call(@dates_driver, @regions, @options)
+    )
+  end
+
+  def test_function_outside_driver_is_evaluated_once_per_year
+    @holidays_by_month_repo.stubs(:all).returns(
+      8 => [{ mday: 15, name: "Lunar", regions: @regions, function: "func-id", function_arguments: [:year] }],
+    )
+    @in_region_rule.expects(:call).twice.returns(true)
+
+    [2015, 2016].each do |year|
+      @custom_method_processor.expects(:call).once.with(
+        { year: year, month: 8, day: 15, region: :us }, "func-id", [:year], nil,
+      ).returns(Date.civil(year, 9, 27))
+    end
+
+    result = @subject.call({ 2015 => [0, 1, 2], 2016 => [0, 1] }, @regions, @options)
+    assert_equal [Date.civil(2015, 9, 27), Date.civil(2016, 9, 27)], result.map { |h| h[:date] }
   end
 end
