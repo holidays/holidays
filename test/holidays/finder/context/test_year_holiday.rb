@@ -33,7 +33,7 @@ class YearHolidayTests < Test::Unit::TestCase
     }])
 
     @dates_driver_builder.expects(:call).at_most_once.with(
-      @from_date, @from_date >> 12,
+      @from_date, Date.civil(2015, 12, 31),
     ).returns(
       @dates_driver,
     )

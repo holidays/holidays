@@ -1,3 +1,6 @@
+require 'date'
+require 'holidays/errors'
+
 module Holidays
   module DateCalculator
     # Copied from https://github.com/sunsidew/ruby_lunardate
@@ -6,8 +9,10 @@ module Holidays
       attr_accessor :year, :month, :day
 
       def to_solar(year, month, day, region)
+        validate_year!(year, region)
+
         days = 0
-        year_diff = year - 1900
+        year_diff = year - FIRST_YEAR
         year_info = CALENDAR_YEAR_INFO_MAP[region]
 
         year_diff.times do |year_idx|
@@ -34,8 +39,19 @@ module Holidays
 
       private
 
-      # Vietnamese lunar years 1900..2049, computed by
-      # script/generate_vietnamese_lunar_table.py from the JPL DE440s ephemeris.
+      def validate_year!(year, region)
+        return if SUPPORTED_YEARS.cover?(year)
+
+        raise Holidays::UnsupportedYearError,
+              "lunar calendar data for :#{region} covers lunar years #{SUPPORTED_YEARS}, got #{year}"
+      end
+
+      # Each table holds one row per lunar year from FIRST_YEAR to LAST_YEAR,
+      # as printed by script/generate_lunar_table.py (see its header for the
+      # method and time zones). Rows before 2050 predate that script; it
+      # reproduces all of them.
+
+      # Vietnamese lunar years 1900..2100, computed from the JPL DE440s ephemeris.
       # Vietnam used UTC+8 until North Vietnam switched to UTC+7 on 1967-08-08.
       # The South kept UTC+8 until 1975, so the two calendars differed in
       # between (Tet 1968 was 01-29 in the North and 01-30 in the South). The
@@ -190,9 +206,63 @@ module Holidays
         [354, 2, 1, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2].freeze,
         [384, 2, 1, 2, 2, 5, 1, 2, 1, 1, 2, 1, 2].freeze,
         [354, 1, 2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1].freeze,
-        [355, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 2, 1].freeze
+        [355, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 2, 1].freeze,
+        [384, 1, 2, 5, 1, 2, 1, 2, 2, 1, 2, 2, 1].freeze,
+        [355, 1, 2, 1, 2, 1, 1, 2, 2, 1, 2, 2, 2].freeze,
+        [383, 1, 2, 1, 1, 2, 1, 1, 4, 2, 2, 2, 1].freeze,
+        [355, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 2].freeze,
+        [354, 1, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2].freeze,
+        [383, 1, 2, 2, 1, 2, 5, 1, 1, 2, 1, 2, 1].freeze,
+        [355, 2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 2].freeze,
+        [354, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1].freeze,
+        [384, 2, 1, 2, 5, 1, 2, 2, 1, 2, 1, 2, 1].freeze,
+        [355, 2, 1, 2, 1, 2, 1, 2, 1, 2, 2, 1, 2].freeze,
+        [354, 1, 2, 1, 2, 1, 1, 2, 1, 2, 2, 2, 1].freeze,
+        [384, 2, 2, 3, 2, 1, 1, 2, 1, 2, 2, 2, 1].freeze,
+        [354, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 1, 2].freeze,
+        [384, 2, 2, 1, 2, 1, 2, 3, 2, 1, 2, 1, 2].freeze,
+        [354, 2, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1].freeze,
+        [355, 2, 2, 1, 2, 2, 1, 1, 2, 1, 2, 1, 2].freeze,
+        [384, 1, 2, 1, 2, 4, 2, 1, 2, 1, 2, 1, 2].freeze,
+        [354, 1, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1].freeze,
+        [355, 2, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2].freeze,
+        [384, 1, 2, 1, 4, 1, 2, 1, 2, 2, 2, 1, 2].freeze,
+        [354, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2, 2].freeze,
+        [384, 2, 1, 2, 1, 2, 1, 1, 4, 2, 1, 2, 2].freeze,
+        [354, 2, 1, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2].freeze,
+        [354, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 1, 2].freeze,
+        [384, 2, 1, 2, 2, 1, 4, 2, 1, 2, 1, 2, 1].freeze,
+        [355, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2].freeze,
+        [354, 1, 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 1].freeze,
+        [384, 2, 1, 2, 3, 2, 1, 2, 2, 2, 1, 2, 1].freeze,
+        [355, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2, 2, 2].freeze,
+        [354, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2, 2].freeze,
+        [384, 2, 1, 4, 2, 1, 1, 1, 2, 1, 2, 2, 2].freeze,
+        [354, 1, 2, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2].freeze,
+        [384, 1, 2, 2, 1, 2, 1, 4, 2, 1, 1, 2, 2].freeze,
+        [354, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1].freeze,
+        [355, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2].freeze,
+        [384, 1, 1, 2, 1, 6, 1, 2, 2, 1, 2, 1, 2].freeze,
+        [354, 1, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1].freeze,
+        [355, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2, 2, 2].freeze,
+        [383, 1, 2, 1, 4, 1, 1, 2, 1, 2, 2, 2, 1].freeze,
+        [354, 2, 2, 1, 2, 1, 1, 1, 2, 1, 2, 2, 1].freeze,
+        [384, 2, 2, 2, 1, 2, 1, 1, 4, 1, 2, 1, 2].freeze,
+        [354, 2, 2, 1, 2, 1, 2, 1, 2, 1, 1, 2, 1].freeze,
+        [355, 2, 2, 1, 2, 2, 1, 2, 1, 2, 1, 1, 2].freeze,
+        [384, 1, 2, 1, 2, 2, 5, 2, 1, 2, 1, 2, 1].freeze,
+        [355, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2].freeze,
+        [354, 1, 1, 2, 1, 2, 1, 2, 1, 2, 2, 2, 1].freeze,
+        [384, 2, 1, 2, 3, 2, 1, 1, 2, 2, 2, 1, 2].freeze,
+        [354, 2, 1, 2, 1, 1, 1, 2, 1, 2, 2, 1, 2].freeze,
+        [354, 2, 2, 1, 2, 1, 1, 1, 2, 1, 2, 1, 2].freeze,
+        [384, 2, 4, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2].freeze,
+        [354, 2, 1, 2, 2, 1, 2, 1, 2, 1, 1, 2, 1].freeze
       ].freeze
 
+      # Korean lunar years 1900..2100. 2050..2100 are computed from the JPL
+      # DE440s ephemeris at UTC+9 (KASI's published tables end in 2050).
+      # Before 1912 the rows follow the Chinese reckoning at UTC+8.
       KOREAN_LUNAR_YEAR_INFO = [
         [384, 1, 2, 1, 1, 2, 1, 2, 4, 2, 2, 1, 2].freeze,
         [354, 1, 2, 1, 1, 2, 1, 2, 1, 2, 2, 2, 1].freeze,
@@ -343,10 +413,67 @@ module Holidays
         [354, 2, 1, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2].freeze,
         [384, 2, 1, 2, 2, 5, 1, 2, 1, 1, 2, 1, 2].freeze,
         [354, 1, 2, 2, 1, 2, 2, 1, 2, 1, 2, 1, 1].freeze,
-        [355, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2, 1].freeze
+        [355, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2, 1].freeze,
+        [384, 2, 1, 5, 1, 2, 1, 2, 2, 1, 2, 2, 1].freeze,
+        [355, 2, 1, 1, 2, 1, 2, 1, 2, 1, 2, 2, 2].freeze,
+        [384, 1, 2, 1, 1, 2, 1, 1, 6, 1, 2, 2, 2].freeze,
+        [354, 1, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 2].freeze,
+        [354, 1, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2].freeze,
+        [383, 1, 2, 2, 1, 2, 5, 1, 1, 2, 1, 2, 1].freeze,
+        [355, 2, 2, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2].freeze,
+        [354, 1, 2, 2, 1, 2, 1, 2, 2, 1, 1, 2, 1].freeze,
+        [384, 2, 1, 2, 5, 2, 1, 2, 1, 2, 2, 1, 1].freeze,
+        [355, 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1].freeze,
+        [355, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 2].freeze,
+        [383, 1, 2, 3, 2, 1, 1, 2, 1, 2, 2, 2, 1].freeze,
+        [354, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 1].freeze,
+        [384, 2, 2, 1, 2, 1, 2, 3, 2, 1, 2, 1, 2].freeze,
+        [354, 2, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1].freeze,
+        [355, 2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 2].freeze,
+        [384, 1, 2, 1, 2, 4, 2, 1, 2, 1, 2, 1, 2].freeze,
+        [354, 1, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1].freeze,
+        [355, 2, 1, 2, 1, 2, 1, 2, 1, 2, 2, 1, 2].freeze,
+        [384, 2, 1, 1, 4, 1, 2, 1, 2, 2, 2, 1, 2].freeze,
+        [354, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2].freeze,
+        [384, 2, 2, 1, 1, 2, 1, 1, 4, 2, 1, 2, 2].freeze,
+        [354, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2].freeze,
+        [354, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 2, 1].freeze,
+        [384, 2, 1, 2, 2, 1, 6, 1, 1, 2, 1, 2, 1].freeze,
+        [355, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2].freeze,
+        [354, 1, 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 1].freeze,
+        [384, 2, 1, 2, 3, 2, 1, 2, 2, 2, 1, 2, 1].freeze,
+        [355, 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2].freeze,
+        [354, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2, 2].freeze,
+        [384, 2, 1, 4, 2, 1, 1, 2, 1, 2, 1, 2, 2].freeze,
+        [354, 2, 1, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2].freeze,
+        [384, 1, 2, 2, 2, 1, 2, 3, 2, 1, 2, 1, 2].freeze,
+        [354, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1].freeze,
+        [355, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2].freeze,
+        [384, 1, 2, 1, 1, 6, 1, 2, 2, 1, 2, 1, 2].freeze,
+        [354, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2, 1].freeze,
+        [355, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2, 2, 2].freeze,
+        [384, 1, 2, 1, 4, 1, 2, 1, 1, 2, 2, 2, 2].freeze,
+        [353, 1, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2, 1].freeze,
+        [384, 2, 2, 2, 1, 2, 1, 1, 4, 1, 2, 2, 1].freeze,
+        [355, 2, 2, 1, 2, 1, 2, 1, 2, 1, 1, 2, 2].freeze,
+        [354, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1].freeze,
+        [384, 2, 1, 2, 1, 2, 5, 2, 1, 2, 1, 2, 1].freeze,
+        [355, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2].freeze,
+        [354, 1, 2, 1, 1, 2, 1, 2, 1, 2, 2, 2, 1].freeze,
+        [384, 2, 1, 2, 3, 2, 1, 2, 1, 2, 2, 2, 1].freeze,
+        [354, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2].freeze,
+        [354, 2, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2, 1].freeze,
+        [384, 2, 2, 4, 2, 1, 1, 2, 1, 1, 2, 1, 2].freeze,
+        [354, 2, 2, 1, 2, 1, 2, 1, 2, 1, 1, 2, 1].freeze
       ].freeze
 
-      # Source: https://github.com/hungtcs/traditional-chinese-calendar-database/blob/master/database/all.json
+      # Chinese lunar years 1900..2100, used for cn, hk and sg.
+      # 1901..2099 agree with the Hong Kong Observatory's Gregorian-Lunar
+      # calendar conversion tables (https://www.hko.gov.hk/en/gts/time/conversion.htm).
+      # 1900 and 2100, which those tables do not cover in full, are computed
+      # from the JPL DE440s ephemeris at UTC+8.
+      # 1901..2049 were originally taken from
+      # https://github.com/hungtcs/traditional-chinese-calendar-database/blob/master/database/all.json
       CHINESE_LUNAR_YEAR_INFO = [
         [384, 1, 2, 1, 1, 2, 1, 2, 4, 2, 2, 1, 2].freeze, # 1900 unavailable, filled with data from Vietnamese calendar
         [354, 1, 2, 1, 1, 2, 1, 2, 1, 2, 2, 2, 1].freeze,
@@ -498,9 +625,62 @@ module Holidays
         [384, 2, 1, 2, 2, 5, 1, 2, 1, 1, 2, 1, 2].freeze,
         [354, 1, 2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1].freeze,
         [355, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2, 1].freeze, # 2049
+        [384, 1, 2, 5, 1, 2, 1, 2, 2, 1, 2, 2, 1].freeze,
+        [355, 2, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 2].freeze,
+        [384, 1, 2, 1, 1, 2, 1, 1, 4, 2, 2, 2, 2].freeze,
+        [354, 1, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 2].freeze,
+        [354, 1, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2].freeze,
+        [383, 1, 2, 2, 1, 2, 5, 1, 1, 2, 1, 2, 1].freeze,
+        [355, 2, 2, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2].freeze,
+        [354, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1].freeze,
+        [384, 2, 1, 2, 5, 1, 2, 2, 1, 2, 2, 1, 1].freeze,
+        [355, 2, 1, 2, 1, 2, 1, 2, 1, 2, 2, 2, 1].freeze,
+        [354, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 2, 1].freeze,
+        [384, 2, 2, 3, 2, 1, 1, 2, 1, 2, 2, 2, 1].freeze,
+        [354, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 2, 1].freeze,
+        [384, 2, 2, 1, 2, 1, 2, 3, 2, 1, 2, 1, 2].freeze,
+        [354, 2, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1].freeze,
+        [355, 2, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 2].freeze,
+        [384, 1, 2, 1, 2, 4, 2, 1, 2, 1, 2, 1, 2].freeze,
+        [354, 1, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1].freeze,
+        [355, 2, 1, 2, 1, 1, 2, 2, 1, 2, 2, 1, 2].freeze,
+        [384, 1, 2, 1, 4, 1, 2, 1, 2, 2, 2, 1, 2].freeze,
+        [354, 1, 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2].freeze,
+        [384, 2, 1, 2, 1, 2, 1, 1, 4, 2, 1, 2, 2].freeze,
+        [354, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2].freeze,
+        [354, 2, 1, 2, 2, 1, 2, 1, 1, 2, 1, 2, 1].freeze,
+        [384, 2, 1, 2, 2, 1, 4, 2, 1, 2, 1, 2, 1].freeze,
+        [355, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2].freeze,
+        [354, 1, 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 1].freeze,
+        [384, 2, 1, 2, 3, 2, 1, 2, 2, 2, 1, 2, 1].freeze,
+        [355, 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2].freeze,
+        [354, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2, 2].freeze,
+        [384, 2, 1, 4, 2, 1, 1, 2, 1, 1, 2, 2, 2].freeze,
+        [354, 1, 2, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2].freeze,
+        [384, 1, 2, 2, 2, 1, 1, 4, 2, 1, 1, 2, 2].freeze,
+        [354, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1].freeze,
+        [355, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2].freeze,
+        [384, 1, 2, 1, 1, 6, 1, 2, 2, 1, 2, 1, 2].freeze,
+        [354, 1, 2, 1, 1, 2, 1, 2, 2, 1, 2, 2, 1].freeze,
+        [355, 2, 1, 2, 1, 1, 2, 1, 2, 1, 2, 2, 2].freeze,
+        [383, 1, 2, 1, 4, 1, 2, 1, 1, 2, 2, 2, 1].freeze,
+        [354, 2, 2, 1, 2, 1, 1, 1, 2, 1, 2, 2, 1].freeze,
+        [384, 2, 2, 2, 1, 2, 1, 1, 4, 1, 2, 2, 1].freeze,
+        [354, 2, 2, 1, 2, 1, 2, 1, 2, 1, 1, 2, 1].freeze,
+        [355, 2, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1].freeze,
+        [384, 1, 2, 2, 1, 2, 5, 2, 1, 2, 1, 2, 1].freeze,
+        [355, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2].freeze,
+        [354, 1, 2, 1, 1, 2, 1, 2, 1, 2, 2, 2, 1].freeze,
+        [384, 2, 1, 2, 3, 2, 1, 1, 2, 2, 2, 1, 2].freeze,
+        [354, 2, 1, 2, 1, 1, 1, 2, 1, 2, 2, 1, 2].freeze,
+        [354, 2, 2, 1, 2, 1, 1, 1, 2, 1, 2, 1, 2].freeze,
+        [384, 2, 4, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2].freeze,
+        [354, 2, 2, 1, 2, 1, 2, 1, 2, 1, 1, 2, 1].freeze, # 2100
       ].freeze
 
-      MAX_YEAR_NUMBER = 150
+      FIRST_YEAR = 1900
+      LAST_YEAR = 2100
+      SUPPORTED_YEARS = (FIRST_YEAR..LAST_YEAR).freeze
 
       # Given the region, CALENDAR_YEAR_INFO_MAP looks up the date
       # table and uses it in the calculation

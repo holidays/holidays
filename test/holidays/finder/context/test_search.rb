@@ -348,4 +348,36 @@ class FinderSearchTests < Test::Unit::TestCase
     result = @subject.call({ 2015 => [0, 1, 2], 2016 => [0, 1] }, @regions, @options)
     assert_equal [Date.civil(2015, 9, 27), Date.civil(2016, 9, 27)], result.map { |h| h[:date] }
   end
+
+  # The dates driver pads a query with a border month from the neighbouring
+  # year. Data missing for that padding year must not fail a query whose own
+  # dates are covered.
+  def test_unsupported_year_in_border_padding_year_is_skipped
+    @holidays_by_month_repo.stubs(:all).returns(
+      8 => [{ mday: 15, name: "Lunar", regions: @regions, function: "func-id", function_arguments: [:year] }],
+    )
+    @in_region_rule.expects(:call).twice.returns(true)
+
+    @custom_method_processor.expects(:call).with(
+      { year: 2100, month: 8, day: 15, region: :us }, "func-id", [:year], nil,
+    ).returns(Date.civil(2100, 9, 18))
+    @custom_method_processor.expects(:call).with(
+      { year: 2101, month: 8, day: 15, region: :us }, "func-id", [:year], nil,
+    ).raises(Holidays::UnsupportedYearError)
+
+    result = @subject.call({ 2100 => [0, 11, 12], 2101 => [0, 1] }, @regions, @options)
+    assert_equal [Date.civil(2100, 9, 18)], result.map { |h| h[:date] }
+  end
+
+  def test_unsupported_year_in_requested_year_raises
+    @holidays_by_month_repo.stubs(:all).returns(
+      8 => [{ mday: 15, name: "Lunar", regions: @regions, function: "func-id", function_arguments: [:year] }],
+    )
+    @in_region_rule.stubs(:call).returns(true)
+    @custom_method_processor.stubs(:call).raises(Holidays::UnsupportedYearError)
+
+    assert_raises(Holidays::UnsupportedYearError) do
+      @subject.call({ 2100 => [0, 12], 2101 => [0, 1, 2] }, @regions, @options)
+    end
+  end
 end
