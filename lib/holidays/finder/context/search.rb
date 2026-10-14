@@ -1,3 +1,5 @@
+require 'holidays/errors'
+
 module Holidays
   module Finder
     module Context
@@ -17,7 +19,7 @@ module Holidays
             candidates(months).each do |month, h|
               next unless applicable?(year, h, regions, options)
 
-              holiday_dates(year, month, h, regions, options).each do |d|
+              year_dates(year, months, month, h, regions, options).each do |d|
                 holidays << {:date => d, :name => h[:name], :regions => h[:regions]}
               end
             end
@@ -61,6 +63,26 @@ module Holidays
           end
 
           in_driver + outside_driver
+        end
+
+        # A year that only pads the query with a border month (see
+        # DatesDriverBuilder#add_border_months) may lie past the data a
+        # calculation supports, e.g. lunar year 2101. Dates of such a year are
+        # outside the query anyway, so they are skipped rather than failing
+        # the query. A year the query actually covers still raises.
+        def year_dates(year, months, month, h, regions, options)
+          holiday_dates(year, month, h, regions, options)
+        rescue Holidays::UnsupportedYearError
+          raise unless border_padding?(months)
+
+          []
+        end
+
+        # Every date in the query adds its own month and a neighbouring one to
+        # its year, so a year holding a single month (besides the variable
+        # month 0) is only there as border padding.
+        def border_padding?(months)
+          (months - [0]).size == 1
         end
 
         def applicable?(year, h, regions, options)

@@ -148,4 +148,47 @@ class LunarHolidaysCalculatorTests < Test::Unit::TestCase
     assert_equal '2024-09-17', @subject.to_solar(2024,8,15, :cn).to_s
     assert_equal '2025-10-06', @subject.to_solar(2025,8,15, :cn).to_s
   end
+
+  # Expected dates come from sources independent of the DE440 rows: the Hong
+  # Kong Observatory tables (cn), ICU's Korean calendar (kr) and Ho Ngoc Duc's
+  # algorithm at UTC+7 (vn).
+  def test_chinese_dates_after_2049_follow_the_hong_kong_observatory
+    assert_equal '2050-01-23', @subject.to_solar(2050,1,1, :cn).to_s
+    assert_equal '2057-10-06', @subject.to_solar(2057,9,9, :hk).to_s
+    assert_equal '2075-09-24', @subject.to_solar(2075,8,15, :cn).to_s
+    assert_equal '2099-06-23', @subject.to_solar(2099,5,5, :sg).to_s
+    assert_equal '2100-02-09', @subject.to_solar(2100,1,1, :cn).to_s
+    assert_equal '2100-09-18', @subject.to_solar(2100,8,15, :cn).to_s
+  end
+
+  def test_korean_dates_after_2049
+    assert_equal '2050-01-23', @subject.to_solar(2050,1,1, :kr).to_s
+    assert_equal '2075-09-24', @subject.to_solar(2075,8,15, :kr).to_s
+    assert_equal '2100-02-09', @subject.to_solar(2100,1,1, :kr).to_s
+    assert_equal '2100-05-16', @subject.to_solar(2100,4,8, :kr).to_s
+  end
+
+  def test_vietnamese_dates_after_2049
+    assert_equal '2050-01-23', @subject.to_solar(2050,1,1, :vn).to_s
+    assert_equal '2072-02-19', @subject.to_solar(2072,1,1, :vn).to_s
+    assert_equal '2085-04-03', @subject.to_solar(2085,3,10, :vn).to_s
+    assert_equal '2100-04-18', @subject.to_solar(2100,3,10, :vn).to_s
+  end
+
+  def test_year_after_the_table_raises_unsupported_year_error
+    [:cn, :hk, :sg, :kr, :vn].each do |region|
+      error = assert_raises(Holidays::UnsupportedYearError) { @subject.to_solar(2101,1,1, region) }
+      assert_equal "lunar calendar data for :#{region} covers lunar years 1900..2100, got 2101", error.message
+    end
+  end
+
+  def test_year_before_the_table_raises_unsupported_year_error
+    error = assert_raises(Holidays::UnsupportedYearError) { @subject.to_solar(1899,12,1, :kr) }
+    assert_equal 'lunar calendar data for :kr covers lunar years 1900..2100, got 1899', error.message
+  end
+
+  def test_first_and_last_supported_years
+    assert_equal '1900-01-31', @subject.to_solar(1900,1,1, :kr).to_s
+    assert_equal '2101-01-28', @subject.to_solar(2100,12,29, :cn).to_s
+  end
 end
