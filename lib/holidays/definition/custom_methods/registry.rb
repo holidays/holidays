@@ -60,6 +60,7 @@ module Holidays
           "hari_raya_puasa(year)" => MY.method(:hari_raya_puasa).to_proc,
           "hobart_show_day(year)" => AU.method(:hobart_show_day).to_proc,
           "ie_st_brigids_day(year)" => IE.method(:ie_st_brigids_day).to_proc,
+          "indigenous_peoples_day_cl(year)" => CL.method(:indigenous_peoples_day_cl).to_proc,
           "independence_day(region, date)" => US.method(:independence_day).to_proc,
           "is_sumardagurinn_fyrsti(year)" => IS.method(:is_sumardagurinn_fyrsti).to_proc,
           "jp_citizens_holiday(year)" => JP.method(:jp_citizens_holiday).to_proc,

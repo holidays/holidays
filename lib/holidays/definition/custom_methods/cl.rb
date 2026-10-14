@@ -7,6 +7,14 @@ module Holidays
       # +methods:+ block in definitions/cl.yaml.
       module CL
         class << self
+          def indigenous_peoples_day_cl(year)
+            return Date.civil(2021, 6, 21) if year == 2021
+            raise IndexError, 'Out of range' unless (2022..2099).cover?(year)
+
+            day = 21.019 + 0.242194 * (year - 1980) - ((year - 1980) / 4).floor
+            Date.civil(year, 6, day.floor)
+          end
+
           def st_peter_st_paul_cl(year)
             date = Date.civil(year, 6, 29)
             if [2,3,4].include?(date.wday)
