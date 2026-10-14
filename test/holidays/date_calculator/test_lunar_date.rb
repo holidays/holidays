@@ -31,6 +31,11 @@ class LunarHolidaysCalculatorTests < Test::Unit::TestCase
     assert_equal '2025-01-29', @subject.to_solar(2025,1,1, :kr).to_s
   end
 
+  def test_korean_lunar_month_eleven_2042_starts_on_kasi_date
+    assert_equal '2042-12-12', @subject.to_solar(2042,11,1, :kr).to_s
+    assert_equal '2043-02-10', @subject.to_solar(2043,1,1, :kr).to_s
+  end
+
   def test_buddahs_birthday_returns_expected_results
     assert_equal '1994-05-18', @subject.to_solar(1994,4,8, :kr).to_s
     assert_equal '1995-05-07', @subject.to_solar(1995,4,8, :kr).to_s
