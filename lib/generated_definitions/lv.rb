@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-                0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Lielā Piektdiena", :regions => [:lv]},
+      0 => [{:function => "easter(year)", :function_arguments => [:year], :function_modifier => -2, :name => "Lielā Piektdiena", :regions => [:lv]},
             {:function => "easter(year)", :function_arguments => [:year], :name => "Pirmās Lieldienas", :regions => [:lv]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Otrās Lieldienas", :regions => [:lv]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Vasarsvētki", :regions => [:lv]},

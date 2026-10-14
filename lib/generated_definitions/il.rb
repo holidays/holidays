@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-                3 => [{:mday => 16, :year_ranges => { :limited => [2022] },:name => "Exodus from Egypt", :regions => [:il]},
+      3 => [{:mday => 16, :year_ranges => { :limited => [2022] },:name => "Exodus from Egypt", :regions => [:il]},
             {:mday => 6, :year_ranges => { :limited => [2023] },:name => "Exodus from Egypt", :regions => [:il]},
             {:mday => 23, :year_ranges => { :limited => [2024] },:name => "Exodus from Egypt", :regions => [:il]},
             {:mday => 13, :year_ranges => { :limited => [2025] },:name => "Exodus from Egypt", :regions => [:il]},

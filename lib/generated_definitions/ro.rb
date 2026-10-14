@@ -12,7 +12,7 @@ module Holidays
 
     def self.holidays_by_month
       {
-                0 => [{:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => -2, :year_ranges => { :from => 2018 },:name => "Paștele - Vinerea Mare", :regions => [:ro]},
+      0 => [{:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => -2, :year_ranges => { :from => 2018 },:name => "Paștele - Vinerea Mare", :regions => [:ro]},
             {:function => "orthodox_easter(year)", :function_arguments => [:year], :name => "Paștele - duminică", :regions => [:ro]},
             {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Paștele - luni", :regions => [:ro]},
             {:function => "orthodox_easter(year)", :function_arguments => [:year], :function_modifier => 49, :name => "Rusaliile - 50", :regions => [:ro]},
