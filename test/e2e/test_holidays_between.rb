@@ -31,6 +31,12 @@ class HolidaysBetweenTests < Test::Unit::TestCase
     assert_equal 0, holidays.length
   end
 
+  # See https://github.com/holidays/holidays/issues/519
+  def test_between_finds_lunar_holiday_defined_two_months_before_its_solar_date
+    holidays = @subject.call(Date.civil(2025,10,1), Date.civil(2025,10,31), :cn)
+    assert_includes holidays, {:date => Date.civil(2025,10,6), :name => '中秋节', :regions => [:cn]}
+  end
+
   def test_between_raises_error_if_missing_start_or_end_date
     assert_raise ArgumentError do
       @subject.call(nil, Date.civil(2015, 1, 1), :us)

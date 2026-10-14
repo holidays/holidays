@@ -14,29 +14,11 @@ module Holidays
 
           holidays = []
           dates_driver.each do |year, months|
-            months.each do |month|
-              next unless hbm = @holidays_by_month_repo.find_by_month(month)
-              hbm.each do |h|
-                next if informal_type?(h[:type]) && !informal_set?(options)
-                next unless @rules[:in_region].call(regions, h[:regions])
+            candidates(months).each do |month, h|
+              next unless applicable?(year, h, regions, options)
 
-                if h[:year_ranges]
-                  next unless @rules[:year_range].call(year, h[:year_ranges])
-                end
-
-                dates = if h[:function]
-                  custom_holidays(year, month, h, regions)
-                else
-                  date = build_date(year, month, h, regions)
-                  date ? [date] : []
-                end
-
-                dates.each do |d|
-                  if observed_set?(options) && h[:observed]
-                    d = build_observed_date(d, regions, h)
-                  end
-                  holidays << {:date => d, :name => h[:name], :regions => h[:regions]}
-                end
+              holiday_dates(year, month, h, regions, options).each do |d|
+                holidays << {:date => d, :name => h[:name], :regions => h[:regions]}
               end
             end
           end
@@ -59,6 +41,46 @@ module Holidays
               raise ArgumentError unless month >= 0 && month <= 12
             end
           end
+        end
+
+        # Returns [month, definition] pairs to evaluate for one year of the dates
+        # driver. Fixed-date definitions only matter in the driver's months, but a
+        # function (e.g. a lunar date filed under its lunar month) can land several
+        # months away from the month it is filed under, so every function definition
+        # is evaluated, once, regardless of its month.
+        # See https://github.com/holidays/holidays/issues/519
+        def candidates(months)
+          by_month = @holidays_by_month_repo.all
+
+          in_driver = months.flat_map do |month|
+            (by_month[month] || []).map { |h| [month, h] }
+          end
+
+          outside_driver = (by_month.keys - months).sort.flat_map do |month|
+            by_month[month].select { |h| h[:function] }.map { |h| [month, h] }
+          end
+
+          in_driver + outside_driver
+        end
+
+        def applicable?(year, h, regions, options)
+          return false if informal_type?(h[:type]) && !informal_set?(options)
+          return false unless @rules[:in_region].call(regions, h[:regions])
+          return true unless h[:year_ranges]
+
+          @rules[:year_range].call(year, h[:year_ranges])
+        end
+
+        def holiday_dates(year, month, h, regions, options)
+          dates = if h[:function]
+            custom_holidays(year, month, h, regions)
+          else
+            [build_date(year, month, h, regions)].compact
+          end
+
+          return dates unless observed_set?(options) && h[:observed]
+
+          dates.map { |d| build_observed_date(d, regions, h) }
         end
 
         def informal_type?(type)
