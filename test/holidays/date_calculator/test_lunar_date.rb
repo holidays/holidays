@@ -102,6 +102,16 @@ class LunarHolidaysCalculatorTests < Test::Unit::TestCase
     assert_equal '2023-01-22', @subject.to_solar(2023,1,1, :vn).to_s
   end
 
+  def test_vietnamese_new_year_uses_vietnam_time_zone
+    assert_equal '1968-01-29', @subject.to_solar(1968,1,1, :vn).to_s
+    assert_equal '1985-01-21', @subject.to_solar(1985,1,1, :vn).to_s
+    assert_equal '2007-02-17', @subject.to_solar(2007,1,1, :vn).to_s
+  end
+
+  def test_hung_kings_festival_uses_vietnam_time_zone
+    assert_equal '2009-04-04', @subject.to_solar(2009,3,10, :vn).to_s
+  end
+
   def test_chinese_new_year_returns_expected_results_for_singapore
     assert_equal '2014-01-31', @subject.to_solar(2014,1,1, :sg).to_s
     assert_equal '2018-02-16', @subject.to_solar(2018,1,1, :sg).to_s
