@@ -11,31 +11,15 @@ module Holidays
           @proc_result_cache_repo = proc_result_cache_repo
         end
 
+        # Custom methods go in first so a name collision raises before any
+        # region or holiday from the same definition set is registered.
         def call(target_regions, target_holidays, target_custom_methods, target_custom_method_sources = {})
+          @custom_methods_repo.add(target_custom_methods, target_custom_method_sources)
           @regions_repo.add(target_regions)
           @holidays_repo.add(target_holidays)
-          @custom_methods_repo.add(
-            target_custom_methods,
-            target_custom_method_sources,
-            derive_function_regions(target_holidays),
-          )
         ensure
           @cache_repo.reset!
           @proc_result_cache_repo.reset!
-        end
-
-        private
-
-        # Builds a map of {func_id => [regions]} from the holiday definitions
-        # so the custom_methods repo knows which regions each function belongs to.
-        def derive_function_regions(holidays_by_month)
-          holidays_by_month.each_with_object({}) do |(_, definitions), result|
-            definitions.each do |defn|
-              next unless defn[:function]
-              result[defn[:function]] ||= []
-              result[defn[:function]] |= Array(defn[:regions])
-            end
-          end
         end
       end
     end

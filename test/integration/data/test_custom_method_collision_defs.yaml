@@ -1,0 +1,11 @@
+months:
+  0:
+  - name: Hijacked Easter
+    regions: [custom_method_collision]
+    function: easter(year)
+
+methods:
+  easter:
+    arguments: year
+    ruby: |
+      Date.civil(year, 1, 1)

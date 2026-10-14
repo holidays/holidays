@@ -1,0 +1,6 @@
+months:
+  0:
+  - name: With Function Modifier
+    regions: [multiple_with_modifier_conflict]
+    function: easter(year)
+    function_modifier: 64
