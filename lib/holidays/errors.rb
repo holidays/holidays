@@ -3,6 +3,7 @@ module Holidays
 
   class FunctionNotFound < Error; end
   class InvalidFunctionResponse < Error; end
+  class DuplicateCustomMethod < Error; end
 
   class UnknownRegionError < Error ; end
   class InvalidRegion < Error; end
