@@ -1,0 +1,7 @@
+months:
+  1:
+  - name: Bad Year Range Day
+    regions: [custom_hostile]
+    mday: 3
+    year_ranges:
+      from: '2020, :x => 1'

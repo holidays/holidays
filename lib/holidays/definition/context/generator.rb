@@ -174,18 +174,18 @@ module Holidays
             rules.each do |rule|
               string = +'{'
               if rule[:mday]
-                string << ":mday => #{rule[:mday]}, "
+                string << ":mday => #{emit_integer(rule, :mday)}, "
               end
 
               if rule[:function]
-                string << ":function => \"#{rule[:function].to_s}\", "
+                string << ":function => #{rule[:function].to_s.inspect}, "
 
                 # We need to add in the arguments so we can know what to send in when calling the custom proc during holiday lookups.
                 # NOTE: the allowed arguments are enforced in the custom methods parser.
                 string << ":function_arguments => #{get_function_arguments(rule[:function], parsed_custom_methods)}, "
 
                 if rule[:function_modifier]
-                  string << ":function_modifier => #{rule[:function_modifier].to_s}, "
+                  string << ":function_modifier => #{emit_integer(rule, :function_modifier)}, "
                 end
               end
 
@@ -193,30 +193,30 @@ module Holidays
               # to be set but this is the fallback. This whole area
               # needs to be reworked!
               if string == '{'
-                string << ":wday => #{rule[:wday]}, :week => #{rule[:week]}, "
+                string << ":wday => #{emit_integer(rule, :wday)}, :week => #{emit_integer(rule, :week)}, "
               end
 
               if rule[:year_ranges] && rule[:year_ranges].is_a?(Hash)
                 selector = rule[:year_ranges].keys.first
                 value = rule[:year_ranges][selector]
 
-                string << ":year_ranges => { :#{selector} => #{value} },"
+                string << ":year_ranges => { #{emit_identifier(rule, :year_ranges, selector)} => #{emit_year_range_value(rule, value)} },"
               end
 
               if rule[:observed]
-                string << ":observed => \"#{rule[:observed].to_s}\", "
+                string << ":observed => #{rule[:observed].to_s.inspect}, "
                 string << ":observed_arguments => #{get_function_arguments(rule[:observed], parsed_custom_methods)}, "
               end
 
               if rule[:type]
-                string << ":type => :#{rule[:type]}, "
+                string << ":type => #{emit_identifier(rule, :type, rule[:type])}, "
               end
 
               # shouldn't allow the same region twice
-              string << ":name => \"#{rule[:name]}\", :regions => [:" + rule[:regions].uniq.join(', :') + "]"
+              string << ":name => #{rule[:name].to_s.inspect}, :regions => #{emit_regions(rule, :region, rule[:regions])}"
 
               if rule[:excluded_regions]
-                string << ", :excluded_regions => [:" + rule[:excluded_regions].uniq.join(', :') + "]"
+                string << ", :excluded_regions => #{emit_regions(rule, :excluded_region, rule[:excluded_regions])}"
               end
 
               string << "}"
@@ -227,6 +227,40 @@ module Holidays
           end
 
           return month_strings
+        end
+
+        # Values below are written into generated Ruby source, so anything
+        # that is not emitted with #inspect must be checked first. A string
+        # where an integer or identifier belongs would otherwise become code.
+        IDENTIFIER_FORMAT = /\A[a-z0-9_]+\z/
+
+        def emit_integer(rule, key)
+          value = rule[key]
+          return value if value.is_a?(Integer)
+
+          raise ArgumentError, "Holiday #{rule[:name].to_s.inspect}: #{key} must be an integer, received: #{value.inspect}"
+        end
+
+        def emit_identifier(rule, key, value)
+          return ":#{value}" if value.to_s.match?(IDENTIFIER_FORMAT)
+
+          raise ArgumentError, "Holiday #{rule[:name].to_s.inspect}: #{key} must only contain lowercase letters, digits and underscores, received: #{value.inspect}"
+        end
+
+        def emit_regions(rule, key, regions)
+          "[" + regions.uniq.flatten.map { |region| emit_identifier(rule, key, region) }.join(', ') + "]"
+        end
+
+        def emit_year_range_value(rule, value)
+          valid = case value
+                  when Integer then true
+                  when Array then value.all?(Integer)
+                  when Range then value.begin.is_a?(Integer) && value.end.is_a?(Integer)
+                  else false
+                  end
+          return value if valid
+
+          raise ArgumentError, "Holiday #{rule[:name].to_s.inspect}: year_ranges must contain only integers, received: #{value.inspect}"
         end
 
         # This method sucks. The issue here is that the custom methods repo has the 'general' methods (like easter)

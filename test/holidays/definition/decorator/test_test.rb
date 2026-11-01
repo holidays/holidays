@@ -23,6 +23,20 @@ class DecoratorTestTests < Test::Unit::TestCase
     assert_equal expected_source, source
   end
 
+  def test_call_emits_the_name_as_a_plain_string_literal
+    entity = Holidays::Definition::Entity::Test.new(
+      :dates => [DateTime.parse('2016-01-01')],
+      :regions => [:us],
+      :name => 'Day #{1 + 1} "quoted"',
+      :holiday? => true,
+    )
+
+    source = @decorator.call(entity)
+    expected_source = "assert_equal \"Day \\\#{1 + 1} \\\"quoted\\\"\", (Holidays.on(Date.civil(2016, 1, 1), [:us])[0] || {})[:name]\n"
+
+    assert_equal expected_source, source
+  end
+
   def test_call_generates_source_from_entity_multiple_dates
     entity = Holidays::Definition::Entity::Test.new(
       :dates => [DateTime.parse('2016-01-01'), DateTime.parse('2017-01-01')],

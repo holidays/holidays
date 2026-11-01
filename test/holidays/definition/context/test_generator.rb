@@ -175,6 +175,45 @@ class GeneratorTests < Test::Unit::TestCase
     assert_equal "module source", module_src
   end
 
+  def test_generate_definition_source_emits_names_and_functions_as_plain_string_literals
+    files = ['test/data/test_hostile_name_defs.yaml']
+    @custom_method_parser.expects(:call).with(nil).returns({})
+    @custom_methods_repository.stubs(:find).with('to_monday_if_weekend(date)').returns(->(date) {})
+    @test_parser.expects(:call).with(nil).returns([])
+    @test_source_generator.expects(:call).returns('')
+
+    month_strings = nil
+    @module_source_generator.expects(:call).with { |_, _, _, strings, _| month_strings = strings }.returns("module source")
+
+    regions, rules_by_month, custom_methods, tests = @generator.parse_definition_files(files)
+    @generator.generate_definition_source("test", files, regions, rules_by_month, custom_methods, tests)
+
+    assert_equal(
+      "      1 => [{:mday => 2, :function => \"to_monday_if_weekend(date)\", :function_arguments => [:date], :name => \"Day \\\#{1 + 1} \\\"quoted\\\" \\\\ back\", :regions => [:custom_hostile]}]",
+      month_strings.first,
+    )
+  end
+
+  def test_generate_definition_source_raises_error_for_unsafe_values
+    {
+      'test/data/test_hostile_mday_defs.yaml' => /mday must be an integer, received: "3, :x => 1"/,
+      'test/data/test_hostile_week_defs.yaml' => /week must be an integer, received: "1, :x => 1"/,
+      'test/data/test_hostile_region_defs.yaml' => /region must only contain lowercase letters, digits and underscores, received: :"custom_hostile\], :x => \[1"/,
+      'test/data/test_hostile_type_defs.yaml' => /type must only contain lowercase letters, digits and underscores, received: "informal, :x => 1"/,
+      'test/data/test_hostile_year_range_defs.yaml' => /year_ranges must contain only integers, received: "2020, :x => 1"/,
+    }.each do |file, message|
+      @custom_method_parser.expects(:call).with(nil).returns({})
+      @test_parser.expects(:call).with(nil).returns([])
+
+      regions, rules_by_month, custom_methods, tests = @generator.parse_definition_files([file])
+      error = assert_raises(ArgumentError) do
+        @generator.generate_definition_source("test", [file], regions, rules_by_month, custom_methods, tests)
+      end
+
+      assert_match(message, error.message, file)
+    end
+  end
+
   def test_parse_definition_files_correctly_parse_custom_methods
     files = ['test/data/test_single_custom_holiday_defs.yaml']
     @custom_method_parser.expects(:call).with(nil).returns({})
