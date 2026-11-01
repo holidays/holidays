@@ -1,0 +1,6 @@
+months:
+  1:
+  - name: Bad Week Day
+    regions: [custom_hostile]
+    wday: 1
+    week: '1, :x => 1'

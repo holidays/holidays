@@ -15,7 +15,7 @@ module Holidays
             end
 
             if t.holiday?
-              src += "assert_equal \"#{t.name}\", (#{holiday_call})[0] || {})[:name]\n"
+              src += "assert_equal #{t.name.to_s.inspect}, (#{holiday_call})[0] || {})[:name]\n"
             else
               src += "assert_nil (#{holiday_call})[0] || {})[:name]\n"
             end

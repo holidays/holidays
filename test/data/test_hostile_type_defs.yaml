@@ -1,0 +1,6 @@
+months:
+  1:
+  - name: Bad Type Day
+    regions: [custom_hostile]
+    mday: 3
+    type: 'informal, :x => 1'

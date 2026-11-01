@@ -1,0 +1,5 @@
+months:
+  1:
+  - name: Bad Region Day
+    regions: ['custom_hostile], :x => [1']
+    mday: 3

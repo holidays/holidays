@@ -1,0 +1,6 @@
+months:
+  1:
+  - name: 'Day #{1 + 1} "quoted" \ back'
+    regions: [custom_hostile]
+    mday: 2
+    function: to_monday_if_weekend(date)
