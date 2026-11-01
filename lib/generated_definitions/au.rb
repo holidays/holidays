@@ -17,7 +17,7 @@ module Holidays
             {:function => "easter(year)", :function_arguments => [:year], :name => "Easter Sunday", :regions => [:au_nsw, :au_vic]},
             {:function => "easter(year)", :function_arguments => [:year], :year_ranges => { :from => 2017 },:name => "Easter Sunday", :regions => [:au_qld, :au_act]},
             {:function => "easter(year)", :function_arguments => [:year], :function_modifier => 1, :name => "Easter Monday", :regions => [:au]}],
-      1 => [{:mday => 1, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:au, :au_nsw, :au_vic, :au_act, :au_sa, :au_wa, :au_nt, :au_qld]},
+      1 => [{:mday => 1, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "New Year's Day", :regions => [:au, :au_nsw, :au_vic, :au_act, :au_sa, :au_wa, :au_nt, :au_qld], :excluded_regions => [:au_tas]},
             {:mday => 1, :function => "to_monday_if_weekend(date)", :function_arguments => [:date], :name => "New Year's Day", :regions => [:au_tas]},
             {:mday => 26, :observed => "to_monday_if_weekend(date)", :observed_arguments => [:date], :name => "Australia Day", :regions => [:au]}],
       2 => [{:wday => 1, :week => 2, :name => "Royal Hobart Regatta", :regions => [:au_tas_south]}],

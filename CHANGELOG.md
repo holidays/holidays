@@ -1,5 +1,16 @@
 # Ruby Holidays Gem CHANGELOG
 
+## 11.8.0
+
+* Update to [v9.3.0 definitions](https://github.com/holidays/definitions/releases/tag/v9.3.0): Juneteenth excluded for the 17 states without a paid state holiday (including `us_hi`, informal there instead), the `au_tas` New Year's Day fix, `tr` Bayram dates pinned for 2031-2035, `cl` Día Nacional de los Pueblos Indígenas, and multi-language region names.
+* Support the optional `excluded_regions` key on holiday definitions, so a holiday listed for a parent region can skip specific subregions. [#528](https://github.com/holidays/holidays/pull/528), [#444](https://github.com/holidays/holidays/issues/444), [definitions issue-37](https://github.com/holidays/definitions/issues/37)
+* Pin `tr` Ramazan and Kurban Bayramı to the Diyanet dates for 2031-2035 and add the second Ramazan Bayramı of 2033. [#527](https://github.com/holidays/holidays/pull/527)
+* Add the `indigenous_peoples_day_cl` custom method for Chile's Día Nacional de los Pueblos Indígenas. [#520](https://github.com/holidays/holidays/pull/520) (thanks to https://github.com/aundurraga)
+* Find lunar holidays in short date ranges. [#521](https://github.com/holidays/holidays/pull/521), [#519](https://github.com/holidays/holidays/issues/519)
+* Extend the lunar tables to 2100 and raise `UnsupportedYearError` past them. [#524](https://github.com/holidays/holidays/pull/524)
+* Compute the `vn` lunar table for Vietnam time instead of reusing the Korean one, and fix the `kr` 2042 row so month 11 starts on 2042-12-12. [#522](https://github.com/holidays/holidays/pull/522), [#523](https://github.com/holidays/holidays/pull/523)
+* Don't shadow an existing `end_of_month` in the Date core extension. [#512](https://github.com/holidays/holidays/pull/512), [#404](https://github.com/holidays/holidays/issues/404)
+
 ## 11.7.0
 
 * Update to [v9.2.0 definitions](https://github.com/holidays/definitions/releases/tag/v9.2.0): `ma` Eid al-Fitr and Eid al-Adha, `my` Hari Raya Puasa and Hari Raya Haji.
