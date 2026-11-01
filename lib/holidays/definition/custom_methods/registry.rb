@@ -94,6 +94,7 @@ module Holidays
           "qld_queens_bday_october(year)" => AU.method(:qld_queens_bday_october).to_proc,
           "qld_queens_birthday_june(year)" => AU.method(:qld_queens_birthday_june).to_proc,
           "ramadan_feast(year)" => TR.method(:ramadan_feast).to_proc,
+          "ramadan_feast_second_in_year(year)" => TR.method(:ramadan_feast_second_in_year).to_proc,
           "rosh_hashanah(year)" => US.method(:rosh_hashanah).to_proc,
           "sacrifice_feast(year)" => TR.method(:sacrifice_feast).to_proc,
           "se_alla_helgons_dag(year)" => SE.method(:se_alla_helgons_dag).to_proc,

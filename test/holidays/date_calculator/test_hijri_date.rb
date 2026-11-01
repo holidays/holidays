@@ -25,4 +25,9 @@ class HijriDateCalculatorTests < Test::Unit::TestCase
     # 1 Shawwal falls on both 2033-01-03 and 2033-12-23.
     assert_equal '2033-01-03', @subject.gregorian_year_occurrence(2033, 10, 1).to_s
   end
+
+  def test_gregorian_year_occurrences_returns_every_date_in_that_year
+    assert_equal %w[2033-01-03 2033-12-23], @subject.gregorian_year_occurrences(2033, 10, 1).map(&:to_s)
+    assert_equal %w[2023-04-22], @subject.gregorian_year_occurrences(2023, 10, 1).map(&:to_s)
+  end
 end
