@@ -1,0 +1,12 @@
+months:
+  6:
+  - name: Shared Day
+    regions: [custom_excl_merge]
+    excluded_regions: [custom_excl_merge_hi]
+    mday: 21
+  - name: Shared Day
+    regions: [custom_excl_other]
+    mday: 21
+  - name: Shared Day
+    regions: [custom_excl_third]
+    mday: 21

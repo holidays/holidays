@@ -40,3 +40,63 @@ class FinderRulesInRegionTests < Test::Unit::TestCase
     assert_equal(true, @subject.call([:other_sub, :other, :any], @available))
   end
 end
+
+class FinderRulesInRegionExcludedTests < Test::Unit::TestCase
+  def setup
+    @available = [:us]
+    @excluded = [:us_hi]
+    @subject = Holidays::Finder::Rules::InRegion
+  end
+
+  def test_parent_region_matches
+    assert_equal(true, @subject.call([:us], @available, @excluded))
+  end
+
+  def test_non_excluded_subregion_matches
+    assert_equal(true, @subject.call([:us_ca], @available, @excluded))
+  end
+
+  def test_excluded_subregion_does_not_match
+    assert_equal(false, @subject.call([:us_hi], @available, @excluded))
+  end
+
+  def test_child_of_excluded_subregion_does_not_match
+    assert_equal(false, @subject.call([:us_hi_xx], @available, @excluded))
+  end
+
+  def test_parent_and_excluded_subregion_matches
+    assert_equal(true, @subject.call([:us, :us_hi], @available, @excluded))
+  end
+
+  def test_excluded_and_non_excluded_subregion_matches
+    assert_equal(true, @subject.call([:us_hi, :us_ca], @available, @excluded))
+  end
+
+  def test_any_is_never_blocked
+    assert_equal(true, @subject.call([:any], @available, @excluded))
+    assert_equal(true, @subject.call([:us_hi, :any], @available, @excluded))
+  end
+
+  def test_excluded_subregion_listed_directly_still_matches_parent_request
+    assert_equal(true, @subject.call([:us], [:us, :us_hi], @excluded))
+  end
+
+  def test_excluded_subregion_is_blocked_even_when_listed
+    assert_equal(false, @subject.call([:us_hi], [:us, :us_hi], @excluded))
+  end
+
+  # ParseOptions expands a wildcard such as :us_ into every loaded us region,
+  # parent included, before this rule sees it.
+  def test_expanded_wildcard_request_is_not_blocked
+    assert_equal(true, @subject.call([:us, :us_ca, :us_hi], @available, @excluded))
+  end
+
+  def test_nil_or_empty_exclusions_behave_as_before
+    assert_equal(true, @subject.call([:us_hi], @available, nil))
+    assert_equal(true, @subject.call([:us_hi], @available, []))
+  end
+
+  def test_exclusion_does_not_match_by_string_prefix
+    assert_equal(true, @subject.call([:us_hix], [:us_hix], @excluded))
+  end
+end

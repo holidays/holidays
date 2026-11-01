@@ -1,0 +1,6 @@
+months:
+  6:
+  - name: Empty Exclusion Day
+    regions: [custom_excl_empty]
+    excluded_regions: []
+    mday: 20

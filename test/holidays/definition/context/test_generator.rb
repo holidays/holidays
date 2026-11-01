@@ -97,6 +97,84 @@ class GeneratorTests < Test::Unit::TestCase
     assert_equal expected_rules_by_month, rules_by_month
   end
 
+  def test_parse_definition_files_symbolizes_excluded_regions
+    files = ['test/data/test_excluded_regions_defs.yaml']
+    @custom_method_parser.expects(:call).with(nil).returns({})
+    @test_parser.expects(:call).with(nil).returns([])
+
+    regions, rules_by_month = @generator.parse_definition_files(files)
+
+    assert_equal [:custom_excl, :custom_excl_hi, :custom_excl_ca], regions
+    assert_equal(
+      {:name => "Parent Day", :regions => [:custom_excl], :excluded_regions => [:custom_excl_hi], :mday => 19},
+      rules_by_month[6][0],
+    )
+  end
+
+  def test_parse_definition_files_drops_empty_excluded_regions
+    files = ['test/data/test_excluded_regions_empty_defs.yaml']
+    @custom_method_parser.expects(:call).with(nil).returns({})
+    @test_parser.expects(:call).with(nil).returns([])
+
+    rules_by_month = @generator.parse_definition_files(files)[1]
+
+    assert_equal({:name => "Empty Exclusion Day", :regions => [:custom_excl_empty], :mday => 20}, rules_by_month[6][0])
+  end
+
+  def test_parse_definition_files_does_not_merge_rules_with_different_exclusions
+    files = ['test/data/test_excluded_regions_merge_defs.yaml']
+    @custom_method_parser.expects(:call).with(nil).returns({})
+    @test_parser.expects(:call).with(nil).returns([])
+
+    rules_by_month = @generator.parse_definition_files(files)[1]
+
+    assert_equal 2, rules_by_month[6].length
+    assert_equal [:custom_excl_merge], rules_by_month[6][0][:regions].flatten
+    assert_equal [:custom_excl_merge_hi], rules_by_month[6][0][:excluded_regions]
+    assert_equal [:custom_excl_other, :custom_excl_third], rules_by_month[6][1][:regions].flatten
+    assert_nil rules_by_month[6][1][:excluded_regions]
+  end
+
+  def test_parse_definition_files_raises_error_if_excluded_region_is_not_a_descendant
+    files = ['test/data/test_excluded_regions_not_descendant_defs.yaml']
+    @custom_method_parser.expects(:call).with(nil).returns({})
+
+    error = assert_raises ArgumentError do
+      @generator.parse_definition_files(files)
+    end
+
+    assert_match(/custom_other_hi/, error.message)
+  end
+
+  def test_parse_definition_files_raises_error_if_excluded_region_is_a_listed_region
+    files = ['test/data/test_excluded_regions_self_defs.yaml']
+    @custom_method_parser.expects(:call).with(nil).returns({})
+
+    assert_raises ArgumentError do
+      @generator.parse_definition_files(files)
+    end
+  end
+
+  def test_generate_definition_source_emits_excluded_regions_when_present
+    files = ['test/data/test_excluded_regions_defs.yaml']
+    @custom_method_parser.expects(:call).with(nil).returns({})
+    @test_parser.expects(:call).with(nil).returns([])
+    @test_source_generator.expects(:call).returns('')
+
+    @module_source_generator.expects(:call).with(
+      "test",
+      files,
+      [:custom_excl, :custom_excl_hi, :custom_excl_ca],
+      ["      6 => [{:mday => 19, :name => \"Parent Day\", :regions => [:custom_excl], :excluded_regions => [:custom_excl_hi]},\n            {:mday => 11, :name => \"Island Day\", :regions => [:custom_excl_hi]},\n            {:mday => 12, :name => \"Valley Day\", :regions => [:custom_excl_ca]}]"],
+      "",
+    ).returns("module source")
+
+    regions, rules_by_month, custom_methods, tests = @generator.parse_definition_files(files)
+    module_src = @generator.generate_definition_source("test", files, regions, rules_by_month, custom_methods, tests)[0]
+
+    assert_equal "module source", module_src
+  end
+
   def test_parse_definition_files_correctly_parse_custom_methods
     files = ['test/data/test_single_custom_holiday_defs.yaml']
     @custom_method_parser.expects(:call).with(nil).returns({})
