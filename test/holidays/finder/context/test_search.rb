@@ -66,8 +66,14 @@ class FinderSearchTests < Test::Unit::TestCase
 
   def test_returns_nothing_if_holidays_not_in_region
     @holidays_by_month_repo.expects(:all).returns({1 => [:regions=>[:other_region]]})
-    @in_region_rule.expects(:call).with(@regions, [:other_region]).returns(false)
+    @in_region_rule.expects(:call).with(@regions, [:other_region], nil).returns(false)
     assert_equal([], @subject.call(@dates_driver, @regions, @options))
+  end
+
+  def test_passes_excluded_regions_to_in_region_rule
+    @holidays_by_month_repo.expects(:all).returns({1 => [:mday => 1, :name => "Test", :regions => [:us], :excluded_regions => [:us_hi]]})
+    @in_region_rule.expects(:call).with([:us_hi], [:us], [:us_hi]).returns(false)
+    assert_equal([], @subject.call(@dates_driver, [:us_hi], @options))
   end
 
   def test_returns_nothing_if_only_informal_holidays_are_returned_and_no_informal_flag_set
@@ -255,7 +261,7 @@ class FinderSearchTests < Test::Unit::TestCase
     @holidays_by_month_repo.expects(:all).at_most_once.returns(1 =>
       [{ mday: 1, name: "Test", regions: two_regions, function: "func-id", function_arguments: [:year], function_modifier: nil }]
     )
-    @in_region_rule.expects(:call).with(two_regions, two_regions).returns(true)
+    @in_region_rule.expects(:call).with(two_regions, two_regions, nil).returns(true)
 
     @custom_method_processor.expects(:call).with(
       { year: 2015, month: 1, day: 1, region: :r1 }, "func-id", [:year], nil,
@@ -276,7 +282,7 @@ class FinderSearchTests < Test::Unit::TestCase
     @holidays_by_month_repo.expects(:all).at_most_once.returns(1 =>
       [{ mday: 1, name: "Test", regions: two_regions, function: "func-id", function_arguments: [:year], function_modifier: nil }]
     )
-    @in_region_rule.expects(:call).with(two_regions, two_regions).returns(true)
+    @in_region_rule.expects(:call).with(two_regions, two_regions, nil).returns(true)
 
     @custom_method_processor.expects(:call).with(
       { year: 2015, month: 1, day: 1, region: :r1 }, "func-id", [:year], nil,
@@ -296,7 +302,7 @@ class FinderSearchTests < Test::Unit::TestCase
     @holidays_by_month_repo.expects(:all).at_most_once.returns(1 =>
       [{ mday: 1, name: "Test", regions: [:r1], function: "func-id", function_arguments: [:year], function_modifier: nil }]
     )
-    @in_region_rule.expects(:call).with([:any], [:r1]).returns(true)
+    @in_region_rule.expects(:call).with([:any], [:r1], nil).returns(true)
 
     @custom_method_processor.expects(:call).with(
       { year: 2015, month: 1, day: 1, region: :any }, "func-id", [:year], nil,

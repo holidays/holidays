@@ -1,0 +1,12 @@
+months:
+  6:
+  - name: Parent Day
+    regions: [custom_excl]
+    excluded_regions: [custom_excl_hi]
+    mday: 19
+  - name: Island Day
+    regions: [custom_excl_hi]
+    mday: 11
+  - name: Valley Day
+    regions: [custom_excl_ca]
+    mday: 12

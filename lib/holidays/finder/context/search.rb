@@ -87,7 +87,7 @@ module Holidays
 
         def applicable?(year, h, regions, options)
           return false if informal_type?(h[:type]) && !informal_set?(options)
-          return false unless @rules[:in_region].call(regions, h[:regions])
+          return false unless @rules[:in_region].call(regions, h[:regions], h[:excluded_regions])
           return true unless h[:year_ranges]
 
           @rules[:year_range].call(year, h[:year_ranges])

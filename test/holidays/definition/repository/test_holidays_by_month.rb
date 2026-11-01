@@ -272,4 +272,18 @@ class HolidaysByMonthRepoTests < Test::Unit::TestCase
 
     assert_equal(expected, @subject.all)
   end
+
+  def test_add_is_successful_if_only_excluded_regions_is_different
+    @subject.add({0 => [{:mday => 1, :name => "Test", :regions => [:test], :excluded_regions => [:test_sub]}]})
+    @subject.add({0 => [{:mday => 1, :name => "Test", :regions => [:test2]}]})
+
+    expected = {
+      0 => [
+        {:mday => 1, :name => "Test", :regions => [:test], :excluded_regions => [:test_sub]},
+        {:mday => 1, :name => "Test", :regions => [:test2]}
+      ]
+    }
+
+    assert_equal(expected, @subject.all)
+  end
 end

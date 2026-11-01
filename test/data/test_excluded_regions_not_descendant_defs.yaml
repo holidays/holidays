@@ -1,0 +1,6 @@
+months:
+  6:
+  - name: Bad Exclusion Day
+    regions: [custom_excl_bad]
+    excluded_regions: [custom_other_hi]
+    mday: 22

@@ -117,9 +117,11 @@ module Holidays
                 rule[:regions] = rule[:regions].collect(&:to_sym)
                 regions << rule[:regions]
 
+                parse_excluded_regions!(rule)
+
                 exists = false
                 rules_by_month[month].each do |ex|
-                  if ex[:name] == rule[:name] and ex[:wday] == rule[:wday] and ex[:mday] == rule[:mday] and ex[:week] == rule[:week] and ex[:type] == rule[:type] and ex[:function] == rule[:function] and ex[:function_modifier] == rule[:function_modifier] and ex[:observed] == rule[:observed] and ex[:year_ranges] == rule[:year_ranges]
+                  if ex[:name] == rule[:name] and ex[:wday] == rule[:wday] and ex[:mday] == rule[:mday] and ex[:week] == rule[:week] and ex[:type] == rule[:type] and ex[:function] == rule[:function] and ex[:function_modifier] == rule[:function_modifier] and ex[:observed] == rule[:observed] and ex[:year_ranges] == rule[:year_ranges] and ex[:excluded_regions] == rule[:excluded_regions]
                     ex[:regions] << rule[:regions].flatten
                     exists = true
                   end
@@ -143,6 +145,23 @@ module Holidays
           end
 
           [regions, rules_by_month]
+        end
+
+        # Symbolizes a rule's optional excluded_regions, dropping the key when
+        # it is empty so such a rule is identical to one without it. Every
+        # excluded region must be a strict descendant of one of the rule's own
+        # regions (us_hi under us), otherwise it could never take effect.
+        def parse_excluded_regions!(rule)
+          excluded = Array(rule.delete(:excluded_regions)).collect(&:to_sym)
+          return if excluded.empty?
+
+          excluded.each do |e|
+            next if rule[:regions].any? { |r| e.to_s.start_with?("#{r}_") }
+
+            raise ArgumentError, "Excluded region '#{e}' in '#{rule[:name]}' must be a subregion of one of its regions #{rule[:regions]}"
+          end
+
+          rule[:excluded_regions] = excluded
         end
 
         #FIXME This should really be split out and tested with its own unit tests.
@@ -194,7 +213,13 @@ module Holidays
               end
 
               # shouldn't allow the same region twice
-              string << ":name => \"#{rule[:name]}\", :regions => [:" + rule[:regions].uniq.join(', :') + "]}"
+              string << ":name => \"#{rule[:name]}\", :regions => [:" + rule[:regions].uniq.join(', :') + "]"
+
+              if rule[:excluded_regions]
+                string << ", :excluded_regions => [:" + rule[:excluded_regions].uniq.join(', :') + "]"
+              end
+
+              string << "}"
               rule_strings << string
             end
             month_string << rule_strings.join(",\n            ") + "]"

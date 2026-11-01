@@ -1,0 +1,6 @@
+months:
+  6:
+  - name: Self Exclusion Day
+    regions: [custom_excl_self]
+    excluded_regions: [custom_excl_self]
+    mday: 23

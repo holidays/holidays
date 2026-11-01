@@ -49,7 +49,8 @@ module Holidays
           existing_def[:function_modifier] == target_def[:function_modifier] &&
           existing_def[:type] == target_def[:type] &&
           existing_def[:observed] == target_def[:observed] &&
-          existing_def[:year_ranges] == target_def[:year_ranges]
+          existing_def[:year_ranges] == target_def[:year_ranges] &&
+          existing_def[:excluded_regions] == target_def[:excluded_regions]
         end
       end
     end
