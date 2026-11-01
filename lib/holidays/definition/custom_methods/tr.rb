@@ -12,6 +12,10 @@ module Holidays
       # day (2016 Ramazan Bayramı, two days) before the arithmetic result;
       # DIYANET_OVERRIDES pins those years to the proclaimed date. Years with
       # no entry fall back to the calculation. See definitions#377.
+      #
+      # ramadan_feast only returns the first occurrence of a Gregorian year;
+      # ramadan_feast_second_in_year returns the second one in the rare years
+      # that have two (2033), and nil otherwise.
       module TR
         SHAWWAL = 10
         DHU_AL_HIJJAH = 12
@@ -19,7 +23,7 @@ module Holidays
         # Proclaimed first days that differ from the arithmetic calendar,
         # keyed by [feast, gregorian_year]. Sourced from the Diyanet dates
         # that the definition file previously carried as a fixed table, plus
-        # https://vakithesaplama.diyanet.gov.tr/resmitatiller.php for 2021-2030.
+        # https://vakithesaplama.diyanet.gov.tr/resmitatiller.php for 2021-2035.
         DIYANET_OVERRIDES = {
           [:ramadan_feast, 2014] => Date.new(2014, 7, 28),
           [:ramadan_feast, 2015] => Date.new(2015, 7, 17),
@@ -32,6 +36,9 @@ module Holidays
           [:ramadan_feast, 2027] => Date.new(2027, 3, 9),
           [:ramadan_feast, 2028] => Date.new(2028, 2, 26),
           [:ramadan_feast, 2030] => Date.new(2030, 2, 4),
+          [:ramadan_feast, 2031] => Date.new(2031, 1, 24),
+          [:ramadan_feast, 2033] => Date.new(2033, 1, 2),
+          [:ramadan_feast, 2035] => Date.new(2035, 12, 1),
 
           [:sacrifice_feast, 2014] => Date.new(2014, 10, 4),
           [:sacrifice_feast, 2016] => Date.new(2016, 9, 12),
@@ -44,11 +51,18 @@ module Holidays
           [:sacrifice_feast, 2025] => Date.new(2025, 6, 6),
           [:sacrifice_feast, 2027] => Date.new(2027, 5, 16),
           [:sacrifice_feast, 2030] => Date.new(2030, 4, 13),
+          [:sacrifice_feast, 2031] => Date.new(2031, 4, 2),
+          [:sacrifice_feast, 2033] => Date.new(2033, 3, 11),
         }.freeze
 
         class << self
           def ramadan_feast(year)
             feast(:ramadan_feast, year, SHAWWAL, 1)
+          end
+
+          def ramadan_feast_second_in_year(year)
+            occurrences = hijri.gregorian_year_occurrences(year, SHAWWAL, 1)
+            occurrences.last if occurrences.size > 1
           end
 
           def sacrifice_feast(year)
@@ -59,7 +73,11 @@ module Holidays
 
           def feast(name, year, hijri_month, hijri_day)
             DIYANET_OVERRIDES[[name, year]] ||
-              Holidays::Factory::DateCalculator.hijri_date.gregorian_year_occurrence(year, hijri_month, hijri_day)
+              hijri.gregorian_year_occurrence(year, hijri_month, hijri_day)
+          end
+
+          def hijri
+            Holidays::Factory::DateCalculator.hijri_date
           end
         end
       end

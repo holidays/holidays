@@ -21,5 +21,13 @@ assert_equal "Giỗ tổ Hùng Vương", (Holidays.on(Date.civil(2019, 4, 14), [
 assert_equal "Giỗ tổ Hùng Vương", (Holidays.on(Date.civil(2020, 4, 2), [:vn])[0] || {})[:name]
 assert_equal "Giỗ tổ Hùng Vương", (Holidays.on(Date.civil(2023, 4, 29), [:vn])[0] || {})[:name]
 
+    assert_equal "Giỗ tổ Hùng Vương", (Holidays.on(Date.civil(2009, 4, 4), [:vn])[0] || {})[:name]
+assert_equal "Giỗ tổ Hùng Vương", (Holidays.on(Date.civil(2037, 4, 24), [:vn])[0] || {})[:name]
+assert_equal "Giỗ tổ Hùng Vương", (Holidays.on(Date.civil(2038, 4, 13), [:vn])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2009, 4, 5), [:vn])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2037, 4, 25), [:vn])[0] || {})[:name]
+assert_nil (Holidays.on(Date.civil(2038, 4, 14), [:vn])[0] || {})[:name]
+
   end
 end

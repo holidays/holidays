@@ -26,16 +26,19 @@ module Holidays
       # A fixed Hijri date drifts ~11 days earlier each Gregorian year, so
       # roughly once every 33 years it falls twice in the same Gregorian year
       # (once in early January, once in late December). Only the earlier
-      # occurrence is returned.
+      # occurrence is returned; see #gregorian_year_occurrences for both.
       def gregorian_year_occurrence(gregorian_year, hijri_month, hijri_day)
+        gregorian_year_occurrences(gregorian_year, hijri_month, hijri_day).first
+      end
+
+      # Every occurrence of a fixed Hijri month/day within a Gregorian year,
+      # earliest first. Empty when none falls in that year.
+      def gregorian_year_occurrences(gregorian_year, hijri_month, hijri_day)
         candidate_hijri_year = gregorian_year - 579
 
-        (candidate_hijri_year - 1..candidate_hijri_year + 1).each do |hijri_year|
-          date = to_gregorian(hijri_year, hijri_month, hijri_day)
-          return date if date.year == gregorian_year
-        end
-
-        nil
+        (candidate_hijri_year - 1..candidate_hijri_year + 1)
+          .map { |hijri_year| to_gregorian(hijri_year, hijri_month, hijri_day) }
+          .select { |date| date.year == gregorian_year }
       end
 
       private
