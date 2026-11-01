@@ -214,6 +214,22 @@ assert_equal "Juneteenth National Independence Day", (Holidays.on(Date.civil(202
 assert_equal "Juneteenth National Independence Day", (Holidays.on(Date.civil(2028, 6, 19), [:us_ut], [:observed])[0] || {})[:name]
 assert_equal "Juneteenth National Independence Day", (Holidays.on(Date.civil(2033, 6, 20), [:us_ut], [:observed])[0] || {})[:name]
 
+    assert_equal "Juneteenth National Independence Day", (Holidays.on(Date.civil(2026, 6, 19), [:us])[0] || {})[:name]
+
+    assert_equal "Juneteenth National Independence Day", (Holidays.on(Date.civil(2026, 6, 19), [:us_ga])[0] || {})[:name]
+
+    assert_equal "Juneteenth National Independence Day", (Holidays.on(Date.civil(2026, 6, 19), [:us_ky])[0] || {})[:name]
+
+    assert_equal "Juneteenth National Independence Day", (Holidays.on(Date.civil(2026, 6, 19), [:us_dc])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2026, 6, 19), [:us_az, :us_ar, :us_ca, :us_fl, :us_hi, :us_ia, :us_in, :us_ms, :us_mt, :us_nc, :us_nd, :us_nh, :us_ok, :us_sc, :us_wi, :us_wv, :us_wy])[0] || {})[:name]
+
+    assert_equal "Juneteenth National Independence Day", (Holidays.on(Date.civil(2026, 6, 19), [:us_hi], [:informal])[0] || {})[:name]
+
+    assert_equal "Juneteenth National Independence Day", (Holidays.on(Date.civil(2026, 6, 19), [:us_ca], [:informal])[0] || {})[:name]
+
+    assert_equal "West Virginia Day", (Holidays.on(Date.civil(2026, 6, 19), [:us_wv], [:observed])[0] || {})[:name]
+
     assert_nil (Holidays.on(Date.civil(2017, 6, 20), [:us])[0] || {})[:name]
 assert_nil (Holidays.on(Date.civil(2020, 6, 19), [:us])[0] || {})[:name]
 assert_nil (Holidays.on(Date.civil(2021, 6, 21), [:us])[0] || {})[:name]

@@ -197,9 +197,15 @@ assert_equal "King's Birthday", (Holidays.on(Date.civil(2023, 9, 25), [:au_wa])[
 
     assert_equal "New Year's Day", (Holidays.on(Date.civil(2017, 1, 1), [:au, :au_qld, :au_nsw, :au_act, :au_vic, :au_sa, :au_wa, :au_nt])[0] || {})[:name]
 
+    assert_nil (Holidays.on(Date.civil(2017, 1, 1), [:au_tas])[0] || {})[:name]
+
+    assert_nil (Holidays.on(Date.civil(2017, 1, 1), [:au_tas], [:observed])[0] || {})[:name]
+
     assert_equal "New Year's Day", (Holidays.on(Date.civil(2017, 1, 2), [:au, :au_qld, :au_nsw, :au_act, :au_vic, :au_sa, :au_wa, :au_nt], [:observed])[0] || {})[:name]
 
     assert_equal "New Year's Day", (Holidays.on(Date.civil(2017, 1, 2), [:au_tas])[0] || {})[:name]
+
+    assert_equal "New Year's Day", (Holidays.on(Date.civil(2017, 1, 2), [:au_tas], [:observed])[0] || {})[:name]
 
     assert_nil (Holidays.on(Date.civil(2016, 3, 27), [:au_qld])[0] || {})[:name]
 

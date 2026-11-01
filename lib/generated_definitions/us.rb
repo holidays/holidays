@@ -7,7 +7,7 @@ module Holidays
   # All the definitions are available at https://github.com/holidays/holidays
   module US # :nodoc:
     def self.defined_regions
-      [:us_fl, :us_al, :us_la, :us, :us_ct, :us_de, :us_gu, :us_hi, :us_in, :us_ky, :us_nj, :us_nc, :us_nd, :us_pa, :us_pr, :us_tn, :us_ga, :us_ms, :us_id, :us_ar, :us_tx, :us_dc, :us_md, :us_va, :us_vt, :us_ak, :us_ca, :us_me, :us_ma, :us_ne, :us_mo, :us_sc, :us_wv, :us_vi, :us_ut, :us_ri, :us_az, :us_co, :us_il, :us_mt, :us_nm, :us_ny, :us_oh, :us_mi, :us_mn, :us_nv, :us_or, :us_sd, :us_wa, :us_wi, :us_wy, :us_ia, :us_ks, :us_nh, :us_ok, :ca]
+      [:us_fl, :us_al, :us_la, :us, :us_ct, :us_de, :us_gu, :us_hi, :us_in, :us_ky, :us_nj, :us_nc, :us_nd, :us_pa, :us_pr, :us_tn, :us_ga, :us_ms, :us_id, :us_ar, :us_tx, :us_dc, :us_md, :us_va, :us_vt, :us_ak, :us_ca, :us_me, :us_ma, :us_ne, :us_mo, :us_sc, :us_az, :us_ia, :us_mt, :us_nh, :us_ok, :us_wi, :us_wv, :us_wy, :us_vi, :us_ut, :us_ri, :us_co, :us_il, :us_nm, :us_ny, :us_oh, :us_mi, :us_mn, :us_nv, :us_or, :us_sd, :us_wa, :us_ks, :ca]
     end
 
     def self.holidays_by_month
@@ -53,7 +53,8 @@ module Holidays
       6 => [{:wday => 1, :week => 1, :name => "Jefferson Davis' Birthday", :regions => [:us_al]},
             {:mday => 3, :name => "Birthday of Jefferson Davis", :regions => [:us_fl]},
             {:mday => 11, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "King Kamehameha I Day", :regions => [:us_hi]},
-            {:mday => 19, :year_ranges => { :from => 2021 },:observed => "juneteenth_national_independence_day(region, date)", :observed_arguments => [:region, :date], :name => "Juneteenth National Independence Day", :regions => [:us]},
+            {:mday => 19, :year_ranges => { :from => 2021 },:observed => "juneteenth_national_independence_day(region, date)", :observed_arguments => [:region, :date], :name => "Juneteenth National Independence Day", :regions => [:us], :excluded_regions => [:us_az, :us_ar, :us_ca, :us_fl, :us_hi, :us_ia, :us_in, :us_ms, :us_mt, :us_nc, :us_nd, :us_nh, :us_ok, :us_sc, :us_wi, :us_wv, :us_wy]},
+            {:mday => 19, :year_ranges => { :from => 2021 },:observed => "juneteenth_national_independence_day(region, date)", :observed_arguments => [:region, :date], :type => :informal, :name => "Juneteenth National Independence Day", :regions => [:us_az, :us_ar, :us_ca, :us_fl, :us_hi, :us_ia, :us_in, :us_ms, :us_mt, :us_nc, :us_nd, :us_nh, :us_ok, :us_sc, :us_wi, :us_wv, :us_wy]},
             {:mday => 19, :name => "Emancipation Day in Texas", :regions => [:us_tx]},
             {:mday => 20, :observed => "to_weekday_if_weekend(date)", :observed_arguments => [:date], :name => "West Virginia Day", :regions => [:us_wv]},
             {:wday => 0, :week => 3, :type => :informal, :name => "Father's Day", :regions => [:us, :ca]}],
