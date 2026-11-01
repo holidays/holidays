@@ -161,6 +161,22 @@ assert_equal "Feriado con fines turísticos", (Holidays.on(Date.civil(2021, 11, 
 
     assert_equal "Navidad", (Holidays.on(Date.civil(2014, 12, 25), [:cl], [:informal])[0] || {})[:name]
 
+    assert_equal "Día Nacional de los Pueblos Indígenas", (Holidays.on(Date.civil(2021, 6, 21), [:cl])[0] || {})[:name]
+
+    assert_equal "Día Nacional de los Pueblos Indígenas", (Holidays.on(Date.civil(2022, 6, 21), [:cl])[0] || {})[:name]
+
+    assert_equal "Día Nacional de los Pueblos Indígenas", (Holidays.on(Date.civil(2023, 6, 21), [:cl])[0] || {})[:name]
+
+    assert_equal "Día Nacional de los Pueblos Indígenas", (Holidays.on(Date.civil(2024, 6, 20), [:cl])[0] || {})[:name]
+
+    assert_equal "Día Nacional de los Pueblos Indígenas", (Holidays.on(Date.civil(2025, 6, 20), [:cl])[0] || {})[:name]
+
+    assert_equal "Día Nacional de los Pueblos Indígenas", (Holidays.on(Date.civil(2026, 6, 21), [:cl])[0] || {})[:name]
+
+    assert_equal "Día Nacional de los Pueblos Indígenas", (Holidays.on(Date.civil(2029, 6, 20), [:cl])[0] || {})[:name]
+
+    assert_equal "Día Nacional de los Pueblos Indígenas", (Holidays.on(Date.civil(2046, 6, 21), [:cl])[0] || {})[:name]
+
     assert_equal "Año Nuevo", (Holidays.on(Date.civil(2014, 1, 1), [:co])[0] || {})[:name]
 
     assert_equal "Año Nuevo", (Holidays.on(Date.civil(2017, 1, 1), [:co])[0] || {})[:name]
