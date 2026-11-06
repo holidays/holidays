@@ -198,7 +198,7 @@ class HolidaysTests < Test::Unit::TestCase
 
     # Should return Victoria Day and National Patriotes Day.
     holidays = Holidays.between(Date.civil(2008,5,1), Date.civil(2008,5,31), :ca_)
-    assert_equal 3, holidays.length
+    assert_equal 2, holidays.length
   end
 
   def test_sub_regions_holiday_next

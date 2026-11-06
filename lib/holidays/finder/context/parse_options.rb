@@ -88,9 +88,14 @@ module Holidays
           r.to_s =~ /_$/
         end
 
+        # A definition file can list regions from other countries (ca.rb also
+        # defines :us, for holidays the two share), so keep only the prefix
+        # country and its sub-regions.
         def load_wildcard_parent!(wildcard_region)
-          prefix = wildcard_region.to_s.split('_').first.to_sym
-          load_region!(prefix)
+          prefix = wildcard_region.to_s.split('_').first
+          Array(load_region!(prefix.to_sym)).select do |r|
+            r.to_s == prefix || r.to_s.start_with?("#{prefix}_")
+          end
         end
 
         def load_region!(r)

@@ -72,6 +72,14 @@ class ParseOptionsTests < Test::Unit::TestCase
     assert_equal([:ch, :ch_zh], regions)
   end
 
+  def test_wildcard_excludes_regions_from_other_countries
+    @definition_loader.expects(:call).with(:ca).returns([:ca, :ca_ab, :us])
+
+    regions = @subject.call([:ca_ab_]).first
+
+    assert_equal([:ca, :ca_ab], regions)
+  end
+
   def test_does_nothing_if_region_is_already_loaded_and_is_parent
     @regions_repo.expects(:parent_region_lookup).with(:test).returns(nil)
     regions = @subject.call([:test]).first
